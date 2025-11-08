@@ -1,0 +1,3571 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="صفحه پرداخت فینگرفود فیروزه - تکمیل سفارش با روش‌های پرداخت امن">
+    <meta name="keywords" content="فینگرفود, پرداخت, فیروزه, سفارش آنلاین">
+    <meta name="author" content="FingerFood Firoozeh">
+    <title>صفحه پرداخت - FingerFood Firoozeh</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
+    <style>
+        :root {
+            --header-h: 80px;
+            --primary-color: #26A69A;
+            --secondary-color: #1A7A6F;
+            --background-color: #f8f9fa;
+            --neutral-color: #dadee6;
+            --text-dark: #4B5563;
+            --text-light: #edebeb;
+            --gradient-start: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
+            --header-bg: #064d3b;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --gray-box: #f1f3f5;
+            --border-color: #e9ecef;
+            --rental-color: #e67e22;
+            --free-color: #27ae60;
+            --error-color: #e63946;
+            --success-color: #2a9d8f;
+            --warning-color: #f39c12;
+        }
+
+        [data-theme="dark"] {
+            --header-bg: #1a3c34;
+            --text-light: #e0e0e0;
+            --background-color: #1a1a1a;
+            --text-dark: #cccccc;
+            --gray-box: #2d3748;
+            --border-color: #4a5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+            background: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding-top: calc(var(--header-h) + 20px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: rgba(6, 77, 59, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-light);
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 1001;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translate(-50%, -100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        .menu-icon {
+            font-size: 1.4rem;
+            cursor: pointer;
+            order: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover i {
+            transform: scale(1.1);
+        }
+
+        .logo-search {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            order: 2;
+        }
+
+        .logo {
+            font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo img {
+            height: 28px;
+            width: auto;
+        }
+
+        .search-box {
+            position: relative;
+            width: 280px;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 8px 40px 8px 40px;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            direction: rtl;
+            background: var(--text-light);
+            color: var(--text-dark);
+        }
+
+        .search-icon, .clear-icon {
+            background: var(--text-light);
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-icon {
+            border-radius: 0 20px 20px 0;
+        }
+
+        .clear-icon {
+            position: absolute;
+            left: 0;
+            display: none;
+        }
+
+        .clear-icon.active {
+            display: flex;
+        }
+
+        .search-suggestions {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: white;
+            color: black;
+            border: 1px solid var(--neutral-color);
+            width: 100%;
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 10px;
+            z-index: 1002;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-suggestions.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .search-suggestions h4 {
+            font-size: 0.85rem;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .search-suggestions ul {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+
+        .search-suggestions li {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .search-suggestions li:hover {
+            background: var(--neutral-color);
+        }
+
+        .cart-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            order: 3;
+            position: relative;
+        }
+
+        .promo-text {
+            font-size: 0.85rem;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .cart-link, .profile-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .cart-link:hover, .profile-link:hover {
+            color: var(--primary-color);
+        }
+
+        .cart-link:hover i, .profile-link:hover i {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e63946;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+        }
+
+        .profile-icon {
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--neutral-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .user-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            color: black;
+            border: 1px solid var(--neutral-color);
+            width: 200px;
+            padding: 10px;
+            z-index: 1002;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .user-menu.active {
+            display: block;
+        }
+
+        .user-menu .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-menu .user-info .avatar {
+            font-size: 2rem;
+        }
+
+        .user-menu a, .user-menu button {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .user-menu a:hover, .user-menu button:hover {
+            background: var(--neutral-color);
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--background-color);
+            z-index: 1003;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 50px;
+        }
+
+        .nav-category {
+            margin-bottom: 20px;
+        }
+
+        .nav-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .sub-menu {
+            list-style: none;
+        }
+
+        .sub-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sub-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .sub-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        .wizard-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .wizard-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .wizard-header h1 {
+            font-size: 28px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .wizard-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 4px;
+            background: var(--primary-color);
+            z-index: 2;
+            transition: width 0.3s ease;
+        }
+
+        .progress-percentage {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--border-color);
+            color: #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-number {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .step-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            text-align: center;
+        }
+
+        .step.active .step-text {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .step.completed .step-text {
+            color: var(--success-color);
+        }
+
+        .wizard-content {
+            min-height: 400px;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-content.fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Step Styles */
+        .products-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .products-header h2 {
+            font-size: 22px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-left: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 8px;
+            color: var(--text-dark);
+        }
+
+        .product-meta {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .quantity-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            border-color: #ccc;
+        }
+
+        .quantity {
+            width: 45px;
+            text-align: center;
+            border: 2px solid var(--neutral-color);
+            border-radius: 8px;
+            padding: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #e63946;
+            transition: var(--transition);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .remove-btn:hover {
+            background: rgba(230, 57, 70, 0.1);
+            transform: scale(1.1);
+        }
+
+        .order-summary-box {
+            background: var(--gray-box);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .grand-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .discount-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .discount-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .discount-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Shabnam', Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .discount-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+        }
+
+        .discount-btn {
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .discount-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .payment-methods {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(38, 166, 154, 0.1);
+        }
+
+        .payment-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f0f0f0;
+        }
+
+        .payment-description {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--gray-box);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .trust-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--gray-box);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .trust-section p {
+            margin-bottom: 10px;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .trust-logos img {
+            height: 40px;
+            width: auto;
+        }
+
+        .packaging-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .packaging-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .packaging-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .packaging-option {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .packaging-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .packaging-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(38, 166, 154, 0.1);
+        }
+
+        .packaging-image {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .packaging-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .packaging-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .packaging-label {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .packaging-label.rental {
+            background: var(--rental-color);
+        }
+
+        .packaging-label.free {
+            background: var(--free-color);
+        }
+
+        .packaging-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--gray-box);
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            border-right: 4px solid var(--rental-color);
+        }
+
+        /* Address Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--error-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Shabnam', Arial, sans-serif;
+            font-size: 16px;
+            direction: rtl;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+        }
+
+        .form-control.error {
+            border-color: var(--error-color);
+        }
+
+        .form-control.valid {
+            border-color: var(--success-color);
+        }
+
+        .placeholder-text {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .address-note {
+            background: #fff8e1;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .delivery-time-info {
+            background: #e3f2fd;
+            border-right: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .time-error {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .time-error.active {
+            display: block;
+        }
+
+        /* Confirmation Styles */
+        .payment-confirmation {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .payment-icon {
+            font-size: 60px;
+            color: var(--success-color);
+            margin-bottom: 20px;
+        }
+
+        .payment-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .payment-details {
+            background: var(--gray-box);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: right;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .invoice-note {
+            background: #e3f2fd;
+            border-right: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .products-list {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--gray-box);
+            border-radius: 8px;
+        }
+
+        .product-summary {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-summary:last-child {
+            border-bottom: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .action-buttons {
+                position: sticky;
+                bottom: 0;
+                background: var(--background-color);
+                padding: 10px 20px;
+                z-index: 10;
+                border-top: none;
+            }
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Shabnam', Arial, sans-serif;
+            text-align: center;
+        }
+
+        .btn-prev {
+            background: var(--gray-box);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-prev:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .btn-next {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-confirm {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background: #218870;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--gradient-start);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100px 100px;
+        }
+
+        footer h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 15px;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .links {
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        footer a:hover { 
+            color: var(--primary-color); 
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        footer .contact-info {
+            font-size: 1rem;
+            margin: 20px 0;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        #clock { 
+            color: var(--text-light); 
+            margin-top: 15px; 
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .copyright {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-bar {
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 0;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .social-box img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            object-fit: contain;
+        }
+
+        .social-box:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+            transform: scale(1.05);
+        }
+
+        .logo-box {
+            width: 70px;
+            height: 70px;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-box:hover {
+            transform: scale(1.05);
+        }
+
+        /* Auth Modal Styles */
+        .auth-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1004;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .auth-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .auth-modal-content {
+            background: var(--background-color);
+            border-radius: 16px;
+            padding: 32px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            direction: rtl;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .auth-modal.active .auth-modal-content {
+            transform: scale(1);
+        }
+        .auth-modal-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .auth-modal-close:hover {
+            color: var(--secondary-color);
+            background: rgba(38, 166, 154, 0.1);
+        }
+        .auth-modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .auth-modal-header .site-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .auth-modal-header .site-logo img {
+            height: 28px;
+        }
+        .auth-modal-header h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 8px 0 4px;
+        }
+        .auth-modal-header .greeting {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--text-dark);
+        }
+        .auth-modal-header p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin: 4px 0 16px;
+        }
+        .wizard-step {
+            display: none;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+        .auth-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--neutral-color);
+            border-radius: 12px;
+            font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            direction: ltr;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+        }
+        .auth-form button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .auth-form button:hover {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+        .auth-form button:active {
+            transform: translateY(0);
+        }
+        .auth-form .error {
+            color: #D32F2F;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+        .auth-form .success {
+            color: #388E3C;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+        .auth-form .timer {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 8px;
+            display: none;
+        }
+        .auth-form .terms {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            text-align: center;
+            margin-top: 8px;
+        }
+        .wizard-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .wizard-buttons button {
+            flex: 1;
+        }
+        .wizard-buttons .prev {
+            background: var(--neutral-color);
+            color: var(--text-dark);
+        }
+        .wizard-buttons .prev:hover {
+            background: #ccc;
+        }
+        
+        /* Character and Username Selection */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .character-card {
+            background: var(--neutral-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .character-card:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+        .character-card.selected {
+            background: var(--primary-color);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
+        }
+
+        /* Logout Modal */
+        .logout-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1005;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .logout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .logout-modal-content {
+            background: var(--background-color);
+            border-radius: 16px;
+            padding: 32px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            direction: rtl;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .logout-modal.active .logout-modal-content {
+            transform: scale(1);
+        }
+        .logout-modal-content h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin: 0 0 12px;
+        }
+        .logout-modal-content p {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            margin: 0 0 24px;
+        }
+        .logout-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .logout-buttons button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .logout-buttons .confirm {
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+        }
+        .logout-buttons .confirm:hover {
+            background: var(--secondary-color);
+        }
+        .logout-buttons .cancel {
+            background: var(--neutral-color);
+            color: var(--text-dark);
+            border: none;
+        }
+        .logout-buttons .cancel:hover {
+            background: #ccc;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .username-strength {
+            height: 5px;
+            background: #ddd;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        .username-strength.weak { background: red; }
+        .username-strength.medium { background: orange; }
+        .username-strength.strong { background: green; }
+        .input-group {
+            position: relative;
+        }
+        .toggle-visibility {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+        }
+        #resendCodeBtn {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 992px) {
+            .packaging-options {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wizard-container {
+                padding: 20px 15px;
+            }
+            
+            .product-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .product-image {
+                width: 70px;
+                height: 70px;
+                margin-left: 0;
+            }
+            
+            .product-info {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                align-items: center;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .product-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .navbar {
+                width: 95%;
+                padding: 10px 15px;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .search-box {
+                width: 180px;
+            }
+            
+            .progress-bar {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .progress-bar::before {
+                display: none;
+            }
+            
+            .progress-fill {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .discount-input-group {
+                flex-direction: column;
+            }
+            
+            .product-actions {
+                flex-wrap: wrap;
+            }
+            
+            .product-price {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <header class="navbar">
+        <button class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="logo-search">
+            <a href="index.html" class="logo">
+                <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه" loading="lazy">
+                FIROUZEH
+            </a>
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت" 
+                    id="searchInput" 
+                    aria-label="جستجوی محصولات"
+                >
+                <button class="clear-icon" id="clearSearch" aria-label="پاک کردن جستجو"><i class="fas fa-times"></i></button>
+                <button class="search-icon" aria-label="جستجو"><i class="fas fa-search"></i></button>
+                <div class="search-suggestions" id="suggestionsBox">
+                    <h4>🔥 محبوب‌ترین سرچ‌ها</h4>
+                    <ul>
+                        <li>فینگرفود</li>
+                        <li>دسر</li>
+                        <li>مزه</li>
+                        <li>سینی مزه</li>
+                        <li>آجیل مخلوط</li>
+                    </ul>
+                    <h4>🕓 جستجوهای اخیر</h4>
+                    <ul>
+                        <li>باکس الگانت</li>
+                        <li>نوشیدنی خنک</li>
+                        <li>پنیر و زیتون</li>
+                    </ul>
+                    <h4>📜 عبارات پیشنهادی</h4>
+                    <ul>
+                        <li>فینگرفود برای مهمانی</li>
+                        <li>مزه برای دورهمی</li>
+                        <li>سفارش سریع غذا</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-profile">
+            <div class="promo-text" id="promoText">⚡ سفارش حالا و تحویل در 15 دقیقه!</div>
+            <a href="/cart" class="cart-link" role="button" aria-label="سبد خرید">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">3</span>
+            </a>
+            <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+                <i class="fas fa-user profile-icon" id="profileIcon"></i>
+            </div>
+            <div class="user-menu" id="userMenu">
+                <div class="user-info">
+                    <span class="avatar" id="userAvatar"></span>
+                    <span id="userName"></span>
+                </div>
+                <a href="/cart">سبد خرید</a>
+                <button id="logoutBtn">خروج</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
+        <button class="close-btn" aria-label="بستن منو">×</button>
+        <ul class="nav-menu">
+            <li class="nav-category">
+                <h3>دسته‌بندی محصولات</h3>
+                <ul class="sub-menu">
+                    <li><a href="#products">انواع محصولات</a></li>
+                    <li><a href="#subcategories">طبقه‌بندی جانبی</a></li>
+                </ul>
+            </li>
+            <li class="nav-category">
+                <h3>فیروزه</h3>
+                <ul class="sub-menu">
+                    <li><a href="#special-customers">مشتریان خاص فیروزه</a></li>
+                    <li><a href="about.html">درباره فیروزه</a></li>
+                    <li><a href="contact.html">تماس با فیروزه</a></li>
+                    <li><a href="FAQ.html">سوالات متداول</a></li>
+                    <li><a href="#collaboration">همکاری با فیروزه</a></li>
+                    <li><a href="#blogs">مجلات و اخبار فیروزه</a></li>
+                    <li><a href="#rules">قوانین و مقررات</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
+            <div class="auth-modal-header">
+                <div class="site-logo">
+                    <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه">
+                    FIROUZEH
+                </div>
+                <h2>ورود یا ثبت‌نام</h2>
+                <div class="greeting">سلام</div>
+                <p>لطفا شماره موبایل خود را وارد کنید</p>
+            </div>
+            <div class="wizard-step active" id="step1">
+                <div class="auth-form">
+                    <label for="authPhone">شماره موبایل</label>
+                    <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
+                    <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
+                    <div id="captchaSection">
+                        <label id="captchaQuestion"></label>
+                        <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
+                        <p class="error" id="captchaError">پاسخ اشتباه است.</p>
+                    </div>
+                    <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
+                </div>
+                <div class="wizard-buttons">
+                    <button id="nextToStep2" disabled>بعدی</button>
+                </div>
+            </div>
+            <div class="wizard-step" id="step2">
+                <div class="auth-form">
+                    <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
+                    <label for="authCode">کد یک‌بار مصرف</label>
+                    <div class="input-group">
+                        <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
+                        <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
+                    </div>
+                    <p class="error" id="authCodeError">کد نامعتبر است.</p>
+                    <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
+                    <button id="resendCodeBtn">ارسال مجدد کد</button>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="prev" id="prevToStep1">قبلی</button>
+                    <button id="nextToStep3" disabled>تأیید</button>
+                </div>
+            </div>
+            <div class="wizard-step" id="step3">
+                <label for="username">نام کاربری</label>
+                <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
+                <div class="username-strength" id="usernameStrength"></div>
+                <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
+                <h3>انتخاب کاراکتر</h3>
+                <div class="character-grid">
+                    <div class="character-card" data-char="🍎">🍎</div>
+                    <div class="character-card" data-char="🍕">🍕</div>
+                    <div class="character-card" data-char="🍔">🍔</div>
+                    <div class="character-card" data-char="🍦">🍦</div>
+                </div>
+                <div class="wizard-buttons">
+                    <button class="prev" id="prevToStep2">قبلی</button>
+                    <button id="confirmProfileBtn" disabled>تأیید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="logout-modal" id="logoutModal">
+        <div class="logout-modal-content">
+            <h2>از حساب کاربری خارج می‌شوید؟</h2>
+            <p>با خروج از حساب کاربری به سبد خرید فعلی دسترسی نخواهید داشت. هر وقت بخواهید مجدد می‌توانید وارد شوید.</p>
+            <div class="logout-buttons">
+                <button class="confirm" id="confirmLogout">خروج</button>
+                <button class="cancel" id="cancelLogout">انصراف</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <h1><i class="fas fa-shopping-cart"></i> تکمیل سفارش</h1>
+                <p>مراحل تکمیل سفارش خود را دنبال کنید</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-text">محصولات</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-text">آدرس</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-text">بسته‌بندی و پرداخت</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-text">تایید نهایی</div>
+                </div>
+            </div>
+            <div class="progress-percentage" id="progressPercentage">25% تکمیل</div>
+
+            <div class="wizard-content">
+                <!-- Step 1: Products + Subtotal -->
+                <div class="step-content active" id="step1">
+                    <div class="products-container">
+                        <div class="products-header">
+                            <h2>محصولات انتخابی</h2>
+                        </div>
+                        
+                        <div class="product-item" data-id="1">
+                            <img src="https://placehold.co/80x80/26A69A/FFFFFF?text=فینگرفود+1" alt="فینگرفود الگانت مخصوص" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-name">فینگرفود الگانت مخصوص</h3>
+                                <div class="product-meta">طعم: مخلوط خاص</div>
+                                <div class="product-actions">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn minus" aria-label="کاهش تعداد">-</button>
+                                        <input type="text" class="quantity" value="2" readonly aria-label="تعداد" data-price="200000" data-id="1">
+                                        <button class="quantity-btn plus" aria-label="افزایش تعداد">+</button>
+                                    </div>
+                                    <div class="product-price" data-price="200000" data-id="1">۴۰۰,۰۰۰ تومان</div>
+                                    <button class="remove-btn" aria-label="حذف محصول"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-item" data-id="2">
+                            <img src="https://placehold.co/80x80/1A7A6F/FFFFFF?text=سینی+مزه" alt="سینی مزه ویژه" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-name">سینی مزه ویژه</h3>
+                                <div class="product-meta">محتویات: پنیر، زیتون، آجیل</div>
+                                <div class="product-actions">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn minus" aria-label="کاهش تعداد">-</button>
+                                        <input type="text" class="quantity" value="1" readonly aria-label="تعداد" data-price="150000" data-id="2">
+                                        <button class="quantity-btn plus" aria-label="افزایش تعداد">+</button>
+                                    </div>
+                                    <div class="product-price" data-price="150000" data-id="2">۱۵۰,۰۰۰ تومان</div>
+                                    <button class="remove-btn" aria-label="حذف محصول"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-item" data-id="3">
+                            <img src="https://placehold.co/80x80/2E2A3F/FFFFFF?text=دسر" alt="دسر خانگی شکلاتی" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-name">دسر خانگی شکلاتی</h3>
+                                <div class="product-meta">طعم: شکلاتی خامه‌ای</div>
+                                <div class="product-actions">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn minus" aria-label="کاهش تعداد">-</button>
+                                        <input type="text" class="quantity" value="3" readonly aria-label="تعداد" data-price="80000" data-id="3">
+                                        <button class="quantity-btn plus" aria-label="افزایش تعداد">+</button>
+                                    </div>
+                                    <div class="product-price" data-price="80000" data-id="3">۲۴۰,۰۰۰ تومان</div>
+                                    <button class="remove-btn" aria-label="حذف محصول"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-item" data-id="4">
+                            <img src="https://placehold.co/80x80/064d3b/FFFFFF?text=نوشیدنی" alt="نوشیدنی خنک مخصوص" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-name">نوشیدنی خنک مخصوص</h3>
+                                <div class="product-meta">طعم: مخلوط میوه‌ای</div>
+                                <div class="product-actions">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn minus" aria-label="کاهش تعداد">-</button>
+                                        <input type="text" class="quantity" value="2" readonly aria-label="تعداد" data-price="45000" data-id="4">
+                                        <button class="quantity-btn plus" aria-label="افزایش تعداد">+</button>
+                                    </div>
+                                    <div class="product-price" data-price="45000" data-id="4">۹۰,۰۰۰ تومان</div>
+                                    <button class="remove-btn" aria-label="حذف محصول"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary-box">
+                        <h3><i class="fas fa-file-invoice"></i> خلاصه سفارش</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">جمع کل محصولات:</span>
+                            <span class="summary-value" data-type="subtotal">۸۸۰,۰۰۰ تومان</span>
+                        </div>
+                        <div class="summary-item grand-total">
+                            <span class="summary-label">جمع کل:</span>
+                            <span class="summary-value" data-type="total">۸۸۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-prev" disabled>
+                            <i class="fas fa-arrow-right"></i> قبلی
+                        </button>
+                        <button class="btn btn-next" id="nextToStep2">
+                            <i class="fas fa-arrow-left"></i> مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Address -->
+                <div class="step-content" id="step2">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="firstName" class="required">نام</label>
+                                <input type="text" id="firstName" class="form-control" placeholder="نام خود را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="lastName" class="required">نام خانوادگی</label>
+                                <input type="text" id="lastName" class="form-control" placeholder="نام خانوادگی خود را وارد کنید" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province" class="required">استان</label>
+                        <input type="text" id="province" class="form-control" value="آذربایجان شرقی" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="required">شهر</label>
+                        <select id="city" class="form-control" required>
+                            <option value="">انتخاب شهر</option>
+                            <option value="تبریز">تبریز</option>
+                            <option value="اسکو">اسکو</option>
+                            <option value="لیقوان">لیقوان</option>
+                            <option value="بستان آباد">بستان آباد</option>
+                            <option value="شبستر">شبستر</option>
+                            <option value="آذرشهر">آذرشهر</option>
+                            <option value="ورزقان">ورزقان</option>
+                            <option value="بناب">بناب</option>
+                            <option value="مرند">مرند</option>
+                            <option value="اهر">اهر</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="required">آدرس کامل</label>
+                        <textarea id="address" class="form-control" rows="3" placeholder="مثال: خیابان اصلی، کوچه دوم، پلاک 15، طبقه سوم" required></textarea>
+                        <div class="address-note">
+                            <i class="fas fa-exclamation-circle"></i> اگر این بخش تغییر کند و با موقعیت واقعی شما مطابقت نداشته باشد، تحویل محصول ممکن است با مشکل مواجه شود.
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="phone" class="required">شماره تماس</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="مثال: 09123456789" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="deliveryTime" class="required">زمان تحویل</label>
+                                <input type="text" id="deliveryTime" class="form-control" required>
+                                <div class="time-error" id="timeError">زمان تحویل باید حداقل یک روز آینده باشد</div>
+                                <div class="delivery-time-info">
+                                    <i class="fas fa-info-circle"></i> زمان تحویل باید حداقل یک روز آینده باشد
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-prev" id="prevToStep1">
+                            <i class="fas fa-arrow-right"></i> قبلی
+                        </button>
+                        <button class="btn btn-next" id="nextToStep3" disabled>
+                            <i class="fas fa-arrow-left"></i> مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Packaging + Payment + Discount + Full Summary -->
+                <div class="step-content" id="step3">
+                    <div class="discount-section">
+                        <h3><i class="fas fa-ticket-alt"></i> کد تخفیف</h3>
+                        <div class="discount-input-group">
+                            <input type="text" class="discount-input" placeholder="کد تخفیف خود را وارد کنید" aria-label="وارد کردن کد تخفیف">
+                            <button class="discount-btn" aria-label="اعمال کد تخفیف">اعمال کد</button>
+                        </div>
+                    </div>
+                    
+                    <div class="packaging-section">
+                        <h3 class="packaging-title">انتخاب نوع بسته‌بندی برای سفارش شما</h3>
+                        <div class="packaging-options">
+                            <button class="packaging-option" data-packaging="wooden" aria-label="انتخاب بسته‌بندی چارچوبی">
+                                <img src="https://placehold.co/150x120/8B4513/FFFFFF?text=چارچوبی" alt="چارچوبی" class="packaging-image" id="wooden-image">
+                                <div class="packaging-name">چارچوبی</div>
+                                <div class="packaging-description">چارچوب طبیعی با ظرافت و زیبایی خاص برای مراسم‌های رسمی</div>
+                                <span class="packaging-label rental">اجاره‌ای</span>
+                            </button>
+                            <button class="packaging-option selected" data-packaging="turquoise" aria-label="انتخاب بسته‌بندی فیروزه‌ای">
+                                <img src="https://placehold.co/150x120/40E0D0/FFFFFF?text=فیروزه‌ای" alt="فیروزه‌ای" class="packaging-image" id="turquoise-image">
+                                <div class="packaging-name">فیروزه‌ای</div>
+                                <div class="packaging-description">جعبه‌های رنگی فیروزه‌ای با طراحی مدرن و جذاب</div>
+                                <span class="packaging-label free">رایگان</span>
+                            </button>
+                            <button class="packaging-option" data-packaging="iron" aria-label="انتخاب بسته‌بندی آهنی">
+                                <img src="https://placehold.co/150x120/A9A9A9/FFFFFF?text=آهنی" alt="آهنی" class="packaging-image" id="iron-image">
+                                <div class="packaging-name">آهنی</div>
+                                <div class="packaging-description">سینی‌های آهنی با پایه‌های مقاوم برای سرو حرفه‌ای</div>
+                                <span class="packaging-label rental">اجاره‌ای</span>
+                            </button>
+                        </div>
+                        <div class="packaging-note">
+                            اجاره‌ای به معنای ارائه کالا در قبال واگذاری کارت ملی است
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3><i class="fas fa-money-bill-wave"></i> روش پرداخت</h3>
+                        <div class="payment-options">
+                            <button class="payment-option selected" data-method="online" aria-label="انتخاب پرداخت آنلاین">
+                                <i class="fas fa-credit-card"></i> پرداخت آنلاین
+                            </button>
+                            <button class="payment-option disabled" data-method="cod" aria-label="انتخاب پرداخت در محل">
+                                <i class="fas fa-wallet"></i> پرداخت در محل
+                            </button>
+                        </div>
+                        <div class="payment-description" id="paymentDescription">
+                            <p>پس از پرداخت موفق، فاکتور رسمی صادر خواهد شد که قابل پیگیری قانونی است.</p>
+                        </div>
+                        <div class="trust-section">
+                            <p>پرداخت شما توسط درگاه امن بانکی شاپرک رمزگذاری می‌شود</p>
+                            <div class="trust-logos">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Zarinpal_Logo.PNG" alt="Zarinpal">
+                                <img src="https://seeklogo.com/images/N/nextpay-logo-9F0C7A4A0C-seeklogo.com.png" alt="NextPay">
+                                <img src="https://seeklogo.com/images/S/shaparak-logo-0E87F3C6A2-seeklogo.com.png" alt="Shaparak">
+                                <img src="https://www.svgrepo.com/download/329593/enamad.svg" alt="eNamad">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary-box">
+                        <h3><i class="fas fa-file-invoice"></i> خلاصه سفارش</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">جمع کل محصولات:</span>
+                            <span class="summary-value" data-type="subtotal">۸۸۰,۰۰۰ تومان</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">تخفیف:</span>
+                            <span class="summary-value" data-type="discount">۰ تومان</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">هزینه ارسال:</span>
+                            <span class="summary-value" data-type="shipping">۳۰,۰۰۰ تومان</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">مالیات:</span>
+                            <span class="summary-value" data-type="tax">۸۰,۰۰۰ تومان</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">بسته‌بندی:</span>
+                            <span class="summary-value" id="packaging-summary">فیروزه‌ای (رایگان)</span>
+                        </div>
+                        <div class="summary-item" id="cod-upfront" style="display: none;">
+                            <span class="summary-label">پرداخت آنلاین (۲/۳):</span>
+                            <span class="summary-value" data-type="cod-upfront">۰ تومان</span>
+                        </div>
+                        <div class="summary-item" id="cod-remaining" style="display: none;">
+                            <span class="summary-label">پرداخت در محل (۱/۳):</span>
+                            <span class="summary-value" data-type="cod-remaining">۰ تومان</span>
+                        </div>
+                        <div class="summary-item grand-total">
+                            <span class="summary-label">جمع کل:</span>
+                            <span class="summary-value" data-type="total">۹۹۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-prev" id="prevToStep2">
+                            <i class="fas fa-arrow-right"></i> قبلی
+                        </button>
+                        <button class="btn btn-next" id="nextToStep4">
+                            <i class="fas fa-arrow-left"></i> مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Final Confirmation -->
+                <div class="step-content" id="step4">
+                    <div class="payment-confirmation">
+                        <div class="payment-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>فاکتور رسمی سفارش</h2>
+                        <p>لطفاً اطلاعات زیر را بررسی کنید و سفارش خود را تایید نمایید</p>
+                        
+                        <div class="payment-amount" id="finalTotal">
+                            ۹۹۰,۰۰۰ تومان
+                        </div>
+                        
+                        <div class="products-list">
+                            <h3>لیست محصولات</h3>
+                            <div id="finalProductsList"></div>
+                        </div>
+                        
+                        <div class="payment-details">
+                            <div class="detail-row">
+                                <span class="detail-label">نام کامل:</span>
+                                <span class="detail-value" id="fullNameDisplay">-</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">جمع کل محصولات:</span>
+                                <span class="detail-value" id="finalSubtotal">۸۸۰,۰۰۰ تومان</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">تخفیف:</span>
+                                <span class="detail-value" id="finalDiscount">۰ تومان</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">هزینه ارسال:</span>
+                                <span class="detail-value" id="finalShipping">۳۰,۰۰۰ تومان</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">مالیات:</span>
+                                <span class="detail-value" id="finalTax">۸۰,۰۰۰ تومان</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">بسته‌بندی:</span>
+                                <span class="detail-value" id="packagingDisplay">فیروزه‌ای (رایگان)</span>
+                            </div>
+                            <div class="detail-row" id="finalCodUpfront" style="display: none;">
+                                <span class="detail-label">پرداخت آنلاین (۲/۳):</span>
+                                <span class="detail-value" data-type="cod-upfront">۰ تومان</span>
+                            </div>
+                            <div class="detail-row" id="finalCodRemaining" style="display: none;">
+                                <span class="detail-label">پرداخت در محل (۱/۳):</span>
+                                <span class="detail-value">۰ تومان</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">روش پرداخت:</span>
+                                <span class="detail-value" id="paymentMethodDisplay">پرداخت آنلاین</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">آدرس تحویل:</span>
+                                <span class="detail-value" id="deliveryAddressDisplay">-</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">شماره تماس:</span>
+                                <span class="detail-value" id="phoneDisplay">-</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">زمان تحویل:</span>
+                                <span class="detail-value" id="deliveryTimeDisplay">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="invoice-note">
+                            <i class="fas fa-info-circle"></i> پس از تایید نهایی، فاکتور رسمی صادر خواهد شد که قابل پیگیری قانونی است.
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-prev" id="prevToStep3">
+                            <i class="fas fa-arrow-right"></i> قبلی
+                        </button>
+                        <button class="btn btn-confirm" id="confirmOrder">
+                            <i class="fas fa-check"></i> تایید و پرداخت
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h2><i class="fas fa-building"></i> فیروزه</h2>
+        <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
+        <div class="links">
+            <a href="about.html"><i class="fas fa-info-circle"></i> درباره فیروزه</a>
+            <a href="index.html#contact"><i class="fas fa-phone"></i> تماس با فیروزه</a>
+            <a href="index.html#collaboration"><i class="fas fa-handshake"></i> همکاری با فیروزه</a>
+            <a href="index.html#faq"><i class="fas fa-question-circle"></i> سوالات متداول</a>
+        </div>
+        <div class="contact-info">
+            <i class="fas fa-phone"></i> تماس: 021-88608751 | <i class="fab fa-whatsapp"></i> واتس‌اپ: 09910147869
+        </div>
+        <p id="clock"><i class="fas fa-clock"></i> در حال دریافت زمان…</p>
+        <div class="copyright">
+            © ۱۴۰۴ FingerFood Firoozeh - کلیه حقوق محفوظ است.
+        </div>
+        <div class="social-bar">
+            <div class="logo-box"><img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه"></div>
+            <a href="mailto:firouzeh.foodgroup@gmail.com" class="social-box">
+                <i class="fas fa-envelope"></i>
+                ایمیل
+            </a>
+            <a href="https://instagram.com/fingerfood_firouzeh" class="social-box" target="_blank">
+                <i class="fab fa-instagram"></i>
+                اینستاگرام
+            </a>
+            <a href="https://wa.me/09142830328" class="social-box" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                واتس اپ
+            </a>
+            <a href="tel:09142830328" class="social-box">
+                <i class="fas fa-phone"></i>
+                تماس
+            </a>
+            <a href="about.html" class="social-box">
+                <i class="fas fa-award"></i>
+                مجوزها
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+    <script>
+        class WizardCheckoutApp {
+            constructor() {
+                // Elements
+                this.body = document.body;
+                this.menuToggle = document.querySelector('.menu-icon');
+                this.sideMenu = document.getElementById('sideMenu');
+                this.closeBtn = this.sideMenu.querySelector('.close-btn');
+                this.overlay = document.getElementById('overlay');
+                this.searchInput = document.getElementById('searchInput');
+                this.suggestionsBox = document.getElementById('suggestionsBox');
+                this.promoText = document.getElementById('promoText');
+                this.clearSearch = document.getElementById('clearSearch');
+                this.clock = document.getElementById('clock');
+                this.progressFill = document.getElementById('progressFill');
+                this.progressPercentage = document.getElementById('progressPercentage');
+                this.steps = document.querySelectorAll('.step');
+                this.stepContents = document.querySelectorAll('.step-content');
+
+                // Auth Modal Elements
+                this.authModal = document.getElementById('authModal');
+                this.closeAuthModal = document.getElementById('closeAuthModal');
+                this.userProfile = document.getElementById('userProfile');
+                this.profileIcon = document.getElementById('profileIcon');
+                this.userMenu = document.getElementById('userMenu');
+                this.userAvatar = document.getElementById('userAvatar');
+                this.userName = document.getElementById('userName');
+                this.logoutBtn = document.getElementById('logoutBtn');
+                this.logoutModal = document.getElementById('logoutModal');
+                this.confirmLogout = document.getElementById('confirmLogout');
+                this.cancelLogout = document.getElementById('cancelLogout');
+                this.step1 = document.getElementById('step1');
+                this.step2 = document.getElementById('step2');
+                this.step3 = document.getElementById('step3');
+                this.nextToStep2 = document.getElementById('nextToStep2');
+                this.prevToStep1 = document.getElementById('prevToStep1');
+                this.nextToStep3 = document.getElementById('nextToStep3');
+                this.prevToStep2 = document.getElementById('prevToStep2');
+                this.nextToStep4 = document.getElementById('nextToStep4');
+                this.prevToStep3 = document.getElementById('prevToStep3');
+                this.confirmOrder = document.getElementById('confirmOrder');
+                this.authPhone = document.getElementById('authPhone');
+                this.authPhoneError = document.getElementById('authPhoneError');
+                this.authSuccess = document.getElementById('authSuccess');
+                this.authCode = document.getElementById('authCode');
+                this.authCodeError = document.getElementById('authCodeError');
+                this.authTimer = document.getElementById('authTimer');
+                this.authCountdown = document.getElementById('authCountdown');
+                this.username = document.getElementById('username');
+                this.usernameError = document.getElementById('usernameError');
+                this.usernameStrength = document.getElementById('usernameStrength');
+                this.characterCards = document.querySelectorAll('.character-card');
+                this.confirmProfileBtn = document.getElementById('confirmProfileBtn');
+                this.toggleAuthCode = document.getElementById('toggleAuthCode');
+                this.resendCodeBtn = document.getElementById('resendCodeBtn');
+                this.captchaQuestion = document.getElementById('captchaQuestion');
+                this.captchaAnswer = document.getElementById('captchaAnswer');
+                this.captchaError = document.getElementById('captchaError');
+
+                // Form fields for Step 2
+                this.firstName = document.getElementById('firstName');
+                this.lastName = document.getElementById('lastName');
+                this.province = document.getElementById('province');
+                this.city = document.getElementById('city');
+                this.address = document.getElementById('address');
+                this.phone = document.getElementById('phone');
+                this.deliveryTime = document.getElementById('deliveryTime');
+                this.timeError = document.getElementById('timeError');
+
+                // Display elements for Step 4
+                this.fullNameDisplay = document.getElementById('fullNameDisplay');
+                this.paymentMethodDisplay = document.getElementById('paymentMethodDisplay');
+                this.deliveryAddressDisplay = document.getElementById('deliveryAddressDisplay');
+                this.packagingDisplay = document.getElementById('packagingDisplay');
+                this.phoneDisplay = document.getElementById('phoneDisplay');
+                this.deliveryTimeDisplay = document.getElementById('deliveryTimeDisplay');
+                this.finalSubtotal = document.getElementById('finalSubtotal');
+                this.finalDiscount = document.getElementById('finalDiscount');
+                this.finalShipping = document.getElementById('finalShipping');
+                this.finalTax = document.getElementById('finalTax');
+                this.finalTotal = document.getElementById('finalTotal');
+                this.finalCodUpfront = document.getElementById('finalCodUpfront');
+                this.finalCodRemaining = document.getElementById('finalCodRemaining');
+                this.finalProductsList = document.getElementById('finalProductsList');
+
+                // Current step tracking
+                this.currentStep = 1;
+
+                // Data
+                this.promoMessages = [
+                    "⚡ سفارش حالا و تحویل در 15 دقیقه!",
+                    "🍕 غذاهای تازه و خوشمزه هر روز!",
+                    "⭐ تخفیف ویژه برای مشتریان وفادار!",
+                    "🚚 ارسال رایگان برای سفارش‌های بالای ۵۰۰ هزار تومان!"
+                ];
+                this.currentPromoIndex = 0;
+
+                // Mock data for suggestions
+                this.mockSuggestions = ['پیتزا', 'برگر', 'سالاد', 'نوشیدنی', 'دسر', 'پیتزا مارگاریتا', 'برگر کلاسیک', 'سالاد سزار'];
+
+                // Pricing data
+                this.subtotal = 0;
+                this.baseShipping = 30000;
+                this.taxRate = 0.09; // 9% tax rate
+                this.tax = 0;
+                this.discount = 0;
+                this.packagingCost = 0;
+                this.deliveryFee = 0;
+                this.shipping = this.baseShipping + this.deliveryFee + this.packagingCost;
+                this.total = 0;
+                this.codUpfront = 0;
+                this.codRemaining = 0;
+
+                // Packaging images defaults
+                this.woodenImage = document.getElementById('wooden-image');
+                this.turquoiseImage = document.getElementById('turquoise-image');
+                this.ironImage = document.getElementById('iron-image');
+                this.woodenDefaultSrc = this.woodenImage ? this.woodenImage.src : null;
+                this.turquoiseDefaultSrc = this.turquoiseImage ? this.turquoiseImage.src : null;
+                this.ironDefaultSrc = this.ironImage ? this.ironImage.src : null;
+
+                // Auth state
+                this.authCountdownInterval;
+                this.authModalShown = false;
+                this.userData = JSON.parse(sessionStorage.getItem('userData')) || null;
+                this.currentPhone = '';
+                this.isNewUser = false;
+                this.captchaNum1, this.captchaNum2, this.captchaResult;
+                this.failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
+                this.lockTimer = 0;
+
+                this.init();
+            }
+
+            init() {
+                // Bind all events
+                this.bindEvents();
+                this.updateTime();
+                this.changePromoText();
+                this.bindStep1Events();
+                this.bindStep2Events();
+                this.bindStep3Events();
+                this.bindStep4Events();
+                this.bindPackagingHoverEvents();
+                this.bindAuthEvents();
+
+                // Initialize Persian Datepicker
+                this.initializeDatePicker();
+
+                // Accessibility enhancements
+                if (this.timeError) this.timeError.setAttribute('aria-live', 'polite');
+                $(this.deliveryTime).attr('aria-label', 'زمان تحویل');
+
+                // Set intervals with references for potential cleanup
+                this.timeInterval = setInterval(() => this.updateTime(), 1000);
+                this.promoInterval = setInterval(() => this.changePromoText(), 5000);
+
+                // Initial updates
+                document.querySelectorAll('.quantity').forEach(q => this.updateProductPrice(q));
+                this.updateSubtotal(); // Initial calculation
+                this.updateOrderSummary();
+                this.updateUserUI();
+            }
+
+            // Initialize Persian Datepicker for deliveryTime
+            initializeDatePicker() {
+                // Initialize the Persian Datepicker properly
+                this.deliveryTimePicker = $(this.deliveryTime).persianDatepicker({
+                    format: 'YYYY/MM/DD HH:mm',
+                    timePicker: {
+                        enabled: true,
+                        meridian: false,
+                        second: false
+                    },
+                    minDate: new persianDate().add('day', 1).startOf('day').valueOf(),
+                    toolbox: {
+                        calendarSwitch: {
+                            enabled: false
+                        }
+                    },
+                    onSelect: (unix) => {
+                        console.log("Date selected (unix):", unix);
+                        this.validateStep2Form(); // Trigger validation on select
+                    }
+                });
+                
+                console.log("Persian Datepicker initialized:", this.deliveryTimePicker);
+            }
+
+            // Bind general events (menu, search, etc.)
+            bindEvents() {
+                this.menuToggle.addEventListener('click', () => this.toggleMenu());
+                this.closeBtn.addEventListener('click', () => this.closeMenu());
+                this.overlay.addEventListener('click', () => {
+                    this.closeMenu();
+                    this.suggestionsBox.classList.remove('active');
+                    this.userMenu.classList.remove('active');
+                    this.logoutModal.classList.remove('active');
+                    this.closeAuthModalFunc();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeMenu();
+                        this.suggestionsBox.classList.remove('active');
+                        this.userMenu.classList.remove('active');
+                        this.logoutModal.classList.remove('active');
+                        this.closeAuthModalFunc();
+                    }
+                });
+                this.searchInput.addEventListener('focus', () => this.updateSuggestions(this.searchInput.value));
+                this.searchInput.addEventListener('input', (e) => {
+                    this.clearSearch.classList.toggle('active', e.target.value.length > 0);
+                    this.updateSuggestions(e.target.value);
+                });
+                this.clearSearch.addEventListener('click', () => {
+                    this.searchInput.value = '';
+                    this.clearSearch.classList.remove('active');
+                    this.updateSuggestions('');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!this.searchInput.contains(e.target) && !this.suggestionsBox.contains(e.target)) {
+                        this.suggestionsBox.classList.remove('active');
+                    }
+                    if (!this.userProfile.contains(e.target) && !this.userMenu.contains(e.target)) {
+                        this.userMenu.classList.remove('active');
+                    }
+                });
+                this.suggestionsBox.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'LI') {
+                        this.searchInput.value = e.target.textContent;
+                        this.suggestionsBox.classList.remove('active');
+                        this.clearSearch.classList.add('active');
+                        console.log('جستجو برای:', this.searchInput.value); // Debugging hook
+                    }
+                });
+            }
+
+            // Bind events for Step 1 (Cart)
+            bindStep1Events() {
+                // Navigation to Step 2 with empty cart check
+                this.nextToStep2.addEventListener('click', () => {
+                    console.log("nextToStep2 clicked"); // Debugging hook
+                    if (this.subtotal === 0) {
+                        alert('سبد خرید خالی است');
+                        console.warn('Attempted to proceed with empty cart'); // Debugging hook
+                        return;
+                    }
+                    this.goToStep(2);
+                });
+
+                // Quantity controls
+                document.querySelectorAll('.quantity-controls').forEach(container => {
+                    const minusBtn = container.querySelector('.minus');
+                    const plusBtn = container.querySelector('.plus');
+                    const quantityInput = container.querySelector('.quantity');
+
+                    minusBtn.addEventListener('click', () => {
+                        let quantity = parseInt(quantityInput.value);
+                        if (quantity > 1) {
+                            quantity--;
+                            quantityInput.value = quantity;
+                            this.updateProductPrice(quantityInput);
+                        }
+                        minusBtn.disabled = quantity === 1;
+                    });
+
+                    plusBtn.addEventListener('click', () => {
+                        let quantity = parseInt(quantityInput.value);
+                        quantity++;
+                        quantityInput.value = quantity;
+                        minusBtn.disabled = false;
+                        this.updateProductPrice(quantityInput);
+                    });
+                });
+
+                // Remove buttons
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const productItem = btn.closest('.product-item');
+                        productItem.style.opacity = '0';
+                        productItem.style.transform = 'translateX(50px)';
+                        setTimeout(() => {
+                            productItem.remove();
+                            this.updateSubtotal();
+                            this.updateOrderSummary();
+                        }, 300);
+                    });
+                });
+            }
+
+            // Bind events for Step 2 (Address) - FIXED VERSION
+            bindStep2Events() {
+                // Navigation buttons
+                this.prevToStep1.addEventListener('click', () => {
+                    console.log("prevToStep1 clicked"); // Debugging hook
+                    this.goToStep(1);
+                });
+                
+                // Next button click event with validation
+                this.nextToStep3.addEventListener('click', (e) => {
+                    console.log("nextToStep3 clicked"); // Debugging hook
+                    e.preventDefault();
+                    if (!this.nextToStep3.disabled) {
+                        this.goToStep(3);
+                    } else {
+                        console.log("nextToStep3 is disabled"); // Debugging hook
+                        alert('لطفاً تمام فیلدهای اجباری را پر کنید');
+                    }
+                });
+
+                // Form validation - Bind to all input fields
+                const requiredFields = [this.firstName, this.lastName, this.province, this.city, this.address, this.phone, this.deliveryTime];
+                requiredFields.forEach(field => {
+                    field.addEventListener('input', () => this.validateStep2Form());
+                    field.addEventListener('change', () => this.validateStep2Form());
+                });
+
+                // Special validation for delivery time
+                this.deliveryTime.addEventListener('change', () => this.validateStep2Form());
+            }
+
+            // Bind events for Step 3 (Payment & Packaging)
+            bindStep3Events() {
+                // Navigation buttons
+                this.prevToStep2.addEventListener('click', () => {
+                    console.log("prevToStep2 clicked"); // Debugging hook
+                    this.goToStep(2);
+                });
+                this.nextToStep4.addEventListener('click', () => {
+                    console.log("nextToStep4 clicked"); // Debugging hook
+                    this.goToStep(4);
+                });
+
+                // Packaging selection
+                document.querySelectorAll('.packaging-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        document.querySelectorAll('.packaging-option').forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        const packagingName = option.querySelector('.packaging-name').textContent;
+                        const packagingLabel = option.querySelector('.packaging-label').textContent;
+                        document.getElementById('packaging-summary').textContent = `${packagingName} (${packagingLabel})`;
+                        this.updatePackagingCost(option);
+                        this.resetPackagingImages();
+                        this.updatePackagingImage(option.getAttribute('data-packaging'), 'Selected');
+                        this.updateOrderSummary();
+                    });
+                });
+
+                // Payment method selection
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        if (option.classList.contains('disabled')) return;
+                        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        const method = option.getAttribute('data-method');
+                        const description = method === 'online'
+                            ? 'پس از پرداخت موفق، فاکتور رسمی صادر خواهد شد که قابل پیگیری قانونی است.'
+                            : 'با پرداخت در محل، باید ۲/۳ مبلغ کل را اکنون پرداخت کنید و باقی‌مانده هنگام تحویل دریافت خواهد شود. فاکتور رسمی برای پیگیری قانونی صادر خواهد شد.';
+                        document.getElementById('paymentDescription').innerHTML = `<p>${description}</p>`;
+                        this.updateOrderSummary();
+                    });
+                });
+
+                // Discount button with security (hardcoded check, no injection possible)
+                document.querySelector('.discount-btn').addEventListener('click', () => {
+                    const discountInput = document.querySelector('.discount-input').value.trim();
+                    if (discountInput === 'DISCOUNT50') {
+                        this.discount = 50000;
+                    } else {
+                        this.discount = 0;
+                    }
+                    this.updateOrderSummary(); // Will handle COD status update
+                    console.log('Discount applied:', this.discount); // Debugging hook
+                });
+            }
+
+            // Bind events for Step 4 (Confirmation)
+            bindStep4Events() {
+                // Navigation buttons
+                this.prevToStep3.addEventListener('click', () => {
+                    console.log("prevToStep3 clicked"); // Debugging hook
+                    this.goToStep(3);
+                });
+                this.confirmOrder.addEventListener('click', () => {
+                    console.log("confirmOrder clicked"); // Debugging hook
+                    this.completeOrder();
+                });
+            }
+
+            // Bind hover and click events for packaging images
+            bindPackagingHoverEvents() {
+                const woodenOption = document.querySelector('[data-packaging="wooden"]');
+                const turquoiseOption = document.querySelector('[data-packaging="turquoise"]');
+                const ironOption = document.querySelector('[data-packaging="iron"]');
+                
+                if (woodenOption && this.woodenImage) {
+                    woodenOption.addEventListener('mouseenter', () => {
+                        if (!woodenOption.classList.contains('selected')) {
+                            this.woodenImage.src = 'https://placehold.co/150x120/8B4513/FFFFFF?text=چارچوبی+Hover';
+                        }
+                    });
+                    woodenOption.addEventListener('mouseleave', () => {
+                        if (!woodenOption.classList.contains('selected')) {
+                            this.woodenImage.src = this.woodenDefaultSrc;
+                        }
+                    });
+                }
+                
+                if (turquoiseOption && this.turquoiseImage) {
+                    turquoiseOption.addEventListener('mouseenter', () => {
+                        if (!turquoiseOption.classList.contains('selected')) {
+                            this.turquoiseImage.src = 'https://placehold.co/150x120/40E0D0/FFFFFF?text=فیروزه‌ای+Hover';
+                        }
+                    });
+                    turquoiseOption.addEventListener('mouseleave', () => {
+                        if (!turquoiseOption.classList.contains('selected')) {
+                            this.turquoiseImage.src = this.turquoiseDefaultSrc;
+                        }
+                    });
+                }
+                
+                if (ironOption && this.ironImage) {
+                    ironOption.addEventListener('mouseenter', () => {
+                        if (!ironOption.classList.contains('selected')) {
+                            this.ironImage.src = 'https://placehold.co/150x120/A9A9A9/FFFFFF?text=آهنی+Hover';
+                        }
+                    });
+                    ironOption.addEventListener('mouseleave', () => {
+                        if (!ironOption.classList.contains('selected')) {
+                            this.ironImage.src = this.ironDefaultSrc;
+                        }
+                    });
+                }
+            }
+
+            // Bind auth events
+            bindAuthEvents() {
+                this.userProfile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (this.userData) {
+                        this.userMenu.classList.toggle('active');
+                    } else {
+                        this.openAuthModalFunc();
+                    }
+                });
+
+                this.closeAuthModal.addEventListener('click', () => this.closeAuthModalFunc());
+
+                this.authPhone.addEventListener('input', (e) => {
+                    this.maskInput(e.target, /[^0-9]/g);
+                    this.authPhoneError.style.display = this.validatePhone(e.target.value) ? 'none' : 'block';
+                    this.updateButtonStates();
+                });
+
+                this.captchaAnswer.addEventListener('input', () => {
+                    this.captchaError.style.display = this.validateCaptcha(this.captchaAnswer.value) ? 'none' : 'block';
+                    this.updateButtonStates();
+                });
+
+                this.nextToStep2.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!this.validateCaptcha(this.captchaAnswer.value)) {
+                        this.captchaError.style.display = 'block';
+                        return;
+                    }
+                    this.captchaError.style.display = 'none';
+                    const phone = this.authPhone.value;
+                    if (!this.validatePhone(phone)) {
+                        this.authPhoneError.style.display = 'block';
+                        return;
+                    }
+                    this.authPhoneError.style.display = 'none';
+                    this.currentPhone = phone;
+                    this.showSpinner(this.nextToStep2);
+                    setTimeout(() => {
+                        this.simulateSendCode(phone);
+                        this.authSuccess.style.display = 'block';
+                        this.step1.classList.remove('active');
+                        this.step2.classList.add('active');
+                        this.hideSpinner(this.nextToStep2, 'بعدی');
+                        let timer = this.failedAttempts > 5 ? 300 : 60;
+                        this.startCountdown(timer);
+                    }, 1000); // Simulate delay
+                });
+
+                this.prevToStep1.addEventListener('click', () => {
+                    this.step2.classList.remove('active');
+                    this.step1.classList.add('active');
+                    this.authSuccess.style.display = 'none';
+                    this.authTimer.style.display = 'none';
+                    this.resendCodeBtn.style.display = 'none';
+                    if (this.authCountdownInterval) clearInterval(this.authCountdownInterval);
+                });
+
+                this.authCode.addEventListener('input', (e) => {
+                    this.maskInput(e.target, /[^0-9]/g);
+                    this.authCodeError.style.display = this.validateCode(e.target.value) ? 'none' : 'block';
+                    this.updateButtonStates();
+                });
+
+                this.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
+                this.authCode.addEventListener('paste', (e) => e.preventDefault());
+                this.authCode.addEventListener('copy', (e) => e.preventDefault());
+
+                this.nextToStep3.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const code = this.authCode.value;
+                    this.showSpinner(this.nextToStep3);
+                    setTimeout(() => {
+                        if (this.simulateVerifyCode(code, this.currentPhone)) {
+                            this.failedAttempts = 0;
+                            sessionStorage.setItem('failedAttempts', this.failedAttempts);
+                            this.authCodeError.style.display = 'none';
+                            this.hideSpinner(this.nextToStep3, 'تأیید');
+                            if (this.isNewUser) {
+                                this.step2.classList.remove('active');
+                                this.step3.classList.add('active');
+                                this.username.value = `user${this.currentPhone.slice(-4)}`;
+                                this.updateUsernameStrength();
+                                this.updateButtonStates();
+                            } else {
+                                sessionStorage.setItem('userData', JSON.stringify(this.userData));
+                                this.updateUserUI();
+                                this.closeAuthModalFunc();
+                                alert('ورود موفق!');
+                            }
+                        } else {
+                            this.failedAttempts++;
+                            sessionStorage.setItem('failedAttempts', this.failedAttempts);
+                            this.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (this.failedAttempts % 6)}`;
+                            this.authCodeError.style.display = 'block';
+                            if (this.failedAttempts >= 5) {
+                                console.error('Too many failed attempts');
+                                this.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
+                                this.nextToStep3.disabled = true;
+                                this.lockTimer = 300; // 5 minutes lock
+                                setTimeout(() => {
+                                    this.nextToStep3.disabled = false;
+                                    this.failedAttempts = 0;
+                                    sessionStorage.setItem('failedAttempts', this.failedAttempts);
+                                }, this.lockTimer * 1000);
+                            }
+                            this.hideSpinner(this.nextToStep3, 'تأیید');
+                        }
+                    }, 1000);
+                });
+
+                this.resendCodeBtn.addEventListener('click', () => {
+                    this.simulateSendCode(this.currentPhone);
+                    let timer = this.failedAttempts > 5 ? 300 : 60;
+                    this.startCountdown(timer);
+                });
+
+                this.toggleAuthCode.addEventListener('click', () => {
+                    const type = this.authCode.type === 'password' ? 'text' : 'password';
+                    this.authCode.type = type;
+                    this.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
+                });
+
+                this.prevToStep2.addEventListener('click', () => {
+                    this.step3.classList.remove('active');
+                    this.step2.classList.add('active');
+                });
+
+                this.username.addEventListener('input', (e) => {
+                    this.maskInput(e.target, /[^a-zA-Z0-9]/g);
+                    this.usernameError.style.display = this.validateUsername(e.target.value) ? 'none' : 'block';
+                    this.updateUsernameStrength();
+                    this.updateButtonStates();
+                });
+
+                this.characterCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        this.characterCards.forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        this.updateButtonStates();
+                    });
+                });
+
+                this.confirmProfileBtn.addEventListener('click', () => {
+                    const name = this.username.value;
+                    const selectedChar = document.querySelector('.character-card.selected');
+                    if (!this.validateUsername(name)) {
+                        this.usernameError.style.display = 'block';
+                        return;
+                    }
+                    if (!selectedChar) {
+                        alert('لطفاً یک کاراکتر انتخاب کنید');
+                        return;
+                    }
+                    this.usernameError.style.display = 'none';
+                    this.userData = {
+                        phone: this.currentPhone,
+                        username: name,
+                        character: selectedChar.dataset.char
+                    };
+                    sessionStorage.setItem(`user_${this.currentPhone}`, JSON.stringify(this.userData));
+                    sessionStorage.setItem('userData', JSON.stringify(this.userData));
+                    this.updateUserUI();
+                    this.closeAuthModalFunc();
+                    alert('ثبت‌نام موفق!');
+                });
+
+                this.logoutBtn.addEventListener('click', () => {
+                    this.userMenu.classList.remove('active');
+                    this.logoutModal.classList.add('active');
+                    this.overlay.classList.add('active');
+                });
+
+                this.confirmLogout.addEventListener('click', () => {
+                    this.userData = null;
+                    sessionStorage.removeItem('userData');
+                    this.updateUserUI();
+                    this.logoutModal.classList.remove('active');
+                    this.overlay.classList.remove('active');
+                });
+
+                this.cancelLogout.addEventListener('click', () => {
+                    this.logoutModal.classList.remove('active');
+                    this.overlay.classList.remove('active');
+                });
+
+                // Auto open auth modal after 1 minute if not logged in
+                setTimeout(() => {
+                    if (!this.authModalShown && !this.userData) {
+                        this.openAuthModalFunc();
+                    }
+                }, 60000); // 1 minute
+            }
+
+            // Reset all packaging images to default
+            resetPackagingImages() {
+                if (this.woodenImage) this.woodenImage.src = this.woodenDefaultSrc;
+                if (this.turquoiseImage) this.turquoiseImage.src = this.turquoiseDefaultSrc;
+                if (this.ironImage) this.ironImage.src = this.ironDefaultSrc;
+            }
+
+            // Update specific packaging image
+            updatePackagingImage(type, state) {
+                let image, baseColor, text;
+                if (type === 'wooden') {
+                    image = this.woodenImage;
+                    baseColor = '8B4513';
+                    text = 'چارچوبی';
+                } else if (type === 'turquoise') {
+                    image = this.turquoiseImage;
+                    baseColor = '40E0D0';
+                    text = 'فیروزه‌ای';
+                } else if (type === 'iron') {
+                    image = this.ironImage;
+                    baseColor = 'A9A9A9';
+                    text = 'آهنی';
+                }
+                if (image) {
+                    image.src = `https://placehold.co/150x120/${baseColor}/FFFFFF?text=${text}+${state}`;
+                }
+            }
+
+            // Update packaging cost with NaN handling
+            updatePackagingCost(option) {
+                const label = option.querySelector('.packaging-label').textContent.trim();
+                if (label === 'رایگان') {
+                    this.packagingCost = 0;
+                } else {
+                    const sign = label.includes('+') ? 1 : -1;
+                    const numStr = label.replace(/[^0-9]/g, '');
+                    const num = parseInt(numStr, 10);
+                    this.packagingCost = isNaN(num) ? 0 : sign * num;
+                }
+                this.shipping = this.baseShipping + this.deliveryFee + this.packagingCost;
+            }
+
+            // Validate delivery time with proper Persian Datepicker handling
+            validateDeliveryTime() {
+                const value = this.deliveryTime.value.trim();
+                console.log("Validating delivery time:", value);
+                
+                if (!value) {
+                    this.timeError.classList.add('active');
+                    this.deliveryTime.classList.add('error');
+                    this.deliveryTime.classList.remove('valid');
+                    return false;
+                }
+
+                // Parse the Persian date string 'YYYY/MM/DD HH:mm'
+                try {
+                    const [datePart, timePart] = value.split(' ');
+                    const [yearStr, monthStr, dayStr] = datePart.split('/');
+                    const [hourStr, minStr] = timePart.split(':');
+
+                    const year = parseInt(this.toEnglishNumber(yearStr), 10);
+                    const month = parseInt(this.toEnglishNumber(monthStr), 10);
+                    const day = parseInt(this.toEnglishNumber(dayStr), 10);
+                    const hour = parseInt(this.toEnglishNumber(hourStr), 10);
+                    const min = parseInt(this.toEnglishNumber(minStr), 10);
+
+                    if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(min)) {
+                        throw new Error('Invalid date components');
+                    }
+
+                    const persianDateObj = new persianDate([year, month, day, hour, min, 0]);
+                    console.log("Parsed Persian date:", persianDateObj);
+
+                    const selectedTime = persianDateObj.toDate();
+                    const now = new Date();
+                    const minTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+
+                    if (selectedTime < minTime) {
+                        this.timeError.classList.add('active');
+                        this.deliveryTime.classList.add('error');
+                        this.deliveryTime.classList.remove('valid');
+                        return false;
+                    } else {
+                        this.timeError.classList.remove('active');
+                        this.deliveryTime.classList.remove('error');
+                        this.deliveryTime.classList.add('valid');
+                        this.calculateDeliveryFee(selectedTime);
+                        return true;
+                    }
+                } catch (e) {
+                    console.warn('Invalid date format:', value, e);
+                    this.timeError.classList.add('active');
+                    this.deliveryTime.classList.add('error');
+                    this.deliveryTime.classList.remove('valid');
+                    return false;
+                }
+            }
+
+            // Calculate delivery fee based on time and day (updated for Iranian weekends: Thursday=4, Friday=5)
+            calculateDeliveryFee(deliveryDate) {
+                this.deliveryFee = 0;
+                const hours = deliveryDate.getHours();
+                if (hours >= 21 || hours < 8) {
+                    this.deliveryFee += 20000;
+                }
+                const day = deliveryDate.getDay();
+                if (day === 4 || day === 5) {
+                    this.deliveryFee += 15000;
+                }
+                this.shipping = this.baseShipping + this.deliveryFee + this.packagingCost;
+                this.updateOrderSummary();
+            }
+
+            // Toggle side menu
+            toggleMenu() {
+                if (this.sideMenu.classList.contains('active')) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
+                }
+            }
+
+            // Open side menu with accessibility
+            openMenu() {
+                this.sideMenu.classList.add('active');
+                this.overlay.classList.add('active');
+                this.body.classList.add('menu-open');
+                this.menuToggle.setAttribute('aria-expanded', 'true');
+                this.menuToggle.setAttribute('aria-label', 'بستن منو');
+                this.sideMenu.setAttribute('aria-hidden', 'false');
+                this.body.style.overflow = 'hidden';
+                this.sideMenu.focus();
+            }
+
+            // Close side menu with accessibility
+            closeMenu() {
+                this.sideMenu.classList.remove('active');
+                this.overlay.classList.remove('active');
+                this.body.classList.remove('menu-open');
+                this.menuToggle.setAttribute('aria-expanded', 'false');
+                this.menuToggle.setAttribute('aria-label', 'باز کردن منو');
+                this.sideMenu.setAttribute('aria-hidden', 'true');
+                this.body.style.overflow = '';
+                this.menuToggle.focus();
+            }
+
+            // Update suggestions box using mock data
+            updateSuggestions(value) {
+                const safeValue = this.escapeHTML(value.toLowerCase().trim());
+                this.suggestionsBox.innerHTML = '';
+                if (!safeValue) {
+                    this.suggestionsBox.classList.remove('active');
+                    return;
+                }
+                const filtered = this.mockSuggestions.filter(s => s.toLowerCase().includes(safeValue));
+                if (filtered.length === 0) {
+                    this.suggestionsBox.classList.remove('active');
+                    return;
+                }
+                filtered.forEach(s => {
+                    const li = document.createElement('li');
+                    li.textContent = s;
+                    this.suggestionsBox.appendChild(li);
+                });
+                this.suggestionsBox.classList.add('active');
+            }
+
+            // Update clock with Persian date and time
+            updateTime() {
+                const now = new Date();
+                const timeOptions = {
+                    timeZone: 'Asia/Tehran',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                };
+                const timeStr = now.toLocaleTimeString('fa-IR', timeOptions);
+                const dateOptions = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                const persianDateStr = new Intl.DateTimeFormat('fa-u-ca-persian', dateOptions).format(now);
+                this.clock.innerHTML = `<i class="fas fa-clock"></i> ${persianDateStr} - ${timeStr}`;
+            }
+
+            // Cycle through promo messages
+            changePromoText() {
+                this.promoText.innerHTML = `<i class="fas fa-bolt"></i> ${this.promoMessages[this.currentPromoIndex]}`;
+                this.currentPromoIndex = (this.currentPromoIndex + 1) % this.promoMessages.length;
+            }
+
+            // Escape HTML for security
+            escapeHTML(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            }
+
+            // Convert Persian/Arabic digits to English
+            toEnglishNumber(str) {
+                const pn = '۰۱۲۳۴۵۶۷۸۹';
+                const an = '٠١٢٣٤٥٦٧٨٩';
+                const en = '0123456789';
+                return str.split('').map(c => {
+                    if (pn.includes(c)) return en[pn.indexOf(c)];
+                    if (an.includes(c)) return en[an.indexOf(c)];
+                    return c;
+                }).join('');
+            }
+
+            // Validate Step 2 form fields - FIXED VERSION
+            validateStep2Form() {
+                const isFirstNameValid = this.firstName.value.trim() !== '';
+                const isLastNameValid = this.lastName.value.trim() !== '';
+                const isProvinceValid = this.province.value.trim() !== '';
+                const isCityValid = this.city.value.trim() !== '';
+                const isAddressValid = this.address.value.trim() !== '';
+                const isPhoneValid = this.phone.value.trim() !== '' && /^\d{11}$/.test(this.phone.value.trim());
+                const isDeliveryTimeValid = this.validateDeliveryTime();
+
+                // Add visual feedback
+                this.firstName.classList.toggle('error', !isFirstNameValid && this.firstName.value !== '');
+                this.firstName.classList.toggle('valid', isFirstNameValid);
+                
+                this.lastName.classList.toggle('error', !isLastNameValid && this.lastName.value !== '');
+                this.lastName.classList.toggle('valid', isLastNameValid);
+                
+                this.province.classList.toggle('error', !isProvinceValid && this.province.value !== '');
+                this.province.classList.toggle('valid', isProvinceValid);
+                
+                this.city.classList.toggle('error', !isCityValid && this.city.value !== '');
+                this.city.classList.toggle('valid', isCityValid);
+                
+                this.address.classList.toggle('error', !isAddressValid && this.address.value !== '');
+                this.address.classList.toggle('valid', isAddressValid);
+
+                this.phone.classList.toggle('error', !isPhoneValid && this.phone.value !== '');
+                this.phone.classList.toggle('valid', isPhoneValid);
+
+                const isFormValid = isFirstNameValid && isLastNameValid && isProvinceValid && isCityValid && isAddressValid && isPhoneValid && isDeliveryTimeValid;
+                this.nextToStep3.disabled = !isFormValid;
+                
+                console.log('Form validation result:', isFormValid); // Debug
+                return isFormValid;
+            }
+
+            // Update product price on quantity change
+            updateProductPrice(quantityInput) {
+                const price = parseInt(quantityInput.dataset.price, 10);
+                const quantity = parseInt(quantityInput.value, 10);
+                const productId = quantityInput.dataset.id;
+                
+                const productPriceElement = document.querySelector(`.product-price[data-id="${productId}"]`);
+                const totalPrice = price * quantity;
+                productPriceElement.textContent = this.formatPrice(totalPrice);
+                
+                this.updateSubtotal();
+                this.updateOrderSummary();
+            }
+
+            // Update subtotal and related pricing
+            updateSubtotal() {
+                this.subtotal = 0;
+                document.querySelectorAll('.product-item').forEach(item => {
+                    const priceElement = item.querySelector('.product-price');
+                    let priceText = priceElement.textContent.replace(/[^۰-۹٠-٩]/g, '');
+                    priceText = this.toEnglishNumber(priceText);
+                    this.subtotal += parseInt(priceText, 10) || 0;
+                });
+                this.tax = Math.round(this.subtotal * this.taxRate);
+                this.total = this.subtotal + this.shipping + this.tax - this.discount;
+            }
+
+            // Update all order summary elements with NaN handling and COD handling
+            updateOrderSummary() {
+                // Update all summary elements in all steps
+                const subtotals = document.querySelectorAll('[data-type="subtotal"]');
+                subtotals.forEach(el => el.textContent = this.formatPrice(this.subtotal));
+                
+                const discounts = document.querySelectorAll('[data-type="discount"]');
+                discounts.forEach(el => el.textContent = this.formatPrice(this.discount));
+                
+                const shippings = document.querySelectorAll('[data-type="shipping"]');
+                shippings.forEach(el => el.textContent = this.formatPrice(this.shipping));
+                
+                const taxes = document.querySelectorAll('[data-type="tax"]');
+                taxes.forEach(el => el.textContent = this.formatPrice(this.tax));
+                
+                const totals = document.querySelectorAll('[data-type="total"]');
+                totals.forEach(el => el.textContent = this.formatPrice(this.total));
+
+                // Handle COD availability (>= 2000000)
+                const codOption = document.querySelector('.payment-option[data-method="cod"]');
+                const wasCodSelected = codOption.classList.contains('selected');
+                if (this.total >= 2000000) {
+                    codOption.classList.remove('disabled');
+                } else {
+                    codOption.classList.add('disabled');
+                    if (wasCodSelected) {
+                        document.querySelector('.payment-option[data-method="online"]').classList.add('selected');
+                        codOption.classList.remove('selected');
+                        alert('مجموع سفارش برای پرداخت در محل کافی نیست');
+                        console.warn('COD disabled due to low total'); // Debugging hook
+                    }
+                }
+
+                // Handle COD calculations
+                const selectedPayment = document.querySelector('.payment-option.selected');
+                const isCOD = selectedPayment && selectedPayment.getAttribute('data-method') === 'cod';
+                
+                if (isCOD) {
+                    // Fair rounding: upfront 2/3 floored, remaining = total - upfront
+                    this.codUpfront = Math.floor(this.total * 2 / 3);
+                    this.codRemaining = this.total - this.codUpfront;
+                    const codUpfronts = document.querySelectorAll('[data-type="cod-upfront"]');
+                    codUpfronts.forEach(el => el.textContent = this.formatPrice(this.codUpfront));
+                    const codRemainings = document.querySelectorAll('[data-type="cod-remaining"]');
+                    codRemainings.forEach(el => el.textContent = this.formatPrice(this.codRemaining));
+                    const codUpfrontRows = document.querySelectorAll('#cod-upfront');
+                    codUpfrontRows.forEach(row => row.style.display = 'block');
+                    const codRows = document.querySelectorAll('#cod-remaining');
+                    codRows.forEach(row => row.style.display = 'block');
+                    if (this.finalCodUpfront) this.finalCodUpfront.style.display = 'block';
+                    if (this.finalCodRemaining) this.finalCodRemaining.style.display = 'block';
+                } else {
+                    const codUpfrontRows = document.querySelectorAll('#cod-upfront');
+                    codUpfrontRows.forEach(row => row.style.display = 'none');
+                    const codRows = document.querySelectorAll('#cod-remaining');
+                    codRows.forEach(row => row.style.display = 'none');
+                    if (this.finalCodUpfront) this.finalCodUpfront.style.display = 'none';
+                    if (this.finalCodRemaining) this.finalCodRemaining.style.display = 'none';
+                }
+
+                // Update final summary elements with null checks
+                if (this.finalSubtotal) this.finalSubtotal.textContent = this.formatPrice(this.subtotal);
+                if (this.finalDiscount) this.finalDiscount.textContent = this.formatPrice(this.discount);
+                if (this.finalShipping) this.finalShipping.textContent = this.formatPrice(this.shipping);
+                if (this.finalTax) this.finalTax.textContent = this.formatPrice(this.tax);
+                if (this.finalTotal) this.finalTotal.textContent = this.formatPrice(this.total);
+                if (this.finalCodUpfront && this.finalCodUpfront.querySelector('.detail-value')) {
+                    this.finalCodUpfront.querySelector('.detail-value').textContent = this.formatPrice(this.codUpfront);
+                }
+                if (this.finalCodRemaining && this.finalCodRemaining.querySelector('.detail-value')) {
+                    this.finalCodRemaining.querySelector('.detail-value').textContent = this.formatPrice(this.codRemaining);
+                }
+            }
+
+            // Format price with Persian locale
+            formatPrice(price) {
+                return price.toLocaleString('fa-IR') + ' تومان';
+            }
+
+            // Navigate to a step with animation and focus management
+            goToStep(stepNumber) {
+                console.log(`Going to step ${stepNumber}`); // Debugging hook
+                const currentStepElement = document.querySelector(`#step${this.currentStep}`);
+                currentStepElement.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    currentStepElement.classList.remove('active', 'fade-out');
+                    this.steps[this.currentStep - 1].classList.remove('active');
+                    
+                    this.currentStep = stepNumber;
+                    const newStepElement = document.querySelector(`#step${this.currentStep}`);
+                    newStepElement.classList.add('active');
+                    this.steps[this.currentStep - 1].classList.add('active');
+                    
+                    const progressPercentage = ((this.currentStep - 1) / 3) * 100;
+                    this.progressFill.style.width = `${progressPercentage}%`;
+                    
+                    for (let i = 1; i < this.currentStep; i++) {
+                        this.steps[i - 1].classList.add('completed');
+                    }
+                    
+                    this.progressPercentage.textContent = `${Math.round((this.currentStep / 4) * 100)}% تکمیل`;
+                    
+                    if (this.currentStep === 4) {
+                        this.updateStep4Display();
+                    }
+
+                    // Focus management: focus first interactive element in new step
+                    const firstFocusable = newStepElement.querySelector('input, select, button, textarea');
+                    if (firstFocusable) firstFocusable.focus();
+                }, 300);
+            }
+
+            // Update display in Step 4
+            updateStep4Display() {
+                this.fullNameDisplay.textContent = `${this.firstName.value} ${this.lastName.value}` || '-';
+
+                const selectedPayment = document.querySelector('.payment-option.selected');
+                const paymentMethod = selectedPayment ? selectedPayment.textContent.trim() : 'پرداخت آنلاین';
+                this.paymentMethodDisplay.textContent = paymentMethod;
+
+                const addressInfo = `${this.address.value}, ${this.city.value}, ${this.province.value}`;
+                this.deliveryAddressDisplay.textContent = addressInfo;
+
+                const selectedPackaging = document.querySelector('.packaging-option.selected');
+                const packagingName = selectedPackaging ? selectedPackaging.querySelector('.packaging-name').textContent : 'فیروزه‌ای';
+                const packagingLabel = selectedPackaging ? selectedPackaging.querySelector('.packaging-label').textContent : 'رایگان';
+                this.packagingDisplay.textContent = `${packagingName} (${packagingLabel})`;
+
+                this.phoneDisplay.textContent = this.phone.value || '-';
+                
+                // Display delivery time in Persian calendar
+                if (this.deliveryTime.value) {
+                    try {
+                        const persianDateObj = new persianDate(this.deliveryTime.value);
+                        const formatter = new Intl.DateTimeFormat('fa-u-ca-persian', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false
+                        });
+                        const formattedTime = formatter.format(persianDateObj.toDate());
+                        this.deliveryTimeDisplay.textContent = formattedTime;
+                    } catch (e) {
+                        console.warn('Fallback to Gregorian date due to Intl support issue'); // Debugging hook
+                        this.deliveryTimeDisplay.textContent = this.deliveryTime.value;
+                    }
+                } else {
+                    this.deliveryTimeDisplay.textContent = '-';
+                }
+
+                // Populate products list in final step
+                this.finalProductsList.innerHTML = '';
+                document.querySelectorAll('.product-item').forEach(item => {
+                    const name = item.querySelector('.product-name').textContent;
+                    const quantity = item.querySelector('.quantity').value;
+                    const price = item.querySelector('.product-price').textContent;
+                    const summaryDiv = document.createElement('div');
+                    summaryDiv.classList.add('product-summary');
+                    summaryDiv.innerHTML = `<span>${name} (تعداد: ${quantity})</span> <span>${price}</span>`;
+                    this.finalProductsList.appendChild(summaryDiv);
+                });
+            }
+
+            // Complete the order
+            completeOrder() {
+                alert('سفارش شما با موفقیت ثبت شد! اکنون به صفحه پرداخت منتقل می‌شوید.');
+                console.log('Order completed successfully!'); // Debugging hook
+                // Send data to server here in real app
+            }
+
+            // Auth functions
+            openAuthModalFunc() {
+                this.authModal.classList.add('active');
+                this.overlay.classList.add('active');
+                this.body.style.overflow = 'hidden';
+                this.authModalShown = true;
+                this.resetAuthForm();
+                this.generateCaptcha();
+            }
+
+            closeAuthModalFunc() {
+                this.authModal.classList.remove('active');
+                this.overlay.classList.remove('active');
+                this.body.style.overflow = '';
+                this.resetAuthForm();
+            }
+
+            resetAuthForm() {
+                this.authPhone.value = '';
+                this.authCode.value = '';
+                this.username.value = '';
+                this.captchaAnswer.value = '';
+                this.authPhoneError.style.display = 'none';
+                this.authCodeError.style.display = 'none';
+                this.usernameError.style.display = 'none';
+                this.captchaError.style.display = 'none';
+                this.authSuccess.style.display = 'none';
+                this.authTimer.style.display = 'none';
+                this.resendCodeBtn.style.display = 'none';
+                this.step1.classList.add('active');
+                this.step2.classList.remove('active');
+                this.step3.classList.remove('active');
+                this.characterCards.forEach(card => card.classList.remove('selected'));
+                if (this.authCountdownInterval) clearInterval(this.authCountdownInterval);
+                this.failedAttempts = 0;
+                sessionStorage.setItem('failedAttempts', this.failedAttempts);
+                this.updateButtonStates();
+                this.updateUsernameStrength();
+            }
+
+            validatePhone(phone) {
+                const regex = /^09[0-9]{9}$/;
+                return regex.test(phone);
+            }
+
+            validateCode(code) {
+                return /^[0-9]{6}$/.test(code);
+            }
+
+            validateUsername(name) {
+                return /^[a-zA-Z0-9]{3,}$/.test(name);
+            }
+
+            validateCaptcha(answer) {
+                return parseInt(answer) === this.captchaResult;
+            }
+
+            maskInput(input, regex) {
+                input.value = input.value.replace(regex, '');
+            }
+
+            updateButtonStates() {
+                if (this.nextToStep2) this.nextToStep2.disabled = !this.validatePhone(this.authPhone.value) || !this.validateCaptcha(this.captchaAnswer.value);
+                if (this.nextToStep3) this.nextToStep3.disabled = !this.validateCode(this.authCode.value);
+                if (this.confirmProfileBtn) this.confirmProfileBtn.disabled = !this.validateUsername(this.username.value) || !document.querySelector('.character-card.selected');
+            }
+
+            updateUsernameStrength() {
+                const name = this.username.value;
+                if (name.length < 3) {
+                    this.usernameStrength.className = 'username-strength weak';
+                } else if (name.length < 6) {
+                    this.usernameStrength.className = 'username-strength medium';
+                } else {
+                    this.usernameStrength.className = 'username-strength strong';
+                }
+            }
+
+            generateCaptcha() {
+                this.captchaNum1 = Math.floor(Math.random() * 10) + 1;
+                this.captchaNum2 = Math.floor(Math.random() * 10) + 1;
+                this.captchaResult = this.captchaNum1 + this.captchaNum2;
+                this.captchaQuestion.textContent = `حاصل جمع ${this.captchaNum1} + ${this.captchaNum2} چیست؟`;
+            }
+
+            showSpinner(button) {
+                button.innerHTML = '<div class="spinner"></div>';
+                button.disabled = true;
+            }
+
+            hideSpinner(button, text) {
+                button.innerHTML = text;
+                button.disabled = false;
+            }
+
+            simulateSendCode(phone) {
+                // Simulate API call
+                console.log('Code sent to:', phone);
+                // For demo, assume code is '123456'
+                return '123456';
+            }
+
+            simulateVerifyCode(code, phone) {
+                // For demo, check if code is '123456'
+                if (code === '123456') {
+                    // Check if user exists
+                    if (sessionStorage.getItem(`user_${phone}`)) {
+                        this.userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
+                        this.isNewUser = false;
+                    } else {
+                        this.isNewUser = true;
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            startCountdown(timerSeconds = 60) {
+                let seconds = timerSeconds;
+                this.authCountdown.innerHTML = seconds;
+                this.authTimer.style.display = 'block';
+                this.resendCodeBtn.style.display = 'none';
+
+                this.authCountdownInterval = setInterval(() => {
+                    seconds--;
+                    this.authCountdown.innerHTML = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(this.authCountdownInterval);
+                        this.authTimer.style.display = 'none';
+                        this.resendCodeBtn.style.display = 'block';
+                    }
+                }, 1000);
+            }
+
+            updateUserUI() {
+                if (this.userData) {
+                    this.profileIcon.style.display = 'none';
+                    const avatar = document.createElement('div');
+                    avatar.className = 'user-avatar';
+                    avatar.textContent = this.userData.character;
+                    this.userProfile.appendChild(avatar);
+                    this.userAvatar.textContent = this.userData.character;
+                    this.userName.textContent = this.escapeHTML(this.userData.username);
+                } else {
+                    if (this.userProfile.querySelector('.user-avatar')) {
+                        this.userProfile.querySelector('.user-avatar').remove();
+                    }
+                    this.profileIcon.style.display = 'block';
+                }
+            }
+        }
+
+        // Initialize the app when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM loaded, initializing app...");
+            new WizardCheckoutApp();
+        });
+    </script>
+</body>
+</html>

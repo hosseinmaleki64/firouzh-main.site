@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FingerFood Firouzeh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="background-decoration" id="backgroundDecoration"></div>
+
+  <header>
+    <div class="header-buttons-left">
+      <button class="search-toggle" aria-label="باز کردن جست‌وجو">
+        <img src="image1/جستوجو 2.png" alt="جست‌وجو">
+      </button>
+      <button class="auth-toggle button" aria-label="باز کردن فرم ورود/ثبت‌نام" aria-controls="authModal">ورود / ثبت‌نام</button>
+    </div>
+    <div class="logo-container">
+      <a href="/" class="logo"><img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" class="logo-img">FIROUZEH</a>
+    </div>
+    <div class="header-buttons-right">
+      <button class="menu-toggle" aria-label="باز کردن منو" aria-expanded="false" aria-controls="sideMenu">☰</button>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="search-container" id="searchContainer">
+    <input type="text" id="searchInput" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." />
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
+    <div class="close-btn" aria-label="بستن منو">×</div>
+    <ul class="nav-menu">
+      <li class="nav-category">
+        <h3>دسته‌بندی محصولات</h3>
+        <ul class="sub-menu">
+          <li><a href="#products">انواع محصولات</a></li>
+          <li><a href="#subcategories">طبقه‌بندی جانبی</a></li>
+        </ul>
+      </li>
+      <li class="nav-category">
+        <h3>فیروزه</h3>
+        <ul class="sub-menu">
+          <li><a href="#special-customers">مشتریان خاص فیروزه</a></li>
+          <li><a href="#contact-team">تماس با تیم فیروزه</a></li>
+          <li><a href="#about">درباره فیروزه</a></li>
+          <li><a href="#contact">تماس با فیروزه</a></li>
+          <li><a href="#faq">سوالات متداول</a></li>
+          <li><a href="#collaboration">همکاری با فیروزه</a></li>
+          <li><a href="#rules">قوانین و مقررات</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="auth-modal" id="authModal">
+    <div class="auth-modal-content">
+      <span class="auth-modal-close" aria-label="بستن فرم">×</span>
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-tab="login">ورود</div>
+        <div class="auth-tab" data-tab="signup">ثبت‌نام</div>
+      </div>
+      <div class="auth-form active" id="loginForm">
+        <label for="loginPhone">شماره موبایل</label>
+        <input type="tel" id="loginPhone" placeholder="09123456789" required>
+        <p class="error" id="loginPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
+        <button id="loginSubmit">ورود</button>
+      </div>
+      <script>
+// تبدیل تاریخ میلادی به شمسی
+function gregorian_to_jalali(gy, gm, gd) {
+  var g_d_m, jy, jm, jd, gy2, days;
+  g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
+  gy2 = (gm > 2)? (gy + 1) : gy;
+  days = 355666 + (365 * gy) + ~~((gy2 + 3) / 4) - ~~((gy2 + 99) / 100) + ~~((gy2 + 399) / 400) + gd + g_d_m[gm-1];
+  jy = -1595 + (33 * ~~(days / 12053));
+  days %= 12053;
+  jy += 4 * ~~(days/1461);
+  days %= 1461;
+  if (days > 365) {
+    jy += ~~((days-1)/365);
+    days = (days-1)%365;
+  }
+  jm = (days < 186)? 1 + ~~(days/31) : 7 + ~~((days-186)/30);
+  jd = 1 + ((days < 186)? (days%31) : ((days-186)%30));
+  return [jy, jm, jd];
+}
+
+function updateClock() {
+  let now = new Date();
+
+  // گرفتن ساعت و دقیقه و ثانیه
+  let h = now.getHours().toString().padStart(2,'0');
+  let m = now.getMinutes().toString().padStart(2,'0');
+  let s = now.getSeconds().toString().padStart(2,'0');
+
+  // تبدیل تاریخ میلادی به شمسی
+  let gYear = now.getFullYear();
+  let gMonth = now.getMonth() + 1; // ماه از 0 شروع میشه
+  let gDay = now.getDate();
+  let [jy, jm, jd] = gregorian_to_jalali(gYear, gMonth, gDay);
+
+  // نمایش
+  document.getElementById("clock").innerText =
+    `تاریخ: ${jd}/${jm}/${jy} | ساعت: ${h}:${m}:${s}`;
+}
+
+// هر ثانیه آپدیت کن
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+      <div class="auth-form" id="signupForm">
+        <label for="signupPhone">شماره موبایل</label>
+        <input type="tel" id="signupPhone" placeholder="09123456789" required>
+        <p class="error" id="signupPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
+        <button id="signupSubmit">ثبت‌نام</button>
+      </div>
+    </div>
+  </div> 
+
+  <main>
+    <h1>FINGERFOOD FIROUZEH</h1>
+    <p class="lead">سفارش آنلاین فینگر فود و مزه‌های تازه</p>
+
+    <a href="https://wa.me/980142830328" class="button" title="سفارش از طریق واتساپ">سفارش از واتساپ</a>
+
+    <div style="background: var(--gradient-start); color: var(--text-light); padding: 30px; text-align: center; margin: 30px 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(38, 166, 154, 0.3);">
+      <h3 style="font-size: 1.6rem; margin: 0; font-weight: 700;">فیروزه بزرگترین و متنوع‌ترین پلتفرم آنلاین سفارش مزه و فینگر فود در تبریز و آذربایجان شرقی</h3>
+    </div>
+
+    <section class="features">
+      <div class="features-wrap">
+        <div class="feature-card">
+          <div>⏰</div>
+          <h3>ارسال سریع</h3>
+          <p>لازم نیست از چند روز قبل برای مراسم‌تان آماده شوید. ما 6 ساعته مزه‌هایتان را می‌فرستیم!</p>
+        </div>
+        <div class="feature-card">
+          <div>🎁</div>
+          <h3>بسته‌بندی</h3>
+          <p>کیفیت بسته‌بندی پذیرایی را برایتان راحت‌تر می‌کند. فقط درِ بسته‌ها را باز کنید!</p>
+        </div>
+        <div class="feature-card">
+          <div>🍔</div>
+          <h3>تازگی</h3>
+          <p>همه محصولات بر اساس سفارش شما آماده می‌شوند؛ یعنی مزه‌ویت همیشگی!</p>
+        </div>
+        <div class="feature-card">
+          <div>🚚</div>
+          <h3>کل ایران</h3>
+          <p>ارسال مزه به تهران و البرز و ارسال آجیل و خشکبار به سراسر ایران!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories">
+      <h2>دسته‌بندی‌ها</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <div class="image-placeholder">
+            <img src="image1/6.jpg" alt="باکس الگانت">
+          </div>
+          <strong>باکس الگانت</strong>
+          <p>ترکیب فینگرفودهای خاص برای مناسبت‌ها</p>
+        </div>
+        <div class="category-card">
+          <div class="image-placeholder">
+            <img src="image1/1.jpg" alt="مزه و فینگرفود">
+          </div>
+          <strong>مزه و فینگرفود</strong>
+          <p>سرد و گرم، برای هر سلیقه</p>
+        </div>
+        <div class="category-card">
+          <div class="image-placeholder">
+            <img src="image1/8.jpg" alt="محصولات ویژه فیروزه">
+          </div>
+          <strong>محصولات ویژه فیروزه</strong>
+          <p>تازه‌برشته و درجه یک</p>
+        </div>
+        <div class="category-card">
+          <div class="image-placeholder">
+            <img src="image1/3.jpg" alt="خدمات سازمانی">
+          </div>
+          <strong>خدمات سازمانی</strong>
+          <p>ایده برای باکلاس بودن</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <h2>داستان فیروزه</h2>
+      <div class="story-content">
+        <div class="story-image">
+          <img src="image1/4.jpg" alt="داستان فیروزه">
+        </div>
+        <div class="story-text">
+          فیروزه با الهام از هنر دست و طعم‌های اصیل، سفری را آغاز کرد تا بهترین تجربه‌های غذایی را به خانه‌های شما بیاورد. ما با دقت و عشق، هر فینگرفود را با مواد تازه و مرغوب آماده می‌کنیم تا لحظه‌های شاد شما را خاص‌تر کند.
+          <a href="#about" class="story-button">بیشتر بدانید</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="customer-reviews">
+      <h2>رضایت مشتری</h2>
+      <div class="gallery">
+        <div class="gallery-container">
+          <div class="gallery-item">رضایت مشتری 1</div>
+          <div class="gallery-item">رضایت مشتری 2</div>
+          <div class="gallery-item">رضایت مشتری 3</div>
+          <div class="gallery-item">رضایت مشتری 4</div>
+          <div class="gallery-item">رضایت مشتری 5</div>
+          <div class="gallery-item">رضایت مشتری 6</div>
+          <div class="gallery-item">رضایت مشتری 7</div>
+          <div class="gallery-item">رضایت مشتری 8</div>
+          <div class="gallery-item">رضایت مشتری 9</div>
+          <div class="gallery-item">رضایت مشتری 10</div>
+          <div class="gallery-item">رضایت مشتری 11</div>
+          <div class="gallery-item">رضایت مشتری 12</div>
+        </div>
+      </div>
+
+      <button class="more-reviews">بیشتر</button>
+
+      <div class="additional-reviews">
+        <h3>رضایت‌نامه‌های کاربران</h3>
+        <div class="user-reviews">
+          <div class="user-review-container">
+            <div class="user-review"><p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p></div>
+            <div class="user-review"><p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p></div>
+            <div class="user-review"><p>خدمت‌رسانی عالی و پشتیبانی 24 ساعته. فیروزه همیشه بهترین گزینه برای مراسم‌های خاص.</p></div>
+            <div class="user-review"><p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p></div>
+            <div class="user-review"><p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p></div>
+          </div>
+        </div>
+        <textarea placeholder="رضایت خود را اینجا بنویسید..."></textarea>
+        <br/>
+        <button id="submitReview">ثبت رضایت</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2>فیروزه</h2>
+    <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
+    <div class="links">
+      <a href="#about">درباره فیروزه</a>
+      <a href="#contact">تماس با فیروزه</a>
+      <a href="#collaboration">همکاری با فیروزه</a>
+      <a href="#faq">سوالات متداول</a>
+    </div>
+    <div class="contact-info">
+      تماس: 021-88608751 | واتس‌اپ: 09910147869
+    </div>
+    <p id="clock">در حال دریافت زمان…</p>
+    <div class="copyright">
+      © ۱۴۰۴ FingerFood Firoozeh - کلیه حقوق محفوظ است.
+    </div>
+    <div class="social-bar">
+      <div class="logo-box"><img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه"></div>
+      <a href="mailto:firouzeh.foodgroup@gmail.com" class="social-box">
+        <img src="image1/ایمیل لوگو.png" alt="ایمیل">
+        ایمیل
+      </a>
+      <a href="https://instagram.com/fingerfood_firouzeh" class="social-box" target="_blank">
+        <img src="image1/اینستاگرام.jpg" alt="اینستاگرام">
+        اینستاگرام
+      </a>
+      <a href="https://wa.me/09142830328" class="social-box" target="_blank">
+        <img src="image1/واتساپ.jpg" alt="واتس اپ">
+        واتس اپ
+      </a>
+      <a href="tel:09142830328" class="social-box">
+        <img src="image1/تماس.jpg" alt="تماس">
+        تماس
+      </a>
+      <a href="#about" class="social-box">مجوزها</a>
+    </div>
+  </footer>
+
+  <script>
+    // Create background decoration
+    function createBackgroundDecoration() {
+      const container = document.getElementById('backgroundDecoration');
+      const colors = ['rgba(38, 166, 154, 0.1)', 'rgba(27, 133, 121, 0.1)', 'rgba(178, 223, 219, 0.1)'];
+      
+      for (let i = 0; i < 20; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        const size = Math.random() * 100 + 50;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.top = `${Math.random() * 100}%`;
+        bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+        bubble.style.animationDelay = `${Math.random() * 15}s`;
+        container.appendChild(bubble);
+      }
+    }
+
+    // Elements
+    const body = document.body;
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeBtn = sideMenu.querySelector('.close-btn');
+    const overlay = document.getElementById('overlay');
+    const authToggle = document.querySelector('.auth-toggle');
+    const authModal = document.getElementById('authModal');
+    const authModalClose = authModal.querySelector('.auth-modal-close');
+    const authTabs = authModal.querySelectorAll('.auth-tab');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const loginPhone = document.getElementById('loginPhone');
+    const signupPhone = document.getElementById('signupPhone');
+    const loginPhoneError = document.getElementById('loginPhoneError');
+    const signupPhoneError = document.getElementById('signupPhoneError');
+    const loginSubmit = document.getElementById('loginSubmit');
+    const signupSubmit = document.getElementById('signupSubmit');
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchContainer = document.getElementById('searchContainer');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const moreReviews = document.querySelector('.more-reviews');
+    const additionalReviews = document.querySelector('.additional-reviews');
+    const submitReview = document.getElementById('submitReview');
+
+    // Functions
+    function openMenu() {
+      sideMenu.classList.add('active');
+      overlay.classList.add('active');
+      body.classList.add('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'بستن منو');
+      sideMenu.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+      sideMenu.focus();
+    }
+
+    function closeMenu() {
+      sideMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'باز کردن منو');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      body.style.overflow = '';
+      menuToggle.focus();
+    }
+
+    function openAuthModal() {
+      authModal.classList.add('active');
+      overlay.classList.add('active');
+      body.style.overflow = 'hidden';
+      authModal.querySelector('.auth-modal-content').focus();
+    }
+
+    function closeAuthModal() {
+      authModal.classList.remove('active');
+      overlay.classList.remove('active');
+      body.style.overflow = '';
+      authToggle.focus();
+    }
+
+    function openSearch() {
+      searchContainer.classList.add('active');
+      overlay.classList.add('active');
+      body.style.overflow = 'hidden';
+      searchInput.focus();
+    }
+
+    function closeSearch() {
+      searchContainer.classList.remove('active');
+      overlay.classList.remove('active');
+      body.style.overflow = '';
+      searchInput.value = '';
+      searchResults.innerHTML = '';
+      searchToggle.focus();
+    }
+
+    function validatePhone(phone) {
+      const regex = /^09[0-9]{9}$/;
+      return regex.test(phone);
+    }
+
+    function performSearch(query) {
+      searchResults.innerHTML = '';
+      if (!query.trim()) {
+        searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>';
+        return;
+      }
+
+      const content = [
+        ...document.querySelectorAll('.category-card strong, .category-card p, .feature-card h3, .feature-card p, .user-review p, h1, p.lead, footer p, footer a, .story-text')
+      ].map(el => ({
+        text: el.textContent.trim(),
+        element: el
+      }));
+
+      const results = content.filter(item => item.text.toLowerCase().includes(query.toLowerCase()));
+
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
+        return;
+      }
+
+      results.forEach(result => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.textContent = result.text.slice(0, 50) + (result.text.length > 50 ? '...' : '');
+        div.addEventListener('click', () => {
+          result.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          closeSearch();
+        });
+        searchResults.appendChild(div);
+      });
+    }
+
+    function updateTime() {
+      const clock = document.getElementById('clock');
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Tehran',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      clock.textContent = now.toLocaleTimeString('fa-IR', options);
+    }
+
+    // Event Listeners
+    menuToggle.addEventListener('click', () => {
+      if (sideMenu.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    authToggle.addEventListener('click', openAuthModal);
+
+    authModalClose.addEventListener('click', closeAuthModal);
+
+    searchToggle.addEventListener('click', () => {
+      if (searchContainer.classList.contains('active')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    });
+
+    overlay.addEventListener('click', () => {
+      closeMenu();
+      closeAuthModal();
+      closeSearch();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        closeAuthModal();
+        closeSearch();
+      }
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value);
+    });
+
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        authTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        loginForm.classList.remove('active');
+        signupForm.classList.remove('active');
+        const targetForm = document.getElementById(`${tab.dataset.tab}Form`);
+        if (targetForm) {
+          targetForm.classList.add('active');
+          targetForm.querySelector('input').focus();
+        }
+      });
+    });
+
+    loginSubmit.addEventListener('click', () => {
+      const phone = loginPhone.value;
+      if (!validatePhone(phone)) {
+        loginPhoneError.style.display = 'block';
+      } else {
+        loginPhoneError.style.display = 'none';
+        // Simulate login (replace with actual logic)
+        console.log('Login attempted with phone:', phone);
+      }
+    });
+
+    signupSubmit.addEventListener('click', () => {
+      const phone = signupPhone.value;
+      if (!validatePhone(phone)) {
+        signupPhoneError.style.display = 'block';
+      } else {
+        signupPhoneError.style.display = 'none';
+        // Simulate signup (replace with actual logic)
+        console.log('Signup attempted with phone:', phone);
+      }
+    });
+
+    moreReviews.addEventListener('click', () => {
+      additionalReviews.style.display = additionalReviews.style.display === 'block' ? 'none' : 'block';
+    });
+
+    submitReview.addEventListener('click', () => {
+      const reviewText = additionalReviews.querySelector('textarea').value;
+      if (reviewText.trim()) {
+        console.log('Review submitted:', reviewText);
+        additionalReviews.querySelector('textarea').value = '';
+      }
+    });
+
+    // Initialize
+    createBackgroundDecoration();
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
