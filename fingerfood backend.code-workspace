@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "../fingerfood backend"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "test_proJect"
+	}
+}
