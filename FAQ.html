@@ -258,8 +258,8 @@
       position: fixed;
       inset-block: 0;
       inset-inline-start: -300%;
-      width: 250px;
-      background: var(--secondary-color);
+      width: 200px;
+      background: #064d3b;
       color: var(--text-light);
       border-right: 3px solid var(--primary-color);
       padding: 24px;
@@ -282,6 +282,39 @@
     .close-btn:hover { 
       color: var(--primary-color); 
     }
+    .nav-menu {
+    list-style: none;
+    margin-top: 50px;
+  }
+
+  .nav-category {
+    margin-bottom: 20px;
+  }
+
+  .nav-category h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #FACA7F;
+  }
+
+  .sub-menu {
+    list-style: none;
+  }
+
+  .sub-menu li {
+    margin-bottom: 10px;
+  }
+
+  .sub-menu a {
+    text-decoration: none;
+    color: #eaebeb;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  .sub-menu a:hover {
+    color: #81D9e7;
+  }
     .overlay {
       position: fixed;
       inset: 0;
@@ -1445,7 +1478,7 @@
 
     <div class="logo-search">
       <a href="index.html" class="logo">
-        <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه" loading="lazy">
+        <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" loading="lazy">
         FIROUZEH
       </a>
       <div class="promo-text-mobile" id="promoTextMobile">⚡ سفارش حالا و تحویل در 15 دقیقه!</div>
@@ -1463,7 +1496,7 @@
 
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡ سفارش حالا و تحویل در 15 دقیقه!</div>
-      <a href="/cart" class="cart-link" role="button" aria-label="سبد خرید">
+      <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">3</span>
       </a>
@@ -1483,35 +1516,30 @@
 
   <div class="overlay" id="overlay"></div>
 
-  <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
+    <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
     <div class="close-btn" aria-label="بستن منو">×</div>
     <ul class="nav-menu">
       <li class="nav-category">
-        <h3><i class="fas fa-box-open"></i> دسته‌بندی محصولات</h3>
+        <h3>دسته‌بندی محصولات</h3>
         <ul class="sub-menu">
-          <li><a href="products.html"><i class="fas fa-list"></i> انواع محصولات</a></li>
-          <li><a href="products.html#subcategories"><i class="fas fa-tags"></i> طبقه‌بندی جانبی</a></li>
+          <li><a href="#products">انواع محصولات</a></li>
+          <li><a href="#subcategories">طبقه‌بندی جانبی</a></li>
         </ul>
       </li>
       <li class="nav-category">
-        <h3><i class="fas fa-building"></i> فیروزه</h3>
+        <h3>فیروزه</h3>
         <ul class="sub-menu">
-          <li><a href="index.html#special-customers"><i class="fas fa-crown"></i> مشتریان خاص فیروزه</a></li>
-          <li><a href="index.html#contact-team"><i class="fas fa-headset"></i> تماس با تیم فیروزه</a></li>
-          <li><a href="about.html"><i class="fas fa-info-circle"></i> درباره فیروزه</a></li>
-          <li><a href="FAQ.html"><i class="fas fa-question-circle"></i> سوالات متداول</a></li>
-          <li><a href="index.html#contact"><i class="fas fa-phone"></i> تماس با فیروزه</a></li>
-          <li><a href="index.html#collaboration"><i class="fas fa-handshake"></i> همکاری با فیروزه</a></li>
-          <li><a href="index.html#rules"><i class="fas fa-gavel"></i> قوانین و مقررات</a></li>
+          <li><a href="special customers.html">مشتریان خاص فیروزه</a></li>
+          <li><a href="about.html">درباره فیروزه</a></li>
+          <li><a href="contact.html">تماس با فیروزه</a></li>
+          <li><a href="FAQ.html">سوالات متداول</a></li>
+          <li><a href="cooperation.html">همکاری با فیروزه</a></li>
+          <li><a href="blogs.html">مجلات و اخبار فیروزه</a></li>
+          <li><a href="rules.">قوانین و مقررات</a></li>
         </ul>
       </li>
     </ul>
   </nav>
-
-  <div class="search-container" id="searchContainer">
-    <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." aria-label="جست‌وجوی محصولات" />
-    <div class="search-results" id="searchResults"></div>
-  </div>
 
   <!-- Auth Modal -->
   <div class="auth-modal" id="authModal">
@@ -1519,7 +1547,7 @@
       <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
       <div class="auth-modal-header">
         <div class="site-logo">
-          <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه">
+          <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه">
           FIROUZEH
         </div>
         <h2>ورود یا ثبت‌نام</h2>
@@ -1827,8 +1855,8 @@
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
     <div class="links">
       <a href="about.html"><i class="fas fa-info-circle"></i> درباره فیروزه</a>
-      <a href="index.html#contact"><i class="fas fa-phone"></i> تماس با فیروزه</a>
-      <a href="index.html#collaboration"><i class="fas fa-handshake"></i> همکاری با فیروزه</a>
+      <a href="contact.html"><i class="fas fa-phone"></i> تماس با فیروزه</a>
+      <a href="cooperation.html"><i class="fas fa-handshake"></i> همکاری با فیروزه</a>
       <a href="FAQ.html"><i class="fas fa-question-circle"></i> سوالات متداول</a>
     </div>
     <div class="contact-info">
@@ -1839,7 +1867,7 @@
       © ۱۴۰۴ FingerFood Firoozeh - کلیه حقوق محفوظ است.
     </div>
     <div class="social-bar">
-      <div class="logo-box"><img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه"></div>
+      <div class="logo-box"><img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه"></div>
       <a href="mailto:firouzeh.foodgroup@gmail.com" class="social-box">
         <i class="fas fa-envelope"></i>
         ایمیل
