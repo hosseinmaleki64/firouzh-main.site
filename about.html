@@ -273,9 +273,9 @@
     .side-menu {
       position: fixed;
       inset-block: 0;
-      inset-inline-start: -300%;
+      inset-inline-start: -100%;
       width: 200px;
-      background: var(--secondary-color);
+      background: #064d3b;
       color: #faca7f;
       border-right: 3px solid var(--primary-color);
       padding: 24px;
@@ -299,6 +299,53 @@
       color: var(--primary-color); 
       
     }
+    .nav-menu {
+    list-style: none;
+    margin-top: 50px;
+  }
+
+  .nav-category {
+    margin-bottom: 20px;
+  }
+  .nav-category h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #FACA7F;
+  }
+  .sub-menu {
+    list-style: none;
+  }
+
+  .sub-menu li {
+    margin-bottom: 10px;
+  }
+
+  .sub-menu a {
+    text-decoration: none;
+    color: #eaebeb;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  .sub-menu a:hover {
+    color: #81D9e7;
+  }
+
+  .story-section {
+    padding: 100px 32px;
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
+    text-align: center;
+    position: relative;
+  }
+
+  .story-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
     .overlay {
       position: fixed;
       inset: 0;
@@ -306,7 +353,7 @@
       z-index: 1002;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     .overlay.active { 
       opacity: 1; 
