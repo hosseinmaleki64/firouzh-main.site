@@ -274,8 +274,8 @@
       position: fixed;
       inset-block: 0;
       inset-inline-start: -300%;
-      width: 250px;
-      background: var(--secondary-color);
+      width: 200px;
+      background:#064d3b;
       color: var(--text-light);
       border-right: 3px solid var(--primary-color);
       padding: 24px;
@@ -298,6 +298,53 @@
     .close-btn:hover { 
       color: var(--primary-color); 
     }
+    .side-menu.active {
+      inset-inline-start: 0;
+    }
+    .close-btn {
+      font-size: 2rem;
+      color: var(--text-light);
+      cursor: pointer;
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color 0.2s ease;
+    }
+    .close-btn:hover { 
+      color: var(--primary-color); 
+    }
+    .nav-menu {
+    list-style: none;
+    margin-top: 50px;
+  }
+
+  .nav-category {
+    margin-bottom: 20px;
+  }
+
+  .nav-category h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #FACA7F;
+  }
+
+  .sub-menu {
+    list-style: none;
+  }
+
+  .sub-menu li {
+    margin-bottom: 10px;
+  }
+
+  .sub-menu a {
+    text-decoration: none;
+    color: #eaebeb;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  .sub-menu a:hover {
+    color: #81D9e7;
+  }
     .overlay {
       position: fixed;
       inset: 0;
