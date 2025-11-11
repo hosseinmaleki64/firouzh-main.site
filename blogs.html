@@ -854,7 +854,7 @@
       gap: 12px;
       padding: 15px 0;
       margin-top: 25px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       position: relative;
       z-index: 1;
     }
@@ -1458,8 +1458,8 @@
         font-size: 1rem;
       }
       .social-bar {
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-wrap: nowrap;
+        gap: 8px;
       }
       .social-box, .logo-box {
         width: 80px;
@@ -1512,18 +1512,20 @@
         font-size: 1rem;
       }
       .social-bar {
-        gap: 8px;
-      }
+    gap: 8px; /* gap کمتر برای فشرده‌تر شدن */
+    justify-content:space-around; /* توزیع یکنواخت در عرض کم */
+    padding: 10px 0; /* padding عمودی کمتر */
+}
       
       .social-box, .logo-box {
-        width: 60px;
-        height: 60px;
-        font-size: 0.7rem;
+        width: 45px;
+        height: 45px;
+        font-size: 0.5rem;
       }
       
       .social-box img {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
       .product-main-image {
         height: 150px;
@@ -1693,6 +1695,28 @@
         height: 24px;
       }
     }
+      @media (max-width: 400px) {
+        .social-bar {
+  gap: 0px; /* gap خیلی کم */
+  justify-content: space-between; /* فشرده به دو طرف */
+  padding: 6px 0;
+}
+
+.social-box, .logo-box {
+  width: 40px; /* کوچیک‌تر از 45px */
+  height: 40px;
+  font-size: 0.55rem; /* متن ریزتر */
+}
+
+.social-box img {
+  width: 16px;
+  height: 16px;
+}
+
+.social-box {
+  padding: 0px; /* padding داخل باکس کمتر (اگر لازم باشه) */
+}
+      }
   </style>
 </head>
 

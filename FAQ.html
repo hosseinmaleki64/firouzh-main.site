@@ -702,7 +702,7 @@
       gap: 12px;
       padding: 15px 0;
       margin-top: 25px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       position: relative;
       z-index: 1;
     }
@@ -873,8 +873,9 @@
         padding: 20px;
       }
       .social-bar {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 12px;
+        justify-content: space-between
       }
       .social-box, .logo-box {
         width: 80px;
@@ -978,6 +979,28 @@
         font-size: 0.7rem;
       }
     }
+     @media (max-width: 400px) {
+        .social-bar {
+  gap: 0px; /* gap خیلی کم */
+  justify-content: space-between; /* فشرده به دو طرف */
+  padding: 6px 0;
+}
+
+.social-box, .logo-box {
+  width: 40px; /* کوچیک‌تر از 45px */
+  height: 40px;
+  font-size: 0.55rem; /* متن ریزتر */
+}
+
+.social-box img {
+  width: 16px;
+  height: 16px;
+}
+
+.social-box {
+  padding: 0px; /* padding داخل باکس کمتر (اگر لازم باشه) */
+}
+     }
 
     /* Auth Modal Styles */
     .auth-modal {
