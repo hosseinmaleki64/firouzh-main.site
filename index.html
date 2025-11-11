@@ -1404,7 +1404,7 @@
     gap: 12px;
     padding: 15px 0;
     margin-top: 25px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     position: relative;
     z-index: 1;
   }
@@ -1927,8 +1927,8 @@
     }
 
     .social-bar {
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-wrap: nowrap;
+      gap: 8px;
     }
 
     .social-box, .logo-box {
@@ -2150,16 +2150,21 @@
     .story-image {
       height: 240px;
     }
+    .social-bar {
+  gap: 8px; /* gap کمتر برای فشرده‌تر شدن */
+  justify-content: space-around; /* توزیع یکنواخت در عرض کم */
+  padding: 10px 0; /* padding عمودی کمتر */
+}
 
     .social-box, .logo-box {
-      width: 50px;
-      height: 50px;
-      font-size: 0.6rem;
+      width: 45px;
+      height: 45px;
+      font-size: 0.5rem;
     }
 
     .social-box img {
-      width: 20px;
-      height: 20px;
+      width: 18x;
+      height: 18px;
     }
 
     #blogs {
@@ -2742,6 +2747,26 @@
 
 #blogs {
   padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
+}
+.social-bar {
+  gap: 6px; /* gap خیلی کم */
+  justify-content: space-between; /* فشرده به دو طرف */
+  padding: 8px 0;
+}
+
+.social-box, .logo-box {
+  width: 40px; /* کوچیک‌تر از 45px */
+  height: 40px;
+  font-size: 0.5rem; /* متن ریزتر */
+}
+
+.social-box img {
+  width: 16px;
+  height: 16px;
+}
+
+.social-box {
+  padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
   }
 </style>
