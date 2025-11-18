@@ -1,0 +1,2559 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="محصولات فینگرفود فیروزه، انواع مزه‌ها و فینگرفودهای باکیفیت برای دورهمی‌ها و جشن‌ها با تحویل سریع." />
+  <meta name="keywords" content="فینگرفود, مزه, غذا, دورهمی, فیروزه, سفارش آنلاین, تحویل سریع" />
+  <meta name="author" content="FingerFood Firoozeh" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="محصولات - FingerFood Firoozeh" />
+  <meta property="og:description" content="انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما با تحویل سریع." />
+  <meta property="og:image" content="image1/logo.png" />
+  <meta property="og:url" content="https://www.fingerfoodfiroozeh.com/products.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="محصولات - FingerFood Firoozeh" />
+  <meta name="twitter:description" content="انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما با تحویل سریع." />
+  <meta name="twitter:image" content="image1/logo.png" />
+  <title>محصولات - FingerFood Firoozeh</title>
+  <link rel="icon" type="image/png" href="image1/favicon.png" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" as="style">
+  <link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #26A69A;
+      --secondary-color: #1A7A6F;
+      --accent-color: #FF6B6B;
+      --background-color: #FFFFFF;
+      --neutral-color: #dadee6;
+      --text-dark: #4B5563;
+      --text-light: #edebeb;
+      --gradient-start: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
+      --header-bg: #064d3b;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --success-color: #4CAF50;
+      --warning-color: #FF9800;
+    }
+    [data-theme="dark"] {
+      --header-bg: #1a3c34;
+      --text-light: #e0e0e0;
+      --background-color: #1a1a1a;
+      --text-dark: #cccccc;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    body {
+      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+      background: var(--background-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 90px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: rgba(6, 77, 59, 0.9);
+      backdrop-filter: blur(10px);
+      color: var(--text-light);
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1001;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translate(-50%, -100%); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .menu-icon {
+      font-size: 1.4rem;
+      cursor: pointer;
+      order: 1;
+    }
+    .menu-icon:hover i {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+    .logo-search {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      order: 2;
+    }
+    .logo {
+      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-light);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .logo img {
+      height: 28px;
+      width: auto;
+    }
+    .search-box {
+      position: relative;
+      width: 280px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 8px 40px 8px 40px;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      direction: rtl;
+      background: var(--text-light);
+    }
+    .search-icon, .clear-icon {
+      background: var(--text-light);
+      padding: 8px 12px;
+      cursor: pointer;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-icon {
+      border-radius: 0 20px 20px 0;
+    }
+    .clear-icon {
+      position: absolute;
+      left: 0;
+      display: none;
+    }
+    .clear-icon.active {
+      display: flex;
+    }
+    .search-suggestions {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    color: black;
+    border: 1px solid var(--neutral-color);
+    width: 100%;
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 10px;
+    z-index: 1002;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .search-suggestions.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .search-suggestions h4 {
+    font-size: 0.85rem;
+    margin: 5px 0;
+    color: #333;
+  }
+  .search-suggestions ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+  }
+  .search-suggestions li {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .search-suggestions li:hover {
+    background: var(--neutral-color);
+  }
+    .cart-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      order: 3;
+      position: relative;
+    }
+    .promo-text {
+      font-size: 0.85rem;
+      color: #FFD700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .cart-link, .profile-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-light);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .cart-link:hover, .profile-link:hover {
+      color: var(--primary-color);
+    }
+    .cart-link:hover i, .profile-link:hover i {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #e63946;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+    }
+    .profile-icon {
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--neutral-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .user-menu {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: black;
+      border: 1px solid var(--neutral-color);
+      width: 200px;
+      padding: 10px;
+      z-index: 1002;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .user-menu.active {
+      display: block;
+    }
+    .user-menu .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .user-menu .user-info .avatar {
+      font-size: 2rem;
+    }
+    .user-menu a, .user-menu button {
+      display: block;
+      padding: 8px;
+      text-decoration: none;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+    .user-menu a:hover, .user-menu button:hover {
+      background: var(--neutral-color);
+    }
+    .side-menu {
+      position: fixed;
+      inset-block: 0;
+      inset-inline-start: -100%;
+      width: 200px;
+      background: #064d3b;
+      color: #faca7f;
+      border-right: 3px solid var(--primary-color);
+      padding: 24px;
+      overflow: auto;
+      z-index: 1003;
+      box-shadow: 12px 0 30px rgba(0, 0, 0, 0.2);
+      transition: inset-inline-start 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .side-menu.active {
+      inset-inline-start: 0;
+    }
+    .close-btn {
+      font-size: 2rem;
+      color: var(--text-light);
+      cursor: pointer;
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color 0.2s ease;
+    }
+    .close-btn:hover {
+      color: var(--primary-color);
+    }
+    .nav-menu {
+      list-style: none;
+      margin-top: 50px;
+    }
+    .nav-category {
+      margin-bottom: 20px;
+    }
+    .nav-category h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #FACA7F;
+    }
+    .sub-menu {
+      list-style: none;
+    }
+    .sub-menu li {
+      margin-bottom: 10px;
+    }
+    .sub-menu a {
+      text-decoration: none;
+      color: #eaebeb;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .sub-menu a:hover {
+      color: #81D9e7;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1002;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero-section {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: var(--border-radius);
+      color: white;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+    .hero-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+    .featured-products {
+      margin-bottom: 40px;
+    }
+    .featured-products h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      color: var(--primary-color);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .featured-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    .featured-image {
+      height: 140px;
+      background: var(--neutral-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .featured-card:hover .featured-image img {
+      transform: scale(1.05);
+    }
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--accent-color);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+    .featured-content {
+      padding: 15px;
+      text-align: center;
+    }
+    .featured-content h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .featured-content p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .featured-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .add-to-cart {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .add-to-cart:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 20px;
+      background: white;
+      border: 2px solid var(--neutral-color);
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    .product-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+    .product-image {
+      height: 130px;
+      background: var(--neutral-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    .product-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--success-color);
+      color: white;
+      padding: 3px 6px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+    .product-content {
+      padding: 15px;
+      text-align: center;
+    }
+    .product-content h3 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .product-content p {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .product-price {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .sidebar {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 30px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .sidebar h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .categories {
+      list-style: none;
+    }
+    .categories li {
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--neutral-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .categories li:last-child {
+      border-bottom: none;
+    }
+    .categories li:hover, .categories li.active {
+      background: var(--primary-color);
+      color: white;
+      border-radius: 8px;
+    }
+    .contact-section {
+      background: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
+      color: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: 100px 100px;
+    }
+    .contact-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-section p {
+      margin-bottom: 15px;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-btn {
+      padding: 12px 20px;
+      background: white;
+      color: var(--secondary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    footer {
+      background: var(--gradient-start);
+      color: var(--text-light);
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: 100px 100px;
+    }
+    footer h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 15px;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 1;
+    }
+    footer p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    footer .links {
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+    footer a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      padding: 8px 15px;
+      border-radius: 8px;
+    }
+    footer a:hover {
+      color: var(--primary-color);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    footer .contact-info {
+      font-size: 1rem;
+      margin: 20px 0;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    #clock {
+      color: var(--text-light);
+      margin-top: 15px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer .copyright {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    .social-bar {
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px 0;
+      margin-top: 25px;
+      flex-wrap: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+    .social-box {
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+    .social-box img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 5px;
+      object-fit: contain;
+    }
+    .social-box:hover {
+      background: var(--primary-color);
+      color: var(--text-light);
+      transform: scale(1.05);
+    }
+    .logo-box {
+      width: 70px;
+      height: 70px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .logo-box:hover {
+      transform: scale(1.05);
+    }
+    /* Auth Modal Styles */
+    .auth-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1004;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .auth-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .auth-modal-content {
+      background: var(--background-color);
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      direction: rtl;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .auth-modal.active .auth-modal-content {
+      transform: scale(1);
+    }
+    .auth-modal-close {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .auth-modal-close:hover {
+      color: var(--secondary-color);
+      background: rgba(38, 166, 154, 0.1);
+    }
+    .auth-modal-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .auth-modal-header .site-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .auth-modal-header .site-logo img {
+      height: 28px;
+    }
+    .auth-modal-header h2 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin: 8px 0 4px;
+    }
+    .auth-modal-header .greeting {
+      font-size: 1.2rem;
+      margin: 0;
+      color: var(--text-dark);
+    }
+    .auth-modal-header p {
+      color: var(--text-dark);
+      font-size: 1rem;
+      margin: 4px 0 16px;
+    }
+    .wizard-step {
+      display: none;
+    }
+    .wizard-step.active {
+      display: block;
+    }
+    .auth-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    .auth-form input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid var(--neutral-color);
+      border-radius: 12px;
+      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      direction: ltr;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .auth-form input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
+    }
+    .auth-form button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary-color);
+      color: var(--text-light);
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .auth-form button:hover {
+      background: var(--secondary-color);
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+    .auth-form button:active {
+      transform: translateY(0);
+    }
+    .auth-form .error {
+      color: #D32F2F;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+    .auth-form .success {
+      color: #388E3C;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+    .auth-form .timer {
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 8px;
+      display: none;
+    }
+    .auth-form .terms {
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      text-align: center;
+      margin-top: 8px;
+    }
+    .wizard-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .wizard-buttons button {
+      flex: 1;
+    }
+    .wizard-buttons .prev {
+      background: var(--neutral-color);
+      color: var(--text-dark);
+    }
+    .wizard-buttons .prev:hover {
+      background: #ccc;
+    }
+  
+    /* Character and Username Selection */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .character-card {
+      background: var(--neutral-color);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--text-dark);
+    }
+    .character-card:hover {
+      background: var(--primary-color);
+      color: var(--text-light);
+      transform: translateY(-3px);
+    }
+    .character-card.selected {
+      background: var(--primary-color);
+      color: var(--text-light);
+      box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
+    }
+    /* Logout Modal */
+    .logout-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1005;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .logout-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .logout-modal-content {
+      background: var(--background-color);
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      direction: rtl;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+    .logout-modal.active .logout-modal-content {
+      transform: scale(1);
+    }
+    .logout-modal-content h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin: 0 0 12px;
+    }
+    .logout-modal-content p {
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      margin: 0 0 24px;
+    }
+    .logout-buttons {
+      display: flex;
+      gap: 16px;
+    }
+    .logout-buttons button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .logout-buttons .confirm {
+      background: var(--primary-color);
+      color: var(--text-light);
+      border: none;
+    }
+    .logout-buttons .confirm:hover {
+      background: var(--secondary-color);
+    }
+    .logout-buttons .cancel {
+      background: var(--neutral-color);
+      color: var(--text-dark);
+      border: none;
+    }
+    .logout-buttons .cancel:hover {
+      background: #ccc;
+    }
+    .spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .username-strength {
+      height: 5px;
+      background: #ddd;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+    }
+    .username-strength.weak { background: red; }
+    .username-strength.medium { background: orange; }
+    .username-strength.strong { background: green; }
+    .input-group {
+      position: relative;
+    }
+    .toggle-visibility {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+    #resendCodeBtn {
+      display: none;
+      width: 100%;
+      margin-top: 10px;
+    }
+    /* Pagination Styles */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+    .pagination-btn {
+      padding: 10px 15px;
+      background: white;
+      border: 1px solid var(--neutral-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pagination-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    .pagination-btn.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    .pagination-btn.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    /* Product Rating */
+    .product-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      margin-bottom: 8px;
+    }
+    .product-rating i {
+      color: #FFD700;
+      font-size: 0.8rem;
+    }
+    .product-rating span {
+      font-size: 0.75rem;
+      color: #666;
+      margin-right: 5px;
+    }
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 250px;
+        gap: 30px;
+      }
+    
+      .hero-section h1 {
+        font-size: 3rem;
+      }
+    
+      .hero-section p {
+        font-size: 1.2rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .featured-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 767px) {
+      .navbar {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 12px 10px;
+    }
+    
+      .logo-search {
+        flex-direction: column;
+        gap: 12px;
+      }
+    
+      .search-box {
+        width: 70%;
+      }
+    
+      .logo {
+        font-size: 1rem;
+      }
+    
+      .promo-text {
+        display:flex ;
+      }
+    
+      main {
+        padding: 15px;
+      }
+    
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+    
+      .hero-section p {
+        font-size: 0.95rem;
+      }
+    
+      .featured-products h2, .products-section h2 {
+        font-size: 1.4rem;
+      }
+    
+      footer h2 {
+        font-size: 1.5rem;
+      }
+    
+      footer a {
+        display: block;
+        margin: 8px 0;
+      }
+    
+      .social-bar {
+        gap: 8px;
+      }
+    
+      .social-box, .logo-box {
+        width: 60px;
+        height: 60px;
+        font-size: 0.7rem;
+      }
+    
+      .social-box img {
+        width: 20px;
+        height: 20px;
+      }
+    
+      .pagination {
+        gap: 5px;
+      }
+    
+      .pagination-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+    }
+    /* Animation Classes */
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Loading Spinner */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    /* Notification Badge */
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    /* No results message */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      margin: 20px 0;
+    }
+    .no-results i {
+      font-size: 3rem;
+      color: var(--neutral-color);
+      margin-bottom: 20px;
+    }
+    .no-results h3 {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .no-results p {
+      color: #666;
+      font-size: 1rem;
+    }
+      @media (max-width: 576px) {
+      
+      .menu-icon {
+        font-size: 1.2rem;
+      }
+      .logo {
+        font-size: 1.1rem;
+      }
+      .logo img {
+        height: 24px;
+      }
+      .cart-link i, .profile-icon {
+        font-size: .9rem;
+      }
+      .cart-badge {
+        top: -6px;
+        right: -6px;
+        font-size: 0.6rem;
+        padding: 1px 4px;
+      }
+      .search-box input {
+        padding: 4px 25px 4px 25px;
+        font-size: 0.85rem;
+      }
+      .search-icon, .clear-icon {
+        padding: 5px 8px;
+      }
+      .promo-text {
+      font-size: 0.8rem;
+    }
+     @media (max-width: 468px) {
+    .search-box input {
+      padding: 5px 18px 4px 25px;
+      font-size: 0.80rem;
+    }
+    .search-icon, .clear-icon {
+      padding: 3px 8px;
+    }
+    .promo-input {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  </style>
+</head>
+<body data-theme="light">
+  <header class="navbar">
+    <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="logo-search">
+      <a href="index.html" class="logo">
+        <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" loading="lazy loading">
+        FIROUZEH
+      </a>
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="جستجو در محصولات..."
+          id="searchInput"
+          aria-label="جستجوی محصولات"
+        >
+        <div class="clear-icon" id="clearSearch"><i class="fas fa-times"></i></div>
+        <div class="search-icon"><i class="fas fa-search"></i></div>
+      </div>
+    </div>
+    <div class="cart-profile">
+      <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
+      <a href="/cart" class="cart-link" role="button" aria-label="سبد خرید">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">3</span>
+      </a>
+      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+        <i class="fas fa-user profile-icon" id="profileIcon"></i>
+      </div>
+      <div class="user-menu" id="userMenu">
+        <div class="user-info">
+          <span class="avatar" id="userAvatar"></span>
+          <span id="userName"></span>
+        </div>
+        <a href="/cart">سبد خرید</a>
+        <button id="logoutBtn">خروج</button>
+      </div>
+    </div>
+  </header>
+  <div class="overlay" id="overlay"></div>
+  <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
+    <div class="close-btn" aria-label="بستن منو">×</div>
+    <ul class="nav-menu">
+      <li class="nav-category">
+        <h3>دسته‌بندی محصولات</h3>
+        <ul class="sub-menu">
+          <li><a href="#products">انواع محصولات</a></li>
+          <li><a href="#subcategories">طبقه‌بندی جانبی</a></li>
+        </ul>
+      </li>
+      <li class="nav-category">
+        <h3>فیروزه</h3>
+        <ul class="sub-menu">
+          <li><a href="vip-customers.html">مشتریان خاص فیروزه</a></li>
+          <li><a href="about.html">درباره فیروزه</a></li>
+          <li><a href="contact.html">تماس با فیروزه</a></li>
+          <li><a href="FAQ.html">سوالات متداول</a></li>
+          <li><a href="cooperation.html">همکاری با فیروزه</a></li>
+          <li><a href="blogs.html">مجلات و اخبار فیروزه</a></li>
+          <li><a href="terms.html">قوانین و مقررات</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- Auth Modal -->
+  <div class="auth-modal" id="authModal">
+    <div class="auth-modal-content">
+      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
+      <div class="auth-modal-header">
+        <div class="site-logo">
+          <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه">
+          FIROUZEH
+        </div>
+        <h2>ورود یا ثبت‌نام</h2>
+        <div class="greeting">سلام</div>
+        <p>لطفا شماره موبایل خود را وارد کنید</p>
+      </div>
+      <div class="wizard-step active" id="step1">
+        <div class="auth-form">
+          <label for="authPhone">شماره موبایل</label>
+          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
+          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
+          <div id="captchaSection">
+            <label id="captchaQuestion"></label>
+            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
+            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
+          </div>
+          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
+        </div>
+        <div class="wizard-buttons">
+          <button id="nextToStep2" disabled>بعدی</button>
+        </div>
+      </div>
+      <div class="wizard-step" id="step2">
+        <div class="auth-form">
+          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
+          <label for="authCode">کد یک‌بار مصرف</label>
+          <div class="input-group">
+            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
+            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
+          </div>
+          <p class="error" id="authCodeError">کد نامعتبر است.</p>
+          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
+          <button id="resendCodeBtn">ارسال مجدد کد</button>
+        </div>
+        <div class="wizard-buttons">
+          <button class="prev" id="prevToStep1">قبلی</button>
+          <button id="nextToStep3" disabled>تأیید</button>
+        </div>
+      </div>
+      <div class="wizard-step" id="step3">
+        <label for="username">نام کاربری</label>
+        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
+        <div class="username-strength" id="usernameStrength"></div>
+        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
+        <h3>انتخاب کاراکتر</h3>
+        <div class="character-grid">
+          <div class="character-card" data-char="🍎">🍎</div>
+          <div class="character-card" data-char="🍕">🍕</div>
+          <div class="character-card" data-char="🍔">🍔</div>
+          <div class="character-card" data-char="🍦">🍦</div>
+        </div>
+        <div class="wizard-buttons">
+          <button class="prev" id="prevToStep2">قبلی</button>
+          <button id="confirmProfileBtn" disabled>تأیید</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Logout Modal -->
+  <div class="logout-modal" id="logoutModal">
+    <div class="logout-modal-content">
+      <h2>از حساب کاربری خارج می‌شوید؟</h2>
+      <p>با خروج از حساب کاربری به سبد خرید فعلی دسترسی نخواهید داشت. هر وقت بخواهید مجدد می‌توانید وارد شوید.</p>
+      <div class="logout-buttons">
+        <button class="confirm" id="confirmLogout">خروج</button>
+        <button class="cancel" id="cancelLogout">انصراف</button>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section class="hero-section">
+      <h1><i class="fas fa-utensils"></i> محصولات فینگرفود فیروزه</h1>
+      <p>انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما</p>
+    </section>
+    <section class="featured-products">
+      <h2><i class="fas fa-star"></i> محصولات ویژه</h2>
+      <div class="featured-grid">
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/fingerfood1.png" alt="سینی مزه کلاسیک">
+            <div class="featured-badge">پرفروش</div>
+          </div>
+          <div class="featured-content">
+            <h3>سینی مزه کلاسیک</h3>
+            <p>ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.5)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> ۲۵۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
+          </div>
+        </div>
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/fingerfood2.png" alt="باکس الگانت">
+            <div class="featured-badge">جدید</div>
+          </div>
+          <div class="featured-content">
+            <h3>باکس الگانت</h3>
+            <p>فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>(4.0)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> ۳۸۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
+          </div>
+        </div>
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/fingerfood3.png" alt="دسر مینی تارت">
+            <div class="featured-badge">تخفیف</div>
+          </div>
+          <div class="featured-content">
+            <h3>دسر مینی تارت</h3>
+            <p>مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>(5.0)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> ۱۸۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
+          </div>
+        </div>
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/fingerfood4.png" alt="آجیل مخلوط لوکس">
+            <div class="featured-badge">پرفروش</div>
+          </div>
+          <div class="featured-content">
+            <h3>آجیل مخلوط لوکس</h3>
+            <p>ترکیبی از پسته، بادام، فندق و گردو</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.5)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> ۳۲۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
+          </div>
+        </div>
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/drinks.png" alt="نوشیدنی‌های خنک">
+            <div class="featured-badge">جدید</div>
+          </div>
+          <div class="featured-content">
+            <h3>نوشیدنی‌های خنک</h3>
+            <p>مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>(4.0)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> از ۵۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-eye"></i> مشاهده محصولات</button>
+          </div>
+        </div>
+        <div class="featured-card fade-in">
+          <div class="featured-image">
+            <img src="image1/snacks.png" alt="تنقلات">
+            <div class="featured-badge">پرفروش</div>
+          </div>
+          <div class="featured-content">
+            <h3>تنقلات</h3>
+            <p>انواع چیپس، پفک و اسنک‌های ترد</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.5)</span>
+            </div>
+            <div class="featured-price"><i class="fas fa-tag"></i> از ۳۰,۰۰۰ تومان</div>
+            <button class="add-to-cart"><i class="fas fa-eye"></i> مشاهده محصولات</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> همه محصولات</button>
+      <button class="filter-btn" data-filter="pak-defa"><i class="fas fa-shield-alt"></i> پک دفاع</button>
+      <button class="filter-btn" data-filter="price-asc"><i class="fas fa-sort-amount-up"></i> قیمت کم به زیاد</button>
+      <button class="filter-btn" data-filter="price-desc"><i class="fas fa-sort-amount-down"></i> قیمت زیاد به کم</button>
+      <button class="filter-btn" data-filter="snack"><i class="fas fa-cookie-bite"></i> تنقلات</button>
+      <button class="filter-btn" data-filter="new"><i class="fas fa-star"></i> جدید</button>
+      <button class="filter-btn" data-filter="discount"><i class="fas fa-percent"></i> تخفیف</button>
+      <button class="filter-btn" data-filter="popular"><i class="fas fa-fire"></i> پرفروش</button>
+    </div>
+    <div class="main-content">
+      <section class="products-section">
+        <div class="products-grid">
+          <!-- Product cards will be generated dynamically -->
+        </div>
+      </section>
+      <aside class="sidebar">
+        <h3><i class="fas fa-filter"></i> دسته‌بندی محصولات</h3>
+        <ul class="categories">
+          <li><a href="box-elegant.html"><i class="fas fa-box"></i> باکس الگانت</a></li>
+          <li><a href="maze-fingerfood.html"><i class="fas fa-utensils"></i> مزه و فینگر فود</a></li>
+          <li><a href="dessert-drinks.html"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی</a></li>
+          <li><a href="special-products.html"><i class="fas fa-star"></i> محصولات ویژه فیروزه</a></li>
+          <li><a href="organizational-services.html"><i class="fas fa-briefcase"></i> خدمات سازمانی</a></li>
+          <li><a href="semi-ready-food.html"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده</a></li>
+        </ul>
+      </aside>
+    </div>
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="pagination-btn disabled"><i class="fas fa-chevron-right"></i> قبلی</button>
+      <button class="pagination-btn active">1</button>
+      <button class="pagination-btn">2</button>
+      <button class="pagination-btn">3</button>
+      <button class="pagination-btn">4</button>
+      <button class="pagination-btn">5</button>
+      <button class="pagination-btn">6</button>
+      <button class="pagination-btn">7</button>
+      <button class="pagination-btn">بعدی <i class="fas fa-chevron-left"></i></button>
+    </div>
+    <section class="contact-section">
+      <h2><i class="fas fa-headset"></i> برای دریافت مشاوره و اطلاعات بیشتر</h2>
+      <p><i class="fas fa-phone"></i> شماره تماس: 041-33367052 | <i class="fab fa-whatsapp"></i> واتس‌اپ:09142830328</p>
+      <p><i class="fas fa-exclamation-triangle"></i> به دلیل اختلال موقت در سیستم تلفن، لطفاً از طریق واتس‌اپ پیام ارسال کنید.</p>
+      <div class="contact-buttons">
+        <a href="https://instagram.com/fingerfood_firouzeh" class="contact-btn" target="_blank"><i class="fab fa-instagram"></i> اینستاگرام</a>
+        <a href="https://wa.me/09142830328" class="contact-btn" target="_blank"><i class="fab fa-whatsapp"></i> واتساپ</a>
+        <a href="tel:09142830328" class="contact-btn"><i class="fas fa-phone-alt"></i> تماس</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h2><i class="fas fa-building"></i> فیروزه</h2>
+    <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
+    <div class="links">
+      <a href="about.html"><i class="fas fa-info-circle"></i> درباره فیروزه</a>
+      <a href="index.html#contact"><i class="fas fa-phone"></i> تماس با فیروزه</a>
+      <a href="index.html#collaboration"><i class="fas fa-handshake"></i> همکاری با فیروزه</a>
+      <a href="index.html#faq"><i class="fas fa-question-circle"></i> سوالات متداول</a>
+    </div>
+    <div class="contact-info">
+      <i class="fas fa-phone"></i> تماس: 041-33367052 | <i class="fab fa-whatsapp"></i> واتس‌اپ:09142830328
+    </div>
+    <p id="clock"><i class="fas fa-clock"></i> در حال دریافت زمان…</p>
+    <div class="copyright">
+      © ۱۴۰۴ FingerFood Firoozeh - کلیه حقوق محفوظ است.
+    </div>
+    <div class="social-bar">
+      <div class="logo-box"><img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه"></div>
+      <a href="mailto:firouzeh.foodgroup@gmail.com" class="social-box">
+        <i class="fas fa-envelope"></i>
+        ایمیل
+      </a>
+      <a href="https://instagram.com/fingerfood_firouzeh" class="social-box" target="_blank">
+        <i class="fab fa-instagram"></i>
+        اینستاگرام
+      </a>
+      <a href="https://wa.me/09142830328" class="social-box" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        واتس اپ
+      </a>
+      <a href="tel:09142830328" class="social-box">
+        <i class="fas fa-phone"></i>
+        تماس
+      </a>
+      <a href="about.html" class="social-box">
+        <i class="fas fa-award"></i>
+        مجوزها
+      </a>
+    </div>
+  </footer>
+  <script>
+    // Elements
+    const body = document.body;
+    const menuToggle = document.querySelector('.menu-icon');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeBtn = sideMenu.querySelector('.close-btn');
+    const overlay = document.getElementById('overlay');
+    const searchInput = document.getElementById("searchInput");
+    const promoText = document.getElementById("promoText");
+    const clearSearch = document.getElementById("clearSearch");
+    const clock = document.getElementById("clock");
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const categoryItems = document.querySelectorAll('.categories li');
+    const productsGrid = document.querySelector('.products-grid');
+    const paginationButtons = document.querySelectorAll('.pagination-btn');
+    const userProfile = document.getElementById('userProfile');
+    const profileIcon = document.getElementById('profileIcon');
+    const userMenu = document.getElementById('userMenu');
+    const userAvatar = document.getElementById('userAvatar');
+    const userName = document.getElementById('userName');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const confirmLogout = document.getElementById('confirmLogout');
+    const cancelLogout = document.getElementById('cancelLogout');
+    const authModal = document.getElementById('authModal');
+    const closeAuthModal = document.getElementById('closeAuthModal');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const nextToStep2 = document.getElementById('nextToStep2');
+    const prevToStep1 = document.getElementById('prevToStep1');
+    const nextToStep3 = document.getElementById('nextToStep3');
+    const prevToStep2 = document.getElementById('prevToStep2');
+    const authPhone = document.getElementById('authPhone');
+    const authPhoneError = document.getElementById('authPhoneError');
+    const authSuccess = document.getElementById('authSuccess');
+    const authCode = document.getElementById('authCode');
+    const authCodeError = document.getElementById('authCodeError');
+    const authTimer = document.getElementById('authTimer');
+    const authCountdown = document.getElementById('authCountdown');
+    const username = document.getElementById('username');
+    const usernameError = document.getElementById('usernameError');
+    const usernameStrength = document.getElementById('usernameStrength');
+    const characterCards = document.querySelectorAll('.character-card');
+    const confirmProfileBtn = document.getElementById('confirmProfileBtn');
+    const toggleAuthCode = document.getElementById('toggleAuthCode');
+    const resendCodeBtn = document.getElementById('resendCodeBtn');
+    const captchaQuestion = document.getElementById('captchaQuestion');
+    const captchaAnswer = document.getElementById('captchaAnswer');
+    const captchaError = document.getElementById('captchaError');
+    // Data
+    const promoMessages = [
+      "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
+      "🍕 غذاهای تازه و خوشمزه هر روز!",
+      "⭐ تخفیف ویژه برای مشتریان وفادار!",
+      "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
+    ];
+    const products = [
+      {
+        id: 1,
+        name: "سینی مزه کلاسیک",
+        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        price: "۲۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.5,
+        badge: "پرفروش",
+        category: ["fingerfood", "tray"],
+        tags: ["سینی", "مزه", "کلاسیک", "پنیر", "زیتون", "آجیل"]
+      },
+      {
+        id: 2,
+        name: "باکس الگانت",
+        description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای",
+        price: "۳۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.0,
+        badge: "جدید",
+        category: ["fingerfood"],
+        tags: ["فینگرفود", "لقمه", "مدیترانه", "الگانت"]
+      },
+      {
+        id: 3,
+        name: "دسر مینی تارت",
+        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی",
+        price: "۱۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood3.png",
+        rating: 5.0,
+        badge: "تخفیف",
+        category: ["dessert"],
+        tags: ["دسر", "تارت", "مینی", "میوه", "شکلات"]
+      },
+      {
+        id: 4,
+        name: "آجیل مخلوط لوکس",
+        description: "ترکیبی از پسته، بادام، فندق و گردو",
+        price: "۳۲۰,۰۰۰ تومان",
+        image: "image1/fingerfood4.png",
+        rating: 4.5,
+        badge: "پرفروش",
+        category: ["nuts"],
+        tags: ["آجیل", "پسته", "بادام", "فندق", "گردو"]
+      },
+      {
+        id: 5,
+        name: "نوشیدنی‌های خنک",
+        description: "مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار",
+        price: "از ۵۰,۰۰۰ تومان",
+        image: "image1/drinks.png",
+        rating: 4.0,
+        badge: "جدید",
+        category: ["drink"],
+        tags: ["نوشیدنی", "خنک", "طبیعی", "گازدار"]
+      },
+      {
+        id: 6,
+        name: "تنقلات",
+        description: "انواع چیپس، پفک و اسنک‌های ترد",
+        price: "از ۳۰,۰۰۰ تومان",
+        image: "image1/snacks.png",
+        rating: 4.5,
+        badge: "پرفروش",
+        category: ["snack"],
+        tags: ["تنقلات", "چیپس", "پفک", "اسنک"]
+      },
+      {
+        id: 7,
+        name: "پنیر و زیتون",
+        description: "انواع پنیرهای محلی و زیتون‌های طعم‌دار",
+        price: "از ۸۰,۰۰۰ تومان",
+        image: "image1/cheese.png",
+        rating: 4.2,
+        badge: "جدید",
+        category: ["cheese"],
+        tags: ["پنیر", "زیتون", "محلی", "طعم‌دار"]
+      },
+      {
+        id: 8,
+        name: "شیرینی و کیک",
+        description: "انواع کیک‌های خانگی و شیرینی‌های سنتی",
+        price: "از ۱۰۰,۰۰۰ تومان",
+        image: "image1/desserts.png",
+        rating: 4.7,
+        badge: "پرفروش",
+        category: ["dessert"],
+        tags: ["شیرینی", "کیک", "خانگی", "سنتی"]
+      },
+      {
+        id: 9,
+        name: "سینی مزه ویژه",
+        description: "ترکیبی از بهترین پنیرها و زیتون‌های انتخابی",
+        price: "۳۰۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.8,
+        badge: "پرفروش",
+        category: ["fingerfood", "tray"],
+        tags: ["سینی", "مزه", "ویژه", "پنیر", "زیتون"]
+      },
+      {
+        id: 10,
+        name: "فینگرفود سبک مدیترانه",
+        description: "ترکیبی از گوجه‌خشک، فیستق و پنیر فتا",
+        price: "۲۲۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.3,
+        badge: "جدید",
+        category: ["fingerfood"],
+        tags: ["فینگرفود", "مدیترانه", "گوجه", "فیستق", "فتا"]
+      },
+      {
+        id: 11,
+        name: "دسر شکلاتی لوکس",
+        description: "دسرهای شکلاتی با کیفیت بالا و طعم بی‌نظیر",
+        price: "۲۰۰,۰۰۰ تومان",
+        image: "image1/fingerfood3.png",
+        rating: 4.9,
+        badge: "تخفیف",
+        category: ["dessert"],
+        tags: ["دسر", "شکلات", "لوکس", "بی‌نظیر"]
+      },
+      {
+        id: 12,
+        name: "آجیل ایرانی",
+        description: "ترکیبی از بهترین آجیل‌های داخلی",
+        price: "۲۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood4.png",
+        rating: 4.6,
+        badge: "پرفروش",
+        category: ["nuts"],
+        tags: ["آجیل", "ایرانی", "داخلی"]
+      },
+      {
+        id: 13,
+        name: "نوشیدنی‌های سرد طبیعی",
+        description: "نوشیدنی‌های خنک طبیعی بدون قند اضافه",
+        price: "از ۴۵,۰۰۰ تومان",
+        image: "image1/drinks.png",
+        rating: 4.1,
+        badge: "جدید",
+        category: ["drink"],
+        tags: ["نوشیدنی", "سرد", "طبیعی", "بدون قند"]
+      },
+      {
+        id: 14,
+        name: "اسنک‌های ترد",
+        description: "انواع اسنک‌های ترد و خوشمزه",
+        price: "از ۳۵,۰۰۰ تومان",
+        image: "image1/snacks.png",
+        rating: 4.4,
+        badge: "پرفروش",
+        category: ["snack"],
+        tags: ["اسنک", "ترد", "خوشمزه"]
+      },
+      {
+        id: 15,
+        name: "سینی میوه‌های خشک",
+        description: "ترکیبی از بهترین میوه‌های خشک ایرانی",
+        price: "۱۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.7,
+        badge: "جدید",
+        category: ["nuts", "tray"],
+        tags: ["سینی", "میوه", "خشک", "ایرانی"]
+      },
+      {
+        id: 16,
+        name: "فینگرفود مخصوص مهمانی",
+        description: "فینگرفودهای متنوع برای مهمانی‌های خاص",
+        price: "۴۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.8,
+        badge: "پرفروش",
+        category: ["fingerfood"],
+        tags: ["فینگرفود", "مهمانی", "مخصوص", "متنوع"]
+      }
+    ];
+    let currentPromoIndex = 0;
+    let currentFilter = "all";
+    let currentCategory = "all";
+    let currentSearch = "";
+    let authCountdownInterval;
+    let authModalShown = false;
+    let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
+    let currentPhone = '';
+    let isNewUser = false;
+    let captchaNum1, captchaNum2, captchaResult;
+    let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
+    let lockTimer = 0;
+    // Functions
+    function openMenu() {
+      sideMenu.classList.add('active');
+      overlay.classList.add('active');
+      body.classList.add('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'بستن منو');
+      sideMenu.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+      sideMenu.focus();
+    }
+    function closeMenu() {
+      sideMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'باز کردن منو');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      body.style.overflow = '';
+      menuToggle.focus();
+    }
+    function updateTime() {
+      if (typeof persianDate === 'undefined') {
+        clock.textContent = 'خطا در بارگذاری تاریخ';
+        return;
+      }
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Tehran',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      const timeStr = now.toLocaleTimeString('fa-IR', options);
+      const persianDateObj = new persianDate(now);
+      const persianDateStr = persianDateObj.format('D MMMM YYYY');
+      clock.innerHTML = `<i class="fas fa-clock"></i> ${persianDateStr} - ${timeStr}`;
+    }
+    function changePromoText() {
+      promoText.innerHTML = `<i class="fas fa-bolt"></i> ${promoMessages[currentPromoIndex]}`;
+      currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
+    }
+    function generateProductCard(product) {
+      const ratingStars = [];
+      const fullStars = Math.floor(product.rating);
+      const hasHalfStar = product.rating % 1 !== 0;
+    
+      for (let i = 0; i < fullStars; i++) {
+        ratingStars.push('<i class="fas fa-star"></i>');
+      }
+    
+      if (hasHalfStar) {
+        ratingStars.push('<i class="fas fa-star-half-alt"></i>');
+      }
+    
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      for (let i = 0; i < emptyStars; i++) {
+        ratingStars.push('<i class="far fa-star"></i>');
+      }
+    
+      return `
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+          </div>
+          <div class="product-content">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-rating">
+              ${ratingStars.join('')}
+              <span>(${product.rating})</span>
+            </div>
+            <div class="product-price"><i class="fas fa-tag"></i> ${product.price}</div>
+            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> ${product.price.startsWith('از') ? 'مشاهده محصولات' : 'افزودن به سبد'}</button>
+          </div>
+        </div>
+      `;
+    }
+    function filterProducts() {
+      let filteredProducts = products;
+    
+      // Apply category filter
+      if (currentCategory !== "all") {
+        filteredProducts = filteredProducts.filter(product =>
+          product.category.includes(currentCategory)
+        );
+      }
+    
+      // Apply filter button filter
+      if (currentFilter !== "all") {
+        if (currentFilter === "new") {
+          filteredProducts = filteredProducts.filter(product =>
+            product.badge === "جدید"
+          );
+        } else if (currentFilter === "discount") {
+          filteredProducts = filteredProducts.filter(product =>
+            product.badge === "تخفیف"
+          );
+        } else if (currentFilter === "popular") {
+          filteredProducts = filteredProducts.filter(product =>
+            product.badge === "پرفروش"
+          );
+        } else {
+          filteredProducts = filteredProducts.filter(product =>
+            product.category.includes(currentFilter)
+          );
+        }
+      }
+    
+      // Apply search filter
+      if (currentSearch) {
+        const searchTerm = currentSearch.toLowerCase();
+        filteredProducts = filteredProducts.filter(product =>
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.description.toLowerCase().includes(searchTerm) ||
+          product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        );
+      }
+    
+      return filteredProducts;
+    }
+    function renderProducts(productsToShow) {
+      productsGrid.innerHTML = '';
+    
+      if (productsToShow.length === 0) {
+        productsGrid.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>محصولی یافت نشد</h3>
+            <p>برای جستجوی بهتر از کلمات کلیدی دیگر استفاده کنید</p>
+          </div>
+        `;
+        return;
+      }
+    
+      productsToShow.forEach(product => {
+        productsGrid.innerHTML += generateProductCard(product);
+      });
+    }
+    function updateFilters() {
+      const filteredProducts = filterProducts();
+      renderProducts(filteredProducts);
+    }
+    // Auth functions
+    function openAuthModalFunc() {
+      authModal.classList.add('active');
+      overlay.classList.add('active');
+      body.style.overflow = 'hidden';
+      authModalShown = true;
+      resetAuthForm();
+      generateCaptcha();
+    }
+    function closeAuthModalFunc() {
+      authModal.classList.remove('active');
+      overlay.classList.remove('active');
+      body.style.overflow = '';
+      resetAuthForm();
+    }
+    function resetAuthForm() {
+      authPhone.value = '';
+      authCode.value = '';
+      username.value = '';
+      captchaAnswer.value = '';
+      authPhoneError.style.display = 'none';
+      authCodeError.style.display = 'none';
+      usernameError.style.display = 'none';
+      captchaError.style.display = 'none';
+      authSuccess.style.display = 'none';
+      authTimer.style.display = 'none';
+      resendCodeBtn.style.display = 'none';
+      step1.classList.add('active');
+      step2.classList.remove('active');
+      step3.classList.remove('active');
+      characterCards.forEach(card => card.classList.remove('selected'));
+      if (authCountdownInterval) clearInterval(authCountdownInterval);
+      failedAttempts = 0;
+      sessionStorage.setItem('failedAttempts', failedAttempts);
+      updateButtonStates();
+      updateUsernameStrength();
+    }
+    function validatePhone(phone) {
+      const regex = /^09[0-9]{9}$/;
+      return regex.test(phone);
+    }
+    function validateCode(code) {
+      return /^[0-9]{6}$/.test(code);
+    }
+    function validateUsername(name) {
+      return /^[a-zA-Z0-9]{3,}$/.test(name);
+    }
+    function validateCaptcha(answer) {
+      return parseInt(answer) === captchaResult;
+    }
+    function maskInput(input, regex) {
+      input.value = input.value.replace(regex, '');
+    }
+    function updateButtonStates() {
+      nextToStep2.disabled = !validatePhone(authPhone.value) || !validateCaptcha(captchaAnswer.value);
+      nextToStep3.disabled = !validateCode(authCode.value);
+      confirmProfileBtn.disabled = !validateUsername(username.value) || !document.querySelector('.character-card.selected');
+    }
+    function updateUsernameStrength() {
+      const name = username.value;
+      if (name.length < 3) {
+        usernameStrength.className = 'username-strength weak';
+      } else if (name.length < 6) {
+        usernameStrength.className = 'username-strength medium';
+      } else {
+        usernameStrength.className = 'username-strength strong';
+      }
+    }
+    function generateCaptcha() {
+      captchaNum1 = Math.floor(Math.random() * 10) + 1;
+      captchaNum2 = Math.floor(Math.random() * 10) + 1;
+      captchaResult = captchaNum1 + captchaNum2;
+      captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
+    }
+    function showSpinner(button) {
+      button.innerHTML = '<div class="spinner"></div>';
+      button.disabled = true;
+    }
+    function hideSpinner(button, text) {
+      button.innerHTML = text;
+      button.disabled = false;
+    }
+    function simulateSendCode(phone) {
+      // Simulate API call
+      console.log('Code sent to:', phone);
+      // For demo, assume code is '123456'
+      return '123456';
+    }
+    function simulateVerifyCode(code, phone) {
+      // For demo, check if code is '123456'
+      if (code === '123456') {
+        // Check if user exists
+        if (sessionStorage.getItem(`user_${phone}`)) {
+          userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
+          isNewUser = false;
+        } else {
+          isNewUser = true;
+        }
+        return true;
+      }
+      return false;
+    }
+    function startCountdown(timerSeconds = 60) {
+      let seconds = timerSeconds;
+      authCountdown.innerHTML = seconds;
+      authTimer.style.display = 'block';
+      resendCodeBtn.style.display = 'none';
+      authCountdownInterval = setInterval(() => {
+        seconds--;
+        authCountdown.innerHTML = seconds;
+        if (seconds <= 0) {
+          clearInterval(authCountdownInterval);
+          authTimer.style.display = 'none';
+          resendCodeBtn.style.display = 'block';
+        }
+      }, 1000);
+    }
+    function updateUserUI() {
+      if (userData) {
+        profileIcon.style.display = 'none';
+        const avatar = document.createElement('div');
+        avatar.className = 'user-avatar';
+        avatar.textContent = userData.character;
+        userProfile.appendChild(avatar);
+        userAvatar.textContent = userData.character;
+        userName.textContent = escapeHTML(userData.username);
+      } else {
+        if (userProfile.querySelector('.user-avatar')) {
+          userProfile.querySelector('.user-avatar').remove();
+        }
+        profileIcon.style.display = 'block';
+      }
+    }
+    function escapeHTML(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    // Event Listeners
+    menuToggle.addEventListener('click', () => {
+      if (sideMenu.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+    closeBtn.addEventListener('click', closeMenu);
+    userProfile.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (userData) {
+        userMenu.classList.toggle('active');
+      } else {
+        openAuthModalFunc();
+      }
+    });
+    closeAuthModal.addEventListener('click', closeAuthModalFunc);
+    authPhone.addEventListener('input', (e) => {
+      maskInput(e.target, /[^0-9]/g);
+      authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
+      updateButtonStates();
+    });
+    captchaAnswer.addEventListener('input', () => {
+      captchaError.style.display = validateCaptcha(captchaAnswer.value) ? 'none' : 'block';
+      updateButtonStates();
+    });
+    nextToStep2.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!validateCaptcha(captchaAnswer.value)) {
+        captchaError.style.display = 'block';
+        return;
+      }
+      captchaError.style.display = 'none';
+      const phone = authPhone.value;
+      if (!validatePhone(phone)) {
+        authPhoneError.style.display = 'block';
+        return;
+      }
+      authPhoneError.style.display = 'none';
+      currentPhone = phone;
+      showSpinner(nextToStep2);
+      setTimeout(() => {
+        simulateSendCode(phone);
+        authSuccess.style.display = 'block';
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        hideSpinner(nextToStep2, 'بعدی');
+        let timer = failedAttempts > 5 ? 300 : 60;
+        startCountdown(timer);
+      }, 1000); // Simulate delay
+    });
+    prevToStep1.addEventListener('click', () => {
+      step2.classList.remove('active');
+      step1.classList.add('active');
+      authSuccess.style.display = 'none';
+      authTimer.style.display = 'none';
+      resendCodeBtn.style.display = 'none';
+      if (authCountdownInterval) clearInterval(authCountdownInterval);
+    });
+    authCode.addEventListener('input', (e) => {
+      maskInput(e.target, /[^0-9]/g);
+      authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
+      updateButtonStates();
+    });
+    authCode.addEventListener('contextmenu', (e) => e.preventDefault());
+    authCode.addEventListener('paste', (e) => e.preventDefault());
+    authCode.addEventListener('copy', (e) => e.preventDefault());
+    nextToStep3.addEventListener('click', (e) => {
+      e.preventDefault();
+      const code = authCode.value;
+      showSpinner(nextToStep3);
+      setTimeout(() => {
+        if (simulateVerifyCode(code, currentPhone)) {
+          failedAttempts = 0;
+          sessionStorage.setItem('failedAttempts', failedAttempts);
+          authCodeError.style.display = 'none';
+          hideSpinner(nextToStep3, 'تأیید');
+          if (isNewUser) {
+            step2.classList.remove('active');
+            step3.classList.add('active');
+            username.value = `user${currentPhone.slice(-4)}`;
+            updateUsernameStrength();
+            updateButtonStates();
+          } else {
+            sessionStorage.setItem('userData', JSON.stringify(userData));
+            updateUserUI();
+            closeAuthModalFunc();
+            alert('ورود موفق!');
+          }
+        } else {
+          failedAttempts++;
+          sessionStorage.setItem('failedAttempts', failedAttempts);
+          authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (failedAttempts % 6)}`;
+          authCodeError.style.display = 'block';
+          if (failedAttempts >= 5) {
+            console.error('Too many failed attempts');
+            authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
+            nextToStep3.disabled = true;
+            lockTimer = 300; // 5 minutes lock
+            setTimeout(() => {
+              nextToStep3.disabled = false;
+              failedAttempts = 0;
+              sessionStorage.setItem('failedAttempts', failedAttempts);
+            }, lockTimer * 1000);
+          }
+          hideSpinner(nextToStep3, 'تأیید');
+        }
+      }, 1000);
+    });
+    resendCodeBtn.addEventListener('click', () => {
+      simulateSendCode(currentPhone);
+      let timer = failedAttempts > 5 ? 300 : 60;
+      startCountdown(timer);
+    });
+    toggleAuthCode.addEventListener('click', () => {
+      const type = authCode.type === 'password' ? 'text' : 'password';
+      authCode.type = type;
+      toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
+    });
+    prevToStep2.addEventListener('click', () => {
+      step3.classList.remove('active');
+      step2.classList.add('active');
+    });
+    username.addEventListener('input', (e) => {
+      maskInput(e.target, /[^a-zA-Z0-9]/g);
+      usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
+      updateUsernameStrength();
+      updateButtonStates();
+    });
+    characterCards.forEach(card => {
+      card.addEventListener('click', () => {
+        characterCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        updateButtonStates();
+      });
+    });
+    confirmProfileBtn.addEventListener('click', () => {
+      const name = username.value;
+      const selectedChar = document.querySelector('.character-card.selected');
+      if (!validateUsername(name)) {
+        usernameError.style.display = 'block';
+        return;
+      }
+      if (!selectedChar) {
+        alert('لطفاً یک کاراکتر انتخاب کنید');
+        return;
+      }
+      usernameError.style.display = 'none';
+      userData = {
+        phone: currentPhone,
+        username: name,
+        character: selectedChar.dataset.char
+      };
+      sessionStorage.setItem(`user_${currentPhone}`, JSON.stringify(userData));
+      sessionStorage.setItem('userData', JSON.stringify(userData));
+      updateUserUI();
+      closeAuthModalFunc();
+      alert('ثبت‌نام موفق!');
+    });
+    logoutBtn.addEventListener('click', () => {
+      userMenu.classList.remove('active');
+      logoutModal.classList.add('active');
+      overlay.classList.add('active');
+    });
+    confirmLogout.addEventListener('click', () => {
+      userData = null;
+      sessionStorage.removeItem('userData');
+      updateUserUI();
+      logoutModal.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    cancelLogout.addEventListener('click', () => {
+      logoutModal.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+    overlay.addEventListener('click', () => {
+      closeMenu();
+      userMenu.classList.remove('active');
+      logoutModal.classList.remove('active');
+      closeAuthModalFunc();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        userMenu.classList.remove('active');
+        logoutModal.classList.remove('active');
+        closeAuthModalFunc();
+      }
+    });
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value;
+      clearSearch.classList.toggle('active', e.target.value.length > 0);
+      updateFilters();
+    });
+    clearSearch.addEventListener("click", () => {
+      searchInput.value = '';
+      currentSearch = '';
+      clearSearch.classList.remove('active');
+      searchInput.focus();
+      updateFilters();
+    });
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.filter;
+        updateFilters();
+      });
+    });
+    categoryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        categoryItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        currentCategory = item.dataset.category;
+        updateFilters();
+      });
+    });
+    paginationButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('disabled')) return;
+      
+        paginationButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      
+        // Scroll to top of products section
+        document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    // Auto open auth modal after 1 minute if not logged in
+    setTimeout(() => {
+      if (!authModalShown && !userData) {
+        openAuthModalFunc();
+      }
+    }, 60000); // 1 minute
+    // Initialize
+    updateTime();
+    setInterval(updateTime, 1000);
+    setInterval(changePromoText, 5000);
+    updateUserUI();
+  
+    // Render initial products
+    renderProducts(products);
+  </script>
+</body>
+</html>
