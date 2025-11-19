@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FingerFood Firouzeh</title>
+  <title>مقاله: انواع گوشت برای برگر و نحوه ساخت آن - فینگرفود فیروزه</title>
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
@@ -28,7 +28,6 @@
     --success-color: #2a9d8f;
     --warning-color: #f39c12;
   }
-
   [data-theme="dark"] {
     --text-light: #e0e0e0;
     --background-color: #1a1a1a;
@@ -36,24 +35,20 @@
     --gray-box: #2d3748;
     --border-color: #4a5568;
   }
-
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
   html, body {
     overflow-x: hidden;
   }
-
   body {
     font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
     background: var(--background-color);
     color: var(--text-dark);
     line-height: 1.8;
   }
-
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -74,23 +69,19 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: slideIn 0.5s ease-out;
   }
-
   @keyframes slideIn {
     from { transform: translate(-50%, -100%); opacity: 0; }
     to { transform: translate(-50%, 0); opacity: 1; }
   }
-
   .menu-icon {
     font-size: 1.4rem;
     cursor: pointer;
     order: 1;
   }
-
   .menu-icon:hover i {
     transform: scale(1.1);
     transition: transform 0.2s ease;
   }
-
   .logo-search {
     flex: 1;
     display: flex;
@@ -100,7 +91,6 @@
     order: 2;
     flex-direction: column;
   }
-
   .logo {
     font-size: 1.4rem;
     font-weight: 700;
@@ -111,12 +101,10 @@
     text-decoration: none;
     text-transform: uppercase;
   }
-
   .logo img {
     height: 28px;
     width: auto;
   }
-
   .promo-text-mobile {
     font-size: 0.85rem;
     color: #FFD700;
@@ -124,7 +112,6 @@
     text-align: center;
     margin-top: 5px;
   }
-
   .search-box {
     position: relative;
     width: 280px;
@@ -132,7 +119,6 @@
     display: flex;
     align-items: center;
   }
-
   .search-box input {
     flex: 1;
     padding: 8px 40px 8px 40px;
@@ -144,7 +130,6 @@
     direction: rtl;
     background: var(--text-light);
   }
-
   .search-icon, .clear-icon {
     background: var(--text-light);
     padding: 8px 12px;
@@ -154,21 +139,17 @@
     align-items: center;
     justify-content: center;
   }
-
   .search-icon {
     border-radius: 0 20px 20px 0;
   }
-
   .clear-icon {
     position: absolute;
     left: 0;
     display: none;
   }
-
   .clear-icon.active {
     display: flex;
   }
-
   .search-suggestions {
     display: none;
     position: absolute;
@@ -188,35 +169,29 @@
     transform: scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-
   .search-suggestions.active {
     display: block;
     opacity: 1;
     transform: scale(1);
   }
-
   .search-suggestions h4 {
     font-size: 0.85rem;
     margin: 5px 0;
     color: #333;
   }
-
   .search-suggestions ul {
     list-style: none;
     padding: 0;
     margin: 5px 0;
   }
-
   .search-suggestions li {
     padding: 5px 10px;
     cursor: pointer;
     font-size: 0.9rem;
   }
-
   .search-suggestions li:hover {
     background: var(--neutral-color);
   }
-
   .cart-profile {
     display: flex;
     align-items: center;
@@ -224,7 +199,6 @@
     order: 3;
     position: relative;
   }
-
   .promo-text {
     font-size: 0.85rem;
     color: #FFD700;
@@ -233,7 +207,6 @@
     gap: 5px;
     white-space: nowrap;
   }
-
   .cart-link, .profile-link {
     display: flex;
     align-items: center;
@@ -242,16 +215,13 @@
     position: relative;
     transition: color 0.3s;
   }
-
   .cart-link:hover, .profile-link:hover {
     color: var(--primary-color);
   }
-
   .cart-link:hover i, .profile-link:hover i {
     transform: scale(1.1);
     transition: transform 0.2s ease;
   }
-
   .cart-badge {
     position: absolute;
     top: -8px;
@@ -262,12 +232,10 @@
     padding: 2px 6px;
     font-size: 0.7rem;
   }
-
   .profile-icon {
     font-size: 1.1rem;
     cursor: pointer;
   }
-
   .user-avatar {
     width: 32px;
     height: 32px;
@@ -279,7 +247,6 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
-
   .user-menu {
     position: absolute;
     top: 50px;
@@ -294,22 +261,18 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: none;
   }
-
   .user-menu.active {
     display: block;
   }
-
   .user-menu .user-info {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
   }
-
   .user-menu .user-info .avatar {
     font-size: 2rem;
   }
-
   .user-menu a, .user-menu button {
     display: block;
     padding: 8px;
@@ -317,11 +280,9 @@
     color: var(--text-dark);
     cursor: pointer;
   }
-
   .user-menu a:hover, .user-menu button:hover {
     background: var(--neutral-color);
   }
-
   .search-container {
     position: fixed;
     inset-block-start: calc(var(--header-h) + 20px);
@@ -333,11 +294,9 @@
     display: none;
     direction: rtl;
   }
-
   .search-container.active {
     display: block;
   }
-
   .search-container input {
     width: calc(100% - 24px);
     padding: 14px;
@@ -347,13 +306,11 @@
     transition: var(--transition);
     direction: rtl;
   }
-
   .search-container input:focus {
     outline: none;
     border-color: var(--secondary-color);
     box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
   }
-
   .search-results {
     margin-top: 16px;
     max-height: 300px;
@@ -363,7 +320,6 @@
     padding: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
-
   .search-results .result-item {
     padding: 12px;
     border-bottom: 1px solid rgba(38, 166, 154, 0.2);
@@ -372,19 +328,16 @@
     cursor: pointer;
     transition: var(--transition);
   }
-
   .search-results .result-item:hover {
     background: rgba(38, 166, 154, 0.1);
     color: var(--primary-color);
   }
-
   .search-results .no-results {
     color: #D32F2F;
     font-size: 1rem;
     text-align: center;
     padding: 12px;
   }
-
   .overlay {
     position: fixed;
     inset: 0;
@@ -394,12 +347,10 @@
     visibility: hidden;
     transition: var(--transition);
   }
-
   .overlay.active {
     opacity: 1;
     visibility: visible;
   }
-
   .side-menu {
     position: fixed;
     inset-block: 0;
@@ -414,11 +365,9 @@
     box-shadow: 12px 0 30px rgba(0, 0, 0, 0.2);
     transition: inset-inline-start 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-
   .side-menu.active {
     inset-inline-start: 0;
   }
-
   .close-btn {
     font-size: 2rem;
     color: var(--text-light);
@@ -427,52 +376,42 @@
     margin-bottom: 20px;
     transition: color 0.2s ease;
   }
-
   .close-btn:hover {
     color: var(--primary-color);
   }
-
   .nav-menu {
     list-style: none;
     margin-top: 50px;
   }
-
   .nav-category {
     margin-bottom: 20px;
   }
-
   .nav-category h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #FACA7F;
   }
-
   .sub-menu {
     list-style: none;
   }
-
   .sub-menu li {
     margin-bottom: 10px;
   }
-
   .sub-menu a {
     text-decoration: none;
     color: #eaebeb;
     font-size: 1rem;
     transition: var(--transition);
   }
-
   .sub-menu a:hover {
     color: #81D9e7;
   }
-
   .story-section {
     padding: 100px 32px;
     background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
     text-align: center;
     position: relative;
   }
-
   .story-content {
     display: flex;
     flex-wrap: wrap;
@@ -481,7 +420,6 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .story-image {
     flex: 1;
     min-width: 320px;
@@ -494,14 +432,12 @@
     align-items: center;
     justify-content: center;
   }
-
   .story-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
   }
-
   .story-text {
     flex: 2;
     min-width: 320px;
@@ -513,7 +449,6 @@
     font-size: 1.1rem;
     line-height: 1.9;
   }
-
   .story-button {
     display: block;
     width: max-content;
@@ -529,24 +464,20 @@
     box-shadow: var(--shadow);
     border: 2px solid var(--secondary-color);
   }
-
   .story-button:hover {
     background: var(--secondary-color);
     color: var(--text-light);
     transform: translateY(-2px);
   }
-
   #categories {
     padding: 100px 32px;
     background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
   }
-
   #categories h2 {
     text-align: center;
     font-size: 3rem;
     margin-bottom: 20px;
   }
-
   #categories .subtitle {
     text-align: center;
     font-size: 1.8rem;
@@ -557,7 +488,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   .category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -565,7 +495,6 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .category-card {
     border: 1px solid var(--neutral-color);
     background: var(--background-color);
@@ -575,13 +504,11 @@
     transition: var(--transition);
     text-align: center;
   }
-
   .category-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     border-color: var(--primary-color);
   }
-
   .image-placeholder {
     height: 120px;
     display: flex;
@@ -592,14 +519,12 @@
     background: var(--neutral-color);
     overflow: hidden;
   }
-
   .image-placeholder img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
   }
-
   .category-card strong {
     display: block;
     margin-bottom: 12px;
@@ -607,13 +532,11 @@
     font-weight: 600;
     color: var(--primary-color);
   }
-
   .category-card p {
     color: var(--text-dark);
     font-size: 1rem;
     line-height: 1.6;
   }
-
   .category-button {
     display: block;
     width: max-content;
@@ -629,24 +552,20 @@
     box-shadow: var(--shadow);
     border: 1px solid var(--secondary-color);
   }
-
   .category-button:hover {
     background: var(--secondary-color);
     color: var(--text-light);
     transform: translateY(-2px);
   }
-
   #best-sellers {
     padding: 100px 32px;
     background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
     text-align: center;
   }
-
   #best-sellers h2 {
     font-size: 3rem;
     margin-bottom: 40px;
   }
-
   #best-sellers .subtitle {
     text-align: center;
     font-size: 1.8rem;
@@ -657,7 +576,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   .best-sellers-slider {
     display: flex;
     gap: 40px;
@@ -665,14 +583,12 @@
     overflow: hidden;
     margin-bottom: 48px;
   }
-
   .slider-container {
     width: 200%;
     display: flex;
     animation: slideRight 60s linear infinite;
     gap: 40px;
   }
-
   .best-seller-card {
     min-width: 250px;
     border: 1px solid var(--neutral-color);
@@ -687,13 +603,11 @@
     position: relative;
     overflow: hidden;
   }
-
   .best-seller-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     border-color: var(--primary-color);
   }
-
   .best-seller-image {
     height: 150px;
     display: flex;
@@ -705,14 +619,12 @@
     overflow: hidden;
     position: relative;
   }
-
   .best-seller-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
   }
-
   .best-seller-description {
     font-size: 0.95rem;
     color: var(--text-dark);
@@ -720,14 +632,12 @@
     line-height: 1.5;
     min-height: 60px;
   }
-
   .best-seller-price {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 16px;
   }
-
   .quantity-control {
     display: flex;
     justify-content: center;
@@ -736,7 +646,6 @@
     margin-bottom: 16px;
     padding: 0 10px;
   }
-
   .quantity-control button {
     background: var(--primary-color);
     color: var(--text-light);
@@ -752,12 +661,10 @@
     transition: var(--transition);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-
   .quantity-control button:hover {
     background: var(--secondary-color);
     transform: scale(1.05);
   }
-
   .quantity-control input {
     width: 50px;
     text-align: center;
@@ -768,7 +675,6 @@
     font-weight: 600;
     color: var(--text-dark);
   }
-
   .add-to-cart {
     display: flex;
     align-items: center;
@@ -787,24 +693,20 @@
     border: none;
     cursor: pointer;
   }
-
   .add-to-cart:hover {
     background: var(--secondary-color);
     color: var(--text-light);
     transform: translateY(-2px);
   }
-
   .add-to-cart i {
     font-size: 1.2rem;
   }
-
   .features {
     background: var(--gradient-start);
     color: var(--text-light);
     padding: 80px 32px;
     position: relative;
   }
-
   .features-wrap {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -813,7 +715,6 @@
     margin: 0 auto;
     text-align: center;
   }
-
   .feature-card {
     padding: 24px 16px;
     border-radius: 16px;
@@ -825,7 +726,6 @@
     align-items: center;
     justify-content: center;
   }
-
   .feature-card .icon-placeholder {
     height: 56px;
     width: 56px;
@@ -838,32 +738,27 @@
     overflow: hidden;
     font-size: 1.8rem;
   }
-
   .feature-card .icon-placeholder img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-
   .feature-card h3 {
     color: var(--primary-color);
     margin: 12px 0;
     font-size: 1.3rem;
     font-weight: 700;
   }
-
   .feature-card p {
     font-size: 0.95rem;
     line-height: 1.6;
     opacity: 0.9;
   }
-
   .feature-card:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
-
   .trust-section {
     background: var(--gradient-start);
     color: var(--text-light);
@@ -871,7 +766,6 @@
     text-align: center;
     margin: 0;
   }
-
   .trust-section p {
     font-size: 1.2rem;
     line-height: 1.8;
@@ -879,13 +773,11 @@
     margin: 0 auto;
     font-style: italic;
   }
-
   .customer-reviews {
     padding: 100px 32px;
     text-align: center;
     background: var(--neutral-color);
   }
-
   .reviews-badge {
     display: inline-block;
     background: var(--primary-color);
@@ -896,7 +788,6 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
-
   .gallery {
     display: none;
     gap: 40px;
@@ -904,18 +795,15 @@
     overflow: hidden;
     margin-bottom: 48px;
   }
-
   .gallery.active {
     display: flex;
   }
-
   .gallery-container {
     width: 200%;
     display: flex;
     animation: slideLeft 40s linear infinite;
     gap: 40px;
   }
-
   .gallery-item {
     width: 200px;
     height: 200px;
@@ -930,7 +818,6 @@
     font-weight: 600;
     font-size: 1rem;
   }
-
   .more-reviews {
     margin-top: 24px;
     padding: 12px 32px;
@@ -944,27 +831,23 @@
     transition: var(--transition);
     box-shadow: var(--shadow);
   }
-
   .more-reviews:hover {
     background: var(--secondary-color);
     color: var(--text-light);
     transform: translateY(-2px);
   }
-
   .user-reviews {
     display: flex;
     justify-content: center;
     overflow: hidden;
     margin-bottom: 40px;
   }
-
   .user-review-container {
     width: 200%;
     display: flex;
     gap: 40px;
     animation: slideRight 35s linear infinite;
   }
-
   .user-review {
     min-width: 320px;
     background: var(--background-color);
@@ -974,14 +857,12 @@
     border-right: 4px solid var(--primary-color);
     text-align: right;
   }
-
   .rating {
     font-size: 1.2rem;
     color: #FFD700;
     margin-bottom: 12px;
     text-align: center;
   }
-
   .user-review p {
     margin: 0;
     font-style: italic;
@@ -989,7 +870,6 @@
     font-size: 1.1rem;
     line-height: 1.7;
   }
-
   .auth-modal {
     position: fixed;
     inset: 0;
@@ -1002,12 +882,10 @@
     visibility: hidden;
     transition: var(--transition);
   }
-
   .auth-modal.active {
     opacity: 1;
     visibility: visible;
   }
-
   .auth-modal-content {
     background: var(--background-color);
     border-radius: 16px;
@@ -1022,11 +900,9 @@
     transform: scale(0.9);
     transition: var(--transition);
   }
-
   .auth-modal.active .auth-modal-content {
     transform: scale(1);
   }
-
   .auth-modal-close {
     position: absolute;
     top: 16px;
@@ -1042,17 +918,14 @@
     justify-content: center;
     border-radius: 50%;
   }
-
   .auth-modal-close:hover {
     color: var(--secondary-color);
     background: rgba(38, 166, 154, 0.1);
   }
-
   .auth-modal-header {
     text-align: center;
     margin-bottom: 24px;
   }
-
   .auth-modal-header .site-logo {
     display: flex;
     align-items: center;
@@ -1061,37 +934,30 @@
     font-size: 1.4rem;
     font-weight: 700;
   }
-
   .auth-modal-header .site-logo img {
     height: 28px;
   }
-
   .auth-modal-header h2 {
     color: var(--primary-color);
     font-size: 1.8rem;
     margin: 8px 0 4px;
   }
-
   .auth-modal-header .greeting {
     font-size: 1.2rem;
     margin: 0;
     color: var(--text-dark);
   }
-
   .auth-modal-header p {
     color: var(--text-dark);
     font-size: 1rem;
     margin: 4px 0 16px;
   }
-
   .wizard-step {
     display: none;
   }
-
   .wizard-step.active {
     display: block;
   }
-
   .auth-form label {
     display: block;
     margin-bottom: 10px;
@@ -1099,7 +965,6 @@
     color: var(--text-dark);
     font-weight: 500;
   }
-
   .auth-form input {
     width: 100%;
     padding: 14px;
@@ -1112,13 +977,11 @@
     text-align: center;
     margin-bottom: 16px;
   }
-
   .auth-form input:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
   }
-
   .auth-form button {
     width: 100%;
     padding: 16px;
@@ -1133,17 +996,14 @@
     margin-top: 8px;
     box-shadow: var(--shadow);
   }
-
   .auth-form button:hover {
     background: var(--secondary-color);
     color: var(--text-light);
     transform: translateY(-2px);
   }
-
   .auth-form button:active {
     transform: translateY(0);
   }
-
   .auth-form .error {
     color: #D32F2F;
     font-size: 0.95rem;
@@ -1151,7 +1011,6 @@
     display: none;
     text-align: center;
   }
-
   .auth-form .success {
     color: #388E3C;
     font-size: 0.95rem;
@@ -1159,7 +1018,6 @@
     display: none;
     text-align: center;
   }
-
   .auth-form .timer {
     color: var(--text-dark);
     font-size: 0.9rem;
@@ -1167,40 +1025,33 @@
     margin-top: 8px;
     display: none;
   }
-
   .auth-form .terms {
     font-size: 0.85rem;
     color: var(--text-dark);
     text-align: center;
     margin-top: 8px;
   }
-
   .wizard-buttons {
     display: flex;
     gap: 16px;
     margin-top: 16px;
   }
-
   .wizard-buttons button {
     flex: 1;
   }
-
   .wizard-buttons .prev {
     background: var(--neutral-color);
     color: var(--text-dark);
   }
-
   .wizard-buttons .prev:hover {
     background: #ccc;
   }
-
   .character-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin: 24px 0;
   }
-
   .character-card {
     background: var(--neutral-color);
     border-radius: 12px;
@@ -1212,19 +1063,16 @@
     font-weight: bold;
     color: var(--text-dark);
   }
-
   .character-card:hover {
     background: var(--primary-color);
     color: var(--text-light);
     transform: translateY(-3px);
   }
-
   .character-card.selected {
     background: var(--primary-color);
     color: var(--text-light);
     box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
   }
-
   .logout-modal {
     position: fixed;
     inset: 0;
@@ -1237,12 +1085,10 @@
     visibility: hidden;
     transition: var(--transition);
   }
-
   .logout-modal.active {
     opacity: 1;
     visibility: visible;
   }
-
   .logout-modal-content {
     background: var(--background-color);
     border-radius: 16px;
@@ -1256,28 +1102,23 @@
     transition: var(--transition);
     text-align: center;
   }
-
   .logout-modal.active .logout-modal-content {
     transform: scale(1);
   }
-
   .logout-modal-content h2 {
     color: var(--primary-color);
     font-size: 1.6rem;
     margin: 0 0 12px;
   }
-
   .logout-modal-content p {
     color: var(--text-dark);
     font-size: 0.9rem;
     margin: 0 0 24px;
   }
-
   .logout-buttons {
     display: flex;
     gap: 16px;
   }
-
   .logout-buttons button {
     flex: 1;
     padding: 12px;
@@ -1287,27 +1128,22 @@
     cursor: pointer;
     transition: var(--transition);
   }
-
   .logout-buttons .confirm {
     background: var(--primary-color);
     color: var(--text-light);
     border: none;
   }
-
   .logout-buttons .confirm:hover {
     background: var(--secondary-color);
   }
-
   .logout-buttons .cancel {
     background: var(--neutral-color);
     color: var(--text-dark);
     border: none;
   }
-
   .logout-buttons .cancel:hover {
     background: #ccc;
   }
-
   footer {
     background: var(--gradient-start);
     color: var(--text-light);
@@ -1318,7 +1154,6 @@
     position: relative;
     overflow: hidden;
   }
-
   footer::before {
     content: "";
     position: absolute;
@@ -1329,7 +1164,6 @@
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
     background-size: 100px 100px;
   }
-
   footer h2 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -1338,7 +1172,6 @@
     position: relative;
     z-index: 1;
   }
-
   footer p {
     max-width: 600px;
     margin: 0 auto 20px;
@@ -1347,13 +1180,11 @@
     position: relative;
     z-index: 1;
   }
-
   footer .links {
     margin: 20px 0;
     position: relative;
     z-index: 1;
   }
-
   footer a {
     color: var(--text-light);
     text-decoration: none;
@@ -1364,12 +1195,10 @@
     padding: 8px 15px;
     border-radius: 8px;
   }
-
   footer a:hover {
     color: var(--primary-color);
     background: rgba(255, 255, 255, 0.1);
   }
-
   footer .contact-info {
     font-size: 1rem;
     margin: 20px 0;
@@ -1377,7 +1206,6 @@
     position: relative;
     z-index: 1;
   }
-
   #clock {
     color: var(--text-light);
     margin-top: 15px;
@@ -1386,7 +1214,6 @@
     position: relative;
     z-index: 1;
   }
-
   footer .copyright {
     margin-top: 25px;
     padding-top: 20px;
@@ -1396,7 +1223,6 @@
     position: relative;
     z-index: 1;
   }
-
   .social-bar {
     background: transparent;
     display: flex;
@@ -1408,7 +1234,6 @@
     position: relative;
     z-index: 1;
   }
-
   .social-box {
     width: 70px;
     height: 70px;
@@ -1422,24 +1247,21 @@
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 500;
-    transition:  all 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 12px;
   }
-
   .social-box img {
     width: 24px;
     height: 24px;
     margin-bottom: 5px;
     object-fit: contain;
   }
-
   .social-box:hover {
     background: var(--primary-color);
     color: var(--text-light);
     transform: scale(1.05);
   }
-
   .logo-box {
     width: 70px;
     height: 70px;
@@ -1449,39 +1271,33 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition:  all 0.3s ease;
+    transition: all 0.3s ease;
   }
-
   .logo-box img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-
   .logo-box:hover {
     transform: scale(1.05);
   }
-
   #blogs {
     padding: 100px 32px;
     background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
     text-align: center;
   }
-
   #blogs h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0;
   }
-
   #blogs h2 span {
     display: block;
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 40px;
   }
-
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1489,7 +1305,6 @@
     max-width: 1200px;
     margin: 0 auto 48px;
   }
-
   .blog-card {
     border: 1px solid var(--neutral-color);
     background: var(--background-color);
@@ -1500,13 +1315,11 @@
     cursor: pointer;
     overflow: hidden;
   }
-
   .blog-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     border-color: var(--primary-color);
   }
-
   .blog-image {
     height: 200px;
     display: flex;
@@ -1515,13 +1328,11 @@
     border-bottom: 1px solid var(--neutral-color);
     overflow: hidden;
   }
-
   .blog-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
   .blog-card strong {
     display: block;
     padding: 16px 24px 8px;
@@ -1529,14 +1340,12 @@
     font-weight: 700;
     color: var(--primary-color);
   }
-
   .blog-card p {
     padding: 0 24px 24px;
     font-size: 1rem;
     color: #9CA3AF;
     line-height: 1.6;
   }
-
   .view-more {
     display: block;
     width: max-content;
@@ -1551,26 +1360,22 @@
     font-size: 1.1rem;
     box-shadow: var(--shadow);
   }
-
   .view-more:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
   }
-
   .hero-images {
     display: flex;
     justify-content: space-between;
     gap: 40px;
     margin: 48px 0;
   }
-
   .hero-column {
     display: flex;
     flex-direction: column;
     gap: 40px;
     width: 40%;
   }
-
   .hero-image {
     height: 200px;
     border-radius: 12px;
@@ -1580,13 +1385,11 @@
     align-items: center;
     justify-content: center;
   }
-
   .hero-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
   .hero-text {
     width: 100%;
     background: var(--gradient-start);
@@ -1599,7 +1402,6 @@
     flex-direction: column;
     justify-content: center;
   }
-
   .hero-section {
     background-size: cover;
     background-position: center;
@@ -1611,7 +1413,6 @@
     background-size: cover;
     position: relative;
   }
-
   .hero-section::before {
     content: '';
     position: absolute;
@@ -1622,26 +1423,22 @@
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
   }
-
   .hero-section > * {
     position: relative;
     z-index: 2;
   }
-
   .hero-section h1 {
     font-size: 3.5rem;
     margin-bottom: 20px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
-
   .hero-section .lead {
     font-size: 1.5rem;
     margin-bottom: 40px;
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
-
   .hero-section .button {
     padding: 12px 32px;
     border-radius: 12px;
@@ -1654,12 +1451,10 @@
     box-shadow: var(--shadow);
     border: 2px solid var(--secondary-color);
   }
-
   .hero-section .button:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
   }
-
   .support-widget {
     position: fixed;
     bottom: 20px;
@@ -1675,7 +1470,6 @@
     gap: 10px;
     font-size: 1rem;
   }
-
   .support-widget a {
     display: inline-block;
     padding: 8px 16px;
@@ -1685,296 +1479,231 @@
     border-radius: 5px;
     transition: background 0.3s ease;
   }
-
   .support-widget a:hover {
     background: #45a049;
   }
-
   .support-widget .text {
     flex-grow: 1;
     text-align: right;
     font-size: 0.9rem;
   }
-
   @keyframes slideLeft {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-
   @keyframes slideRight {
     0% { transform: translateX(0); }
     100% { transform: translateX(50%); }
   }
-
   img {
     max-width: 100%;
     height: auto;
   }
-
   @media (max-width: 1200px) {
     .navbar {
       width: 95%;
     }
-
     .search-box {
       width: 240px;
     }
   }
-
   @media (max-width: 992px) {
     .hero-images {
       flex-direction: column;
       align-items: center;
     }
-
     .hero-column {
       width: 80%;
     }
-
     .hero-text {
       order: -1;
     }
-
     .features-wrap {
       gap: 24px;
     }
-
     .story-content {
       flex-direction: column;
       align-items: center;
     }
-
     .story-image {
       max-width: 100%;
     }
-
     .category-grid {
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
-
     .blog-grid {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-
     .best-sellers-slider {
       gap: 30px;
     }
-
     .slider-container {
       animation-duration: 50s;
     }
-
     .navbar {
       width: 95%;
       padding: 10px 15px;
       border-radius: 15px;
     }
-
     .logo {
       font-size: 1.2rem;
     }
-
     .logo img {
       height: 24px;
     }
-
     .logo-search {
       flex-direction: column;
       gap: 10px;
     }
-
     .search-box {
       width: 100%;
     }
-
     .promo-text {
       font-size: 0.9rem;
     }
-
     .promo-text {
       display: flex;
     }
-
     .promo-text-mobile {
       display: block;
     }
-
     .quantity-section {
       flex-direction: column;
       align-items: flex-start;
     }
-
     .quantity-control {
       width: 100%;
       justify-content: center;
     }
-
     .slider-nav {
       width: 35px;
       height: 35px;
       font-size: 1rem;
     }
-
     .product-main-image {
       width: 100%;
     }
   }
-
   @media (max-width: 768px) {
     body {
       padding-top: calc(var(--header-h) + 10px);
     }
-
     .hero-section h1 { font-size: 2.5rem; }
     .hero-section .lead { font-size: 1.3rem; }
     .hero-section .button {
       font-size: 1.1rem;
       padding: 12px 28px;
     }
-
     .hero-column {
       width: 100%;
     }
-
     .hero-image {
       height: 150px;
     }
-
     .hero-text {
       padding: 32px;
     }
-
     .category-card {
       padding: 20px;
     }
-
     .image-placeholder {
       height: 100px;
     }
-
     .category-card strong {
       font-size: 1.2rem;
     }
-
     .feature-card {
       padding: 20px 12px;
     }
-
     .feature-card .icon-placeholder {
       height: 48px;
       width: 48px;
       font-size: 1.5rem;
     }
-
     .feature-card h3 {
       font-size: 1.1rem;
     }
-
     .feature-card p {
       font-size: 0.85rem;
     }
-
     .gallery-item {
       width: 180px;
       height: 180px;
     }
-
     .user-review {
       min-width: 280px;
     }
-
     .logo {
       font-size: 1.2rem;
     }
-
     .logo img {
       height: 22px;
     }
-
     .menu-icon, .profile-icon {
       font-size: 1.3rem;
     }
-
     footer h2 {
       font-size: 2rem;
     }
-
     footer p {
       font-size: 1rem;
     }
-
     .auth-modal-content {
       max-width: 90%;
       padding: 24px;
       margin: 20px;
     }
-
     .search-container {
       padding: 16px;
     }
-
     .search-container input {
       font-size: 1rem;
       padding: 12px;
     }
-
     .story-section {
       padding: 80px 24px;
     }
-
     .story-text {
       font-size: 1rem;
     }
-
     .social-bar {
       flex-wrap: nowrap;
       gap: 8px;
     }
-
     .social-box, .logo-box {
       width: 80px;
       height: 80px;
       font-size: 0.9rem;
     }
-
     .social-box img {
       width: 28px;
       height: 28px;
     }
-
     #blogs {
       padding: 80px 24px;
     }
-
     .blog-grid {
       grid-template-columns: 1fr;
     }
-
     .blog-image {
       height: 180px;
     }
-
     .blog-card strong {
       font-size: 1.3rem;
     }
-
     .blog-card p {
       font-size: 0.95rem;
     }
-
     .trust-section {
       padding: 40px 24px;
     }
-
     .trust-section p {
       font-size: 1.1rem;
     }
-
     .reviews-badge {
       font-size: 1rem;
       padding: 6px 20px;
     }
-
     .navbar {
       flex-wrap: wrap;
       justify-content: center;
@@ -1984,67 +1713,54 @@
         flex-direction: column;
         gap: 10px;
       }
-
     .search-box {
       width: 60%;
     }
-
     .cart-profile {
       order: 2;
       margin-top: 10px;
     }
-
     .menu-icon {
       position: absolute;
       right: 10px;
     }
-
     .best-seller-card {
       min-width: 220px;
       padding: 16px;
     }
-
     .best-seller-image {
       height: 130px;
     }
-
     .best-seller-description {
       font-size: 0.9rem;
       margin-bottom: 12px;
     }
-
     .best-seller-price {
       font-size: 1.2rem;
       margin-bottom: 12px;
     }
-
     .quantity-control {
       gap: 8px;
       margin-bottom: 12px;
     }
-
     .quantity-control button {
       width: 32px;
       height: 32px;
       font-size: 1rem;
     }
-
     .quantity-control input {
       width: 40px;
       padding: 6px;
       font-size: 1rem;
     }
-
     .add-to-cart {
       padding: 10px;
       font-size: 0.95rem;
     }
-
     .add-to-cart i {
       font-size: 1rem;
     }
   }
-
   @media (max-width: 576px) {
     .hero-section h1 { font-size: 2rem; }
     .hero-section .lead { font-size: 1.1rem; }
@@ -2052,101 +1768,79 @@
       font-size: 1rem;
       padding: 10px 24px;
     }
-
     .product-title {
       font-size: 1.8rem;
     }
-
     .category-card {
       padding: 16px;
     }
-
     .image-placeholder {
       height: 80px;
     }
-
     .category-card strong {
       font-size: 1.1rem;
     }
-
     .feature-card {
       padding: 16px 10px;
     }
-
     .feature-card .icon-placeholder {
       height: 40px;
       width: 40px;
       font-size: 1.2rem;
     }
-
     .feature-card h3 {
       font-size: 1rem;
       margin: 8px 0;
     }
-
     .feature-card p {
       font-size: 0.8rem;
     }
-
     .gallery-item {
       width: 160px;
       height: 160px;
       font-size: 0.9rem;
     }
-
     .user-review {
       min-width: 240px;
       padding: 16px;
     }
-
     .user-review p {
       font-size: 1rem;
     }
-
     .logo {
       font-size: 1.1rem;
     }
-
     .logo img {
       height: 20px;
     }
-
     .menu-icon {
       font-size: 1.2rem;
     }
-
     footer h2 {
       font-size: 1.8rem;
     }
-
     footer .links a {
       margin: 10px 0;
     }
-
     .auth-modal-content {
       max-width: 95%;
       padding: 20px;
       margin: 10px;
     }
-
     .search-container input {
       font-size: 0.95rem;
       padding: 10px;
     }
-
     .search-results .result-item {
       font-size: 0.95rem;
       padding: 10px;
     }
-
     .story-section {
       padding: 39px 16px;
     }
-
     .story-text {
       font-size: 0.95rem;
     }
-
     .story-image {
       height: 240px;
     }
@@ -2155,55 +1849,43 @@
   justify-content: space-around; /* توزیع یکنواخت در عرض کم */
   padding: 10px 0; /* padding عمودی کمتر */
 }
-
     .social-box, .logo-box {
       width: 45px;
       height: 45px;
       font-size: 0.5rem;
     }
-
     .social-box img {
       width: 18x;
       height: 18px;
     }
-
     #blogs {
       padding: 60px 16px;
     }
-
     .blog-image {
       height: 160px;
     }
-
     .blog-card strong {
       font-size: 1.2rem;
     }
-
     .blog-card p {
       font-size: 0.9rem;
     }
-
     .trust-section {
       padding: 30px 16px;
     }
-
     .trust-section p {
       font-size: 1rem;
     }
-
     .search-box input {
       padding: 4px 25px 4px 25px;
       font-size: 0.85rem;
     }
-
     .search-icon, .clear-icon {
       padding: 5px 8px;
     }
-
     .promo-text {
       font-size: 0.8rem;
     }
-
     .support-widget {
       bottom: 10px;
       right: 10px;
@@ -2214,205 +1896,162 @@
       opacity: 1;
       transition: opacity 0.3s ease;
     }
-
     .support-widget.hidden {
       opacity: 0;
     }
-
     .support-widget a {
       padding: 6px 12px;
       font-size: 0.75rem;
       border-radius: 4px;
     }
-
     .support-widget .text {
       font-size: 0.7rem;
     }
-
     .best-seller-card {
       min-width: 180px;
       padding: 0px;
     }
-
     .best-seller-image {
       height: 120px;
     }
-
     .best-seller-description {
       font-size: 0.85rem;
       margin-bottom: 10px;
       min-height: 50px;
     }
-
     .best-seller-price {
       font-size: 1.1rem;
       margin-bottom: 10px;
     }
-
     .quantity-control {
       gap: 6px;
       margin-bottom: 10px;
     }
-
     .quantity-control button {
       width: 28px;
       height: 28px;
       font-size: 0.9rem;
     }
-
     .quantity-control input {
       width: 35px;
       padding: 5px;
       font-size: 0.9rem;
     }
-
     .add-to-cart {
       padding: 8px;
       font-size: 0.9rem;
     }
-
     .add-to-cart i {
       font-size: 0.9rem;
     }
-
     .features {
       padding: 60px 20px;
     }
-
     .features-wrap {
       gap: 20px;
     }
-
     .feature-card {
       padding: 14px 8px;
     }
-
     .feature-card .icon-placeholder {
       height: 36px;
       width: 36px;
       font-size: 1rem;
       margin-bottom: 12px;
     }
-
     .feature-card h3 {
       font-size: 0.95rem;
       margin: 6px 0;
     }
-
     .feature-card p {
       font-size: 0.75rem;
     }
-
     #categories {
       padding: 60px 20px;
     }
-
     #categories h2 {
       font-size: 2rem;
     }
-
     #categories .subtitle {
       font-size: 1.2rem;
     }
-
     #best-sellers {
       padding: 60px 20px;
     }
-
     #best-sellers h2 {
       font-size: 2rem;
     }
-
     #best-sellers .subtitle {
       font-size: 1.2rem;
     }
-
     .customer-reviews {
       padding: 60px 20px;
     }
-
     .user-review {
       min-width: 200px;
       padding: 12px;
     }
-
     .user-review p {
       font-size: 0.9rem;
     }
-
     .rating {
       font-size: 1rem;
     }
-
     .more-reviews {
       padding: 10px 24px;
       font-size: 1rem;
     }
-
     #blogs h2 {
       font-size: 1.8rem;
     }
-
     #blogs h2 span {
       font-size: 2rem;
     }
-
     .blog-card strong {
       font-size: 1.1rem;
     }
-
     .view-more {
       padding: 10px 24px;
       font-size: 1rem;
     }
-
     footer {
       padding: 20px 15px;
     }
-
     footer h2 {
       font-size: 1.4rem;
       margin: 0 0 10px;
     }
-
     footer p {
       font-size: 0.8rem;
       margin: 0 auto 15px;
     }
-
     footer .links {
       margin: 15px 0;
     }
-
     footer a {
       font-size: 0.75rem;
       margin: 0 8px;
       padding: 6px 10px;
     }
-
     footer .contact-info {
       font-size: 0.8rem;
       margin: 15px 0;
     }
-
     footer .copyright {
       margin-top: 15px;
       padding-top: 15px;
       font-size: 0.7rem;
     }
-
     .social-box, .logo-box {
       width: 60px;
       height: 60px;
       font-size: 0.75rem;
     }
-
     .social-box img {
       width: 20px;
       height: 20px;
     }
   }
-
   @media (max-width: 468px) {
     .hero-section h1 { font-size: 2rem; }
     .hero-section .lead { font-size: 1.1rem; }
@@ -2420,331 +2059,196 @@
       font-size: 1rem;
       padding: 10px 24px;
     }
-
     .product-title {
       font-size: 1.8rem;
     }
-
     .category-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
-
     .category-card {
       padding: 16px;
-    } 
+    }
     .image-placeholder {
       height: 80px;
     }
-
     .features-wrap {
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
-
     .feature-card {
       text-align: center;
     }
-
     .category-card strong {
       font-size: 1.1rem;
     }
-
     .feature-card {
       padding: 16px 10px;
     }
-
     .feature-card .icon-placeholder {
       height: 40px;
       width: 40px;
       font-size: 1.2rem;
     }
-
     .feature-card h3 {
       font-size: 1rem;
       margin: 8px 0;
     }
-
     .feature-card p {
       font-size: 0.8rem;
     }
-
     .gallery-item {
       width: 160px;
       height: 160px;
       font-size: 0.9rem;
     }
-
     .user-review {
       min-width: 240px;
       padding: 16px;
     }
-
     .user-review p {
       font-size: 1rem;
     }
-
     .logo {
       font-size: 1.1rem;
     }
-
     .logo img {
       height: 20px;
     }
-
     .menu-icon {
       font-size: 1.2rem;
     }
-
     footer h2 {
       font-size: 1.8rem;
     }
-
     footer .links a {
       margin: 10px 0;
     }
-
     .auth-modal-content {
       max-width: 95%;
       padding: 20px;
       margin: 10px;
     }
-
     .search-container input {
       font-size: 0.95rem;
       padding: 10px;
     }
-
     .search-results .result-item {
       font-size: 0.95rem;
       padding: 10px;
     }
-
     .story-section {
       padding: 39px 16px;
     }
-
     .story-text {
       font-size: 0.95rem;
     }
-
     .story-image {
       height: 240px;
     }
-
     .social-box, .logo-box {
       width: 50px;
       height: 50px;
       font-size: 0.6rem;
     }
-
     .social-box img {
       width: 20px;
       height: 20px;
     }
-
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
   gap: 15px; /* فاصله کمتر بین باکس‌ها */
 }
-
 .blog-image {
   height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
 }
-
 .blog-card strong {
   font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
   padding: 12px 16px 6px; /* padding کمتر */
 }
-
 .blog-card p {
   font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
   padding: 0 16px 16px; /* padding کمتر */
 }
-
 #blogs {
   padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
 }
-
     .trust-section {
       padding: 30px 16px;
     }
-
     .trust-section p {
       font-size: 1rem;
     }
-
     .search-box input {
       padding: 5px 18px 4px 25px;
       font-size: 0.80rem;
     }
-
     .search-icon, .clear-icon {
       padding: 3px 8px;
     }
-
     .promo-input {
         font-size: 0.75rem;
       }
-
     .best-seller-card {
       min-width: 160px;
       padding: 10px;
     }
-
     .best-seller-image {
       height: 90px;
     }
-
     .best-seller-description {
       font-size: 0.8rem;
       min-height: 45px;
     }
-
     .best-seller-price {
       font-size: 1rem;
     }
-
     .quantity-control button {
       width: 24px;
       height: 24px;
       font-size: 0.8rem;
     }
-
     .quantity-control input {
       width: 30px;
       font-size: 0.8rem;
     }
-
     .add-to-cart {
       padding: 6px;
       font-size: 0.85rem;
     }
-
     .add-to-cart i {
       font-size: 0.85rem;
     }
-
     .feature-card {
       padding: 12px 6px;
     }
-
     .feature-card .icon-placeholder {
       height: 32px;
       width: 32px;
       font-size: 0.9rem;
     }
-
     .feature-card h3 {
       font-size: 0.9rem;
     }
-
     .feature-card p {
       font-size: 0.7rem;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .category-grid {
-        grid-template-columns: repeat(2, 1fr);  /* دو ستونه بمونه */
-        gap: 10px;  /* فاصله کمتر بین کارت‌ها */
-        margin: 0 8px;  /* حاشیه از دو طرف برای فاصله از دیواره */
-    }
-    #categories {
-        padding: 50px 8px;  /* padding کمتر بخش اصلی */
-    }
-    .category-card {
-        padding: 8px;  /* padding داخل کارت کوچکتر */
-        font-size: 0.9rem;  /* font-size کوچکتر برای متن‌ها */
-    }
-    .category-card strong {
-        font-size: 1rem;  /* عنوان کارت کوچکتر */
-    }
-    .category-card p {
-        font-size: 0.85rem;  /* توضیحات کوچکتر */
-    }
-    .image-placeholder {
-        height: 80px;  /* ارتفاع تصویر کوچکتر */
-    }
-    .category-button {
-        font-size: 0.9rem;  /* دکمه کوچکتر */
-        padding: 6px 12px;
-    }
-    .best-seller-card {
-      min-width: 160px;
-      padding: 10px;
-    }
-    
-    .best-seller-image {
-      height: 90px;
-    }
-
-    .best-seller-description {
-      font-size: 0.8rem;
-      min-height: 45px;
-    }
-
-    .best-seller-price {
-      font-size: 1rem;
-    }
-
-    .quantity-control button {
-      width: 24px;
-      height: 24px;
-      font-size: 0.8rem;
-    }
-
-    .quantity-control input {
-      width: 30px;
-      font-size: 0.8rem;
-    }
-
-    .add-to-cart {
-      padding: 6px;
-      font-size: 0.85rem;
-    }
-
-    .add-to-cart i {
-      font-size: 0.85rem;
-    }
-
-    .feature-card {
-      padding: 12px 6px;
-    }
-
-    .feature-card .icon-placeholder {
-      height: 32px;
-      width: 32px;
-      font-size: 0.9rem;
-    }
-
-    .feature-card h3 {
-      font-size: 0.9rem;
-    }
-
-    .feature-card p {
-      font-size: 0.7rem;
-    
+   
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
   gap: 15px; /* فاصله کمتر بین باکس‌ها */
 }
-
 .blog-image {
   height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
 }
-
 .blog-card strong {
   font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
   padding: 12px 16px 6px; /* padding کمتر */
 }
-
 .blog-card p {
   font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
   padding: 0 16px 16px; /* padding کمتر */
 }
-
 #blogs {
   padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
 }
@@ -2753,34 +2257,138 @@
   justify-content: space-between; /* فشرده به دو طرف */
   padding: 8px 0;
 }
-
 .social-box, .logo-box {
   width: 40px; /* کوچیک‌تر از 45px */
   height: 40px;
   font-size: 0.5rem; /* متن ریزتر */
 }
-
 .social-box img {
   width: 16px;
   height: 16px;
 }
-
+.social-box {
+  padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
+}
+  }
+  @media (max-width: 400px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr); /* دو ستونه بمونه */
+        gap: 10px; /* فاصله کمتر بین کارت‌ها */
+        margin: 0 8px; /* حاشیه از دو طرف برای فاصله از دیواره */
+    }
+    #categories {
+        padding: 50px 8px; /* padding کمتر بخش اصلی */
+    }
+    .category-card {
+        padding: 8px; /* padding داخل کارت کوچکتر */
+        font-size: 0.9rem; /* font-size کوچکتر برای متن‌ها */
+    }
+    .category-card strong {
+        font-size: 1rem; /* عنوان کارت کوچکتر */
+    }
+    .category-card p {
+        font-size: 0.85rem; /* توضیحات کوچکتر */
+    }
+    .image-placeholder {
+        height: 80px; /* ارتفاع تصویر کوچکتر */
+    }
+    .category-button {
+        font-size: 0.9rem; /* دکمه کوچکتر */
+        padding: 6px 12px;
+    }
+    .best-seller-card {
+      min-width: 160px;
+      padding: 10px;
+    }
+   
+    .best-seller-image {
+      height: 90px;
+    }
+    .best-seller-description {
+      font-size: 0.8rem;
+      min-height: 45px;
+    }
+    .best-seller-price {
+      font-size: 1rem;
+    }
+    .quantity-control button {
+      width: 24px;
+      height: 24px;
+      font-size: 0.8rem;
+    }
+    .quantity-control input {
+      width: 30px;
+      font-size: 0.8rem;
+    }
+    .add-to-cart {
+      padding: 6px;
+      font-size: 0.85rem;
+    }
+    .add-to-cart i {
+      font-size: 0.85rem;
+    }
+    .feature-card {
+      padding: 12px 6px;
+    }
+    .feature-card .icon-placeholder {
+      height: 32px;
+      width: 32px;
+      font-size: 0.9rem;
+    }
+    .feature-card h3 {
+      font-size: 0.9rem;
+    }
+    .feature-card p {
+      font-size: 0.7rem;
+   
+    }
+    .blog-grid {
+  grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
+  gap: 15px; /* فاصله کمتر بین باکس‌ها */
+}
+.blog-image {
+  height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
+}
+.blog-card strong {
+  font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
+  padding: 12px 16px 6px; /* padding کمتر */
+}
+.blog-card p {
+  font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
+  padding: 0 16px 16px; /* padding کمتر */
+}
+#blogs {
+  padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
+}
+.social-bar {
+  gap: 6px; /* gap خیلی کم */
+  justify-content: space-between; /* فشرده به دو طرف */
+  padding: 8px 0;
+}
+.social-box, .logo-box {
+  width: 40px; /* کوچیک‌تر از 45px */
+  height: 40px;
+  font-size: 0.5rem; /* متن ریزتر */
+}
+.social-box img {
+  width: 16px;
+  height: 16px;
+}
 .social-box {
   padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
   }
 </style>
 </head>
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="فیروزه: بزرگترین پلتفرم آنلاین سفارش فینگرفود، مزه، دسر و محصولات ویژه در تبریز و آذربایجان شرقی. سفارش سریع، تازه و باکیفیت برای مهمانی‌ها، دورهمی‌ها و رویدادهای شما. ارسال به سراسر ایران.">
-  <title>فینگرفود فیروزه - سفارش آنلاین مزه و فینگرفود</title>
+  <meta name="description" content="مقاله درباره انواع گوشت برای برگر و نحوه ساخت آن در فینگرفود فیروزه.">
+  <title>مقاله: انواع گوشت برای برگر و نحوه ساخت آن - فینگرفود فیروزه</title>
   <!-- دیگر متاها و لینک‌های CSS/JS اگر لازم باشد -->
-  
+ 
   <!-- Schema Markups -->
   <script type="application/ld+json">
   {
@@ -2788,7 +2396,7 @@
     "@type": "WebSite",
     "name": "فینگرفود فیروزه",
     "alternateName": "Firouzeh Fingerfood",
-    "url": "https://firouzeh.com/",  // جایگزین با URL واقعی سایت کنید
+    "url": "https://firouzeh.com/", // جایگزین با URL واقعی سایت کنید
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
@@ -2799,7 +2407,7 @@
     }
   }
   </script>
-  
+ 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2821,14 +2429,14 @@
     ]
   }
   </script>
-  
+ 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "صفحه اصلی فینگرفود فیروزه",
-    "url": "https://firouzeh.com/",
-    "description": "سفارش آنلاین فینگرفود، مزه و دسرهای تازه در تبریز و آذربایجان شرقی.",
+    "name": "مقاله: انواع گوشت برای برگر و نحوه ساخت آن",
+    "url": "https://firouzeh.com/blog/types-of-meat-for-burgers",
+    "description": "در این مقاله به بررسی انواع گوشت مناسب برای برگر و نحوه ساخت برگر خانگی می‌پردازیم.",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -2837,72 +2445,38 @@
           "position": 1,
           "name": "خانه",
           "item": "https://firouzeh.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "بلاگ",
+          "item": "https://firouzeh.com/blogs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "انواع گوشت برای برگر و نحوه ساخت آن"
         }
       ]
     }
   }
   </script>
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "پرفروش‌ترین محصولات",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Product",
-          "name": "محصول 1",
-          "image": "https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+1",
-          "description": "توضیحات کوتاه محصول 1 با فونت ریزتر.",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "IRR",
-            "price": "200000",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "Product",
-          "name": "محصول 2",
-          "image": "https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+2",
-          "description": "توضیحات کوتاه محصول 2 با فونت ریزتر.",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "IRR",
-            "price": "150000",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-      }
-      // ادامه برای سایر محصولات پرفروش - می‌توانید بر اساس نیاز گسترش دهید
-    ]
-  }
-  </script>
 </head>
-
 <body>
   <header class="navbar">
     <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
       <i class="fas fa-bars"></i>
     </div>
-
     <div class="logo-search">
       <a href="index.html" class="logo">
         <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" loading="lazy">
         FIROUZEH
       </a>
       <div class="search-box">
-        <input 
-          type="text" 
-          placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت" 
-          id="searchInput" 
+        <input
+          type="text"
+          placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت"
+          id="searchInput"
           aria-label="جستجوی محصولات"
         >
         <div class="clear-icon" id="clearSearch"><i class="fas fa-times"></i></div>
@@ -2931,7 +2505,6 @@
         </div>
       </div>
     </div>
-
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
       <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
@@ -2951,14 +2524,11 @@
       </div>
     </div>
   </header>
-
   <div class="overlay" id="overlay"></div>
-
   <div class="search-container" id="searchContainer">
     <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." />
     <div class="search-results" id="searchResults"></div>
   </div>
-
   <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
     <div class="close-btn" aria-label="بستن منو">×</div>
     <ul class="nav-menu">
@@ -2983,7 +2553,6 @@
       </li>
     </ul>
   </nav>
-
   <!-- Auth Modal -->
   <div class="auth-modal" id="authModal">
     <div class="auth-modal-content">
@@ -3049,7 +2618,6 @@
       </div>
     </div>
   </div>
-
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -3061,429 +2629,41 @@
       </div>
     </div>
   </div>
-
   <main>
-    <section class="hero-section">
-      <h1>FINGERFOOD FIROUZEH</h1>
-      <p class="lead">سفارش آنلاین فینگر فود و مزه‌های تازه</p>
-      <a href="https://wa.me/980142830328" class="button" title="سفارش از طریق واتساپ">همین حالا سفارش بده</a>
-    </section>
-
-    <div class="hero-images">
-      <div class="hero-column">
-        <div class="hero-image">
-          <img src="image1/heder21.jpg" alt="تصویر فینگر فود تازه و جذاب 3" loading="lazy">
-        </div>
-        <div class="hero-image">
-          <img src="image1/heder11.jpg" alt="تصویر فینگر فود خوشمزه 7" loading="lazy">
-        </div>
+    <section id="blog-post" class="blog-section">
+      <div class="blog-content" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+        <h1>انواع گوشت برای برگر و نحوه ساخت آن</h1>
+        <p class="blog-meta">نویسنده: تیم فیروزه | تاریخ: ۱۴۰۴/۰۸/۲۸</p>
+        <img src="https://placehold.co/800x400/26A69A/FFFFFF?text=تصویر+برگر+خانگی" alt="تصویر برگر خانگی خوشمزه" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" loading="lazy">
+        <p>برگر یکی از محبوب‌ترین غذاهای فست‌فودی است که می‌توان آن را در خانه با مواد تازه و باکیفیت تهیه کرد. انتخاب گوشت مناسب نقش کلیدی در طعم و بافت نهایی برگر دارد. در این مقاله، به بررسی انواع گوشت مناسب برای برگر و مراحل ساخت آن می‌پردازیم.</p>
+        
+        <h2>انواع گوشت مناسب برای برگر</h2>
+        <p>انتخاب گوشت با کیفیت و درصد چربی مناسب، راز یک برگر لذیذ است. بهترین گوشت‌ها عبارتند از:</p>
+        <ul>
+          <li><strong>گوشت گوساله:</strong> محبوب‌ترین انتخاب برای برگر. گوشت گردن، شانه یا مغز ران گوساله با ۱۵ تا ۲۰ درصد چربی ایده‌آل است. این چربی باعث آبدار شدن برگر می‌شود. برای تعادل طبع، می‌توان آن را با گوشت گوسفندی ترکیب کرد.</li>
+          <li><strong>گوشت گوسفندی:</strong> برای طعم قوی‌تر، اما چربی بیشتری دارد. بهتر است با گوساله مخلوط شود تا از سنگینی جلوگیری شود.</li>
+          <li><strong>ترکیب گوشت‌ها:</strong> مخلوط گوساله و گوسفندی (۸۰% گوساله و ۲۰% گوسفندی) تعادل خوبی ایجاد می‌کند و از سوءهاضمه جلوگیری می‌کند.</li>
+          <li><strong>گوشت‌های جایگزین:</strong> برای گزینه‌های سالم‌تر، می‌توان از گوشت مرغ یا بوقلمون استفاده کرد، اما چربی کمتری دارند و ممکن است خشک شوند.</li>
+        </ul>
+        <p>نکته مهم: گوشت باید تازه و چرخ‌کرده باشد. چربی ۱۵-۲۰% برای جلوگیری از خشک شدن برگر ضروری است.</p>
+        
+        <h2>نحوه ساخت برگر خانگی</h2>
+        <p>ساخت برگر ساده است و تنها به چند مرحله نیاز دارد:</p>
+        <ol>
+          <li><strong>آماده‌سازی گوشت:</strong> ۵۰۰ گرم گوشت گوساله چرخ‌کرده (با ۲۰% چربی) را با یک پیاز رنده‌شده، نمک، فلفل سیاه، پودر سیر و کمی پودر سوخاری مخلوط کنید. مواد را ورز دهید تا یکدست شود.</li>
+          <li><strong>استراحت:</strong> مخلوط را به مدت ۳۰ دقیقه در یخچال بگذارید تا طعم‌ها جذب شوند.</li>
+          <li><strong>فرم‌دهی:</strong> گوشت را به شکل دایره‌های ۱۰۰-۱۵۰ گرمی فرم دهید. وسط آن را کمی گود کنید تا در پخت یکدست شود.</li>
+          <li><strong>پخت:</strong> روی گریل یا تابه چدنی با حرارت متوسط بپزید. هر طرف را ۴-۵ دقیقه بپزید تا مغزپخت شود. از پنیر چدار یا گودا برای تاپینگ استفاده کنید.</li>
+          <li><strong>سرو:</strong> در نان همبرگر با کاهو، گوجه، پیاز و سس دلخواه سرو کنید.</li>
+        </ol>
+        <p>با این روش، برگر خانگی تازه و سالم خواهید داشت که از نمونه‌های آماده بهتر است!</p>
+        
+        <img src="https://placehold.co/800x400/1A7A6F/FFFFFF?text=تصویر+ساخت+برگر" alt="تصویر مراحل ساخت برگر" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" loading="lazy">
+        
+        <p>اگر سؤالی دارید یا می‌خواهید محصولات مرتبط مانند گوشت تازه را سفارش دهید، با ما تماس بگیرید.</p>
       </div>
-      <div class="hero-text">
-        <h3>فیروزه بزرگترین و متنوع‌ترین پلتفرم آنلاین سفارش مزه و فینگر فود در تبریز و آذربایجان شرقی</h3>
-      </div>
-      <div class="hero-column">
-        <div class="hero-image">
-          <img src="image1/heder15.jpg" alt="تصویر فینگر فود خاص 6" loading="lazy">
-        </div>
-        <div class="hero-image">
-          <img src="image1/heder20.jpg" alt="تصویر فینگر فود لذیذ 10" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <div class="support-widget">
-      <p class="text">برای دریافت مشاوره و مشاهده جدیدترین آیتم‌ها به ما در ارتباط باشید</p>
-      <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
-      <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
-      <a href="tel:09142830328">تماس</a>
-    </div>
-
-    <section class="features">
-      <div class="features-wrap">
-        <div class="feature-card">
-          <div class="icon-placeholder">
-            <i class="fas fa-truck"></i>
-          </div>
-          <h3>ارسال سریع</h3>
-          <p>برای مراسم‌تان نیازی به آماده‌سازی زودهنگام نیست؛ ما مزه‌ها را در کوتاه‌ترین زمان آماده و ارسال می‌کنیم!</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-placeholder">
-            <i class="fas fa-box"></i>
-          </div>
-          <h3>بسته‌بندی</h3>
-          <p>کیفیت بسته‌بندی پذیرایی را برایتان راحت‌تر می‌کند. فقط درِ بسته‌ها را باز کنید!</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-placeholder">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <h3>تازگی</h3>
-          <p>همه محصولات بر اساس سفارش شما آماده می‌شوند؛ یعنی مزه‌ویت همیشگی!</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-placeholder">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h3>کل ایران</h3>
-          <p>ارسال مزه به تبریز و شهرستان‌های اطراف ؛ارسال محصولات ویژه فیروزه به سراسر ایران!</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="trust-section">
-      <p>از شروع کارمون تا امروز،100 ها مهمونی و دورهمی با فینگر فودهای ما خوش‌رنگ‌تر و خوشمزه‌تر شده. اعتماد شما بزرگ‌ترین سرمایه ماست و افتخار می‌کنیم میزبان لحظه‌های شیرین شما بودیم.</p>
-    </section>
-
-    <section id="categories">
-      <h2>دسته‌بندی‌ها</h2>
-      <p class="subtitle">گزینه‌های متنوع و باکیفیت برای هر مناسبتی – انتخاب کنید و لذت ببرید</p>
-      <div class="category-grid">
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/26A69A/FFFFFF?text=باکس+الگانت" alt="تصویر باکس الگانت برای مناسبت‌های خاص" loading="lazy">
-          </div>
-          <strong>باکس الگانت</strong>
-          <p>ترکیب فینگرفودهای خاص برای مناسبت‌ها</p>
-          <a href="boxs" class="category-button">مشاهده محصولات</a>
-        </div>
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/1A7A6F/FFFFFF?text=مزه+و+فینگرفود" alt="تصویر مزه و فینگرفود سرد و گرم" loading="lazy">
-          </div>
-          <strong>مزه و فینگرفود</strong>
-          <p>سرد و گرم، برای هر سلیقه</p>
-          <a href="finger-food.html" class="category-button">مشاهده محصولات</a>
-        </div>
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/2E2A3F/FFFFFF?text=دسر+و+نوشیدنی" alt="تصویر دسر و نوشیدنی‌های خوشمزه" loading="lazy">
-          </div>
-          <strong>دسر و نوشیدنی</strong>
-          <p>ایده برای باکلاس بودن</p>
-          <a href="sr products" class="category-button">مشاهده محصولات</a>
-        </div>
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/064d3b/FFFFFF?text=محصولات+ویژه" alt="تصویر محصولات ویژه فیروزه تازه و درجه یک" loading="lazy">
-          </div>
-          <strong>محصولات ویژه فیروزه</strong>
-          <p>تازه‌برشته و درجه یک</p>
-          <a href="products" class="category-button">مشاهده محصولات</a>
-        </div>
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/26A69A/FFFFFF?text=خدمات+سازمانی" alt="تصویر خدمات سازمانی فیروزه" loading="lazy">
-          </div>
-          <strong>خدمات سازمانی</strong>
-          <p>ایده برای باکلاس بودن</p>
-          <a href="sr products" class="category-button">مشاهده محصولات</a>
-        </div>
-        <div class="category-card">
-          <div class="image-placeholder">
-            <img src="https://placehold.co/200x120/064d3b/FFFFFF?text=غذاهای+نیمه+آماده" alt="تصویر غذاهای نیمه آماده سریع و آسان" loading="lazy">
-          </div>
-          <strong>غذاهای نیمه آماده</strong>
-          <p>غذاهای سریع و آسان برای پخت</p>
-          <a href="semi-ready.html" class="category-button">مشاهده محصولات</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="best-sellers">
-      <h2>پرفروش‌ترین‌ها</h2>
-      <p class="subtitle">محصولاتی که بارها امتحان شدن، دوست داشته شدن و دوباره سفارش داده شدن.</p>
-      <div class="best-sellers-slider">
-        <div class="slider-container">
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+1" alt="تصویر محصول پرفروش 1" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 1 با فونت ریزتر.</p>
-            <div class="best-seller-price">۲۰۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+2" alt="تصویر محصول پرفروش 2" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 2 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۵۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/2E2A3F/FFFFFF?text=محصول+3" alt="تصویر محصول پرفروش 3" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 3 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۸۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/064d3b/FFFFFF?text=محصول+4" alt="تصویر محصول پرفروش 4" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 4 با فونت ریزتر.</p>
-            <div class="best-seller-price">۲۲۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+5" alt="تصویر محصول پرفروش 5" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 5 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۶۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+6" alt="تصویر محصول پرفروش 6" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 6 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۹۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+1" alt="تصویر محصول پرفروش 1 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 1 با فونت ریزتر.</p>
-            <div class="best-seller-price">۲۰۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+2" alt="تصویر محصول پرفروش 2 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 2 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۵۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/2E2A3F/FFFFFF?text=محصول+3" alt="تصویر محصول پرفروش 3 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 3 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۸۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/064d3b/FFFFFF?text=محصول+4" alt="تصویر محصول پرفروش 4 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 4 با فونت ریزتر.</p>
-            <div class="best-seller-price">۲۲۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+5" alt="تصویر محصول پرفروش 5 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 5 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۶۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-          <div class="best-seller-card">
-            <div class="best-seller-image">
-              <img src="https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+6" alt="تصویر محصول پرفروش 6 (تکراری)" loading="lazy">
-            </div>
-            <p class="best-seller-description">توضیحات کوتاه محصول 6 با فونت ریزتر.</p>
-            <div class="best-seller-price">۱۹۰,۰۰۰ تومان</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="story-section">
-      <h2>داستان فیروزه</h2>
-      <div class="story-content">
-        <div class="story-image">
-          <img src="image1/لوگوی ساخت.png" alt="تصویر داستان و تاریخچه فیروزه" loading="lazy">
-        </div>
-        <div class="story-text">
-          ما در فیروزه از یه ایده‌ی ساده شروع کردیم:
-چرا آماده‌سازی جشن‌ها، دورهمی‌ها و همایش‌ها باید استرس‌زا باشه؟
-چرا وقتی می‌خوای شادی کنی، باید وقت و انرژی زیادی برای هماهنگی بین چند جا بذاری؟
-
-از همین سؤال، برند فیروزه متولد شد — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
-
-ما ترکیبی از کیفیت، خلاقیت و عشق به شادی هستیم.
-از فینگرفودهای تازه و دسرهای خوش‌طعم گرفته تا نوشیدنی‌های خاص و محصولات ویژه‌ی فیروزه که مخصوص رویدادهای خاص طراحی شدن.
-
-چه جشن کوچیکی در خونه‌تون باشه، چه همایشی بزرگ یا مراسم دانشگاهی، تیم فیروزه با دقت، نظم و ذوق خاص خودش کنار شماست.
-اگر هم جشن‌تون بیرون شهر برگزار می‌شه، باز هم روی ما حساب کنید — چون یه تیم قدرتمند در بخش ارسال داریم که غذاها و محصولات رو با بهترین شرایط به مقصد می‌رسونه.
-        </div>
-      </div>
-      <a href="about.html" class="story-button">بیشتر بدانید</a>
-    </section>
-
-    <section class="customer-reviews">
-      <div class="reviews-badge">بیش از 100 نظر 5 ستاره</div>
-      <h2>آنچه مشتریان می‌گویند</h2>
-      <div class="user-reviews">
-        <div class="user-review-container">
-          <div class="user-review">
-            <div class="rating">★★★★★ (5/5)</div>
-            <p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p>
-          </div>
-          <div class="user-review">
-            <div class="rating">★★★★★ (5/5)</div>
-            <p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p>
-          </div>
-          <div class="user-review">
-            <div class="rating">★★★★★ (5/5)</div>
-            <p>خدمت‌رسانی عالی و پشتیبانی 24 ساعته. فیروزه همیشه بهترین گزینه برای مراسم‌های خاص.</p>
-          </div>
-          <div class="user-review">
-            <div class="rating">★★★★★ (5/5)</div>
-            <p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p>
-          </div>
-          <div class="user-review">
-            <div class="rating">★★★★★ (5/5)</div>
-            <p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p>
-          </div>
-        </div>
-      </div>
-
-      <button class="more-reviews">بیشتر</button>
-
-      <div class="gallery">
-        <div class="gallery-container">
-          <div class="gallery-item">رضایت مشتری 1</div>
-          <div class="gallery-item">رضایت مشتری 2</div>
-          <div class="gallery-item">رضایت مشتری 3</div>
-          <div class="gallery-item">رضایت مشتری 4</div>
-          <div class="gallery-item">رضایت مشتری 5</div>
-          <div class="gallery-item">رضایت مشتری 6</div>
-          <div class="gallery-item">رضایت مشتری 7</div>
-          <div class="gallery-item">رضایت مشتری 8</div>
-          <div class="gallery-item">رضایت مشتری 9</div>
-          <div class="gallery-item">رضایت مشتری 10</div>
-          <div class="gallery-item">رضایت مشتری 11</div>
-          <div class="gallery-item">رضایت مشتری 12</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="blogs">
-      <h2><span>Blogs</span>مجله و اخبار فیروزه</h2>
-      <div class="blog-grid">
-        <a href="#blog1" class="blog-card">
-          <div class="blog-image">
-            <img src="https://placehold.co/400x200/26A69A/FFFFFF?text=Blog+1" alt="تصویر بلاگ اول درباره فینگرفود" loading="lazy">
-          </div>
-          <strong>عنوان بلاگ اول</strong>
-          <p>توضیحات کوتاه برای بلاگ اول. این متن کم‌رنگ‌تر و با فونت کوچک‌تر است.</p>
-        </a>
-        <a href="#blog2" class="blog-card">
-          <div class="blog-image">
-            <img src="https://placehold.co/400x200/1A7A6F/FFFFFF?text=Blog+2" alt="تصویر بلاگ دوم درباره مزه‌ها" loading="lazy">
-          </div>
-          <strong>عنوان بلاگ دوم</strong>
-          <p>توضیحات کوتاه برای بلاگ دوم. این متن کم‌رنگ‌تر و با فونت کوچک‌تر است.</p>
-        </a>
-      </div>
-      <a href="blogs.html" class="view-more">مشاهده بیشتر</a>
     </section>
   </main>
-
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -3524,7 +2704,6 @@
       </a>
     </div>
   </footer>
-
     <script>
     // Elements (Grouped for better readability)
     const elements = {
@@ -3577,10 +2756,8 @@
       captchaAnswer: document.getElementById('captchaAnswer'),
       captchaError: document.getElementById('captchaError'),
     };
-
     const baseURL = "http://127.0.0.1:8000/api/auth/";
-    // بعداً وقتی سایت رو آنلاین کردی، این رو تغییر میدیم به آدرس سرور واقعی‌ت.
-
+    // بعداً وقتی سایت رو آنلاین کردی، این رو تغییر میدیم به تغییر میدیم به آدرس سرور واقعی‌ت.
     // Data (Modularized)
     const data = {
       popularSearches: ['فینگرفود', 'دسر', 'مزه', 'سینی مزه', 'آجیل مخلوط'],
@@ -3593,7 +2770,6 @@
         "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
       ],
     };
-
     // State (Centralized for better management)
     let state = {
       currentPromoIndex: 0,
@@ -3608,7 +2784,6 @@
       failedAttempts: parseInt(sessionStorage.getItem('failedAttempts')) || 0,
       lockTimer: 0,
     };
-
     // Utility Functions (Modularized and optimized)
     const utils = {
       escapeHTML: (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'),
@@ -3681,7 +2856,6 @@
         state.currentPromoIndex = (state.currentPromoIndex + 1) % data.promoMessages.length;
       },
     };
-
     // Menu Functions
     const menu = {
       open: () => {
@@ -3705,7 +2879,6 @@
         elements.menuToggle.focus();
       },
     };
-
     // Get Profile Function
     async function getProfile() {
       const token = localStorage.getItem('access');
@@ -3728,7 +2901,6 @@
         return null;
       }
     }
-
     // Auth Modal Functions (Async for API simulations)
     const auth = {
       openModal: () => {
@@ -3828,7 +3000,6 @@
         }
       },
     };
-
     // Search Functions (Optimized loops with early exits)
     const search = {
       open: () => {
@@ -3851,17 +3022,14 @@
           elements.searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>';
           return;
         }
-
         const contentElements = document.querySelectorAll('.category-card strong, .category-card p, h1, p.lead, footer p, footer a, .story-content');
         const results = Array.from(contentElements)
           .map(el => ({ text: el.textContent.trim().toLowerCase(), element: el }))
           .filter(item => item.text.includes(trimmedQuery));
-
         if (results.length === 0) {
           elements.searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
           return;
         }
-
         results.forEach(result => {
           const div = document.createElement('div');
           div.className = 'result-item';
@@ -3878,11 +3046,9 @@
         let popularHTML = '<h4>🔥 محبوب‌ترین سرچ‌ها</h4><ul>';
         let recentHTML = '<h4>🕓 جستجوهای اخیر</h4><ul>';
         let phraseHTML = '<h4>📜 عبارات پیشنهادی</h4><ul>';
-
         data.popularSearches.filter(item => !safeValue || item.toLowerCase().includes(safeValue)).forEach(item => { popularHTML += `<li>${utils.escapeHTML(item)}</li>`; });
         data.recentSearches.filter(item => !safeValue || item.toLowerCase().includes(safeValue)).forEach(item => { recentHTML += `<li>${utils.escapeHTML(item)}</li>`; });
         data.phraseSuggestions.filter(item => !safeValue || item.toLowerCase().includes(safeValue)).forEach(item => { phraseHTML += `<li>${utils.escapeHTML(item)}</li>`; });
-
         popularHTML += '</ul>';
         recentHTML += '</ul>';
         phraseHTML += '</ul>';
@@ -3890,7 +3056,6 @@
         elements.suggestionsBox.classList.add('active');
       },
     };
-
     // Event Handlers (Using delegation where possible)
     const events = {
       setup: () => {
@@ -3899,7 +3064,6 @@
           elements.sideMenu.classList.contains('active') ? menu.close() : menu.open();
         });
         elements.closeBtn.addEventListener('click', menu.close);
-
         // User Profile
         elements.userProfile.addEventListener('click', (e) => {
           e.preventDefault();
@@ -3909,7 +3073,6 @@
             auth.openModal();
           }
         });
-
         // Auth Modal
         elements.closeAuthModal.addEventListener('click', auth.closeModal);
         elements.authPhone.addEventListener('input', (e) => {
@@ -4083,7 +3246,6 @@
             utils.hideSpinner(elements.confirmProfileBtn, 'تأیید');
           }
         });
-
         // Logout
         elements.logoutBtn.addEventListener('click', () => {
           elements.userMenu.classList.remove('active');
@@ -4101,7 +3263,6 @@
           elements.logoutModal.classList.remove('active');
           elements.overlay.classList.remove('active');
         });
-
         // Search
         document.querySelector('.search-icon').addEventListener('click', () => {
           if (elements.searchInput.value.trim()) {
@@ -4129,7 +3290,6 @@
             console.log('جستجو برای:', elements.searchInput.value);
           }
         });
-
         // Overlay and Escape Key
         elements.overlay.addEventListener('click', () => {
           menu.close();
@@ -4149,7 +3309,6 @@
             elements.logoutModal.classList.remove('active');
           }
         });
-
         // Document Click for Closing Menus
         document.addEventListener('click', (e) => {
           if (!elements.searchInput.contains(e.target) && !elements.suggestionsBox.contains(e.target)) {
@@ -4159,14 +3318,12 @@
             elements.userMenu.classList.remove('active');
           }
         });
-
         // Auto Open Auth Modal
         setTimeout(() => {
           if (!state.authModalShown && !state.userData) {
             auth.openModal();
           }
         }, 60000); // 1 minute
-
         // Support Widget Visibility
         const footer = document.querySelector('footer');
         const supportWidget = document.querySelector('.support-widget');
@@ -4180,26 +3337,22 @@
           });
         }, { threshold: 0.1 });
         observer.observe(footer);
-
         // Best Sellers Slider Manual Swipe
         const slider = document.querySelector('.best-sellers-slider');
         const sliderContainer = document.querySelector('.slider-container');
         let isDragging = false;
         let startX = 0;
         let scrollLeft = 0;
-
         slider.addEventListener('touchstart', (e) => {
           isDragging = true;
           startX = e.touches[0].pageX - slider.offsetLeft;
           scrollLeft = slider.scrollLeft;
           sliderContainer.style.animationPlayState = 'paused';
         });
-
         slider.addEventListener('touchend', () => {
           isDragging = false;
           sliderContainer.style.animationPlayState = 'running';
         });
-
         slider.addEventListener('touchmove', (e) => {
           if (!isDragging) return;
           const x = e.touches[0].pageX - slider.offsetLeft;
@@ -4208,14 +3361,12 @@
         });
       },
     };
-
     // Initialize
     utils.updateTime();
     setInterval(utils.updateTime, 1000);
     setInterval(utils.changePromoText, 5000);
     utils.changePromoText();
     events.setup();
-
     // Load user data if token exists
     (async () => {
       state.userData = await getProfile();
