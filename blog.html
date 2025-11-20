@@ -2232,7 +2232,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-   
+  
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2300,7 +2300,7 @@
       min-width: 160px;
       padding: 10px;
     }
-   
+  
     .best-seller-image {
       height: 90px;
     }
@@ -2340,7 +2340,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-   
+  
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2378,6 +2378,246 @@
   padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
   }
+
+  /* New Styles for Blog Upgrades */
+  .breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .blog-meta span {
+    margin-left: 15px;
+  }
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .lead-paragraph {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+  .toc {
+    position: sticky;
+    top: 100px;
+    background: var(--gray-box);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+  }
+  .toc h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  .toc ul {
+    list-style: none;
+  }
+  .toc li {
+    margin-bottom: 10px;
+  }
+  .toc a {
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: color 0.3s;
+  }
+  .toc a:hover, .toc a.active {
+    color: var(--primary-color);
+  }
+  @media (max-width: 768px) {
+    .toc {
+      position: relative;
+      top: 0;
+      margin: 20px 0;
+    }
+    .toc ul {
+      display: none;
+    }
+    .toc.active ul {
+      display: block;
+    }
+  }
+  .author-box {
+    display: flex;
+    align-items: center;
+    background: var(--gray-box);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
+  }
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 20px;
+  }
+  .author-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+  }
+  .author-info p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  .tags {
+    margin: 30px 0;
+  }
+  .tags span {
+    background: var(--neutral-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .tags span:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+  .related-posts {
+    margin: 40px 0;
+  }
+  .related-posts h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .related-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+  }
+  .related-card:hover {
+    transform: translateY(-5px);
+  }
+  .related-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .related-card h4 {
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+  .comments-section {
+    margin: 40px 0;
+  }
+  .comments-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .comment-form {
+    background: var(--gray-box);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .comment-form input, .comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+  }
+  .comment-form button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .comments-list .comment {
+    background: var(--gray-box);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  .cta-button {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 40px 0;
+  }
+  .share-buttons {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+  }
+  .share-buttons a {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .share-buttons a:hover {
+    transform: scale(1.1);
+  }
+  @media (max-width: 768px) {
+    .share-buttons {
+      flex-direction: row;
+      top: auto;
+      bottom: 20px;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  #back-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 999;
+  }
+  #back-to-top.show {
+    opacity: 1;
+  }
 </style>
 </head>
 <!DOCTYPE html>
@@ -2388,7 +2628,6 @@
   <meta name="description" content="مقاله درباره انواع گوشت برای برگر و نحوه ساخت آن در فینگرفود فیروزه.">
   <title>مقاله: انواع گوشت برای برگر و نحوه ساخت آن - فینگرفود فیروزه</title>
   <!-- دیگر متاها و لینک‌های CSS/JS اگر لازم باشد -->
- 
   <!-- Schema Markups -->
   <script type="application/ld+json">
   {
@@ -2407,7 +2646,6 @@
     }
   }
   </script>
- 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2429,7 +2667,6 @@
     ]
   }
   </script>
- 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2632,12 +2869,26 @@
   <main>
     <section id="blog-post" class="blog-section">
       <div class="blog-content" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+        <nav class="breadcrumb">
+          <a href="/">خانه</a> > <a href="/blogs">بلاگ</a> > انواع گوشت برای برگر و نحوه ساخت آن
+        </nav>
         <h1>انواع گوشت برای برگر و نحوه ساخت آن</h1>
-        <p class="blog-meta">نویسنده: تیم فیروزه | تاریخ: ۱۴۰۴/۰۸/۲۸</p>
-        <img src="https://placehold.co/800x400/26A69A/FFFFFF?text=تصویر+برگر+خانگی" alt="تصویر برگر خانگی خوشمزه" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" loading="lazy">
-        <p>برگر یکی از محبوب‌ترین غذاهای فست‌فودی است که می‌توان آن را در خانه با مواد تازه و باکیفیت تهیه کرد. انتخاب گوشت مناسب نقش کلیدی در طعم و بافت نهایی برگر دارد. در این مقاله، به بررسی انواع گوشت مناسب برای برگر و مراحل ساخت آن می‌پردازیم.</p>
-        
-        <h2>انواع گوشت مناسب برای برگر</h2>
+        <p class="blog-meta">
+          <span>نویسنده: علی رضایی</span> | 
+          <span>تاریخ: ۱۴۰۴/۰۸/۲۸</span> | 
+          <span>۷ دقیقه مطالعه</span> | 
+          <span>۰ نظر</span>
+        </p>
+        <img src="https://placehold.co/800x400/26A69A/FFFFFF?text=تصویر+برگر+خانگی" alt="تصویر برگر خانگی خوشمزه" class="hero-image" loading="lazy">
+        <p class="lead-paragraph">برگر یکی از محبوب‌ترین غذاهای فست‌فودی است که می‌توان آن را در خانه با مواد تازه و باکیفیت تهیه کرد. انتخاب گوشت مناسب نقش کلیدی در طعم و بافت نهایی برگر دارد.</p>
+        <aside class="toc">
+          <h3>فهرست مطالب</h3>
+          <ul>
+            <li><a href="#types-of-meat">انواع گوشت مناسب برای برگر</a></li>
+            <li><a href="#how-to-make">نحوه ساخت برگر خانگی</a></li>
+          </ul>
+        </aside>
+        <h2 id="types-of-meat">انواع گوشت مناسب برای برگر</h2>
         <p>انتخاب گوشت با کیفیت و درصد چربی مناسب، راز یک برگر لذیذ است. بهترین گوشت‌ها عبارتند از:</p>
         <ul>
           <li><strong>گوشت گوساله:</strong> محبوب‌ترین انتخاب برای برگر. گوشت گردن، شانه یا مغز ران گوساله با ۱۵ تا ۲۰ درصد چربی ایده‌آل است. این چربی باعث آبدار شدن برگر می‌شود. برای تعادل طبع، می‌توان آن را با گوشت گوسفندی ترکیب کرد.</li>
@@ -2646,8 +2897,8 @@
           <li><strong>گوشت‌های جایگزین:</strong> برای گزینه‌های سالم‌تر، می‌توان از گوشت مرغ یا بوقلمون استفاده کرد، اما چربی کمتری دارند و ممکن است خشک شوند.</li>
         </ul>
         <p>نکته مهم: گوشت باید تازه و چرخ‌کرده باشد. چربی ۱۵-۲۰% برای جلوگیری از خشک شدن برگر ضروری است.</p>
-        
-        <h2>نحوه ساخت برگر خانگی</h2>
+       
+        <h2 id="how-to-make">نحوه ساخت برگر خانگی</h2>
         <p>ساخت برگر ساده است و تنها به چند مرحله نیاز دارد:</p>
         <ol>
           <li><strong>آماده‌سازی گوشت:</strong> ۵۰۰ گرم گوشت گوساله چرخ‌کرده (با ۲۰% چربی) را با یک پیاز رنده‌شده، نمک، فلفل سیاه، پودر سیر و کمی پودر سوخاری مخلوط کنید. مواد را ورز دهید تا یکدست شود.</li>
@@ -2657,10 +2908,65 @@
           <li><strong>سرو:</strong> در نان همبرگر با کاهو، گوجه، پیاز و سس دلخواه سرو کنید.</li>
         </ol>
         <p>با این روش، برگر خانگی تازه و سالم خواهید داشت که از نمونه‌های آماده بهتر است!</p>
-        
+       
         <img src="https://placehold.co/800x400/1A7A6F/FFFFFF?text=تصویر+ساخت+برگر" alt="تصویر مراحل ساخت برگر" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" loading="lazy">
-        
+       
         <p>اگر سؤالی دارید یا می‌خواهید محصولات مرتبط مانند گوشت تازه را سفارش دهید، با ما تماس بگیرید.</p>
+        
+        <div class="author-box">
+          <img src="http://www.coca.ir/wp-content/uploads/2023/06/%D9%85%D8%AA%D9%86-%D8%B2%DB%8C%D8%A8%D8%A7-%D9%87%D9%86%D8%B1-%D8%A2%D8%B4%D9%BE%D8%B2%DB%8C.jpg" alt="عکس نویسنده" class="author-avatar">
+          <div class="author-info">
+            <h4>علی رضایی</h4>
+            <p>علی رضایی، کارشناس آشپزی با بیش از ۱۰ سال تجربه در زمینه فست‌فود و غذاهای خانگی. علاقه‌مند به ترکیب طعم‌های سنتی ایرانی با غذاهای مدرن.</p>
+          </div>
+        </div>
+        
+        <div class="tags">
+          <strong>تگ‌ها:</strong>
+          <span>#برگر_خانگی</span>
+          <span>#گوشت</span>
+          <span>#آشپزی</span>
+        </div>
+        
+        <div class="related-posts">
+          <h3>مقالات مرتبط</h3>
+          <div class="related-grid">
+            <div class="related-card">
+              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+1" alt="مقاله مرتبط 1">
+              <h4>نحوه ساخت ساندویچ خانگی</h4>
+            </div>
+            <div class="related-card">
+              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+2" alt="مقاله مرتبط 2">
+              <h4>بهترین ادویه‌ها برای گوشت</h4>
+            </div>
+            <div class="related-card">
+              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+3" alt="مقاله مرتبط 3">
+              <h4>نکات سلامت در آشپزی</h4>
+            </div>
+            <div class="related-card">
+              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+4" alt="مقاله مرتبط 4">
+              <h4>انواع پنیر برای برگر</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="comments-section">
+          <h3>نظرات کاربران</h3>
+          <div class="comment-form">
+            <input type="text" placeholder="نام شما">
+            <input type="email" placeholder="ایمیل شما">
+            <textarea placeholder="نظر خود را بنویسید..."></textarea>
+            <button>ارسال نظر</button>
+          </div>
+          <div class="comments-list">
+            <!-- نظرات نمونه یا خالی -->
+            <div class="comment">
+              <strong>کاربر نمونه:</strong> مقاله عالی بود!
+            </div>
+          </div>
+        </div>
+        
+        <a href="/order" class="cta-button">سفارش محصولات مرتبط</a>
       </div>
     </section>
   </main>
@@ -2704,6 +3010,16 @@
       </a>
     </div>
   </footer>
+  <!-- Share Buttons -->
+  <div class="share-buttons">
+    <a href="https://wa.me/?text=URL" title="اشتراک در واتساپ"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://t.me/share/url?url=URL" title="اشتراک در تلگرام"><i class="fab fa-telegram"></i></a>
+    <a href="https://instagram.com" title="اشتراک در اینستاگرام"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=URL" title="اشتراک در توییتر"><i class="fab fa-twitter"></i></a>
+    <a href="#" id="copy-link" title="کپی لینک"><i class="fas fa-copy"></i></a>
+  </div>
+  <!-- Back to Top -->
+  <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
     <script>
     // Elements (Grouped for better readability)
     const elements = {
@@ -2841,9 +3157,7 @@
         const now = new Date();
         const options = {
           timeZone: 'Asia/Tehran',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
+          timeStyle: 'short',
           hour12: false
         };
         const timeStr = now.toLocaleTimeString('fa-IR', options);
@@ -3372,6 +3686,42 @@
       state.userData = await getProfile();
       auth.updateUserUI();
     })();
+
+    // New JS for Upgrades
+    // Scrollspy for TOC
+    const sections = document.querySelectorAll('h2');
+    const tocLinks = document.querySelectorAll('.toc a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Back to Top
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Copy Link
+    document.getElementById('copy-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(window.location.href);
+      alert('لینک کپی شد!');
+    });
   </script>
 </body>
 </html>

@@ -20,10 +20,9 @@
       --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       --rating-color: #FFD700;
     }
-
-    html, body { 
-      margin: 0; 
-      padding: 0; 
+    html, body {
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
     }
     body {
@@ -33,7 +32,6 @@
       line-height: 1.8;
       padding-top: 90px;
     }
-
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -54,23 +52,19 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       animation: slideIn 0.5s ease-out;
     }
-
     @keyframes slideIn {
       from { transform: translate(-50%, -100%); opacity: 0; }
       to { transform: translate(-50%, 0); opacity: 1; }
     }
-
     .menu-icon {
       font-size: 1.4rem;
       cursor: pointer;
       order: 1;
     }
-
     .menu-icon:hover i {
       transform: scale(1.1);
       transition: transform 0.2s ease;
     }
-
     .logo-search {
       flex: 1;
       display: flex;
@@ -80,7 +74,6 @@
       order: 2;
       flex-direction: column;
     }
-
     .logo {
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       font-size: 1.4rem;
@@ -92,12 +85,10 @@
       text-decoration: none;
       text-transform: uppercase;
     }
-
     .logo img {
       height: 28px;
       width: auto;
     }
-
     .promo-text-mobile {
       font-size: 0.85rem;
       color: #FFD700;
@@ -105,7 +96,6 @@
       text-align: center;
       margin-top: 5px;
     }
-
     .search-box {
       position: relative;
       width: 280px;
@@ -113,7 +103,6 @@
       display: flex;
       align-items: center;
     }
-
     .search-box input {
       flex: 1;
       padding: 8px 40px 8px 40px;
@@ -125,7 +114,6 @@
       direction: rtl;
       background: var(--text-light);
     }
-
     .search-icon, .clear-icon {
       background: var(--text-light);
       padding: 8px 12px;
@@ -135,21 +123,17 @@
       align-items: center;
       justify-content: center;
     }
-
     .search-icon {
       border-radius: 0 20px 20px 0;
     }
-
     .clear-icon {
       position: absolute;
       left: 0;
       display: none;
     }
-
     .clear-icon.active {
       display: flex;
     }
-
     .cart-profile {
       display: flex;
       align-items: center;
@@ -157,7 +141,6 @@
       order: 3;
       position: relative;
     }
-
     .promo-text {
       font-size: 0.85rem;
       color: #FFD700;
@@ -166,7 +149,6 @@
       gap: 5px;
       white-space: nowrap;
     }
-
     .cart-link, .profile-link {
       display: flex;
       align-items: center;
@@ -175,16 +157,13 @@
       position: relative;
       transition: color 0.3s;
     }
-
     .cart-link:hover, .profile-link:hover {
       color: var(--primary-color);
     }
-
     .cart-link:hover i, .profile-link:hover i {
       transform: scale(1.1);
       transition: transform 0.2s ease;
     }
-
     .cart-badge {
       position: absolute;
       top: -8px;
@@ -195,12 +174,10 @@
       padding: 2px 6px;
       font-size: 0.7rem;
     }
-
     .profile-icon {
       font-size: 1.1rem;
       cursor: pointer;
     }
-
     .user-avatar {
       width: 32px;
       height: 32px;
@@ -212,7 +189,6 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .user-menu {
       position: absolute;
       top: 50px;
@@ -227,22 +203,18 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       display: none;
     }
-
     .user-menu.active {
       display: block;
     }
-
     .user-menu .user-info {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 10px;
     }
-
     .user-menu .user-info .avatar {
       font-size: 2rem;
     }
-
     .user-menu a, .user-menu button {
       display: block;
       padding: 8px;
@@ -250,11 +222,9 @@
       color: var(--text-dark);
       cursor: pointer;
     }
-
     .user-menu a:hover, .user-menu button:hover {
       background: var(--neutral-color);
     }
-
     .side-menu {
       position: fixed;
       inset-block: 0;
@@ -290,32 +260,27 @@
      .nav-category {
       margin-bottom: 20px;
   }
-
     .nav-category h3 {
       font-size: 1.2rem;
       margin-bottom: 10px;
       color: #FACA7F;
   }
-
     .sub-menu {
       list-style: none;
   }
-
     .sub-menu li {
       margin-bottom: 10px;
   }
-
     .sub-menu a {
       text-decoration: none;
       color: #eaebeb;
       font-size: 1rem;
       transition: var(--transition);
   }
-
     .sub-menu a:hover {
       color: #81D9e7;
-  } 
-    
+  }
+   
     .overlay {
       position: fixed;
       inset: 0;
@@ -325,11 +290,10 @@
       visibility: hidden;
       transition: all 0.3s ease;
     }
-    .overlay.active { 
-      opacity: 1; 
-      visibility: visible; 
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
-
     .search-container {
       position: fixed;
       inset-block-start: calc(var(--header-h) + 20px);
@@ -341,11 +305,9 @@
       display: none;
       direction: rtl;
     }
-
     .search-container.active {
       display: block;
     }
-
     .search-container input {
       width: calc(100% - 24px);
       padding: 14px;
@@ -356,13 +318,11 @@
       transition: var(--transition);
       direction: rtl;
     }
-
     .search-container input:focus {
       outline: none;
       border-color: var(--secondary-color);
       box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
     }
-
     .search-results {
       margin-top: 16px;
       max-height: 300px;
@@ -372,7 +332,6 @@
       padding: 12px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-
     .search-results .result-item {
       padding: 12px;
       border-bottom: 1px solid rgba(38, 166, 154, 0.2);
@@ -381,25 +340,21 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .search-results .result-item:hover {
       background: rgba(38, 166, 154, 0.1);
       color: var(--primary-color);
     }
-
     .search-results .no-results {
       color: #D32F2F;
       font-size: 1rem;
       text-align: center;
       padding: 12px;
     }
-
-    main { 
+    main {
       max-width: 1400px;
       margin: 0 auto;
       padding: 24px;
     }
-
     .hero-section {
       background: url('https://placehold.co/1200x400/26A69A/FFFFFF?text=مجلات+و+اخبار+فیروزه') no-repeat center center;
       background-size: cover;
@@ -410,7 +365,6 @@
       border-radius: 12px;
       margin-bottom: 48px;
     }
-
     .hero-section::before {
       content: '';
       position: absolute;
@@ -422,39 +376,33 @@
       z-index: 1;
       border-radius: 12px;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 800px;
       margin: 0 auto;
     }
-
     .hero-section h1 {
       font-size: 3rem;
       margin-bottom: 20px;
       color: white;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-
     .hero-section .subtitle {
       font-size: 1.3rem;
       margin-bottom: 30px;
       color: white;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
-
     .hero-icon {
       font-size: 3rem;
       color: var(--primary-color);
       margin-bottom: 20px;
     }
-
     .section {
       padding: 80px 32px;
       background: var(--background-color);
     }
-
     .section-title {
       text-align: center;
       font-size: 2.2rem;
@@ -462,7 +410,6 @@
       color: var(--primary-color);
       position: relative;
     }
-
     .section-title::after {
       content: '';
       display: block;
@@ -472,7 +419,6 @@
       margin: 15px auto 0;
       border-radius: 2px;
     }
-
     .section-subtitle {
       text-align: center;
       font-size: 1.2rem;
@@ -482,7 +428,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-
     /* Articles Section */
     .articles-filters {
       display: flex;
@@ -491,7 +436,6 @@
       gap: 15px;
       margin-bottom: 40px;
     }
-
     .filter-btn {
       padding: 10px 20px;
       background: var(--neutral-color);
@@ -502,12 +446,10 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .filter-btn.active, .filter-btn:hover {
       background: var(--primary-color);
       color: white;
     }
-
     .articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -515,7 +457,6 @@
       max-width: 1200px;
       margin: 0 auto 40px;
     }
-
     .article-card {
       background: white;
       border-radius: 15px;
@@ -523,22 +464,18 @@
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
     }
-
     .article-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
-
     .article-image {
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
-
     .article-content {
       padding: 25px;
     }
-
     .article-category {
       display: inline-block;
       background: var(--primary-color);
@@ -548,20 +485,17 @@
       font-size: 0.9rem;
       margin-bottom: 15px;
     }
-
     .article-title {
       font-size: 1.4rem;
       margin-bottom: 15px;
       color: var(--text-dark);
     }
-
     .article-summary {
       font-size: 1rem;
       margin-bottom: 20px;
       color: var(--text-dark);
       line-height: 1.6;
     }
-
     .article-meta {
       display: flex;
       justify-content: space-between;
@@ -570,7 +504,6 @@
       font-size: 0.9rem;
       color: #666;
     }
-
     .read-more-btn {
       display: inline-block;
       padding: 12px 25px;
@@ -585,17 +518,14 @@
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       font-size: 1rem;
     }
-
     .read-more-btn:hover {
       background: var(--secondary-color);
       transform: translateY(-2px);
     }
-
     .load-more-container {
       text-align: center;
       margin-top: 40px;
     }
-
     .load-more-btn {
       padding: 15px 40px;
       background: var(--primary-color);
@@ -608,17 +538,14 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .load-more-btn:hover {
       background: var(--secondary-color);
       transform: translateY(-3px);
     }
-
     /* News Section */
     .news-section {
       background: linear-gradient(180deg, var(--background-color) 0%, var(--neutral-color) 100%);
     }
-
     .news-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -626,7 +553,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .news-card {
       background: white;
       border-radius: 15px;
@@ -635,18 +561,15 @@
       transition: var(--transition);
       border: 1px solid var(--neutral-color);
     }
-
     .news-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
-
     .news-card.important {
       border: 2px solid #FFD700;
       position: relative;
       overflow: hidden;
     }
-
     .news-card.important::before {
       content: 'مهم';
       position: absolute;
@@ -659,26 +582,22 @@
       font-size: 0.8rem;
       font-weight: 600;
     }
-
     .news-title {
       font-size: 1.3rem;
       margin-bottom: 15px;
       color: var(--text-dark);
     }
-
     .news-content {
       font-size: 1rem;
       margin-bottom: 20px;
       color: var(--text-dark);
       line-height: 1.6;
     }
-
     .news-date {
       font-size: 0.9rem;
       color: #666;
       margin-bottom: 15px;
     }
-
     .news-details-btn {
       display: inline-block;
       padding: 10px 20px;
@@ -690,12 +609,10 @@
       font-weight: 600;
       transition: var(--transition);
     }
-
     .news-details-btn:hover {
       background: var(--secondary-color);
       transform: translateY(-2px);
     }
-
     /* Newsletter Section */
     .newsletter-section {
       background: var(--gradient-start);
@@ -705,31 +622,26 @@
       border-radius: 20px;
       margin: 0 20px 80px;
     }
-
     .newsletter-content {
       max-width: 700px;
       margin: 0 auto;
     }
-
     .newsletter-title {
       font-size: 2.2rem;
       margin-bottom: 20px;
       color: white;
     }
-
     .newsletter-description {
       font-size: 1.2rem;
       margin-bottom: 30px;
       line-height: 1.8;
     }
-
     .newsletter-form {
       display: flex;
       max-width: 500px;
       margin: 0 auto;
       gap: 15px;
     }
-
     .newsletter-input {
       flex: 1;
       padding: 15px 20px;
@@ -739,7 +651,6 @@
       font-size: 1rem;
       direction: rtl;
     }
-
     .newsletter-btn {
       padding: 15px 25px;
       background: #FFD700;
@@ -752,12 +663,10 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .newsletter-btn:hover {
       background: #FFC107;
       transform: translateY(-2px);
     }
-
     footer {
       background: var(--gradient-start);
       color: var(--text-light);
@@ -768,7 +677,6 @@
       position: relative;
       overflow: hidden;
     }
-
     footer::before {
       content: "";
       position: absolute;
@@ -779,7 +687,6 @@
       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
       background-size: 100px 100px;
     }
-
     footer h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -788,7 +695,6 @@
       position: relative;
       z-index: 1;
     }
-
     footer p {
       max-width: 600px;
       margin: 0 auto 20px;
@@ -797,13 +703,11 @@
       position: relative;
       z-index: 1;
     }
-
     footer .links {
       margin: 20px 0;
       position: relative;
       z-index: 1;
     }
-
     footer a {
       color: var(--text-light);
       text-decoration: none;
@@ -814,12 +718,10 @@
       padding: 8px 15px;
       border-radius: 8px;
     }
-
-    footer a:hover { 
-      color: var(--primary-color); 
+    footer a:hover {
+      color: var(--primary-color);
       background: rgba(255, 255, 255, 0.1);
     }
-
     footer .contact-info {
       font-size: 1rem;
       margin: 20px 0;
@@ -827,16 +729,14 @@
       position: relative;
       z-index: 1;
     }
-
-    #clock { 
-      color: var(--text-light); 
-      margin-top: 15px; 
+    #clock {
+      color: var(--text-light);
+      margin-top: 15px;
       font-weight: 500;
       font-size: 0.95rem;
       position: relative;
       z-index: 1;
     }
-
     footer .copyright {
       margin-top: 25px;
       padding-top: 20px;
@@ -846,7 +746,6 @@
       position: relative;
       z-index: 1;
     }
-
     .social-bar {
       background: transparent;
       display: flex;
@@ -858,7 +757,6 @@
       position: relative;
       z-index: 1;
     }
-
     .social-box {
       width: 70px;
       height: 70px;
@@ -876,20 +774,17 @@
       cursor: pointer;
       border-radius: 12px;
     }
-
     .social-box img {
       width: 24px;
       height: 24px;
       margin-bottom: 5px;
       object-fit: contain;
     }
-
     .social-box:hover {
       background: var(--primary-color);
       color: var(--text-light);
       transform: scale(1.05);
     }
-
     .logo-box {
       width: 70px;
       height: 70px;
@@ -901,17 +796,14 @@
       overflow: hidden;
       transition: all 0.3s ease;
     }
-
     .logo-box img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-
     .logo-box:hover {
       transform: scale(1.05);
     }
-
     .support-widget {
       position: fixed;
       bottom: 20px;
@@ -944,7 +836,6 @@
       text-align: right;
       font-size: 0.9rem;
     }
-
     /* Auth Modal Styles */
     .auth-modal {
       position: fixed;
@@ -1123,7 +1014,7 @@
     .wizard-buttons .prev:hover {
       background: #ccc;
     }
-    
+   
     /* Character and Username Selection */
     .character-grid {
       display: grid;
@@ -1152,7 +1043,6 @@
       color: var(--text-light);
       box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
     }
-
     /* Logout Modal */
     .logout-modal {
       position: fixed;
@@ -1225,7 +1115,6 @@
     .logout-buttons .cancel:hover {
       background: #ccc;
     }
-
     .spinner {
       border: 4px solid rgba(255, 255, 255, 0.3);
       border-top: 4px solid #fff;
@@ -1265,34 +1154,27 @@
       width: 100%;
       margin-top: 10px;
     }
-
     img {
       max-width: 100%;
       height: auto;
     }
-
     @media (max-width: 992px) {
       .hero-section h1 {
         font-size: 2.5rem;
       }
-
       .hero-section .subtitle {
         font-size: 1.2rem;
       }
-
       .section-title {
         font-size: 2rem;
       }
-
       .articles-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
-
       .newsletter-form {
         flex-direction: column;
       }
     }
-
     @media (max-width: 768px) {
       .product-main-image {
         width: 300px;
@@ -1333,32 +1215,32 @@
         padding: 10px 15px;
         border-radius: 15px;
       }
-      
+     
       .logo-search {
         flex-direction: column;
         gap: 10px;
       }
-      
+     
       .search-box {
         width: 100%;
       }
-      
+     
       .logo {
         font-size: 1.2rem;
       }
-      
+     
       .promo-text {
         display: none;
       }
-      
+     
       .promo-text-mobile {
         display: block;
       }
-      
+     
       main {
         padding: 15px;
       }
-      
+     
       .quantity-section {
         flex-direction: column;
         align-items: flex-start;
@@ -1382,57 +1264,46 @@
         height: 35px;
         font-size: 1rem;
       }
-      
+     
       .hero-section {
         padding: 80px 20px;
       }
-
       .hero-section h1 {
         font-size: 2.2rem;
       }
-
       .hero-section .subtitle {
         font-size: 1.1rem;
       }
-
       .section {
         padding: 60px 20px;
       }
-
       .section-title {
         font-size: 1.8rem;
       }
-
       .articles-grid {
         grid-template-columns: 1fr;
       }
-
       .news-grid {
         grid-template-columns: 1fr;
       }
-
       .articles-filters {
         gap: 10px;
       }
-
       .filter-btn {
         padding: 8px 15px;
         font-size: 0.9rem;
       }
-
       .newsletter-section {
         margin: 0 15px 60px;
         padding: 60px 20px;
       }
-
       .newsletter-title {
         font-size: 1.8rem;
       }
-
       .newsletter-description {
         font-size: 1rem;
       }
-      
+     
       footer h2 {
         font-size: 2rem;
       }
@@ -1471,7 +1342,6 @@
         height: 28px;
       }
     }
-
     @media (max-width: 576px) {
       .product-title {
         font-size: 1.8rem;
@@ -1516,13 +1386,13 @@
     justify-content:space-around; /* توزیع یکنواخت در عرض کم */
     padding: 10px 0; /* padding عمودی کمتر */
 }
-      
+     
       .social-box, .logo-box {
         width: 45px;
         height: 45px;
         font-size: 0.5rem;
       }
-      
+     
       .social-box img {
         width: 18px;
         height: 18px;
@@ -1548,7 +1418,7 @@
       .slider-track {
         width: calc(300% + 20px); /* Show 1 item on very small screens */
       }
-      
+     
       /* Mobile-specific optimizations */
       .navbar {
         padding: 8px 12px;
@@ -1556,79 +1426,71 @@
         width: 95%;
         border-radius: 12px;
       }
-      
+     
       .menu-icon {
         font-size: 1.2rem;
       }
-      
+     
       .logo {
         font-size: 1.1rem;
       }
-      
+     
       .logo img {
         height: 24px;
       }
-      
+     
       .cart-link i, .profile-icon {
         font-size: 1rem;
       }
-      
+     
       .cart-badge {
         top: -6px;
         right: -6px;
         font-size: 0.6rem;
         padding: 1px 4px;
       }
-      
+     
       .search-box input {
         padding: 6px 30px 6px 30px;
         font-size: 0.85rem;
       }
-      
+     
       .search-icon, .clear-icon {
         padding: 6px 10px;
       }
-      
+     
       main {
         padding: 12px;
       }
-      
+     
       .hero-section h1 {
         font-size: 2rem;
       }
-
       .hero-section .subtitle {
         font-size: 1rem;
       }
-
       .section-title {
         font-size: 1.6rem;
       }
-
       .article-content {
         padding: 20px;
       }
-
       .article-title {
         font-size: 1.2rem;
       }
-
       .news-card {
         padding: 20px;
       }
-
       .news-title {
         font-size: 1.1rem;
       }
-
       .newsletter-section {
         padding: 40px 15px;
       }
-
       .newsletter-title {
         font-size: 1.5rem;
       }
-      
+     
       .support-widget {
         bottom: 10px;
         right: 10px;
@@ -1642,13 +1504,13 @@
       .support-widget.hidden{
         opacity: 0;
       }
-      
+     
       .support-widget a {
         padding: 6px 10px;
         font-size: 0.75rem;
         border-radius: 4px;
       }
-      
+     
       .support-widget .text {
         font-size: 0.7rem;
       }
@@ -1659,11 +1521,11 @@
         font-size: 1.4rem;
         margin: 0 0 10px;
       }
-      footer p{ 
+      footer p{
       font-size: 0.8rem;
       margin:0 auto 15px
       }
-      footer .links  {
+      footer .links {
         margin: 15px 0;
       }
       .auth-modal-content {
@@ -1701,31 +1563,26 @@
   justify-content: space-between; /* فشرده به دو طرف */
   padding: 6px 0;
 }
-
 .social-box, .logo-box {
   width: 40px; /* کوچیک‌تر از 45px */
   height: 40px;
   font-size: 0.55rem; /* متن ریزتر */
 }
-
 .social-box img {
   width: 16px;
   height: 16px;
 }
-
 .social-box {
   padding: 0px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
       }
   </style>
 </head>
-
 <body>
   <header class="navbar">
     <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
       <i class="fas fa-bars"></i>
     </div>
-
     <div class="logo-search">
       <a href="index.html" class="logo">
         <img src=image1/logo.png alt="لوگوی فینگرفود فیروزه" loading="lazy loading">
@@ -1733,17 +1590,16 @@
       </a>
       <div class="promo-text-mobile" id="promoTextMobile">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
       <div class="search-box">
-        <input 
-          type="text" 
-          placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت" 
-          id="searchInput" 
+        <input
+          type="text"
+          placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت"
+          id="searchInput"
           aria-label="جستجوی محصولات"
         >
         <div class="clear-icon" id="clearSearch"><i class="fas fa-times"></i></div>
         <div class="search-icon"><i class="fas fa-search"></i></div>
       </div>
     </div>
-
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
       <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
@@ -1763,14 +1619,11 @@
       </div>
     </div>
   </header>
-
   <div class="overlay" id="overlay"></div>
-
   <div class="search-container" id="searchContainer">
     <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." />
     <div class="search-results" id="searchResults"></div>
   </div>
-
   <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
     <div class="close-btn" aria-label="بستن منو">×</div>
     <ul class="nav-menu">
@@ -1795,8 +1648,6 @@
       </li>
     </ul>
   </nav>
-
-
   <!-- Auth Modal -->
   <div class="auth-modal" id="authModal">
     <div class="auth-modal-content">
@@ -1862,7 +1713,6 @@
       </div>
     </div>
   </div>
-
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -1874,7 +1724,6 @@
       </div>
     </div>
   </div>
-
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1886,124 +1735,30 @@
         <p class="subtitle">جدیدترین مقالات، اخبار و تخفیف‌های فیروزه را در اینجا بخوانید و از فرصت‌های ویژه ما بهره‌مند شوید</p>
       </div>
     </section>
-
     <!-- Articles Section -->
     <section class="section">
       <div class="container">
         <h2 class="section-title">مقالات و مطالب آموزشی</h2>
         <p class="section-subtitle">بهترین راهکارها، نکات تخصصی و مقالات آموزشی در زمینه فینگر فود و سلامت غذایی</p>
-        
+       
         <div class="articles-filters">
           <button class="filter-btn active" data-filter="all">همه مقالات</button>
           <button class="filter-btn" data-filter="education">آموزش</button>
           <button class="filter-btn" data-filter="tips">نکات فینگر فود</button>
           <button class="filter-btn" data-filter="health">مقالات سلامت</button>
         </div>
-
-        <div class="articles-grid" id="articlesGrid">
-          <!-- Article 1 -->
-          <div class="article-card" data-category="education">
-            <img src="https://placehold.co/600x400/26A69A/FFFFFF?text=آموزش+آشپزی" alt="آموزش آشپزی" class="article-image">
-            <div class="article-content">
-              <span class="article-category">آموزش</span>
-              <h3 class="article-title">۵ نکته طلایی برای آشپزی حرفه‌ای در خانه</h3>
-              <p class="article-summary">یاد بگیرید چگونه با رعایت اصول ساده، غذاهای خانگی حرفه‌ای بپزید و مهمانی‌های خود را به یادگاری تبدیل کنید.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۳/۱۵</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-
-          <!-- Article 2 -->
-          <div class="article-card" data-category="tips">
-            <img src="https://placehold.co/600x400/1A7A6F/FFFFFF?text=نکات+فینگر+فود" alt="نکات فینگر فود" class="article-image">
-            <div class="article-content">
-              <span class="article-category">نکات فینگر فود</span>
-              <h3 class="article-title">چگونه یک فینگر فود موفق برنامه‌ریزی کنیم؟</h3>
-              <p class="article-summary">راهنمای جامع برای انتخاب بهترین فینگر فودها بر اساس تعداد مهمانان، بودجه و سلیقه شما.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۳/۱۰</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-
-          <!-- Article 3 -->
-          <div class="article-card" data-category="health">
-            <img src="https://placehold.co/600x400/2E2A3F/FFFFFF?text=سلامت+غذایی" alt="سلامت غذایی" class="article-image">
-            <div class="article-content">
-              <span class="article-category">مقالات سلامت</span>
-              <h3 class="article-title">تاثیر غذاهای خانگی بر سلامت روان</h3>
-              <p class="article-summary">چگونه غذاهای تازه و خانگی می‌توانند بر سلامت روان و روابط اجتماعی شما تاثیر مثبت بگذارند.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۳/۰۵</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-
-          <!-- Article 4 -->
-          <div class="article-card" data-category="education">
-            <img src="https://placehold.co/600x400/FF6B6B/FFFFFF?text=آماده‌سازی" alt="آماده‌سازی" class="article-image">
-            <div class="article-content">
-              <span class="article-category">آموزش</span>
-              <h3 class="article-title">آماده‌سازی سریع و مؤثر برای مهمانی‌های بزرگ</h3>
-              <p class="article-summary">استراتژی‌های هوشمندانه برای آماده‌سازی فینگر فود در کمترین زمان و با بالاترین کیفیت.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۲/۲۸</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-
-          <!-- Article 5 -->
-          <div class="article-card" data-category="tips">
-            <img src="https://placehold.co/600x400/4ECDC4/FFFFFF?text=ترکیب+طعم" alt="ترکیب طعم" class="article-image">
-            <div class="article-content">
-              <span class="article-category">نکات فینگر فود</span>
-              <h3 class="article-title">ترکیب‌بندی کامل یک فینگر فود متنوع</h3>
-              <p class="article-summary">راهنمای ترکیب انواع مختلف فینگر فودها برای ایجاد تنوع و تعادل در طعم‌ها و بافت‌ها.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۲/۲۰</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-
-          <!-- Article 6 -->
-          <div class="article-card" data-category="health">
-            <img src="https://placehold.co/600x400/FFE66D/333333?text=مواد+طبیعی" alt="مواد طبیعی" class="article-image">
-            <div class="article-content">
-              <span class="article-category">مقالات سلامت</span>
-              <h3 class="article-title">فواید مواد طبیعی در فینگر فودهای امروزی</h3>
-              <p class="article-summary">اهمیت استفاده از مواد طبیعی و محلی در تهیه فینگر فودها و تاثیر آن بر سلامت خانواده.</p>
-              <div class="article-meta">
-                <span class="article-date">۱۴۰۴/۰۲/۱۵</span>
-                <span class="article-author">نویسنده: تیم فیروزه</span>
-              </div>
-              <button class="read-more-btn">بیشتر بخوانید</button>
-            </div>
-          </div>
-        </div>
-
+        <div class="articles-grid" id="articlesGrid"></div>
         <div class="load-more-container">
           <button class="load-more-btn" id="loadMoreBtn">مشاهده مقالات بیشتر</button>
         </div>
       </div>
     </section>
-
     <!-- News Section -->
     <section class="section news-section">
       <div class="container">
         <h2 class="section-title">اخبار و اطلاعیه‌ها</h2>
         <p class="section-subtitle">آخرین تخفیف‌ها، جشنواره‌ها و رویدادهای ویژه فیروزه</p>
-        
+       
         <div class="news-grid" id="newsGrid">
           <!-- Important News -->
           <div class="news-card important">
@@ -2012,7 +1767,6 @@
             <div class="news-date">مهلت استفاده: ۱۴۰۴/۰۱/۱۵</div>
             <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
           </div>
-
           <!-- News 2 -->
           <div class="news-card">
             <h3 class="news-title">جشنواره یلدا ۱۴۰۳</h3>
@@ -2020,7 +1774,6 @@
             <div class="news-date">۱۴۰۳/۰۹/۰۵</div>
             <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
           </div>
-
           <!-- News 3 -->
           <div class="news-card">
             <h3 class="news-title">دوره آموزشی آشپزی خانگی</h3>
@@ -2028,7 +1781,6 @@
             <div class="news-date">۱۴۰۳/۰۸/۲۰</div>
             <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
           </div>
-
           <!-- News 4 -->
           <div class="news-card important">
             <h3 class="news-title">افزایش ظرفیت سرویس‌دهی</h3>
@@ -2036,7 +1788,6 @@
             <div class="news-date">۱۴۰۳/۰۸/۱۰</div>
             <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
           </div>
-
           <!-- News 5 -->
           <div class="news-card">
             <h3 class="news-title">معرفی خط تولید جدید</h3>
@@ -2044,7 +1795,6 @@
             <div class="news-date">۱۴۰۳/۰۷/۲۵</div>
             <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
           </div>
-
           <!-- News 6 -->
           <div class="news-card">
             <h3 class="news-title">برنامه تحویل سریع</h3>
@@ -2055,7 +1805,6 @@
         </div>
       </div>
     </section>
-
     <!-- Newsletter Section -->
     <section class="section">
       <div class="newsletter-section">
@@ -2071,14 +1820,12 @@
       </div>
     </section>
   </main>
-
   <div class="support-widget" id="supportWidget">
     <p class="text">برای دریافت مشاوره و مشاهده جدیدترین آیتم‌ها به ما در ارتباط باشید</p>
     <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
     <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
     <a href="tel:09142830328">تماس</a>
   </div>
-
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -2119,13 +1866,11 @@
       </a>
     </div>
   </footer>
-
   <script>
     // Service Worker for PWA
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => {}); // Silent fail
     }
-
     // DOM Elements Cache
     const elements = {
       body: document.body,
@@ -2181,7 +1926,6 @@
       articlesGrid: document.getElementById('articlesGrid'),
       loadMoreBtn: document.getElementById('loadMoreBtn')
     };
-
     // Auth State
     let authCountdownInterval;
     let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
@@ -2190,17 +1934,14 @@
     let captchaNum1, captchaNum2, captchaResult;
     let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
     let lockTimer = 0;
-
     const promoMessages = [
       "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
       "🍕 غذاهای تازه و خوشمزه هر روز!",
       "⭐ تخفیف ویژه برای مشتریان وفادار!",
       "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
     ];
-
     let currentPromoIndex = 0;
     let currentFilter = 'all';
-
     // Functions
     function openMenu() {
       elements.sideMenu.classList.add('active');
@@ -2213,7 +1954,6 @@
       elements.sideMenu.scrollTop = 0; // Reset scroll position
       elements.sideMenu.focus();
     }
-
     function closeMenu() {
       elements.sideMenu.classList.remove('active');
       elements.overlay.classList.remove('active');
@@ -2224,14 +1964,12 @@
       elements.body.style.overflow = ''; // Restore body scroll
       elements.menuToggle.focus();
     }
-
     function openSearch() {
       elements.searchContainer.classList.add('active');
       elements.overlay.classList.add('active');
       elements.body.style.overflow = 'hidden';
       elements.searchInputLegacy.focus();
     }
-
     function closeSearch() {
       elements.searchContainer.classList.remove('active');
       elements.overlay.classList.remove('active');
@@ -2239,49 +1977,39 @@
       elements.searchInputLegacy.value = '';
       elements.searchResults.innerHTML = '';
     }
-
     function validatePhone(phone) {
       const regex = /^09[0-9]{9}$/;
       return regex.test(phone);
     }
-
     function validateCode(code) {
       return /^[0-9]{6}$/.test(code);
     }
-
     function validateUsername(name) {
       return /^[a-zA-Z0-9]{3,}$/.test(name);
     }
-
     function validateCaptcha(answer) {
       return parseInt(answer) === captchaResult;
     }
-
     function maskInput(input, regex) {
       input.value = input.value.replace(regex, '');
     }
-
     function performSearch(query) {
       elements.searchResults.innerHTML = '';
       if (!query.trim()) {
         elements.searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>';
         return;
       }
-
       const content = [
         ...document.querySelectorAll('h1, h2, h3, p, .article-title, .article-summary, .news-title, .news-content')
       ].map(el => ({
         text: el.textContent.trim(),
         element: el
       }));
-
       const results = content.filter(item => item.text.toLowerCase().includes(query.toLowerCase()));
-
       if (results.length === 0) {
         elements.searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
         return;
       }
-
       results.forEach(result => {
         const div = document.createElement('div');
         div.className = 'result-item';
@@ -2293,7 +2021,6 @@
         elements.searchResults.appendChild(div);
       });
     }
-
     function updateTime() {
       const clock = document.getElementById('clock');
       if (typeof persianDate === 'undefined') {
@@ -2313,18 +2040,15 @@
       const persianDateStr = persianDateObj.format('D MMMM YYYY');
       clock.innerHTML = ` ${persianDateStr} - ${timeStr}`;
     }
-
     function changePromoText() {
       const message = promoMessages[currentPromoIndex];
       elements.promoText.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       elements.promoTextMobile.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
     }
-
     function escapeHTML(str) {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
-
     function filterArticles(category) {
       const articles = document.querySelectorAll('.article-card');
       articles.forEach(article => {
@@ -2335,12 +2059,10 @@
         }
       });
     }
-
     function loadMoreArticles() {
       // In a real implementation, this would fetch more articles from the server
       alert('در یک وب‌سایت واقعی، مقالات بیشتری از سرور بارگذاری می‌شوند.');
     }
-
     // Auth Modal Functions
     function openAuthModalFunc() {
       elements.authModal.classList.add('active');
@@ -2349,14 +2071,12 @@
       resetAuthForm();
       generateCaptcha();
     }
-
     function closeAuthModalFunc() {
       elements.authModal.classList.remove('active');
       elements.overlay.classList.remove('active');
       elements.body.style.overflow = '';
       resetAuthForm();
     }
-
     function resetAuthForm() {
       elements.authPhone.value = '';
       elements.authCode.value = '';
@@ -2379,13 +2099,11 @@
       updateButtonStates();
       updateUsernameStrength();
     }
-
     function updateButtonStates() {
       elements.nextToStep2.disabled = !validatePhone(elements.authPhone.value) || !validateCaptcha(elements.captchaAnswer.value);
       elements.nextToStep3.disabled = !validateCode(elements.authCode.value);
       elements.confirmProfileBtn.disabled = !validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
     }
-
     function updateUsernameStrength() {
       const name = elements.username.value;
       if (name.length < 3) {
@@ -2396,30 +2114,25 @@
         elements.usernameStrength.className = 'username-strength strong';
       }
     }
-
     function generateCaptcha() {
       captchaNum1 = Math.floor(Math.random() * 10) + 1;
       captchaNum2 = Math.floor(Math.random() * 10) + 1;
       captchaResult = captchaNum1 + captchaNum2;
       elements.captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
     }
-
     function showSpinner(button) {
       button.innerHTML = '<div class="spinner"></div>';
       button.disabled = true;
     }
-
     function hideSpinner(button, text) {
       button.innerHTML = text;
       button.disabled = false;
     }
-
     function startCountdown(timerSeconds = 60) {
       let seconds = timerSeconds;
       elements.authCountdown.innerHTML = seconds;
       elements.authTimer.style.display = 'block';
       elements.resendCodeBtn.style.display = 'none';
-
       authCountdownInterval = setInterval(() => {
         seconds--;
         elements.authCountdown.innerHTML = seconds;
@@ -2430,14 +2143,12 @@
         }
       }, 1000);
     }
-
     function simulateSendCode(phone) {
       // Simulate API call
       console.log('Code sent to:', phone);
       // For demo, assume code is '123456'
       return '123456';
     }
-
     function simulateVerifyCode(code, phone) {
       // For demo, check if code is '123456'
       if (code === '123456') {
@@ -2452,7 +2163,6 @@
       }
       return false;
     }
-
     function updateUserUI() {
       if (userData) {
         elements.profileIcon.style.display = 'none';
@@ -2469,13 +2179,12 @@
         elements.profileIcon.style.display = 'block';
       }
     }
-
     // Support Widget Visibility
     function handleSupportWidgetVisibility() {
       const footer = document.querySelector('footer');
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+     
       // If footer is visible in viewport, hide support widget
       if (footerRect.top < windowHeight && footerRect.bottom >= 0) {
         elements.supportWidget.classList.add('hidden');
@@ -2483,7 +2192,6 @@
         elements.supportWidget.classList.remove('hidden');
       }
     }
-
     // Event Listeners
     elements.menuToggle.addEventListener('click', () => {
       if (elements.sideMenu.classList.contains('active')) {
@@ -2492,9 +2200,7 @@
         openMenu();
       }
     });
-
     elements.closeBtn.addEventListener('click', closeMenu);
-
     elements.userProfile.addEventListener('click', (e) => {
       e.preventDefault();
       if (userData) {
@@ -2503,13 +2209,11 @@
         openAuthModalFunc();
       }
     });
-
     elements.logoutBtn.addEventListener('click', () => {
       elements.userMenu.classList.remove('active');
       elements.logoutModal.classList.add('active');
       elements.overlay.classList.add('active');
     });
-
     document.querySelector('.search-icon').addEventListener('click', () => {
       if (elements.searchInput.value.trim()) {
         console.log('جستجو برای:', elements.searchInput.value);
@@ -2517,7 +2221,6 @@
         openSearch();
       }
     });
-
     elements.overlay.addEventListener('click', () => {
       closeMenu();
       closeSearch();
@@ -2525,7 +2228,6 @@
       elements.logoutModal.classList.remove('active');
       closeAuthModalFunc();
     });
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMenu();
@@ -2535,29 +2237,24 @@
         closeAuthModalFunc();
       }
     });
-
     elements.searchInputLegacy.addEventListener('input', (e) => {
       performSearch(e.target.value);
     });
-
     elements.searchInput.addEventListener("input", (e) => {
       elements.clearSearch.classList.toggle('active', e.target.value.length > 0);
       // showSearchSuggestions(e.target.value);
     });
-
     elements.clearSearch.addEventListener("click", () => {
       elements.searchInput.value = '';
       elements.clearSearch.classList.remove('active');
       elements.searchInput.focus();
       elements.searchResults.innerHTML = '';
     });
-
     elements.newsletterForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('از عضویت شما در خبرنامه فیروزه متشکریم! به زودی اطلاعات جدید برای شما ارسال خواهد شد.');
       elements.newsletterForm.reset();
     });
-
     elements.filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         elements.filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -2566,23 +2263,18 @@
         filterArticles(currentFilter);
       });
     });
-
     elements.loadMoreBtn.addEventListener('click', loadMoreArticles);
-
     // Auth Modal Event Listeners
     elements.closeAuthModal.addEventListener('click', closeAuthModalFunc);
-
     elements.authPhone.addEventListener('input', (e) => {
       maskInput(e.target, /[^0-9]/g);
       elements.authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     elements.captchaAnswer.addEventListener('input', () => {
       elements.captchaError.style.display = validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     elements.nextToStep2.addEventListener('click', (e) => {
       e.preventDefault();
       if (!validateCaptcha(elements.captchaAnswer.value)) {
@@ -2608,7 +2300,6 @@
         startCountdown(timer);
       }, 1000); // Simulate delay
     });
-
     elements.prevToStep1.addEventListener('click', () => {
       elements.step2.classList.remove('active');
       elements.step1.classList.add('active');
@@ -2617,17 +2308,14 @@
       elements.resendCodeBtn.style.display = 'none';
       if (authCountdownInterval) clearInterval(authCountdownInterval);
     });
-
     elements.authCode.addEventListener('input', (e) => {
       maskInput(e.target, /[^0-9]/g);
       elements.authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
     elements.authCode.addEventListener('paste', (e) => e.preventDefault());
     elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-
     elements.nextToStep3.addEventListener('click', (e) => {
       e.preventDefault();
       const code = elements.authCode.value;
@@ -2670,31 +2358,26 @@
         }
       }, 1000);
     });
-
     elements.resendCodeBtn.addEventListener('click', () => {
       simulateSendCode(currentPhone);
       let timer = failedAttempts > 5 ? 300 : 60;
       startCountdown(timer);
     });
-
     elements.toggleAuthCode.addEventListener('click', () => {
       const type = elements.authCode.type === 'password' ? 'text' : 'password';
       elements.authCode.type = type;
       elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
     });
-
     elements.prevToStep2.addEventListener('click', () => {
       elements.step3.classList.remove('active');
       elements.step2.classList.add('active');
     });
-
     elements.username.addEventListener('input', (e) => {
       maskInput(e.target, /[^a-zA-Z0-9]/g);
       elements.usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
       updateUsernameStrength();
       updateButtonStates();
     });
-
     elements.characterCards.forEach(card => {
       card.addEventListener('click', () => {
         elements.characterCards.forEach(c => c.classList.remove('selected'));
@@ -2702,7 +2385,6 @@
         updateButtonStates();
       });
     });
-
     elements.confirmProfileBtn.addEventListener('click', () => {
       const name = elements.username.value;
       const selectedChar = document.querySelector('.character-card.selected');
@@ -2726,7 +2408,6 @@
       closeAuthModalFunc();
       alert('ثبت‌نام موفق!');
     });
-
     elements.confirmLogout.addEventListener('click', () => {
       userData = null;
       sessionStorage.removeItem('userData');
@@ -2734,15 +2415,12 @@
       elements.logoutModal.classList.remove('active');
       elements.overlay.classList.remove('active');
     });
-
     elements.cancelLogout.addEventListener('click', () => {
       elements.logoutModal.classList.remove('active');
       elements.overlay.classList.remove('active');
     });
-
     // Scroll event for support widget
     window.addEventListener('scroll', handleSupportWidgetVisibility);
-
     // Initialize
     updateUserUI();
     updateTime();
@@ -2751,5 +2429,50 @@
     changePromoText();
     handleSupportWidgetVisibility(); // Initial widget visibility
   </script>
+<script src="blog-data.js"></script>
+<script>
+    const articlesGrid = document.getElementById('articlesGrid'); // تابع ساخت کارت مقاله
+    function generateBlogCard(blog) {
+        return `
+          <div class="article-card fade-in" data-category="${blog.category}">
+            <img src="${blog.image}" alt="${blog.title}" class="article-image">
+            <div class="article-content">
+              <span class="article-category">${blog.categoryName}</span>
+              <h3 class="article-title">${blog.title}</h3>
+              <p class="article-summary">${blog.summary}</p>
+              <div class="article-meta">
+                <span class="article-date">${blog.date}</span>
+                <span class="article-author">نویسنده: ${blog.author}</span>
+              </div>
+              <a href="blog.html?id=${blog.id}" class="read-more-btn">بیشتر بخوانید</a>
+            </div>
+          </div>
+        `;
+    }
+    // رندر کردن اولیه همه مقالات
+    function renderBlogs(blogs) {
+        articlesGrid.innerHTML = blogs.map(blog => generateBlogCard(blog)).join('');
+    }
+    renderBlogs(blogsDatabase);
+    // لاجیک فیلتر کردن (اصلاح شده برای دیتای داینامیک)
+    const blogFilterButtons = document.querySelectorAll('.filter-btn');
+   
+    blogFilterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // کلاس اکتیو دکمه‌ها
+        blogFilterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+       
+        const filterValue = button.dataset.filter;
+       
+        if (filterValue === 'all') {
+            renderBlogs(blogsDatabase);
+        } else {
+            const filtered = blogsDatabase.filter(b => b.category === filterValue);
+            renderBlogs(filtered);
+        }
+      });
+    });
+</script>
 </body>
 </html>
