@@ -53,7 +53,7 @@
       margin: 0;
       padding: 0;
     }
-  
+ 
     body {
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       background: var(--background-color);
@@ -1017,7 +1017,7 @@
     .wizard-buttons .prev:hover {
       background: #ccc;
     }
-  
+ 
     /* Character and Username Selection */
     .character-grid {
       display: grid;
@@ -1214,21 +1214,21 @@
       .featured-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-    
+   
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-    
+   
       .main-content {
         display: grid;
         grid-template-columns: 1fr 250px;
         gap: 30px;
       }
-    
+   
       .hero-section h1 {
         font-size: 3rem;
       }
-    
+   
       .hero-section p {
         font-size: 1.2rem;
       }
@@ -1237,7 +1237,7 @@
       .featured-grid {
         grid-template-columns: repeat(6, 1fr);
       }
-    
+   
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -1248,68 +1248,68 @@
       justify-content: center;
       padding: 12px 10px;
     }
-    
+   
       .logo-search {
         flex-direction: column;
         gap: 12px;
       }
-    
+   
       .search-box {
         width: 70%;
       }
-    
+   
       .logo {
         font-size: 1rem;
       }
-    
+   
       .promo-text {
         display:flex ;
       }
-    
+   
       main {
         padding: 15px;
       }
-    
+   
       .hero-section h1 {
         font-size: 1.8rem;
       }
-    
+   
       .hero-section p {
         font-size: 0.95rem;
       }
-    
+   
       .featured-products h2, .products-section h2 {
         font-size: 1.4rem;
       }
-    
+   
       footer h2 {
         font-size: 1.5rem;
       }
-    
+   
       footer a {
         display: block;
         margin: 8px 0;
       }
-    
+   
       .social-bar {
         gap: 8px;
       }
-    
+   
       .social-box, .logo-box {
         width: 60px;
         height: 60px;
         font-size: 0.7rem;
       }
-    
+   
       .social-box img {
         width: 20px;
         height: 20px;
       }
-    
+   
       .pagination {
         gap: 5px;
       }
-    
+   
       .pagination-btn {
         padding: 8px 12px;
         font-size: 0.9rem;
@@ -1377,7 +1377,7 @@
       font-size: 1rem;
     }
       @media (max-width: 576px) {
-      
+     
       .menu-icon {
         font-size: 1.2rem;
       }
@@ -1708,16 +1708,16 @@
         </div>
       </section>
       <aside class="sidebar">
-        <h3><i class="fas fa-filter"></i> دسته‌بندی محصولات</h3>
-        <ul class="categories">
-          <li><a href="box-elegant.html"><i class="fas fa-box"></i> باکس الگانت</a></li>
-          <li><a href="maze-fingerfood.html"><i class="fas fa-utensils"></i> مزه و فینگر فود</a></li>
-          <li><a href="dessert-drinks.html"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی</a></li>
-          <li><a href="special-products.html"><i class="fas fa-star"></i> محصولات ویژه فیروزه</a></li>
-          <li><a href="organizational-services.html"><i class="fas fa-briefcase"></i> خدمات سازمانی</a></li>
-          <li><a href="semi-ready-food.html"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده</a></li>
-        </ul>
-      </aside>
+  <h3><i class="fas fa-filter"></i> دسته‌بندی محصولات</h3>
+  <ul class="categories">
+    <li onclick="filterByCategory(11)"><a href="#"><i class="fas fa-box"></i> باکس الگانت (۱۱)</a></li>
+    <li onclick="filterByCategory(12)"><a href="#"><i class="fas fa-utensils"></i> مزه و فینگر فود (۱۲)</a></li>
+    <li onclick="filterByCategory(13)"><a href="#"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی (۱۳)</a></li>
+    <li onclick="filterByCategory(14)"><a href="#"><i class="fas fa-star"></i> وی‌آی‌پی (۱۴)</a></li>
+    <li onclick="filterByCategory(15)"><a href="#"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده (۱۵)</a></li>
+    <li onclick="filterByCategory(16)"><a href="#"><i class="fas fa-briefcase"></i> خدمات سازمانی (۱۶)</a></li>
+  </ul>
+</aside>
     </div>
     <!-- Pagination -->
     <div class="pagination">
@@ -1782,6 +1782,7 @@
       </a>
     </div>
   </footer>
+  <script src="data.js"></script>
   <script>
     // Elements
     const body = document.body;
@@ -1838,184 +1839,6 @@
       "🍕 غذاهای تازه و خوشمزه هر روز!",
       "⭐ تخفیف ویژه برای مشتریان وفادار!",
       "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
-    ];
-    const products = [
-      {
-        id: 1,
-        name: "سینی مزه کلاسیک",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        price: "۲۵۰,۰۰۰ تومان",
-        image: "image1/fingerfood1.png",
-        rating: 4.5,
-        badge: "پرفروش",
-        category: ["fingerfood", "tray"],
-        tags: ["سینی", "مزه", "کلاسیک", "پنیر", "زیتون", "آجیل"]
-      },
-      {
-        id: 2,
-        name: "باکس الگانت",
-        description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای",
-        price: "۳۸۰,۰۰۰ تومان",
-        image: "image1/fingerfood2.png",
-        rating: 4.0,
-        badge: "جدید",
-        category: ["fingerfood"],
-        tags: ["فینگرفود", "لقمه", "مدیترانه", "الگانت"]
-      },
-      {
-        id: 3,
-        name: "دسر مینی تارت",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی",
-        price: "۱۸۰,۰۰۰ تومان",
-        image: "image1/fingerfood3.png",
-        rating: 5.0,
-        badge: "تخفیف",
-        category: ["dessert"],
-        tags: ["دسر", "تارت", "مینی", "میوه", "شکلات"]
-      },
-      {
-        id: 4,
-        name: "آجیل مخلوط لوکس",
-        description: "ترکیبی از پسته، بادام، فندق و گردو",
-        price: "۳۲۰,۰۰۰ تومان",
-        image: "image1/fingerfood4.png",
-        rating: 4.5,
-        badge: "پرفروش",
-        category: ["nuts"],
-        tags: ["آجیل", "پسته", "بادام", "فندق", "گردو"]
-      },
-      {
-        id: 5,
-        name: "نوشیدنی‌های خنک",
-        description: "مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار",
-        price: "از ۵۰,۰۰۰ تومان",
-        image: "image1/drinks.png",
-        rating: 4.0,
-        badge: "جدید",
-        category: ["drink"],
-        tags: ["نوشیدنی", "خنک", "طبیعی", "گازدار"]
-      },
-      {
-        id: 6,
-        name: "تنقلات",
-        description: "انواع چیپس، پفک و اسنک‌های ترد",
-        price: "از ۳۰,۰۰۰ تومان",
-        image: "image1/snacks.png",
-        rating: 4.5,
-        badge: "پرفروش",
-        category: ["snack"],
-        tags: ["تنقلات", "چیپس", "پفک", "اسنک"]
-      },
-      {
-        id: 7,
-        name: "پنیر و زیتون",
-        description: "انواع پنیرهای محلی و زیتون‌های طعم‌دار",
-        price: "از ۸۰,۰۰۰ تومان",
-        image: "image1/cheese.png",
-        rating: 4.2,
-        badge: "جدید",
-        category: ["cheese"],
-        tags: ["پنیر", "زیتون", "محلی", "طعم‌دار"]
-      },
-      {
-        id: 8,
-        name: "شیرینی و کیک",
-        description: "انواع کیک‌های خانگی و شیرینی‌های سنتی",
-        price: "از ۱۰۰,۰۰۰ تومان",
-        image: "image1/desserts.png",
-        rating: 4.7,
-        badge: "پرفروش",
-        category: ["dessert"],
-        tags: ["شیرینی", "کیک", "خانگی", "سنتی"]
-      },
-      {
-        id: 9,
-        name: "سینی مزه ویژه",
-        description: "ترکیبی از بهترین پنیرها و زیتون‌های انتخابی",
-        price: "۳۰۰,۰۰۰ تومان",
-        image: "image1/fingerfood1.png",
-        rating: 4.8,
-        badge: "پرفروش",
-        category: ["fingerfood", "tray"],
-        tags: ["سینی", "مزه", "ویژه", "پنیر", "زیتون"]
-      },
-      {
-        id: 10,
-        name: "فینگرفود سبک مدیترانه",
-        description: "ترکیبی از گوجه‌خشک، فیستق و پنیر فتا",
-        price: "۲۲۰,۰۰۰ تومان",
-        image: "image1/fingerfood2.png",
-        rating: 4.3,
-        badge: "جدید",
-        category: ["fingerfood"],
-        tags: ["فینگرفود", "مدیترانه", "گوجه", "فیستق", "فتا"]
-      },
-      {
-        id: 11,
-        name: "دسر شکلاتی لوکس",
-        description: "دسرهای شکلاتی با کیفیت بالا و طعم بی‌نظیر",
-        price: "۲۰۰,۰۰۰ تومان",
-        image: "image1/fingerfood3.png",
-        rating: 4.9,
-        badge: "تخفیف",
-        category: ["dessert"],
-        tags: ["دسر", "شکلات", "لوکس", "بی‌نظیر"]
-      },
-      {
-        id: 12,
-        name: "آجیل ایرانی",
-        description: "ترکیبی از بهترین آجیل‌های داخلی",
-        price: "۲۸۰,۰۰۰ تومان",
-        image: "image1/fingerfood4.png",
-        rating: 4.6,
-        badge: "پرفروش",
-        category: ["nuts"],
-        tags: ["آجیل", "ایرانی", "داخلی"]
-      },
-      {
-        id: 13,
-        name: "نوشیدنی‌های سرد طبیعی",
-        description: "نوشیدنی‌های خنک طبیعی بدون قند اضافه",
-        price: "از ۴۵,۰۰۰ تومان",
-        image: "image1/drinks.png",
-        rating: 4.1,
-        badge: "جدید",
-        category: ["drink"],
-        tags: ["نوشیدنی", "سرد", "طبیعی", "بدون قند"]
-      },
-      {
-        id: 14,
-        name: "اسنک‌های ترد",
-        description: "انواع اسنک‌های ترد و خوشمزه",
-        price: "از ۳۵,۰۰۰ تومان",
-        image: "image1/snacks.png",
-        rating: 4.4,
-        badge: "پرفروش",
-        category: ["snack"],
-        tags: ["اسنک", "ترد", "خوشمزه"]
-      },
-      {
-        id: 15,
-        name: "سینی میوه‌های خشک",
-        description: "ترکیبی از بهترین میوه‌های خشک ایرانی",
-        price: "۱۵۰,۰۰۰ تومان",
-        image: "image1/fingerfood1.png",
-        rating: 4.7,
-        badge: "جدید",
-        category: ["nuts", "tray"],
-        tags: ["سینی", "میوه", "خشک", "ایرانی"]
-      },
-      {
-        id: 16,
-        name: "فینگرفود مخصوص مهمانی",
-        description: "فینگرفودهای متنوع برای مهمانی‌های خاص",
-        price: "۴۵۰,۰۰۰ تومان",
-        image: "image1/fingerfood2.png",
-        rating: 4.8,
-        badge: "پرفروش",
-        category: ["fingerfood"],
-        tags: ["فینگرفود", "مهمانی", "مخصوص", "متنوع"]
-      }
     ];
     let currentPromoIndex = 0;
     let currentFilter = "all";
@@ -2076,20 +1899,20 @@
       const ratingStars = [];
       const fullStars = Math.floor(product.rating);
       const hasHalfStar = product.rating % 1 !== 0;
-    
+   
       for (let i = 0; i < fullStars; i++) {
         ratingStars.push('<i class="fas fa-star"></i>');
       }
-    
+   
       if (hasHalfStar) {
         ratingStars.push('<i class="fas fa-star-half-alt"></i>');
       }
-    
+   
       const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       for (let i = 0; i < emptyStars; i++) {
         ratingStars.push('<i class="far fa-star"></i>');
       }
-    
+   
       return `
         <div class="product-card fade-in">
           <div class="product-image">
@@ -2099,26 +1922,25 @@
           <div class="product-content">
             <h3>${product.name}</h3>
             <p>${product.description}</p>
-            <div class="product-rating">
-              ${ratingStars.join('')}
-              <span>(${product.rating})</span>
-            </div>
-            <div class="product-price"><i class="fas fa-tag"></i> ${product.price}</div>
-            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> ${product.price.startsWith('از') ? 'مشاهده محصولات' : 'افزودن به سبد'}</button>
+            <div class="product-price"><i class="fas fa-tag"></i> ${product.priceText}</div>
+           
+            <a href="product.html?id=${product.id}" class="add-to-cart" style="text-decoration:none; display:flex;">
+                <i class="fas fa-eye"></i> مشاهده و خرید
+            </a>
           </div>
         </div>
       `;
     }
     function filterProducts() {
-      let filteredProducts = products;
-    
+      let filteredProducts = productsDatabase;
+   
       // Apply category filter
       if (currentCategory !== "all") {
         filteredProducts = filteredProducts.filter(product =>
           product.category.includes(currentCategory)
         );
       }
-    
+   
       // Apply filter button filter
       if (currentFilter !== "all") {
         if (currentFilter === "new") {
@@ -2139,7 +1961,7 @@
           );
         }
       }
-    
+   
       // Apply search filter
       if (currentSearch) {
         const searchTerm = currentSearch.toLowerCase();
@@ -2149,12 +1971,12 @@
           product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
         );
       }
-    
+   
       return filteredProducts;
     }
     function renderProducts(productsToShow) {
       productsGrid.innerHTML = '';
-    
+   
       if (productsToShow.length === 0) {
         productsGrid.innerHTML = `
           <div class="no-results">
@@ -2165,7 +1987,7 @@
         `;
         return;
       }
-    
+   
       productsToShow.forEach(product => {
         productsGrid.innerHTML += generateProductCard(product);
       });
@@ -2309,6 +2131,12 @@
     }
     function escapeHTML(str) {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function filterByCategory(catId) {
+        const filtered = productsDatabase.filter(p => p.categoryId === catId);
+        renderProducts(filtered);
+        // اسکرول به بالای لیست
+        document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
     }
     // Event Listeners
     menuToggle.addEventListener('click', () => {
@@ -2531,10 +2359,10 @@
     paginationButtons.forEach(button => {
       button.addEventListener('click', () => {
         if (button.classList.contains('disabled')) return;
-      
+     
         paginationButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-      
+     
         // Scroll to top of products section
         document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
       });
@@ -2550,9 +2378,9 @@
     setInterval(updateTime, 1000);
     setInterval(changePromoText, 5000);
     updateUserUI();
-  
+ 
     // Render initial products
-    renderProducts(products);
+    renderProducts(productsDatabase);
   </script>
 </body>
 </html>

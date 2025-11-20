@@ -38,25 +38,22 @@
       --success-color: #4CAF50;
       --warning-color: #FF9800;
     }
-
     [data-theme="dark"] {
       --header-bg: #1a3c34;
       --text-light: #e0e0e0;
       --background-color: #1a1a1a;
       --text-dark: #cccccc;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html, body { 
-      margin: 0; 
-      padding: 0; 
+    html, body {
+      margin: 0;
+      padding: 0;
     }
-    
+  
     body {
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       background: var(--background-color);
@@ -65,7 +62,6 @@
       overflow-x: hidden;
       padding-top: 90px;
     }
-
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -86,23 +82,19 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       animation: slideIn 0.5s ease-out;
     }
-
     @keyframes slideIn {
       from { transform: translate(-50%, -100%); opacity: 0; }
       to { transform: translate(-50%, 0); opacity: 1; }
     }
-
     .menu-icon {
       font-size: 1.4rem;
       cursor: pointer;
       order: 1;
     }
-
     .menu-icon:hover i {
       transform: scale(1.1);
       transition: transform 0.2s ease;
     }
-
     .logo-search {
       flex: 1;
       display: flex;
@@ -111,7 +103,6 @@
       gap: 15px;
       order: 2;
     }
-
     .logo {
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       font-size: 1.4rem;
@@ -123,12 +114,10 @@
       text-decoration: none;
       text-transform: uppercase;
     }
-
     .logo img {
       height: 28px;
       width: auto;
     }
-
     .search-box {
       position: relative;
       width: 280px;
@@ -136,7 +125,6 @@
       display: flex;
       align-items: center;
     }
-
     .search-box input {
       flex: 1;
       padding: 8px 40px 8px 40px;
@@ -148,7 +136,6 @@
       direction: rtl;
       background: var(--text-light);
     }
-
     .search-icon, .clear-icon {
       background: var(--text-light);
       padding: 8px 12px;
@@ -158,17 +145,14 @@
       align-items: center;
       justify-content: center;
     }
-
     .search-icon {
       border-radius: 0 20px 20px 0;
     }
-
     .clear-icon {
       position: absolute;
       left: 0;
       display: none;
     }
-
     .clear-icon.active {
       display: flex;
     }
@@ -191,35 +175,29 @@
     transform: scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-
   .search-suggestions.active {
     display: block;
     opacity: 1;
     transform: scale(1);
   }
-
   .search-suggestions h4 {
     font-size: 0.85rem;
     margin: 5px 0;
     color: #333;
   }
-
   .search-suggestions ul {
     list-style: none;
     padding: 0;
     margin: 5px 0;
   }
-
   .search-suggestions li {
     padding: 5px 10px;
     cursor: pointer;
     font-size: 0.9rem;
   }
-
   .search-suggestions li:hover {
     background: var(--neutral-color);
   }
-
     .cart-profile {
       display: flex;
       align-items: center;
@@ -227,7 +205,6 @@
       order: 3;
       position: relative;
     }
-
     .promo-text {
       font-size: 0.85rem;
       color: #FFD700;
@@ -236,7 +213,6 @@
       gap: 5px;
       white-space: nowrap;
     }
-
     .cart-link, .profile-link {
       display: flex;
       align-items: center;
@@ -245,16 +221,13 @@
       position: relative;
       transition: color 0.3s;
     }
-
     .cart-link:hover, .profile-link:hover {
       color: var(--primary-color);
     }
-
     .cart-link:hover i, .profile-link:hover i {
       transform: scale(1.1);
       transition: transform 0.2s ease;
     }
-
     .cart-badge {
       position: absolute;
       top: -8px;
@@ -265,12 +238,10 @@
       padding: 2px 6px;
       font-size: 0.7rem;
     }
-
     .profile-icon {
       font-size: 1.1rem;
       cursor: pointer;
     }
-
     .user-avatar {
       width: 32px;
       height: 32px;
@@ -282,7 +253,6 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .user-menu {
       position: absolute;
       top: 50px;
@@ -297,22 +267,18 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       display: none;
     }
-
     .user-menu.active {
       display: block;
     }
-
     .user-menu .user-info {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 10px;
     }
-
     .user-menu .user-info .avatar {
       font-size: 2rem;
     }
-
     .user-menu a, .user-menu button {
       display: block;
       padding: 8px;
@@ -320,11 +286,9 @@
       color: var(--text-dark);
       cursor: pointer;
     }
-
     .user-menu a:hover, .user-menu button:hover {
       background: var(--neutral-color);
     }
-
     .side-menu {
       position: fixed;
       inset-block: 0;
@@ -350,8 +314,8 @@
       margin-bottom: 20px;
       transition: color 0.2s ease;
     }
-    .close-btn:hover { 
-      color: var(--primary-color); 
+    .close-btn:hover {
+      color: var(--primary-color);
     }
     .nav-menu {
       list-style: none;
@@ -389,17 +353,15 @@
       visibility: hidden;
       transition: all 0.3s ease;
     }
-    .overlay.active { 
-      opacity: 1; 
-      visibility: visible; 
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
-
     main {
       max-width: 1400px;
       margin: 0 auto;
       padding: 24px;
     }
-
     .hero-section {
       text-align: center;
       margin-bottom: 40px;
@@ -411,7 +373,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero-section::before {
       content: "";
       position: absolute;
@@ -422,7 +383,6 @@
       background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       transform: rotate(30deg);
     }
-
     .hero-section h1 {
       font-size: 2.5rem;
       margin-bottom: 15px;
@@ -430,7 +390,6 @@
       position: relative;
       z-index: 1;
     }
-
     .hero-section p {
       font-size: 1.1rem;
       max-width: 600px;
@@ -439,11 +398,9 @@
       position: relative;
       z-index: 1;
     }
-
     .featured-products {
       margin-bottom: 40px;
     }
-
     .featured-products h2 {
       text-align: center;
       font-size: 1.8rem;
@@ -455,14 +412,12 @@
       justify-content: center;
       gap: 10px;
     }
-
     .featured-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
       margin-bottom: 30px;
     }
-
     .featured-card {
       background: white;
       border-radius: var(--border-radius);
@@ -472,12 +427,10 @@
       position: relative;
       border: 1px solid rgba(0,0,0,0.05);
     }
-
     .featured-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
-
     .featured-image {
       height: 140px;
       background: var(--neutral-color);
@@ -487,18 +440,15 @@
       overflow: hidden;
       position: relative;
     }
-
     .featured-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-
     .featured-card:hover .featured-image img {
       transform: scale(1.05);
     }
-
     .featured-badge {
       position: absolute;
       top: 10px;
@@ -511,26 +461,22 @@
       font-weight: 600;
       z-index: 2;
     }
-
     .featured-content {
       padding: 15px;
       text-align: center;
     }
-
     .featured-content h3 {
       font-size: 1rem;
       margin-bottom: 8px;
       color: var(--text-dark);
       font-weight: 600;
     }
-
     .featured-content p {
       font-size: 0.85rem;
       color: #666;
       margin-bottom: 10px;
       line-height: 1.4;
     }
-
     .featured-price {
       font-size: 1rem;
       font-weight: 700;
@@ -541,7 +487,6 @@
       justify-content: center;
       gap: 5px;
     }
-
     .add-to-cart {
       width: 100%;
       padding: 10px;
@@ -557,12 +502,10 @@
       justify-content: center;
       gap: 8px;
     }
-
     .add-to-cart:hover {
       background: var(--secondary-color);
       transform: translateY(-2px);
     }
-
     .filters {
       display: flex;
       justify-content: center;
@@ -570,7 +513,6 @@
       margin-bottom: 30px;
       flex-wrap: wrap;
     }
-
     .filter-btn {
       padding: 10px 20px;
       background: white;
@@ -584,20 +526,17 @@
       align-items: center;
       gap: 5px;
     }
-
     .filter-btn.active, .filter-btn:hover {
-      background: var(--primary-color);
+      background: #26A69A;
       color: white;
       border-color: var(--primary-color);
     }
-
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
       margin-bottom: 40px;
     }
-
     .product-card {
       background: white;
       border-radius: var(--border-radius);
@@ -606,12 +545,10 @@
       transition: all 0.3s ease;
       border: 1px solid rgba(0,0,0,0.05);
     }
-
     .product-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
-
     .product-image {
       height: 130px;
       background: var(--neutral-color);
@@ -621,18 +558,15 @@
       overflow: hidden;
       position: relative;
     }
-
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-
     .product-card:hover .product-image img {
       transform: scale(1.05);
     }
-
     .product-badge {
       position: absolute;
       top: 8px;
@@ -644,26 +578,22 @@
       font-size: 0.65rem;
       font-weight: 600;
     }
-
     .product-content {
       padding: 15px;
       text-align: center;
     }
-
     .product-content h3 {
       font-size: 0.95rem;
       margin-bottom: 8px;
       color: var(--text-dark);
       font-weight: 600;
     }
-
     .product-content p {
       font-size: 0.8rem;
       color: #666;
       margin-bottom: 10px;
       line-height: 1.4;
     }
-
     .product-price {
       font-size: 0.95rem;
       font-weight: 700;
@@ -674,7 +604,6 @@
       justify-content: center;
       gap: 5px;
     }
-
     .sidebar {
       background: white;
       border-radius: var(--border-radius);
@@ -683,7 +612,6 @@
       margin-bottom: 30px;
       border: 1px solid rgba(0,0,0,0.05);
     }
-
     .sidebar h3 {
       font-size: 1.2rem;
       margin-bottom: 20px;
@@ -695,11 +623,9 @@
       justify-content: center;
       gap: 8px;
     }
-
     .categories {
       list-style: none;
     }
-
     .categories li {
       padding: 12px 15px;
       border-bottom: 1px solid var(--neutral-color);
@@ -710,17 +636,14 @@
       align-items: center;
       gap: 10px;
     }
-
     .categories li:last-child {
       border-bottom: none;
     }
-
     .categories li:hover, .categories li.active {
-      background: var(--primary-color);
+      background: #26A69A !important;
       color: white;
       border-radius: 8px;
     }
-
     .contact-section {
       background: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
       color: white;
@@ -732,7 +655,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .contact-section::before {
       content: "";
       position: absolute;
@@ -743,21 +665,18 @@
       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
       background-size: 100px 100px;
     }
-
     .contact-section h2 {
       font-size: 1.5rem;
       margin-bottom: 15px;
       position: relative;
       z-index: 1;
     }
-
     .contact-section p {
       margin-bottom: 15px;
       font-size: 1rem;
       position: relative;
       z-index: 1;
     }
-
     .contact-buttons {
       display: flex;
       justify-content: center;
@@ -766,7 +685,6 @@
       position: relative;
       z-index: 1;
     }
-
     .contact-btn {
       padding: 12px 20px;
       background: white;
@@ -780,12 +698,10 @@
       align-items: center;
       gap: 8px;
     }
-
     .contact-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-
     footer {
       background: var(--gradient-start);
       color: var(--text-light);
@@ -796,7 +712,6 @@
       position: relative;
       overflow: hidden;
     }
-
     footer::before {
       content: "";
       position: absolute;
@@ -807,7 +722,6 @@
       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
       background-size: 100px 100px;
     }
-
     footer h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -816,7 +730,6 @@
       position: relative;
       z-index: 1;
     }
-
     footer p {
       max-width: 600px;
       margin: 0 auto 20px;
@@ -825,13 +738,11 @@
       position: relative;
       z-index: 1;
     }
-
     footer .links {
       margin: 20px 0;
       position: relative;
       z-index: 1;
     }
-
     footer a {
       color: var(--text-light);
       text-decoration: none;
@@ -842,12 +753,10 @@
       padding: 8px 15px;
       border-radius: 8px;
     }
-
-    footer a:hover { 
-      color: var(--primary-color); 
+    footer a:hover {
+      color: var(--primary-color);
       background: rgba(255, 255, 255, 0.1);
     }
-
     footer .contact-info {
       font-size: 1rem;
       margin: 20px 0;
@@ -855,16 +764,14 @@
       position: relative;
       z-index: 1;
     }
-
-    #clock { 
-      color: var(--text-light); 
-      margin-top: 15px; 
+    #clock {
+      color: var(--text-light);
+      margin-top: 15px;
       font-weight: 500;
       font-size: 0.95rem;
       position: relative;
       z-index: 1;
     }
-
     footer .copyright {
       margin-top: 25px;
       padding-top: 20px;
@@ -874,7 +781,6 @@
       position: relative;
       z-index: 1;
     }
-
     .social-bar {
       background: transparent;
       display: flex;
@@ -886,7 +792,6 @@
       position: relative;
       z-index: 1;
     }
-
     .social-box {
       width: 70px;
       height: 70px;
@@ -904,20 +809,17 @@
       cursor: pointer;
       border-radius: 12px;
     }
-
     .social-box img {
       width: 24px;
       height: 24px;
       margin-bottom: 5px;
       object-fit: contain;
     }
-
     .social-box:hover {
       background: var(--primary-color);
       color: var(--text-light);
       transform: scale(1.05);
     }
-
     .logo-box {
       width: 70px;
       height: 70px;
@@ -929,17 +831,14 @@
       overflow: hidden;
       transition: all 0.3s ease;
     }
-
     .logo-box img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-
     .logo-box:hover {
       transform: scale(1.05);
     }
-
     /* Auth Modal Styles */
     .auth-modal {
       position: fixed;
@@ -1118,7 +1017,7 @@
     .wizard-buttons .prev:hover {
       background: #ccc;
     }
-    
+  
     /* Character and Username Selection */
     .character-grid {
       display: grid;
@@ -1147,7 +1046,6 @@
       color: var(--text-light);
       box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
     }
-
     /* Logout Modal */
     .logout-modal {
       position: fixed;
@@ -1220,7 +1118,6 @@
     .logout-buttons .cancel:hover {
       background: #ccc;
     }
-
     .spinner {
       border: 4px solid rgba(255, 255, 255, 0.3);
       border-top: 4px solid #fff;
@@ -1260,7 +1157,6 @@
       width: 100%;
       margin-top: 10px;
     }
-
     /* Pagination Styles */
     .pagination {
       display: flex;
@@ -1270,7 +1166,6 @@
       margin: 40px 0;
       flex-wrap: wrap;
     }
-
     .pagination-btn {
       padding: 10px 15px;
       background: white;
@@ -1283,24 +1178,20 @@
       align-items: center;
       gap: 5px;
     }
-
     .pagination-btn:hover {
       background: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
     }
-
     .pagination-btn.active {
       background: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
     }
-
     .pagination-btn.disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
-
     /* Product Rating */
     .product-rating {
       display: flex;
@@ -1309,137 +1200,129 @@
       gap: 3px;
       margin-bottom: 8px;
     }
-
     .product-rating i {
       color: #FFD700;
       font-size: 0.8rem;
     }
-
     .product-rating span {
       font-size: 0.75rem;
       color: #666;
       margin-right: 5px;
     }
-
     /* Responsive Design */
     @media (min-width: 768px) {
       .featured-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-      
+    
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-      
+    
       .main-content {
         display: grid;
         grid-template-columns: 1fr 250px;
         gap: 30px;
       }
-      
+    
       .hero-section h1 {
         font-size: 3rem;
       }
-      
+    
       .hero-section p {
         font-size: 1.2rem;
       }
     }
-
     @media (min-width: 1024px) {
       .featured-grid {
         grid-template-columns: repeat(6, 1fr);
       }
-      
+    
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
     }
-
     @media (max-width: 767px) {
       .navbar {
       flex-wrap: wrap;
       justify-content: center;
       padding: 12px 10px;
     }
-      
+    
       .logo-search {
         flex-direction: column;
         gap: 12px;
       }
-      
+    
       .search-box {
         width: 70%;
       }
-      
+    
       .logo {
         font-size: 1rem;
       }
-      
+    
       .promo-text {
         display:flex ;
       }
-      
+    
       main {
         padding: 15px;
       }
-      
+    
       .hero-section h1 {
         font-size: 1.8rem;
       }
-      
+    
       .hero-section p {
         font-size: 0.95rem;
       }
-      
+    
       .featured-products h2, .products-section h2 {
         font-size: 1.4rem;
       }
-      
+    
       footer h2 {
         font-size: 1.5rem;
       }
-      
+    
       footer a {
         display: block;
         margin: 8px 0;
       }
-      
+    
       .social-bar {
         gap: 8px;
       }
-      
+    
       .social-box, .logo-box {
         width: 60px;
         height: 60px;
         font-size: 0.7rem;
       }
-      
+    
       .social-box img {
         width: 20px;
         height: 20px;
       }
-      
+    
       .pagination {
         gap: 5px;
       }
-      
+    
       .pagination-btn {
         padding: 8px 12px;
         font-size: 0.9rem;
       }
     }
-
     /* Animation Classes */
     .fade-in {
       animation: fadeIn 0.5s ease-in;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     /* Loading Spinner */
     .loading-spinner {
       display: inline-block;
@@ -1450,11 +1333,9 @@
       border-top-color: #fff;
       animation: spin 1s ease-in-out infinite;
     }
-
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
     /* Notification Badge */
     .notification-badge {
       position: absolute;
@@ -1471,7 +1352,6 @@
       justify-content: center;
       font-weight: bold;
     }
-
     /* No results message */
     .no-results {
       grid-column: 1 / -1;
@@ -1482,25 +1362,22 @@
       box-shadow: var(--card-shadow);
       margin: 20px 0;
     }
-
     .no-results i {
       font-size: 3rem;
       color: var(--neutral-color);
       margin-bottom: 20px;
     }
-
     .no-results h3 {
       font-size: 1.5rem;
       color: var(--text-dark);
       margin-bottom: 10px;
     }
-
     .no-results p {
       color: #666;
       font-size: 1rem;
     }
       @media (max-width: 576px) {
-        
+      
       .menu-icon {
         font-size: 1.2rem;
       }
@@ -1534,11 +1411,9 @@
       padding: 5px 18px 4px 25px;
       font-size: 0.80rem;
     }
-
     .search-icon, .clear-icon {
       padding: 3px 8px;
     }
-
     .promo-input {
         font-size: 0.8rem;
       }
@@ -1546,30 +1421,27 @@
   }
   </style>
 </head>
-
 <body data-theme="light">
   <header class="navbar">
     <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
       <i class="fas fa-bars"></i>
     </div>
-
     <div class="logo-search">
       <a href="index.html" class="logo">
         <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" loading="lazy loading">
         FIROUZEH
       </a>
       <div class="search-box">
-        <input 
-          type="text" 
-          placeholder="جستجو در محصولات..." 
-          id="searchInput" 
+        <input
+          type="text"
+          placeholder="جستجو در محصولات..."
+          id="searchInput"
           aria-label="جستجوی محصولات"
         >
         <div class="clear-icon" id="clearSearch"><i class="fas fa-times"></i></div>
         <div class="search-icon"><i class="fas fa-search"></i></div>
       </div>
     </div>
-
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
       <a href="/cart" class="cart-link" role="button" aria-label="سبد خرید">
@@ -1589,7 +1461,6 @@
       </div>
     </div>
   </header>
-
   <div class="overlay" id="overlay"></div>
   <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
     <div class="close-btn" aria-label="بستن منو">×</div>
@@ -1615,7 +1486,6 @@
       </li>
     </ul>
   </nav>
-
   <!-- Auth Modal -->
   <div class="auth-modal" id="authModal">
     <div class="auth-modal-content">
@@ -1681,7 +1551,6 @@
       </div>
     </div>
   </div>
-
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -1693,13 +1562,11 @@
       </div>
     </div>
   </div>
-
   <main>
     <section class="hero-section">
       <h1><i class="fas fa-utensils"></i> محصولات فینگرفود فیروزه</h1>
       <p>انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما</p>
     </section>
-
     <section class="featured-products">
       <h2><i class="fas fa-star"></i> محصولات ویژه</h2>
       <div class="featured-grid">
@@ -1825,41 +1692,33 @@
         </div>
       </div>
     </section>
-
     <div class="filters">
       <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> همه محصولات</button>
-      <button class="filter-btn" data-filter="fingerfood"><i class="fas fa-utensils"></i> فینگرفود</button>
-      <button class="filter-btn" data-filter="dessert"><i class="fas fa-cake"></i> دسر</button>
-      <button class="filter-btn" data-filter="nuts"><i class="fas fa-seedling"></i> آجیل</button>
-      <button class="filter-btn" data-filter="drink"><i class="fas fa-wine-bottle"></i> نوشیدنی</button>
+      <button class="filter-btn" data-filter="price-asc"><i class="fas fa-sort-amount-up"></i> قیمت کم به زیاد</button>
+      <button class="filter-btn" data-filter="price-desc"><i class="fas fa-sort-amount-down"></i> قیمت زیاد به کم</button>
       <button class="filter-btn" data-filter="snack"><i class="fas fa-cookie-bite"></i> تنقلات</button>
       <button class="filter-btn" data-filter="new"><i class="fas fa-star"></i> جدید</button>
       <button class="filter-btn" data-filter="discount"><i class="fas fa-percent"></i> تخفیف</button>
       <button class="filter-btn" data-filter="popular"><i class="fas fa-fire"></i> پرفروش</button>
     </div>
-
     <div class="main-content">
       <section class="products-section">
         <div class="products-grid">
           <!-- Product cards will be generated dynamically -->
         </div>
       </section>
-
       <aside class="sidebar">
         <h3><i class="fas fa-filter"></i> دسته‌بندی محصولات</h3>
         <ul class="categories">
-          <li class="active" data-category="all"><i class="fas fa-th-large"></i> همه محصولات</li>
-          <li data-category="fingerfood"><i class="fas fa-utensils"></i> فینگرفود</li>
-          <li data-category="dessert"><i class="fas fa-cake"></i> دسر و شیرینی</li>
-          <li data-category="nuts"><i class="fas fa-seedling"></i> آجیل و خشکبار</li>
-          <li data-category="drink"><i class="fas fa-wine-bottle"></i> نوشیدنی</li>
-          <li data-category="snack"><i class="fas fa-cookie-bite"></i> تنقلات</li>
-          <li data-category="cheese"><i class="fas fa-cheese"></i> پنیر و زیتون</li>
-          <li data-category="tray"><i class="fas fa-concierge-bell"></i> سینی‌های مخصوص</li>
+          <li><a href="box-elegant.html"><i class="fas fa-box"></i> باکس الگانت</a></li>
+          <li><a href="maze-fingerfood.html"><i class="fas fa-utensils"></i> مزه و فینگر فود</a></li>
+          <li><a href="dessert-drinks.html"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی</a></li>
+          <li><a href="special-products.html"><i class="fas fa-star"></i> محصولات ویژه فیروزه</a></li>
+          <li><a href="organizational-services.html"><i class="fas fa-briefcase"></i> خدمات سازمانی</a></li>
+          <li><a href="semi-ready-food.html"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده</a></li>
         </ul>
       </aside>
     </div>
-
     <!-- Pagination -->
     <div class="pagination">
       <button class="pagination-btn disabled"><i class="fas fa-chevron-right"></i> قبلی</button>
@@ -1872,7 +1731,6 @@
       <button class="pagination-btn">7</button>
       <button class="pagination-btn">بعدی <i class="fas fa-chevron-left"></i></button>
     </div>
-
     <section class="contact-section">
       <h2><i class="fas fa-headset"></i> برای دریافت مشاوره و اطلاعات بیشتر</h2>
       <p><i class="fas fa-phone"></i> شماره تماس: 041-33367052 | <i class="fab fa-whatsapp"></i> واتس‌اپ:09142830328</p>
@@ -1884,7 +1742,6 @@
       </div>
     </section>
   </main>
-
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -1925,7 +1782,6 @@
       </a>
     </div>
   </footer>
-
   <script>
     // Elements
     const body = document.body;
@@ -1976,7 +1832,6 @@
     const captchaQuestion = document.getElementById('captchaQuestion');
     const captchaAnswer = document.getElementById('captchaAnswer');
     const captchaError = document.getElementById('captchaError');
-
     // Data
     const promoMessages = [
       "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
@@ -1984,186 +1839,184 @@
       "⭐ تخفیف ویژه برای مشتریان وفادار!",
       "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
     ];
-
     const products = [
-      { 
-        id: 1, 
-        name: "سینی مزه کلاسیک", 
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک", 
-        price: "۲۵۰,۰۰۰ تومان", 
-        image: "image1/fingerfood1.png", 
-        rating: 4.5, 
+      {
+        id: 1,
+        name: "سینی مزه کلاسیک",
+        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        price: "۲۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.5,
         badge: "پرفروش",
         category: ["fingerfood", "tray"],
         tags: ["سینی", "مزه", "کلاسیک", "پنیر", "زیتون", "آجیل"]
       },
-      { 
-        id: 2, 
-        name: "باکس الگانت", 
-        description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای", 
-        price: "۳۸۰,۰۰۰ تومان", 
-        image: "image1/fingerfood2.png", 
-        rating: 4.0, 
+      {
+        id: 2,
+        name: "باکس الگانت",
+        description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای",
+        price: "۳۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.0,
         badge: "جدید",
         category: ["fingerfood"],
         tags: ["فینگرفود", "لقمه", "مدیترانه", "الگانت"]
       },
-      { 
-        id: 3, 
-        name: "دسر مینی تارت", 
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی", 
-        price: "۱۸۰,۰۰۰ تومان", 
-        image: "image1/fingerfood3.png", 
-        rating: 5.0, 
+      {
+        id: 3,
+        name: "دسر مینی تارت",
+        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی",
+        price: "۱۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood3.png",
+        rating: 5.0,
         badge: "تخفیف",
         category: ["dessert"],
         tags: ["دسر", "تارت", "مینی", "میوه", "شکلات"]
       },
-      { 
-        id: 4, 
-        name: "آجیل مخلوط لوکس", 
-        description: "ترکیبی از پسته، بادام، فندق و گردو", 
-        price: "۳۲۰,۰۰۰ تومان", 
-        image: "image1/fingerfood4.png", 
-        rating: 4.5, 
+      {
+        id: 4,
+        name: "آجیل مخلوط لوکس",
+        description: "ترکیبی از پسته، بادام، فندق و گردو",
+        price: "۳۲۰,۰۰۰ تومان",
+        image: "image1/fingerfood4.png",
+        rating: 4.5,
         badge: "پرفروش",
         category: ["nuts"],
         tags: ["آجیل", "پسته", "بادام", "فندق", "گردو"]
       },
-      { 
-        id: 5, 
-        name: "نوشیدنی‌های خنک", 
-        description: "مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار", 
-        price: "از ۵۰,۰۰۰ تومان", 
-        image: "image1/drinks.png", 
-        rating: 4.0, 
+      {
+        id: 5,
+        name: "نوشیدنی‌های خنک",
+        description: "مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار",
+        price: "از ۵۰,۰۰۰ تومان",
+        image: "image1/drinks.png",
+        rating: 4.0,
         badge: "جدید",
         category: ["drink"],
         tags: ["نوشیدنی", "خنک", "طبیعی", "گازدار"]
       },
-      { 
-        id: 6, 
-        name: "تنقلات", 
-        description: "انواع چیپس، پفک و اسنک‌های ترد", 
-        price: "از ۳۰,۰۰۰ تومان", 
-        image: "image1/snacks.png", 
-        rating: 4.5, 
+      {
+        id: 6,
+        name: "تنقلات",
+        description: "انواع چیپس، پفک و اسنک‌های ترد",
+        price: "از ۳۰,۰۰۰ تومان",
+        image: "image1/snacks.png",
+        rating: 4.5,
         badge: "پرفروش",
         category: ["snack"],
         tags: ["تنقلات", "چیپس", "پفک", "اسنک"]
       },
-      { 
-        id: 7, 
-        name: "پنیر و زیتون", 
-        description: "انواع پنیرهای محلی و زیتون‌های طعم‌دار", 
-        price: "از ۸۰,۰۰۰ تومان", 
-        image: "image1/cheese.png", 
-        rating: 4.2, 
+      {
+        id: 7,
+        name: "پنیر و زیتون",
+        description: "انواع پنیرهای محلی و زیتون‌های طعم‌دار",
+        price: "از ۸۰,۰۰۰ تومان",
+        image: "image1/cheese.png",
+        rating: 4.2,
         badge: "جدید",
         category: ["cheese"],
         tags: ["پنیر", "زیتون", "محلی", "طعم‌دار"]
       },
-      { 
-        id: 8, 
-        name: "شیرینی و کیک", 
-        description: "انواع کیک‌های خانگی و شیرینی‌های سنتی", 
-        price: "از ۱۰۰,۰۰۰ تومان", 
-        image: "image1/desserts.png", 
-        rating: 4.7, 
+      {
+        id: 8,
+        name: "شیرینی و کیک",
+        description: "انواع کیک‌های خانگی و شیرینی‌های سنتی",
+        price: "از ۱۰۰,۰۰۰ تومان",
+        image: "image1/desserts.png",
+        rating: 4.7,
         badge: "پرفروش",
         category: ["dessert"],
         tags: ["شیرینی", "کیک", "خانگی", "سنتی"]
       },
-      { 
-        id: 9, 
-        name: "سینی مزه ویژه", 
-        description: "ترکیبی از بهترین پنیرها و زیتون‌های انتخابی", 
-        price: "۳۰۰,۰۰۰ تومان", 
-        image: "image1/fingerfood1.png", 
-        rating: 4.8, 
+      {
+        id: 9,
+        name: "سینی مزه ویژه",
+        description: "ترکیبی از بهترین پنیرها و زیتون‌های انتخابی",
+        price: "۳۰۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.8,
         badge: "پرفروش",
         category: ["fingerfood", "tray"],
         tags: ["سینی", "مزه", "ویژه", "پنیر", "زیتون"]
       },
-      { 
-        id: 10, 
-        name: "فینگرفود سبک مدیترانه", 
-        description: "ترکیبی از گوجه‌خشک، فیستق و پنیر فتا", 
-        price: "۲۲۰,۰۰۰ تومان", 
-        image: "image1/fingerfood2.png", 
-        rating: 4.3, 
+      {
+        id: 10,
+        name: "فینگرفود سبک مدیترانه",
+        description: "ترکیبی از گوجه‌خشک، فیستق و پنیر فتا",
+        price: "۲۲۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.3,
         badge: "جدید",
         category: ["fingerfood"],
         tags: ["فینگرفود", "مدیترانه", "گوجه", "فیستق", "فتا"]
       },
-      { 
-        id: 11, 
-        name: "دسر شکلاتی لوکس", 
-        description: "دسرهای شکلاتی با کیفیت بالا و طعم بی‌نظیر", 
-        price: "۲۰۰,۰۰۰ تومان", 
-        image: "image1/fingerfood3.png", 
-        rating: 4.9, 
+      {
+        id: 11,
+        name: "دسر شکلاتی لوکس",
+        description: "دسرهای شکلاتی با کیفیت بالا و طعم بی‌نظیر",
+        price: "۲۰۰,۰۰۰ تومان",
+        image: "image1/fingerfood3.png",
+        rating: 4.9,
         badge: "تخفیف",
         category: ["dessert"],
         tags: ["دسر", "شکلات", "لوکس", "بی‌نظیر"]
       },
-      { 
-        id: 12, 
-        name: "آجیل ایرانی", 
-        description: "ترکیبی از بهترین آجیل‌های داخلی", 
-        price: "۲۸۰,۰۰۰ تومان", 
-        image: "image1/fingerfood4.png", 
-        rating: 4.6, 
+      {
+        id: 12,
+        name: "آجیل ایرانی",
+        description: "ترکیبی از بهترین آجیل‌های داخلی",
+        price: "۲۸۰,۰۰۰ تومان",
+        image: "image1/fingerfood4.png",
+        rating: 4.6,
         badge: "پرفروش",
         category: ["nuts"],
         tags: ["آجیل", "ایرانی", "داخلی"]
       },
-      { 
-        id: 13, 
-        name: "نوشیدنی‌های سرد طبیعی", 
-        description: "نوشیدنی‌های خنک طبیعی بدون قند اضافه", 
-        price: "از ۴۵,۰۰۰ تومان", 
-        image: "image1/drinks.png", 
-        rating: 4.1, 
+      {
+        id: 13,
+        name: "نوشیدنی‌های سرد طبیعی",
+        description: "نوشیدنی‌های خنک طبیعی بدون قند اضافه",
+        price: "از ۴۵,۰۰۰ تومان",
+        image: "image1/drinks.png",
+        rating: 4.1,
         badge: "جدید",
         category: ["drink"],
         tags: ["نوشیدنی", "سرد", "طبیعی", "بدون قند"]
       },
-      { 
-        id: 14, 
-        name: "اسنک‌های ترد", 
-        description: "انواع اسنک‌های ترد و خوشمزه", 
-        price: "از ۳۵,۰۰۰ تومان", 
-        image: "image1/snacks.png", 
-        rating: 4.4, 
+      {
+        id: 14,
+        name: "اسنک‌های ترد",
+        description: "انواع اسنک‌های ترد و خوشمزه",
+        price: "از ۳۵,۰۰۰ تومان",
+        image: "image1/snacks.png",
+        rating: 4.4,
         badge: "پرفروش",
         category: ["snack"],
         tags: ["اسنک", "ترد", "خوشمزه"]
       },
-      { 
-        id: 15, 
-        name: "سینی میوه‌های خشک", 
-        description: "ترکیبی از بهترین میوه‌های خشک ایرانی", 
-        price: "۱۵۰,۰۰۰ تومان", 
-        image: "image1/fingerfood1.png", 
-        rating: 4.7, 
+      {
+        id: 15,
+        name: "سینی میوه‌های خشک",
+        description: "ترکیبی از بهترین میوه‌های خشک ایرانی",
+        price: "۱۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood1.png",
+        rating: 4.7,
         badge: "جدید",
         category: ["nuts", "tray"],
         tags: ["سینی", "میوه", "خشک", "ایرانی"]
       },
-      { 
-        id: 16, 
-        name: "فینگرفود مخصوص مهمانی", 
-        description: "فینگرفودهای متنوع برای مهمانی‌های خاص", 
-        price: "۴۵۰,۰۰۰ تومان", 
-        image: "image1/fingerfood2.png", 
-        rating: 4.8, 
+      {
+        id: 16,
+        name: "فینگرفود مخصوص مهمانی",
+        description: "فینگرفودهای متنوع برای مهمانی‌های خاص",
+        price: "۴۵۰,۰۰۰ تومان",
+        image: "image1/fingerfood2.png",
+        rating: 4.8,
         badge: "پرفروش",
         category: ["fingerfood"],
         tags: ["فینگرفود", "مهمانی", "مخصوص", "متنوع"]
       }
     ];
-
     let currentPromoIndex = 0;
     let currentFilter = "all";
     let currentCategory = "all";
@@ -2176,7 +2029,6 @@
     let captchaNum1, captchaNum2, captchaResult;
     let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
     let lockTimer = 0;
-
     // Functions
     function openMenu() {
       sideMenu.classList.add('active');
@@ -2188,7 +2040,6 @@
       body.style.overflow = 'hidden';
       sideMenu.focus();
     }
-
     function closeMenu() {
       sideMenu.classList.remove('active');
       overlay.classList.remove('active');
@@ -2199,7 +2050,6 @@
       body.style.overflow = '';
       menuToggle.focus();
     }
-
     function updateTime() {
       if (typeof persianDate === 'undefined') {
         clock.textContent = 'خطا در بارگذاری تاریخ';
@@ -2218,30 +2068,28 @@
       const persianDateStr = persianDateObj.format('D MMMM YYYY');
       clock.innerHTML = `<i class="fas fa-clock"></i> ${persianDateStr} - ${timeStr}`;
     }
-
     function changePromoText() {
       promoText.innerHTML = `<i class="fas fa-bolt"></i> ${promoMessages[currentPromoIndex]}`;
       currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
     }
-
     function generateProductCard(product) {
       const ratingStars = [];
       const fullStars = Math.floor(product.rating);
       const hasHalfStar = product.rating % 1 !== 0;
-      
+    
       for (let i = 0; i < fullStars; i++) {
         ratingStars.push('<i class="fas fa-star"></i>');
       }
-      
+    
       if (hasHalfStar) {
         ratingStars.push('<i class="fas fa-star-half-alt"></i>');
       }
-      
+    
       const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       for (let i = 0; i < emptyStars; i++) {
         ratingStars.push('<i class="far fa-star"></i>');
       }
-      
+    
       return `
         <div class="product-card fade-in">
           <div class="product-image">
@@ -2261,54 +2109,52 @@
         </div>
       `;
     }
-
     function filterProducts() {
       let filteredProducts = products;
-      
+    
       // Apply category filter
       if (currentCategory !== "all") {
-        filteredProducts = filteredProducts.filter(product => 
+        filteredProducts = filteredProducts.filter(product =>
           product.category.includes(currentCategory)
         );
       }
-      
+    
       // Apply filter button filter
       if (currentFilter !== "all") {
         if (currentFilter === "new") {
-          filteredProducts = filteredProducts.filter(product => 
+          filteredProducts = filteredProducts.filter(product =>
             product.badge === "جدید"
           );
         } else if (currentFilter === "discount") {
-          filteredProducts = filteredProducts.filter(product => 
+          filteredProducts = filteredProducts.filter(product =>
             product.badge === "تخفیف"
           );
         } else if (currentFilter === "popular") {
-          filteredProducts = filteredProducts.filter(product => 
+          filteredProducts = filteredProducts.filter(product =>
             product.badge === "پرفروش"
           );
         } else {
-          filteredProducts = filteredProducts.filter(product => 
+          filteredProducts = filteredProducts.filter(product =>
             product.category.includes(currentFilter)
           );
         }
       }
-      
+    
       // Apply search filter
       if (currentSearch) {
         const searchTerm = currentSearch.toLowerCase();
-        filteredProducts = filteredProducts.filter(product => 
+        filteredProducts = filteredProducts.filter(product =>
           product.name.toLowerCase().includes(searchTerm) ||
           product.description.toLowerCase().includes(searchTerm) ||
           product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
         );
       }
-      
+    
       return filteredProducts;
     }
-
     function renderProducts(productsToShow) {
       productsGrid.innerHTML = '';
-      
+    
       if (productsToShow.length === 0) {
         productsGrid.innerHTML = `
           <div class="no-results">
@@ -2319,17 +2165,15 @@
         `;
         return;
       }
-      
+    
       productsToShow.forEach(product => {
         productsGrid.innerHTML += generateProductCard(product);
       });
     }
-
     function updateFilters() {
       const filteredProducts = filterProducts();
       renderProducts(filteredProducts);
     }
-
     // Auth functions
     function openAuthModalFunc() {
       authModal.classList.add('active');
@@ -2339,14 +2183,12 @@
       resetAuthForm();
       generateCaptcha();
     }
-
     function closeAuthModalFunc() {
       authModal.classList.remove('active');
       overlay.classList.remove('active');
       body.style.overflow = '';
       resetAuthForm();
     }
-
     function resetAuthForm() {
       authPhone.value = '';
       authCode.value = '';
@@ -2369,34 +2211,27 @@
       updateButtonStates();
       updateUsernameStrength();
     }
-
     function validatePhone(phone) {
       const regex = /^09[0-9]{9}$/;
       return regex.test(phone);
     }
-
     function validateCode(code) {
       return /^[0-9]{6}$/.test(code);
     }
-
     function validateUsername(name) {
       return /^[a-zA-Z0-9]{3,}$/.test(name);
     }
-
     function validateCaptcha(answer) {
       return parseInt(answer) === captchaResult;
     }
-
     function maskInput(input, regex) {
       input.value = input.value.replace(regex, '');
     }
-
     function updateButtonStates() {
       nextToStep2.disabled = !validatePhone(authPhone.value) || !validateCaptcha(captchaAnswer.value);
       nextToStep3.disabled = !validateCode(authCode.value);
       confirmProfileBtn.disabled = !validateUsername(username.value) || !document.querySelector('.character-card.selected');
     }
-
     function updateUsernameStrength() {
       const name = username.value;
       if (name.length < 3) {
@@ -2407,31 +2242,26 @@
         usernameStrength.className = 'username-strength strong';
       }
     }
-
     function generateCaptcha() {
       captchaNum1 = Math.floor(Math.random() * 10) + 1;
       captchaNum2 = Math.floor(Math.random() * 10) + 1;
       captchaResult = captchaNum1 + captchaNum2;
       captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
     }
-
     function showSpinner(button) {
       button.innerHTML = '<div class="spinner"></div>';
       button.disabled = true;
     }
-
     function hideSpinner(button, text) {
       button.innerHTML = text;
       button.disabled = false;
     }
-
     function simulateSendCode(phone) {
       // Simulate API call
       console.log('Code sent to:', phone);
       // For demo, assume code is '123456'
       return '123456';
     }
-
     function simulateVerifyCode(code, phone) {
       // For demo, check if code is '123456'
       if (code === '123456') {
@@ -2446,13 +2276,11 @@
       }
       return false;
     }
-
     function startCountdown(timerSeconds = 60) {
       let seconds = timerSeconds;
       authCountdown.innerHTML = seconds;
       authTimer.style.display = 'block';
       resendCodeBtn.style.display = 'none';
-
       authCountdownInterval = setInterval(() => {
         seconds--;
         authCountdown.innerHTML = seconds;
@@ -2463,7 +2291,6 @@
         }
       }, 1000);
     }
-
     function updateUserUI() {
       if (userData) {
         profileIcon.style.display = 'none';
@@ -2480,11 +2307,9 @@
         profileIcon.style.display = 'block';
       }
     }
-
     function escapeHTML(str) {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
-
     // Event Listeners
     menuToggle.addEventListener('click', () => {
       if (sideMenu.classList.contains('active')) {
@@ -2493,9 +2318,7 @@
         openMenu();
       }
     });
-
     closeBtn.addEventListener('click', closeMenu);
-
     userProfile.addEventListener('click', (e) => {
       e.preventDefault();
       if (userData) {
@@ -2504,20 +2327,16 @@
         openAuthModalFunc();
       }
     });
-
     closeAuthModal.addEventListener('click', closeAuthModalFunc);
-
     authPhone.addEventListener('input', (e) => {
       maskInput(e.target, /[^0-9]/g);
       authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     captchaAnswer.addEventListener('input', () => {
       captchaError.style.display = validateCaptcha(captchaAnswer.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     nextToStep2.addEventListener('click', (e) => {
       e.preventDefault();
       if (!validateCaptcha(captchaAnswer.value)) {
@@ -2543,7 +2362,6 @@
         startCountdown(timer);
       }, 1000); // Simulate delay
     });
-
     prevToStep1.addEventListener('click', () => {
       step2.classList.remove('active');
       step1.classList.add('active');
@@ -2552,17 +2370,14 @@
       resendCodeBtn.style.display = 'none';
       if (authCountdownInterval) clearInterval(authCountdownInterval);
     });
-
     authCode.addEventListener('input', (e) => {
       maskInput(e.target, /[^0-9]/g);
       authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
       updateButtonStates();
     });
-
     authCode.addEventListener('contextmenu', (e) => e.preventDefault());
     authCode.addEventListener('paste', (e) => e.preventDefault());
     authCode.addEventListener('copy', (e) => e.preventDefault());
-
     nextToStep3.addEventListener('click', (e) => {
       e.preventDefault();
       const code = authCode.value;
@@ -2605,31 +2420,26 @@
         }
       }, 1000);
     });
-
     resendCodeBtn.addEventListener('click', () => {
       simulateSendCode(currentPhone);
       let timer = failedAttempts > 5 ? 300 : 60;
       startCountdown(timer);
     });
-
     toggleAuthCode.addEventListener('click', () => {
       const type = authCode.type === 'password' ? 'text' : 'password';
       authCode.type = type;
       toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
     });
-
     prevToStep2.addEventListener('click', () => {
       step3.classList.remove('active');
       step2.classList.add('active');
     });
-
     username.addEventListener('input', (e) => {
       maskInput(e.target, /[^a-zA-Z0-9]/g);
       usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
       updateUsernameStrength();
       updateButtonStates();
     });
-
     characterCards.forEach(card => {
       card.addEventListener('click', () => {
         characterCards.forEach(c => c.classList.remove('selected'));
@@ -2637,7 +2447,6 @@
         updateButtonStates();
       });
     });
-
     confirmProfileBtn.addEventListener('click', () => {
       const name = username.value;
       const selectedChar = document.querySelector('.character-card.selected');
@@ -2661,13 +2470,11 @@
       closeAuthModalFunc();
       alert('ثبت‌نام موفق!');
     });
-
     logoutBtn.addEventListener('click', () => {
       userMenu.classList.remove('active');
       logoutModal.classList.add('active');
       overlay.classList.add('active');
     });
-
     confirmLogout.addEventListener('click', () => {
       userData = null;
       sessionStorage.removeItem('userData');
@@ -2675,19 +2482,16 @@
       logoutModal.classList.remove('active');
       overlay.classList.remove('active');
     });
-
     cancelLogout.addEventListener('click', () => {
       logoutModal.classList.remove('active');
       overlay.classList.remove('active');
     });
-
     overlay.addEventListener('click', () => {
       closeMenu();
       userMenu.classList.remove('active');
       logoutModal.classList.remove('active');
       closeAuthModalFunc();
     });
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMenu();
@@ -2696,13 +2500,11 @@
         closeAuthModalFunc();
       }
     });
-
     searchInput.addEventListener("input", (e) => {
       currentSearch = e.target.value;
       clearSearch.classList.toggle('active', e.target.value.length > 0);
       updateFilters();
     });
-
     clearSearch.addEventListener("click", () => {
       searchInput.value = '';
       currentSearch = '';
@@ -2710,7 +2512,6 @@
       searchInput.focus();
       updateFilters();
     });
-
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -2719,7 +2520,6 @@
         updateFilters();
       });
     });
-
     categoryItems.forEach(item => {
       item.addEventListener('click', () => {
         categoryItems.forEach(i => i.classList.remove('active'));
@@ -2728,32 +2528,29 @@
         updateFilters();
       });
     });
-
     paginationButtons.forEach(button => {
       button.addEventListener('click', () => {
         if (button.classList.contains('disabled')) return;
-        
+      
         paginationButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        
+      
         // Scroll to top of products section
         document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
       });
     });
-
     // Auto open auth modal after 1 minute if not logged in
     setTimeout(() => {
       if (!authModalShown && !userData) {
         openAuthModalFunc();
       }
     }, 60000); // 1 minute
-
     // Initialize
     updateTime();
     setInterval(updateTime, 1000);
     setInterval(changePromoText, 5000);
     updateUserUI();
-    
+  
     // Render initial products
     renderProducts(products);
   </script>
