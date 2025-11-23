@@ -2232,7 +2232,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-   
+ 
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2300,7 +2300,7 @@
       min-width: 160px;
       padding: 10px;
     }
-   
+ 
     .best-seller-image {
       height: 90px;
     }
@@ -2340,7 +2340,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-   
+ 
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2378,6 +2378,42 @@
   padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
   }
+/* استایل برای کارتِ دکمه مشاهده بیشتر در اسلایدر */
+.view-more-card {
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-start); /* رنگ پس‌زمینه متفاوت */
+  color: white;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.view-more-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.view-more-card a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.view-more-card i {
+  font-size: 2rem;
+  background: rgba(255,255,255,0.2);
+  padding: 15px;
+  border-radius: 50%;
+}
 </style>
 </head>
 <!DOCTYPE html>
@@ -2388,7 +2424,6 @@
   <meta name="description" content="فیروزه: بزرگترین پلتفرم آنلاین سفارش فینگرفود، مزه، دسر و محصولات ویژه در تبریز و آذربایجان شرقی. سفارش سریع، تازه و باکیفیت برای مهمانی‌ها، دورهمی‌ها و رویدادهای شما. ارسال به سراسر ایران.">
   <title>فینگرفود فیروزه - سفارش آنلاین مزه و فینگرفود</title>
   <!-- دیگر متاها و لینک‌های CSS/JS اگر لازم باشد -->
- 
   <!-- Schema Markups -->
   <script type="application/ld+json">
   {
@@ -2407,7 +2442,6 @@
     }
   }
   </script>
- 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2429,7 +2463,6 @@
     ]
   }
   </script>
- 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2450,7 +2483,6 @@
     }
   }
   </script>
- 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2799,14 +2831,11 @@
           <img src="image1/لوگوی ساخت.png" alt="تصویر داستان و تاریخچه فیروزه" loading="lazy">
         </div>
         <div class="story-text">
-          ما در فیروزه از یه ایده‌ی ساده شروع کردیم:
-چرا آماده‌سازی جشن‌ها، دورهمی‌ها و همایش‌ها باید استرس‌زا باشه؟
-چرا وقتی می‌خوای شادی کنی، باید وقت و انرژی زیادی برای هماهنگی بین چند جا بذاری؟
-از همین سؤال، برند فیروزه متولد شد — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
+          ما در فیروزه از یه ایده‌ی ساده شروع کردیم — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
 ما ترکیبی از کیفیت، خلاقیت و عشق به شادی هستیم.
 از فینگرفودهای تازه و دسرهای خوش‌طعم گرفته تا نوشیدنی‌های خاص و محصولات ویژه‌ی فیروزه که مخصوص رویدادهای خاص طراحی شدن.
 چه جشن کوچیکی در خونه‌تون باشه، چه همایشی بزرگ یا مراسم دانشگاهی، تیم فیروزه با دقت، نظم و ذوق خاص خودش کنار شماست.
-اگر هم جشن‌تون بیرون شهر برگزار می‌شه، باز هم روی ما حساب کنید — چون یه تیم قدرتمند در بخش ارسال داریم که غذاها و محصولات رو با بهترین شرایط به مقصد می‌رسونه.
+اگر هم جشن‌تون بیرون شهر برگزار می‌شه، باز هم روی ما حساب کنید — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
         </div>
       </div>
       <a href="about.html" class="story-button">بیشتر بدانید</a>
@@ -2858,22 +2887,9 @@
     </section>
     <section id="blogs">
       <h2><span>Blogs</span>مجله و اخبار فیروزه</h2>
-      <div class="blog-grid">
-        <a href="#blog1" class="blog-card">
-          <div class="blog-image">
-            <img src="https://placehold.co/400x200/26A69A/FFFFFF?text=Blog+1" alt="تصویر بلاگ اول درباره فینگرفود" loading="lazy">
-          </div>
-          <strong>عنوان بلاگ اول</strong>
-          <p>توضیحات کوتاه برای بلاگ اول. این متن کم‌رنگ‌تر و با فونت کوچک‌تر است.</p>
-        </a>
-        <a href="#blog2" class="blog-card">
-          <div class="blog-image">
-            <img src="https://placehold.co/400x200/1A7A6F/FFFFFF?text=Blog+2" alt="تصویر بلاگ دوم درباره مزه‌ها" loading="lazy">
-          </div>
-          <strong>عنوان بلاگ دوم</strong>
-          <p>توضیحات کوتاه برای بلاگ دوم. این متن کم‌رنگ‌تر و با فونت کوچک‌تر است.</p>
-        </a>
-      </div>
+ 
+      <div class="blog-grid" id="homeBlogGrid">
+        </div>
       <a href="blogs.html" class="view-more">مشاهده بیشتر</a>
     </section>
   </main>
@@ -2917,6 +2933,8 @@
       </a>
     </div>
   </footer>
+<script src="data.js"></script>
+<script src="blog-data.js"></script>
     <script>
     // Elements (Grouped for better readability)
     const elements = {
@@ -3586,78 +3604,95 @@
       state.userData = await getProfile();
       auth.updateUserUI();
     })();
-    // تابع جدید برای بخش پرفروش‌ترین‌ها
-    async function loadBestSellers() {
-      try {
-        const response = await fetch('/api/best-sellers/'); // فرض بر endpoint API جنگو
-        if (!response.ok) {
-          throw new Error('Failed to fetch best sellers');
-        }
-        const products = await response.json();
-        elements.sliderContainer.innerHTML = ''; // خالی کردن کانتینر
-        products.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'best-seller-card';
-          card.innerHTML = `
-            <div class="best-seller-image">
-              <img src="${product.image}" alt="تصویر ${product.name}" loading="lazy">
-            </div>
-            <p class="best-seller-description">${product.description}</p>
-            <div class="best-seller-price">${product.price}</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          `;
-          elements.sliderContainer.appendChild(card);
-        });
-      } catch (error) {
-        console.error('Error loading best sellers:', error);
-        // fallback به 12 placeholder منحصر به فرد اگر API در دسترس نبود
-        const fallbackProducts = [
-          { name: 'محصول 1', image: 'https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+1', description: 'توضیحات کوتاه محصول 1.', price: '۲۰۰,۰۰۰ تومان' },
-          { name: 'محصول 2', image: 'https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+2', description: 'توضیحات کوتاه محصول 2.', price: '۱۵۰,۰۰۰ تومان' },
-          { name: 'محصول 3', image: 'https://placehold.co/250x150/2E2A3F/FFFFFF?text=محصول+3', description: 'توضیحات کوتاه محصول 3.', price: '۱۸۰,۰۰۰ تومان' },
-          { name: 'محصول 4', image: 'https://placehold.co/250x150/064d3b/FFFFFF?text=محصول+4', description: 'توضیحات کوتاه محصول 4.', price: '۲۲۰,۰۰۰ تومان' },
-          { name: 'محصول 5', image: 'https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+5', description: 'توضیحات کوتاه محصول 5.', price: '۱۶۰,۰۰۰ تومان' },
-          { name: 'محصول 6', image: 'https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+6', description: 'توضیحات کوتاه محصول 6.', price: '۱۹۰,۰۰۰ تومان' },
-          { name: 'محصول 7', image: 'https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+7', description: 'توضیحات کوتاه محصول 7.', price: '۲۱۰,۰۰۰ تومان' },
-          { name: 'محصول 8', image: 'https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+8', description: 'توضیحات کوتاه محصول 8.', price: '۱۴۰,۰۰۰ تومان' },
-          { name: 'محصول 9', image: 'https://placehold.co/250x150/2E2A3F/FFFFFF?text=محصول+9', description: 'توضیحات کوتاه محصول 9.', price: '۱۷۰,۰۰۰ تومان' },
-          { name: 'محصول 10', image: 'https://placehold.co/250x150/064d3b/FFFFFF?text=محصول+10', description: 'توضیحات کوتاه محصول 10.', price: '۲۳۰,۰۰۰ تومان' },
-          { name: 'محصول 11', image: 'https://placehold.co/250x150/26A69A/FFFFFF?text=محصول+11', description: 'توضیحات کوتاه محصول 11.', price: '۱۵۵,۰۰۰ تومان' },
-          { name: 'محصول 12', image: 'https://placehold.co/250x150/1A7A6F/FFFFFF?text=محصول+12', description: 'توضیحات کوتاه محصول 12.', price: '۱۸۵,۰۰۰ تومان' },
-        ];
-        fallbackProducts.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'best-seller-card';
-          card.innerHTML = `
-            <div class="best-seller-image">
-              <img src="${product.image}" alt="تصویر ${product.name}" loading="lazy">
-            </div>
-            <p class="best-seller-description">${product.description}</p>
-            <div class="best-seller-price">${product.price}</div>
-            <div class="quantity-control">
-              <button class="decrement">-</button>
-              <input type="number" value="2" min="2">
-              <button class="increment">+</button>
-            </div>
-            <button class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i>
-              اضافه به سبد
-            </button>
-          `;
-          elements.sliderContainer.appendChild(card);
-        });
-      }
-    }
-    // لود پرفروش‌ها هنگام بارگذاری صفحه
-    window.addEventListener('DOMContentLoaded', loadBestSellers);
+// جایگزین کد قبلی loadBestSellers در انتهای اسکریپت index.html شوید
+function loadBestSellers() {
+  const container = document.getElementById('sliderContainer');
+  // اطمینان از اینکه productsDatabase لود شده است
+  if (typeof productsDatabase === 'undefined') {
+    console.error('فایل data.js لود نشده است!');
+    container.innerHTML = '<p style="color:white; text-align:center;">خطا در بارگذاری محصولات</p>';
+    return;
+  }
+  // 1. فیلتر کردن محصولات پرفروش و محدود کردن به 12 عدد
+  const bestSellers = productsDatabase
+    .filter(product => product.badge === "پرفروش")
+    .slice(0, 12);
+  // پاک کردن محتویات قبلی (لودینگ یا دیتای فیک)
+  container.innerHTML = '';
+  // 2. ساخت کارت برای هر محصول
+  bestSellers.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'best-seller-card';
+  
+    // نکته: لینک به صفحه product.html با ID محصول
+    card.innerHTML = `
+      <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
+        <div class="best-seller-image">
+          <img src="${product.image}" alt="${product.name}" loading="lazy">
+        </div>
+        <p class="best-seller-description">${product.description.substring(0, 50)}...</p>
+        <div class="best-seller-price">${product.priceText}</div>
+      </a>
+    
+      <div class="quantity-control">
+        <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">-</button>
+        <input type="number" value="1" min="1" readonly>
+        <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">+</button>
+      </div>
+    
+      <a href="product.html?id=${product.id}" class="add-to-cart">
+        <i class="fas fa-shopping-cart"></i>
+        مشاهده و خرید
+      </a>
+    `;
+    container.appendChild(card);
+  });
+  // 3. اضافه کردن کارت "مشاهده همه" در انتها
+  const viewMoreCard = document.createElement('div');
+  viewMoreCard.className = 'best-seller-card view-more-card';
+  viewMoreCard.innerHTML = `
+    <a href="finger-food.html">
+      <i class="fas fa-arrow-left"></i>
+      <span>مشاهده همه محصولات</span>
+    </a>
+  `;
+  container.appendChild(viewMoreCard);
+}// اجرا هنگام لود صفحه
+// ... کدهای قبلی (loadBestSellers) ...
+function loadHomeBlogs() {
+  const container = document.getElementById('homeBlogGrid');
+  // چک کنیم دیتابیس بلاگ لود شده باشد
+  if (typeof blogsDatabase === 'undefined') {
+    console.error('فایل blog-data.js لود نشده است!');
+    return;
+  }
+  // انتخاب 2 مقاله اول (یا جدیدترین‌ها)
+  // slice(0, 2) یعنی از اول آرایه تا دومی را بردار
+  const recentBlogs = blogsDatabase.slice(0, 2);
+  container.innerHTML = ''; // پاک کردن محتویات قبلی
+  recentBlogs.forEach(blog => {
+    // ساخت لینک به صورت یک کارت کامل (طبق استایل فعلی شما)
+    const card = document.createElement('a');
+    card.className = 'blog-card';
+    // لینک به صفحه تکی مقاله با ID مربوطه
+    card.href = `blog.html?id=${blog.id}`;
+   
+    card.innerHTML = `
+      <div class="blog-image">
+        <img src="${blog.image}" alt="${blog.title}" loading="lazy">
+      </div>
+      <strong>${blog.title}</strong>
+      <p>${blog.summary.substring(0, 80)}...</p>
+    `;
+   
+    container.appendChild(card);
+  });
+}
+// اضافه کردن تابع به ایونت لود صفحه
+window.addEventListener('DOMContentLoaded', () => {
+    loadBestSellers(); // تابع قبلی برای محصولات
+    loadHomeBlogs(); // تابع جدید برای بلاگ‌ها
+});
   </script>
 </body>
 </html>

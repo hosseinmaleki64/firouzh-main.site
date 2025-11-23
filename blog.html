@@ -2232,7 +2232,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-  
+ 
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2300,7 +2300,7 @@
       min-width: 160px;
       padding: 10px;
     }
-  
+ 
     .best-seller-image {
       height: 90px;
     }
@@ -2340,7 +2340,7 @@
     }
     .feature-card p {
       font-size: 0.7rem;
-  
+ 
     }
     .blog-grid {
   grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
@@ -2378,7 +2378,6 @@
   padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
 }
   }
-
   /* New Styles for Blog Upgrades */
   .breadcrumb {
     font-size: 0.9rem;
@@ -2869,107 +2868,25 @@
   <main>
     <section id="blog-post" class="blog-section">
       <div class="blog-content" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+       
         <nav class="breadcrumb">
-          <a href="/">خانه</a> > <a href="/blogs">بلاگ</a> > انواع گوشت برای برگر و نحوه ساخت آن
+          <a href="index.html">خانه</a> > <a href="blogs.html">بلاگ</a> > <span id="detail-breadcrumb-title">...</span>
         </nav>
-        <h1>انواع گوشت برای برگر و نحوه ساخت آن</h1>
+        <h1 id="detail-title">در حال بارگذاری...</h1>
+       
         <p class="blog-meta">
-          <span>نویسنده: علی رضایی</span> | 
-          <span>تاریخ: ۱۴۰۴/۰۸/۲۸</span> | 
-          <span>۷ دقیقه مطالعه</span> | 
-          <span>۰ نظر</span>
+          <span>نویسنده: <span id="detail-author"></span></span> |
+          <span>تاریخ: <span id="detail-date"></span></span> |
+          <span>زمان مطالعه: <span id="detail-readTime"></span></span>
         </p>
-        <img src="https://placehold.co/800x400/26A69A/FFFFFF?text=تصویر+برگر+خانگی" alt="تصویر برگر خانگی خوشمزه" class="hero-image" loading="lazy">
-        <p class="lead-paragraph">برگر یکی از محبوب‌ترین غذاهای فست‌فودی است که می‌توان آن را در خانه با مواد تازه و باکیفیت تهیه کرد. انتخاب گوشت مناسب نقش کلیدی در طعم و بافت نهایی برگر دارد.</p>
-        <aside class="toc">
-          <h3>فهرست مطالب</h3>
-          <ul>
-            <li><a href="#types-of-meat">انواع گوشت مناسب برای برگر</a></li>
-            <li><a href="#how-to-make">نحوه ساخت برگر خانگی</a></li>
-          </ul>
-        </aside>
-        <h2 id="types-of-meat">انواع گوشت مناسب برای برگر</h2>
-        <p>انتخاب گوشت با کیفیت و درصد چربی مناسب، راز یک برگر لذیذ است. بهترین گوشت‌ها عبارتند از:</p>
-        <ul>
-          <li><strong>گوشت گوساله:</strong> محبوب‌ترین انتخاب برای برگر. گوشت گردن، شانه یا مغز ران گوساله با ۱۵ تا ۲۰ درصد چربی ایده‌آل است. این چربی باعث آبدار شدن برگر می‌شود. برای تعادل طبع، می‌توان آن را با گوشت گوسفندی ترکیب کرد.</li>
-          <li><strong>گوشت گوسفندی:</strong> برای طعم قوی‌تر، اما چربی بیشتری دارد. بهتر است با گوساله مخلوط شود تا از سنگینی جلوگیری شود.</li>
-          <li><strong>ترکیب گوشت‌ها:</strong> مخلوط گوساله و گوسفندی (۸۰% گوساله و ۲۰% گوسفندی) تعادل خوبی ایجاد می‌کند و از سوءهاضمه جلوگیری می‌کند.</li>
-          <li><strong>گوشت‌های جایگزین:</strong> برای گزینه‌های سالم‌تر، می‌توان از گوشت مرغ یا بوقلمون استفاده کرد، اما چربی کمتری دارند و ممکن است خشک شوند.</li>
-        </ul>
-        <p>نکته مهم: گوشت باید تازه و چرخ‌کرده باشد. چربی ۱۵-۲۰% برای جلوگیری از خشک شدن برگر ضروری است.</p>
+        <img src="" alt="" class="hero-image" id="detail-image">
        
-        <h2 id="how-to-make">نحوه ساخت برگر خانگی</h2>
-        <p>ساخت برگر ساده است و تنها به چند مرحله نیاز دارد:</p>
-        <ol>
-          <li><strong>آماده‌سازی گوشت:</strong> ۵۰۰ گرم گوشت گوساله چرخ‌کرده (با ۲۰% چربی) را با یک پیاز رنده‌شده، نمک، فلفل سیاه، پودر سیر و کمی پودر سوخاری مخلوط کنید. مواد را ورز دهید تا یکدست شود.</li>
-          <li><strong>استراحت:</strong> مخلوط را به مدت ۳۰ دقیقه در یخچال بگذارید تا طعم‌ها جذب شوند.</li>
-          <li><strong>فرم‌دهی:</strong> گوشت را به شکل دایره‌های ۱۰۰-۱۵۰ گرمی فرم دهید. وسط آن را کمی گود کنید تا در پخت یکدست شود.</li>
-          <li><strong>پخت:</strong> روی گریل یا تابه چدنی با حرارت متوسط بپزید. هر طرف را ۴-۵ دقیقه بپزید تا مغزپخت شود. از پنیر چدار یا گودا برای تاپینگ استفاده کنید.</li>
-          <li><strong>سرو:</strong> در نان همبرگر با کاهو، گوجه، پیاز و سس دلخواه سرو کنید.</li>
-        </ol>
-        <p>با این روش، برگر خانگی تازه و سالم خواهید داشت که از نمونه‌های آماده بهتر است!</p>
+        <div id="detail-content"></div>
        
-        <img src="https://placehold.co/800x400/1A7A6F/FFFFFF?text=تصویر+ساخت+برگر" alt="تصویر مراحل ساخت برگر" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" loading="lazy">
-       
-        <p>اگر سؤالی دارید یا می‌خواهید محصولات مرتبط مانند گوشت تازه را سفارش دهید، با ما تماس بگیرید.</p>
-        
-        <div class="author-box">
-          <img src="http://www.coca.ir/wp-content/uploads/2023/06/%D9%85%D8%AA%D9%86-%D8%B2%DB%8C%D8%A8%D8%A7-%D9%87%D9%86%D8%B1-%D8%A2%D8%B4%D9%BE%D8%B2%DB%8C.jpg" alt="عکس نویسنده" class="author-avatar">
-          <div class="author-info">
-            <h4>علی رضایی</h4>
-            <p>علی رضایی، کارشناس آشپزی با بیش از ۱۰ سال تجربه در زمینه فست‌فود و غذاهای خانگی. علاقه‌مند به ترکیب طعم‌های سنتی ایرانی با غذاهای مدرن.</p>
-          </div>
-        </div>
-        
-        <div class="tags">
-          <strong>تگ‌ها:</strong>
-          <span>#برگر_خانگی</span>
-          <span>#گوشت</span>
-          <span>#آشپزی</span>
-        </div>
-        
-        <div class="related-posts">
-          <h3>مقالات مرتبط</h3>
-          <div class="related-grid">
-            <div class="related-card">
-              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+1" alt="مقاله مرتبط 1">
-              <h4>نحوه ساخت ساندویچ خانگی</h4>
-            </div>
-            <div class="related-card">
-              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+2" alt="مقاله مرتبط 2">
-              <h4>بهترین ادویه‌ها برای گوشت</h4>
-            </div>
-            <div class="related-card">
-              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+3" alt="مقاله مرتبط 3">
-              <h4>نکات سلامت در آشپزی</h4>
-            </div>
-            <div class="related-card">
-              <img src="https://placehold.co/250x150?text=مقاله+مرتبط+4" alt="مقاله مرتبط 4">
-              <h4>انواع پنیر برای برگر</h4>
-            </div>
-          </div>
-        </div>
-        
-        <div class="comments-section">
-          <h3>نظرات کاربران</h3>
-          <div class="comment-form">
-            <input type="text" placeholder="نام شما">
-            <input type="email" placeholder="ایمیل شما">
-            <textarea placeholder="نظر خود را بنویسید..."></textarea>
-            <button>ارسال نظر</button>
-          </div>
-          <div class="comments-list">
-            <!-- نظرات نمونه یا خالی -->
-            <div class="comment">
-              <strong>کاربر نمونه:</strong> مقاله عالی بود!
-            </div>
-          </div>
-        </div>
-        
-        <a href="/order" class="cta-button">سفارش محصولات مرتبط</a>
+        <a href="blogs.html" class="cta-button">بازگشت به لیست مقالات</a>
       </div>
     </section>
-  </main>
+</main>
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -3686,7 +3603,6 @@
       state.userData = await getProfile();
       auth.updateUserUI();
     })();
-
     // New JS for Upgrades
     // Scrollspy for TOC
     const sections = document.querySelectorAll('h2');
@@ -3706,7 +3622,6 @@
         }
       });
     });
-
     // Back to Top
     const backToTop = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
@@ -3715,7 +3630,6 @@
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
     // Copy Link
     document.getElementById('copy-link').addEventListener('click', (e) => {
       e.preventDefault();
@@ -3723,5 +3637,37 @@
       alert('لینک کپی شد!');
     });
   </script>
+<script src="blog-data.js"></script>
+<script>
+    // 1. گرفتن ID از URL
+    const params = new URLSearchParams(window.location.search);
+    const blogId = parseInt(params.get('id'));
+    // 2. پیدا کردن مقاله در دیتابیس
+    const blog = blogsDatabase.find(b => b.id === blogId);
+    if (blog) {
+        // 3. پر کردن اطلاعات در صفحه
+        document.title = blog.title + " - فینگرفود فیروزه"; // تایتل مرورگر
+       
+        document.getElementById('detail-breadcrumb-title').textContent = blog.title;
+        document.getElementById('detail-title').textContent = blog.title;
+        document.getElementById('detail-author').textContent = blog.author;
+        document.getElementById('detail-date').textContent = blog.date;
+        document.getElementById('detail-readTime').textContent = blog.readTime; const imgEl = document.getElementById('detail-image');
+        imgEl.src = blog.image;
+        imgEl.alt = blog.title;
+       
+        // مهم: تزریق محتوای HTML مقاله
+        document.getElementById('detail-content').innerHTML = blog.content;
+       
+    } else {
+        // اگر مقاله پیدا نشد
+        document.querySelector('.blog-content').innerHTML =
+            `<div style="text-align:center; padding: 50px;">
+                <h1>مقاله مورد نظر یافت نشد :(</h1>
+                <a href="blogs.html" class="cta-button">بازگشت به وبلاگ</a>
+            </div>`
+        ;
+    }
+</script>
 </body>
 </html>
