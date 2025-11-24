@@ -5,7 +5,7 @@ const blogsDatabase = [
         category: "education", // باید با data-filter دکمه ها یکی باشد
         categoryName: "آموزش",
         summary: "یاد بگیرید چگونه با رعایت اصول ساده، غذاهای خانگی حرفه ای بپزید و مهمانی های خود را به یادگاری تبدیل کنید.",
-        image: "https://placehold.co/600x400/26A69A/FFFFFF?text=آموزش+آشپزی",
+        image: "image1/17.jpg",
         author: "تیم فیروزه",
         date: "۱۴۰۴/۰۳/۱۵",
         readTime: "۵ دقیقه",
@@ -24,7 +24,7 @@ const blogsDatabase = [
         category: "education",
         categoryName: "آموزش",
         summary: "در این مقاله به بررسی انواع گوشت مناسب برای برگر و نحوه ساخت برگر خانگی می پردازیم.",
-        image: "https://placehold.co/800x400/26A69A/FFFFFF?text=تصویر+برگر+خانگی",
+        image: "image1/84.jpg",
         author: "علی رضایی",
         date: "۱۴۰۴/۰۸/۲۸",
         readTime: "۷ دقیقه",
