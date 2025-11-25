@@ -7,7 +7,7 @@ const productsDatabase = [
         price: 380000,
         priceText: "۳۸۰,۰۰۰ تومان", // برای نمایش راحت‌تر
         description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای مناسب برای ۴ نفر",
-        image: "image1/fingerfood2.png",
+        image: "image1/47.jpg",
         rating: 4.0,
         badge: "جدید",
         details: { // جزئیات اضافی برای صفحه محصول
@@ -84,7 +84,7 @@ const productsDatabase = [
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
         description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        image: "image1/fingerfood1.png",
+        image: "image1/108.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
@@ -104,11 +104,11 @@ const productsDatabase = [
     {
         id: 12008,
         categoryId: 12,
-        name: "مینی ساندویچ کالباس",
+        name: "مینی ساندویچ ژامبون",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
         description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        image: "image1/fingerfood1.png",
+        image: "image1/75.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
@@ -288,7 +288,7 @@ const productsDatabase = [
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
         description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        image: "image1/fingerfood1.png",
+        image: "image1/47.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
@@ -445,7 +445,7 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        image: "image1/fingerfood1.png",
+        image: "image1/43.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
@@ -553,7 +553,7 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
-        image: "image1/fingerfood1.png",
+        image: "image1/44.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
@@ -654,6 +654,18 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
     },
+    {
+        id: 12055,
+        categoryId: 12,
+        name: "اسپرینگ رول",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        image: "image1/45.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+    },
     
     // --- دسته ۱۳: دسر و نوشیدنی ---
     {
@@ -663,7 +675,7 @@ const productsDatabase = [
         price: 65000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
-        image: "image1/fingerfood3.png",
+        image: "image1/19.jpg",
         rating: 4.8,
         badge: "تخفیف",
         details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
@@ -687,7 +699,7 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
-        image: "image1/fingerfood3.png",
+        image: "image1/2.jpg",
         rating: 4.8,
         badge: "تخفیف",
         details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
