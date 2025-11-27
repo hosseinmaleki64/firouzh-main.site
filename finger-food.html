@@ -53,7 +53,6 @@
       margin: 0;
       padding: 0;
     }
- 
     body {
       font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
       background: var(--background-color);
@@ -1017,7 +1016,6 @@
     .wizard-buttons .prev:hover {
       background: #ccc;
     }
- 
     /* Character and Username Selection */
     .character-grid {
       display: grid;
@@ -1214,21 +1212,21 @@
       .featured-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-   
+  
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-   
+  
       .main-content {
         display: grid;
         grid-template-columns: 1fr 250px;
         gap: 30px;
       }
-   
+  
       .hero-section h1 {
         font-size: 3rem;
       }
-   
+  
       .hero-section p {
         font-size: 1.2rem;
       }
@@ -1237,7 +1235,7 @@
       .featured-grid {
         grid-template-columns: repeat(6, 1fr);
       }
-   
+  
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -1248,68 +1246,68 @@
       justify-content: center;
       padding: 12px 10px;
     }
-   
+  
       .logo-search {
         flex-direction: column;
         gap: 12px;
       }
-   
+  
       .search-box {
         width: 70%;
       }
-   
+  
       .logo {
         font-size: 1rem;
       }
-   
+  
       .promo-text {
         display:flex ;
       }
-   
+  
       main {
         padding: 15px;
       }
-   
+  
       .hero-section h1 {
         font-size: 1.8rem;
       }
-   
+  
       .hero-section p {
         font-size: 0.95rem;
       }
-   
+  
       .featured-products h2, .products-section h2 {
         font-size: 1.4rem;
       }
-   
+  
       footer h2 {
         font-size: 1.5rem;
       }
-   
+  
       footer a {
         display: block;
         margin: 8px 0;
       }
-   
+  
       .social-bar {
         gap: 8px;
       }
-   
+  
       .social-box, .logo-box {
         width: 60px;
         height: 60px;
         font-size: 0.7rem;
       }
-   
+  
       .social-box img {
         width: 20px;
         height: 20px;
       }
-   
+  
       .pagination {
         gap: 5px;
       }
-   
+  
       .pagination-btn {
         padding: 8px 12px;
         font-size: 0.9rem;
@@ -1377,7 +1375,7 @@
       font-size: 1rem;
     }
       @media (max-width: 576px) {
-     
+    
       .menu-icon {
         font-size: 1.2rem;
       }
@@ -1577,7 +1575,7 @@
           </div>
           <div class="featured-content">
             <h3>سینی مزه کلاسیک</h3>
-            <p>ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک</p>
+            <p>.</p>
             <div class="product-rating">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -1710,12 +1708,13 @@
       <aside class="sidebar">
   <h3><i class="fas fa-filter"></i> دسته‌بندی محصولات</h3>
   <ul class="categories">
-    <li onclick="filterByCategory(11)"><a href="#"><i class="fas fa-box"></i> باکس الگانت (۱۱)</a></li>
-    <li onclick="filterByCategory(12)"><a href="#"><i class="fas fa-utensils"></i> مزه و فینگر فود (۱۲)</a></li>
-    <li onclick="filterByCategory(13)"><a href="#"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی (۱۳)</a></li>
-    <li onclick="filterByCategory(14)"><a href="#"><i class="fas fa-star"></i> وی‌آی‌پی (۱۴)</a></li>
-    <li onclick="filterByCategory(15)"><a href="#"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده (۱۵)</a></li>
-    <li onclick="filterByCategory(16)"><a href="#"><i class="fas fa-briefcase"></i> خدمات سازمانی (۱۶)</a></li>
+    <li><a href="finger-food.html?cat=11" class="category-link" data-id="11"><i class="fas fa-box"></i> باکس الگانت</a></li>
+    <li><a href="finger-food.html?cat=12" class="category-link" data-id="12"><i class="fas fa-utensils"></i> مزه و فینگر فود</a></li>
+    <li><a href="finger-food.html?cat=13" class="category-link" data-id="13"><i class="fas fa-cake-candles"></i> دسر و نوشیدنی</a></li>
+    <li><a href="finger-food.html?cat=14" class="category-link" data-id="14"><i class="fas fa-star"></i> محصولات ویژه (VIP)</a></li>
+    <li><a href="finger-food.html?cat=15" class="category-link" data-id="15"><i class="fas fa-pepper-hot"></i> غذای نیمه آماده</a></li>
+    <li><a href="finger-food.html?cat=16" class="category-link" data-id="16"><i class="fas fa-briefcase"></i> خدمات سازمانی</a></li>
+    <li><a href="finger-food.html" class="category-link"><i class="fas fa-th-large"></i> همه محصولات</a></li>
   </ul>
 </aside>
     </div>
@@ -1784,146 +1783,88 @@
   </footer>
   <script src="data.js"></script>
   <script>
-    // Elements
-    const body = document.body;
-    const menuToggle = document.querySelector('.menu-icon');
-    const sideMenu = document.getElementById('sideMenu');
-    const closeBtn = sideMenu.querySelector('.close-btn');
-    const overlay = document.getElementById('overlay');
-    const searchInput = document.getElementById("searchInput");
-    const promoText = document.getElementById("promoText");
-    const clearSearch = document.getElementById("clearSearch");
-    const clock = document.getElementById("clock");
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const categoryItems = document.querySelectorAll('.categories li');
+    // --- تنظیمات اولیه ---
+    const ITEMS_PER_PAGE = 24; // تعداد محصول در هر صفحه
+    // --- دریافت پارامترهای URL ---
+    // این بخش می‌فهمد الان کاربر در کدام دسته و کدام صفحه است
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentCategoryId = urlParams.get('cat') ? parseInt(urlParams.get('cat')) : null;
+    const currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+    // --- المنت‌های HTML ---
     const productsGrid = document.querySelector('.products-grid');
-    const paginationButtons = document.querySelectorAll('.pagination-btn');
-    const userProfile = document.getElementById('userProfile');
-    const profileIcon = document.getElementById('profileIcon');
-    const userMenu = document.getElementById('userMenu');
-    const userAvatar = document.getElementById('userAvatar');
-    const userName = document.getElementById('userName');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const logoutModal = document.getElementById('logoutModal');
-    const confirmLogout = document.getElementById('confirmLogout');
-    const cancelLogout = document.getElementById('cancelLogout');
-    const authModal = document.getElementById('authModal');
-    const closeAuthModal = document.getElementById('closeAuthModal');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const nextToStep2 = document.getElementById('nextToStep2');
-    const prevToStep1 = document.getElementById('prevToStep1');
-    const nextToStep3 = document.getElementById('nextToStep3');
-    const prevToStep2 = document.getElementById('prevToStep2');
-    const authPhone = document.getElementById('authPhone');
-    const authPhoneError = document.getElementById('authPhoneError');
-    const authSuccess = document.getElementById('authSuccess');
-    const authCode = document.getElementById('authCode');
-    const authCodeError = document.getElementById('authCodeError');
-    const authTimer = document.getElementById('authTimer');
-    const authCountdown = document.getElementById('authCountdown');
-    const username = document.getElementById('username');
-    const usernameError = document.getElementById('usernameError');
-    const usernameStrength = document.getElementById('usernameStrength');
-    const characterCards = document.querySelectorAll('.character-card');
-    const confirmProfileBtn = document.getElementById('confirmProfileBtn');
-    const toggleAuthCode = document.getElementById('toggleAuthCode');
-    const resendCodeBtn = document.getElementById('resendCodeBtn');
-    const captchaQuestion = document.getElementById('captchaQuestion');
-    const captchaAnswer = document.getElementById('captchaAnswer');
-    const captchaError = document.getElementById('captchaError');
-    // Data
-    const promoMessages = [
-      "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
-      "🍕 غذاهای تازه و خوشمزه هر روز!",
-      "⭐ تخفیف ویژه برای مشتریان وفادار!",
-      "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
-    ];
-    let currentPromoIndex = 0;
-    let currentFilter = "all";
-    let currentCategory = "all";
-    let currentSearch = "";
-    let authCountdownInterval;
-    let authModalShown = false;
-    let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
-    let currentPhone = '';
-    let isNewUser = false;
-    let captchaNum1, captchaNum2, captchaResult;
-    let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
-    let lockTimer = 0;
-    // Functions
-    function openMenu() {
-      sideMenu.classList.add('active');
-      overlay.classList.add('active');
-      body.classList.add('menu-open');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      menuToggle.setAttribute('aria-label', 'بستن منو');
-      sideMenu.setAttribute('aria-hidden', 'false');
-      body.style.overflow = 'hidden';
-      sideMenu.focus();
+    const paginationContainer = document.querySelector('.pagination');
+    const pageTitle = document.querySelector('.hero-section h1');
+    const pageDesc = document.querySelector('.hero-section p');
+   
+    // دیکشنری نام دسته‌ها برای تغییر تایتل صفحه
+    const categoryNames = {
+        11: { title: 'باکس الگانت', desc: 'شیک‌ترین باکس‌ها برای پذیرایی خاص' },
+        12: { title: 'مزه و فینگرفود', desc: 'انواع فینگرفود سرد و گرم برای مهمانی‌ها' },
+        13: { title: 'دسر و نوشیدنی', desc: 'طعم شیرین لحظه‌ها با دسرهای فیروزه' },
+        14: { title: 'محصولات ویژه VIP', desc: 'محصولات خاص برای مشتریان خاص' },
+        15: { title: 'غذای نیمه آماده', desc: 'آشپزی سریع و آسان با کیفیت خانگی' },
+        16: { title: 'خدمات سازمانی', desc: 'پک‌های پذیرایی همایش و جلسات' }
+    };
+    // --- تابع اصلی: لود کردن محصولات ---
+    function loadProducts() {
+        let filteredProducts = [];
+        // 1. فیلتر کردن بر اساس دسته (اگر دسته انتخاب شده باشد)
+        if (currentCategoryId) {
+            filteredProducts = productsDatabase.filter(p => p.categoryId === currentCategoryId);
+           
+            // تغییر تیتر صفحه بر اساس دسته
+            if (categoryNames[currentCategoryId]) {
+                pageTitle.innerHTML = `<i class="fas fa-utensils"></i> ${categoryNames[currentCategoryId].title}`;
+                pageDesc.textContent = categoryNames[currentCategoryId].desc;
+            }
+           
+            // فعال کردن کلاس active در سایدبار
+            document.querySelectorAll('.categories a').forEach(link => {
+                link.closest('li').classList.remove('active'); // پاک کردن اکتیو قبلی
+                if(link.getAttribute('href').includes(`cat=${currentCategoryId}`)) {
+                    link.closest('li').classList.add('active'); // اکتیو کردن گزینه فعلی
+                    link.style.backgroundColor = "#26A69A";
+                    link.style.color = "white";
+                    link.style.borderRadius = "8px";
+                }
+            });
+        } else {
+            // اگر دسته‌ای انتخاب نشده، همه محصولات را نشان بده
+            filteredProducts = productsDatabase;
+        }
+        // 2. محاسبات صفحه‌بندی (Pagination)
+        const totalItems = filteredProducts.length;
+        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+       
+        // محاسبه ایندکس شروع و پایان برش آرایه
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+       
+        // برش دادن محصولات برای صفحه فعلی
+        const productsToShow = filteredProducts.slice(startIndex, endIndex);
+        // 3. رندر کردن محصولات
+        renderGrid(productsToShow);
+        // 4. رندر کردن دکمه‌های صفحه بندی
+        renderPagination(totalPages, currentPage, currentCategoryId);
     }
-    function closeMenu() {
-      sideMenu.classList.remove('active');
-      overlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'باز کردن منو');
-      sideMenu.setAttribute('aria-hidden', 'true');
-      body.style.overflow = '';
-      menuToggle.focus();
-    }
-    function updateTime() {
-      if (typeof persianDate === 'undefined') {
-        clock.textContent = 'خطا در بارگذاری تاریخ';
-        return;
-      }
-      const now = new Date();
-      const options = {
-        timeZone: 'Asia/Tehran',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      };
-      const timeStr = now.toLocaleTimeString('fa-IR', options);
-      const persianDateObj = new persianDate(now);
-      const persianDateStr = persianDateObj.format('D MMMM YYYY');
-      clock.innerHTML = `<i class="fas fa-clock"></i> ${persianDateStr} - ${timeStr}`;
-    }
-    function changePromoText() {
-      promoText.innerHTML = `<i class="fas fa-bolt"></i> ${promoMessages[currentPromoIndex]}`;
-      currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
-    }
+    // --- تابع ساخت HTML کارت محصول ---
     function generateProductCard(product) {
-      const ratingStars = [];
-      const fullStars = Math.floor(product.rating);
-      const hasHalfStar = product.rating % 1 !== 0;
-   
-      for (let i = 0; i < fullStars; i++) {
-        ratingStars.push('<i class="fas fa-star"></i>');
-      }
-   
-      if (hasHalfStar) {
-        ratingStars.push('<i class="fas fa-star-half-alt"></i>');
-      }
-   
-      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-      for (let i = 0; i < emptyStars; i++) {
-        ratingStars.push('<i class="far fa-star"></i>');
-      }
-   
-      return `
+        // ساخت ستاره‌ها (کد قبلی شما)
+        const fullStars = Math.floor(product.rating || 5);
+        let starsHtml = '';
+        for (let i = 0; i < fullStars; i++) starsHtml += '<i class="fas fa-star"></i>';
+       
+        return `
         <div class="product-card fade-in">
           <div class="product-image">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
           </div>
           <div class="product-content">
             <h3>${product.name}</h3>
-            <p>${product.description}</p>
+            <p>${product.description.substring(0, 50)}...</p>
+            <div class="product-rating">${starsHtml}</div>
             <div class="product-price"><i class="fas fa-tag"></i> ${product.priceText}</div>
-           
             <a href="product.html?id=${product.id}" class="add-to-cart" style="text-decoration:none; display:flex;">
                 <i class="fas fa-eye"></i> مشاهده و خرید
             </a>
@@ -1931,456 +1872,74 @@
         </div>
       `;
     }
-    function filterProducts() {
-      let filteredProducts = productsDatabase;
-   
-      // Apply category filter
-      if (currentCategory !== "all") {
-        filteredProducts = filteredProducts.filter(product =>
-          product.category.includes(currentCategory)
-        );
-      }
-   
-      // Apply filter button filter
-      if (currentFilter !== "all") {
-        if (currentFilter === "new") {
-          filteredProducts = filteredProducts.filter(product =>
-            product.badge === "جدید"
-          );
-        } else if (currentFilter === "discount") {
-          filteredProducts = filteredProducts.filter(product =>
-            product.badge === "تخفیف"
-          );
-        } else if (currentFilter === "popular") {
-          filteredProducts = filteredProducts.filter(product =>
-            product.badge === "پرفروش"
-          );
+    // --- تابع نمایش محصولات در صفحه ---
+    function renderGrid(products) {
+        productsGrid.innerHTML = '';
+        if (products.length === 0) {
+            productsGrid.innerHTML = `<div class="no-results"><h3>محصولی در این دسته یافت نشد</h3></div>`;
+            return;
+        }
+        products.forEach(product => {
+            productsGrid.innerHTML += generateProductCard(product);
+        });
+    }
+    // --- تابع ساخت دکمه‌های شماره صفحه ---
+    function renderPagination(totalPages, activePage, catId) {
+        paginationContainer.innerHTML = '';
+       
+        if (totalPages <= 1) return; // اگر فقط یک صفحه است، دکمه نمی‌خواهد
+        let html = '';
+       
+        // ساخت پارامتر کتگوری برای لینک‌ها
+        const catParam = catId ? `cat=${catId}&` : '';
+        // دکمه قبلی
+        if (activePage > 1) {
+            html += `<a href="?${catParam}page=${activePage - 1}" class="pagination-btn"><i class="fas fa-chevron-right"></i> قبلی</a>`;
+        }
+        // دکمه‌های شماره‌دار
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === activePage) {
+                html += `<span class="pagination-btn active">${i}</span>`;
+            } else {
+                html += `<a href="?${catParam}page=${i}" class="pagination-btn">${i}</a>`;
+            }
+        } // دکمه بعدی
+        if (activePage < totalPages) {
+            html += `<a href="?${catParam}page=${activePage + 1}" class="pagination-btn">بعدی <i class="fas fa-chevron-left"></i></a>`;
+        }
+        paginationContainer.innerHTML = html;
+    }
+    // --- شروع برنامه هنگام لود صفحه ---
+    window.addEventListener('DOMContentLoaded', () => {
+        // اطمینان از لود شدن دیتابیس
+        if (typeof productsDatabase !== 'undefined') {
+            loadProducts();
         } else {
-          filteredProducts = filteredProducts.filter(product =>
-            product.category.includes(currentFilter)
-          );
+            console.error('فایل data.js لود نشده است');
         }
-      }
-   
-      // Apply search filter
-      if (currentSearch) {
-        const searchTerm = currentSearch.toLowerCase();
-        filteredProducts = filteredProducts.filter(product =>
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm) ||
-          product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-        );
-      }
-   
-      return filteredProducts;
-    }
-    function renderProducts(productsToShow) {
-      productsGrid.innerHTML = '';
-   
-      if (productsToShow.length === 0) {
-        productsGrid.innerHTML = `
-          <div class="no-results">
-            <i class="fas fa-search"></i>
-            <h3>محصولی یافت نشد</h3>
-            <p>برای جستجوی بهتر از کلمات کلیدی دیگر استفاده کنید</p>
-          </div>
-        `;
-        return;
-      }
-   
-      productsToShow.forEach(product => {
-        productsGrid.innerHTML += generateProductCard(product);
-      });
-    }
-    function updateFilters() {
-      const filteredProducts = filterProducts();
-      renderProducts(filteredProducts);
-    }
-    // Auth functions
-    function openAuthModalFunc() {
-      authModal.classList.add('active');
-      overlay.classList.add('active');
-      body.style.overflow = 'hidden';
-      authModalShown = true;
-      resetAuthForm();
-      generateCaptcha();
-    }
-    function closeAuthModalFunc() {
-      authModal.classList.remove('active');
-      overlay.classList.remove('active');
-      body.style.overflow = '';
-      resetAuthForm();
-    }
-    function resetAuthForm() {
-      authPhone.value = '';
-      authCode.value = '';
-      username.value = '';
-      captchaAnswer.value = '';
-      authPhoneError.style.display = 'none';
-      authCodeError.style.display = 'none';
-      usernameError.style.display = 'none';
-      captchaError.style.display = 'none';
-      authSuccess.style.display = 'none';
-      authTimer.style.display = 'none';
-      resendCodeBtn.style.display = 'none';
-      step1.classList.add('active');
-      step2.classList.remove('active');
-      step3.classList.remove('active');
-      characterCards.forEach(card => card.classList.remove('selected'));
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-      failedAttempts = 0;
-      sessionStorage.setItem('failedAttempts', failedAttempts);
-      updateButtonStates();
-      updateUsernameStrength();
-    }
-    function validatePhone(phone) {
-      const regex = /^09[0-9]{9}$/;
-      return regex.test(phone);
-    }
-    function validateCode(code) {
-      return /^[0-9]{6}$/.test(code);
-    }
-    function validateUsername(name) {
-      return /^[a-zA-Z0-9]{3,}$/.test(name);
-    }
-    function validateCaptcha(answer) {
-      return parseInt(answer) === captchaResult;
-    }
-    function maskInput(input, regex) {
-      input.value = input.value.replace(regex, '');
-    }
-    function updateButtonStates() {
-      nextToStep2.disabled = !validatePhone(authPhone.value) || !validateCaptcha(captchaAnswer.value);
-      nextToStep3.disabled = !validateCode(authCode.value);
-      confirmProfileBtn.disabled = !validateUsername(username.value) || !document.querySelector('.character-card.selected');
-    }
-    function updateUsernameStrength() {
-      const name = username.value;
-      if (name.length < 3) {
-        usernameStrength.className = 'username-strength weak';
-      } else if (name.length < 6) {
-        usernameStrength.className = 'username-strength medium';
-      } else {
-        usernameStrength.className = 'username-strength strong';
-      }
-    }
-    function generateCaptcha() {
-      captchaNum1 = Math.floor(Math.random() * 10) + 1;
-      captchaNum2 = Math.floor(Math.random() * 10) + 1;
-      captchaResult = captchaNum1 + captchaNum2;
-      captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
-    }
-    function showSpinner(button) {
-      button.innerHTML = '<div class="spinner"></div>';
-      button.disabled = true;
-    }
-    function hideSpinner(button, text) {
-      button.innerHTML = text;
-      button.disabled = false;
-    }
-    function simulateSendCode(phone) {
-      // Simulate API call
-      console.log('Code sent to:', phone);
-      // For demo, assume code is '123456'
-      return '123456';
-    }
-    function simulateVerifyCode(code, phone) {
-      // For demo, check if code is '123456'
-      if (code === '123456') {
-        // Check if user exists
-        if (sessionStorage.getItem(`user_${phone}`)) {
-          userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
-          isNewUser = false;
-        } else {
-          isNewUser = true;
+       
+        // سایر کدهای مربوط به منو موبایل، جستجو و ... که قبلا داشتید را اینجا نگه دارید
+        // (کدهای مربوط به منو، مودال و ... را از کد قبلی خود کپی کنید و اینجا بگذارید)
+        setupUIEvents();
+    });
+    // --- توابع مربوط به UI (منو، مودال و ...) ---
+    function setupUIEvents() {
+        // کد باز و بسته کردن منو
+        const menuToggle = document.querySelector('.menu-icon');
+        const sideMenu = document.getElementById('sideMenu');
+        const closeBtn = sideMenu.querySelector('.close-btn');
+        const overlay = document.getElementById('overlay');
+        function toggleMenu() {
+            sideMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
-        return true;
-      }
-      return false;
+        if(menuToggle) menuToggle.addEventListener('click', toggleMenu);
+        if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+        if(overlay) overlay.addEventListener('click', () => {
+             sideMenu.classList.remove('active');
+             overlay.classList.remove('active');
+        });
     }
-    function startCountdown(timerSeconds = 60) {
-      let seconds = timerSeconds;
-      authCountdown.innerHTML = seconds;
-      authTimer.style.display = 'block';
-      resendCodeBtn.style.display = 'none';
-      authCountdownInterval = setInterval(() => {
-        seconds--;
-        authCountdown.innerHTML = seconds;
-        if (seconds <= 0) {
-          clearInterval(authCountdownInterval);
-          authTimer.style.display = 'none';
-          resendCodeBtn.style.display = 'block';
-        }
-      }, 1000);
-    }
-    function updateUserUI() {
-      if (userData) {
-        profileIcon.style.display = 'none';
-        const avatar = document.createElement('div');
-        avatar.className = 'user-avatar';
-        avatar.textContent = userData.character;
-        userProfile.appendChild(avatar);
-        userAvatar.textContent = userData.character;
-        userName.textContent = escapeHTML(userData.username);
-      } else {
-        if (userProfile.querySelector('.user-avatar')) {
-          userProfile.querySelector('.user-avatar').remove();
-        }
-        profileIcon.style.display = 'block';
-      }
-    }
-    function escapeHTML(str) {
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    }
-    function filterByCategory(catId) {
-        const filtered = productsDatabase.filter(p => p.categoryId === catId);
-        renderProducts(filtered);
-        // اسکرول به بالای لیست
-        document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
-    }
-    // Event Listeners
-    menuToggle.addEventListener('click', () => {
-      if (sideMenu.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-    closeBtn.addEventListener('click', closeMenu);
-    userProfile.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (userData) {
-        userMenu.classList.toggle('active');
-      } else {
-        openAuthModalFunc();
-      }
-    });
-    closeAuthModal.addEventListener('click', closeAuthModalFunc);
-    authPhone.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    captchaAnswer.addEventListener('input', () => {
-      captchaError.style.display = validateCaptcha(captchaAnswer.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    nextToStep2.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!validateCaptcha(captchaAnswer.value)) {
-        captchaError.style.display = 'block';
-        return;
-      }
-      captchaError.style.display = 'none';
-      const phone = authPhone.value;
-      if (!validatePhone(phone)) {
-        authPhoneError.style.display = 'block';
-        return;
-      }
-      authPhoneError.style.display = 'none';
-      currentPhone = phone;
-      showSpinner(nextToStep2);
-      setTimeout(() => {
-        simulateSendCode(phone);
-        authSuccess.style.display = 'block';
-        step1.classList.remove('active');
-        step2.classList.add('active');
-        hideSpinner(nextToStep2, 'بعدی');
-        let timer = failedAttempts > 5 ? 300 : 60;
-        startCountdown(timer);
-      }, 1000); // Simulate delay
-    });
-    prevToStep1.addEventListener('click', () => {
-      step2.classList.remove('active');
-      step1.classList.add('active');
-      authSuccess.style.display = 'none';
-      authTimer.style.display = 'none';
-      resendCodeBtn.style.display = 'none';
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-    });
-    authCode.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-    authCode.addEventListener('paste', (e) => e.preventDefault());
-    authCode.addEventListener('copy', (e) => e.preventDefault());
-    nextToStep3.addEventListener('click', (e) => {
-      e.preventDefault();
-      const code = authCode.value;
-      showSpinner(nextToStep3);
-      setTimeout(() => {
-        if (simulateVerifyCode(code, currentPhone)) {
-          failedAttempts = 0;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          authCodeError.style.display = 'none';
-          hideSpinner(nextToStep3, 'تأیید');
-          if (isNewUser) {
-            step2.classList.remove('active');
-            step3.classList.add('active');
-            username.value = `user${currentPhone.slice(-4)}`;
-            updateUsernameStrength();
-            updateButtonStates();
-          } else {
-            sessionStorage.setItem('userData', JSON.stringify(userData));
-            updateUserUI();
-            closeAuthModalFunc();
-            alert('ورود موفق!');
-          }
-        } else {
-          failedAttempts++;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (failedAttempts % 6)}`;
-          authCodeError.style.display = 'block';
-          if (failedAttempts >= 5) {
-            console.error('Too many failed attempts');
-            authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-            nextToStep3.disabled = true;
-            lockTimer = 300; // 5 minutes lock
-            setTimeout(() => {
-              nextToStep3.disabled = false;
-              failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', failedAttempts);
-            }, lockTimer * 1000);
-          }
-          hideSpinner(nextToStep3, 'تأیید');
-        }
-      }, 1000);
-    });
-    resendCodeBtn.addEventListener('click', () => {
-      simulateSendCode(currentPhone);
-      let timer = failedAttempts > 5 ? 300 : 60;
-      startCountdown(timer);
-    });
-    toggleAuthCode.addEventListener('click', () => {
-      const type = authCode.type === 'password' ? 'text' : 'password';
-      authCode.type = type;
-      toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-    });
-    prevToStep2.addEventListener('click', () => {
-      step3.classList.remove('active');
-      step2.classList.add('active');
-    });
-    username.addEventListener('input', (e) => {
-      maskInput(e.target, /[^a-zA-Z0-9]/g);
-      usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
-      updateUsernameStrength();
-      updateButtonStates();
-    });
-    characterCards.forEach(card => {
-      card.addEventListener('click', () => {
-        characterCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        updateButtonStates();
-      });
-    });
-    confirmProfileBtn.addEventListener('click', () => {
-      const name = username.value;
-      const selectedChar = document.querySelector('.character-card.selected');
-      if (!validateUsername(name)) {
-        usernameError.style.display = 'block';
-        return;
-      }
-      if (!selectedChar) {
-        alert('لطفاً یک کاراکتر انتخاب کنید');
-        return;
-      }
-      usernameError.style.display = 'none';
-      userData = {
-        phone: currentPhone,
-        username: name,
-        character: selectedChar.dataset.char
-      };
-      sessionStorage.setItem(`user_${currentPhone}`, JSON.stringify(userData));
-      sessionStorage.setItem('userData', JSON.stringify(userData));
-      updateUserUI();
-      closeAuthModalFunc();
-      alert('ثبت‌نام موفق!');
-    });
-    logoutBtn.addEventListener('click', () => {
-      userMenu.classList.remove('active');
-      logoutModal.classList.add('active');
-      overlay.classList.add('active');
-    });
-    confirmLogout.addEventListener('click', () => {
-      userData = null;
-      sessionStorage.removeItem('userData');
-      updateUserUI();
-      logoutModal.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-    cancelLogout.addEventListener('click', () => {
-      logoutModal.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-    overlay.addEventListener('click', () => {
-      closeMenu();
-      userMenu.classList.remove('active');
-      logoutModal.classList.remove('active');
-      closeAuthModalFunc();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-        userMenu.classList.remove('active');
-        logoutModal.classList.remove('active');
-        closeAuthModalFunc();
-      }
-    });
-    searchInput.addEventListener("input", (e) => {
-      currentSearch = e.target.value;
-      clearSearch.classList.toggle('active', e.target.value.length > 0);
-      updateFilters();
-    });
-    clearSearch.addEventListener("click", () => {
-      searchInput.value = '';
-      currentSearch = '';
-      clearSearch.classList.remove('active');
-      searchInput.focus();
-      updateFilters();
-    });
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentFilter = button.dataset.filter;
-        updateFilters();
-      });
-    });
-    categoryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        categoryItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        currentCategory = item.dataset.category;
-        updateFilters();
-      });
-    });
-    paginationButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (button.classList.contains('disabled')) return;
-     
-        paginationButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-     
-        // Scroll to top of products section
-        document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    // Auto open auth modal after 1 minute if not logged in
-    setTimeout(() => {
-      if (!authModalShown && !userData) {
-        openAuthModalFunc();
-      }
-    }, 60000); // 1 minute
-    // Initialize
-    updateTime();
-    setInterval(updateTime, 1000);
-    setInterval(changePromoText, 5000);
-    updateUserUI();
- 
-    // Render initial products
-    renderProducts(productsDatabase);
-  </script>
+</script>
 </body>
 </html>

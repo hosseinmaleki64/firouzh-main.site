@@ -2398,7 +2398,7 @@
           <p class="product-desc" id="detail-desc"></p>
           <ul class="product-desc">
               <li id="detail-ingredients"></li>
-              <li id="detail-calories"></li>
+              <li id="detail-nutrition_info "></li>
           </ul>
           <div class="size-selector" role="radiogroup" aria-label="انتخاب سایز">
             <button class="size-btn active" data-size="300" data-price="45000" role="radio" aria-checked="true" tabindex="0">۳۰۰g</button>
@@ -3512,7 +3512,7 @@ ${itemCount} مورد</option>
        
         // پر کردن جزئیات اگر وجود داشت
         if(product.details) {
-            document.getElementById('detail-calories').textContent = "کالری: " + product.details.calories; document.getElementById('detail-ingredients').textContent = "مواد اولیه: " + product.details.ingredients;
+            document.getElementById('detail-nutrition_info ').textContent = "ویژگی تغذیه ای: " + product.details.nutrition_info ; document.getElementById('detail-ingredients').textContent = "مواد اولیه: " + product.details.ingredients;
         }
        
         // آپدیت تایتل مرورگر (سئو)

@@ -11,7 +11,7 @@ const productsDatabase = [
         rating: 4.0,
         badge: "جدید",
         details: { // جزئیات اضافی برای صفحه محصول
-            calories: "400 kcal",
+            nutrition_info: "400 kcal",
             ingredients: "پنیر پستو، گوجه گیلاسی، نان تارت، ریحان"
         }
     },
@@ -25,7 +25,7 @@ const productsDatabase = [
         image: "image1/109.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11003,
@@ -37,7 +37,7 @@ const productsDatabase = [
         image: "image1/23.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11004,
@@ -49,7 +49,7 @@ const productsDatabase = [
         image: "image1/30.jpeg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11005,
@@ -61,7 +61,7 @@ const productsDatabase = [
         image: "image1/81.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11006,
@@ -73,7 +73,7 @@ const productsDatabase = [
         image: "image1/89.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11007,
@@ -85,7 +85,7 @@ const productsDatabase = [
         image: "image1/77.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11008,
@@ -97,7 +97,7 @@ const productsDatabase = [
         image: "image1/59.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11009,
@@ -109,7 +109,7 @@ const productsDatabase = [
         image: "image1/56.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11010,
@@ -121,7 +121,7 @@ const productsDatabase = [
         image: "image1/42.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     {
         id: 11011,
@@ -133,7 +133,7 @@ const productsDatabase = [
         image: "image1/26.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { calories: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
     },
     // --- دسته ۱۲: فینگر فود و مزه ---
     {
@@ -142,11 +142,11 @@ const productsDatabase = [
         name: "پیراشکی گوشت و قارچ",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«پیراشکی گوشت و قارچ؛ ترکیبی خوش‌عطر و اشتها‌آور.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، گوشت چرخ‌کرده، قارچ، پیاز، ادویه‌های معطر، مقدار کمی پنیر و سس مخصوص" }
     },
     {
         id: 12002,
@@ -154,11 +154,11 @@ const productsDatabase = [
         name: "پیراشکی مرغ قارچ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«پیراشکی مرغ و قارچ با طعمی گرم و دلنشین.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" }
     },
     {
         id: 12003,
@@ -166,11 +166,11 @@ const productsDatabase = [
         name: "پیراشکی پیتزایی",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«پیراشکی پیتزایی با عطروطعمی که اشتها را باز می‌کند.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه ،ژامبون مخصوص ،قارچ ،سس مخصوص ،" }
     },
     {
         id: 12005,
@@ -178,11 +178,11 @@ const productsDatabase = [
         name: "مینی برگر",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌برگر با گوشت مزه‌دار و نان سبک.»",
         image: "image1/124.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، کاهو، خیارشور، سس مخصوص و ادویه برگر" }
     },
 {
         id: 12006,
@@ -190,11 +190,11 @@ const productsDatabase = [
         name: "مینی چیز برگر",
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: ".",
         image: "image1/140.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه برگر" }
     },
     {
         id: 12007,
@@ -202,11 +202,11 @@ const productsDatabase = [
         name: "مینی چیکن برگر",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: ".",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." }
     },
     {
         id: 12008,
@@ -214,11 +214,11 @@ const productsDatabase = [
         name: "مینی ساندویچ ژامبون",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "ترکیبی ساده و خوش‌مزه",
         image: "image1/75.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." }
     },
     {
         id: 12009,
@@ -226,11 +226,11 @@ const productsDatabase = [
         name: "مینی ساندویچ الویه",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌ساندویچ الویه با مزه‌ی سبک و بافت نرم.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" }
     },
     {
         id: 12010,
@@ -238,11 +238,11 @@ const productsDatabase = [
         name: "مینی ساندویچ مرغ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: ".",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص."}
     },
     {
         id: 12011,
@@ -250,11 +250,11 @@ const productsDatabase = [
         name: "مینی ساندویچ فلافل",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌ساندویچ فلافل ترد و گیاهی با طعمی اصیل و تازه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فلافل تازه، نان کوچک، خیارشور، کاهو، گوجه، سس مخصوص و ادویه‌های گیاهی" }
     },
     {
         id: 12012,
@@ -262,11 +262,11 @@ const productsDatabase = [
         name: "مینی هات داگ",
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌هات‌داگ دودی و آبدار با نان نرم و سس تند.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" }
     },
     {
         id: 12013,
@@ -274,11 +274,11 @@ const productsDatabase = [
         name: "رول لازنیا",
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«رول لازانیا پرشده با مواد غنی و پنیر ذوب‌شده.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه لازانیا، گوشت چرخ‌کرده، سس گوجه، پنیر موزارلا، سبزیجات و ادویه ایتالیایی" }
     },
     {
         id: 12014,
@@ -286,11 +286,11 @@ const productsDatabase = [
         name: "پیراشکی سوخاری",
         price: 68000,
         priceText: "۶۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«پیراشکی سوخاری طلایی با داخل نرم و پرمزه.»",
         image: "image1/145.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، مواد پرکننده (گوشت یا سبزیجات)، ادویه‌ها و روغن برای سرخ کردن" }
     },
     {
         id: 12015,
@@ -298,11 +298,11 @@ const productsDatabase = [
         name: "فیله سوخاری",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«فیله سوخاری مرغ ترد با پوشش طلایی و آبدار.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، ادویه‌های مرغ، تخم‌مرغ و روغن" }
     },
     {
         id: 12016,
@@ -310,11 +310,11 @@ const productsDatabase = [
         name: "رول ژامبون سوخاری",
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«رول ژامبون سوخاری با پنیر ذوب‌شده و طعم دودی.»",
         image: "image1/121.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون، پنیر، خمیر رول، آرد سوخاری و ادویه‌ها" }
     },
     {
         id: 12017,
@@ -322,11 +322,11 @@ const productsDatabase = [
         name: "توپک مرغ پنیری سوخاری",
         price: 45000,
         priceText: "۴۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«توپک مرغ پنیری سوخاری با داخل چسبناک و خوشمزه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ چرخ‌کرده، پنیر، آرد سوخاری، ادویه‌ها و تخم‌مرغ" }
     },
     {
         id: 12018,
@@ -334,11 +334,11 @@ const productsDatabase = [
         name: "توپک سیب زمینی پنیری سوخاری",
         price: 45000,
         priceText: "۴۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«توپک سیب‌زمینی پنیری سوخاری با بافت نرم و ترد.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی پوره، پنیر، آرد سوخاری، سبزیجات و ادویه‌ها" }
     },
     {
         id: 12019,
@@ -346,11 +346,11 @@ const productsDatabase = [
         name: "دونات مرغ سوخاری",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«دونات مرغ سوخاری نوآورانه با طعم منحصربه‌فرد.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، خمیر دونات، آرد سوخاری، ادویه‌ها و سس" }
     },
     {
         id: 12020,
@@ -358,11 +358,11 @@ const productsDatabase = [
         name: "شات اسپرینگ رول",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات اسپرینگ‌رول کوچک و ترد با مواد تازه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه اسپرینگ‌رول، سبزیجات، مرغ یا گوشت، ادویه آسیایی" }
     },
     {
         id: 12021,
@@ -370,11 +370,11 @@ const productsDatabase = [
         name: "شات سالاد ماکارونی",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات سالاد ماکارونی خامه‌ای و تازه با سبزیجات.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، خیارشور، ذرت، سس مایونز و ادویه" }
     },
     {
         id: 12022,
@@ -382,11 +382,11 @@ const productsDatabase = [
         name: "شات فیله سوخاری",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات فیله سوخاری مرغ با پوشش ترد و سس.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، سس مخصوص و ادویه‌ها" }
     },
     {
         id: 12023,
@@ -394,11 +394,11 @@ const productsDatabase = [
         name: "شات کشک بادمجان",
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
         image: "image1/66.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" }
     },
     {
         id: 12024,
@@ -406,11 +406,11 @@ const productsDatabase = [
         name: "شات قفقازی",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات قفقازی با مواد تازه و طعم اصیل.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، سس مخصوص، ادویه قفقازی و پنیر" }
     },
     {
         id: 12025,
@@ -418,24 +418,23 @@ const productsDatabase = [
         name: "شات سالادالویه",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«شات سالاد الویه خامه‌ای و تازه با تزیین.»",
         image: "image1/142.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، سس مایونز" }
     },
-   
     {
         id: 12026,
         categoryId: 12,
         name: "مینی پیتزا گوشت قارچ",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌پیتزا گوشت و قارچ با پنیر ذوب‌شده و عطر سیر.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، گوشت چرخ‌کرده، قارچ، پنیر، سس گوجه و ادویه" }
     },
     {
         id: 12027,
@@ -443,11 +442,11 @@ const productsDatabase = [
         name: "مینی پیتزا مرغ و قارچ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌پیتزا مرغ و قارچ سبک و خوش‌عطر.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، مرغ ریز شده، قارچ، پنیر، سس و ادویه ملایم" }
     },
     {
         id: 12028,
@@ -455,11 +454,11 @@ const productsDatabase = [
         name: "مینی پیتزا پپرونی",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌پیتزا پپرونی تند و جذاب با پنیر فراوان.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، پپرونی، پنیر موزارلا، سس گوجه و فلفل" }
     },
     {
         id: 12029,
@@ -467,11 +466,11 @@ const productsDatabase = [
         name: "مینی پیتزای سوسیس و قارچ",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«مینی‌پیتزا سوسیس و قارچ با طعم دودی و تازه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، سوسیس، قارچ، پنیر، سس و ادویه" }
     },
     {
         id: 12031,
@@ -479,11 +478,11 @@ const productsDatabase = [
         name: "بورک گوشت و قارچ",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«بورک گوشت و قارچ لایه‌لایه با خمیر نازک.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، گوشت چرخ‌کرده، قارچ، پیاز و ادویه" }
     },
     {
         id: 12032,
@@ -491,11 +490,11 @@ const productsDatabase = [
         name: "بورک مرغ و قارچ",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«بورک مرغ و قارچ سبک با لایه‌های ترد.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، مرغ، قارچ، پنیر و ادویه ملایم" }
     },
     {
         id: 12033,
@@ -503,11 +502,11 @@ const productsDatabase = [
         name: "بورک سوسیس و قارچ",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«بورک سوسیس و قارچ دودی و خوشمزه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، سوسیس، قارچ، پنیر و ادویه" }
     },
     {
         id: 12034,
@@ -515,11 +514,11 @@ const productsDatabase = [
         name: "تارت گوشت و قارچ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«تارت گوشت و قارچ با پایه ترد و مواد غنی.»",
         image: "image1/71.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، گوشت، قارچ، پنیر و سبزیجات" }
     },
     {
         id: 12035,
@@ -527,11 +526,11 @@ const productsDatabase = [
         name: "تارت مرغ و قارچ",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«تارت مرغ و قارچ سبک با طعم دلنشین.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، مرغ، قارچ، پنیر و ادویه" }
     },
     {
         id: 12036,
@@ -539,11 +538,11 @@ const productsDatabase = [
         name: "تارت کشک بادمجان",
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«تارت کشک بادمجان سنتی با عطر دودی.»",
         image: "image1/65.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، بادمجان، کشک، پیاز داغ و نعنا" }
     },
     {
         id: 12037,
@@ -551,11 +550,11 @@ const productsDatabase = [
         name: "کیک مرغ تکنفره",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«کیک مرغ تک‌نفره لایه‌لایه و خوشمزه.»",
         image: "image1/43.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان تست، مرغ، سس، سبزیجات و پنیر" }
     },
     {
         id: 12038,
@@ -563,11 +562,11 @@ const productsDatabase = [
         name: "کیک مرغ کیلویی",
         price: 900000,
         priceText: "۹۰۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«کیک مرغ کیلویی برای مهمانی‌های بزرگ با طعم عالی.»",
         image: "image1/25.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان، مرغ پخته، سس مایونز، سبزیجات تازه و ادویه" }
     },
     {
         id: 12039,
@@ -575,11 +574,11 @@ const productsDatabase = [
         name: "کوکو لوبیا",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«کوکو لوبیا گیاهی و مغذی با بافت نرم.»",
         image: "image1/122.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "لوبیا، تخم‌مرغ، سبزیجات، پیاز و ادویه ایرانی" }
     },
     {
         id: 12040,
@@ -587,23 +586,23 @@ const productsDatabase = [
         name: "کوکو سبزی",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«کوکو سبزی تازه و معطر با سبزیجات ارگانیک.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سبزی کوکو، تخم‌مرغ، آرد، گردو و ادویه" }
     },
-       {
+    {
         id: 12041,
         categoryId: 12,
         name: "قیف الویه",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«قیف الویه خلاقانه با سالاد تازه و نان ترد.»",
         image: "image1/111.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان قیفی، خیارشور و تزیین سبزی" }
     },
     {
         id: 12042,
@@ -611,11 +610,11 @@ const productsDatabase = [
         name: "سالاد الویه کیلویی",
         price: 800000,
         priceText: "۸۰۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد الویه کیلویی تازه و خامه‌ای برای مهمانی.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، هویج و سس" }
     },
     {
         id: 12043,
@@ -623,11 +622,11 @@ const productsDatabase = [
         name: "قفقاز کیلویی",
         price: 900000,
         priceText: "۹۰۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«قفقاز کیلویی با مواد اصیل و طعم غنی.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، پنیر، سس مخصوص و ادویه قفقازی" }
     },
     {
         id: 12044,
@@ -635,11 +634,11 @@ const productsDatabase = [
         name: "کشک بادمجان کیلویی",
         price: 800000,
         priceText: "۸۰۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«کشک بادمجان کیلویی دودی و سنتی.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان، کشک، پیاز داغ، نعنا داغ و گردو" }
     },
     {
         id: 12045,
@@ -647,11 +646,11 @@ const productsDatabase = [
         name: "سالاد ماکارونی کیلویی",
         price: 700000,
         priceText: "۷۰۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد ماکارونی کیلویی خامه‌ای و رنگارنگ.»",
         image: "image1/31.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، ذرت، خیارشور، سس و سبزیجات" }
     },
     {
         id: 12046,
@@ -659,11 +658,11 @@ const productsDatabase = [
         name: "ته چین مرغ زعفرانی ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«ته‌چین مرغ زعفرانی طلایی و معطر.»",
         image: "image1/44.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج، مرغ، زعفران، ماست، تخم‌مرغ و ادویه" }
     },
     {
         id: 12047,
@@ -671,11 +670,11 @@ const productsDatabase = [
         name: "ته چین مرغ زعفرانی قالبی",
         price: 110000,
         priceText: "۱۱۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«ته‌چین مرغ زعفرانی قالبی زیبا و خوش‌طعم.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج زعفرانی، مرغ مزه‌دار، ماست، تخم‌مرغ و زرشک" }
     },
     {
         id: 12048,
@@ -683,11 +682,11 @@ const productsDatabase = [
         name: "سالاد سزار",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد سزار کلاسیک با مرغ گریل و سس مخصوص.»",
         image: "image1/127.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کاهو، مرغ گریل، پنیر پارمسان، نان کروتون و سس سزار" }
     },
     {
         id: 12049,
@@ -695,11 +694,11 @@ const productsDatabase = [
         name: "سالاد کلم",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد کلم تازه و ترد با سس خامه‌ای.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم سفید و قرمز، هویج، سس مایونز و ادویه" }
     },
     {
         id: 12050,
@@ -707,23 +706,23 @@ const productsDatabase = [
         name: "سالاد کلم",
         price: 59000,
         priceText: "۵۹,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد کلم غنی‌شده با مواد اضافی و تازه.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، سس مخصوص و گردو" }
     },
-       {
+    {
         id: 12051,
         categoryId: 12,
         name: "سالاد مرغ",
         price: 59000,
         priceText: "۵۹,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد مرغ تازه با سبزیجات رنگارنگ و سس.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ گریل، کاهو، گوجه، خیار، ذرت و سس" }
     },
     {
         id: 12052,
@@ -731,11 +730,11 @@ const productsDatabase = [
         name: "سالاد اندونزی",
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد اندونزی شیرین و ترش با میوه و سبزی.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، آناناس، سس مخصوص" }
     },
     {
         id: 12053,
@@ -743,11 +742,11 @@ const productsDatabase = [
         name: "سالاد روسی",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سالاد روسی کلاسیک با سبزیجات پخته و سس.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، هویج، نخودفرنگی، خیارشور و سس مایونز" }
     },
     {
         id: 12054,
@@ -755,11 +754,11 @@ const productsDatabase = [
         name: "سمبوسه",
         price: 55000,
         priceText: "۵۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«سمبوسه ترد با مواد پرشده و ادویه تند.»",
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات، پیاز، ادویه هندی" }
     },
     {
         id: 12055,
@@ -767,11 +766,11 @@ const productsDatabase = [
         name: "اسپرینگ رول",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«اسپرینگ‌رول آسیایی ترد با سبزیجات تازه.»",
         image: "image1/45.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه رول، سبزیجات، مرغ یا میگو، سس سویا" }
     },
     {
         id: 12056,
@@ -779,11 +778,11 @@ const productsDatabase = [
         name: "رولت الویه",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«رولت الویه نرم و تازه با تزیین زیبا.»",
         image: "image1/107.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان رولت، خیارشور و سبزی" }
     },
     {
         id: 12057,
@@ -791,13 +790,12 @@ const productsDatabase = [
         name: "خیار ماست",
         price: 25000,
         priceText: "۲۵,۰۰۰ تومان",
-        description: "ترکیبی از زیتون، پنیرهای متنوع، آجیل و میوه‌های خشک",
+        description: "«خیار ماست تازه و خنک با نعنا و سیر.»",
         image: "image1/130.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { calories: "350 kcal", ingredients: "زیتون، پنیر گودا، گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماست، خیار، نعنا خشک، سیر و نمک" }
     },
-    
     // --- دسته ۱۳: دسر و نوشیدنی ---
     {
         id: 13001,
@@ -805,191 +803,191 @@ const productsDatabase = [
         name: "لوتوس",
         price: 65000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«لوتوس کرمی با طعم کارامل و بیسکویت ترد.»",
         image: "image1/19.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، بیسکویت لوتوس، کارامل، وانیل و شکر" }
     },
     {
-     id: 13002,
+        id: 13002,
         categoryId: 13,
         name: "تیرامیسو",
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«تیرامیسو ایتالیایی با قهوه و ماسکارپونه نرم.»",
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "کیک لیدی‌فینگر، قهوه، ماسکارپونه، کاکائو و تخم‌مرغ" }
     },
     {
-     id: 13003,
+        id: 13003,
         categoryId: 13,
         name: "روکر موز",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«روکر موز تازه با لایه‌های خامه و بیسکویت.»",
         image: "image1/2.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "موز، خامه، بیسکویت، وانیل و شکر قهوه‌ای" }
     },
     {
-     id: 13004,
+        id: 13004,
         categoryId: 13,
         name: "چیز کیک لوتوس",
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«چیزکیک لوتوس کرمی با پایه بیسکویتی ترد.»",
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، بیسکویت لوتوس، خامه، شکر و وانیل" }
     },
-{
-     id: 13005,
+    {
+        id: 13005,
         categoryId: 13,
         name: "ژله بستنی",
         price: 40000,
         priceText: "۴۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«ژله بستنی رنگارنگ و خنک با طعم میوه.»",
         image: "image1/5.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" }
     },
     {
-     id: 13006,
+        id: 13006,
         categoryId: 13,
         name: "کرم توت فرنگی",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«کرم توت‌فرنگی تازه و سبک با عطر طبیعی.»",
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" }
     },
     {
-     id: 13007,
+        id: 13007,
         categoryId: 13,
         name: "دسر شکلاتی ",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«دسر شکلاتی غلیظ و خوشمزه با لایه‌های متنوع.»",
         image: "image1/4.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "شکلات تلخ، خامه، شکر، وانیل و بیسکویت" }
     },
     {
-     id: 13008,
+        id: 13008,
         categoryId: 13,
         name: "کرم زعفرانی",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«کرم زعفرانی معطر و طلایی با طعم ایرانی.»",
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، زعفران، شکر، وانیل و پسته" }
     },
     {
-     id: 13009,
+        id: 13009,
         categoryId: 13,
         name: "کرم وانیلی",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«کرم وانیلی نرم و کلاسیک با عطر دلنشین.»",
         image: "image1/144.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، وانیل طبیعی، شکر، شیر و ژلاتین" }
     },
-     {
-     id: 13010,
+    {
+        id: 13010,
         categoryId: 13,
         name: "چیز کیک رافائل",
         price: 70000,
         priceText: "۷۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«چیزکیک رافائل با نارگیل و شکلات سفید.»",
         image: "image1/68.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، نارگیل، شکلات سفید، بادام و شکر" }
     },
-     {
-     id: 13011,
+    {
+        id: 13011,
         categoryId: 13,
         name: "خاگینه مغز دار",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«خاگینه مغزی سنتی با مغز گردو و دارچین.»",
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "تخم‌مرغ، شکر، گردو، دارچین و روغن" }
     },
-     {
-     id: 13012,
+    {
+        id: 13012,
         categoryId: 13,
         name: "حلوا فیروزه",
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«حلوا فیروزه نرم و معطر با زعفران و پسته.»",
         image: "image1/113.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، زعفران، روغن، پسته و گلاب" }
     },
     {
-     id: 13013,
+        id: 13013,
         categoryId: 13,
         name: "شربت زعفران",
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«شربت زعفران خنک و معطر برای روزهای گرم.»",
         image: "image1/125.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "زعفران، شکر، آب، گلاب و لیمو" }
     },
-     {
-     id: 13014,
+    {
+        id: 13014,
         categoryId: 13,
         name: "کاپ کیک ساده",
         price: 41000,
         priceText: "۴۱,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«کاپ‌کیک ساده وانیلی با بافت نرم و سبک.»",
         image: "image1/119.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، تخم‌مرغ، وانیل و بکینگ‌پودر" }
     },
     {
-     id: 13015,
+        id: 13015,
         categoryId: 13,
         name: "کاپ کیک ساده فیلنگ دار",
         price: 46000,
         priceText: "۴۶,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«کاپ‌کیک فیلینگ‌دار با پرکننده میوه‌ای یا شکلاتی.»",
         image: "image1/118.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" }
     },
-  {
-    id: 13016,
+    {
+        id: 13016,
         categoryId: 13,
         name: "پاناکوتا",
         price: 60000,
         priceText: "۶۵,۰۰۰ تومان",
-        description: "مجموعه‌ای از مینی تارت‌های میوه‌ای",
+        description: "«پاناکوتا ایتالیایی نرم با سس میوه.»",
         image: "image1/117.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { calories: "200 kcal", ingredients: "خامه، توت فرنگی، نان تارت" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، شیر، شکر، ژلاتین و سس میوه" }
     },
     // --- دسته ۱۴: وی‌آی‌پی (VIP) ---
     {
@@ -998,11 +996,11 @@ const productsDatabase = [
         name: "سینی رویال وی‌آی‌پی",
         price: 900000,
         priceText: "۹۰۰,۰۰۰ تومان",
-        description: "لوکس‌ترین سینی فیروزه مخصوص مهمانی‌های خاص",
+        description: "«سینی رویال وی‌آی‌پی لوکس با مواد premium و تزیین حرفه‌ای.»",
         image: "image1/vip1.png",
         rating: 5.0,
         badge: "ویژه",
-        details: { calories: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیر کمیاب" }
+        details: { nutrition_info: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیرهای خاص، میوه‌های استوایی و نان‌های artisanal" }
     },
 
     // --- دسته ۱۵: نیمه آماده ---
@@ -1012,23 +1010,23 @@ const productsDatabase = [
         name: "الویه نیمه آماده",
         price: 120000,
         priceText: "۱۲۰,۰۰۰ تومان",
-        description: "مواد اولیه الویه آماده ترکیب",
+        description: "«الویه نیمه‌آماده تازه برای ترکیب سریع و آسان.»",
         image: "image1/semi1.png",
         rating: 4.2,
         badge: "",
-        details: { calories: "300 kcal", ingredients: "سیب زمینی، مرغ، خیارشور" }
+        details: { nutrition_info: "300 kcal", ingredients: "سیب‌زمینی پخته، مرغ آماده، خیارشور خردشده، نخودفرنگی و هویج" }
     },
-     {
+    {
         id: 15002,
         categoryId: 15,
         name: "رول سوخاری نیمه اماده",
         price: 50000,
         priceText: ",۵۰۰۰۰ تومان",
-        description: "مواد اولیه الویه آماده ترکیب",
+        description: "«رول سوخاری نیمه‌آماده برای سرخ کردن سریع.»",
         image: "image1/87.jpg",
         rating: 4.2,
         badge: "",
-        details: { calories: "300 kcal", ingredients: "سیب زمینی، مرغ، خیارشور" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر رول، مواد پرکننده (ژامبون یا مرغ)، پنیر و ادویه آماده" }
     },
     {
         id: 15003,
@@ -1036,11 +1034,11 @@ const productsDatabase = [
         name: "سمبوسه نیه اماده",
         price: 50000,
         priceText: ",۵۰۰۰۰ تومان",
-        description: "مواد اولیه الویه آماده ترکیب",
+        description: "«سمبوسه نیمه‌آماده با مواد تازه برای پخت آسان.»",
         image: "image1/86.jpg",
         rating: 4.2,
         badge: "",
-        details: { calories: "300 kcal", ingredients: "سیب زمینی، مرغ، خیارشور" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات آماده، پیاز و ادویه" }
     },
     {
         id: 15003,
@@ -1048,13 +1046,12 @@ const productsDatabase = [
         name: "بورک مرغ و قارچ نیمه اماده",
         price: 50000,
         priceText: ",۵۰۰۰۰ تومان",
-        description: "مواد اولیه الویه آماده ترکیب",
+        description: "«بورک مرغ و قارچ نیمه‌آماده برای پخت سریع.»",
         image: "image1/83.jpg",
         rating: 4.2,
         badge: "",
-        details: { calories: "300 kcal", ingredients: "سیب زمینی، مرغ، خیارشور" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر یوفکا، مرغ و قارچ آماده، پنیر و ادویه" }
     },
-
 
     // --- دسته ۱۶: خدمات سازمانی ---
     {
@@ -1063,10 +1060,10 @@ const productsDatabase = [
         name: "پک صبحانه سازمانی",
         price: 85000,
         priceText: "۸۵,۰۰۰ تومان",
-        description: "پک تک نفره صبحانه اداری",
+        description: "«پک صبحانه سازمانی کامل و مغذی برای جلسات اداری.»",
         image: "image1/org1.png",
         rating: 4.6,
         badge: "اقتصادی",
-        details: { calories: "450 kcal", ingredients: "نان، پنیر، گردو، چای" }
+        details: { nutrition_info: "450 kcal", ingredients: "نان تازه، پنیر، گردو، مربا، چای یا قهوه و میوه" }
     }
 ];
