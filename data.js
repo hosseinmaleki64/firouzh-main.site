@@ -796,6 +796,30 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماست، خیار، نعنا خشک، سیر و نمک" }
     },
+    {
+        id: 12058,
+        categoryId: 12,
+        name: "پیراشکی مثلتی",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«پیراشکی مرغ و قارچ با طعمی گرم و دلنشین.»",
+        image: "image1/158.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" }
+    },
+    {
+        id: 12059,
+        categoryId: 12,
+        name: "سینی فینگر فود ",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«سینی فینگر فود مناسب 17 نفر.»",
+        image: "image1/151.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مینی برگر ،کیک مرغ تکنفره"}
+    },
     // --- دسته ۱۳: دسر و نوشیدنی ---
     {
         id: 13001,
@@ -984,7 +1008,7 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۵,۰۰۰ تومان",
         description: "«پاناکوتا ایتالیایی نرم با سس میوه.»",
-        image: "image1/117.jpg",
+        image: "image1/148.jpg",
         rating: 4.8,
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، شیر، شکر، ژلاتین و سس میوه" }
