@@ -1478,6 +1478,59 @@
       }
     }
   }
+    /* استایل هدر بخش ویژه */
+    .featured-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+   
+    /* دکمه‌های اسلایدر */
+    .slider-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .slider-buttons button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--neutral-color);
+      background: white;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-buttons button:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    /* کانتینر اسلایدر */
+    .featured-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 5px 30px 5px; /* فضای پایین برای سایه کارت‌ها */
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* برای نرم بودن در موبایل */
+      scrollbar-width: none; /* مخفی کردن اسکرول بار در فایرفاکس */
+    }
+   
+    /* مخفی کردن اسکرول بار در کروم */
+    .featured-slider::-webkit-scrollbar {
+      display: none;
+    }
+    /* کارت‌های داخل اسلایدر */
+    .featured-slider .product-card {
+      min-width: 260px; /* عرض ثابت برای هر کارت */
+      max-width: 260px;
+      flex-shrink: 0; /* جلوگیری از جمع شدن کارت‌ها */
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -1627,128 +1680,16 @@
       <p>انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما</p>
     </section>
     <section class="featured-products">
-      <h2><i class="fas fa-star"></i> محصولات ویژه</h2>
-      <div class="featured-grid">
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/fingerfood1.png" alt="سینی مزه کلاسیک">
-            <div class="featured-badge">پرفروش</div>
-          </div>
-          <div class="featured-content">
-            <h3>سینی مزه کلاسیک</h3>
-            <p>.</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>(4.5)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> ۲۵۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
-          </div>
+      <div class="featured-header">
+        <h2><i class="fas fa-star"></i> پیشنهاد سرآشپز (ویژه)</h2>
+        <div class="slider-buttons">
+          <button id="slideRight"><i class="fas fa-chevron-right"></i></button>
+          <button id="slideLeft"><i class="fas fa-chevron-left"></i></button>
         </div>
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/fingerfood2.png" alt="باکس الگانت">
-            <div class="featured-badge">جدید</div>
-          </div>
-          <div class="featured-content">
-            <h3>باکس الگانت</h3>
-            <p>فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <span>(4.0)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> ۳۸۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
-          </div>
-        </div>
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/fingerfood3.png" alt="دسر مینی تارت">
-            <div class="featured-badge">تخفیف</div>
-          </div>
-          <div class="featured-content">
-            <h3>دسر مینی تارت</h3>
-            <p>مجموعه‌ای از مینی تارت‌های میوه‌ای و شکلاتی</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <span>(5.0)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> ۱۸۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
-          </div>
-        </div>
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/fingerfood4.png" alt="آجیل مخلوط لوکس">
-            <div class="featured-badge">پرفروش</div>
-          </div>
-          <div class="featured-content">
-            <h3>آجیل مخلوط لوکس</h3>
-            <p>ترکیبی از پسته، بادام، فندق و گردو</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>(4.5)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> ۳۲۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-cart-plus"></i> افزودن به سبد</button>
-          </div>
-        </div>
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/drinks.png" alt="نوشیدنی‌های خنک">
-            <div class="featured-badge">جدید</div>
-          </div>
-          <div class="featured-content">
-            <h3>نوشیدنی‌های خنک</h3>
-            <p>مجموعه‌ای از نوشیدنی‌های طبیعی و گازدار</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <span>(4.0)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> از ۵۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-eye"></i> مشاهده محصولات</button>
-          </div>
-        </div>
-        <div class="featured-card fade-in">
-          <div class="featured-image">
-            <img src="image1/snacks.png" alt="تنقلات">
-            <div class="featured-badge">پرفروش</div>
-          </div>
-          <div class="featured-content">
-            <h3>تنقلات</h3>
-            <p>انواع چیپس، پفک و اسنک‌های ترد</p>
-            <div class="product-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>(4.5)</span>
-            </div>
-            <div class="featured-price"><i class="fas fa-tag"></i> از ۳۰,۰۰۰ تومان</div>
-            <button class="add-to-cart"><i class="fas fa-eye"></i> مشاهده محصولات</button>
-          </div>
-        </div>
+      </div>
+     
+      <div class="featured-slider" id="featuredWrapper">
+        <div class="loading-spinner"></div>
       </div>
     </section>
     <div class="filters">
@@ -1975,6 +1916,7 @@
         // اطمینان از لود شدن دیتابیس
         if (typeof productsDatabase !== 'undefined') {
             loadProducts();
+            loadFeaturedSection();
         } else {
             console.error('فایل data.js لود نشده است');
         }
@@ -1999,6 +1941,57 @@
         if(overlay) overlay.addEventListener('click', () => {
              sideMenu.classList.remove('active');
              overlay.classList.remove('active');
+        });
+    }
+    // --- بخش اسلایدر محصولات ویژه (هوشمند) ---
+    const featuredContainer = document.getElementById('featuredWrapper');
+    const btnLeft = document.getElementById('slideLeft');
+    const btnRight = document.getElementById('slideRight');
+    const sectionTitle = document.querySelector('.featured-header h2'); // برای تغییر تیتر در صورت نیاز
+    function loadFeaturedSection() {
+        let featuredProducts = [];
+        // سناریو ۱: کاربر وارد یک دسته خاص شده است (مثلاً id=13)
+        if (currentCategoryId) {
+            featuredProducts = productsDatabase.filter(p =>
+                p.categoryId === currentCategoryId && // فقط محصولات همین دسته
+                (p.badge === 'پرفروش' || p.badge === 'جدید' || p.badge === 'تخفیف' || p.rating >= 4.5)
+            );
+        }
+        // سناریو ۲ (سوپاپ اطمینان):
+        // اگر کاربر در صفحه "همه محصولات" است
+        // یا اگر در دسته‌ای است که هیچ محصول ویژه‌ای ندارد (برای اینکه اسلایدر خالی نماند)
+        if (featuredProducts.length === 0) {
+            featuredProducts = productsDatabase.filter(p =>
+                p.badge === 'پرفروش' || p.badge === 'جدید' || p.badge === 'تخفیف' || p.rating >= 4.5
+            );
+           
+            // اگر فال‌بک خوردیم، می‌توانیم تیتر را عوض کنیم (اختیاری)
+            if (currentCategoryId) {
+                // یعنی تو دسته دسر بودیم ولی چون دسر ویژه نداشتیم، ویژه‌های کل رو آوردیم
+                // پس تیتر رو جنرال نگه می‌داریم
+            }
+        }
+        // محدود کردن تعداد نمایش به ۱۰ تا (که صفحه سنگین نشه)
+        featuredProducts = featuredProducts.slice(0, 10);
+        // --- رندر کردن (نمایش) ---
+        featuredContainer.innerHTML = ''; // پاک کردن لودینگ
+        if (featuredProducts.length === 0) {
+            // اگر کلا هیچ محصول ویژه‌ای در دیتابیس نبود
+            featuredContainer.innerHTML = '<p style="text-align:center; width:100%; padding:20px;">محصولات جدید به‌زودی اضافه می‌شوند...</p>';
+            return;
+        }
+        featuredProducts.forEach(product => {
+            // ساخت کارت محصول
+            featuredContainer.innerHTML += generateProductCard(product);
+        });
+    }
+    // --- عملکرد دکمه‌های اسلایدر (بدون تغییر) ---
+    if(btnLeft && btnRight) {
+        btnLeft.addEventListener('click', () => {
+            featuredContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        btnRight.addEventListener('click', () => {
+            featuredContainer.scrollBy({ left: 300, behavior: 'smooth' });
         });
     }
 </script>

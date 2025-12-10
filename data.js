@@ -13,7 +13,9 @@ const productsDatabase = [
         details: { // جزئیات اضافی برای صفحه محصول
             nutrition_info: "400 kcal",
             ingredients: "پنیر پستو، گوجه گیلاسی، نان تارت، ریحان"
-        }
+        },
+        complementaryIds: [13001, 13002, 13013], // مثلاً دسرها و نوشیدنی‌ها برای تکمیل باکس
+        relatedTags: ['مدیترانه‌ای', 'لقمه‌ای', 'پارتی']
     },
     {
         id: 11002,
@@ -25,7 +27,9 @@ const productsDatabase = [
         image: "image1/109.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13003, 13004, 13013],
+        relatedTags: ['هدیه', 'سورپرایز', 'مخلوط']
     },
     {
         id: 11003,
@@ -37,7 +41,9 @@ const productsDatabase = [
         image: "image1/23.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13005, 13006, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
     },
     {
         id: 11004,
@@ -49,7 +55,9 @@ const productsDatabase = [
         image: "image1/30.jpeg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13007, 13008, 13013],
+        relatedTags: ['صبحانه', 'هدیه', 'مخلوط']
     },
     {
         id: 11005,
@@ -61,7 +69,9 @@ const productsDatabase = [
         image: "image1/81.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13009, 13010, 13013],
+        relatedTags: ['ترحیم', 'هدیه', 'مخلوط']
     },
     {
         id: 11006,
@@ -73,7 +83,9 @@ const productsDatabase = [
         image: "image1/89.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13011, 13012, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
     },
     {
         id: 11007,
@@ -85,7 +97,9 @@ const productsDatabase = [
         image: "image1/77.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13014, 13015, 13013],
+        relatedTags: ['تولد', 'هدیه', 'مخلوط']
     },
     {
         id: 11008,
@@ -97,7 +111,9 @@ const productsDatabase = [
         image: "image1/59.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13016, 13001, 13013],
+        relatedTags: ['تولد', 'هدیه', 'مخلوط']
     },
     {
         id: 11009,
@@ -109,7 +125,9 @@ const productsDatabase = [
         image: "image1/56.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13002, 13003, 13013],
+        relatedTags: ['تولد', 'هدیه', 'مخلوط']
     },
     {
         id: 11010,
@@ -121,7 +139,9 @@ const productsDatabase = [
         image: "image1/42.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13004, 13005, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
     },
     {
         id: 11011,
@@ -133,7 +153,9 @@ const productsDatabase = [
         image: "image1/26.jpg",
         rating: 5.0,
         badge: "پرفروش",
-        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" }
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
     },
     // --- دسته ۱۲: فینگر فود و مزه ---
     {
@@ -146,7 +168,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، گوشت چرخ‌کرده، قارچ، پیاز، ادویه‌های معطر، مقدار کمی پنیر و سس مخصوص" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، گوشت چرخ‌کرده، قارچ، پیاز، ادویه‌های معطر، مقدار کمی پنیر و سس مخصوص" },
+        complementaryIds: [13001, 13013, 12023], // مثلاً دسر، نوشیدنی، و یک سالاد
+        relatedTags: ['گوشت', 'قارچ', 'پنیری', 'گرم']
     },
     {
         id: 12002,
@@ -158,7 +182,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" },
+        complementaryIds: [13002, 13013, 12021],
+        relatedTags: ['مرغ', 'قارچ', 'گرم', 'ملایم']
     },
     {
         id: 12003,
@@ -170,7 +196,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه ،ژامبون مخصوص ،قارچ ،سس مخصوص ،" }
+        details: { nutrition_info: "پرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه ،ژامبون مخصوص ،قارچ ،سس مخصوص ،" },
+        complementaryIds: [13003, 13013, 12025],
+        relatedTags: ['پیتزایی', 'ژامبون', 'قارچ', 'گرم']
     },
     {
         id: 12005,
@@ -182,9 +210,11 @@ const productsDatabase = [
         image: "image1/124.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، کاهو، خیارشور، سس مخصوص و ادویه برگر" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، کاهو، خیارشور، سس مخصوص و ادویه برگر" },
+        complementaryIds: [13004, 13013, 12048],
+        relatedTags: ['برگر', 'گوشت', 'مینی', 'گرم']
     },
-{
+    {
         id: 12006,
         categoryId: 12,
         name: "مینی چیز برگر",
@@ -194,7 +224,9 @@ const productsDatabase = [
         image: "image1/140.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه برگر" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه برگر" },
+        complementaryIds: [13005, 13013, 12049],
+        relatedTags: ['چیزبرگر', 'گوشت', 'پنیر', 'مینی']
     },
     {
         id: 12007,
@@ -206,7 +238,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." },
+        complementaryIds: [13006, 13013, 12050],
+        relatedTags: ['چیکن برگر', 'مرغ', 'مینی', 'گرم']
     },
     {
         id: 12008,
@@ -218,7 +252,9 @@ const productsDatabase = [
         image: "image1/75.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." },
+        complementaryIds: [13007, 13013, 12051],
+        relatedTags: ['ساندویچ', 'ژامبون', 'مینی', 'سرد']
     },
     {
         id: 12009,
@@ -230,7 +266,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
+        complementaryIds: [13008, 13013, 12052],
+        relatedTags: ['ساندویچ', 'الویه', 'مینی', 'سرد']
     },
     {
         id: 12010,
@@ -242,7 +280,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص."}
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص."},
+        complementaryIds: [13009, 13013, 12053],
+        relatedTags: ['ساندویچ', 'مرغ', 'مینی', 'گرم']
     },
     {
         id: 12011,
@@ -254,7 +294,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فلافل تازه، نان کوچک، خیارشور، کاهو، گوجه، سس مخصوص و ادویه‌های گیاهی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فلافل تازه، نان کوچک، خیارشور، کاهو، گوجه، سس مخصوص و ادویه‌های گیاهی" },
+        complementaryIds: [13010, 13013, 12023],
+        relatedTags: ['ساندویچ', 'فلافل', 'گیاهی', 'مینی']
     },
     {
         id: 12012,
@@ -266,7 +308,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: ['هات داگ', 'دودی', 'مینی', 'گرم']
     },
     {
         id: 12013,
@@ -278,7 +322,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه لازانیا، گوشت چرخ‌کرده، سس گوجه، پنیر موزارلا، سبزیجات و ادویه ایتالیایی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه لازانیا، گوشت چرخ‌کرده، سس گوجه، پنیر موزارلا، سبزیجات و ادویه ایتالیایی" },
+        complementaryIds: [13012, 13013, 12049],
+        relatedTags: ['رول', 'لازانیا', 'پنیری', 'ایتالیایی']
     },
     {
         id: 12014,
@@ -290,7 +336,9 @@ const productsDatabase = [
         image: "image1/145.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، مواد پرکننده (گوشت یا سبزیجات)، ادویه‌ها و روغن برای سرخ کردن" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، مواد پرکننده (گوشت یا سبزیجات)، ادویه‌ها و روغن برای سرخ کردن" },
+        complementaryIds: [13001, 13013, 12021],
+        relatedTags: ['پیراشکی', 'سوخاری', 'ترد', 'گرم']
     },
     {
         id: 12015,
@@ -302,7 +350,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، ادویه‌های مرغ، تخم‌مرغ و روغن" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، ادویه‌های مرغ، تخم‌مرغ و روغن" },
+        complementaryIds: [13002, 13013, 12023],
+        relatedTags: ['فیله', 'سوخاری', 'مرغ', 'ترد']
     },
     {
         id: 12016,
@@ -314,7 +364,9 @@ const productsDatabase = [
         image: "image1/121.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون، پنیر، خمیر رول، آرد سوخاری و ادویه‌ها" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون، پنیر، خمیر رول، آرد سوخاری و ادویه‌ها" },
+        complementaryIds: [13003, 13013, 12025],
+        relatedTags: ['رول', 'ژامبون', 'سوخاری', 'پنیری']
     },
     {
         id: 12017,
@@ -326,7 +378,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ چرخ‌کرده، پنیر، آرد سوخاری، ادویه‌ها و تخم‌مرغ" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ چرخ‌کرده، پنیر، آرد سوخاری، ادویه‌ها و تخم‌مرغ" },
+        complementaryIds: [13004, 13013, 12048],
+        relatedTags: ['توپک', 'مرغ', 'پنیری', 'سوخاری']
     },
     {
         id: 12018,
@@ -338,7 +392,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی پوره، پنیر، آرد سوخاری، سبزیجات و ادویه‌ها" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی پوره، پنیر، آرد سوخاری، سبزیجات و ادویه‌ها" },
+        complementaryIds: [13005, 13013, 12049],
+        relatedTags: ['توپک', 'سیب زمینی', 'پنیری', 'سوخاری']
     },
     {
         id: 12019,
@@ -350,7 +406,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، خمیر دونات، آرد سوخاری، ادویه‌ها و سس" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، خمیر دونات، آرد سوخاری، ادویه‌ها و سس" },
+        complementaryIds: [13006, 13013, 12050],
+        relatedTags: ['دونات', 'مرغ', 'سوخاری', 'نوآورانه']
     },
     {
         id: 12020,
@@ -362,7 +420,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه اسپرینگ‌رول، سبزیجات، مرغ یا گوشت، ادویه آسیایی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه اسپرینگ‌رول، سبزیجات، مرغ یا گوشت، ادویه آسیایی" },
+        complementaryIds: [13007, 13013, 12051],
+        relatedTags: ['شات', 'اسپرینگ رول', 'ترد', 'آسیایی']
     },
     {
         id: 12021,
@@ -374,7 +434,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، خیارشور، ذرت، سس مایونز و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، خیارشور، ذرت، سس مایونز و ادویه" },
+        complementaryIds: [13008, 13013, 12005],
+        relatedTags: ['شات', 'سالاد', 'ماکارونی', 'خامه‌ای']
     },
     {
         id: 12022,
@@ -386,7 +448,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، سس مخصوص و ادویه‌ها" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، سس مخصوص و ادویه‌ها" },
+        complementaryIds: [13009, 13013, 12006],
+        relatedTags: ['شات', 'فیله', 'سوخاری', 'مرغ']
     },
     {
         id: 12023,
@@ -398,7 +462,9 @@ const productsDatabase = [
         image: "image1/66.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی']
     },
     {
         id: 12024,
@@ -410,7 +476,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، سس مخصوص، ادویه قفقازی و پنیر" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، سس مخصوص، ادویه قفقازی و پنیر" },
+        complementaryIds: [13011, 13013, 12008],
+        relatedTags: ['شات', 'قفقازی', 'مرغ', 'سبزیجات']
     },
     {
         id: 12025,
@@ -422,7 +490,9 @@ const productsDatabase = [
         image: "image1/142.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، سس مایونز" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، سس مایونز" },
+        complementaryIds: [13012, 13013, 12009],
+        relatedTags: ['شات', 'الویه', 'خامه‌ای', 'سالاد']
     },
     {
         id: 12026,
@@ -434,7 +504,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، گوشت چرخ‌کرده، قارچ، پنیر، سس گوجه و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، گوشت چرخ‌کرده، قارچ، پنیر، سس گوجه و ادویه" },
+        complementaryIds: [13001, 13013, 12010],
+        relatedTags: ['پیتزا', 'گوشت', 'قارچ', 'مینی']
     },
     {
         id: 12027,
@@ -446,7 +518,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، مرغ ریز شده، قارچ، پنیر، سس و ادویه ملایم" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، مرغ ریز شده، قارچ، پنیر، سس و ادویه ملایم" },
+        complementaryIds: [13002, 13013, 12011],
+        relatedTags: ['پیتزا', 'مرغ', 'قارچ', 'مینی']
     },
     {
         id: 12028,
@@ -458,7 +532,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، پپرونی، پنیر موزارلا، سس گوجه و فلفل" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، پپرونی، پنیر موزارلا، سس گوجه و فلفل" },
+        complementaryIds: [13003, 13013, 12012],
+        relatedTags: ['پیتزا', 'پپرونی', 'تند', 'مینی']
     },
     {
         id: 12029,
@@ -470,7 +546,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، سوسیس، قارچ، پنیر، سس و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، سوسیس، قارچ، پنیر، سس و ادویه" },
+        complementaryIds: [13004, 13013, 12013],
+        relatedTags: ['پیتزا', 'سوسیس', 'قارچ', 'مینی']
     },
     {
         id: 12031,
@@ -482,7 +560,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، گوشت چرخ‌کرده، قارچ، پیاز و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، گوشت چرخ‌کرده، قارچ، پیاز و ادویه" },
+        complementaryIds: [13005, 13013, 12014],
+        relatedTags: ['بورک', 'گوشت', 'قارچ', 'لایه‌لایه']
     },
     {
         id: 12032,
@@ -494,7 +574,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، مرغ، قارچ، پنیر و ادویه ملایم" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، مرغ، قارچ، پنیر و ادویه ملایم" },
+        complementaryIds: [13006, 13013, 12015],
+        relatedTags: ['بورک', 'مرغ', 'قارچ', 'ترد']
     },
     {
         id: 12033,
@@ -506,7 +588,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، سوسیس، قارچ، پنیر و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، سوسیس، قارچ، پنیر و ادویه" },
+        complementaryIds: [13007, 13013, 12016],
+        relatedTags: ['بورک', 'سوسیس', 'قارچ', 'دودی']
     },
     {
         id: 12034,
@@ -518,7 +602,9 @@ const productsDatabase = [
         image: "image1/71.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، گوشت، قارچ، پنیر و سبزیجات" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، گوشت، قارچ، پنیر و سبزیجات" },
+        complementaryIds: [13008, 13013, 12017],
+        relatedTags: ['تارت', 'گوشت', 'قارچ', 'ترد']
     },
     {
         id: 12035,
@@ -530,7 +616,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، مرغ، قارچ، پنیر و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، مرغ، قارچ، پنیر و ادویه" },
+        complementaryIds: [13009, 13013, 12018],
+        relatedTags: ['تارت', 'مرغ', 'قارچ', 'سبک']
     },
     {
         id: 12036,
@@ -542,7 +630,9 @@ const productsDatabase = [
         image: "image1/65.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، بادمجان، کشک، پیاز داغ و نعنا" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، بادمجان، کشک، پیاز داغ و نعنا" },
+        complementaryIds: [13010, 13013, 12019],
+        relatedTags: ['تارت', 'کشک بادمجان', 'سنتی', 'دودی']
     },
     {
         id: 12037,
@@ -554,7 +644,9 @@ const productsDatabase = [
         image: "image1/43.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان تست، مرغ، سس، سبزیجات و پنیر" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان تست، مرغ، سس، سبزیجات و پنیر" },
+        complementaryIds: [13011, 13013, 12020],
+        relatedTags: ['کیک مرغ', 'تکنفره', 'لایه‌لایه', 'مرغ']
     },
     {
         id: 12038,
@@ -566,7 +658,9 @@ const productsDatabase = [
         image: "image1/25.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان، مرغ پخته، سس مایونز، سبزیجات تازه و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان، مرغ پخته، سس مایونز، سبزیجات تازه و ادویه" },
+        complementaryIds: [13012, 13013, 12021],
+        relatedTags: ['کیک مرغ', 'کیلویی', 'مهمانی', 'مرغ']
     },
     {
         id: 12039,
@@ -578,7 +672,9 @@ const productsDatabase = [
         image: "image1/122.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "لوبیا، تخم‌مرغ، سبزیجات، پیاز و ادویه ایرانی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "لوبیا، تخم‌مرغ، سبزیجات، پیاز و ادویه ایرانی" },
+        complementaryIds: [13001, 13013, 12022],
+        relatedTags: ['کوکو', 'لوبیا', 'گیاهی', 'ایرانی']
     },
     {
         id: 12040,
@@ -590,7 +686,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سبزی کوکو، تخم‌مرغ، آرد، گردو و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سبزی کوکو، تخم‌مرغ، آرد، گردو و ادویه" },
+        complementaryIds: [13002, 13013, 12023],
+        relatedTags: ['کوکو', 'سبزی', 'گیاهی', 'معطر']
     },
     {
         id: 12041,
@@ -602,7 +700,9 @@ const productsDatabase = [
         image: "image1/111.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان قیفی، خیارشور و تزیین سبزی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان قیفی، خیارشور و تزیین سبزی" },
+        complementaryIds: [13003, 13013, 12024],
+        relatedTags: ['قیف', 'الویه', 'سالاد', 'ترد']
     },
     {
         id: 12042,
@@ -614,7 +714,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، هویج و سس" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، هویج و سس" },
+        complementaryIds: [13004, 13013, 12025],
+        relatedTags: ['سالاد', 'الویه', 'کیلویی', 'خامه‌ای']
     },
     {
         id: 12043,
@@ -626,7 +728,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، پنیر، سس مخصوص و ادویه قفقازی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، پنیر، سس مخصوص و ادویه قفقازی" },
+        complementaryIds: [13005, 13013, 12026],
+        relatedTags: ['قفقاز', 'کیلویی', 'مرغ', 'اصیل']
     },
     {
         id: 12044,
@@ -638,7 +742,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان، کشک، پیاز داغ، نعنا داغ و گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان، کشک، پیاز داغ، نعنا داغ و گردو" },
+        complementaryIds: [13006, 13013, 12027],
+        relatedTags: ['کشک بادمجان', 'کیلویی', 'دودی', 'سنتی']
     },
     {
         id: 12045,
@@ -650,7 +756,9 @@ const productsDatabase = [
         image: "image1/31.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، ذرت، خیارشور، سس و سبزیجات" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، ذرت، خیارشور، سس و سبزیجات" },
+        complementaryIds: [13007, 13013, 12028],
+        relatedTags: ['سالاد', 'ماکارونی', 'کیلویی', 'خامه‌ای']
     },
     {
         id: 12046,
@@ -662,7 +770,9 @@ const productsDatabase = [
         image: "image1/44.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج، مرغ، زعفران، ماست، تخم‌مرغ و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج، مرغ، زعفران، ماست، تخم‌مرغ و ادویه" },
+        complementaryIds: [13008, 13013, 12029],
+        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'معطر']
     },
     {
         id: 12047,
@@ -674,7 +784,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج زعفرانی، مرغ مزه‌دار، ماست، تخم‌مرغ و زرشک" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج زعفرانی، مرغ مزه‌دار، ماست، تخم‌مرغ و زرشک" },
+        complementaryIds: [13009, 13013, 12031],
+        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'قالبی']
     },
     {
         id: 12048,
@@ -686,7 +798,9 @@ const productsDatabase = [
         image: "image1/127.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کاهو، مرغ گریل، پنیر پارمسان، نان کروتون و سس سزار" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کاهو، مرغ گریل، پنیر پارمسان، نان کروتون و سس سزار" },
+        complementaryIds: [13010, 13013, 12032],
+        relatedTags: ['سالاد', 'سزار', 'مرغ', 'کلاسیک']
     },
     {
         id: 12049,
@@ -698,7 +812,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم سفید و قرمز، هویج، سس مایونز و ادویه" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم سفید و قرمز، هویج، سس مایونز و ادویه" },
+        complementaryIds: [13011, 13013, 12033],
+        relatedTags: ['سالاد', 'کلم', 'ترد', 'خامه‌ای']
     },
     {
         id: 12050,
@@ -710,7 +826,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، سس مخصوص و گردو" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، سس مخصوص و گردو" },
+        complementaryIds: [13012, 13013, 12034],
+        relatedTags: ['سالاد', 'کلم', 'غنی', 'تازه']
     },
     {
         id: 12051,
@@ -722,7 +840,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ گریل، کاهو، گوجه، خیار، ذرت و سس" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ گریل، کاهو، گوجه، خیار، ذرت و سس" },
+        complementaryIds: [13001, 13013, 12035],
+        relatedTags: ['سالاد', 'مرغ', 'سبزیجات', 'رنگارنگ']
     },
     {
         id: 12052,
@@ -734,7 +854,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، آناناس، سس مخصوص" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، آناناس، سس مخصوص" },
+        complementaryIds: [13002, 13013, 12036],
+        relatedTags: ['سالاد', 'اندونزی', 'شیرین', 'ترش']
     },
     {
         id: 12053,
@@ -746,7 +868,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، هویج، نخودفرنگی، خیارشور و سس مایونز" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، هویج، نخودفرنگی، خیارشور و سس مایونز" },
+        complementaryIds: [13003, 13013, 12037],
+        relatedTags: ['سالاد', 'روسی', 'کلاسیک', 'سبزیجات']
     },
     {
         id: 12054,
@@ -758,7 +882,9 @@ const productsDatabase = [
         image: "image1/fingerfood1.png",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات، پیاز، ادویه هندی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات، پیاز، ادویه هندی" },
+        complementaryIds: [13004, 13013, 12038],
+        relatedTags: ['سمبوسه', 'ترد', 'تند', 'هندی']
     },
     {
         id: 12055,
@@ -770,7 +896,9 @@ const productsDatabase = [
         image: "image1/45.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه رول، سبزیجات، مرغ یا میگو، سس سویا" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه رول، سبزیجات، مرغ یا میگو، سس سویا" },
+        complementaryIds: [13005, 13013, 12039],
+        relatedTags: ['اسپرینگ رول', 'آسیایی', 'ترد', 'سبزیجات']
     },
     {
         id: 12056,
@@ -782,7 +910,9 @@ const productsDatabase = [
         image: "image1/107.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان رولت، خیارشور و سبزی" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان رولت، خیارشور و سبزی" },
+        complementaryIds: [13006, 13013, 12040],
+        relatedTags: ['رولت', 'الویه', 'نرم', 'تازه']
     },
     {
         id: 12057,
@@ -794,7 +924,9 @@ const productsDatabase = [
         image: "image1/130.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماست، خیار، نعنا خشک، سیر و نمک" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماست، خیار، نعنا خشک، سیر و نمک" },
+        complementaryIds: [13007, 13013, 12041],
+        relatedTags: ['خیار ماست', 'تازه', 'خنک', 'نعنا']
     },
     {
         id: 12058,
@@ -806,7 +938,9 @@ const productsDatabase = [
         image: "image1/158.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" }
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" },
+        complementaryIds: [13008, 13013, 12042],
+        relatedTags: ['پیراشکی', 'مثلتی', 'مرغ', 'قارچ']
     },
     {
         id: 12059,
@@ -818,7 +952,9 @@ const productsDatabase = [
         image: "image1/151.jpg",
         rating: 4.5,
         badge: "پرفروش",
-        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مینی برگر ،کیک مرغ تکنفره"}
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مینی برگر ،کیک مرغ تکنفره"},
+        complementaryIds: [13009, 13013, 12043],
+        relatedTags: ['سینی', 'فینگر فود', 'مهمانی', 'مخلوط']
     },
     // --- دسته ۱۳: دسر و نوشیدنی ---
     {
@@ -831,7 +967,9 @@ const productsDatabase = [
         image: "image1/19.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "خامه، بیسکویت لوتوس، کارامل، وانیل و شکر" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، بیسکویت لوتوس، کارامل، وانیل و شکر" },
+        complementaryIds: [12001, 12002, 11001], // مثلاً فینگرفودها و باکس‌ها برای تکمیل دسر
+        relatedTags: ['دسر', 'لوتوس', 'کرمی', 'کارامل']
     },
     {
         id: 13002,
@@ -843,7 +981,9 @@ const productsDatabase = [
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "کیک لیدی‌فینگر، قهوه، ماسکارپونه، کاکائو و تخم‌مرغ" }
+        details: { nutrition_info: "200 kcal", ingredients: "کیک لیدی‌فینگر، قهوه، ماسکارپونه، کاکائو و تخم‌مرغ" },
+        complementaryIds: [12003, 12005, 11002],
+        relatedTags: ['دسر', 'تیرامیسو', 'ایتالیایی', 'قهوه']
     },
     {
         id: 13003,
@@ -855,7 +995,9 @@ const productsDatabase = [
         image: "image1/2.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "موز، خامه، بیسکویت، وانیل و شکر قهوه‌ای" }
+        details: { nutrition_info: "200 kcal", ingredients: "موز، خامه، بیسکویت، وانیل و شکر قهوه‌ای" },
+        complementaryIds: [12006, 12007, 11003],
+        relatedTags: ['دسر', 'روکر', 'موز', 'خامه']
     },
     {
         id: 13004,
@@ -867,7 +1009,9 @@ const productsDatabase = [
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، بیسکویت لوتوس، خامه، شکر و وانیل" }
+        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، بیسکویت لوتوس، خامه، شکر و وانیل" },
+        complementaryIds: [12008, 12009, 11004],
+        relatedTags: ['دسر', 'چیزکیک', 'لوتوس', 'کرمی']
     },
     {
         id: 13005,
@@ -879,7 +1023,9 @@ const productsDatabase = [
         image: "image1/5.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" }
+        details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" },
+        complementaryIds: [12010, 12011, 11005],
+        relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای']
     },
     {
         id: 13006,
@@ -891,7 +1037,9 @@ const productsDatabase = [
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" },
+        complementaryIds: [12012, 12013, 11006],
+        relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک']
     },
     {
         id: 13007,
@@ -903,7 +1051,9 @@ const productsDatabase = [
         image: "image1/4.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "شکلات تلخ، خامه، شکر، وانیل و بیسکویت" }
+        details: { nutrition_info: "200 kcal", ingredients: "شکلات تلخ، خامه، شکر، وانیل و بیسکویت" },
+        complementaryIds: [12014, 12015, 11007],
+        relatedTags: ['دسر', 'شکلاتی', 'غلیظ', 'لایه‌دار']
     },
     {
         id: 13008,
@@ -915,7 +1065,9 @@ const productsDatabase = [
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "خامه، زعفران، شکر، وانیل و پسته" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، زعفران، شکر، وانیل و پسته" },
+        complementaryIds: [12016, 12017, 11008],
+        relatedTags: ['دسر', 'کرم', 'زعفرانی', 'ایرانی']
     },
     {
         id: 13009,
@@ -927,7 +1079,9 @@ const productsDatabase = [
         image: "image1/144.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "خامه، وانیل طبیعی، شکر، شیر و ژلاتین" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، وانیل طبیعی، شکر، شیر و ژلاتین" },
+        complementaryIds: [12018, 12019, 11009],
+        relatedTags: ['دسر', 'کرم', 'وانیلی', 'کلاسیک']
     },
     {
         id: 13010,
@@ -939,7 +1093,9 @@ const productsDatabase = [
         image: "image1/68.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، نارگیل، شکلات سفید، بادام و شکر" }
+        details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، نارگیل، شکلات سفید، بادام و شکر" },
+        complementaryIds: [12020, 12021, 11010],
+        relatedTags: ['دسر', 'چیزکیک', 'رافائل', 'نارگیل']
     },
     {
         id: 13011,
@@ -951,7 +1107,9 @@ const productsDatabase = [
         image: "image1/fingerfood3.png",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "تخم‌مرغ، شکر، گردو، دارچین و روغن" }
+        details: { nutrition_info: "200 kcal", ingredients: "تخم‌مرغ، شکر، گردو، دارچین و روغن" },
+        complementaryIds: [12022, 12023, 11011],
+        relatedTags: ['دسر', 'خاگینه', 'مغزی', 'سنتی']
     },
     {
         id: 13012,
@@ -963,7 +1121,9 @@ const productsDatabase = [
         image: "image1/113.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، زعفران، روغن، پسته و گلاب" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، زعفران، روغن، پسته و گلاب" },
+        complementaryIds: [12024, 12025, 11001],
+        relatedTags: ['دسر', 'حلوا', 'فیروزه', 'زعفران']
     },
     {
         id: 13013,
@@ -975,7 +1135,9 @@ const productsDatabase = [
         image: "image1/125.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "زعفران، شکر، آب، گلاب و لیمو" }
+        details: { nutrition_info: "200 kcal", ingredients: "زعفران، شکر، آب، گلاب و لیمو" },
+        complementaryIds: [12026, 12027, 11002],
+        relatedTags: ['نوشیدنی', 'شربت', 'زعفران', 'خنک']
     },
     {
         id: 13014,
@@ -987,7 +1149,9 @@ const productsDatabase = [
         image: "image1/119.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، تخم‌مرغ، وانیل و بکینگ‌پودر" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، تخم‌مرغ، وانیل و بکینگ‌پودر" },
+        complementaryIds: [12028, 12029, 11003],
+        relatedTags: ['دسر', 'کاپ کیک', 'ساده', 'وانیلی']
     },
     {
         id: 13015,
@@ -999,7 +1163,9 @@ const productsDatabase = [
         image: "image1/118.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" }
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای']
     },
     {
         id: 13016,
@@ -1011,7 +1177,9 @@ const productsDatabase = [
         image: "image1/148.jpg",
         rating: 4.8,
         badge: "تخفیف",
-        details: { nutrition_info: "200 kcal", ingredients: "خامه، شیر، شکر، ژلاتین و سس میوه" }
+        details: { nutrition_info: "200 kcal", ingredients: "خامه، شیر، شکر، ژلاتین و سس میوه" },
+        complementaryIds: [12033, 12034, 11005],
+        relatedTags: ['دسر', 'پاناکوتا', 'ایتالیایی', 'نرم']
     },
     // --- دسته ۱۴: وی‌آی‌پی (VIP) ---
     {
@@ -1024,7 +1192,9 @@ const productsDatabase = [
         image: "image1/vip1.png",
         rating: 5.0,
         badge: "ویژه",
-        details: { nutrition_info: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیرهای خاص، میوه‌های استوایی و نان‌های artisanal" }
+        details: { nutrition_info: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیرهای خاص، میوه‌های استوایی و نان‌های artisanal" },
+        complementaryIds: [13001, 13013, 12001],
+        relatedTags: ['وی‌آی‌پی', 'رویال', 'لوکس', 'پریمیوم']
     },
 
     // --- دسته ۱۵: نیمه آماده ---
@@ -1038,7 +1208,9 @@ const productsDatabase = [
         image: "image1/semi1.png",
         rating: 4.2,
         badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "سیب‌زمینی پخته، مرغ آماده، خیارشور خردشده، نخودفرنگی و هویج" }
+        details: { nutrition_info: "300 kcal", ingredients: "سیب‌زمینی پخته، مرغ آماده، خیارشور خردشده، نخودفرنگی و هویج" },
+        complementaryIds: [13002, 13013, 12009],
+        relatedTags: ['نیمه آماده', 'الویه', 'تازه', 'سریع']
     },
     {
         id: 15002,
@@ -1050,7 +1222,9 @@ const productsDatabase = [
         image: "image1/87.jpg",
         rating: 4.2,
         badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر رول، مواد پرکننده (ژامبون یا مرغ)، پنیر و ادویه آماده" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر رول، مواد پرکننده (ژامبون یا مرغ)، پنیر و ادویه آماده" },
+        complementaryIds: [13003, 13013, 12016],
+        relatedTags: ['نیمه آماده', 'رول', 'سوخاری', 'سریع']
     },
     {
         id: 15003,
@@ -1062,7 +1236,9 @@ const productsDatabase = [
         image: "image1/86.jpg",
         rating: 4.2,
         badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات آماده، پیاز و ادویه" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات آماده، پیاز و ادویه" },
+        complementaryIds: [13004, 13013, 12054],
+        relatedTags: ['نیمه آماده', 'سمبوسه', 'تازه', 'آسان']
     },
     {
         id: 15003,
@@ -1074,7 +1250,9 @@ const productsDatabase = [
         image: "image1/83.jpg",
         rating: 4.2,
         badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر یوفکا، مرغ و قارچ آماده، پنیر و ادویه" }
+        details: { nutrition_info: "300 kcal", ingredients: "خمیر یوفکا، مرغ و قارچ آماده، پنیر و ادویه" },
+        complementaryIds: [13005, 13013, 12032],
+        relatedTags: ['نیمه آماده', 'بورک', 'مرغ', 'قارچ']
     },
 
     // --- دسته ۱۶: خدمات سازمانی ---
@@ -1088,6 +1266,8 @@ const productsDatabase = [
         image: "image1/org1.png",
         rating: 4.6,
         badge: "اقتصادی",
-        details: { nutrition_info: "450 kcal", ingredients: "نان تازه، پنیر، گردو، مربا، چای یا قهوه و میوه" }
+        details: { nutrition_info: "450 kcal", ingredients: "نان تازه، پنیر، گردو، مربا، چای یا قهوه و میوه" },
+        complementaryIds: [13013, 13001, 11004],
+        relatedTags: ['سازمانی', 'صبحانه', 'مغذی', 'جلسات']
     }
 ];
