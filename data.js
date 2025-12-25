@@ -5,17 +5,17 @@ const productsDatabase = [
         categoryId: 11,
         name: "باکس الگانت ویژه",
         price: 380000,
-        priceText: "۳۸۰,۰۰۰ تومان", // برای نمایش راحت‌تر
+        priceText: "۳۸۰,۰۰۰ تومان",
         description: "فینگرفودهای لقمه‌ای با طعم‌های مدیترانه‌ای مناسب برای ۴ نفر",
         image: "image1/47.jpg",
         rating: 4.0,
         badge: "جدید",
-        details: { // جزئیات اضافی برای صفحه محصول
-            nutrition_info: "400 kcal",
-            ingredients: "پنیر پستو، گوجه گیلاسی، نان تارت، ریحان"
-        },
-        complementaryIds: [13001, 13002, 13013], // مثلاً دسرها و نوشیدنی‌ها برای تکمیل باکس
-        relatedTags: ['مدیترانه‌ای', 'لقمه‌ای', 'پارتی']
+        details: { nutrition_info: "400 kcal", ingredients: "پنیر پستو، گوجه گیلاسی، نان تارت، ریحان" },
+        complementaryIds: [13001, 13002, 13013],
+        relatedTags: ['مدیترانه‌ای', 'لقمه‌ای', 'پارتی'],
+        date: "2025-12-15",
+        sales: 320,
+        discountPercent: 15
     },
     {
         id: 11002,
@@ -29,7 +29,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13003, 13004, 13013],
-        relatedTags: ['هدیه', 'سورپرایز', 'مخلوط']
+        relatedTags: ['هدیه', 'سورپرایز', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 450,
+        discountPercent: 15
     },
     {
         id: 11003,
@@ -43,7 +46,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13005, 13006, 13013],
-        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 380,
+        discountPercent: 15
     },
     {
         id: 11004,
@@ -57,7 +63,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13007, 13008, 13013],
-        relatedTags: ['صبحانه', 'هدیه', 'مخلوط']
+        relatedTags: ['صبحانه', 'هدیه', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 290,
+        discountPercent: 15
     },
     {
         id: 11005,
@@ -71,7 +80,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13009, 13010, 13013],
-        relatedTags: ['ترحیم', 'هدیه', 'مخلوط']
+        relatedTags: ['ترحیم', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 150,
+        discountPercent: 15
     },
     {
         id: 11006,
@@ -85,7 +97,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13011, 13012, 13013],
-        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 360,
+        discountPercent: 15
     },
     {
         id: 11007,
@@ -99,7 +114,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13014, 13015, 13013],
-        relatedTags: ['تولد', 'هدیه', 'مخلوط']
+        relatedTags: ['تولد', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 420,
+        discountPercent: 15
     },
     {
         id: 11008,
@@ -113,7 +131,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13016, 13001, 13013],
-        relatedTags: ['تولد', 'هدیه', 'مخلوط']
+        relatedTags: ['تولد', 'هدیه', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 410,
+        discountPercent: 15
     },
     {
         id: 11009,
@@ -127,7 +148,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13002, 13003, 13013],
-        relatedTags: ['تولد', 'هدیه', 'مخلوط']
+        relatedTags: ['تولد', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 400,
+        discountPercent: 15
     },
     {
         id: 11010,
@@ -141,7 +165,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13004, 13005, 13013],
-        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 340,
+        discountPercent: 15
     },
     {
         id: 11011,
@@ -155,8 +182,63 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
         complementaryIds: [13006, 13007, 13013],
-        relatedTags: ['دفاع', 'هدیه', 'مخلوط']
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 310,
+        discountPercent: 15
     },
+    {
+        id: 11012,
+        categoryId: 11,
+        name: "پک دو نفره یلدای",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/194.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-08",
+        sales: 280,
+        discountPercent: 15
+    },
+    {
+        id: 11013,
+        categoryId: 11,
+        name: "پک دو نفره یلدای",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/193.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: ['دفاع', 'هدیه', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 270,
+        discountPercent: 15
+    },
+    {
+        id: 11013,
+        categoryId: 11,
+        name: "پک یک نفره ",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/61.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 250,
+        discountPercent: 15
+    },
+   
     // --- دسته ۱۲: فینگر فود و مزه ---
     {
         id: 12001,
@@ -165,12 +247,15 @@ const productsDatabase = [
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
         description: "«پیراشکی گوشت و قارچ؛ ترکیبی خوش‌عطر و اشتها‌آور.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/178.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، گوشت چرخ‌کرده، قارچ، پیاز، ادویه‌های معطر، مقدار کمی پنیر و سس مخصوص" },
-        complementaryIds: [13001, 13013, 12023], // مثلاً دسر، نوشیدنی، و یک سالاد
-        relatedTags: ['گوشت', 'قارچ', 'پنیری', 'گرم']
+        complementaryIds: [13001, 13013, 12023],
+        relatedTags: ['گوشت', 'قارچ', 'پنیری', 'گرم'],
+        date: "2025-12-15",
+        sales: 580,
+        discountPercent: 15
     },
     {
         id: 12002,
@@ -179,12 +264,15 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "«پیراشکی مرغ و قارچ با طعمی گرم و دلنشین.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/179.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" },
         complementaryIds: [13002, 13013, 12021],
-        relatedTags: ['مرغ', 'قارچ', 'گرم', 'ملایم']
+        relatedTags: ['مرغ', 'قارچ', 'گرم', 'ملایم'],
+        date: "2025-12-08",
+        sales: 540,
+        discountPercent: 15
     },
     {
         id: 12003,
@@ -193,12 +281,15 @@ const productsDatabase = [
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
         description: "«پیراشکی پیتزایی با عطروطعمی که اشتها را باز می‌کند.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/178.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه ،ژامبون مخصوص ،قارچ ،سس مخصوص ،" },
         complementaryIds: [13003, 13013, 12025],
-        relatedTags: ['پیتزایی', 'ژامبون', 'قارچ', 'گرم']
+        relatedTags: ['پیتزایی', 'ژامبون', 'قارچ', 'گرم'],
+        date: "2025-12-15",
+        sales: 520,
+        discountPercent: 15
     },
     {
         id: 12005,
@@ -212,7 +303,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، کاهو، خیارشور، سس مخصوص و ادویه برگر" },
         complementaryIds: [13004, 13013, 12048],
-        relatedTags: ['برگر', 'گوشت', 'مینی', 'گرم']
+        relatedTags: ['برگر', 'گوشت', 'مینی', 'گرم'],
+        date: "2025-12-08",
+        sales: 620,
+        discountPercent: 15
     },
     {
         id: 12006,
@@ -226,7 +320,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه برگر" },
         complementaryIds: [13005, 13013, 12049],
-        relatedTags: ['چیزبرگر', 'گوشت', 'پنیر', 'مینی']
+        relatedTags: ['چیزبرگر', 'گوشت', 'پنیر', 'مینی'],
+        date: "2025-12-15",
+        sales: 600,
+        discountPercent: 15
     },
     {
         id: 12007,
@@ -235,12 +332,15 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: ".",
-        image: "image1/fingerfood1.png",
+        image: "image1/177.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." },
         complementaryIds: [13006, 13013, 12050],
-        relatedTags: ['چیکن برگر', 'مرغ', 'مینی', 'گرم']
+        relatedTags: ['چیکن برگر', 'مرغ', 'مینی', 'گرم'],
+        date: "2025-12-08",
+        sales: 560,
+        discountPercent: 15
     },
     {
         id: 12008,
@@ -254,7 +354,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." },
         complementaryIds: [13007, 13013, 12051],
-        relatedTags: ['ساندویچ', 'ژامبون', 'مینی', 'سرد']
+        relatedTags: ['ساندویچ', 'ژامبون', 'مینی', 'سرد'],
+        date: "2025-12-15",
+        sales: 530,
+        discountPercent: 15
     },
     {
         id: 12009,
@@ -268,7 +371,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
         complementaryIds: [13008, 13013, 12052],
-        relatedTags: ['ساندویچ', 'الویه', 'مینی', 'سرد']
+        relatedTags: ['ساندویچ', 'الویه', 'مینی', 'سرد'],
+        date: "2025-12-08",
+        sales: 500,
+        discountPercent: 15
     },
     {
         id: 12010,
@@ -282,7 +388,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص."},
         complementaryIds: [13009, 13013, 12053],
-        relatedTags: ['ساندویچ', 'مرغ', 'مینی', 'گرم']
+        relatedTags: ['ساندویچ', 'مرغ', 'مینی', 'گرم'],
+        date: "2025-12-15",
+        sales: 510,
+        discountPercent: 15
     },
     {
         id: 12011,
@@ -296,7 +405,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فلافل تازه، نان کوچک، خیارشور، کاهو، گوجه، سس مخصوص و ادویه‌های گیاهی" },
         complementaryIds: [13010, 13013, 12023],
-        relatedTags: ['ساندویچ', 'فلافل', 'گیاهی', 'مینی']
+        relatedTags: ['ساندویچ', 'فلافل', 'گیاهی', 'مینی'],
+        date: "2025-12-08",
+        sales: 480,
+        discountPercent: 15
     },
     {
         id: 12012,
@@ -305,12 +417,15 @@ const productsDatabase = [
         price: 50000,
         priceText: "۵۰,۰۰۰ تومان",
         description: "«مینی‌هات‌داگ دودی و آبدار با نان نرم و سس تند.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/206.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
         complementaryIds: [13011, 13013, 12048],
-        relatedTags: ['هات داگ', 'دودی', 'مینی', 'گرم']
+        relatedTags: ['هات داگ', 'دودی', 'مینی', 'گرم'],
+        date: "2025-12-15",
+        sales: 490,
+        discountPercent: 15
     },
     {
         id: 12013,
@@ -324,7 +439,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه لازانیا، گوشت چرخ‌کرده، سس گوجه، پنیر موزارلا، سبزیجات و ادویه ایتالیایی" },
         complementaryIds: [13012, 13013, 12049],
-        relatedTags: ['رول', 'لازانیا', 'پنیری', 'ایتالیایی']
+        relatedTags: ['رول', 'لازانیا', 'پنیری', 'ایتالیایی'],
+        date: "2025-12-08",
+        sales: 470,
+        discountPercent: 15
     },
     {
         id: 12014,
@@ -338,7 +456,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تازه، مواد پرکننده (گوشت یا سبزیجات)، ادویه‌ها و روغن برای سرخ کردن" },
         complementaryIds: [13001, 13013, 12021],
-        relatedTags: ['پیراشکی', 'سوخاری', 'ترد', 'گرم']
+        relatedTags: ['پیراشکی', 'سوخاری', 'ترد', 'گرم'],
+        date: "2025-12-15",
+        sales: 550,
+        discountPercent: 15
     },
     {
         id: 12015,
@@ -352,7 +473,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، ادویه‌های مرغ، تخم‌مرغ و روغن" },
         complementaryIds: [13002, 13013, 12023],
-        relatedTags: ['فیله', 'سوخاری', 'مرغ', 'ترد']
+        relatedTags: ['فیله', 'سوخاری', 'مرغ', 'ترد'],
+        date: "2025-12-08",
+        sales: 530,
+        discountPercent: 15
     },
     {
         id: 12016,
@@ -366,7 +490,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون، پنیر، خمیر رول، آرد سوخاری و ادویه‌ها" },
         complementaryIds: [13003, 13013, 12025],
-        relatedTags: ['رول', 'ژامبون', 'سوخاری', 'پنیری']
+        relatedTags: ['رول', 'ژامبون', 'سوخاری', 'پنیری'],
+        date: "2025-12-15",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 12017,
@@ -375,12 +502,15 @@ const productsDatabase = [
         price: 45000,
         priceText: "۴۵,۰۰۰ تومان",
         description: "«توپک مرغ پنیری سوخاری با داخل چسبناک و خوشمزه.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/123.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ چرخ‌کرده، پنیر، آرد سوخاری، ادویه‌ها و تخم‌مرغ" },
         complementaryIds: [13004, 13013, 12048],
-        relatedTags: ['توپک', 'مرغ', 'پنیری', 'سوخاری']
+        relatedTags: ['توپک', 'مرغ', 'پنیری', 'سوخاری'],
+        date: "2025-12-08",
+        sales: 440,
+        discountPercent: 15
     },
     {
         id: 12018,
@@ -394,7 +524,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی پوره، پنیر، آرد سوخاری، سبزیجات و ادویه‌ها" },
         complementaryIds: [13005, 13013, 12049],
-        relatedTags: ['توپک', 'سیب زمینی', 'پنیری', 'سوخاری']
+        relatedTags: ['توپک', 'سیب زمینی', 'پنیری', 'سوخاری'],
+        date: "2025-12-15",
+        sales: 430,
+        discountPercent: 15
     },
     {
         id: 12019,
@@ -403,12 +536,15 @@ const productsDatabase = [
         price: 65000,
         priceText: "۶۵,۰۰۰ تومان",
         description: "«دونات مرغ سوخاری نوآورانه با طعم منحصربه‌فرد.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/210.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، خمیر دونات، آرد سوخاری، ادویه‌ها و سس" },
         complementaryIds: [13006, 13013, 12050],
-        relatedTags: ['دونات', 'مرغ', 'سوخاری', 'نوآورانه']
+        relatedTags: ['دونات', 'مرغ', 'سوخاری', 'نوآورانه'],
+        date: "2025-12-08",
+        sales: 410,
+        discountPercent: 15
     },
     {
         id: 12020,
@@ -422,7 +558,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه اسپرینگ‌رول، سبزیجات، مرغ یا گوشت، ادویه آسیایی" },
         complementaryIds: [13007, 13013, 12051],
-        relatedTags: ['شات', 'اسپرینگ رول', 'ترد', 'آسیایی']
+        relatedTags: ['شات', 'اسپرینگ رول', 'ترد', 'آسیایی'],
+        date: "2025-12-15",
+        sales: 390,
+        discountPercent: 15
     },
     {
         id: 12021,
@@ -431,12 +570,15 @@ const productsDatabase = [
         price: 60000,
         priceText: "۶۰,۰۰۰ تومان",
         description: "«شات سالاد ماکارونی خامه‌ای و تازه با سبزیجات.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/209.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، خیارشور، ذرت، سس مایونز و ادویه" },
         complementaryIds: [13008, 13013, 12005],
-        relatedTags: ['شات', 'سالاد', 'ماکارونی', 'خامه‌ای']
+        relatedTags: ['شات', 'سالاد', 'ماکارونی', 'خامه‌ای'],
+        date: "2025-12-08",
+        sales: 480,
+        discountPercent: 15
     },
     {
         id: 12022,
@@ -450,7 +592,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "فیله مرغ، آرد سوخاری، سس مخصوص و ادویه‌ها" },
         complementaryIds: [13009, 13013, 12006],
-        relatedTags: ['شات', 'فیله', 'سوخاری', 'مرغ']
+        relatedTags: ['شات', 'فیله', 'سوخاری', 'مرغ'],
+        date: "2025-12-15",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 12023,
@@ -464,7 +609,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
         complementaryIds: [13010, 13013, 12007],
-        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی']
+        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی'],
+        date: "2025-12-08",
+        sales: 450,
+        discountPercent: 15
     },
     {
         id: 12024,
@@ -478,7 +626,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، سس مخصوص، ادویه قفقازی و پنیر" },
         complementaryIds: [13011, 13013, 12008],
-        relatedTags: ['شات', 'قفقازی', 'مرغ', 'سبزیجات']
+        relatedTags: ['شات', 'قفقازی', 'مرغ', 'سبزیجات'],
+        date: "2025-12-15",
+        sales: 430,
+        discountPercent: 15
     },
     {
         id: 12025,
@@ -492,7 +643,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، سس مایونز" },
         complementaryIds: [13012, 13013, 12009],
-        relatedTags: ['شات', 'الویه', 'خامه‌ای', 'سالاد']
+        relatedTags: ['شات', 'الویه', 'خامه‌ای', 'سالاد'],
+        date: "2025-12-08",
+        sales: 470,
+        discountPercent: 15
     },
     {
         id: 12026,
@@ -506,7 +660,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، گوشت چرخ‌کرده، قارچ، پنیر، سس گوجه و ادویه" },
         complementaryIds: [13001, 13013, 12010],
-        relatedTags: ['پیتزا', 'گوشت', 'قارچ', 'مینی']
+        relatedTags: ['پیتزا', 'گوشت', 'قارچ', 'مینی'],
+        date: "2025-12-15",
+        sales: 560,
+        discountPercent: 15
     },
     {
         id: 12027,
@@ -520,7 +677,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، مرغ ریز شده، قارچ، پنیر، سس و ادویه ملایم" },
         complementaryIds: [13002, 13013, 12011],
-        relatedTags: ['پیتزا', 'مرغ', 'قارچ', 'مینی']
+        relatedTags: ['پیتزا', 'مرغ', 'قارچ', 'مینی'],
+        date: "2025-12-08",
+        sales: 540,
+        discountPercent: 15
     },
     {
         id: 12028,
@@ -534,7 +694,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، پپرونی، پنیر موزارلا، سس گوجه و فلفل" },
         complementaryIds: [13003, 13013, 12012],
-        relatedTags: ['پیتزا', 'پپرونی', 'تند', 'مینی']
+        relatedTags: ['پیتزا', 'پپرونی', 'تند', 'مینی'],
+        date: "2025-12-15",
+        sales: 550,
+        discountPercent: 15
     },
     {
         id: 12029,
@@ -548,7 +711,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، سوسیس، قارچ، پنیر، سس و ادویه" },
         complementaryIds: [13004, 13013, 12013],
-        relatedTags: ['پیتزا', 'سوسیس', 'قارچ', 'مینی']
+        relatedTags: ['پیتزا', 'سوسیس', 'قارچ', 'مینی'],
+        date: "2025-12-08",
+        sales: 520,
+        discountPercent: 15
     },
     {
         id: 12031,
@@ -562,7 +728,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، گوشت چرخ‌کرده، قارچ، پیاز و ادویه" },
         complementaryIds: [13005, 13013, 12014],
-        relatedTags: ['بورک', 'گوشت', 'قارچ', 'لایه‌لایه']
+        relatedTags: ['بورک', 'گوشت', 'قارچ', 'لایه‌لایه'],
+        date: "2025-12-15",
+        sales: 510,
+        discountPercent: 15
     },
     {
         id: 12032,
@@ -576,7 +745,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، مرغ، قارچ، پنیر و ادویه ملایم" },
         complementaryIds: [13006, 13013, 12015],
-        relatedTags: ['بورک', 'مرغ', 'قارچ', 'ترد']
+        relatedTags: ['بورک', 'مرغ', 'قارچ', 'ترد'],
+        date: "2025-12-08",
+        sales: 490,
+        discountPercent: 15
     },
     {
         id: 12033,
@@ -590,7 +762,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر یوفکا، سوسیس، قارچ، پنیر و ادویه" },
         complementaryIds: [13007, 13013, 12016],
-        relatedTags: ['بورک', 'سوسیس', 'قارچ', 'دودی']
+        relatedTags: ['بورک', 'سوسیس', 'قارچ', 'دودی'],
+        date: "2025-12-15",
+        sales: 500,
+        discountPercent: 15
     },
     {
         id: 12034,
@@ -604,7 +779,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، گوشت، قارچ، پنیر و سبزیجات" },
         complementaryIds: [13008, 13013, 12017],
-        relatedTags: ['تارت', 'گوشت', 'قارچ', 'ترد']
+        relatedTags: ['تارت', 'گوشت', 'قارچ', 'ترد'],
+        date: "2025-12-08",
+        sales: 480,
+        discountPercent: 15
     },
     {
         id: 12035,
@@ -613,12 +791,15 @@ const productsDatabase = [
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
         description: "«تارت مرغ و قارچ سبک با طعم دلنشین.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/204.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، مرغ، قارچ، پنیر و ادویه" },
         complementaryIds: [13009, 13013, 12018],
-        relatedTags: ['تارت', 'مرغ', 'قارچ', 'سبک']
+        relatedTags: ['تارت', 'مرغ', 'قارچ', 'سبک'],
+        date: "2025-12-15",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 12036,
@@ -632,7 +813,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر تارت، بادمجان، کشک، پیاز داغ و نعنا" },
         complementaryIds: [13010, 13013, 12019],
-        relatedTags: ['تارت', 'کشک بادمجان', 'سنتی', 'دودی']
+        relatedTags: ['تارت', 'کشک بادمجان', 'سنتی', 'دودی'],
+        date: "2025-12-08",
+        sales: 440,
+        discountPercent: 15
     },
     {
         id: 12037,
@@ -646,7 +830,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان تست، مرغ، سس، سبزیجات و پنیر" },
         complementaryIds: [13011, 13013, 12020],
-        relatedTags: ['کیک مرغ', 'تکنفره', 'لایه‌لایه', 'مرغ']
+        relatedTags: ['کیک مرغ', 'تکنفره', 'لایه‌لایه', 'مرغ'],
+        date: "2025-12-15",
+        sales: 520,
+        discountPercent: 15
     },
     {
         id: 12038,
@@ -660,7 +847,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان، مرغ پخته، سس مایونز، سبزیجات تازه و ادویه" },
         complementaryIds: [13012, 13013, 12021],
-        relatedTags: ['کیک مرغ', 'کیلویی', 'مهمانی', 'مرغ']
+        relatedTags: ['کیک مرغ', 'کیلویی', 'مهمانی', 'مرغ'],
+        date: "2025-12-08",
+        sales: 300,
+        discountPercent: 15
     },
     {
         id: 12039,
@@ -674,7 +864,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "لوبیا، تخم‌مرغ، سبزیجات، پیاز و ادویه ایرانی" },
         complementaryIds: [13001, 13013, 12022],
-        relatedTags: ['کوکو', 'لوبیا', 'گیاهی', 'ایرانی']
+        relatedTags: ['کوکو', 'لوبیا', 'گیاهی', 'ایرانی'],
+        date: "2025-12-15",
+        sales: 380,
+        discountPercent: 15
     },
     {
         id: 12040,
@@ -688,7 +881,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سبزی کوکو، تخم‌مرغ، آرد، گردو و ادویه" },
         complementaryIds: [13002, 13013, 12023],
-        relatedTags: ['کوکو', 'سبزی', 'گیاهی', 'معطر']
+        relatedTags: ['کوکو', 'سبزی', 'گیاهی', 'معطر'],
+        date: "2025-12-08",
+        sales: 420,
+        discountPercent: 15
     },
     {
         id: 12041,
@@ -702,7 +898,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان قیفی، خیارشور و تزیین سبزی" },
         complementaryIds: [13003, 13013, 12024],
-        relatedTags: ['قیف', 'الویه', 'سالاد', 'ترد']
+        relatedTags: ['قیف', 'الویه', 'سالاد', 'ترد'],
+        date: "2025-12-15",
+        sales: 450,
+        discountPercent: 15
     },
     {
         id: 12042,
@@ -716,7 +915,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، مرغ، خیارشور، نخودفرنگی، هویج و سس" },
         complementaryIds: [13004, 13013, 12025],
-        relatedTags: ['سالاد', 'الویه', 'کیلویی', 'خامه‌ای']
+        relatedTags: ['سالاد', 'الویه', 'کیلویی', 'خامه‌ای'],
+        date: "2025-12-08",
+        sales: 280,
+        discountPercent: 15
     },
     {
         id: 12043,
@@ -725,12 +927,15 @@ const productsDatabase = [
         price: 900000,
         priceText: "۹۰۰,۰۰۰ تومان",
         description: "«قفقاز کیلویی با مواد اصیل و طعم غنی.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/212.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ، سبزیجات، پنیر، سس مخصوص و ادویه قفقازی" },
         complementaryIds: [13005, 13013, 12026],
-        relatedTags: ['قفقاز', 'کیلویی', 'مرغ', 'اصیل']
+        relatedTags: ['قفقاز', 'کیلویی', 'مرغ', 'اصیل'],
+        date: "2025-12-15",
+        sales: 260,
+        discountPercent: 15
     },
     {
         id: 12044,
@@ -744,7 +949,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان، کشک، پیاز داغ، نعنا داغ و گردو" },
         complementaryIds: [13006, 13013, 12027],
-        relatedTags: ['کشک بادمجان', 'کیلویی', 'دودی', 'سنتی']
+        relatedTags: ['کشک بادمجان', 'کیلویی', 'دودی', 'سنتی'],
+        date: "2025-12-08",
+        sales: 290,
+        discountPercent: 15
     },
     {
         id: 12045,
@@ -758,7 +966,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، ذرت، خیارشور، سس و سبزیجات" },
         complementaryIds: [13007, 13013, 12028],
-        relatedTags: ['سالاد', 'ماکارونی', 'کیلویی', 'خامه‌ای']
+        relatedTags: ['سالاد', 'ماکارونی', 'کیلویی', 'خامه‌ای'],
+        date: "2025-12-15",
+        sales: 320,
+        discountPercent: 15
     },
     {
         id: 12046,
@@ -772,7 +983,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج، مرغ، زعفران، ماست، تخم‌مرغ و ادویه" },
         complementaryIds: [13008, 13013, 12029],
-        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'معطر']
+        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'معطر'],
+        date: "2025-12-08",
+        sales: 410,
+        discountPercent: 15
     },
     {
         id: 12047,
@@ -786,7 +1000,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج زعفرانی، مرغ مزه‌دار، ماست، تخم‌مرغ و زرشک" },
         complementaryIds: [13009, 13013, 12031],
-        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'قالبی']
+        relatedTags: ['ته چین', 'مرغ', 'زعفرانی', 'قالبی'],
+        date: "2025-12-15",
+        sales: 380,
+        discountPercent: 15
     },
     {
         id: 12048,
@@ -800,7 +1017,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کاهو، مرغ گریل، پنیر پارمسان، نان کروتون و سس سزار" },
         complementaryIds: [13010, 13013, 12032],
-        relatedTags: ['سالاد', 'سزار', 'مرغ', 'کلاسیک']
+        relatedTags: ['سالاد', 'سزار', 'مرغ', 'کلاسیک'],
+        date: "2025-12-08",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 12049,
@@ -814,7 +1034,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم سفید و قرمز، هویج، سس مایونز و ادویه" },
         complementaryIds: [13011, 13013, 12033],
-        relatedTags: ['سالاد', 'کلم', 'ترد', 'خامه‌ای']
+        relatedTags: ['سالاد', 'کلم', 'ترد', 'خامه‌ای'],
+        date: "2025-12-15",
+        sales: 420,
+        discountPercent: 15
     },
     {
         id: 12050,
@@ -828,7 +1051,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، سس مخصوص و گردو" },
         complementaryIds: [13012, 13013, 12034],
-        relatedTags: ['سالاد', 'کلم', 'غنی', 'تازه']
+        relatedTags: ['سالاد', 'کلم', 'غنی', 'تازه'],
+        date: "2025-12-08",
+        sales: 430,
+        discountPercent: 15
     },
     {
         id: 12051,
@@ -842,7 +1068,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ گریل، کاهو، گوجه، خیار، ذرت و سس" },
         complementaryIds: [13001, 13013, 12035],
-        relatedTags: ['سالاد', 'مرغ', 'سبزیجات', 'رنگارنگ']
+        relatedTags: ['سالاد', 'مرغ', 'سبزیجات', 'رنگارنگ'],
+        date: "2025-12-15",
+        sales: 440,
+        discountPercent: 15
     },
     {
         id: 12052,
@@ -856,7 +1085,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم، هویج، کشمش، آناناس، سس مخصوص" },
         complementaryIds: [13002, 13013, 12036],
-        relatedTags: ['سالاد', 'اندونزی', 'شیرین', 'ترش']
+        relatedTags: ['سالاد', 'اندونزی', 'شیرین', 'ترش'],
+        date: "2025-12-08",
+        sales: 410,
+        discountPercent: 15
     },
     {
         id: 12053,
@@ -870,7 +1102,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سیب‌زمینی، هویج، نخودفرنگی، خیارشور و سس مایونز" },
         complementaryIds: [13003, 13013, 12037],
-        relatedTags: ['سالاد', 'روسی', 'کلاسیک', 'سبزیجات']
+        relatedTags: ['سالاد', 'روسی', 'کلاسیک', 'سبزیجات'],
+        date: "2025-12-15",
+        sales: 390,
+        discountPercent: 15
     },
     {
         id: 12054,
@@ -884,7 +1119,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات، پیاز، ادویه هندی" },
         complementaryIds: [13004, 13013, 12038],
-        relatedTags: ['سمبوسه', 'ترد', 'تند', 'هندی']
+        relatedTags: ['سمبوسه', 'ترد', 'تند', 'هندی'],
+        date: "2025-12-08",
+        sales: 450,
+        discountPercent: 15
     },
     {
         id: 12055,
@@ -898,7 +1136,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ورقه رول، سبزیجات، مرغ یا میگو، سس سویا" },
         complementaryIds: [13005, 13013, 12039],
-        relatedTags: ['اسپرینگ رول', 'آسیایی', 'ترد', 'سبزیجات']
+        relatedTags: ['اسپرینگ رول', 'آسیایی', 'ترد', 'سبزیجات'],
+        date: "2025-12-15",
+        sales: 430,
+        discountPercent: 15
     },
     {
         id: 12056,
@@ -912,7 +1153,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه، نان رولت، خیارشور و سبزی" },
         complementaryIds: [13006, 13013, 12040],
-        relatedTags: ['رولت', 'الویه', 'نرم', 'تازه']
+        relatedTags: ['رولت', 'الویه', 'نرم', 'تازه'],
+        date: "2025-12-08",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 12057,
@@ -926,7 +1170,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماست، خیار، نعنا خشک، سیر و نمک" },
         complementaryIds: [13007, 13013, 12041],
-        relatedTags: ['خیار ماست', 'تازه', 'خنک', 'نعنا']
+        relatedTags: ['خیار ماست', 'تازه', 'خنک', 'نعنا'],
+        date: "2025-12-15",
+        sales: 370,
+        discountPercent: 15
     },
     {
         id: 12058,
@@ -940,7 +1187,10 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مرغ ریزشده، قارچ، خمیر تازه، ادویه‌های ملایم ، سس مخصوص" },
         complementaryIds: [13008, 13013, 12042],
-        relatedTags: ['پیراشکی', 'مثلتی', 'مرغ', 'قارچ']
+        relatedTags: ['پیراشکی', 'مثلتی', 'مرغ', 'قارچ'],
+        date: "2025-12-08",
+        sales: 510,
+        discountPercent: 15
     },
     {
         id: 12059,
@@ -954,7 +1204,401 @@ const productsDatabase = [
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "مینی برگر ،کیک مرغ تکنفره"},
         complementaryIds: [13009, 13013, 12043],
-        relatedTags: ['سینی', 'فینگر فود', 'مهمانی', 'مخلوط']
+        relatedTags: ['سینی', 'فینگر فود', 'مهمانی', 'مخلوط'],
+        date: "2025-12-15",
+        sales: 320,
+        discountPercent: 15
+    },
+     {
+        id: 12060,
+        categoryId: 12,
+        name: "رز پپرونی",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/205.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 380,
+        discountPercent: 15
+    },
+    {
+        id: 12061,
+        categoryId: 12,
+        name: "ناگت",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/191.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 400,
+        discountPercent: 15
+    },
+    {
+        id: 12062,
+        categoryId: 12,
+        name: "کلاب ژامبون",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/190.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 360,
+        discountPercent: 15
+    },
+    {
+        id: 12063,
+        categoryId: 12,
+        name: "نون پنیر سفره عقد",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/188.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 340,
+        discountPercent: 15
+    },
+    {
+        id: 12064,
+        categoryId: 12,
+        name: "نون پنیر سفره عقد",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/187.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 330,
+        discountPercent: 15
+    },
+    {
+        id: 12065,
+        categoryId: 12,
+        name: "نون پنیر سفره عقد",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/176.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "هات‌داگ دودی، نان کوچک، کاهو، خیارشور، سس خردل و کچاپ" },
+        complementaryIds: [13011, 13013, 12048],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 320,
+        discountPercent: 15
+    },
+    {
+        id: 12066,
+        categoryId: 12,
+        name: "شات کشک بادمجان",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
+        image: "image1/174.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی'],
+        date: "2025-12-08",
+        sales: 450,
+        discountPercent: 15
+    },
+    {
+        id: 12067,
+        categoryId: 12,
+        name: "سوسیس دکمه ای",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
+        image: "image1/211.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی'],
+        date: "2025-12-15",
+        sales: 410,
+        discountPercent: 15
+    },
+    {
+        id: 12068,
+        categoryId: 12,
+        name: "سینی 6 نفره یلدایی",
+        price: 2000000,
+        priceText: "۲۰۰۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/196.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 280,
+        discountPercent: 15
+    },
+    {
+        id: 12069,
+        categoryId: 12,
+        name: "سینی 3 نفره یلدایی",
+        price: 1200000,
+        priceText: "۱۲۰۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/195.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 250,
+        discountPercent: 15
+    },
+    {
+        id: 12070,
+        categoryId: 12,
+        name: "مینی ساندویچ کوتلت",
+        price: 65000,
+        priceText: "۶۵,۰۰۰ تومان",
+        description: "«مینی‌ساندویچ الویه با مزه‌ی سبک و بافت نرم.»",
+        image: "image1/189.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
+        complementaryIds: [13008, 13013, 12052],
+        relatedTags: ['ساندویچ', 'کوتلت', 'مینی', 'سرد'],
+        date: "2025-12-08",
+        sales: 490,
+        discountPercent: 15
+    },
+    {
+        id: 12071,
+        categoryId: 12,
+        name: "سنی مزه تک نفره",
+        price: 65000,
+        priceText: "۶۵,۰۰۰ تومان",
+        description: "«مینی‌ساندویچ الویه با مزه‌ی سبک و بافت نرم.»",
+        image: "image1/199.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
+        complementaryIds: [13008, 13013, 12052],
+        relatedTags: ['ساندویچ', 'کوتلت', 'مینی', 'سرد'],
+        date: "2025-12-15",
+        sales: 220,
+        discountPercent: 15
+    },
+    {
+        id: 12072,
+        categoryId: 12,
+        name: "سنی مزه 6 نفره",
+        price: 65000,
+        priceText: "۶۵,۰۰۰ تومان",
+        description: "«مینی‌ساندویچ الویه با مزه‌ی سبک و بافت نرم.»",
+        image: "image1/161.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
+        complementaryIds: [13008, 13013, 12052],
+        relatedTags: ['ساندویچ', 'کوتلت', 'مینی', 'سرد'],
+        date: "2025-12-08",
+        sales: 300,
+        discountPercent: 15
+    },
+    {
+        id: 12073,
+        categoryId: 12,
+        name: "سنی مزه 2 نفره",
+        price: 65000,
+        priceText: "۶۵,۰۰۰ تومان",
+        description: "«مینی‌ساندویچ الویه با مزه‌ی سبک و بافت نرم.»",
+        image: "image1/149.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "سالاد الویه تازه، نان کوچک ساندویچی، خیارشور و کمی ادویه ملایم" },
+        complementaryIds: [13008, 13013, 12052],
+        relatedTags: ['ساندویچ', 'کوتلت', 'مینی', 'سرد'],
+        date: "2025-12-15",
+        sales: 260,
+        discountPercent: 15
+    },
+    {
+        id: 12074,
+        categoryId: 12,
+        name: " کشک بادمجان تک نفره",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
+        image: "image1/101.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: ['شات', 'کشک بادمجان', 'سنتی', 'دودی'],
+        date: "2025-12-08",
+        sales: 440,
+        discountPercent: 15
+    },
+    {
+        id: 12075,
+        categoryId: 12,
+        name: " سینی مزه7 نفره",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
+        image: "image1/73.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 310,
+        discountPercent: 15
+    },
+    {
+        id: 12076,
+        categoryId: 12,
+        name: " سینی مزه8 نفره",
+        price: 50000,
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«شات کشک بادمجان سنتی با طعم دودی و غلیظ.»",
+        image: "image1/64.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "بادمجان کبابی، کشک، پیاز داغ، نعنا و گردو" },
+        complementaryIds: [13010, 13013, 12007],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 320,
+        discountPercent: 15
+    },
+    {
+        id: 12077,
+        categoryId: 12,
+        name: "سینی تنقلات",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/49.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 280,
+        discountPercent: 15
+    },
+    {
+        id: 12078,
+        categoryId: 12,
+        name: "سینی فینگر فود",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/37.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 350,
+        discountPercent: 15
+    },
+     {
+        id: 12079,
+        categoryId: 12,
+        name: "سینی مزه 8 نفره",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/34.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 320,
+        discountPercent: 15
+    },
+    {
+        id: 12080,
+        categoryId: 12,
+        name: "سینی مزه 8 نفره",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/33.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 330,
+        discountPercent: 15
+    },
+     {
+        id: 12081,
+        categoryId: 12,
+        name: "کیک مرغ تکنفره vip",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«کیک مرغ تک‌نفره لایه‌لایه و خوشمزه.»",
+        image: "image1/24.jpg",
+        rating: 4.5,
+        badge: "پرفروش",
+        details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "نان تست، مرغ، سس، سبزیجات و پنیر" },
+        complementaryIds: [13011, 13013, 12020],
+        relatedTags: ['کیک مرغ', 'تکنفره', 'لایه‌لایه', 'مرغ'],
+        date: "2025-12-15",
+        sales: 500,
+        discountPercent: 15
+    },
+    {
+        id: 12082,
+        categoryId: 12,
+        name: "سینی مزه 5 نفره",
+        price: 540000,
+        priceText: "۵۴۰,۰۰۰ تومان",
+        description: "یک باکس هیجان‌انگیز برای هدیه",
+        image: "image1/21.jpg",
+        rating: 5.0,
+        badge: "پرفروش",
+        details: { nutrition_info: "500 kcal", ingredients: "مخلوط" },
+        complementaryIds: [13006, 13007, 13013],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 290,
+        discountPercent: 15
     },
     // --- دسته ۱۳: دسر و نوشیدنی ---
     {
@@ -968,8 +1612,11 @@ const productsDatabase = [
         rating: 4.8,
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، بیسکویت لوتوس، کارامل، وانیل و شکر" },
-        complementaryIds: [12001, 12002, 11001], // مثلاً فینگرفودها و باکس‌ها برای تکمیل دسر
-        relatedTags: ['دسر', 'لوتوس', 'کرمی', 'کارامل']
+        complementaryIds: [12001, 12002, 11001],
+        relatedTags: ['دسر', 'لوتوس', 'کرمی', 'کارامل'],
+        date: "2025-12-15",
+        sales: 510,
+        discountPercent: 15
     },
     {
         id: 13002,
@@ -983,7 +1630,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "کیک لیدی‌فینگر، قهوه، ماسکارپونه، کاکائو و تخم‌مرغ" },
         complementaryIds: [12003, 12005, 11002],
-        relatedTags: ['دسر', 'تیرامیسو', 'ایتالیایی', 'قهوه']
+        relatedTags: ['دسر', 'تیرامیسو', 'ایتالیایی', 'قهوه'],
+        date: "2025-12-08",
+        sales: 550,
+        discountPercent: 15
     },
     {
         id: 13003,
@@ -997,7 +1647,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "موز، خامه، بیسکویت، وانیل و شکر قهوه‌ای" },
         complementaryIds: [12006, 12007, 11003],
-        relatedTags: ['دسر', 'روکر', 'موز', 'خامه']
+        relatedTags: ['دسر', 'روکر', 'موز', 'خامه'],
+        date: "2025-12-15",
+        sales: 480,
+        discountPercent: 15
     },
     {
         id: 13004,
@@ -1011,7 +1664,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، بیسکویت لوتوس، خامه، شکر و وانیل" },
         complementaryIds: [12008, 12009, 11004],
-        relatedTags: ['دسر', 'چیزکیک', 'لوتوس', 'کرمی']
+        relatedTags: ['دسر', 'چیزکیک', 'لوتوس', 'کرمی'],
+        date: "2025-12-08",
+        sales: 520,
+        discountPercent: 15
     },
     {
         id: 13005,
@@ -1025,7 +1681,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" },
         complementaryIds: [12010, 12011, 11005],
-        relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای']
+        relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 450,
+        discountPercent: 15
     },
     {
         id: 13006,
@@ -1039,7 +1698,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" },
         complementaryIds: [12012, 12013, 11006],
-        relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک']
+        relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک'],
+        date: "2025-12-08",
+        sales: 470,
+        discountPercent: 15
     },
     {
         id: 13007,
@@ -1053,7 +1715,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "شکلات تلخ، خامه، شکر، وانیل و بیسکویت" },
         complementaryIds: [12014, 12015, 11007],
-        relatedTags: ['دسر', 'شکلاتی', 'غلیظ', 'لایه‌دار']
+        relatedTags: ['دسر', 'شکلاتی', 'غلیظ', 'لایه‌دار'],
+        date: "2025-12-15",
+        sales: 500,
+        discountPercent: 15
     },
     {
         id: 13008,
@@ -1067,7 +1732,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، زعفران، شکر، وانیل و پسته" },
         complementaryIds: [12016, 12017, 11008],
-        relatedTags: ['دسر', 'کرم', 'زعفرانی', 'ایرانی']
+        relatedTags: ['دسر', 'کرم', 'زعفرانی', 'ایرانی'],
+        date: "2025-12-08",
+        sales: 480,
+        discountPercent: 15
     },
     {
         id: 13009,
@@ -1081,7 +1749,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، وانیل طبیعی، شکر، شیر و ژلاتین" },
         complementaryIds: [12018, 12019, 11009],
-        relatedTags: ['دسر', 'کرم', 'وانیلی', 'کلاسیک']
+        relatedTags: ['دسر', 'کرم', 'وانیلی', 'کلاسیک'],
+        date: "2025-12-15",
+        sales: 460,
+        discountPercent: 15
     },
     {
         id: 13010,
@@ -1095,7 +1766,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "پنیر خامه‌ای، نارگیل، شکلات سفید، بادام و شکر" },
         complementaryIds: [12020, 12021, 11010],
-        relatedTags: ['دسر', 'چیزکیک', 'رافائل', 'نارگیل']
+        relatedTags: ['دسر', 'چیزکیک', 'رافائل', 'نارگیل'],
+        date: "2025-12-08",
+        sales: 520,
+        discountPercent: 15
     },
     {
         id: 13011,
@@ -1109,7 +1783,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "تخم‌مرغ، شکر، گردو، دارچین و روغن" },
         complementaryIds: [12022, 12023, 11011],
-        relatedTags: ['دسر', 'خاگینه', 'مغزی', 'سنتی']
+        relatedTags: ['دسر', 'خاگینه', 'مغزی', 'سنتی'],
+        date: "2025-12-15",
+        sales: 410,
+        discountPercent: 15
     },
     {
         id: 13012,
@@ -1123,7 +1800,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، زعفران، روغن، پسته و گلاب" },
         complementaryIds: [12024, 12025, 11001],
-        relatedTags: ['دسر', 'حلوا', 'فیروزه', 'زعفران']
+        relatedTags: ['دسر', 'حلوا', 'فیروزه', 'زعفران'],
+        date: "2025-12-08",
+        sales: 440,
+        discountPercent: 15
     },
     {
         id: 13013,
@@ -1137,7 +1817,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "زعفران، شکر، آب، گلاب و لیمو" },
         complementaryIds: [12026, 12027, 11002],
-        relatedTags: ['نوشیدنی', 'شربت', 'زعفران', 'خنک']
+        relatedTags: ['نوشیدنی', 'شربت', 'زعفران', 'خنک'],
+        date: "2025-12-15",
+        sales: 380,
+        discountPercent: 15
     },
     {
         id: 13014,
@@ -1151,7 +1834,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، تخم‌مرغ، وانیل و بکینگ‌پودر" },
         complementaryIds: [12028, 12029, 11003],
-        relatedTags: ['دسر', 'کاپ کیک', 'ساده', 'وانیلی']
+        relatedTags: ['دسر', 'کاپ کیک', 'ساده', 'وانیلی'],
+        date: "2025-12-08",
+        sales: 420,
+        discountPercent: 15
     },
     {
         id: 13015,
@@ -1165,7 +1851,10 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
         complementaryIds: [12031, 12032, 11004],
-        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای']
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 430,
+        discountPercent: 15
     },
     {
         id: 13016,
@@ -1179,95 +1868,578 @@ const productsDatabase = [
         badge: "تخفیف",
         details: { nutrition_info: "200 kcal", ingredients: "خامه، شیر، شکر، ژلاتین و سس میوه" },
         complementaryIds: [12033, 12034, 11005],
-        relatedTags: ['دسر', 'پاناکوتا', 'ایتالیایی', 'نرم']
-    },
-    // --- دسته ۱۴: وی‌آی‌پی (VIP) ---
-    {
-        id: 14001,
-        categoryId: 14,
-        name: "سینی رویال وی‌آی‌پی",
-        price: 900000,
-        priceText: "۹۰۰,۰۰۰ تومان",
-        description: "«سینی رویال وی‌آی‌پی لوکس با مواد premium و تزیین حرفه‌ای.»",
-        image: "image1/vip1.png",
-        rating: 5.0,
-        badge: "ویژه",
-        details: { nutrition_info: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیرهای خاص، میوه‌های استوایی و نان‌های artisanal" },
-        complementaryIds: [13001, 13013, 12001],
-        relatedTags: ['وی‌آی‌پی', 'رویال', 'لوکس', 'پریمیوم']
-    },
-
-    // --- دسته ۱۵: نیمه آماده ---
-    {
-        id: 15001,
-        categoryId: 15,
-        name: "الویه نیمه آماده",
-        price: 120000,
-        priceText: "۱۲۰,۰۰۰ تومان",
-        description: "«الویه نیمه‌آماده تازه برای ترکیب سریع و آسان.»",
-        image: "image1/semi1.png",
-        rating: 4.2,
-        badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "سیب‌زمینی پخته، مرغ آماده، خیارشور خردشده، نخودفرنگی و هویج" },
-        complementaryIds: [13002, 13013, 12009],
-        relatedTags: ['نیمه آماده', 'الویه', 'تازه', 'سریع']
+        relatedTags: ['دسر', 'پاناکوتا', 'ایتالیایی', 'نرم'],
+        date: "2025-12-08",
+        sales: 410,
+        discountPercent: 15
     },
     {
-        id: 15002,
-        categoryId: 15,
-        name: "رول سوخاری نیمه اماده",
+        id: 13017,
+        categoryId: 13,
+        name: "چیز کیک رافائل",
+        price: 70000,
+        priceText: "۷۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/208.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 500,
+        discountPercent: 15
+    },
+     {
+        id: 13018,
+        categoryId: 13,
+        name: "ژله بستنی توت فرنگی ",
         price: 50000,
-        priceText: ",۵۰۰۰۰ تومان",
-        description: "«رول سوخاری نیمه‌آماده برای سرخ کردن سریع.»",
-        image: "image1/87.jpg",
-        rating: 4.2,
-        badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر رول، مواد پرکننده (ژامبون یا مرغ)، پنیر و ادویه آماده" },
-        complementaryIds: [13003, 13013, 12016],
-        relatedTags: ['نیمه آماده', 'رول', 'سوخاری', 'سریع']
+        priceText: "۵۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/192.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-08",
+        sales: 450,
+        discountPercent: 15
     },
     {
-        id: 15003,
-        categoryId: 15,
-        name: "سمبوسه نیه اماده",
-        price: 50000,
-        priceText: ",۵۰۰۰۰ تومان",
-        description: "«سمبوسه نیمه‌آماده با مواد تازه برای پخت آسان.»",
-        image: "image1/86.jpg",
-        rating: 4.2,
-        badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات آماده، پیاز و ادویه" },
-        complementaryIds: [13004, 13013, 12054],
-        relatedTags: ['نیمه آماده', 'سمبوسه', 'تازه', 'آسان']
+        id: 13019,
+        categoryId: 13,
+        name: "کرم وانیلی",
+        price: 60000,
+        priceText: "۶۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/186.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 460,
+        discountPercent: 15
     },
     {
-        id: 15003,
-        categoryId: 15,
-        name: "بورک مرغ و قارچ نیمه اماده",
-        price: 50000,
-        priceText: ",۵۰۰۰۰ تومان",
-        description: "«بورک مرغ و قارچ نیمه‌آماده برای پخت سریع.»",
-        image: "image1/83.jpg",
-        rating: 4.2,
-        badge: "",
-        details: { nutrition_info: "300 kcal", ingredients: "خمیر یوفکا، مرغ و قارچ آماده، پنیر و ادویه" },
-        complementaryIds: [13005, 13013, 12032],
-        relatedTags: ['نیمه آماده', 'بورک', 'مرغ', 'قارچ']
+        id: 13020,
+        categoryId: 13,
+        name: "دسر زعفرانی پسته",
+        price: 70000,
+        priceText: "۷۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/183.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-08",
+        sales: 480,
+        discountPercent: 15
     },
-
-    // --- دسته ۱۶: خدمات سازمانی ---
+     {
+        id: 13021,
+        categoryId: 13,
+        name: "دسر اورئو",
+        price: 70000,
+        priceText: "۷۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/181.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 490,
+        discountPercent: 15
+    },
     {
-        id: 16001,
-        categoryId: 16,
-        name: "پک صبحانه سازمانی",
-        price: 85000,
-        priceText: "۸۵,۰۰۰ تومان",
-        description: "«پک صبحانه سازمانی کامل و مغذی برای جلسات اداری.»",
-        image: "image1/org1.png",
-        rating: 4.6,
-        badge: "اقتصادی",
-        details: { nutrition_info: "450 kcal", ingredients: "نان تازه، پنیر، گردو، مربا، چای یا قهوه و میوه" },
-        complementaryIds: [13013, 13001, 11004],
-        relatedTags: ['سازمانی', 'صبحانه', 'مغذی', 'جلسات']
-    }
+        id: 13022,
+        categoryId: 13,
+        name: "دسر فندق نوتلا",
+        price: 70000,
+        priceText: "۷۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/182.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-08",
+        sales: 500,
+        discountPercent: 15
+    },
+    {
+        id: 13023,
+        categoryId: 13,
+        name: "چیز کیک انار",
+        price: 1100000,
+        priceText: "۱۱۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/169.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-15",
+        sales: 280,
+        discountPercent: 15
+    },
+    {
+        id: 13024,
+        categoryId: 13,
+        name: "چیز کیک انار",
+        price: 1100000,
+        priceText: "۱۱۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/169.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: ['دسر', 'کاپ کیک', 'فیلینگ دار', 'میوه‌ای'],
+        date: "2025-12-08",
+        sales: 280,
+        discountPercent: 15
+    },
+    {
+        id: 13025,
+        categoryId: 13,
+        name: "غرابیه",
+        price: 1100000,
+        priceText: "۱۱۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/180.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: [],
+        date: "2025-12-15",
+        sales: 250,
+        discountPercent: 15
+    },
+    {
+        id: 13026,
+        categoryId: 13,
+        name: "شات انار",
+        price: 1100000,
+        priceText: "۱۱۰,۰۰۰ تومان",
+        description: "«.»",
+        image: "image1/170.jpg",
+        rating: 4.8,
+        badge: "تخفیف",
+        details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+        complementaryIds: [12031, 12032, 11004],
+        relatedTags: [],
+        date: "2025-12-08",
+        sales: 240,
+        discountPercent: 15
+    },
+    {
+id: 13027,
+categoryId: 13,
+name: "شات میوه",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/163.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 300,
+discountPercent: 15
+},
+{
+id: 13028,
+categoryId: 13,
+name: "شات میوه استوای",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/159.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-08",
+sales: 280,
+discountPercent: 15
+},
+{
+id: 13029,
+categoryId: 13,
+name: "سینی مبوه",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/160.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 320,
+discountPercent: 15
+},
+{
+id: 13030,
+categoryId: 13,
+name: "شات میوه هندوانه",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/129.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-08",
+sales: 290,
+discountPercent: 15
+},
+{
+id: 13031,
+categoryId: 13,
+name: "شات میوه تک نفره",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/116.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 260,
+discountPercent: 15
+},
+{
+id: 13032,
+categoryId: 13,
+name: "شات میوه تک نفره",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/115.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-08",
+sales: 250,
+discountPercent: 15
+},
+{
+id: 13033,
+categoryId: 13,
+name: "شات میوه تک نفره",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/63.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 240,
+discountPercent: 15
+},
+{
+id: 13034,
+categoryId: 13,
+name: "سینی میوه",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/54.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-08",
+sales: 330,
+discountPercent: 15
+},
+{
+id: 13035,
+categoryId: 13,
+name: "سینی میوه ویژه",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/166.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 340,
+discountPercent: 15
+},
+{
+id: 13036,
+categoryId: 13,
+name: "کرم وانیلی",
+price: 60000,
+priceText: "۶۰,۰۰۰ تومان",
+description: "«کرم وانیلی نرم و کلاسیک با عطر دلنشین.»",
+image: "image1/143.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "خامه، وانیل طبیعی، شکر، شیر و ژلاتین" },
+complementaryIds: [12018, 12019, 11009],
+relatedTags: ['دسر', 'کرم', 'وانیلی', 'کلاسیک'],
+date: "2025-12-08",
+sales: 460,
+discountPercent: 15
+},
+{
+id: 13037,
+categoryId: 13,
+name: "کرسان",
+price: 1100000,
+priceText: "۱۱۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/141.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "آرد، شکر، فیلینگ میوه یا شکلات، وانیل و خامه" },
+complementaryIds: [12031, 12032, 11004],
+relatedTags: [],
+date: "2025-12-15",
+sales: 220,
+discountPercent: 15
+},
+{
+id: 13038,
+categoryId: 13,
+name: "ژله بستنی",
+price: 40000,
+priceText: "۴۰,۰۰۰ تومان",
+description: "«ژله بستنی رنگارنگ و خنک با طعم میوه.»",
+image: "image1/97.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" },
+complementaryIds: [12010, 12011, 11005],
+relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای'],
+date: "2025-12-08",
+sales: 450,
+discountPercent: 15
+},
+{
+id: 13039,
+categoryId: 13,
+name: "روکر انار قالبی",
+price: 40000,
+priceText: "۴۰,۰۰۰ تومان",
+description: "«ژله بستنی رنگارنگ و خنک با طعم میوه.»",
+image: "image1/94.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" },
+complementaryIds: [12010, 12011, 11005],
+relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای'],
+date: "2025-12-15",
+sales: 280,
+discountPercent: 15
+},
+{
+id: 13040,
+categoryId: 13,
+name: "سینی حلوایی مخصوص فیروزه",
+price: 40000,
+priceText: "۴۰,۰۰۰ تومان",
+description: "«.»",
+image: "image1/80.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "ژله میوه‌ای، بستنی وانیلی، میوه تازه و شکر" },
+complementaryIds: [12010, 12011, 11005],
+relatedTags: ['دسر', 'ژله', 'بستنی', 'میوه‌ای'],
+date: "2025-12-08",
+sales: 250,
+discountPercent: 15
+},
+{
+id: 13041,
+categoryId: 13,
+name: "کرم نسکافه ای",
+price: 60000,
+priceText: "۶۰,۰۰۰ تومان",
+description: "«کرم توت‌فرنگی تازه و سبک با عطر طبیعی.»",
+image: "image1/67.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" },
+complementaryIds: [12012, 12013, 11006],
+relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک'],
+date: "2025-12-15",
+sales: 440,
+discountPercent: 15
+},
+{
+id: 13042,
+categoryId: 13,
+name: "تیرامیسو قالبی",
+price: 60000,
+priceText: "۶۰,۰۰۰ تومان",
+description: "«کرم توت‌فرنگی تازه و سبک با عطر طبیعی.»",
+image: "image1/15.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" },
+complementaryIds: [12012, 12013, 11006],
+relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک'],
+date: "2025-12-08",
+sales: 480,
+discountPercent: 15
+},
+{
+id: 13043,
+categoryId: 13,
+name: "دسر زعفرانی قالبی",
+price: 60000,
+priceText: "۶۰,۰۰۰ تومان",
+description: "«کرم توت‌فرنگی تازه و سبک با عطر طبیعی.»",
+image: "image1/14m.jpg",
+rating: 4.8,
+badge: "تخفیف",
+details: { nutrition_info: "200 kcal", ingredients: "خامه، توت‌فرنگی تازه، شکر، وانیل و ژلاتین" },
+complementaryIds: [12012, 12013, 11006],
+relatedTags: ['دسر', 'کرم', 'توت فرنگی', 'سبک'],
+date: "2025-12-15",
+sales: 460,
+discountPercent: 15
+},
+// --- دسته ۱۴: وی‌آی‌پی (VIP) ---
+{
+id: 14001,
+categoryId: 14,
+name: "سینی رویال وی‌آی‌پی",
+price: 900000,
+priceText: "۹۰۰,۰۰۰ تومان",
+description: "«سینی رویال وی‌آی‌پی لوکس با مواد premium و تزیین حرفه‌ای.»",
+image: "image1/vip1.png",
+rating: 5.0,
+badge: "ویژه",
+details: { nutrition_info: "800 kcal", ingredients: "خاویار، سالمون دودی، پنیرهای خاص، میوه‌های استوایی و نان‌های artisanal" },
+complementaryIds: [13001, 13013, 12001],
+relatedTags: ['وی‌آی‌پی', 'رویال', 'لوکس', 'پریمیوم'],
+date: "2025-12-08",
+sales: 150,
+discountPercent: 15
+},
+// --- دسته ۱۵: نیمه آماده ---
+{
+id: 15001,
+categoryId: 15,
+name: "الویه نیمه آماده",
+price: 120000,
+priceText: "۱۲۰,۰۰۰ تومان",
+description: "«الویه نیمه‌آماده تازه برای ترکیب سریع و آسان.»",
+image: "image1/semi1.png",
+rating: 4.2,
+badge: "",
+details: { nutrition_info: "300 kcal", ingredients: "سیب‌زمینی پخته، مرغ آماده، خیارشور خردشده، نخودفرنگی و هویج" },
+complementaryIds: [13002, 13013, 12009],
+relatedTags: ['نیمه آماده', 'الویه', 'تازه', 'سریع'],
+date: "2025-12-15",
+sales: 350,
+discountPercent: 15
+},
+{
+id: 15002,
+categoryId: 15,
+name: "رول سوخاری نیمه اماده",
+price: 50000,
+priceText: ",۵۰۰۰۰ تومان",
+description: "«رول سوخاری نیمه‌آماده برای سرخ کردن سریع.»",
+image: "image1/87.jpg",
+rating: 4.2,
+badge: "",
+details: { nutrition_info: "300 kcal", ingredients: "خمیر رول، مواد پرکننده (ژامبون یا مرغ)، پنیر و ادویه آماده" },
+complementaryIds: [13003, 13013, 12016],
+relatedTags: ['نیمه آماده', 'رول', 'سوخاری', 'سریع'],
+date: "2025-12-08",
+sales: 320,
+discountPercent: 15
+},
+{
+id: 15003,
+categoryId: 15,
+name: "سمبوسه نیه اماده",
+price: 50000,
+priceText: ",۵۰۰۰۰ تومان",
+description: "«سمبوسه نیمه‌آماده با مواد تازه برای پخت آسان.»",
+image: "image1/86.jpg",
+rating: 4.2,
+badge: "",
+details: { nutrition_info: "300 kcal", ingredients: "خمیر سمبوسه، گوشت یا سبزیجات آماده، پیاز و ادویه" },
+complementaryIds: [13004, 13013, 12054],
+relatedTags: ['نیمه آماده', 'سمبوسه', 'تازه', 'آسان'],
+date: "2025-12-15",
+sales: 310,
+discountPercent: 15
+},
+{
+id: 15003,
+categoryId: 15,
+name: "بورک مرغ و قارچ نیمه اماده",
+price: 50000,
+priceText: ",۵۰۰۰۰ تومان",
+description: "«بورک مرغ و قارچ نیمه‌آماده برای پخت سریع.»",
+image: "image1/83.jpg",
+rating: 4.2,
+badge: "",
+details: { nutrition_info: "300 kcal", ingredients: "خمیر یوفکا، مرغ و قارچ آماده، پنیر و ادویه" },
+complementaryIds: [13005, 13013, 12032],
+relatedTags: ['نیمه آماده', 'بورک', 'مرغ', 'قارچ'],
+date: "2025-12-08",
+sales: 300,
+discountPercent: 15
+},
+// --- دسته ۱۶: خدمات سازمانی ---
+{
+id: 16001,
+categoryId: 16,
+name: "پک صبحانه سازمانی",
+price: 85000,
+priceText: "۸۵,۰۰۰ تومان",
+description: "«پک صبحانه سازمانی کامل و مغذی برای جلسات اداری.»",
+image: "image1/org1.png",
+rating: 4.6,
+badge: "اقتصادی",
+details: { nutrition_info: "450 kcal", ingredients: "نان تازه، پنیر، گردو، مربا، چای یا قهوه و میوه" },
+complementaryIds: [13013, 13001, 11004],
+relatedTags: ['سازمانی', 'صبحانه', 'مغذی', 'جلسات'],
+date: "2025-12-15",
+sales: 400,
+discountPercent: 15
+}
 ];
+// مرجع گلوبال برای همه صفحات (بدون تداخل با const محلی)
+window.productsDatabase = productsDatabase;
+window.products = productsDatabase;  // همه محصولات = دیتابیس کامل
+
+window.dispatchEvent(new Event('dataLoaded'));

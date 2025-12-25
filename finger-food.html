@@ -566,31 +566,34 @@
       background: var(--secondary-color);
       transform: translateY(-2px);
     }
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 10px 20px;
-      background: white;
-      border: 2px solid var(--neutral-color);
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: #26A69A;
-      color: white;
-      border-color: var(--primary-color);
-    }
+    /* مرتب‌سازی جدید (دقیق مثل عکس: دکمه‌های گرد در یک خط) */
+.sorting-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  scroll-behavior: smooth;
+  justify-content: flex-start; /* از راست شروع می‌شه چون dir=rtl */
+}
+.sort-button {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px; /* گرد مثل عکس */
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap; /* متن در یک خط بمونه */
+  transition: 0.3s;
+}
+.sort-button.active {
+  background: #0d848f;
+  color: white;
+  border-color: #000101;
+}
+.sort-button:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -665,45 +668,116 @@
       gap: 5px;
     }
     .sidebar {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 20px;
-      box-shadow: var(--card-shadow);
-      margin-bottom: 30px;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    .sidebar h3 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: var(--primary-color);
-      text-align: center;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .categories {
-      list-style: none;
-    }
-    .categories li {
-      padding: 12px 15px;
-      border-bottom: 1px solid var(--neutral-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .categories li:last-child {
-      border-bottom: none;
-    }
-    .categories li:hover, .categories li.active {
-      background: #26A69A !important;
-      color: white;
-      border-radius: 8px;
-    }
+  background: linear-gradient(180deg, #ffffff, #fafafa);
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  margin-bottom: 30px;
+  border: 1px solid rgba(0,0,0,0.04);
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar h3 {
+  font-size: 1.35rem;
+  margin-bottom: 28px;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categories li {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 14px;
+  background: rgba(38, 166, 154, 0.04);
+  color: #333;
+  transition: 
+    background 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* افکت خط کناری حرفه‌ای */
+.categories li::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 4px;
+  height: 0;
+  background: var(--primary-color);
+  border-radius: 4px;
+  transform: translateY(-50%);
+  transition: height 0.25s ease;
+}
+
+.categories li:hover::before,
+.categories li.active::before {
+  height: 60%;
+}
+
+.categories li:hover {
+  transform: translateY(-2px);
+  background: rgba(38, 166, 154, 0.1);
+}
+
+.categories li.active {
+  background: linear-gradient(135deg, #26A69A, #1f8f84);
+  color: white;
+  box-shadow: 0 8px 18px rgba(38, 166, 154, 0.35);
+  transform: translateY(-1px);
+}
+
+.categories li i {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.categories li:hover i,
+.categories li.active i {
+  color: white;
+}
+
+.categories a {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* آماده برای نمایش تعداد محصولات (badge) */
+.categories .count {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  display: none;
+}
+
+.categories li.active .count {
+  display: inline-block;
+}
+
     .contact-section {
       background: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
       color: white;
@@ -1273,21 +1347,21 @@
       .featured-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-  
+ 
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-  
+ 
       .main-content {
         display: grid;
         grid-template-columns: 1fr 250px;
         gap: 30px;
       }
-  
+ 
       .hero-section h1 {
         font-size: 3rem;
       }
-  
+ 
       .hero-section p {
         font-size: 1.2rem;
       }
@@ -1296,7 +1370,7 @@
       .featured-grid {
         grid-template-columns: repeat(6, 1fr);
       }
-  
+ 
       .products-grid {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -1307,68 +1381,64 @@
       justify-content: center;
       padding: 12px 10px;
     }
-  
+ 
       .logo-search {
         flex-direction: column;
         gap: 12px;
       }
-  
-      .search-box {
-        width: 70%;
-      }
-  
+ 
       .logo {
         font-size: 1rem;
       }
-  
+ 
       .promo-text {
         display:flex ;
       }
-  
+ 
       main {
         padding: 15px;
       }
-  
+ 
       .hero-section h1 {
         font-size: 1.8rem;
       }
-  
+ 
       .hero-section p {
         font-size: 0.95rem;
       }
-  
+ 
       .featured-products h2, .products-section h2 {
         font-size: 1.4rem;
       }
-  
+ 
       footer h2 {
         font-size: 1.5rem;
       }
-  
+ 
       footer a {
         display: block;
         margin: 8px 0;
       }
-  
+ 
       .social-bar {
         gap: 8px;
       }
-  
+ 
       .social-box, .logo-box {
         width: 60px;
         height: 60px;
         font-size: 0.7rem;
       }
-  
+ 
       .social-box img {
         width: 20px;
         height: 20px;
       }
-  
+ 
       .pagination {
         gap: 5px;
       }
-  
+ 
       .pagination-btn {
         padding: 8px 12px;
         font-size: 0.9rem;
@@ -1436,7 +1506,7 @@
       font-size: 1rem;
     }
       @media (max-width: 576px) {
-    
+   
       .menu-icon {
         font-size: 1.2rem;
       }
@@ -1486,7 +1556,7 @@
       margin-bottom: 20px;
       padding: 0 10px;
     }
-   
+  
     /* دکمه‌های اسلایدر */
     .slider-buttons {
       display: flex;
@@ -1520,7 +1590,7 @@
       -webkit-overflow-scrolling: touch; /* برای نرم بودن در موبایل */
       scrollbar-width: none; /* مخفی کردن اسکرول بار در فایرفاکس */
     }
-   
+  
     /* مخفی کردن اسکرول بار در کروم */
     .featured-slider::-webkit-scrollbar {
       display: none;
@@ -1692,14 +1762,9 @@
         <div class="loading-spinner"></div>
       </div>
     </section>
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> همه محصولات</button>
-      <button class="filter-btn" data-filter="price-asc"><i class="fas fa-sort-amount-up"></i> قیمت کم به زیاد</button>
-      <button class="filter-btn" data-filter="price-desc"><i class="fas fa-sort-amount-down"></i> قیمت زیاد به کم</button>
-      <button class="filter-btn" data-filter="snack"><i class="fas fa-cookie-bite"></i> تنقلات</button>
-      <button class="filter-btn" data-filter="new"><i class="fas fa-star"></i> جدید</button>
-      <button class="filter-btn" data-filter="discount"><i class="fas fa-percent"></i> تخفیف</button>
-      <button class="filter-btn" data-filter="popular"><i class="fas fa-fire"></i> پرفروش</button>
+       <!-- مرتب‌سازی جدید (دکمه‌های گرد در یک خط) -->
+    <div class="sorting-bar" id="sorting-bar"></div>
+      <!-- دکمه‌ها دینامیک ساخته می‌شوند -->
     </div>
     <div class="main-content">
       <section class="products-section">
@@ -1791,7 +1856,7 @@
     // این بخش می‌فهمد الان کاربر در کدام دسته و کدام صفحه است
     const urlParams = new URLSearchParams(window.location.search);
     const currentCategoryId = urlParams.get('cat') ? parseInt(urlParams.get('cat')) : null;
-    const currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+    let currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
     // --- المنت‌های HTML ---
     const productsGrid = document.querySelector('.products-grid');
     const paginationContainer = document.querySelector('.pagination');
@@ -1808,11 +1873,12 @@
         16: { title: 'خدمات سازمانی', desc: 'پک‌های پذیرایی همایش و جلسات' }
     };
     // --- تابع اصلی: لود کردن محصولات ---
+    let products = []; // متغیر جهانی برای محصولات فیلتر شده (قبل از سورت)
+    let currentSort = 'all';
     function loadProducts() {
-        let filteredProducts = [];
         // 1. فیلتر کردن بر اساس دسته (اگر دسته انتخاب شده باشد)
         if (currentCategoryId) {
-            filteredProducts = productsDatabase.filter(p => p.categoryId === currentCategoryId);
+            products = productsDatabase.filter(p => p.categoryId === currentCategoryId);
            
             // تغییر تیتر صفحه بر اساس دسته
             if (categoryNames[currentCategoryId]) {
@@ -1821,33 +1887,70 @@
             }
            
             // فعال کردن کلاس active در سایدبار
-            document.querySelectorAll('.categories a').forEach(link => {
-                link.closest('li').classList.remove('active'); // پاک کردن اکتیو قبلی
-                if(link.getAttribute('href').includes(`cat=${currentCategoryId}`)) {
-                    link.closest('li').classList.add('active'); // اکتیو کردن گزینه فعلی
-                    link.style.backgroundColor = "#26A69A";
-                    link.style.color = "white";
-                    link.style.borderRadius = "8px";
-                }
-            });
+            // فعال کردن کلاس active در سایدبار (اصلاح‌شده - زیبا و یکدست)
+document.querySelectorAll('.categories li').forEach(li => {
+    li.classList.remove('active'); // پاک کردن active از همه آیتم‌ها
+});
+
+if (currentCategoryId) {
+    // اگر دسته خاصی انتخاب شده (مثلاً cat=12)
+    const activeLink = document.querySelector(`.categories a[href*="cat=${currentCategoryId}"]`);
+    if (activeLink) {
+        activeLink.closest('li').classList.add('active');
+    }
+} else {
+    // اگر هیچ دسته‌ای انتخاب نشده = صفحه "همه محصولات"
+    const allProductsLink = document.querySelector('.categories a[href="finger-food.html"]:not([href*="cat="])');
+    if (allProductsLink) {
+        allProductsLink.closest('li').classList.add('active');
+    }
+}
         } else {
             // اگر دسته‌ای انتخاب نشده، همه محصولات را نشان بده
-            filteredProducts = productsDatabase;
+            products = productsDatabase;
         }
-        // 2. محاسبات صفحه‌بندی (Pagination)
-        const totalItems = filteredProducts.length;
-        const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-       
-        // محاسبه ایندکس شروع و پایان برش آرایه
-        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-        const endIndex = startIndex + ITEMS_PER_PAGE;
-       
-        // برش دادن محصولات برای صفحه فعلی
-        const productsToShow = filteredProducts.slice(startIndex, endIndex);
-        // 3. رندر کردن محصولات
-        renderGrid(productsToShow);
-        // 4. رندر کردن دکمه‌های صفحه بندی
-        renderPagination(totalPages, currentPage, currentCategoryId);
+        // وقتی دسته عوض می‌شه، صفحه رو به ۱ برگردون
+        currentPage = 1;
+        applySorting(); // همه چیز (سورت + صفحه‌بندی + نمایش) اینجا انجام می‌شه
+    }
+    // --- تابع اصلی مرتب‌سازی (بهبودیافته با چک فیلدها و error handling) ---
+    function applySorting() {
+      if (!products || products.length === 0) {
+        console.warn('هیچ محصولی لود نشده!'); // دیباگ حرفه‌ای
+        renderProducts([]);
+        renderPagination(0, currentPage, currentCategoryId);
+        return;
+      }
+      // اعمال مرتب‌سازی با چک وجود فیلد
+      if (currentSort === 'price-asc') {
+        products.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+      } else if (currentSort === 'newest') {
+        products.sort((a, b) => {
+          const dateA = new Date(a.date || '1900-01-01'); // پیش‌فرض قدیمی اگر نبود
+          const dateB = new Date(b.date || '1900-01-01');
+          return dateB - dateA; // جدیدترین اول
+        });
+      } else if (currentSort === 'best-seller') {
+        products.sort((a, b) => (Number(b.sales) || 0) - (Number(a.sales) || 0)); // بیشترین اول
+      } else if (currentSort === 'max-discount') {
+        products.sort((a, b) => (Number(b.discountPercent) || 0) - (Number(a.discountPercent) || 0)); // بیشترین تخفیف اول
+      } else {
+        // برای 'all'، بر اساس id سورت کن (پایدار و حرفه‌ای)
+        products.sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0));
+      }
+      // محاسبه صفحه‌بندی و نمایش
+      const totalItems = products.length;
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = startIndex + ITEMS_PER_PAGE;
+      const productsToShow = products.slice(startIndex, endIndex);
+      renderProducts(productsToShow);
+      renderPagination(totalPages, currentPage, currentCategoryId);
+      // آپدیت URL بدون رفرش
+      const newUrl = new URL(window.location);
+      newUrl.searchParams.set('page', currentPage);
+      if (!currentCategoryId) newUrl.searchParams.delete('cat');
+      window.history.pushState({}, '', newUrl);
     }
     // --- تابع ساخت HTML کارت محصول ---
     function generateProductCard(product) {
@@ -1875,46 +1978,130 @@
       `;
     }
     // --- تابع نمایش محصولات در صفحه ---
-    function renderGrid(products) {
+    function renderProducts(productsToShow) {
         productsGrid.innerHTML = '';
-        if (products.length === 0) {
+        if (productsToShow.length === 0) {
             productsGrid.innerHTML = `<div class="no-results"><h3>محصولی در این دسته یافت نشد</h3></div>`;
             return;
         }
-        products.forEach(product => {
+        productsToShow.forEach(product => {
+            productsGrid.innerHTML += generateProductCard(product);
+        });
+    }
+   // --- تابع نمایش محصولات در صفحه ---
+    function renderProducts(productsToShow) {
+        productsGrid.innerHTML = '';
+        if (productsToShow.length === 0) {
+            productsGrid.innerHTML = `<div class="no-results"><h3>محصولی در این دسته یافت نشد</h3></div>`;
+            return;
+        }
+        productsToShow.forEach(product => {
             productsGrid.innerHTML += generateProductCard(product);
         });
     }
     // --- تابع ساخت دکمه‌های شماره صفحه ---
     function renderPagination(totalPages, activePage, catId) {
-        paginationContainer.innerHTML = '';
-       
-        if (totalPages <= 1) return; // اگر فقط یک صفحه است، دکمه نمی‌خواهد
-        let html = '';
-       
-        // ساخت پارامتر کتگوری برای لینک‌ها
-        const catParam = catId ? `cat=${catId}&` : '';
-        // دکمه قبلی
-        if (activePage > 1) {
-            html += `<a href="?${catParam}page=${activePage - 1}" class="pagination-btn"><i class="fas fa-chevron-right"></i> قبلی</a>`;
-        }
-        // دکمه‌های شماره‌دار
-        for (let i = 1; i <= totalPages; i++) {
-            if (i === activePage) {
-                html += `<span class="pagination-btn active">${i}</span>`;
-            } else {
-                html += `<a href="?${catParam}page=${i}" class="pagination-btn">${i}</a>`;
-            }
-        } // دکمه بعدی
-        if (activePage < totalPages) {
-            html += `<a href="?${catParam}page=${activePage + 1}" class="pagination-btn">بعدی <i class="fas fa-chevron-left"></i></a>`;
-        }
-        paginationContainer.innerHTML = html;
+    paginationContainer.innerHTML = '';
+   
+    if (totalPages <= 1) return;
+    let html = '';
+   
+    const catParam = catId ? `cat=${catId}&` : '';
+   
+    // دکمه بعدی (چون RTL، اول بعدی)
+    if (activePage < totalPages) {
+        html += `<button class="pagination-btn next-btn">بعدی <i class="fas fa-chevron-left"></i></button>`;
+    } else {
+        html += `<button class="pagination-btn next-btn disabled">بعدی <i class="fas fa-chevron-left"></i></button>`;
     }
+   
+    // دکمه‌های شماره‌دار (حداکثر ۷ تا نشون بده)
+    let startPage = Math.max(1, activePage - 3);
+    let endPage = Math.min(totalPages, activePage + 3);
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn page-num" data-page="${totalPages}">${totalPages}</button>`;
+    }
+
+    for (let i = endPage; i >= startPage; i--) { // برعکس برای RTL
+        if (i === activePage) {
+            html += `<button class="pagination-btn page-num active">${i}</button>`;
+        } else {
+            html += `<button class="pagination-btn page-num" data-page="${i}">${i}</button>`;
+        }
+    }
+
+    if (startPage > 1) {
+        html += `<button class="pagination-btn page-num" data-page="1">1</button>`;
+        if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
+    }
+    
+    // دکمه قبلی
+    if (activePage > 1) {
+        html += `<button class="pagination-btn prev-btn"><i class="fas fa-chevron-right"></i> قبلی</button>`;
+    } else {
+        html += `<button class="pagination-btn prev-btn disabled"><i class="fas fa-chevron-right"></i> قبلی</button>`;
+    }
+    
+    paginationContainer.innerHTML = html;
+    
+    // اضافه کردن event listener به همه دکمه‌ها
+    paginationContainer.querySelectorAll('.pagination-btn:not(.disabled)').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('prev-btn')) {
+                currentPage = activePage - 1;
+            } else if (btn.classList.contains('next-btn')) {
+                currentPage = activePage + 1;
+            } else if (btn.classList.contains('page-num')) {
+                currentPage = parseInt(btn.dataset.page);
+            }
+            applySorting(); // دوباره سورت و صفحه‌بندی رو اعمال کن
+            
+            // آپدیت URL بدون رفرش
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('page', currentPage);
+            if (!currentCategoryId) newUrl.searchParams.delete('cat');
+            window.history.pushState({}, '', newUrl);
+        });
+    });
+}
     // --- شروع برنامه هنگام لود صفحه ---
     window.addEventListener('DOMContentLoaded', () => {
         // اطمینان از لود شدن دیتابیس
         if (typeof productsDatabase !== 'undefined') {
+            // گزینه‌های مرتب‌سازی
+            const sortOptions = [
+              { value: 'all', label: 'همه محصولات' },
+              { value: 'price-asc', label: 'کمترین قیمت' },
+              { value: 'newest', label: 'جدیدترین‌ها' },
+              { value: 'best-seller', label: 'بیشترین فروش' },
+              { value: 'max-discount', label: 'بیشترین تخفیف' }
+            ];
+            // رندر دکمه‌های مرتب‌سازی (دقیق مثل عکس، با event delegation برای حرفه‌ای‌تر شدن)
+            const sortBar = document.getElementById('sorting-bar');
+            sortOptions.forEach(opt => {
+              const btn = document.createElement('button');
+              btn.className = 'sort-button';
+              btn.textContent = opt.label;
+              btn.dataset.value = opt.value;
+              sortBar.appendChild(btn);
+            });
+            // event listener مرکزی برای همه دکمه‌ها (بهینه و حرفه‌ای)
+            sortBar.addEventListener('click', (e) => {
+              if (e.target.classList.contains('sort-button')) {
+                document.querySelectorAll('.sort-button').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentSort = e.target.dataset.value;
+                currentPage = 1;
+                loadProducts();
+              }
+            });
+            // لود اولیه: دکمه اول فعال و اعمال مرتب‌سازی
+            const firstButton = sortBar.querySelector('.sort-button');
+            if (firstButton) {
+              firstButton.classList.add('active');
+            }
             loadProducts();
             loadFeaturedSection();
         } else {
