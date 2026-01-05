@@ -2122,8 +2122,8 @@
       }
 
       .other-product-item img {
-        height: 80px;
-        width: 80px;
+        height: 100px;
+        width: 150px;
         margin-bottom: 0.3rem;
       }
 
@@ -2569,14 +2569,11 @@
     <section class="product-section">
       <div class="product-detail">
         <div class="product-gallery">
-          <img src="" alt="" class="product-main-image" id="detail-image">
-          <div class="product-thumbnails">
-            <img src="image1/برگر.jpg" alt="مینی برگر - عکس 1" class="product-thumbnail active" onclick="changeImage(this, 'https://placehold.co/400x300/1A7A6F/FFFFFF?text=تصویر+1')" loading="lazy loading">
-            <img src="image1/برگر2.jpg" alt="مینی برگر - عکس 2" class="product-thumbnail" onclick="changeImage(this, 'https://placehold.co/400x300/2E2A3F/FFFFFF?text=تصویر+2')" loading="lazy loading">
-            <img src="image1/برگر3.jpg" alt="مینی برگر - عکس 3" class="product-thumbnail" onclick="changeImage(this, 'https://placehold.co/400x300/4B5563/FFFFFF?text=تصویر+3')" loading="lazy loading">
-            <img src="image1/برگر4.jpg" alt="مینی برگر - عکس 4" class="product-thumbnail" onclick="changeImage(this, 'https://placehold.co/400x300/E5E7EB/4B5563?text=تصویر+4')" loading="lazy loading">
-          </div>
-        </div>
+  <img src="" alt="" class="product-main-image" id="detail-image">
+  <div class="product-thumbnails" id="thumbnails-container">
+    <!-- اینجا با JS پر می‌شه -->
+  </div>
+</div>
         <div class="product-content">
           <h1 class="product-title" id="detail-title">در حال بارگذاری...</h1>
           <p class="product-desc" id="detail-desc"></p>
@@ -2756,8 +2753,6 @@
       promoText: document.getElementById("promoText"),
       promoTextMobile: document.getElementById("promoTextMobile"),
       clearSearch: document.getElementById("clearSearch"),
-      mainImage: document.getElementById('mainImage'),
-      thumbnails: document.querySelectorAll('.product-thumbnail'),
       quantityInput: document.getElementById('quantity'),
       sliderTrack: document.getElementById('sliderTrack'),
       sliderContainer: document.querySelector('.slider-container'),
@@ -2856,12 +2851,15 @@
       });
       document.getElementById('item-price').textContent = ((basePrice + extra) * quantity).toLocaleString();
     }
-    // Image Gallery
-    function changeImage(thumbnail, src) {
-      elements.thumbnails.forEach(thumb => thumb.classList.remove('active'));
-      thumbnail.classList.add('active');
-      elements.mainImage.src = src ;
-    }
+    function changeImage(thumbnail, imageUrl) {
+  // حذف کلاس active از همه thumbnailها
+  document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+  // اضافه کردن active به thumbnail کلیک‌شده
+  thumbnail.classList.add('active');
+  // تغییر عکس اصلی
+  document.getElementById('detail-image').src = imageUrl;
+  document.getElementById('detail-image').alt = thumbnail.alt; // برای دسترسی‌پذیری بهتر
+}
     // Quantity Controls
     function changeQuantity(change) {
       quantity = Math.max(1, quantity + change);
@@ -3026,18 +3024,20 @@ function updateSlider() {
     // Cart Functions 
     function createProductCard(product, isSlider = false) {
   return `
-    <div class="${isSlider ? 'other-product-item' : 'rec-item'}">
-      <img src="${product.image}" alt="${product.name}" loading="lazy">
-      <div class="rec-content">
-        <p>${product.name}</p>
-        <div class="rating">⭐ ${product.rating}</div>
-        <span>${product.priceText}</span>
-        <button onclick="addToCart(${product.id}, ${product.price})">
-          <i class="fas fa-shopping-cart"></i>
-          افزودن
-        </button>
+    <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
+      <div class="${isSlider ? 'other-product-item' : 'rec-item'}">
+        <img src="${product.image}" alt="${product.name}" loading="lazy">
+        <div class="rec-content">
+          <p>${product.name}</p>
+          <div class="rating">⭐ ${product.rating || '۵.۰'}</div>
+          <span>${product.priceText}</span>
+          <button onclick="event.stopPropagation(); addToCart(${product.id}, ${product.price})">
+            <i class="fas fa-shopping-cart"></i>
+            افزودن به سبد
+          </button>
+        </div>
       </div>
-    </div>
+    </a>
   `;
 }
 
@@ -3655,7 +3655,38 @@ ${itemCount} مورد</option>
         document.getElementById('detail-title').textContent = product.name;
         document.getElementById('detail-desc').textContent = product.description || '';
         document.getElementById('detail-price').textContent = product.priceText || '۰ تومان';
+// --- گالری تصاویر داینامیک ---
+const mainImage = document.getElementById('detail-image');
+const thumbnailsContainer = document.getElementById('thumbnails-container');
 
+// اولویت: اگر آرایه images در محصول وجود داشت، از اون استفاده کن
+if (product.images && product.images.length > 0) {
+  // عکس اصلی = اولین تصویر آرایه
+  mainImage.src = product.images[0];
+  mainImage.alt = product.name + ' - تصویر اصلی';
+
+  // ساخت thumbnails
+  thumbnailsContainer.innerHTML = ''; // خالی کردن (برای اطمینان)
+  product.images.forEach((url, index) => {
+    const thumb = document.createElement('img');
+    thumb.src = url;
+    thumb.alt = `${product.name} - عکس ${index + 1}`;
+    thumb.className = 'product-thumbnail';
+    thumb.loading = 'lazy';
+    if (index === 0) thumb.classList.add('active'); // اولین thumbnail فعال باشه
+
+    thumb.onclick = function() {
+      changeImage(this, url);
+    };
+
+    thumbnailsContainer.appendChild(thumb);
+  });
+} else {
+  // fallback: اگر images نبود، فقط از image تک استفاده کن (thumbnails نساز)
+  mainImage.src = product.image || 'https://placehold.co/600x400?text=بدون+تصویر';
+  mainImage.alt = product.name + ' - تصویر اصلی';
+  thumbnailsContainer.innerHTML = ''; // thumbnails خالی بمونه
+}
         if (product.details) {
           const ingredientsEl = document.getElementById('detail-ingredients');
           const nutritionEl = document.getElementById('detail-nutrition_info ');
@@ -3679,6 +3710,7 @@ ${itemCount} مورد</option>
     if (window.products && window.productsDatabase) {
       window.dispatchEvent(new Event('dataLoaded'));
     }
+    
   </script>
 </body>
 </html>
