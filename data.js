@@ -246,6 +246,9 @@ const productsDatabase = [
         priceText: "۵۵,۰۰۰ تومان",
         description: "«.»",
         image: "image1/247.jpg",
+        images:[
+            "image1/247.jpg",
+        ],
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "کلم سفید و قرمز، هویج، سس مایونز و ادویه" },
@@ -351,9 +354,8 @@ const productsDatabase = [
         image: "image1/178.jpg",
         images: [                 // <--- این آرایه رو اضافه کن
             "image1/178.jpg",       // عکس اصلی (اولین آیتم)
-            "image1/179.jpg",     // عکس دوم (اگر وجود داره)
-            "image1/178.jpg",     // عکس سوم
-            "image1/178.jpg"      // عکس چهارم (یا بیشتر/کمتر)
+            "image1/39.jpg",     // عکس دوم (اگر وجود داره)
+            
       // اگر فقط یک عکس داری، فقط یکی بگذار: ["image1/178.jpg"]
     ],
         rating: 4.5,
@@ -407,6 +409,11 @@ const productsDatabase = [
         priceText: "۶۵,۰۰۰ تومان",
         description: "«مینی‌برگر با گوشت مزه‌دار و نان سبک.»",
         image: "image1/124.jpg",
+        images:[
+            "image1/124.jpg",
+            "image1/84.jpg",
+            "image1/154.jpg"
+        ] ,
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "گوشت چرخ‌کرده، نان کوچک برگر، کاهو، خیارشور، سس مخصوص و ادویه برگر" },
@@ -458,6 +465,10 @@ const productsDatabase = [
         priceText: "۶۵,۰۰۰ تومان",
         description: "ترکیبی ساده و خوش‌مزه",
         image: "image1/75.jpg",
+        images:[
+            "image1/75.jpg",
+            "image1/74.jpg"
+        ] ,
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ژامبون ،نان کوچک برگر، پنیر، کاهو ،خیارشور، سس مخصوص و ادویه مخصوص." },
@@ -679,6 +690,10 @@ const productsDatabase = [
         priceText: "۶۰,۰۰۰ تومان",
         description: "«شات سالاد ماکارونی خامه‌ای و تازه با سبزیجات.»",
         image: "image1/209.jpg",
+        images:[
+            "image1/209.jpg",
+            "image1/50.jpg",
+        ],
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "ماکارونی، مرغ، خیارشور، ذرت، سس مایونز و ادویه" },
@@ -764,6 +779,10 @@ const productsDatabase = [
         priceText: "۶۵,۰۰۰ تومان",
         description: "«مینی‌پیتزا گوشت و قارچ با پنیر ذوب‌شده و عطر سیر.»",
         image: "image1/234.jpg",
+        images:[
+            "image1/234.jpg",
+            "image1/215.jpg",
+        ],
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، گوشت چرخ‌کرده، قارچ، پنیر، سس گوجه و ادویه" },
@@ -781,6 +800,10 @@ const productsDatabase = [
         priceText: "۶۰,۰۰۰ تومان",
         description: "«مینی‌پیتزا مرغ و قارچ سبک و خوش‌عطر.»",
         image: "image1/225.jpg",
+        images:[
+            "image1/225.jpg",
+            "image1/222.jpg",
+        ],
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، مرغ ریز شده، قارچ، پنیر، سس و ادویه ملایم" },
@@ -814,7 +837,7 @@ const productsDatabase = [
         price: 58000,
         priceText: "۵۸,۰۰۰ تومان",
         description: "«مینی‌پیتزا سوسیس و قارچ با طعم دودی و تازه.»",
-        image: "image1/fingerfood1.png",
+        image: "image1/219.jpg",
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "خمیر پیتزا، سوسیس، قارچ، پنیر، سس و ادویه" },
@@ -1087,6 +1110,12 @@ const productsDatabase = [
         priceText: "۶۰,۰۰۰ تومان",
         description: "«ته‌چین مرغ زعفرانی طلایی و معطر.»",
         image: "image1/44.jpg",
+        images:[
+            "image1/44.jpg",
+            "image1/35.jpg",
+            "image1/152.jpg",
+            "image1/167.jpg",
+        ],
         rating: 4.5,
         badge: "پرفروش",
         details: { nutrition_info: "پُرخوراک و مناسب برای سرو به‌عنوان میان‌وعده یا پیش‌غذا", ingredients: "برنج، مرغ، زعفران، ماست، تخم‌مرغ و ادویه" },
