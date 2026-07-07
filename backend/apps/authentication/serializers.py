@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import User
+from .utils import normalize_phone
+from .validators import validate_iranian_phone
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 
@@ -17,19 +19,28 @@ class RegisterSerializer(serializers.ModelSerializer):
             "confirm_password",
         )
 
+    def validate_phone(self, value):
+        try:
+            phone = normalize_phone(value)
+            validate_iranian_phone(phone)
+        except ValueError as e:
+            raise serializers.ValidationError(str(e))
+
+        if User.objects.filter(phone=phone).exists():
+            raise serializers.ValidationError("این شماره قبلاً ثبت شده است.")
+
+        return phone
+
     def validate(self, attrs):
         if attrs["password"] != attrs["confirm_password"]:
             raise serializers.ValidationError(
                 {"confirm_password": "Passwords do not match."}
             )
-
         return attrs
 
     def create(self, validated_data):
         validated_data.pop("confirm_password")
         return User.objects.create_user(**validated_data)
-    
-    
 
 
 class LoginSerializer(TokenObtainPairSerializer):
@@ -40,10 +51,10 @@ class LoginSerializer(TokenObtainPairSerializer):
         password = attrs.get("password")
 
         user = authenticate(
-        request=self.context.get("request"),
-        phone=phone,
-        password=password,
-    )
+            request=self.context.get("request"),
+            phone=phone,
+            password=password,
+        )
 
         if user is None:
             raise serializers.ValidationError(
@@ -56,7 +67,8 @@ class LoginSerializer(TokenObtainPairSerializer):
             "refresh": str(refresh),
             "access": str(refresh.access_token),
         }
-        
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -67,4 +79,4 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "role",
             "phone_verified",
             "created_at",
-        )        
+        )

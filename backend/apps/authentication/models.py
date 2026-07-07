@@ -78,7 +78,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     phone_verified = models.BooleanField(
-        default=True,
+    default=False,  
     )
 
     is_active = models.BooleanField(
