@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import RegisterSerializer, LoginSerializer, AdminLoginSerializer, UserProfileSerializer
 
 from .serializers import RegisterSerializer, LoginSerializer, UserProfileSerializer
 
@@ -27,3 +28,9 @@ class ProfileAPIView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+    
+class AdminLoginAPIView(TokenObtainPairView):
+    serializer_class = AdminLoginSerializer
+    permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "admin_login"

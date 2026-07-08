@@ -2595,9 +2595,9 @@
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">3</span>
       </a>
-      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+      <a href="login.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
         <i class="fas fa-user profile-icon" id="profileIcon"></i>
-      </div>
+        </a>
       <div class="user-menu" id="userMenu">
         <div class="user-info">
           <span class="avatar" id="userAvatar"></span>
@@ -2637,71 +2637,7 @@
       </li>
     </ul>
   </nav>
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="auth-modal-content">
-      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
-      <div class="auth-modal-header">
-        <div class="site-logo">
-          <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه">
-          FIROUZEH
-        </div>
-        <h2>ورود یا ثبت‌نام</h2>
-        <div class="greeting">سلام</div>
-        <p>لطفا شماره موبایل خود را وارد کنید</p>
-      </div>
-      <div class="wizard-step active" id="step1">
-        <div class="auth-form">
-          <label for="authPhone">شماره موبایل</label>
-          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
-          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
-          <div id="captchaSection">
-            <label id="captchaQuestion"></label>
-            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
-            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
-          </div>
-          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
-        </div>
-        <div class="wizard-buttons">
-          <button id="nextToStep2" disabled>بعدی</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step2">
-        <div class="auth-form">
-          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
-          <label for="authCode">کد یک‌بار مصرف</label>
-          <div class="input-group">
-            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
-            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
-          </div>
-          <p class="error" id="authCodeError">کد نامعتبر است.</p>
-          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
-          <button id="resendCodeBtn">ارسال مجدد کد</button>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep1">قبلی</button>
-          <button id="nextToStep3" disabled>تأیید</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step3">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
-        <div class="username-strength" id="usernameStrength"></div>
-        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
-        <h3>انتخاب کاراکتر</h3>
-        <div class="character-grid">
-          <div class="character-card" data-char="🍎">🍎</div>
-          <div class="character-card" data-char="🍕">🍕</div>
-          <div class="character-card" data-char="🍔">🍔</div>
-          <div class="character-card" data-char="🍦">🍦</div>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep2">قبلی</button>
-          <button id="confirmProfileBtn" disabled>تأیید</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -2964,8 +2900,6 @@
       sideMenu: document.getElementById('sideMenu'),
       closeBtn: document.querySelector('#sideMenu .close-btn'),
       overlay: document.getElementById('overlay'),
-      authModal: document.getElementById('authModal'),
-      closeAuthModal: document.getElementById('closeAuthModal'),
       userProfile: document.getElementById('userProfile'),
       profileIcon: document.getElementById('profileIcon'),
       userMenu: document.getElementById('userMenu'),
@@ -2975,25 +2909,6 @@
       logoutModal: document.getElementById('logoutModal'),
       confirmLogout: document.getElementById('confirmLogout'),
       cancelLogout: document.getElementById('cancelLogout'),
-      step1: document.getElementById('step1'),
-      step2: document.getElementById('step2'),
-      step3: document.getElementById('step3'),
-      nextToStep2: document.getElementById('nextToStep2'),
-      prevToStep1: document.getElementById('prevToStep1'),
-      nextToStep3: document.getElementById('nextToStep3'),
-      prevToStep2: document.getElementById('prevToStep2'),
-      authPhone: document.getElementById('authPhone'),
-      authPhoneError: document.getElementById('authPhoneError'),
-      authSuccess: document.getElementById('authSuccess'),
-      authCode: document.getElementById('authCode'),
-      authCodeError: document.getElementById('authCodeError'),
-      authTimer: document.getElementById('authTimer'),
-      authCountdown: document.getElementById('authCountdown'),
-      username: document.getElementById('username'),
-      usernameError: document.getElementById('usernameError'),
-      usernameStrength: document.getElementById('usernameStrength'),
-      characterCards: document.querySelectorAll('.character-card'),
-      confirmProfileBtn: document.getElementById('confirmProfileBtn'),
       searchContainer: document.getElementById('searchContainer'),
       searchInputLegacy: document.getElementById('searchInputLegacy'),
       searchResults: document.getElementById('searchResults'),
@@ -3002,15 +2917,11 @@
       promoText: document.getElementById('promoText'),
       clearSearch: document.getElementById('clearSearch'),
       clock: document.getElementById('clock'),
-      toggleAuthCode: document.getElementById('toggleAuthCode'),
-      resendCodeBtn: document.getElementById('resendCodeBtn'),
-      captchaQuestion: document.getElementById('captchaQuestion'),
-      captchaAnswer: document.getElementById('captchaAnswer'),
-      captchaError: document.getElementById('captchaError'),
       sliderContainer: document.getElementById('sliderContainer'), // اضافه شده برای بخش پرفروش‌ها
     };
     const baseURL = "http://127.0.0.1:8000/api/auth/";
-    // بعداً وقتی سایت رو آنلاین کردی، این رو تغییر میدیم به تغییر میدیم به آدرس سرور واقعی‌ت.
+    // بعداً وقتی سایت رو آنلاین کردی، این رو به آدرس سرور واقعی‌ت تغییر بده.
+
     // Data (Modularized)
     const data = {
       popularSearches: ['فینگرفود', 'دسر', 'مزه', 'سینی مزه', 'آجیل مخلوط'],
@@ -3023,69 +2934,16 @@
         "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
       ],
     };
+
     // State (Centralized for better management)
     let state = {
       currentPromoIndex: 0,
-      authCountdownInterval: null,
-      authModalShown: false,
       userData: null,
-      currentPhone: '',
-      isNewUser: false,
-      captchaNum1: 0,
-      captchaNum2: 0,
-      captchaResult: 0,
-      failedAttempts: parseInt(sessionStorage.getItem('failedAttempts')) || 0,
-      lockTimer: 0,
     };
+
     // Utility Functions (Modularized and optimized)
     const utils = {
       escapeHTML: (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'),
-      maskInput: (input, regex) => { input.value = input.value.replace(regex, ''); },
-      validatePhone: (phone) => /^09[0-9]{9}$/.test(phone),
-      validateCode: (code) => /^[0-9]{6}$/.test(code),
-      validateUsername: (name) => /^[a-zA-Z0-9]{3,}$/.test(name),
-      validateCaptcha: (answer) => Number.isInteger(parseInt(answer)) && parseInt(answer) === state.captchaResult,
-      generateCaptcha: () => {
-        state.captchaNum1 = Math.floor(Math.random() * 10) + 1;
-        state.captchaNum2 = Math.floor(Math.random() * 10) + 1;
-        state.captchaResult = state.captchaNum1 + state.captchaNum2;
-        elements.captchaQuestion.textContent = `حاصل جمع ${state.captchaNum1} + ${state.captchaNum2} چیست؟`;
-      },
-      showSpinner: (button) => {
-        button.innerHTML = '<div class="spinner"></div>';
-        button.disabled = true;
-      },
-      hideSpinner: (button, text) => {
-        button.innerHTML = text;
-        button.disabled = false;
-      },
-      updateButtonStates: () => {
-        elements.nextToStep2.disabled = !utils.validatePhone(elements.authPhone.value) || !utils.validateCaptcha(elements.captchaAnswer.value);
-        elements.nextToStep3.disabled = !utils.validateCode(elements.authCode.value);
-        elements.confirmProfileBtn.disabled = !utils.validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
-      },
-      updateUsernameStrength: () => {
-        const name = elements.username.value;
-        let strengthClass = 'weak';
-        if (name.length >= 6) strengthClass = 'strong';
-        else if (name.length >= 3) strengthClass = 'medium';
-        elements.usernameStrength.className = `username-strength ${strengthClass}`;
-      },
-      startCountdown: (timerSeconds = 60) => {
-        let seconds = timerSeconds;
-        elements.authCountdown.innerHTML = seconds;
-        elements.authTimer.style.display = 'block';
-        elements.resendCodeBtn.style.display = 'none';
-        state.authCountdownInterval = setInterval(() => {
-          seconds--;
-          elements.authCountdown.innerHTML = seconds;
-          if (seconds <= 0) {
-            clearInterval(state.authCountdownInterval);
-            elements.authTimer.style.display = 'none';
-            elements.resendCodeBtn.style.display = 'block';
-          }
-        }, 1000);
-      },
       updateTime: () => {
         if (typeof persianDate === 'undefined') {
           elements.clock.innerHTML = '<i class="fas fa-clock"></i> خطا در بارگذاری تاریخ';
@@ -3109,6 +2967,7 @@
         state.currentPromoIndex = (state.currentPromoIndex + 1) % data.promoMessages.length;
       },
     };
+
     // Menu Functions
     const menu = {
       open: () => {
@@ -3132,6 +2991,7 @@
         elements.menuToggle.focus();
       },
     };
+
     // Get Profile Function
     async function getProfile() {
       const token = localStorage.getItem('access');
@@ -3154,89 +3014,9 @@
         return null;
       }
     }
-    // Auth Modal Functions (Async for API simulations)
+
+    // Auth UI helper (login/signup itself now happens on login.html)
     const auth = {
-      openModal: () => {
-        elements.authModal.classList.add('active');
-        elements.overlay.classList.add('active');
-        elements.body.style.overflow = 'hidden';
-        state.authModalShown = true;
-        auth.resetForm();
-        utils.generateCaptcha();
-      },
-      closeModal: () => {
-        elements.authModal.classList.remove('active');
-        elements.overlay.classList.remove('active');
-        elements.body.style.overflow = '';
-        auth.resetForm();
-      },
-      resetForm: () => {
-        elements.authPhone.value = '';
-        elements.authCode.value = '';
-        elements.username.value = '';
-        elements.captchaAnswer.value = '';
-        elements.authPhoneError.style.display = 'none';
-        elements.authCodeError.style.display = 'none';
-        elements.usernameError.style.display = 'none';
-        elements.captchaError.style.display = 'none';
-        elements.authSuccess.style.display = 'none';
-        elements.authTimer.style.display = 'none';
-        elements.resendCodeBtn.style.display = 'none';
-        elements.step1.classList.add('active');
-        elements.step2.classList.remove('active');
-        elements.step3.classList.remove('active');
-        elements.characterCards.forEach(card => card.classList.remove('selected'));
-        if (state.authCountdownInterval) clearInterval(state.authCountdownInterval);
-        state.failedAttempts = 0;
-        sessionStorage.setItem('failedAttempts', state.failedAttempts);
-        utils.updateButtonStates();
-        utils.updateUsernameStrength();
-      },
-      sendCode: async (phone) => {
-        try {
-          const response = await fetch(baseURL + "send-otp/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone: phone })
-          });
-          const data = await response.json();
-          console.log("OTP Sent:", data);
-          if (response.ok) {
-            alert("کد به شماره ارسال شد!");
-            return true;
-          } else {
-            alert("خطا در ارسال کد!");
-            return false;
-          }
-        } catch (error) {
-          console.error("Error sending OTP:", error);
-          alert("خطا در ارسال کد!");
-          return false;
-        }
-      },
-      verifyCode: async (code, phone) => {
-        try {
-          const response = await fetch(baseURL + "verify-otp/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone: phone, code: code }),
-          });
-          const data = await response.json();
-          console.log("Login:", data);
-          if (data.access) {
-            localStorage.setItem("access", data.access);
-            const profile = await getProfile();
-            return profile;
-          } else {
-            alert("کد اشتباهه!");
-            return null;
-          }
-        } catch (error) {
-          console.error("Error verifying OTP:", error);
-          alert("خطا در تأیید کد!");
-          return null;
-        }
-      },
       updateUserUI: () => {
         if (state.userData) {
           elements.profileIcon.style.display = 'none';
@@ -3253,6 +3033,7 @@
         }
       },
     };
+
     // Search Functions (Optimized loops with early exits)
     const search = {
       open: () => {
@@ -3309,6 +3090,7 @@
         elements.suggestionsBox.classList.add('active');
       },
     };
+
     // Event Handlers (Using delegation where possible)
     const events = {
       setup: () => {
@@ -3317,188 +3099,18 @@
           elements.sideMenu.classList.contains('active') ? menu.close() : menu.open();
         });
         elements.closeBtn.addEventListener('click', menu.close);
-        // User Profile
+
+        // User Profile — if logged in, toggle the user menu.
+        // If NOT logged in, the icon is a plain <a href="login.html">
+        // so the browser navigates there naturally; we only intercept
+        // the click when we need to show the logged-in dropdown instead.
         elements.userProfile.addEventListener('click', (e) => {
-          e.preventDefault();
           if (state.userData) {
+            e.preventDefault();
             elements.userMenu.classList.toggle('active');
-          } else {
-            auth.openModal();
           }
         });
-        // Auth Modal
-        elements.closeAuthModal.addEventListener('click', auth.closeModal);
-        elements.authPhone.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^0-9]/g);
-          elements.authPhoneError.style.display = utils.validatePhone(e.target.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.captchaAnswer.addEventListener('input', () => {
-          elements.captchaError.style.display = utils.validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.nextToStep2.addEventListener('click', async (e) => {
-          e.preventDefault();
-          if (!utils.validateCaptcha(elements.captchaAnswer.value)) {
-            elements.captchaError.style.display = 'block';
-            return;
-          }
-          elements.captchaError.style.display = 'none';
-          const phone = elements.authPhone.value;
-          if (!utils.validatePhone(phone)) {
-            elements.authPhoneError.style.display = 'block';
-            return;
-          }
-          elements.authPhoneError.style.display = 'none';
-          state.currentPhone = phone;
-          utils.showSpinner(elements.nextToStep2);
-          try {
-            const success = await auth.sendCode(phone);
-            if (success) {
-              elements.authSuccess.style.display = 'block';
-              elements.step1.classList.remove('active');
-              elements.step2.classList.add('active');
-              const timer = state.failedAttempts > 5 ? 300 : 60;
-              utils.startCountdown(timer);
-            }
-          } finally {
-            utils.hideSpinner(elements.nextToStep2, 'بعدی');
-          }
-        });
-        elements.prevToStep1.addEventListener('click', () => {
-          elements.step2.classList.remove('active');
-          elements.step1.classList.add('active');
-          elements.authSuccess.style.display = 'none';
-          elements.authTimer.style.display = 'none';
-          elements.resendCodeBtn.style.display = 'none';
-          if (state.authCountdownInterval) clearInterval(state.authCountdownInterval);
-        });
-        elements.authCode.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^0-9]/g);
-          elements.authCodeError.style.display = utils.validateCode(e.target.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-        elements.authCode.addEventListener('paste', (e) => e.preventDefault());
-        elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-        elements.nextToStep3.addEventListener('click', async (e) => {
-          e.preventDefault();
-          const code = elements.authCode.value;
-          utils.showSpinner(elements.nextToStep3);
-          try {
-            const user = await auth.verifyCode(code, state.currentPhone);
-            if (user) {
-              state.failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', state.failedAttempts);
-              elements.authCodeError.style.display = 'none';
-              state.userData = user;
-              if (!user.username) {
-                state.isNewUser = true;
-                elements.step2.classList.remove('active');
-                elements.step3.classList.add('active');
-                elements.username.value = `user${state.currentPhone.slice(-4)}`;
-                utils.updateUsernameStrength();
-                utils.updateButtonStates();
-              } else {
-                state.isNewUser = false;
-                auth.updateUserUI();
-                auth.closeModal();
-                alert('ورود موفق!');
-              }
-            } else {
-              state.failedAttempts++;
-              sessionStorage.setItem('failedAttempts', state.failedAttempts);
-              elements.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (state.failedAttempts % 6)}`;
-              elements.authCodeError.style.display = 'block';
-              if (state.failedAttempts >= 5) {
-                elements.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-                elements.nextToStep3.disabled = true;
-                state.lockTimer = 300; // 5 minutes
-                setTimeout(() => {
-                  elements.nextToStep3.disabled = false;
-                  state.failedAttempts = 0;
-                  sessionStorage.setItem('failedAttempts', state.failedAttempts);
-                }, state.lockTimer * 1000);
-              }
-            }
-          } finally {
-            utils.hideSpinner(elements.nextToStep3, 'تأیید');
-          }
-        });
-        elements.resendCodeBtn.addEventListener('click', async () => {
-          const success = await auth.sendCode(state.currentPhone);
-          if (success) {
-            const timer = state.failedAttempts > 5 ? 300 : 60;
-            utils.startCountdown(timer);
-          }
-        });
-        elements.toggleAuthCode.addEventListener('click', () => {
-          const type = elements.authCode.type === 'password' ? 'text' : 'password';
-          elements.authCode.type = type;
-          elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-        });
-        elements.prevToStep2.addEventListener('click', () => {
-          elements.step3.classList.remove('active');
-          elements.step2.classList.add('active');
-        });
-        elements.username.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^a-zA-Z0-9]/g);
-          elements.usernameError.style.display = utils.validateUsername(e.target.value) ? 'none' : 'block';
-          utils.updateUsernameStrength();
-          utils.updateButtonStates();
-        });
-        elements.characterCards.forEach(card => {
-          card.addEventListener('click', () => {
-            elements.characterCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            utils.updateButtonStates();
-          });
-        });
-        elements.confirmProfileBtn.addEventListener('click', async () => {
-          const name = elements.username.value;
-          const selectedChar = document.querySelector('.character-card.selected');
-          if (!utils.validateUsername(name)) {
-            elements.usernameError.style.display = 'block';
-            return;
-          }
-          if (!selectedChar) {
-            alert('لطفاً یک کاراکتر انتخاب کنید');
-            return;
-          }
-          elements.usernameError.style.display = 'none';
-          utils.showSpinner(elements.confirmProfileBtn);
-          try {
-            const response = await fetch(baseURL + 'profile/', {
-              method: 'PATCH',
-              headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access')}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                username: name,
-                character: selectedChar.dataset.char,
-              }),
-            });
-            if (response.ok) {
-              state.userData = {
-                ...state.userData,
-                phone: state.currentPhone,
-                username: name,
-                character: selectedChar.dataset.char
-              };
-              auth.updateUserUI();
-              auth.closeModal();
-              alert('ثبت‌نام موفق!');
-            } else {
-              alert('خطا در به‌روزرسانی پروفایل!');
-            }
-          } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('خطا در به‌روزرسانی پروفایل!');
-          } finally {
-            utils.hideSpinner(elements.confirmProfileBtn, 'تأیید');
-          }
-        });
+
         // Logout
         elements.logoutBtn.addEventListener('click', () => {
           elements.userMenu.classList.remove('active');
@@ -3516,6 +3128,7 @@
           elements.logoutModal.classList.remove('active');
           elements.overlay.classList.remove('active');
         });
+
         // Search
         document.querySelector('.search-icon').addEventListener('click', () => {
           if (elements.searchInput.value.trim()) {
@@ -3543,10 +3156,10 @@
             console.log('جستجو برای:', elements.searchInput.value);
           }
         });
+
         // Overlay and Escape Key
         elements.overlay.addEventListener('click', () => {
           menu.close();
-          auth.closeModal();
           search.close();
           elements.suggestionsBox.classList.remove('active');
           elements.userMenu.classList.remove('active');
@@ -3555,13 +3168,13 @@
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             menu.close();
-            auth.closeModal();
             search.close();
             elements.suggestionsBox.classList.remove('active');
             elements.userMenu.classList.remove('active');
             elements.logoutModal.classList.remove('active');
           }
         });
+
         // Document Click for Closing Menus
         document.addEventListener('click', (e) => {
           if (!elements.searchInput.contains(e.target) && !elements.suggestionsBox.contains(e.target)) {
@@ -3571,12 +3184,7 @@
             elements.userMenu.classList.remove('active');
           }
         });
-        // Auto Open Auth Modal
-        setTimeout(() => {
-          if (!state.authModalShown && !state.userData) {
-            auth.openModal();
-          }
-        }, 60000); // 1 minute
+
         // Support Widget Visibility
         const footer = document.querySelector('footer');
         const supportWidget = document.querySelector('.support-widget');
@@ -3590,6 +3198,7 @@
           });
         }, { threshold: 0.1 });
         observer.observe(footer);
+
         // Best Sellers Slider Manual Swipe
         const slider = document.querySelector('.best-sellers-slider');
         const sliderContainer = document.querySelector('.slider-container');
@@ -3614,106 +3223,110 @@
         });
       },
     };
+
     // Initialize
     utils.updateTime();
     setInterval(utils.updateTime, 1000);
     setInterval(utils.changePromoText, 5000);
     utils.changePromoText();
     events.setup();
+
     // Load user data if token exists
     (async () => {
       state.userData = await getProfile();
       auth.updateUserUI();
     })();
-// جایگزین کد قبلی loadBestSellers در انتهای اسکریپت index.html شوید
-function loadBestSellers() {
-  const container = document.getElementById('sliderContainer');
-  // اطمینان از اینکه productsDatabase لود شده است
-  if (typeof productsDatabase === 'undefined') {
-    console.error('فایل data.js لود نشده است!');
-    container.innerHTML = '<p style="color:white; text-align:center;">خطا در بارگذاری محصولات</p>';
-    return;
-  }
-  // 1. فیلتر کردن محصولات پرفروش و محدود کردن به 12 عدد
-  const bestSellers = productsDatabase
-    .filter(product => product.badge === "پرفروش")
-    .slice(0, 12);
-  // پاک کردن محتویات قبلی (لودینگ یا دیتای فیک)
-  container.innerHTML = '';
-  // 2. ساخت کارت برای هر محصول
-  bestSellers.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'best-seller-card';
-  
-    // نکته: لینک به صفحه product.html با ID محصول
-    card.innerHTML = `
-      <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
-        <div class="best-seller-image">
-          <img src="${product.image}" alt="${product.name}" loading="lazy">
-        </div>
-        <p class="best-seller-description">${product.description.substring(0, 50)}...</p>
-        <div class="best-seller-price">${product.priceText}</div>
-      </a>
-    
-      <div class="quantity-control">
-        <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">-</button>
-        <input type="number" value="1" min="1" readonly>
-        <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">+</button>
-      </div>
-    
-      <a href="product.html?id=${product.id}" class="add-to-cart">
-        <i class="fas fa-shopping-cart"></i>
-        مشاهده و خرید
-      </a>
-    `;
-    container.appendChild(card);
-  });
-  // 3. اضافه کردن کارت "مشاهده همه" در انتها
-  const viewMoreCard = document.createElement('div');
-  viewMoreCard.className = 'best-seller-card view-more-card';
-  viewMoreCard.innerHTML = `
-    <a href="finger-food.html">
-      <i class="fas fa-arrow-left"></i>
-      <span>مشاهده همه محصولات</span>
-    </a>
-  `;
-  container.appendChild(viewMoreCard);
-}// اجرا هنگام لود صفحه
-// ... کدهای قبلی (loadBestSellers) ...
-function loadHomeBlogs() {
-  const container = document.getElementById('homeBlogGrid');
-  // چک کنیم دیتابیس بلاگ لود شده باشد
-  if (typeof blogsDatabase === 'undefined') {
-    console.error('فایل blog-data.js لود نشده است!');
-    return;
-  }
-  // انتخاب 2 مقاله اول (یا جدیدترین‌ها)
-  // slice(0, 2) یعنی از اول آرایه تا دومی را بردار
-  const recentBlogs = blogsDatabase.slice(0, 2);
-  container.innerHTML = ''; // پاک کردن محتویات قبلی
-  recentBlogs.forEach(blog => {
-    // ساخت لینک به صورت یک کارت کامل (طبق استایل فعلی شما)
-    const card = document.createElement('a');
-    card.className = 'blog-card';
-    // لینک به صفحه تکی مقاله با ID مربوطه
-    card.href = `blog.html?id=${blog.id}`;
-   
-    card.innerHTML = `
-      <div class="blog-image">
-        <img src="${blog.image}" alt="${blog.title}" loading="lazy">
-      </div>
-      <strong>${blog.title}</strong>
-      <p>${blog.summary.substring(0, 80)}...</p>
-    `;
-   
-    container.appendChild(card);
-  });
-}
-// اضافه کردن تابع به ایونت لود صفحه
-window.addEventListener('DOMContentLoaded', () => {
-    loadBestSellers(); // تابع قبلی برای محصولات
-    loadHomeBlogs(); // تابع جدید برای بلاگ‌ها
-});
+
+    // جایگزین کد قبلی loadBestSellers در انتهای اسکریپت index.html
+    function loadBestSellers() {
+      const container = document.getElementById('sliderContainer');
+      // اطمینان از اینکه productsDatabase لود شده است
+      if (typeof productsDatabase === 'undefined') {
+        console.error('فایل data.js لود نشده است!');
+        container.innerHTML = '<p style="color:white; text-align:center;">خطا در بارگذاری محصولات</p>';
+        return;
+      }
+      // 1. فیلتر کردن محصولات پرفروش و محدود کردن به 12 عدد
+      const bestSellers = productsDatabase
+        .filter(product => product.badge === "پرفروش")
+        .slice(0, 12);
+      // پاک کردن محتویات قبلی (لودینگ یا دیتای فیک)
+      container.innerHTML = '';
+      // 2. ساخت کارت برای هر محصول
+      bestSellers.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'best-seller-card';
+
+        // نکته: لینک به صفحه product.html با ID محصول
+        card.innerHTML = `
+          <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
+            <div class="best-seller-image">
+              <img src="${product.image}" alt="${product.name}" loading="lazy">
+            </div>
+            <p class="best-seller-description">${product.description.substring(0, 50)}...</p>
+            <div class="best-seller-price">${product.priceText}</div>
+          </a>
+
+          <div class="quantity-control">
+            <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">-</button>
+            <input type="number" value="1" min="1" readonly>
+            <button onclick="event.preventDefault(); alert('فعلا غیرفعال')">+</button>
+          </div>
+
+          <a href="product.html?id=${product.id}" class="add-to-cart">
+            <i class="fas fa-shopping-cart"></i>
+            مشاهده و خرید
+          </a>
+        `;
+        container.appendChild(card);
+      });
+      // 3. اضافه کردن کارت "مشاهده همه" در انتها
+      const viewMoreCard = document.createElement('div');
+      viewMoreCard.className = 'best-seller-card view-more-card';
+      viewMoreCard.innerHTML = `
+        <a href="finger-food.html">
+          <i class="fas fa-arrow-left"></i>
+          <span>مشاهده همه محصولات</span>
+        </a>
+      `;
+      container.appendChild(viewMoreCard);
+    }
+
+    // اجرا هنگام لود صفحه — بارگذاری بلاگ‌های خانه
+    function loadHomeBlogs() {
+      const container = document.getElementById('homeBlogGrid');
+      // چک کنیم دیتابیس بلاگ لود شده باشد
+      if (typeof blogsDatabase === 'undefined') {
+        console.error('فایل blog-data.js لود نشده است!');
+        return;
+      }
+      // انتخاب 2 مقاله اول (یا جدیدترین‌ها)
+      const recentBlogs = blogsDatabase.slice(0, 2);
+      container.innerHTML = ''; // پاک کردن محتویات قبلی
+      recentBlogs.forEach(blog => {
+        // ساخت لینک به صورت یک کارت کامل (طبق استایل فعلی شما)
+        const card = document.createElement('a');
+        card.className = 'blog-card';
+        // لینک به صفحه تکی مقاله با ID مربوطه
+        card.href = `blog.html?id=${blog.id}`;
+
+        card.innerHTML = `
+          <div class="blog-image">
+            <img src="${blog.image}" alt="${blog.title}" loading="lazy">
+          </div>
+          <strong>${blog.title}</strong>
+          <p>${blog.summary.substring(0, 80)}...</p>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // اضافه کردن تابع به ایونت لود صفحه
+    window.addEventListener('DOMContentLoaded', () => {
+      loadBestSellers(); // تابع قبلی برای محصولات
+      loadHomeBlogs(); // تابع جدید برای بلاگ‌ها
+    });
   </script>
 </body>
 </html>

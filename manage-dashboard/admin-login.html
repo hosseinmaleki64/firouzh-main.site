@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ورود مدیران</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!--
+  یادداشت برای توسعه‌دهنده:
+  این صفحه فقط برای ورود مدیران/ادمین‌هاست (بدون ثبت‌نام).
+  به اندپوینت اختصاصی /api/auth/admin-login/ وصل شده که role کاربر را
+  چک می‌کند (ADMIN یا SUPER_ADMIN) و توکن JWT برمی‌گرداند.
+  بعد از ورود موفق، کاربر به manage-dashboard/user-page هدایت می‌شود.
+-->
+
+<style>
+  :root{
+    --turquoise-900:#06302E;
+    --turquoise-800:#0A4744;
+    --turquoise-700:#0E6E6B;
+    --turquoise-600:#128884;
+    --turquoise-500:#17A398;
+    --turquoise-300:#7BD6C9;
+    --turquoise-100:#DCF3EF;
+    --gold-500:#C9A24B;
+    --gold-300:#E4CA8C;
+    --sand-50:#FBF7EF;
+    --ink-900:#17272A;
+    --ink-600:#4C6266;
+    --ink-300:#93A6A8;
+    --white:#FFFFFF;
+    --danger:#C0463F;
+
+    --radius-lg:22px;
+    --radius-md:14px;
+    --shadow-card:0 20px 60px -20px rgba(6,48,46,.35);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:"Vazirmatn","Tahoma",sans-serif;
+    background:var(--sand-50);
+    color:var(--ink-900);
+    -webkit-font-smoothing:antialiased;
+  }
+  button{font-family:inherit;}
+  input{font-family:inherit;}
+
+  .page{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---------------- پنل برند ---------------- */
+  .brand-panel{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(160deg, var(--turquoise-900), var(--turquoise-800) 55%, var(--turquoise-700));
+    min-height:clamp(180px, 34vh, 260px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:env(safe-area-inset-top) 20px 34px;
+    border-bottom-left-radius:36px;
+    border-bottom-right-radius:36px;
+  }
+  .brand-panel svg.pattern{position:absolute; inset:0; width:100%; height:100%;}
+  .brand-panel::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(120% 90% at 50% 15%, rgba(255,255,255,.08), transparent 60%);
+    pointer-events:none;
+  }
+  .brand-content{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+    text-align:center; padding-top:8px;
+  }
+  .logo-slot{
+    width:64px; height:64px; border-radius:50%;
+    background:var(--turquoise-900);
+    border:2px solid var(--gold-300);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold-300); font-weight:700; font-size:22px;
+    box-shadow:0 8px 24px -6px rgba(0,0,0,.4);
+  }
+  .site-name-slot{
+    font-size:clamp(19px,4.4vw,24px);
+    font-weight:800; color:var(--white); letter-spacing:.2px;
+  }
+  .panel-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(228,202,140,.4);
+    color:var(--gold-300);
+    font-size:12px; font-weight:700;
+    padding:5px 14px;
+    border-radius:999px;
+    letter-spacing:.3px;
+  }
+  .brand-tagline{margin:0; color:var(--turquoise-100); font-size:13px; font-weight:500; opacity:.85;}
+
+  /* ---------------- پنل فرم ---------------- */
+  .form-panel{
+    flex:1;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:0 18px calc(28px + env(safe-area-inset-bottom));
+  }
+  .form-card{
+    width:100%;
+    max-width:420px;
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-card);
+    margin-top:-30px;
+    padding:30px 22px 28px;
+    position:relative;
+    z-index:3;
+  }
+  .form-title{
+    display:flex; align-items:center; gap:10px;
+    margin:0 0 6px;
+    font-size:18px; font-weight:800; color:var(--turquoise-800);
+  }
+  .form-title svg{width:20px; height:20px; color:var(--gold-500); flex:none;}
+  .form-subtitle{
+    margin:0 0 24px;
+    font-size:13px; color:var(--ink-600);
+  }
+
+  .auth-form{display:flex; flex-direction:column; gap:16px;}
+
+  .field{display:flex; flex-direction:column; gap:7px;}
+  .field label{
+    font-size:13px; font-weight:600; color:var(--ink-600);
+    display:flex; align-items:center; gap:6px;
+  }
+  .field label::before{
+    content:""; width:5px; height:5px;
+    background:var(--gold-500); transform:rotate(45deg);
+    display:inline-block; flex:none;
+  }
+  .input-wrap{position:relative; display:flex; align-items:center;}
+  .input-wrap svg.icon{
+    position:absolute; right:14px; width:18px; height:18px;
+    color:var(--turquoise-500); pointer-events:none;
+  }
+  .input-wrap input{
+    width:100%;
+    padding:13px 42px 13px 42px;
+    border:1.5px solid #E4E6E5;
+    border-radius:var(--radius-md);
+    font-size:15px; color:var(--ink-900);
+    background:var(--sand-50);
+    outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .input-wrap input::placeholder{color:var(--ink-300); font-weight:400;}
+  .input-wrap input:focus{
+    border-color:var(--turquoise-500);
+    background:var(--white);
+    box-shadow:0 0 0 4px var(--turquoise-100);
+  }
+  .input-wrap input:focus-visible{box-shadow:0 0 0 4px var(--gold-300);}
+  .toggle-eye{
+    position:absolute; left:12px;
+    background:none; border:none; padding:4px;
+    cursor:pointer; color:var(--ink-300); display:flex;
+  }
+  .toggle-eye:hover{color:var(--turquoise-600);}
+  .hint-error{font-size:12px; color:var(--danger); min-height:14px; display:none;}
+  .field.has-error .hint-error{display:block;}
+  .field.has-error input{border-color:var(--danger);}
+
+  .forgot-link{
+    align-self:flex-start;
+    background:none; border:none;
+    color:var(--turquoise-600); font-size:12.5px; font-weight:600;
+    cursor:pointer; padding:0; margin-top:-6px;
+  }
+  .forgot-link:hover{color:var(--turquoise-800); text-decoration:underline;}
+
+  .submit-btn{
+    margin-top:6px;
+    border:none;
+    background:linear-gradient(135deg, var(--turquoise-700), var(--turquoise-900));
+    color:var(--white);
+    font-weight:700; font-size:15.5px;
+    padding:14px 0;
+    border-radius:var(--radius-md);
+    cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(6,48,46,.55);
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .submit-btn:hover{filter:brightness(1.1);}
+  .submit-btn:active{transform:translateY(1px);}
+  .submit-btn:focus-visible{outline:3px solid var(--gold-500); outline-offset:2px;}
+  .submit-btn:disabled{opacity:.7; cursor:not-allowed; filter:none;}
+
+  .form-error{
+    display:none;
+    background:rgba(192,70,63,.08);
+    border:1px solid rgba(192,70,63,.35);
+    color:var(--danger);
+    font-size:13px; font-weight:600;
+    padding:10px 14px;
+    border-radius:var(--radius-md);
+    text-align:center;
+  }
+  .form-error.show{display:block;}
+
+  .footnote{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-300);
+    margin-top:20px;
+  }
+
+  /* ---------------- مودال پشتیبانی ---------------- */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(6,48,46,.55);
+    display:none; align-items:center; justify-content:center;
+    padding:20px; z-index:50;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    background:var(--white); border-radius:var(--radius-lg);
+    max-width:340px; width:100%; padding:24px 20px;
+    text-align:center; box-shadow:var(--shadow-card);
+  }
+  .modal-box h3{margin:6px 0 8px; font-size:17px; color:var(--turquoise-800);}
+  .modal-box p{margin:0 0 18px; font-size:13.5px; color:var(--ink-600); line-height:1.9;}
+  .modal-box .support-num{
+    display:block; font-weight:800; color:var(--turquoise-700);
+    font-size:16px; margin-bottom:16px; direction:ltr;
+  }
+  .modal-close{
+    border:none; background:var(--turquoise-100); color:var(--turquoise-800);
+    font-weight:700; padding:10px 22px; border-radius:999px; cursor:pointer;
+  }
+
+  @media (min-width:640px){
+    .form-card{max-width:440px; padding:36px 34px 34px;}
+    .brand-panel{min-height:240px;}
+  }
+
+  @media (min-width:1024px){
+    .page{flex-direction:row-reverse;}
+    .brand-panel{
+      flex:1 1 46%; min-height:100vh; border-radius:0;
+      padding:60px; align-items:center;
+    }
+    .brand-content{gap:20px;}
+    .logo-slot{width:88px; height:88px; font-size:30px;}
+    .site-name-slot{font-size:32px;}
+    .brand-tagline{font-size:15px;}
+    .form-panel{flex:1 1 54%; align-items:center; padding:40px;}
+    .form-card{margin-top:0; max-width:420px; padding:44px 38px 42px;}
+  }
+
+  @media (min-width:1440px){
+    .brand-panel{padding:80px;}
+    .logo-slot{width:100px; height:100px; font-size:34px;}
+    .site-name-slot{font-size:36px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .auth-form{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ پنل برند ============ -->
+  <div class="brand-panel">
+    <svg class="pattern" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="girih" width="110" height="110" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="1.4">
+            <rect x="25" y="25" width="60" height="60"/>
+            <rect x="25" y="25" width="60" height="60" transform="rotate(45 55 55)"/>
+          </g>
+        </pattern>
+        <radialGradient id="glow" cx="50%" cy="42%" r="60%">
+          <stop offset="0%" stop-color="rgba(228,202,140,0.28)"/>
+          <stop offset="100%" stop-color="rgba(228,202,140,0)"/>
+        </radialGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#girih)"/>
+      <circle cx="50%" cy="40%" r="180" fill="url(#glow)"/>
+    </svg>
+
+    <div class="brand-content">
+      <div class="logo-slot" aria-label="جای‌گیرنده لوگو">🍢</div>
+      <!-- 👆 لوگوی نهایی را جایگزین ایموجی کنید -->
+      <div class="site-name-slot">نام سایت شما</div>
+      <span class="panel-badge">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/></svg>
+        پنل مدیریت
+      </span>
+      <p class="brand-tagline">ورود اختصاصی مدیران سیستم</p>
+    </div>
+  </div>
+
+  <!-- ============ پنل فرم ============ -->
+  <div class="form-panel">
+    <div class="form-card">
+
+      <h1 class="form-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        ورود مدیران
+      </h1>
+      <p class="form-subtitle">این بخش فقط برای مدیران سیستم است. با شماره موبایل و رمز عبور خود وارد شوید.</p>
+
+      <form class="auth-form" id="adminLoginForm" novalidate>
+        <div class="form-error" id="formError"></div>
+
+        <div class="field" id="adminMobileField">
+          <label for="adminMobile">شماره موبایل</label>
+          <div class="input-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            <input type="tel" id="adminMobile" inputmode="numeric" maxlength="11" placeholder="09xxxxxxxxx" autocomplete="tel" required>
+          </div>
+          <span class="hint-error" id="adminMobileError">شماره موبایل را درست وارد کنید</span>
+        </div>
+
+        <div class="field" id="adminPasswordField">
+          <label for="adminPassword">رمز عبور</label>
+          <div class="input-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            <input type="password" id="adminPassword" placeholder="رمز عبور" autocomplete="current-password" required>
+            <button type="button" class="toggle-eye" data-for="adminPassword" aria-label="نمایش رمز عبور">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="hint-error" id="adminPasswordError">رمز عبور را وارد کنید</span>
+        </div>
+
+        <button type="button" class="forgot-link" id="forgotBtn">رمزت یادت رفته؟</button>
+
+        <button type="submit" class="submit-btn" id="submitBtn">ورود به پنل مدیریت</button>
+      </form>
+
+      <p class="footnote">دسترسی به این بخش فقط برای مدیران مجاز است.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ مودال بازیابی از طریق پشتیبانی ============ -->
+<div class="modal-overlay" id="supportModal">
+  <div class="modal-box">
+    <h3>بازیابی رمز عبور</h3>
+    <p>برای بازیابی رمز عبور پنل مدیریت، با تیم فنی تماس بگیرید تا رمز شما بازنشانی شود.</p>
+    <span class="support-num">021-XXXXXXX</span>
+    <button class="modal-close" id="closeModal">متوجه شدم</button>
+  </div>
+</div>
+
+<script>
+  // ---- آدرس پایه‌ی API — در صورت نیاز تغییر بده ----
+  const API_BASE = "http://127.0.0.1:8000/api/auth";
+
+  document.querySelectorAll('.toggle-eye').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.for);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    });
+  });
+
+  const adminMobile = document.getElementById('adminMobile');
+  adminMobile.addEventListener('input', () => { adminMobile.value = adminMobile.value.replace(/[^0-9]/g,''); });
+
+  const mobileRegex = /^09\d{9}$/;
+  const formError = document.getElementById('formError');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function setError(fieldEl, show, message){
+    fieldEl.classList.toggle('has-error', show);
+    if(show && message){
+      const hint = fieldEl.querySelector('.hint-error');
+      if(hint) hint.textContent = message;
+    }
+  }
+
+  function showFormError(message){
+    formError.textContent = message;
+    formError.classList.add('show');
+  }
+
+  function hideFormError(){
+    formError.classList.remove('show');
+    formError.textContent = '';
+  }
+
+  document.getElementById('adminLoginForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    hideFormError();
+
+    const mobile = document.getElementById('adminMobile');
+    const pass = document.getElementById('adminPassword');
+    const mobileField = document.getElementById('adminMobileField');
+    const passField = document.getElementById('adminPasswordField');
+    let ok = true;
+
+    if(!mobileRegex.test(mobile.value)){
+      setError(mobileField, true, 'شماره موبایل را درست وارد کنید');
+      ok = false;
+    } else {
+      setError(mobileField, false);
+    }
+
+    if(pass.value.length < 1){
+      setError(passField, true, 'رمز عبور را وارد کنید');
+      ok = false;
+    } else {
+      setError(passField, false);
+    }
+
+    if(!ok) return;
+
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'در حال ورود...';
+
+    try {
+      const res = await fetch(`${API_BASE}/admin-login/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: mobile.value, password: pass.value })
+      });
+
+      let data = {};
+      try { data = await res.json(); } catch(_) { /* بدنه‌ی خالی */ }
+
+      if(!res.ok){
+        let msg = 'ورود ناموفق بود. دوباره تلاش کنید.';
+
+        if(res.status === 429){
+          msg = 'تعداد تلاش‌ها زیاد بوده، کمی صبر کنید و دوباره تلاش کنید.';
+        } else if(data.non_field_errors && data.non_field_errors.length){
+          msg = data.non_field_errors[0];
+        } else if(data.detail){
+          msg = data.detail;
+        } else if(typeof data === 'string'){
+          msg = data;
+        }
+
+        showFormError(msg);
+        return;
+      }
+
+      // ورود موفق: ذخیره‌ی توکن‌ها
+      localStorage.setItem('admin_access_token', data.access);
+      localStorage.setItem('admin_refresh_token', data.refresh);
+      if(data.user){
+        localStorage.setItem('admin_user', JSON.stringify(data.user));
+      }
+
+      // هدایت به داشبورد مدیریت
+      window.location.href = '/manage-dashboard/user-page.html';
+
+    } catch(err){
+      console.error(err);
+      showFormError('خطا در ارتباط با سرور. اتصال اینترنت را بررسی کنید.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  const supportModal = document.getElementById('supportModal');
+  document.getElementById('forgotBtn').addEventListener('click', () => supportModal.classList.add('open'));
+  document.getElementById('closeModal').addEventListener('click', () => supportModal.classList.remove('open'));
+  supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.remove('open'); });
+</script>
+
+</body>
+</html>

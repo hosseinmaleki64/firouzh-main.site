@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'apps.authentication',
     'rest_framework',
     "corsheaders",
+    "apps.users",
+    "django_filters",
+    "apps.dashboard",
 ]
 
 MIDDLEWARE = [
@@ -131,9 +134,15 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_THROTTLE_RATES": {
-        "login": "5/minute",
-        "register": "3/minute",
+        "register": "5/hour",
+        "login": "10/min",
+        "admin_login": "10/min",
     },
+    "DEFAULT_FILTER_BACKENDS": (
+    "django_filters.rest_framework.DjangoFilterBackend",
+    "rest_framework.filters.SearchFilter",
+    "rest_framework.filters.OrderingFilter",
+),
 }
 
 SIMPLE_JWT = {

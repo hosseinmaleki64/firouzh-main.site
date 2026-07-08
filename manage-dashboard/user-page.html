@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کاربران | پنل مدیریت فیروزه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ===== Firouzeh design tokens ===== */
+    --fz-turquoise-50:#eef8f7;
+    --fz-turquoise-100:#d7efec;
+    --fz-turquoise-400:#3fbdb2;
+    --fz-turquoise-500:#12a99f;   /* primary */
+    --fz-turquoise-600:#0d8e85;
+    --fz-turquoise-700:#0a6f68;
+    --fz-turquoise-900:#0a4a45;
+
+    --fz-gold-400:#e5c158;
+    --fz-gold-500:#c9a227;
+    --fz-gold-600:#a3811a;
+
+    --fz-blue-500:#3b7fc4;
+    --fz-blue-600:#2f66a1;
+
+    --fz-green-500:#1e9e5a;
+    --fz-red-500:#d64545;
+
+    --fz-ink-900:#152423;
+    --fz-ink-700:#33453f;
+    --fz-ink-500:#5f7370;
+    --fz-ink-300:#93a3a1;
+    --fz-ink-100:#e3ebea;
+    --fz-ink-50:#f4f9f8;
+
+    --fz-surface:#ffffff;
+    --fz-bg:#f6faf9;
+
+    --fz-radius-sm:10px;
+    --fz-radius-md:14px;
+    --fz-radius-lg:20px;
+
+    --fz-shadow-sm: 0 1px 2px rgba(16,45,42,.06), 0 1px 1px rgba(16,45,42,.04);
+    --fz-shadow-md: 0 8px 24px -8px rgba(16,45,42,.14), 0 2px 8px -2px rgba(16,45,42,.06);
+    --fz-shadow-lg: 0 20px 45px -15px rgba(16,45,42,.22);
+
+    --fz-font: 'Vazirmatn', -apple-system, 'Segoe UI', Tahoma, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family: var(--fz-font);
+    background: var(--fz-bg);
+    color: var(--fz-ink-900);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0 0 auto 0; height:280px;
+    background:
+      radial-gradient(560px 280px at 85% -10%, rgba(18,169,159,.10), transparent 60%),
+      radial-gradient(420px 220px at 10% -20%, rgba(201,162,39,.08), transparent 60%);
+    pointer-events:none; z-index:0;
+  }
+  ::selection{ background: var(--fz-turquoise-100); color: var(--fz-turquoise-900); }
+  button{font-family:inherit;}
+  input,select{font-family:inherit;}
+
+  .wrap{
+    position:relative; z-index:1;
+    max-width:1180px;
+    margin:0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  /* ===== Header ===== */
+  .brandbar{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .gem{
+    width:30px; height:30px; flex:0 0 auto;
+  }
+  .brandbar .brand-name{
+    font-weight:800; font-size:15px; letter-spacing:.2px; color: var(--fz-turquoise-700);
+  }
+  .brandbar .brand-sub{
+    font-size:12px; color: var(--fz-ink-300); margin-inline-start:2px;
+  }
+  .brandbar .who{
+    margin-inline-start:auto;
+    font-size:12px; color: var(--fz-ink-500);
+    display:flex; align-items:center; gap:8px;
+  }
+  .brandbar .who b{ color: var(--fz-ink-700); font-weight:700; }
+  .logout-link{
+    background:none; border:none; cursor:pointer;
+    color: var(--fz-red-500); font-size:12px; font-weight:600;
+  }
+
+  .page-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .page-head h1{
+    font-size:26px; font-weight:800; margin:0 0 6px;
+    color: var(--fz-ink-900);
+  }
+  .page-head .count-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13.5px; color: var(--fz-ink-500); font-weight:500;
+  }
+  .page-head .count-pill b{
+    color: var(--fz-turquoise-700); font-weight:700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn{
+    appearance:none; border:none; cursor:pointer;
+    font-weight:600; font-size:13.5px;
+    border-radius: var(--fz-radius-sm);
+    padding:10px 18px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, filter .15s ease;
+  }
+  .btn:active{ transform: translateY(1px); }
+  .btn:disabled{ opacity:.55; cursor:not-allowed; }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--fz-turquoise-500), var(--fz-turquoise-600));
+    color:#fff;
+    box-shadow: var(--fz-shadow-sm);
+  }
+  .btn-primary:hover{ box-shadow: var(--fz-shadow-md); }
+  .btn-ghost{
+    background: var(--fz-surface);
+    color: var(--fz-ink-700);
+    border:1px solid var(--fz-ink-100);
+  }
+  .btn-ghost:hover{ border-color: var(--fz-turquoise-400); color: var(--fz-turquoise-700); }
+  .btn-danger-ghost{
+    background:#fff; color: var(--fz-red-500); border:1px solid #f3d2d2;
+  }
+  .btn-danger-ghost:hover{ background:#fff5f5; }
+  .btn-danger{
+    background: linear-gradient(135deg, #d64545, #b93636);
+    color:#fff;
+  }
+  .btn-sm{ padding:7px 14px; font-size:12.5px; }
+
+  /* ===== Toolbar ===== */
+  .toolbar{
+    background: var(--fz-surface);
+    border:1px solid var(--fz-ink-100);
+    border-radius: var(--fz-radius-lg);
+    box-shadow: var(--fz-shadow-sm);
+    padding:14px;
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    margin-bottom:18px;
+  }
+  .search-box{
+    flex:1 1 240px;
+    position:relative;
+    display:flex; align-items:center;
+  }
+  .search-box svg{
+    position:absolute; right:14px; width:17px; height:17px; color: var(--fz-ink-300);
+  }
+  .search-box input{
+    width:100%;
+    padding:11px 42px 11px 14px;
+    border-radius: var(--fz-radius-sm);
+    border:1px solid var(--fz-ink-100);
+    background: var(--fz-ink-50);
+    font-size:13.5px;
+    color: var(--fz-ink-900);
+    outline:none;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .search-box input:focus{
+    border-color: var(--fz-turquoise-500);
+    background:#fff;
+  }
+  .search-box input::placeholder{ color: var(--fz-ink-300); }
+
+  .select-wrap{ position:relative; }
+  .select-wrap select{
+    appearance:none;
+    padding:11px 34px 11px 14px;
+    border-radius: var(--fz-radius-sm);
+    border:1px solid var(--fz-ink-100);
+    background: var(--fz-ink-50);
+    font-size:13px; font-weight:500;
+    color: var(--fz-ink-700);
+    cursor:pointer;
+    outline:none;
+    transition: border-color .15s ease;
+  }
+  .select-wrap select:focus{ border-color: var(--fz-turquoise-500); }
+  .select-wrap::after{
+    content:"";
+    position:absolute; left:12px; top:50%; translate:0 -50%;
+    width:8px; height:8px;
+    border-left:1.6px solid var(--fz-ink-300);
+    border-bottom:1.6px solid var(--fz-ink-300);
+    transform: rotate(-45deg) translateY(-3px);
+    pointer-events:none;
+  }
+
+  /* ===== Table shell ===== */
+  .list-card{
+    background: var(--fz-surface);
+    border:1px solid var(--fz-ink-100);
+    border-radius: var(--fz-radius-lg);
+    box-shadow: var(--fz-shadow-sm);
+    overflow:visible;
+    position:relative;
+  }
+
+  .list-header{
+    display:grid;
+    grid-template-columns: 2.1fr 1.2fr .9fr .9fr .9fr .5fr;
+    gap:10px;
+    padding:13px 22px;
+    font-size:12px; font-weight:700; color: var(--fz-ink-300);
+    border-bottom:1px solid var(--fz-ink-100);
+    letter-spacing:.2px;
+    border-top-left-radius: var(--fz-radius-lg);
+    border-top-right-radius: var(--fz-radius-lg);
+  }
+  .list-header span:last-child{ text-align:left; }
+
+  .user-row{
+    display:grid;
+    grid-template-columns: 2.1fr 1.2fr .9fr .9fr .9fr .5fr;
+    gap:10px;
+    align-items:center;
+    padding:14px 22px;
+    border-bottom:1px solid var(--fz-ink-50);
+    transition: background .15s ease;
+    position:relative;
+  }
+  .user-row:last-child{ border-bottom:none; }
+  .user-row:hover{ background: var(--fz-turquoise-50); }
+
+  .cell{ font-size:13.5px; color: var(--fz-ink-700); min-width:0; }
+  .cell.muted{ color: var(--fz-ink-500); font-variant-numeric: tabular-nums; }
+
+  .cell-user{ display:flex; align-items:center; gap:11px; min-width:0; }
+  .avatar{
+    width:38px; height:38px; border-radius:50%;
+    flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--fz-turquoise-100), var(--fz-turquoise-50));
+    color: var(--fz-turquoise-700);
+    font-weight:700; font-size:14px;
+    border:1px solid var(--fz-turquoise-100);
+  }
+  .avatar.gold{
+    background: linear-gradient(135deg, #f7ecc9, #fbf6e6);
+    color: var(--fz-gold-600);
+    border-color:#f0dfa2;
+  }
+  .user-name-wrap{ min-width:0; }
+  .user-name{ font-weight:600; color: var(--fz-ink-900); font-size:13.8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .user-sub{ font-size:12px; color: var(--fz-ink-300); margin-top:1px; display:none; }
+
+  .phone{ direction:ltr; text-align:right; font-variant-numeric: tabular-nums; color: var(--fz-ink-500); font-size:13px; }
+
+  .badge{
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 10px 4px 9px;
+    border-radius:999px;
+    font-size:11.5px; font-weight:700;
+    letter-spacing:.2px;
+    width:fit-content;
+  }
+  .badge::before{ content:""; width:5px; height:5px; border-radius:50%; }
+  .badge-user{ background: var(--fz-ink-100); color: var(--fz-ink-500); }
+  .badge-user::before{ background: var(--fz-ink-300); }
+  .badge-admin{ background:#e8f1fb; color: var(--fz-blue-600); }
+  .badge-admin::before{ background: var(--fz-blue-500); }
+  .badge-super{
+    background: linear-gradient(135deg,#fbf3d9,#f6e8b8);
+    color: var(--fz-gold-600);
+    box-shadow: inset 0 0 0 1px #eddb9c;
+  }
+  .badge-super::before{ background: var(--fz-gold-500); }
+
+  .status-dot{ display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; }
+  .status-dot::before{ content:""; width:7px; height:7px; border-radius:50%; }
+  .status-active{ color: var(--fz-green-500); }
+  .status-active::before{ background: var(--fz-green-500); box-shadow:0 0 0 3px rgba(30,158,90,.15); }
+  .status-inactive{ color: var(--fz-red-500); }
+  .status-inactive::before{ background: var(--fz-red-500); box-shadow:0 0 0 3px rgba(214,69,69,.13); }
+
+  .row-action{ text-align:left; position:relative; }
+  .kebab-btn{
+    width:32px; height:32px; border-radius:9px;
+    border:1px solid var(--fz-ink-100); background:#fff;
+    color: var(--fz-ink-500); cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:16px; line-height:1; font-weight:700;
+    transition: all .15s ease;
+  }
+  .kebab-btn:hover{ border-color: var(--fz-turquoise-400); color: var(--fz-turquoise-700); background: var(--fz-turquoise-50); }
+  .kebab-btn.active{ border-color: var(--fz-turquoise-500); color: var(--fz-turquoise-700); background: var(--fz-turquoise-50); }
+
+  /* mobile-only bits, hidden on desktop */
+  .card-only{ display:none; }
+
+  /* ===== Dropdown menu (kebab) ===== */
+  .dropdown-menu{
+    position:fixed;
+    min-width:200px;
+    background:#fff;
+    border:1px solid var(--fz-ink-100);
+    border-radius: var(--fz-radius-md);
+    box-shadow: var(--fz-shadow-lg);
+    padding:6px;
+    z-index:70;
+    display:none;
+  }
+  .dropdown-menu.open{ display:block; }
+  .dropdown-item{
+    display:flex; align-items:center; gap:9px;
+    width:100%; text-align:right;
+    background:none; border:none; cursor:pointer;
+    padding:10px 12px; border-radius:8px;
+    font-size:13px; color: var(--fz-ink-700); font-weight:500;
+    transition: background .12s ease;
+  }
+  .dropdown-item:hover{ background: var(--fz-ink-50); }
+  .dropdown-item.danger{ color: var(--fz-red-500); }
+  .dropdown-item.warn{ color: var(--fz-gold-600); }
+  .dropdown-empty{
+    padding:12px; font-size:12.5px; color: var(--fz-ink-300); text-align:center;
+  }
+
+  /* ===== Loading / error state ===== */
+  .list-loading, .list-error{
+    padding:60px 20px; text-align:center; color: var(--fz-ink-500); font-size:13.5px;
+  }
+  .list-error{ color: var(--fz-red-500); }
+  .list-error button{ margin-top:10px; }
+
+  /* ===== Empty state ===== */
+  .empty-state{
+    padding:70px 20px; text-align:center; color: var(--fz-ink-500);
+  }
+  .empty-state svg{ width:46px; height:46px; color: var(--fz-ink-300); margin-bottom:14px; }
+  .empty-state h3{ font-size:15px; color: var(--fz-ink-700); margin:0 0 6px; }
+  .empty-state p{ font-size:13px; margin:0; }
+
+  /* ===== Pagination ===== */
+  .pagination{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; flex-wrap:wrap;
+    padding:16px 4px 0;
+    font-size:12.5px; color: var(--fz-ink-500);
+  }
+  .page-btns{ display:flex; gap:6px; }
+  .page-btn{
+    width:32px; height:32px;
+    border-radius:9px; border:1px solid var(--fz-ink-100);
+    background:#fff; color: var(--fz-ink-700);
+    font-size:12.5px; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: all .15s ease;
+    font-variant-numeric: tabular-nums;
+  }
+  .page-btn:hover{ border-color: var(--fz-turquoise-400); color: var(--fz-turquoise-700); }
+  .page-btn.active{
+    background: var(--fz-turquoise-500); border-color: var(--fz-turquoise-500); color:#fff;
+  }
+  .page-btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+  /* ===== Modal ===== */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(15,30,28,.45);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; z-index:80;
+    opacity:0; pointer-events:none;
+    transition: opacity .18s ease;
+  }
+  .modal-backdrop.open{ opacity:1; pointer-events:auto; }
+  .modal{
+    background:#fff; width:100%; max-width:560px; max-height:88vh; overflow-y:auto;
+    border-radius: var(--fz-radius-lg);
+    box-shadow: var(--fz-shadow-lg);
+    padding:26px 26px 22px;
+    transform: translateY(10px) scale(.98);
+    transition: transform .18s ease;
+  }
+  .modal.modal-sm{ max-width:420px; }
+  .modal-backdrop.open .modal{ transform: translateY(0) scale(1); }
+  .modal-top{ display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .modal-top .avatar{ width:54px; height:54px; font-size:18px; }
+  .modal-top h2{ margin:0 0 4px; font-size:17px; color: var(--fz-ink-900); }
+  .modal-close{
+    margin-inline-start:auto; width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--fz-ink-100); background:#fff; color: var(--fz-ink-500);
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-size:15px; transition:.15s;
+  }
+  .modal-close:hover{ background: var(--fz-ink-50); }
+
+  .modal-section{ margin-bottom:18px; }
+  .modal-section h4{
+    font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;
+    color: var(--fz-ink-300); font-weight:700; margin:0 0 10px;
+  }
+  .kv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; }
+  .kv{ font-size:13.5px; }
+  .kv .k{ color: var(--fz-ink-300); font-size:11.5px; margin-bottom:2px; }
+  .kv .v{ color: var(--fz-ink-900); font-weight:600; }
+  .kv .v.mono{ direction:ltr; text-align:right; font-variant-numeric: tabular-nums; }
+
+  .placeholder-note{
+    font-size:12.5px; color: var(--fz-ink-300); font-style:italic;
+    border:1px dashed var(--fz-ink-100); border-radius:10px; padding:12px 14px;
+  }
+
+  .modal-actions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:16px; border-top:1px solid var(--fz-ink-50); }
+  .modal-actions.end{ justify-content:flex-end; }
+
+  .confirm-text{ font-size:13.5px; color: var(--fz-ink-700); line-height:2; margin:0 0 4px; }
+  .confirm-text b{ color: var(--fz-ink-900); }
+  .confirm-warn{
+    font-size:12.5px; color: var(--fz-ink-500); background: var(--fz-ink-50);
+    border-radius:10px; padding:10px 12px; margin-top:10px;
+  }
+
+  .field-group{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .field-group label{ font-size:12.5px; font-weight:600; color: var(--fz-ink-500); }
+  .field-group input[type="text"]{
+    padding:10px 12px; border-radius: var(--fz-radius-sm);
+    border:1px solid var(--fz-ink-100); background: var(--fz-ink-50);
+    font-size:13.5px; color: var(--fz-ink-900); outline:none;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .field-group input[type="text"]:focus{ border-color: var(--fz-turquoise-500); background:#fff; }
+  .toggle-row{ display:flex; align-items:center; justify-content:space-between; }
+  .switch{ position:relative; width:42px; height:24px; flex:0 0 auto; }
+  .switch input{ opacity:0; width:0; height:0; }
+  .switch .slider{
+    position:absolute; inset:0; background: var(--fz-ink-100); border-radius:999px;
+    cursor:pointer; transition:.2s;
+  }
+  .switch .slider::before{
+    content:""; position:absolute; width:18px; height:18px; right:3px; top:3px;
+    background:#fff; border-radius:50%; transition:.2s; box-shadow: var(--fz-shadow-sm);
+  }
+  .switch input:checked + .slider{ background: var(--fz-turquoise-500); }
+  .switch input:checked + .slider::before{ transform: translateX(-18px); }
+
+  /* ===== Toast ===== */
+  .toast{
+    position:fixed; bottom:24px; right:50%; translate:50% 0;
+    background: var(--fz-ink-900); color:#fff; font-size:13px; font-weight:500;
+    padding:11px 20px; border-radius:999px; box-shadow: var(--fz-shadow-md);
+    opacity:0; pointer-events:none; transition: opacity .2s ease, translate .2s ease;
+    z-index:90; max-width:90vw; text-align:center;
+  }
+  .toast.show{ opacity:1; translate:50% -6px; }
+  .toast.error{ background: var(--fz-red-500); }
+
+  /* ===== Focus visibility ===== */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
+    outline:2px solid var(--fz-turquoise-500); outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+  }
+
+  /* =====================================================
+     RESPONSIVE: table -> cards
+     ===================================================== */
+  @media (max-width: 860px){
+    .list-header{ display:none; }
+    .user-row{
+      grid-template-columns: 1fr;
+      gap:10px;
+      padding:16px;
+      border-radius: var(--fz-radius-md);
+      border:1px solid var(--fz-ink-50);
+      margin:12px;
+      box-shadow: var(--fz-shadow-sm);
+    }
+    .list-card{ box-shadow:none; border:none; background:transparent; }
+    .card-only{ display:flex; }
+    .cell-user{ order:1; }
+    .user-sub{ display:block; }
+    .cell.role-cell{ order:2; }
+    .cell.phone-cell{ order:2; display:flex; }
+    .cell.status-cell{ order:3; }
+    .cell.joined-cell{ order:4; }
+    .row-action{ order:6; text-align:left; width:100%; position:absolute; left:16px; top:16px; }
+
+    .page-head h1{ font-size:22px; }
+    .toolbar{ flex-direction:column; align-items:stretch; }
+    .select-wrap select{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Brand -->
+  <div class="brandbar">
+    <svg class="gem" viewBox="0 0 32 32" fill="none">
+      <path d="M16 2 L27 11 L16 30 L5 11 Z" fill="url(#gemGrad)"/>
+      <path d="M16 2 L27 11 L16 15 Z" fill="#5fd0c4" opacity=".85"/>
+      <path d="M16 2 L5 11 L16 15 Z" fill="#0f9188" opacity=".9"/>
+      <path d="M5 11 L16 30 L16 15 Z" fill="#0a6f68"/>
+      <path d="M27 11 L16 30 L16 15 Z" fill="#0d8e85"/>
+      <defs>
+        <linearGradient id="gemGrad" x1="5" y1="2" x2="27" y2="30">
+          <stop stop-color="#3fbdb2"/>
+          <stop offset="1" stop-color="#0a6f68"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span class="brand-name">فیروزه</span>
+    <span class="brand-sub">پنل مدیریت</span>
+    <div class="who">
+      خوش آمدید، <b id="currentAdminName">—</b>
+      <button class="logout-link" id="logoutBtn">خروج</button>
+    </div>
+  </div>
+
+  <!-- Page head -->
+  <div class="page-head">
+    <div>
+      <h1>کاربران</h1>
+      <div class="count-pill">تعداد کاربران: <b id="totalCount">—</b></div>
+    </div>
+    <button class="btn btn-primary" id="addAdminBtn" style="display:none;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      افزودن مدیر
+    </button>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="جستجو بر اساس نام یا شماره موبایل...">
+    </div>
+    <div class="select-wrap">
+      <select id="roleFilter">
+        <option value="all">همه نقش‌ها</option>
+        <option value="USER">کاربر عادی</option>
+        <option value="ADMIN">مدیر</option>
+        <option value="SUPER_ADMIN">مدیر ارشد</option>
+      </select>
+    </div>
+    <div class="select-wrap">
+      <select id="statusFilter">
+        <option value="all">همه وضعیت‌ها</option>
+        <option value="active">فعال</option>
+        <option value="inactive">غیرفعال</option>
+      </select>
+    </div>
+    <div class="select-wrap">
+      <select id="sortFilter">
+        <option value="-created_at">جدیدترین</option>
+        <option value="created_at">قدیمی‌ترین</option>
+        <option value="full_name">نام (الف تا ی)</option>
+        <option value="-full_name">نام (ی تا الف)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- List -->
+  <div class="list-card">
+    <div class="list-header">
+      <span>کاربر</span>
+      <span>موبایل</span>
+      <span>نقش</span>
+      <span>وضعیت</span>
+      <span>عضویت</span>
+      <span>عملیات</span>
+    </div>
+    <div id="listBody"></div>
+    <div class="list-loading" id="listLoading">در حال بارگذاری کاربران...</div>
+    <div class="list-error" id="listErrorState" style="display:none;">
+      <div id="listErrorMsg">خطا در دریافت اطلاعات کاربران.</div>
+      <button class="btn btn-ghost btn-sm" id="retryBtn">تلاش دوباره</button>
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <h3>کاربری پیدا نشد</h3>
+      <p>عبارت جستجو یا فیلترها را تغییر دهید.</p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+</div>
+
+<!-- User detail modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" id="modalBox"></div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal-backdrop" id="editBackdrop">
+  <div class="modal modal-sm" role="dialog" aria-modal="true" id="editBox"></div>
+</div>
+
+<!-- Confirm modal (promote / demote / toggle status) -->
+<div class="modal-backdrop" id="confirmBackdrop">
+  <div class="modal modal-sm" role="dialog" aria-modal="true" id="confirmBox"></div>
+</div>
+
+<!-- Kebab dropdown (single shared instance, repositioned per row) -->
+<div class="dropdown-menu" id="dropdownMenu"></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================================
+   FIROUZEH — Users Management (متصل به بک‌اند واقعی)
+   -------------------------------------------------------------------------
+   اگر آدرس یا پورت سرور جنگوی تو فرق داره، فقط همین یک خط رو عوض کن:
+   ========================================================================= */
+  const API_ORIGIN = "http://127.0.0.1:8000";
+  const AUTH_BASE  = `${API_ORIGIN}/api/auth`;
+  const USERS_BASE = `${API_ORIGIN}/api/users`;
+  const LOGIN_PAGE = "login.html"; // مسیر نسبی صفحه ورود مدیران
+
+  // =====================================================================
+  // احراز هویت / توکن‌ها
+  // =====================================================================
+  function getAccess(){ return localStorage.getItem('admin_access_token'); }
+  function getRefresh(){ return localStorage.getItem('admin_refresh_token'); }
+  function getCurrentAdmin(){
+    try { return JSON.parse(localStorage.getItem('admin_user') || 'null'); }
+    catch(_){ return null; }
+  }
+  function clearSession(){
+    localStorage.removeItem('admin_access_token');
+    localStorage.removeItem('admin_refresh_token');
+    localStorage.removeItem('admin_user');
+  }
+  function goToLogin(){
+    clearSession();
+    window.location.href = LOGIN_PAGE;
+  }
+
+  async function refreshAccessToken(){
+    const refresh = getRefresh();
+    if(!refresh) return false;
+    try{
+      const res = await fetch(`${AUTH_BASE}/refresh/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh })
+      });
+      if(!res.ok) return false;
+      const data = await res.json();
+      if(!data.access) return false;
+      localStorage.setItem('admin_access_token', data.access);
+      return true;
+    }catch(_){ return false; }
+  }
+
+  // fetch با پیوست خودکار توکن و تلاش یک‌باره برای refresh در صورت 401
+  async function apiFetch(url, options = {}, _isRetry = false){
+    const access = getAccess();
+    const headers = Object.assign(
+      { 'Content-Type': 'application/json' },
+      options.headers || {},
+      access ? { 'Authorization': `Bearer ${access}` } : {}
+    );
+
+    const res = await fetch(url, { ...options, headers });
+
+    if(res.status === 401 && !_isRetry){
+      const refreshed = await refreshAccessToken();
+      if(refreshed) return apiFetch(url, options, true);
+      goToLogin();
+      return Promise.reject(new Error('Unauthorized'));
+    }
+
+    return res;
+  }
+
+  // =====================================================================
+  // state
+  // =====================================================================
+  let CURRENT_ADMIN = getCurrentAdmin();          // { id, full_name, phone, role, ... }
+  let CURRENT_ADMIN_ROLE = CURRENT_ADMIN?.role || 'ADMIN';
+
+  let state = {
+    search: '',
+    role: 'all',
+    status: 'all',
+    ordering: '-created_at',
+    page: 1,
+    pageSize: 10,
+    count: 0,
+    next: null,
+    previous: null,
+  };
+
+  let USERS = []; // نتایج صفحه‌ی جاری (از سرور)
+
+  // =====================================================================
+  // DOM refs
+  // =====================================================================
+  const listBody = document.getElementById('listBody');
+  const listLoading = document.getElementById('listLoading');
+  const listErrorState = document.getElementById('listErrorState');
+  const listErrorMsg = document.getElementById('listErrorMsg');
+  const emptyState = document.getElementById('emptyState');
+  const paginationEl = document.getElementById('pagination');
+  const totalCountEl = document.getElementById('totalCount');
+  const searchInput = document.getElementById('searchInput');
+  const roleFilter = document.getElementById('roleFilter');
+  const statusFilter = document.getElementById('statusFilter');
+  const sortFilter = document.getElementById('sortFilter');
+  const addAdminBtn = document.getElementById('addAdminBtn');
+  const currentAdminNameEl = document.getElementById('currentAdminName');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalBox = document.getElementById('modalBox');
+  const editBackdrop = document.getElementById('editBackdrop');
+  const editBox = document.getElementById('editBox');
+  const confirmBackdrop = document.getElementById('confirmBackdrop');
+  const confirmBox = document.getElementById('confirmBox');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const toastEl = document.getElementById('toast');
+
+  // =====================================================================
+  // helpers
+  // =====================================================================
+  function roleLabel(r){
+    return r === 'SUPER_ADMIN' ? 'مدیر ارشد' : r === 'ADMIN' ? 'مدیر' : 'کاربر';
+  }
+  function roleBadgeClass(r){
+    return r === 'SUPER_ADMIN' ? 'badge-super' : r === 'ADMIN' ? 'badge-admin' : 'badge-user';
+  }
+  function initials(name){
+    const parts = (name || '').trim().split(' ');
+    return (parts[0]?.[0] || '') + (parts[1]?.[0] || '');
+  }
+  function formatDate(iso){
+    if(!iso) return '—';
+    try{ return new Date(iso).toLocaleDateString('fa-IR'); }
+    catch(_){ return iso; }
+  }
+  let toastTimer;
+  function showToast(msg, isError = false){
+    toastEl.textContent = msg;
+    toastEl.classList.toggle('error', !!isError);
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
+  }
+
+  // =====================================================================
+  // دریافت لیست کاربران از سرور
+  // =====================================================================
+  async function fetchUsers(){
+    listLoading.style.display = 'block';
+    listErrorState.style.display = 'none';
+    emptyState.style.display = 'none';
+    listBody.innerHTML = '';
+
+    const params = new URLSearchParams();
+    params.set('page', state.page);
+    params.set('page_size', state.pageSize);
+    params.set('ordering', state.ordering);
+    if(state.search.trim()) params.set('search', state.search.trim());
+    if(state.role !== 'all') params.set('role', state.role);
+    if(state.status !== 'all') params.set('is_active', state.status === 'active' ? 'true' : 'false');
+
+    try{
+      const res = await apiFetch(`${USERS_BASE}/?${params.toString()}`);
+      if(!res) return; // یعنی در حال ریدایرکت به لاگین است
+
+      if(res.status === 403){
+        listLoading.style.display = 'none';
+        listErrorState.style.display = 'block';
+        listErrorMsg.textContent = 'شما دسترسی مشاهده‌ی این بخش را ندارید.';
+        return;
+      }
+      if(!res.ok){
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+      USERS = data.results || [];
+      state.count = data.count ?? USERS.length;
+      state.next = data.next;
+      state.previous = data.previous;
+
+      listLoading.style.display = 'none';
+      render();
+    }catch(err){
+      console.error(err);
+      listLoading.style.display = 'none';
+      listErrorState.style.display = 'block';
+      listErrorMsg.textContent = 'خطا در ارتباط با سرور. دوباره تلاش کنید.';
+    }
+  }
+
+  // =====================================================================
+  // رندر لیست + صفحه‌بندی
+  // =====================================================================
+  function render(){
+    totalCountEl.textContent = state.count.toLocaleString('fa-IR');
+    addAdminBtn.style.display = CURRENT_ADMIN_ROLE === 'SUPER_ADMIN' ? 'inline-flex' : 'none';
+    currentAdminNameEl.textContent = CURRENT_ADMIN?.full_name || '—';
+
+    listBody.innerHTML = '';
+    emptyState.style.display = USERS.length === 0 ? 'block' : 'none';
+
+    USERS.forEach(u => {
+      const row = document.createElement('div');
+      row.className = 'user-row';
+      row.innerHTML = `
+        <div class="cell cell-user">
+          <div class="avatar ${u.role === 'SUPER_ADMIN' ? 'gold' : ''}">${initials(u.full_name)}</div>
+          <div class="user-name-wrap">
+            <div class="user-name">${u.full_name || '—'}</div>
+            <div class="user-sub">${u.phone}</div>
+          </div>
+        </div>
+        <div class="cell phone-cell phone">${u.phone}</div>
+        <div class="cell role-cell">
+          <span class="badge ${roleBadgeClass(u.role)}">${roleLabel(u.role)}</span>
+        </div>
+        <div class="cell status-cell">
+          <span class="status-dot ${u.is_active ? 'status-active' : 'status-inactive'}">${u.is_active ? 'فعال' : 'غیرفعال'}</span>
+        </div>
+        <div class="cell joined-cell muted">${formatDate(u.created_at)}</div>
+        <div class="cell row-action">
+          <button class="kebab-btn" data-id="${u.id}" aria-haspopup="true" aria-label="عملیات">⋮</button>
+        </div>
+      `;
+      listBody.appendChild(row);
+    });
+
+    renderPagination();
+  }
+
+  function renderPagination(){
+    paginationEl.innerHTML = '';
+    if(USERS.length === 0) return;
+
+    const totalPages = Math.max(1, Math.ceil(state.count / state.pageSize));
+    const start = (state.page - 1) * state.pageSize;
+
+    const info = document.createElement('div');
+    info.textContent = `نمایش ${start + 1}–${Math.min(start + state.pageSize, state.count)} از ${state.count.toLocaleString('fa-IR')} کاربر`;
+    paginationEl.appendChild(info);
+
+    const btns = document.createElement('div');
+    btns.className = 'page-btns';
+
+    const prev = document.createElement('button');
+    prev.className = 'page-btn';
+    prev.textContent = '‹';
+    prev.disabled = !state.previous;
+    prev.onclick = () => { state.page--; fetchUsers(); };
+    btns.appendChild(prev);
+
+    const maxBtns = 5;
+    let startP = Math.max(1, state.page - 2);
+    let endP = Math.min(totalPages, startP + maxBtns - 1);
+    startP = Math.max(1, endP - maxBtns + 1);
+
+    for(let p = startP; p <= endP; p++){
+      const b = document.createElement('button');
+      b.className = 'page-btn' + (p === state.page ? ' active' : '');
+      b.textContent = p.toLocaleString('fa-IR');
+      b.onclick = () => { state.page = p; fetchUsers(); };
+      btns.appendChild(b);
+    }
+
+    const next = document.createElement('button');
+    next.className = 'page-btn';
+    next.textContent = '›';
+    next.disabled = !state.next;
+    next.onclick = () => { state.page++; fetchUsers(); };
+    btns.appendChild(next);
+
+    paginationEl.appendChild(btns);
+  }
+
+  // =====================================================================
+  // فیلترها / جستجو / مرتب‌سازی
+  // =====================================================================
+  let searchDebounce;
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      state.search = e.target.value;
+      state.page = 1;
+      fetchUsers();
+    }, 350);
+  });
+  roleFilter.addEventListener('change', e => { state.role = e.target.value; state.page = 1; fetchUsers(); });
+  statusFilter.addEventListener('change', e => { state.status = e.target.value; state.page = 1; fetchUsers(); });
+  sortFilter.addEventListener('change', e => { state.ordering = e.target.value; state.page = 1; fetchUsers(); });
+  document.getElementById('retryBtn').addEventListener('click', fetchUsers);
+
+  addAdminBtn.addEventListener('click', () => {
+    showToast('برای افزودن مدیر جدید، ابتدا کاربر باید ثبت‌نام کرده باشد؛ سپس از همین لیست او را «تبدیل به مدیر» کنید.');
+  });
+
+  logoutBtn.addEventListener('click', () => { goToLogin(); });
+
+  // =====================================================================
+  // منوی کشویی (⋮) — بر اساس نقش هدف + نقش مدیر جاری
+  // =====================================================================
+  let openMenuForId = null;
+
+  function menuItemsFor(user){
+    const items = [];
+
+    items.push({ key:'view', label:'👤 مشاهده اطلاعات' });
+
+    if(user.role === 'SUPER_ADMIN'){
+      // طبق قانون: هیچ عملیاتی روی مدیر ارشد از پنل مجاز نیست.
+      return items; // فقط «مشاهده اطلاعات»
+    }
+
+    items.push({ key:'edit', label:'✏️ ویرایش' });
+
+    if(CURRENT_ADMIN_ROLE === 'SUPER_ADMIN'){
+      if(user.role === 'USER'){
+        items.push({ key:'promote', label:'🛡️ تبدیل به مدیر', cls:'' });
+      } else if(user.role === 'ADMIN'){
+        items.push({ key:'demote', label:'⬇️ حذف دسترسی مدیر', cls:'warn' });
+      }
+    }
+
+    items.push({
+      key:'toggle',
+      label: user.is_active ? '🚫 غیرفعال کردن حساب' : '✅ فعال کردن حساب',
+      cls: user.is_active ? 'danger' : ''
+    });
+
+    return items;
+  }
+
+  listBody.addEventListener('click', (e) => {
+    const btn = e.target.closest('.kebab-btn');
+    if(!btn) return;
+    e.stopPropagation();
+    const id = btn.dataset.id;
+    if(openMenuForId === id){ closeDropdown(); return; }
+    openDropdown(btn, id);
+  });
+
+  function openDropdown(btn, id){
+    const user = USERS.find(u => String(u.id) === String(id));
+    if(!user) return;
+
+    document.querySelectorAll('.kebab-btn.active').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    openMenuForId = id;
+
+    const items = menuItemsFor(user);
+    dropdownMenu.innerHTML = items.length
+      ? items.map(it => `<button class="dropdown-item ${it.cls || ''}" data-key="${it.key}">${it.label}</button>`).join('')
+      : `<div class="dropdown-empty">عملیاتی در دسترس نیست</div>`;
+
+    const rect = btn.getBoundingClientRect();
+    dropdownMenu.style.display = 'block';
+    // ابتدا رندر کن تا بشه ارتفاع واقعی را خواند
+    const menuHeight = dropdownMenu.offsetHeight;
+    const menuWidth = dropdownMenu.offsetWidth;
+    let top = rect.bottom + 6;
+    let left = rect.left;
+    if(top + menuHeight > window.innerHeight) top = rect.top - menuHeight - 6;
+    if(left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 10;
+
+    dropdownMenu.style.top = `${top}px`;
+    dropdownMenu.style.left = `${left}px`;
+    dropdownMenu.classList.add('open');
+
+    dropdownMenu.querySelectorAll('.dropdown-item').forEach(el => {
+      el.onclick = () => {
+        const key = el.dataset.key;
+        closeDropdown();
+        handleMenuAction(key, user);
+      };
+    });
+  }
+
+  function closeDropdown(){
+    dropdownMenu.classList.remove('open');
+    dropdownMenu.style.display = 'none';
+    document.querySelectorAll('.kebab-btn.active').forEach(b => b.classList.remove('active'));
+    openMenuForId = null;
+  }
+
+  document.addEventListener('click', (e) => {
+    if(!dropdownMenu.contains(e.target)) closeDropdown();
+  });
+  window.addEventListener('resize', closeDropdown);
+  window.addEventListener('scroll', closeDropdown, true);
+
+  function handleMenuAction(key, user){
+    switch(key){
+      case 'view': openUserDetails(user.id); break;
+      case 'edit': openEditModal(user); break;
+      case 'promote': openConfirm('promote', user); break;
+      case 'demote': openConfirm('demote', user); break;
+      case 'toggle': openConfirm('toggle', user); break;
+    }
+  }
+
+  // =====================================================================
+  // مودال «مشاهده اطلاعات»
+  // =====================================================================
+  async function openUserDetails(id){
+    modalBox.innerHTML = `<div class="list-loading">در حال بارگذاری...</div>`;
+    modalBackdrop.classList.add('open');
+
+    try{
+      const res = await apiFetch(`${USERS_BASE}/${id}/`);
+      if(!res) return;
+      if(!res.ok) throw new Error('detail fetch failed');
+      const u = await res.json();
+
+      modalBox.innerHTML = `
+        <div class="modal-top">
+          <div class="avatar ${u.role === 'SUPER_ADMIN' ? 'gold' : ''}">${initials(u.full_name)}</div>
+          <div>
+            <h2>${u.full_name}</h2>
+            <span class="badge ${roleBadgeClass(u.role)}">${roleLabel(u.role)}</span>
+          </div>
+          <button class="modal-close" id="modalCloseBtn" aria-label="بستن">✕</button>
+        </div>
+
+        <div class="modal-section">
+          <h4>اطلاعات حساب</h4>
+          <div class="kv-grid">
+            <div class="kv"><div class="k">شماره موبایل</div><div class="v mono">${u.phone}</div></div>
+            <div class="kv"><div class="k">وضعیت</div><div class="v"><span class="status-dot ${u.is_active ? 'status-active' : 'status-inactive'}">${u.is_active ? 'فعال' : 'غیرفعال'}</span></div></div>
+            <div class="kv"><div class="k">تاریخ عضویت</div><div class="v">${formatDate(u.created_at)}</div></div>
+            <div class="kv"><div class="k">شماره تأیید شده؟</div><div class="v">${u.phone_verified ? 'بله' : 'خیر'}</div></div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h4>خرید و سفارش‌ها</h4>
+          <div class="placeholder-note">تعداد سفارش، آخرین سفارش و آدرس‌ها بعداً از بک‌اند اضافه می‌شوند.</div>
+        </div>
+
+        <div class="modal-actions end">
+          <button class="btn btn-ghost btn-sm" id="modalCloseBtn2">بستن</button>
+        </div>
+      `;
+      modalBox.querySelector('#modalCloseBtn').onclick = closeDetailModal;
+      modalBox.querySelector('#modalCloseBtn2').onclick = closeDetailModal;
+    }catch(err){
+      console.error(err);
+      modalBox.innerHTML = `
+        <div class="modal-top"><h2>خطا</h2><button class="modal-close" id="modalCloseBtn">✕</button></div>
+        <p>دریافت اطلاعات این کاربر با خطا مواجه شد.</p>
+      `;
+      modalBox.querySelector('#modalCloseBtn').onclick = closeDetailModal;
+    }
+  }
+  function closeDetailModal(){ modalBackdrop.classList.remove('open'); }
+  modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) closeDetailModal(); });
+
+  // =====================================================================
+  // مودال «ویرایش» (فقط نام + وضعیت فعال/غیرفعال)
+  // =====================================================================
+  function openEditModal(user){
+    editBox.innerHTML = `
+      <div class="modal-top">
+        <h2 style="margin:0;">ویرایش کاربر</h2>
+        <button class="modal-close" id="editCloseBtn">✕</button>
+      </div>
+      <div class="field-group">
+        <label for="editFullName">نام</label>
+        <input type="text" id="editFullName" value="${(user.full_name || '').replace(/"/g,'&quot;')}">
+      </div>
+      <div class="field-group">
+        <div class="toggle-row">
+          <label for="editActive">حساب فعال باشد؟</label>
+          <label class="switch">
+            <input type="checkbox" id="editActive" ${user.is_active ? 'checked' : ''}>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-actions end">
+        <button class="btn btn-ghost btn-sm" id="editCancelBtn">انصراف</button>
+        <button class="btn btn-primary btn-sm" id="editSaveBtn">ذخیره تغییرات</button>
+      </div>
+    `;
+    editBox.querySelector('#editCloseBtn').onclick = closeEditModal;
+    editBox.querySelector('#editCancelBtn').onclick = closeEditModal;
+    editBox.querySelector('#editSaveBtn').onclick = () => saveEdit(user.id);
+    editBackdrop.classList.add('open');
+  }
+  function closeEditModal(){ editBackdrop.classList.remove('open'); }
+  editBackdrop.addEventListener('click', (e) => { if(e.target === editBackdrop) closeEditModal(); });
+
+  async function saveEdit(id){
+    const fullName = document.getElementById('editFullName').value.trim();
+    const isActive = document.getElementById('editActive').checked;
+    const saveBtn = document.getElementById('editSaveBtn');
+
+    if(!fullName){ showToast('نام نمی‌تواند خالی باشد.', true); return; }
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'در حال ذخیره...';
+
+    try{
+      const res = await apiFetch(`${USERS_BASE}/${id}/`, {
+        method: 'PATCH',
+        body: JSON.stringify({ full_name: fullName, is_active: isActive })
+      });
+      if(!res) return;
+      const data = await res.json().catch(() => ({}));
+
+      if(!res.ok){
+        const msg = data.detail || 'ویرایش با خطا مواجه شد.';
+        showToast(msg, true);
+        return;
+      }
+
+      showToast('اطلاعات کاربر بروزرسانی شد.');
+      closeEditModal();
+      fetchUsers();
+    }catch(err){
+      console.error(err);
+      showToast('خطا در ارتباط با سرور.', true);
+    }finally{
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'ذخیره تغییرات';
+    }
+  }
+
+  // =====================================================================
+  // مودال تأیید (تبدیل به مدیر / حذف دسترسی مدیر / تغییر وضعیت)
+  // =====================================================================
+  function openConfirm(type, user){
+    const configs = {
+      promote: {
+        title: 'ارتقای کاربر',
+        body: `آیا مطمئن هستید که می‌خواهید <b>${user.full_name}</b> را به مدیر تبدیل کنید؟`,
+        confirmLabel: 'تبدیل به مدیر',
+        confirmClass: 'btn-primary',
+        note: null,
+      },
+      demote: {
+        title: 'حذف دسترسی مدیر',
+        body: `این کاربر (<b>${user.full_name}</b>) دیگر به پنل مدیریت دسترسی نخواهد داشت.`,
+        confirmLabel: 'تأیید',
+        confirmClass: 'btn-danger',
+        note: null,
+      },
+      toggle: {
+        title: user.is_active ? 'غیرفعال کردن حساب' : 'فعال کردن حساب',
+        body: user.is_active
+          ? `حساب <b>${user.full_name}</b> غیرفعال شود؟ سفارش‌های قبلی او حذف نمی‌شوند.`
+          : `حساب <b>${user.full_name}</b> دوباره فعال شود؟`,
+        confirmLabel: user.is_active ? 'غیرفعال کن' : 'فعال کن',
+        confirmClass: user.is_active ? 'btn-danger' : 'btn-primary',
+        note: null,
+      },
+    };
+    const cfg = configs[type];
+
+    confirmBox.innerHTML = `
+      <div class="modal-top">
+        <h2 style="margin:0;">${cfg.title}</h2>
+        <button class="modal-close" id="confirmCloseBtn">✕</button>
+      </div>
+      <p class="confirm-text">${cfg.body}</p>
+      ${cfg.note ? `<div class="confirm-warn">${cfg.note}</div>` : ''}
+      <div class="modal-actions end">
+        <button class="btn btn-ghost btn-sm" id="confirmCancelBtn">انصراف</button>
+        <button class="btn ${cfg.confirmClass} btn-sm" id="confirmOkBtn">${cfg.confirmLabel}</button>
+      </div>
+    `;
+    confirmBox.querySelector('#confirmCloseBtn').onclick = closeConfirm;
+    confirmBox.querySelector('#confirmCancelBtn').onclick = closeConfirm;
+    confirmBox.querySelector('#confirmOkBtn').onclick = () => runConfirmedAction(type, user);
+    confirmBackdrop.classList.add('open');
+  }
+  function closeConfirm(){ confirmBackdrop.classList.remove('open'); }
+  confirmBackdrop.addEventListener('click', (e) => { if(e.target === confirmBackdrop) closeConfirm(); });
+
+  async function runConfirmedAction(type, user){
+    const okBtn = document.getElementById('confirmOkBtn');
+    okBtn.disabled = true;
+    okBtn.textContent = 'در حال انجام...';
+
+    try{
+      let res;
+      if(type === 'promote'){
+        res = await apiFetch(`${USERS_BASE}/${user.id}/make-admin/`, { method: 'POST' });
+      } else if(type === 'demote'){
+        res = await apiFetch(`${USERS_BASE}/${user.id}/remove-admin/`, { method: 'POST' });
+      } else if(type === 'toggle'){
+        res = await apiFetch(`${USERS_BASE}/${user.id}/`, {
+          method: 'PATCH',
+          body: JSON.stringify({ is_active: !user.is_active })
+        });
+      }
+
+      if(!res) return;
+      const data = await res.json().catch(() => ({}));
+
+      if(res.status === 403){
+        showToast(data.detail || 'شما مجاز به انجام این عملیات نیستید.', true);
+        closeConfirm();
+        return;
+      }
+      if(!res.ok){
+        showToast(data.detail || 'عملیات با خطا مواجه شد.', true);
+        return;
+      }
+
+      const successMsg = {
+        promote: '✅ مدیر با موفقیت ایجاد شد.',
+        demote: 'دسترسی مدیریت این کاربر گرفته شد.',
+        toggle: !user.is_active ? 'حساب کاربر فعال شد.' : 'حساب کاربر غیرفعال شد.',
+      }[type];
+
+      showToast(successMsg);
+      closeConfirm();
+      fetchUsers();
+    }catch(err){
+      console.error(err);
+      showToast('خطا در ارتباط با سرور.', true);
+    }finally{
+      okBtn.disabled = false;
+    }
+  }
+
+  // =====================================================================
+  // بستن مودال‌ها با Escape
+  // =====================================================================
+  document.addEventListener('keydown', (e) => {
+    if(e.key !== 'Escape') return;
+    closeDetailModal();
+    closeEditModal();
+    closeConfirm();
+    closeDropdown();
+  });
+
+  // =====================================================================
+  // init
+  // =====================================================================
+  if(!getAccess()){
+    goToLogin();
+  } else {
+    fetchUsers();
+  }
+</script>
+</body>
+</html>

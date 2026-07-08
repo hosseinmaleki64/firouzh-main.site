@@ -4,6 +4,7 @@ from .utils import normalize_phone
 from .validators import validate_iranian_phone
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
+from .models import User, UserRole  # UserRole رو هم ایمپورت کن
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -80,3 +81,36 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "phone_verified",
             "created_at",
         )
+        
+class AdminLoginSerializer(TokenObtainPairSerializer):
+    phone = serializers.CharField()
+
+    def validate(self, attrs):
+        phone = attrs.get("phone")
+        password = attrs.get("password")
+
+        user = authenticate(
+            request=self.context.get("request"),
+            phone=phone,
+            password=password,
+        )
+
+        if user is None:
+            raise serializers.ValidationError(
+                "شماره موبایل یا رمز عبور اشتباه است."
+            )
+
+        if user.role not in (UserRole.ADMIN, UserRole.SUPER_ADMIN):
+            raise serializers.ValidationError(
+                "دسترسی به پنل مدیریت مجاز نیست."
+            )
+
+        if not user.is_active:
+            raise serializers.ValidationError("حساب کاربری غیرفعال است.")
+
+        refresh = self.get_token(user)
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+            "user": UserProfileSerializer(user).data,
+        }
