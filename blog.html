@@ -63,7 +63,76 @@
   ]
 }
 </script>
-<!-- پایان Breadcrumb -->
+<!-- Schema Markups اضافی (منتقل شده از بخش تکراری) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "فینگرفود فیروزه",
+  "alternateName": "Firouzeh Fingerfood",
+  "url": "https://firouzeh.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://firouzeh.com/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "فینگرفود فیروزه",
+  "alternateName": "Firouzeh Fingerfood",
+  "url": "https://firouzeh.com/",
+  "logo": "image1/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+98-914-283-0328",
+    "contactType": "customer service",
+    "areaServed": "IR",
+    "availableLanguage": "Persian"
+  },
+  "sameAs": [
+    "https://instagram.com/fingerfood_firouzeh",
+    "https://wa.me/09142830328"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "مقاله: انواع گوشت برای برگر و نحوه ساخت آن",
+  "url": "https://firouzeh.com/blog/types-of-meat-for-burgers",
+  "description": "در این مقاله به بررسی انواع گوشت مناسب برای برگر و نحوه ساخت برگر خانگی می‌پردازیم.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "خانه",
+        "item": "https://firouzeh.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "بلاگ",
+        "item": "https://firouzeh.com/blogs"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "انواع گوشت برای برگر و نحوه ساخت آن"
+      }
+    ]
+  }
+}
+</script>
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
@@ -930,209 +999,6 @@
     font-size: 1.1rem;
     line-height: 1.7;
   }
-  .auth-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1004;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-  }
-  .auth-modal.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  .auth-modal-content {
-    background: var(--background-color);
-    border-radius: 16px;
-    padding: 32px;
-    width: 100%;
-    max-width: 420px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    position: relative;
-    direction: rtl;
-    transform: scale(0.9);
-    transition: var(--transition);
-  }
-  .auth-modal.active .auth-modal-content {
-    transform: scale(1);
-  }
-  .auth-modal-close {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: var(--transition);
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  }
-  .auth-modal-close:hover {
-    color: var(--secondary-color);
-    background: rgba(38, 166, 154, 0.1);
-  }
-  .auth-modal-header {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .auth-modal-header .site-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-  .auth-modal-header .site-logo img {
-    height: 28px;
-  }
-  .auth-modal-header h2 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin: 8px 0 4px;
-  }
-  .auth-modal-header .greeting {
-    font-size: 1.2rem;
-    margin: 0;
-    color: var(--text-dark);
-  }
-  .auth-modal-header p {
-    color: var(--text-dark);
-    font-size: 1rem;
-    margin: 4px 0 16px;
-  }
-  .wizard-step {
-    display: none;
-  }
-  .wizard-step.active {
-    display: block;
-  }
-  .auth-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    font-weight: 500;
-  }
-  .auth-form input {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid var(--neutral-color);
-    border-radius: 12px;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    box-sizing: border-box;
-    direction: ltr;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-  .auth-form input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
-  }
-  .auth-form button {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 12px;
-    background: var(--primary-color);
-    color: var(--text-light);
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-top: 8px;
-    box-shadow: var(--shadow);
-  }
-  .auth-form button:hover {
-    background: var(--secondary-color);
-    color: var(--text-light);
-    transform: translateY(-2px);
-  }
-  .auth-form button:active {
-    transform: translateY(0);
-  }
-  .auth-form .error {
-    color: #D32F2F;
-    font-size: 0.95rem;
-    margin-top: 10px;
-    display: none;
-    text-align: center;
-  }
-  .auth-form .success {
-    color: #388E3C;
-    font-size: 0.95rem;
-    margin-top: 10px;
-    display: none;
-    text-align: center;
-  }
-  .auth-form .timer {
-    color: var(--text-dark);
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: 8px;
-    display: none;
-  }
-  .auth-form .terms {
-    font-size: 0.85rem;
-    color: var(--text-dark);
-    text-align: center;
-    margin-top: 8px;
-  }
-  .wizard-buttons {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
-  }
-  .wizard-buttons button {
-    flex: 1;
-  }
-  .wizard-buttons .prev {
-    background: var(--neutral-color);
-    color: var(--text-dark);
-  }
-  .wizard-buttons .prev:hover {
-    background: #ccc;
-  }
-  .character-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin: 24px 0;
-  }
-  .character-card {
-    background: var(--neutral-color);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition);
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--text-dark);
-  }
-  .character-card:hover {
-    background: var(--primary-color);
-    color: var(--text-light);
-    transform: translateY(-3px);
-  }
-  .character-card.selected {
-    background: var(--primary-color);
-    color: var(--text-light);
-    box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
-  }
   .logout-modal {
     position: fixed;
     inset: 0;
@@ -1708,11 +1574,6 @@
     footer p {
       font-size: 1rem;
     }
-    .auth-modal-content {
-      max-width: 90%;
-      padding: 24px;
-      margin: 20px;
-    }
     .search-container {
       padding: 16px;
     }
@@ -1882,11 +1743,6 @@
     footer .links a {
       margin: 10px 0;
     }
-    .auth-modal-content {
-      max-width: 95%;
-      padding: 20px;
-      margin: 10px;
-    }
     .search-container input {
       font-size: 0.95rem;
       padding: 10px;
@@ -1905,9 +1761,9 @@
       height: 240px;
     }
     .social-bar {
-  gap: 8px; /* gap کمتر برای فشرده‌تر شدن */
-  justify-content: space-around; /* توزیع یکنواخت در عرض کم */
-  padding: 10px 0; /* padding عمودی کمتر */
+  gap: 8px;
+  justify-content: space-around;
+  padding: 10px 0;
 }
     .social-box, .logo-box {
       width: 45px;
@@ -2184,11 +2040,6 @@
     footer .links a {
       margin: 10px 0;
     }
-    .auth-modal-content {
-      max-width: 95%;
-      padding: 20px;
-      margin: 10px;
-    }
     .search-container input {
       font-size: 0.95rem;
       padding: 10px;
@@ -2216,22 +2067,22 @@
       height: 20px;
     }
     .blog-grid {
-  grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
-  gap: 15px; /* فاصله کمتر بین باکس‌ها */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 .blog-image {
-  height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
+  height: 120px;
 }
 .blog-card strong {
-  font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
-  padding: 12px 16px 6px; /* padding کمتر */
+  font-size: 1rem;
+  padding: 12px 16px 6px;
 }
 .blog-card p {
-  font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
-  padding: 0 16px 16px; /* padding کمتر */
+  font-size: 0.8rem;
+  padding: 0 16px 16px;
 }
 #blogs {
-  padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
+  padding: 50px 12px;
 }
     .trust-section {
       padding: 30px 16px;
@@ -2295,65 +2146,65 @@
  
     }
     .blog-grid {
-  grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
-  gap: 15px; /* فاصله کمتر بین باکس‌ها */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 .blog-image {
-  height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
+  height: 120px;
 }
 .blog-card strong {
-  font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
-  padding: 12px 16px 6px; /* padding کمتر */
+  font-size: 1rem;
+  padding: 12px 16px 6px;
 }
 .blog-card p {
-  font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
-  padding: 0 16px 16px; /* padding کمتر */
+  font-size: 0.8rem;
+  padding: 0 16px 16px;
 }
 #blogs {
-  padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
+  padding: 50px 12px;
 }
 .social-bar {
-  gap: 6px; /* gap خیلی کم */
-  justify-content: space-between; /* فشرده به دو طرف */
+  gap: 6px;
+  justify-content: space-between;
   padding: 8px 0;
 }
 .social-box, .logo-box {
-  width: 40px; /* کوچیک‌تر از 45px */
+  width: 40px;
   height: 40px;
-  font-size: 0.5rem; /* متن ریزتر */
+  font-size: 0.5rem;
 }
 .social-box img {
   width: 16px;
   height: 16px;
 }
 .social-box {
-  padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
+  padding: 4px;
 }
   }
   @media (max-width: 400px) {
     .category-grid {
-        grid-template-columns: repeat(2, 1fr); /* دو ستونه بمونه */
-        gap: 10px; /* فاصله کمتر بین کارت‌ها */
-        margin: 0 8px; /* حاشیه از دو طرف برای فاصله از دیواره */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 0 8px;
     }
     #categories {
-        padding: 50px 8px; /* padding کمتر بخش اصلی */
+        padding: 50px 8px;
     }
     .category-card {
-        padding: 8px; /* padding داخل کارت کوچکتر */
-        font-size: 0.9rem; /* font-size کوچکتر برای متن‌ها */
+        padding: 8px;
+        font-size: 0.9rem;
     }
     .category-card strong {
-        font-size: 1rem; /* عنوان کارت کوچکتر */
+        font-size: 1rem;
     }
     .category-card p {
-        font-size: 0.85rem; /* توضیحات کوچکتر */
+        font-size: 0.85rem;
     }
     .image-placeholder {
-        height: 80px; /* ارتفاع تصویر کوچکتر */
+        height: 80px;
     }
     .category-button {
-        font-size: 0.9rem; /* دکمه کوچکتر */
+        font-size: 0.9rem;
         padding: 6px 12px;
     }
     .best-seller-card {
@@ -2403,39 +2254,39 @@
  
     }
     .blog-grid {
-  grid-template-columns: repeat(2, 1fr); /* دو ستونه برای باکس‌های بلاگ */
-  gap: 15px; /* فاصله کمتر بین باکس‌ها */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 .blog-image {
-  height: 120px; /* ارتفاع تصویر کوچیک‌تر (از 160px در 576px به 120px) */
+  height: 120px;
 }
 .blog-card strong {
-  font-size: 1rem; /* عنوان کوچیک‌تر (از 1.2rem به 1rem) */
-  padding: 12px 16px 6px; /* padding کمتر */
+  font-size: 1rem;
+  padding: 12px 16px 6px;
 }
 .blog-card p {
-  font-size: 0.8rem; /* توضیحات کوچیک‌تر (از 0.9rem به 0.8rem) */
-  padding: 0 16px 16px; /* padding کمتر */
+  font-size: 0.8rem;
+  padding: 0 16px 16px;
 }
 #blogs {
-  padding: 50px 12px; /* padding کلی بخش کمتر (از 60px 16px به 50px 12px) */
+  padding: 50px 12px;
 }
 .social-bar {
-  gap: 6px; /* gap خیلی کم */
-  justify-content: space-between; /* فشرده به دو طرف */
+  gap: 6px;
+  justify-content: space-between;
   padding: 8px 0;
 }
 .social-box, .logo-box {
-  width: 40px; /* کوچیک‌تر از 45px */
+  width: 40px;
   height: 40px;
-  font-size: 0.5rem; /* متن ریزتر */
+  font-size: 0.5rem;
 }
 .social-box img {
   width: 16px;
   height: 16px;
 }
 .social-box {
-  padding: 4px; /* padding داخل باکس کمتر (اگر لازم باشه) */
+  padding: 4px;
 }
   }
   /* New Styles for Blog Upgrades */
@@ -2679,85 +2530,6 @@
   }
 </style>
 </head>
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="مقاله درباره انواع گوشت برای برگر و نحوه ساخت آن در فینگرفود فیروزه.">
-  <title>مقاله: انواع گوشت برای برگر و نحوه ساخت آن - فینگرفود فیروزه</title>
-  <!-- دیگر متاها و لینک‌های CSS/JS اگر لازم باشد -->
-  <!-- Schema Markups -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "فینگرفود فیروزه",
-    "alternateName": "Firouzeh Fingerfood",
-    "url": "https://firouzeh.com/", // جایگزین با URL واقعی سایت کنید
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://firouzeh.com/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "فینگرفود فیروزه",
-    "alternateName": "Firouzeh Fingerfood",
-    "url": "https://firouzeh.com/",
-    "logo": "image1/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+98-914-283-0328",
-      "contactType": "customer service",
-      "areaServed": "IR",
-      "availableLanguage": "Persian"
-    },
-    "sameAs": [
-      "https://instagram.com/fingerfood_firouzeh",
-      "https://wa.me/09142830328"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "مقاله: انواع گوشت برای برگر و نحوه ساخت آن",
-    "url": "https://firouzeh.com/blog/types-of-meat-for-burgers",
-    "description": "در این مقاله به بررسی انواع گوشت مناسب برای برگر و نحوه ساخت برگر خانگی می‌پردازیم.",
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "خانه",
-          "item": "https://firouzeh.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "بلاگ",
-          "item": "https://firouzeh.com/blogs"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "انواع گوشت برای برگر و نحوه ساخت آن"
-        }
-      ]
-    }
-  }
-  </script>
-</head>
 <body>
   <header class="navbar">
     <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
@@ -2803,13 +2575,14 @@
     </div>
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
-      <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
+      <a href="checkout.html" class="cart-link" role="button" aria-label="سبد خرید">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">3</span>
       </a>
-      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+      <!-- تغییر لینک پروفایل به login.html با redirect به صفحه فعلی (blog.html) -->
+      <a href="login.html?redirect=blog.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
         <i class="fas fa-user profile-icon" id="profileIcon"></i>
-      </div>
+      </a>
       <div class="user-menu" id="userMenu">
         <div class="user-info">
           <span class="avatar" id="userAvatar"></span>
@@ -2849,71 +2622,7 @@
       </li>
     </ul>
   </nav>
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="auth-modal-content">
-      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
-      <div class="auth-modal-header">
-        <div class="site-logo">
-          <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه">
-          FIROUZEH
-        </div>
-        <h2>ورود یا ثبت‌نام</h2>
-        <div class="greeting">سلام</div>
-        <p>لطفا شماره موبایل خود را وارد کنید</p>
-      </div>
-      <div class="wizard-step active" id="step1">
-        <div class="auth-form">
-          <label for="authPhone">شماره موبایل</label>
-          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
-          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
-          <div id="captchaSection">
-            <label id="captchaQuestion"></label>
-            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
-            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
-          </div>
-          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
-        </div>
-        <div class="wizard-buttons">
-          <button id="nextToStep2" disabled>بعدی</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step2">
-        <div class="auth-form">
-          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
-          <label for="authCode">کد یک‌بار مصرف</label>
-          <div class="input-group">
-            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
-            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
-          </div>
-          <p class="error" id="authCodeError">کد نامعتبر است.</p>
-          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
-          <button id="resendCodeBtn">ارسال مجدد کد</button>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep1">قبلی</button>
-          <button id="nextToStep3" disabled>تأیید</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step3">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
-        <div class="username-strength" id="usernameStrength"></div>
-        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
-        <h3>انتخاب کاراکتر</h3>
-        <div class="character-grid">
-          <div class="character-card" data-char="🍎">🍎</div>
-          <div class="character-card" data-char="🍕">🍕</div>
-          <div class="character-card" data-char="🍔">🍔</div>
-          <div class="character-card" data-char="🍦">🍦</div>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep2">قبلی</button>
-          <button id="confirmProfileBtn" disabled>تأیید</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- حذف کامل Auth Modal -->
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -2998,15 +2707,13 @@
   <!-- Back to Top -->
   <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
     <script>
-    // Elements (Grouped for better readability)
+    // Elements (Grouped for better readability) - حذف عناصر مربوط به Auth Modal
     const elements = {
       body: document.body,
       menuToggle: document.querySelector('.menu-icon'),
       sideMenu: document.getElementById('sideMenu'),
       closeBtn: document.querySelector('#sideMenu .close-btn'),
       overlay: document.getElementById('overlay'),
-      authModal: document.getElementById('authModal'),
-      closeAuthModal: document.getElementById('closeAuthModal'),
       userProfile: document.getElementById('userProfile'),
       profileIcon: document.getElementById('profileIcon'),
       userMenu: document.getElementById('userMenu'),
@@ -3016,25 +2723,6 @@
       logoutModal: document.getElementById('logoutModal'),
       confirmLogout: document.getElementById('confirmLogout'),
       cancelLogout: document.getElementById('cancelLogout'),
-      step1: document.getElementById('step1'),
-      step2: document.getElementById('step2'),
-      step3: document.getElementById('step3'),
-      nextToStep2: document.getElementById('nextToStep2'),
-      prevToStep1: document.getElementById('prevToStep1'),
-      nextToStep3: document.getElementById('nextToStep3'),
-      prevToStep2: document.getElementById('prevToStep2'),
-      authPhone: document.getElementById('authPhone'),
-      authPhoneError: document.getElementById('authPhoneError'),
-      authSuccess: document.getElementById('authSuccess'),
-      authCode: document.getElementById('authCode'),
-      authCodeError: document.getElementById('authCodeError'),
-      authTimer: document.getElementById('authTimer'),
-      authCountdown: document.getElementById('authCountdown'),
-      username: document.getElementById('username'),
-      usernameError: document.getElementById('usernameError'),
-      usernameStrength: document.getElementById('usernameStrength'),
-      characterCards: document.querySelectorAll('.character-card'),
-      confirmProfileBtn: document.getElementById('confirmProfileBtn'),
       searchContainer: document.getElementById('searchContainer'),
       searchInputLegacy: document.getElementById('searchInputLegacy'),
       searchResults: document.getElementById('searchResults'),
@@ -3043,14 +2731,8 @@
       promoText: document.getElementById('promoText'),
       clearSearch: document.getElementById('clearSearch'),
       clock: document.getElementById('clock'),
-      toggleAuthCode: document.getElementById('toggleAuthCode'),
-      resendCodeBtn: document.getElementById('resendCodeBtn'),
-      captchaQuestion: document.getElementById('captchaQuestion'),
-      captchaAnswer: document.getElementById('captchaAnswer'),
-      captchaError: document.getElementById('captchaError'),
     };
     const baseURL = "http://127.0.0.1:8000/api/auth/";
-    // بعداً وقتی سایت رو آنلاین کردی، این رو تغییر میدیم به تغییر میدیم به آدرس سرور واقعی‌ت.
     // Data (Modularized)
     const data = {
       popularSearches: ['فینگرفود', 'دسر', 'مزه', 'سینی مزه', 'آجیل مخلوط'],
@@ -3066,66 +2748,11 @@
     // State (Centralized for better management)
     let state = {
       currentPromoIndex: 0,
-      authCountdownInterval: null,
-      authModalShown: false,
       userData: null,
-      currentPhone: '',
-      isNewUser: false,
-      captchaNum1: 0,
-      captchaNum2: 0,
-      captchaResult: 0,
-      failedAttempts: parseInt(sessionStorage.getItem('failedAttempts')) || 0,
-      lockTimer: 0,
     };
     // Utility Functions (Modularized and optimized)
     const utils = {
       escapeHTML: (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'),
-      maskInput: (input, regex) => { input.value = input.value.replace(regex, ''); },
-      validatePhone: (phone) => /^09[0-9]{9}$/.test(phone),
-      validateCode: (code) => /^[0-9]{6}$/.test(code),
-      validateUsername: (name) => /^[a-zA-Z0-9]{3,}$/.test(name),
-      validateCaptcha: (answer) => Number.isInteger(parseInt(answer)) && parseInt(answer) === state.captchaResult,
-      generateCaptcha: () => {
-        state.captchaNum1 = Math.floor(Math.random() * 10) + 1;
-        state.captchaNum2 = Math.floor(Math.random() * 10) + 1;
-        state.captchaResult = state.captchaNum1 + state.captchaNum2;
-        elements.captchaQuestion.textContent = `حاصل جمع ${state.captchaNum1} + ${state.captchaNum2} چیست؟`;
-      },
-      showSpinner: (button) => {
-        button.innerHTML = '<div class="spinner"></div>';
-        button.disabled = true;
-      },
-      hideSpinner: (button, text) => {
-        button.innerHTML = text;
-        button.disabled = false;
-      },
-      updateButtonStates: () => {
-        elements.nextToStep2.disabled = !utils.validatePhone(elements.authPhone.value) || !utils.validateCaptcha(elements.captchaAnswer.value);
-        elements.nextToStep3.disabled = !utils.validateCode(elements.authCode.value);
-        elements.confirmProfileBtn.disabled = !utils.validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
-      },
-      updateUsernameStrength: () => {
-        const name = elements.username.value;
-        let strengthClass = 'weak';
-        if (name.length >= 6) strengthClass = 'strong';
-        else if (name.length >= 3) strengthClass = 'medium';
-        elements.usernameStrength.className = `username-strength ${strengthClass}`;
-      },
-      startCountdown: (timerSeconds = 60) => {
-        let seconds = timerSeconds;
-        elements.authCountdown.innerHTML = seconds;
-        elements.authTimer.style.display = 'block';
-        elements.resendCodeBtn.style.display = 'none';
-        state.authCountdownInterval = setInterval(() => {
-          seconds--;
-          elements.authCountdown.innerHTML = seconds;
-          if (seconds <= 0) {
-            clearInterval(state.authCountdownInterval);
-            elements.authTimer.style.display = 'none';
-            elements.resendCodeBtn.style.display = 'block';
-          }
-        }, 1000);
-      },
       updateTime: () => {
         if (typeof persianDate === 'undefined') {
           elements.clock.innerHTML = '<i class="fas fa-clock"></i> خطا در بارگذاری تاریخ';
@@ -3192,98 +2819,19 @@
         return null;
       }
     }
-    // Auth Modal Functions (Async for API simulations)
+    // Auth Object (فقط updateUserUI برای مدیریت نمایش پروفایل)
     const auth = {
-      openModal: () => {
-        elements.authModal.classList.add('active');
-        elements.overlay.classList.add('active');
-        elements.body.style.overflow = 'hidden';
-        state.authModalShown = true;
-        auth.resetForm();
-        utils.generateCaptcha();
-      },
-      closeModal: () => {
-        elements.authModal.classList.remove('active');
-        elements.overlay.classList.remove('active');
-        elements.body.style.overflow = '';
-        auth.resetForm();
-      },
-      resetForm: () => {
-        elements.authPhone.value = '';
-        elements.authCode.value = '';
-        elements.username.value = '';
-        elements.captchaAnswer.value = '';
-        elements.authPhoneError.style.display = 'none';
-        elements.authCodeError.style.display = 'none';
-        elements.usernameError.style.display = 'none';
-        elements.captchaError.style.display = 'none';
-        elements.authSuccess.style.display = 'none';
-        elements.authTimer.style.display = 'none';
-        elements.resendCodeBtn.style.display = 'none';
-        elements.step1.classList.add('active');
-        elements.step2.classList.remove('active');
-        elements.step3.classList.remove('active');
-        elements.characterCards.forEach(card => card.classList.remove('selected'));
-        if (state.authCountdownInterval) clearInterval(state.authCountdownInterval);
-        state.failedAttempts = 0;
-        sessionStorage.setItem('failedAttempts', state.failedAttempts);
-        utils.updateButtonStates();
-        utils.updateUsernameStrength();
-      },
-      sendCode: async (phone) => {
-        try {
-          const response = await fetch(baseURL + "send-otp/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone: phone })
-          });
-          const data = await response.json();
-          console.log("OTP Sent:", data);
-          if (response.ok) {
-            alert("کد به شماره ارسال شد!");
-            return true;
-          } else {
-            alert("خطا در ارسال کد!");
-            return false;
-          }
-        } catch (error) {
-          console.error("Error sending OTP:", error);
-          alert("خطا در ارسال کد!");
-          return false;
-        }
-      },
-      verifyCode: async (code, phone) => {
-        try {
-          const response = await fetch(baseURL + "verify-otp/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone: phone, code: code }),
-          });
-          const data = await response.json();
-          console.log("Login:", data);
-          if (data.access) {
-            localStorage.setItem("access", data.access);
-            const profile = await getProfile();
-            return profile;
-          } else {
-            alert("کد اشتباهه!");
-            return null;
-          }
-        } catch (error) {
-          console.error("Error verifying OTP:", error);
-          alert("خطا در تأیید کد!");
-          return null;
-        }
-      },
       updateUserUI: () => {
         if (state.userData) {
           elements.profileIcon.style.display = 'none';
+          const existingAvatar = elements.userProfile.querySelector('.user-avatar');
+          if (existingAvatar) existingAvatar.remove();
           const avatar = document.createElement('div');
           avatar.className = 'user-avatar';
-          avatar.textContent = state.userData.character;
+          avatar.textContent = state.userData.character || '👤';
           elements.userProfile.appendChild(avatar);
-          elements.userAvatar.textContent = state.userData.character;
-          elements.userName.textContent = utils.escapeHTML(state.userData.username);
+          elements.userAvatar.textContent = state.userData.character || '👤';
+          elements.userName.textContent = utils.escapeHTML(state.userData.username || 'کاربر');
         } else {
           const existingAvatar = elements.userProfile.querySelector('.user-avatar');
           if (existingAvatar) existingAvatar.remove();
@@ -3355,187 +2903,13 @@
           elements.sideMenu.classList.contains('active') ? menu.close() : menu.open();
         });
         elements.closeBtn.addEventListener('click', menu.close);
-        // User Profile
+        // User Profile - فقط اگر لاگین باشد منو باز شود، در غیر این صورت لینک به login.html می‌رود (از طریق href)
         elements.userProfile.addEventListener('click', (e) => {
-          e.preventDefault();
           if (state.userData) {
+            e.preventDefault(); // جلوگیری از رفتن به login.html
             elements.userMenu.classList.toggle('active');
-          } else {
-            auth.openModal();
           }
-        });
-        // Auth Modal
-        elements.closeAuthModal.addEventListener('click', auth.closeModal);
-        elements.authPhone.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^0-9]/g);
-          elements.authPhoneError.style.display = utils.validatePhone(e.target.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.captchaAnswer.addEventListener('input', () => {
-          elements.captchaError.style.display = utils.validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.nextToStep2.addEventListener('click', async (e) => {
-          e.preventDefault();
-          if (!utils.validateCaptcha(elements.captchaAnswer.value)) {
-            elements.captchaError.style.display = 'block';
-            return;
-          }
-          elements.captchaError.style.display = 'none';
-          const phone = elements.authPhone.value;
-          if (!utils.validatePhone(phone)) {
-            elements.authPhoneError.style.display = 'block';
-            return;
-          }
-          elements.authPhoneError.style.display = 'none';
-          state.currentPhone = phone;
-          utils.showSpinner(elements.nextToStep2);
-          try {
-            const success = await auth.sendCode(phone);
-            if (success) {
-              elements.authSuccess.style.display = 'block';
-              elements.step1.classList.remove('active');
-              elements.step2.classList.add('active');
-              const timer = state.failedAttempts > 5 ? 300 : 60;
-              utils.startCountdown(timer);
-            }
-          } finally {
-            utils.hideSpinner(elements.nextToStep2, 'بعدی');
-          }
-        });
-        elements.prevToStep1.addEventListener('click', () => {
-          elements.step2.classList.remove('active');
-          elements.step1.classList.add('active');
-          elements.authSuccess.style.display = 'none';
-          elements.authTimer.style.display = 'none';
-          elements.resendCodeBtn.style.display = 'none';
-          if (state.authCountdownInterval) clearInterval(state.authCountdownInterval);
-        });
-        elements.authCode.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^0-9]/g);
-          elements.authCodeError.style.display = utils.validateCode(e.target.value) ? 'none' : 'block';
-          utils.updateButtonStates();
-        });
-        elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-        elements.authCode.addEventListener('paste', (e) => e.preventDefault());
-        elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-        elements.nextToStep3.addEventListener('click', async (e) => {
-          e.preventDefault();
-          const code = elements.authCode.value;
-          utils.showSpinner(elements.nextToStep3);
-          try {
-            const user = await auth.verifyCode(code, state.currentPhone);
-            if (user) {
-              state.failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', state.failedAttempts);
-              elements.authCodeError.style.display = 'none';
-              state.userData = user;
-              if (!user.username) {
-                state.isNewUser = true;
-                elements.step2.classList.remove('active');
-                elements.step3.classList.add('active');
-                elements.username.value = `user${state.currentPhone.slice(-4)}`;
-                utils.updateUsernameStrength();
-                utils.updateButtonStates();
-              } else {
-                state.isNewUser = false;
-                auth.updateUserUI();
-                auth.closeModal();
-                alert('ورود موفق!');
-              }
-            } else {
-              state.failedAttempts++;
-              sessionStorage.setItem('failedAttempts', state.failedAttempts);
-              elements.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (state.failedAttempts % 6)}`;
-              elements.authCodeError.style.display = 'block';
-              if (state.failedAttempts >= 5) {
-                elements.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-                elements.nextToStep3.disabled = true;
-                state.lockTimer = 300; // 5 minutes
-                setTimeout(() => {
-                  elements.nextToStep3.disabled = false;
-                  state.failedAttempts = 0;
-                  sessionStorage.setItem('failedAttempts', state.failedAttempts);
-                }, state.lockTimer * 1000);
-              }
-            }
-          } finally {
-            utils.hideSpinner(elements.nextToStep3, 'تأیید');
-          }
-        });
-        elements.resendCodeBtn.addEventListener('click', async () => {
-          const success = await auth.sendCode(state.currentPhone);
-          if (success) {
-            const timer = state.failedAttempts > 5 ? 300 : 60;
-            utils.startCountdown(timer);
-          }
-        });
-        elements.toggleAuthCode.addEventListener('click', () => {
-          const type = elements.authCode.type === 'password' ? 'text' : 'password';
-          elements.authCode.type = type;
-          elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-        });
-        elements.prevToStep2.addEventListener('click', () => {
-          elements.step3.classList.remove('active');
-          elements.step2.classList.add('active');
-        });
-        elements.username.addEventListener('input', (e) => {
-          utils.maskInput(e.target, /[^a-zA-Z0-9]/g);
-          elements.usernameError.style.display = utils.validateUsername(e.target.value) ? 'none' : 'block';
-          utils.updateUsernameStrength();
-          utils.updateButtonStates();
-        });
-        elements.characterCards.forEach(card => {
-          card.addEventListener('click', () => {
-            elements.characterCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            utils.updateButtonStates();
-          });
-        });
-        elements.confirmProfileBtn.addEventListener('click', async () => {
-          const name = elements.username.value;
-          const selectedChar = document.querySelector('.character-card.selected');
-          if (!utils.validateUsername(name)) {
-            elements.usernameError.style.display = 'block';
-            return;
-          }
-          if (!selectedChar) {
-            alert('لطفاً یک کاراکتر انتخاب کنید');
-            return;
-          }
-          elements.usernameError.style.display = 'none';
-          utils.showSpinner(elements.confirmProfileBtn);
-          try {
-            const response = await fetch(baseURL + 'profile/', {
-              method: 'PATCH',
-              headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access')}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                username: name,
-                character: selectedChar.dataset.char,
-              }),
-            });
-            if (response.ok) {
-              state.userData = {
-                ...state.userData,
-                phone: state.currentPhone,
-                username: name,
-                character: selectedChar.dataset.char
-              };
-              auth.updateUserUI();
-              auth.closeModal();
-              alert('ثبت‌نام موفق!');
-            } else {
-              alert('خطا در به‌روزرسانی پروفایل!');
-            }
-          } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('خطا در به‌روزرسانی پروفایل!');
-          } finally {
-            utils.hideSpinner(elements.confirmProfileBtn, 'تأیید');
-          }
+          // اگر لاگین نیست، preventDefault نمی‌زنیم تا به login.html برود
         });
         // Logout
         elements.logoutBtn.addEventListener('click', () => {
@@ -3581,10 +2955,9 @@
             console.log('جستجو برای:', elements.searchInput.value);
           }
         });
-        // Overlay and Escape Key
+        // Overlay and Escape Key - حذف auth.closeModal()
         elements.overlay.addEventListener('click', () => {
           menu.close();
-          auth.closeModal();
           search.close();
           elements.suggestionsBox.classList.remove('active');
           elements.userMenu.classList.remove('active');
@@ -3593,7 +2966,6 @@
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             menu.close();
-            auth.closeModal();
             search.close();
             elements.suggestionsBox.classList.remove('active');
             elements.userMenu.classList.remove('active');
@@ -3609,12 +2981,7 @@
             elements.userMenu.classList.remove('active');
           }
         });
-        // Auto Open Auth Modal
-        setTimeout(() => {
-          if (!state.authModalShown && !state.userData) {
-            auth.openModal();
-          }
-        }, 60000); // 1 minute
+        // حذف تایمر خودکار باز شدن مودال
         // Support Widget Visibility
         const footer = document.querySelector('footer');
         const supportWidget = document.querySelector('.support-widget');
@@ -3634,22 +3001,24 @@
         let isDragging = false;
         let startX = 0;
         let scrollLeft = 0;
-        slider.addEventListener('touchstart', (e) => {
-          isDragging = true;
-          startX = e.touches[0].pageX - slider.offsetLeft;
-          scrollLeft = slider.scrollLeft;
-          sliderContainer.style.animationPlayState = 'paused';
-        });
-        slider.addEventListener('touchend', () => {
-          isDragging = false;
-          sliderContainer.style.animationPlayState = 'running';
-        });
-        slider.addEventListener('touchmove', (e) => {
-          if (!isDragging) return;
-          const x = e.touches[0].pageX - slider.offsetLeft;
-          const walk = (x - startX) * 2;
-          slider.scrollLeft = scrollLeft - walk;
-        });
+        if (slider && sliderContainer) {
+          slider.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            sliderContainer.style.animationPlayState = 'paused';
+          });
+          slider.addEventListener('touchend', () => {
+            isDragging = false;
+            sliderContainer.style.animationPlayState = 'running';
+          });
+          slider.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+          });
+        }
       },
     };
     // Initialize
@@ -3697,37 +3066,77 @@
       alert('لینک کپی شد!');
     });
   </script>
-<script src="blog-data.js"></script>
 <script>
-    // 1. گرفتن ID از URL
-    const params = new URLSearchParams(window.location.search);
-    const blogId = parseInt(params.get('id'));
-    // 2. پیدا کردن مقاله در دیتابیس
-    const blog = blogsDatabase.find(b => b.id === blogId);
-    if (blog) {
-        // 3. پر کردن اطلاعات در صفحه
-        document.title = blog.title + " - فینگرفود فیروزه"; // تایتل مرورگر
-       
-        document.getElementById('detail-breadcrumb-title').textContent = blog.title;
-        document.getElementById('detail-title').textContent = blog.title;
-        document.getElementById('detail-author').textContent = blog.author;
-        document.getElementById('detail-date').textContent = blog.date;
-        document.getElementById('detail-readTime').textContent = blog.readTime; const imgEl = document.getElementById('detail-image');
-        imgEl.src = blog.image;
-        imgEl.alt = blog.title;
-       
-        // مهم: تزریق محتوای HTML مقاله
-        document.getElementById('detail-content').innerHTML = blog.content;
-       
-    } else {
-        // اگر مقاله پیدا نشد
-        document.querySelector('.blog-content').innerHTML =
-            `<div style="text-align:center; padding: 50px;">
-                <h1>مقاله مورد نظر یافت نشد :(</h1>
-                <a href="blogs.html" class="cta-button">بازگشت به وبلاگ</a>
-            </div>`
-        ;
+  const API_ORIGIN = "http://127.0.0.1:8000";
+  const CONTENT_API_BASE = `${API_ORIGIN}/api/content`;
+
+  function toAbsoluteMediaUrl(path){
+    if(!path) return '';
+    return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+  }
+
+  function toJalali(iso){
+    if(!iso) return '—';
+    try{
+      const persianDateObj = new persianDate(new Date(iso));
+      return persianDateObj.format('D MMMM YYYY');
+    }catch(e){
+      return iso.slice(0,10);
     }
+  }
+
+  async function loadArticleDetail(){
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    const container = document.querySelector('.blog-content');
+
+    if(!slug){
+      container.innerHTML = `
+        <div style="text-align:center; padding: 50px;">
+          <h1>مقاله مورد نظر یافت نشد :(</h1>
+          <a href="blogs.html" class="cta-button">بازگشت به وبلاگ</a>
+        </div>`;
+      return;
+    }
+
+    try{
+      const res = await fetch(`${CONTENT_API_BASE}/articles/${encodeURIComponent(slug)}/`);
+      if(!res.ok) throw new Error('status ' + res.status);
+      const article = await res.json();
+
+      document.title = article.title + " - فینگرفود فیروزه";
+
+      document.getElementById('detail-breadcrumb-title').textContent = article.title;
+      document.getElementById('detail-title').textContent = article.title;
+      document.getElementById('detail-author').textContent = article.author ? article.author.full_name : '—';
+      document.getElementById('detail-date').textContent = toJalali(article.published_at || article.created_at);
+      document.getElementById('detail-readTime').textContent = `${article.reading_time_minutes ?? 1} دقیقه`;
+
+      const imgEl = document.getElementById('detail-image');
+      if(article.cover_image){
+        imgEl.src = toAbsoluteMediaUrl(article.cover_image);
+        imgEl.alt = article.title;
+        imgEl.style.display = '';
+      } else {
+        imgEl.style.display = 'none';
+      }
+
+      // محتوای مقاله (متن ساده — اگر بک‌اند HTML برمی‌گردونه innerHTML مستقیم کار می‌کنه)
+      document.getElementById('detail-content').innerHTML =
+        (article.excerpt ? `<p class="lead-paragraph">${article.excerpt}</p>` : '') +
+        `<div>${(article.content || '').replace(/\n/g, '<br>')}</div>`;
+
+    }catch(e){
+      console.error('خطا در دریافت مقاله:', e);
+      container.innerHTML = `
+        <div style="text-align:center; padding: 50px;">
+          <h1>مقاله مورد نظر یافت نشد :(</h1>
+          <a href="blogs.html" class="cta-button">بازگشت به وبلاگ</a>
+        </div>`;
+    }
+  }
+
+  loadArticleDetail();
 </script>
 </body>
 </html>

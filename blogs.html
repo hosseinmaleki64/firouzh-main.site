@@ -897,213 +897,9 @@
       text-align: right;
       font-size: 0.9rem;
     }
-    /* Auth Modal Styles */
-    .auth-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1004;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .auth-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .auth-modal-content {
-      background: var(--background-color);
-      border-radius: 16px;
-      padding: 32px;
-      width: 100%;
-      max-width: 420px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      direction: rtl;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-    .auth-modal.active .auth-modal-content {
-      transform: scale(1);
-    }
-    .auth-modal-close {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-    .auth-modal-close:hover {
-      color: var(--secondary-color);
-      background: rgba(38, 166, 154, 0.1);
-    }
-    .auth-modal-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .auth-modal-header .site-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    .auth-modal-header .site-logo img {
-      height: 28px;
-    }
-    .auth-modal-header h2 {
-      color: var(--primary-color);
-      font-size: 1.8rem;
-      margin: 8px 0 4px;
-    }
-    .auth-modal-header .greeting {
-      font-size: 1.2rem;
-      margin: 0;
-      color: var(--text-dark);
-    }
-    .auth-modal-header p {
-      color: var(--text-dark);
-      font-size: 1rem;
-      margin: 4px 0 16px;
-    }
-    .wizard-step {
-      display: none;
-    }
-    .wizard-step.active {
-      display: block;
-    }
-    .auth-form label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-    .auth-form input {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid var(--neutral-color);
-      border-radius: 12px;
-      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-      direction: ltr;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .auth-form input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
-    }
-    .auth-form button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: var(--primary-color);
-      color: var(--text-light);
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    .auth-form button:hover {
-      background: var(--secondary-color);
-      color: var(--text-light);
-      transform: translateY(-2px);
-    }
-    .auth-form button:active {
-      transform: translateY(0);
-    }
-    .auth-form .error {
-      color: #D32F2F;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-    .auth-form .success {
-      color: #388E3C;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-    .auth-form .timer {
-      color: var(--text-dark);
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 8px;
-      display: none;
-    }
-    .auth-form .terms {
-      font-size: 0.85rem;
-      color: var(--text-dark);
-      text-align: center;
-      margin-top: 8px;
-    }
-    .wizard-buttons {
-      display: flex;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .wizard-buttons button {
-      flex: 1;
-    }
-    .wizard-buttons .prev {
-      background: var(--neutral-color);
-      color: var(--text-dark);
-    }
-    .wizard-buttons .prev:hover {
-      background: #ccc;
-    }
-   
-    /* Character and Username Selection */
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 24px 0;
-    }
-    .character-card {
-      background: var(--neutral-color);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--text-dark);
-    }
-    .character-card:hover {
-      background: var(--primary-color);
-      color: var(--text-light);
-      transform: translateY(-3px);
-    }
-    .character-card.selected {
-      background: var(--primary-color);
-      color: var(--text-light);
-      box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
-    }
+
+    /* No auth modal styles needed */
+
     /* Logout Modal */
     .logout-modal {
       position: fixed;
@@ -1176,45 +972,7 @@
     .logout-buttons .cancel:hover {
       background: #ccc;
     }
-    .spinner {
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid #fff;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .username-strength {
-      height: 5px;
-      background: #ddd;
-      margin-top: -10px;
-      margin-bottom: 10px;
-      border-radius: 3px;
-    }
-    .username-strength.weak { background: red; }
-    .username-strength.medium { background: orange; }
-    .username-strength.strong { background: green; }
-    .input-group {
-      position: relative;
-    }
-    .toggle-visibility {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #666;
-    }
-    #resendCodeBtn {
-      display: none;
-      width: 100%;
-      margin-top: 10px;
-    }
+
     img {
       max-width: 100%;
       height: auto;
@@ -1370,11 +1128,6 @@
       }
       footer p {
         font-size: 1rem;
-      }
-      .auth-modal-content {
-        max-width: 90%;
-        padding: 24px;
-        margin: 20px;
       }
       .search-container {
         padding: 16px;
@@ -1589,11 +1342,6 @@
       footer .links {
         margin: 15px 0;
       }
-      .auth-modal-content {
-        max-width: 95%;
-        padding: 20px;
-        margin: 10px;
-      }
       .search-container input {
         font-size: 0.95rem;
         padding: 10px;
@@ -1663,13 +1411,14 @@
     </div>
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
-      <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
+      <a href="checkout.html" class="cart-link" role="button" aria-label="سبد خرید">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">3</span>
       </a>
-      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+      <!-- Profile link changed to anchor with redirect -->
+      <a href="login.html?redirect=blogs.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
         <i class="fas fa-user profile-icon" id="profileIcon"></i>
-      </div>
+      </a>
       <div class="user-menu" id="userMenu">
         <div class="user-info">
           <span class="avatar" id="userAvatar"></span>
@@ -1709,71 +1458,9 @@
       </li>
     </ul>
   </nav>
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="auth-modal-content">
-      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
-      <div class="auth-modal-header">
-        <div class="site-logo">
-          <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه">
-          FIROUZEH
-        </div>
-        <h2>ورود یا ثبت‌نام</h2>
-        <div class="greeting">سلام</div>
-        <p>لطفا شماره موبایل خود را وارد کنید</p>
-      </div>
-      <div class="wizard-step active" id="step1">
-        <div class="auth-form">
-          <label for="authPhone">شماره موبایل</label>
-          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
-          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
-          <div id="captchaSection">
-            <label id="captchaQuestion"></label>
-            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
-            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
-          </div>
-          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
-        </div>
-        <div class="wizard-buttons">
-          <button id="nextToStep2" disabled>بعدی</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step2">
-        <div class="auth-form">
-          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
-          <label for="authCode">کد یک‌بار مصرف</label>
-          <div class="input-group">
-            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
-            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
-          </div>
-          <p class="error" id="authCodeError">کد نامعتبر است.</p>
-          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
-          <button id="resendCodeBtn">ارسال مجدد کد</button>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep1">قبلی</button>
-          <button id="nextToStep3" disabled>تأیید</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step3">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
-        <div class="username-strength" id="usernameStrength"></div>
-        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
-        <h3>انتخاب کاراکتر</h3>
-        <div class="character-grid">
-          <div class="character-card" data-char="🍎">🍎</div>
-          <div class="character-card" data-char="🍕">🍕</div>
-          <div class="character-card" data-char="🍔">🍔</div>
-          <div class="character-card" data-char="🍦">🍦</div>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep2">قبلی</button>
-          <button id="confirmProfileBtn" disabled>تأیید</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <!-- Auth Modal has been removed entirely -->
+
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -1785,6 +1472,7 @@
       </div>
     </div>
   </div>
+
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1803,10 +1491,7 @@
         <p class="section-subtitle">بهترین راهکارها، نکات تخصصی و مقالات آموزشی در زمینه فینگر فود و سلامت غذایی</p>
        
         <div class="articles-filters">
-          <button class="filter-btn active" data-filter="all">همه مقالات</button>
-          <button class="filter-btn" data-filter="education">آموزش</button>
-          <button class="filter-btn" data-filter="tips">نکات فینگر فود</button>
-          <button class="filter-btn" data-filter="health">مقالات سلامت</button>
+          <!-- فیلترها به‌صورت دینامیک از API ساخته می‌شوند -->
         </div>
         <div class="articles-grid" id="articlesGrid"></div>
         <div class="load-more-container">
@@ -1821,48 +1506,7 @@
         <p class="section-subtitle">آخرین تخفیف‌ها، جشنواره‌ها و رویدادهای ویژه فیروزه</p>
        
         <div class="news-grid" id="newsGrid">
-          <!-- Important News -->
-          <div class="news-card important">
-            <h3 class="news-title">تخفیف ویژه عید نوروز ۱۴۰۴</h3>
-            <p class="news-content">با کد تخفیف "NOWRUZ1404" تا ۳۰٪ روی تمام سفارشات فینگر فودهای فیروزه تخفیف دریافت کنید.</p>
-            <div class="news-date">مهلت استفاده: ۱۴۰۴/۰۱/۱۵</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
-          <!-- News 2 -->
-          <div class="news-card">
-            <h3 class="news-title">جشنواره یلدا ۱۴۰۳</h3>
-            <p class="news-content">برای سفارش‌های بالای ۳۰۰ هزار تومان در شب یلدا، یک سینی مخصوص یلدا رایگان هدیه شماست.</p>
-            <div class="news-date">۱۴۰۳/۰۹/۰۵</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
-          <!-- News 3 -->
-          <div class="news-card">
-            <h3 class="news-title">دوره آموزشی آشپزی خانگی</h3>
-            <p class="news-content">ثبت نام برای دوره آموزشی آنلاین آشپزی خانگی با تیم متخصص فیروزه از امروز آغاز شد.</p>
-            <div class="news-date">۱۴۰۳/۰۸/۲۰</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
-          <!-- News 4 -->
-          <div class="news-card important">
-            <h3 class="news-title">افزایش ظرفیت سرویس‌دهی</h3>
-            <p class="news-content">فیروزه با افتتاح شعب جدید در تهران و کرج، ظرفیت سرویس‌دهی خود را ۵۰٪ افزایش داد.</p>
-            <div class="news-date">۱۴۰۳/۰۸/۱۰</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
-          <!-- News 5 -->
-          <div class="news-card">
-            <h3 class="news-title">معرفی خط تولید جدید</h3>
-            <p class="news-content">فیروزه خط تولید جدید فینگر فودهای گیاهی را معرفی کرد که از مواد اولیه ۱۰۰٪ طبیعی ساخته شده است.</p>
-            <div class="news-date">۱۴۰۳/۰۷/۲۵</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
-          <!-- News 6 -->
-          <div class="news-card">
-            <h3 class="news-title">برنامه تحویل سریع</h3>
-            <p class="news-content">با راه‌اندازی برنامه جدید تحویل سریع، سفارشات شما در کمتر از ۳۰ دقیقه به مقصد می‌رسند.</p>
-            <div class="news-date">۱۴۰۳/۰۷/۱۵</div>
-            <a href="https://instagram.com/fingerfood_firouzeh" class="news-details-btn">جزئیات بیشتر</a>
-          </div>
+          <!-- کارت‌های خبر به‌صورت دینامیک از API بارگذاری می‌شوند -->
         </div>
       </div>
     </section>
@@ -1881,12 +1525,14 @@
       </div>
     </section>
   </main>
+
   <div class="support-widget" id="supportWidget">
     <p class="text">برای دریافت مشاوره و مشاهده جدیدترین آیتم‌ها به ما در ارتباط باشید</p>
     <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
     <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
     <a href="tel:09142830328">تماس</a>
   </div>
+
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -1927,11 +1573,51 @@
       </a>
     </div>
   </footer>
+
   <script>
     // Service Worker for PWA
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => {}); // Silent fail
     }
+
+    // ========== Backend integration ==========
+    const baseURL = "http://127.0.0.1:8000/api/auth/";
+
+    // ========== اضافه کردن API برای محتوای پویا ==========
+    const API_ORIGIN = "http://127.0.0.1:8000";
+    const CONTENT_API_BASE = `${API_ORIGIN}/api/content`;
+
+    function toAbsoluteMediaUrl(path) {
+      if (!path) return 'https://placehold.co/350x200?text=فیروزه';
+      return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+    }
+    // ===================================================
+
+    async function getProfile() {
+      const token = localStorage.getItem('access');
+      if (!token) return null;
+      try {
+        const response = await fetch(baseURL + 'profile/', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (response.ok) {
+          return await response.json();
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        return null;
+      }
+    }
+
+    let userData = null;
+    // ==========================================
+
     // DOM Elements Cache
     const elements = {
       body: document.body,
@@ -1955,44 +1641,17 @@
       logoutModal: document.getElementById('logoutModal'),
       confirmLogout: document.getElementById('confirmLogout'),
       cancelLogout: document.getElementById('cancelLogout'),
-      authModal: document.getElementById('authModal'),
-      closeAuthModal: document.getElementById('closeAuthModal'),
-      step1: document.getElementById('step1'),
-      step2: document.getElementById('step2'),
-      step3: document.getElementById('step3'),
-      nextToStep2: document.getElementById('nextToStep2'),
-      prevToStep1: document.getElementById('prevToStep1'),
-      nextToStep3: document.getElementById('nextToStep3'),
-      prevToStep2: document.getElementById('prevToStep2'),
-      authPhone: document.getElementById('authPhone'),
-      authPhoneError: document.getElementById('authPhoneError'),
-      authSuccess: document.getElementById('authSuccess'),
-      authCode: document.getElementById('authCode'),
-      authCodeError: document.getElementById('authCodeError'),
-      authTimer: document.getElementById('authTimer'),
-      authCountdown: document.getElementById('authCountdown'),
-      username: document.getElementById('username'),
-      usernameError: document.getElementById('usernameError'),
-      usernameStrength: document.getElementById('usernameStrength'),
-      characterCards: document.querySelectorAll('.character-card'),
-      confirmProfileBtn: document.getElementById('confirmProfileBtn'),
-      toggleAuthCode: document.getElementById('toggleAuthCode'),
-      resendCodeBtn: document.getElementById('resendCodeBtn'),
-      captchaQuestion: document.getElementById('captchaQuestion'),
-      captchaAnswer: document.getElementById('captchaAnswer'),
-      captchaError: document.getElementById('captchaError'),
       supportWidget: document.getElementById('supportWidget'),
       newsletterForm: document.getElementById('newsletterForm'),
       filterButtons: document.querySelectorAll('.filter-btn'),
       articlesGrid: document.getElementById('articlesGrid'),
       loadMoreBtn: document.getElementById('loadMoreBtn')
     };
-    // Auth State
+
+    // Auth state - userData is now fetched from backend
     let authCountdownInterval;
-    let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
     let currentPhone = '';
     let isNewUser = false;
-    let captchaNum1, captchaNum2, captchaResult;
     let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
     let lockTimer = 0;
     const promoMessages = [
@@ -2003,6 +1662,7 @@
     ];
     let currentPromoIndex = 0;
     let currentFilter = 'all';
+
     // Functions
     function openMenu() {
       elements.sideMenu.classList.add('active');
@@ -2011,8 +1671,8 @@
       elements.menuToggle.setAttribute('aria-expanded', 'true');
       elements.menuToggle.setAttribute('aria-label', 'بستن منو');
       elements.sideMenu.setAttribute('aria-hidden', 'false');
-      elements.body.style.overflow = 'hidden'; // Lock body scroll
-      elements.sideMenu.scrollTop = 0; // Reset scroll position
+      elements.body.style.overflow = 'hidden';
+      elements.sideMenu.scrollTop = 0;
       elements.sideMenu.focus();
     }
     function closeMenu() {
@@ -2022,7 +1682,7 @@
       elements.menuToggle.setAttribute('aria-expanded', 'false');
       elements.menuToggle.setAttribute('aria-label', 'باز کردن منو');
       elements.sideMenu.setAttribute('aria-hidden', 'true');
-      elements.body.style.overflow = ''; // Restore body scroll
+      elements.body.style.overflow = '';
       elements.menuToggle.focus();
     }
     function openSearch() {
@@ -2038,22 +1698,7 @@
       elements.searchInputLegacy.value = '';
       elements.searchResults.innerHTML = '';
     }
-    function validatePhone(phone) {
-      const regex = /^09[0-9]{9}$/;
-      return regex.test(phone);
-    }
-    function validateCode(code) {
-      return /^[0-9]{6}$/.test(code);
-    }
-    function validateUsername(name) {
-      return /^[a-zA-Z0-9]{3,}$/.test(name);
-    }
-    function validateCaptcha(answer) {
-      return parseInt(answer) === captchaResult;
-    }
-    function maskInput(input, regex) {
-      input.value = input.value.replace(regex, '');
-    }
+
     function performSearch(query) {
       elements.searchResults.innerHTML = '';
       if (!query.trim()) {
@@ -2082,6 +1727,7 @@
         elements.searchResults.appendChild(div);
       });
     }
+
     function updateTime() {
       const clock = document.getElementById('clock');
       if (typeof persianDate === 'undefined') {
@@ -2101,158 +1747,55 @@
       const persianDateStr = persianDateObj.format('D MMMM YYYY');
       clock.innerHTML = ` ${persianDateStr} - ${timeStr}`;
     }
+
     function changePromoText() {
       const message = promoMessages[currentPromoIndex];
       elements.promoText.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       elements.promoTextMobile.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
     }
+
     function escapeHTML(str) {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
-    function filterArticles(category) {
-      const articles = document.querySelectorAll('.article-card');
-      articles.forEach(article => {
-        if (category === 'all' || article.dataset.category === category) {
-          article.style.display = 'block';
-        } else {
-          article.style.display = 'none';
-        }
-      });
-    }
+
+    // حذف تابع filterArticles قبلی و جایگزینی با دینامیک از API
+
     function loadMoreArticles() {
-      // In a real implementation, this would fetch more articles from the server
-      alert('در یک وب‌سایت واقعی، مقالات بیشتری از سرور بارگذاری می‌شوند.');
+      // با دکمه loadMore در تابع loadArticles مدیریت می‌شود
+      // این تابع دیگر استفاده نمی‌شود
     }
-    // Auth Modal Functions
-    function openAuthModalFunc() {
-      elements.authModal.classList.add('active');
-      elements.overlay.classList.add('active');
-      elements.body.style.overflow = 'hidden';
-      resetAuthForm();
-      generateCaptcha();
-    }
-    function closeAuthModalFunc() {
-      elements.authModal.classList.remove('active');
-      elements.overlay.classList.remove('active');
-      elements.body.style.overflow = '';
-      resetAuthForm();
-    }
-    function resetAuthForm() {
-      elements.authPhone.value = '';
-      elements.authCode.value = '';
-      elements.username.value = '';
-      elements.captchaAnswer.value = '';
-      elements.authPhoneError.style.display = 'none';
-      elements.authCodeError.style.display = 'none';
-      elements.usernameError.style.display = 'none';
-      elements.captchaError.style.display = 'none';
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      elements.step1.classList.add('active');
-      elements.step2.classList.remove('active');
-      elements.step3.classList.remove('active');
-      elements.characterCards.forEach(card => card.classList.remove('selected'));
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-      failedAttempts = 0;
-      sessionStorage.setItem('failedAttempts', failedAttempts);
-      updateButtonStates();
-      updateUsernameStrength();
-    }
-    function updateButtonStates() {
-      elements.nextToStep2.disabled = !validatePhone(elements.authPhone.value) || !validateCaptcha(elements.captchaAnswer.value);
-      elements.nextToStep3.disabled = !validateCode(elements.authCode.value);
-      elements.confirmProfileBtn.disabled = !validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
-    }
-    function updateUsernameStrength() {
-      const name = elements.username.value;
-      if (name.length < 3) {
-        elements.usernameStrength.className = 'username-strength weak';
-      } else if (name.length < 6) {
-        elements.usernameStrength.className = 'username-strength medium';
-      } else {
-        elements.usernameStrength.className = 'username-strength strong';
-      }
-    }
-    function generateCaptcha() {
-      captchaNum1 = Math.floor(Math.random() * 10) + 1;
-      captchaNum2 = Math.floor(Math.random() * 10) + 1;
-      captchaResult = captchaNum1 + captchaNum2;
-      elements.captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
-    }
-    function showSpinner(button) {
-      button.innerHTML = '<div class="spinner"></div>';
-      button.disabled = true;
-    }
-    function hideSpinner(button, text) {
-      button.innerHTML = text;
-      button.disabled = false;
-    }
-    function startCountdown(timerSeconds = 60) {
-      let seconds = timerSeconds;
-      elements.authCountdown.innerHTML = seconds;
-      elements.authTimer.style.display = 'block';
-      elements.resendCodeBtn.style.display = 'none';
-      authCountdownInterval = setInterval(() => {
-        seconds--;
-        elements.authCountdown.innerHTML = seconds;
-        if (seconds <= 0) {
-          clearInterval(authCountdownInterval);
-          elements.authTimer.style.display = 'none';
-          elements.resendCodeBtn.style.display = 'block';
-        }
-      }, 1000);
-    }
-    function simulateSendCode(phone) {
-      // Simulate API call
-      console.log('Code sent to:', phone);
-      // For demo, assume code is '123456'
-      return '123456';
-    }
-    function simulateVerifyCode(code, phone) {
-      // For demo, check if code is '123456'
-      if (code === '123456') {
-        // Check if user exists
-        if (sessionStorage.getItem(`user_${phone}`)) {
-          userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
-          isNewUser = false;
-        } else {
-          isNewUser = true;
-        }
-        return true;
-      }
-      return false;
-    }
+
+    // Updated updateUserUI to be robust with backend data
     function updateUserUI() {
       if (userData) {
         elements.profileIcon.style.display = 'none';
+        const existingAvatar = elements.userProfile.querySelector('.user-avatar');
+        if (existingAvatar) existingAvatar.remove();
         const avatar = document.createElement('div');
         avatar.className = 'user-avatar';
-        avatar.textContent = userData.character;
+        avatar.textContent = userData.character || '👤';
         elements.userProfile.appendChild(avatar);
-        elements.userAvatar.textContent = userData.character;
-        elements.userName.textContent = escapeHTML(userData.username);
+        elements.userAvatar.textContent = userData.character || '👤';
+        elements.userName.textContent = escapeHTML(userData.username || 'کاربر');
       } else {
-        if (elements.userProfile.querySelector('.user-avatar')) {
-          elements.userProfile.querySelector('.user-avatar').remove();
-        }
+        const existingAvatar = elements.userProfile.querySelector('.user-avatar');
+        if (existingAvatar) existingAvatar.remove();
         elements.profileIcon.style.display = 'block';
       }
     }
-    // Support Widget Visibility
+
     function handleSupportWidgetVisibility() {
       const footer = document.querySelector('footer');
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-     
-      // If footer is visible in viewport, hide support widget
       if (footerRect.top < windowHeight && footerRect.bottom >= 0) {
         elements.supportWidget.classList.add('hidden');
       } else {
         elements.supportWidget.classList.remove('hidden');
       }
     }
+
     // Event Listeners
     elements.menuToggle.addEventListener('click', () => {
       if (elements.sideMenu.classList.contains('active')) {
@@ -2262,19 +1805,22 @@
       }
     });
     elements.closeBtn.addEventListener('click', closeMenu);
+
+    // Profile click: if logged in, toggle menu; otherwise go to login page (anchor)
     elements.userProfile.addEventListener('click', (e) => {
-      e.preventDefault();
       if (userData) {
+        e.preventDefault(); // only prevent default if user is logged in, to toggle menu
         elements.userMenu.classList.toggle('active');
-      } else {
-        openAuthModalFunc();
       }
+      // if not logged in, anchor will handle navigation
     });
+
     elements.logoutBtn.addEventListener('click', () => {
       elements.userMenu.classList.remove('active');
       elements.logoutModal.classList.add('active');
       elements.overlay.classList.add('active');
     });
+
     document.querySelector('.search-icon').addEventListener('click', () => {
       if (elements.searchInput.value.trim()) {
         console.log('جستجو برای:', elements.searchInput.value);
@@ -2282,258 +1828,192 @@
         openSearch();
       }
     });
+
     elements.overlay.addEventListener('click', () => {
       closeMenu();
       closeSearch();
       elements.userMenu.classList.remove('active');
       elements.logoutModal.classList.remove('active');
-      closeAuthModalFunc();
     });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMenu();
         closeSearch();
         elements.userMenu.classList.remove('active');
         elements.logoutModal.classList.remove('active');
-        closeAuthModalFunc();
       }
     });
+
     elements.searchInputLegacy.addEventListener('input', (e) => {
       performSearch(e.target.value);
     });
+
     elements.searchInput.addEventListener("input", (e) => {
       elements.clearSearch.classList.toggle('active', e.target.value.length > 0);
-      // showSearchSuggestions(e.target.value);
     });
+
     elements.clearSearch.addEventListener("click", () => {
       elements.searchInput.value = '';
       elements.clearSearch.classList.remove('active');
       elements.searchInput.focus();
       elements.searchResults.innerHTML = '';
     });
+
     elements.newsletterForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('از عضویت شما در خبرنامه فیروزه متشکریم! به زودی اطلاعات جدید برای شما ارسال خواهد شد.');
       elements.newsletterForm.reset();
     });
-    elements.filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        elements.filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentFilter = button.dataset.filter;
-        filterArticles(currentFilter);
-      });
-    });
-    elements.loadMoreBtn.addEventListener('click', loadMoreArticles);
-    // Auth Modal Event Listeners
-    elements.closeAuthModal.addEventListener('click', closeAuthModalFunc);
-    elements.authPhone.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.captchaAnswer.addEventListener('input', () => {
-      elements.captchaError.style.display = validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.nextToStep2.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!validateCaptcha(elements.captchaAnswer.value)) {
-        elements.captchaError.style.display = 'block';
-        return;
-      }
-      elements.captchaError.style.display = 'none';
-      const phone = elements.authPhone.value;
-      if (!validatePhone(phone)) {
-        elements.authPhoneError.style.display = 'block';
-        return;
-      }
-      elements.authPhoneError.style.display = 'none';
-      currentPhone = phone;
-      showSpinner(elements.nextToStep2);
-      setTimeout(() => {
-        simulateSendCode(phone);
-        elements.authSuccess.style.display = 'block';
-        elements.step1.classList.remove('active');
-        elements.step2.classList.add('active');
-        hideSpinner(elements.nextToStep2, 'بعدی');
-        let timer = failedAttempts > 5 ? 300 : 60;
-        startCountdown(timer);
-      }, 1000); // Simulate delay
-    });
-    elements.prevToStep1.addEventListener('click', () => {
-      elements.step2.classList.remove('active');
-      elements.step1.classList.add('active');
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-    });
-    elements.authCode.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-    elements.authCode.addEventListener('paste', (e) => e.preventDefault());
-    elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-    elements.nextToStep3.addEventListener('click', (e) => {
-      e.preventDefault();
-      const code = elements.authCode.value;
-      showSpinner(elements.nextToStep3);
-      setTimeout(() => {
-        if (simulateVerifyCode(code, currentPhone)) {
-          failedAttempts = 0;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.style.display = 'none';
-          hideSpinner(elements.nextToStep3, 'تأیید');
-          if (isNewUser) {
-            elements.step2.classList.remove('active');
-            elements.step3.classList.add('active');
-            elements.username.value = `user${currentPhone.slice(-4)}`;
-            updateUsernameStrength();
-            updateButtonStates();
-          } else {
-            sessionStorage.setItem('userData', JSON.stringify(userData));
-            updateUserUI();
-            closeAuthModalFunc();
-            alert('ورود موفق!');
-          }
-        } else {
-          failedAttempts++;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (failedAttempts % 6)}`;
-          elements.authCodeError.style.display = 'block';
-          if (failedAttempts >= 5) {
-            console.error('Too many failed attempts');
-            elements.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-            elements.nextToStep3.disabled = true;
-            lockTimer = 300; // 5 minutes lock
-            setTimeout(() => {
-              elements.nextToStep3.disabled = false;
-              failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', failedAttempts);
-            }, lockTimer * 1000);
-          }
-          hideSpinner(elements.nextToStep3, 'تأیید');
-        }
-      }, 1000);
-    });
-    elements.resendCodeBtn.addEventListener('click', () => {
-      simulateSendCode(currentPhone);
-      let timer = failedAttempts > 5 ? 300 : 60;
-      startCountdown(timer);
-    });
-    elements.toggleAuthCode.addEventListener('click', () => {
-      const type = elements.authCode.type === 'password' ? 'text' : 'password';
-      elements.authCode.type = type;
-      elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-    });
-    elements.prevToStep2.addEventListener('click', () => {
-      elements.step3.classList.remove('active');
-      elements.step2.classList.add('active');
-    });
-    elements.username.addEventListener('input', (e) => {
-      maskInput(e.target, /[^a-zA-Z0-9]/g);
-      elements.usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
-      updateUsernameStrength();
-      updateButtonStates();
-    });
-    elements.characterCards.forEach(card => {
-      card.addEventListener('click', () => {
-        elements.characterCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        updateButtonStates();
-      });
-    });
-    elements.confirmProfileBtn.addEventListener('click', () => {
-      const name = elements.username.value;
-      const selectedChar = document.querySelector('.character-card.selected');
-      if (!validateUsername(name)) {
-        elements.usernameError.style.display = 'block';
-        return;
-      }
-      if (!selectedChar) {
-        alert('لطفاً یک کاراکتر انتخاب کنید');
-        return;
-      }
-      elements.usernameError.style.display = 'none';
-      userData = {
-        phone: currentPhone,
-        username: name,
-        character: selectedChar.dataset.char
-      };
-      sessionStorage.setItem(`user_${currentPhone}`, JSON.stringify(userData));
-      sessionStorage.setItem('userData', JSON.stringify(userData));
-      updateUserUI();
-      closeAuthModalFunc();
-      alert('ثبت‌نام موفق!');
-    });
+
+    // Logout
     elements.confirmLogout.addEventListener('click', () => {
       userData = null;
-      sessionStorage.removeItem('userData');
+      localStorage.removeItem('access');
       updateUserUI();
       elements.logoutModal.classList.remove('active');
       elements.overlay.classList.remove('active');
     });
+
     elements.cancelLogout.addEventListener('click', () => {
       elements.logoutModal.classList.remove('active');
       elements.overlay.classList.remove('active');
     });
+
     // Scroll event for support widget
     window.addEventListener('scroll', handleSupportWidgetVisibility);
-    // Initialize
-    updateUserUI();
+
+    // ============================================================
+    // بخش مقالات - جایگزینی کامل با API واقعی
+    // ============================================================
+    let articlesState = { page: 1, category: '', pageSize: 6 };
+
+    async function loadArticleCategories() {
+      const filtersBox = document.querySelector('.articles-filters');
+      try {
+        const res = await fetch(`${CONTENT_API_BASE}/categories/`);
+        const cats = await res.json();
+        filtersBox.innerHTML = `<button class="filter-btn active" data-cat="">همه مقالات</button>` +
+          cats.map(c => `<button class="filter-btn" data-cat="${c.id}">${c.name}</button>`).join('');
+
+        filtersBox.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            filtersBox.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            articlesState.category = btn.dataset.cat;
+            articlesState.page = 1;
+            loadArticles(false);
+          });
+        });
+      } catch (e) {
+        console.error('خطا در دریافت دسته‌بندی مقالات:', e);
+        // در صورت خطا، دکمه‌های پیش‌فرض را نگه می‌داریم (البته اکنون خالی است)
+        filtersBox.innerHTML = `<button class="filter-btn active" data-cat="">همه مقالات</button>`;
+        // یکبار تلاش برای بارگذاری مقالات بدون فیلتر
+        loadArticles(false);
+      }
+    }
+
+    function articleCardHTML(a) {
+      const cover = a.cover_image ? toAbsoluteMediaUrl(a.cover_image) : 'https://placehold.co/350x200?text=فیروزه';
+      const date = a.published_at ? a.published_at.slice(0, 10) : (a.created_at ? a.created_at.slice(0, 10) : '');
+      const categoryName = a.category ? a.category.name : '';
+      const authorName = a.author ? (a.author.full_name || a.author.username || '') : '';
+      return `
+        <div class="article-card">
+          <img src="${cover}" alt="${a.title}" class="article-image">
+          <div class="article-content">
+            <span class="article-category">${categoryName}</span>
+            <h3 class="article-title">${a.title}</h3>
+            <p class="article-summary">${(a.excerpt || '').substring(0, 120)}</p>
+            <div class="article-meta">
+              <span class="article-date">${date}</span>
+              <span class="article-author">نویسنده: ${authorName}</span>
+            </div>
+            <a href="blog.html?slug=${encodeURIComponent(a.slug)}" class="read-more-btn">بیشتر بخوانید</a>
+          </div>
+        </div>`;
+    }
+
+    async function loadArticles(append) {
+      const grid = document.getElementById('articlesGrid');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      if (!append) grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">در حال بارگذاری...</p>';
+
+      const params = new URLSearchParams();
+      params.set('status', 'PUBLISHED');
+      params.set('ordering', '-created_at');
+      params.set('page', articlesState.page);
+      params.set('page_size', articlesState.pageSize);
+      if (articlesState.category) params.set('category', articlesState.category);
+
+      try {
+        const res = await fetch(`${CONTENT_API_BASE}/articles/?${params.toString()}`);
+        const data = await res.json();
+        const html = (data.results || []).map(articleCardHTML).join('');
+
+        if (!append) grid.innerHTML = html || '<p style="grid-column:1/-1;text-align:center;">مقاله‌ای یافت نشد</p>';
+        else grid.insertAdjacentHTML('beforeend', html);
+
+        loadMoreBtn.style.display = data.next ? 'inline-block' : 'none';
+      } catch (e) {
+        console.error('خطا در دریافت مقالات:', e);
+        if (!append) grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#D32F2F;">خطا در دریافت مقالات</p>';
+      }
+    }
+
+    document.getElementById('loadMoreBtn').addEventListener('click', () => {
+      articlesState.page += 1;
+      loadArticles(true);
+    });
+
+    // بارگذاری اولیه
+    loadArticleCategories(); // این تابع خودش loadArticles(false) را در صورت موفقیت صدا می‌زند
+
+    // ============================================================
+    // بخش اخبار - جایگزینی کامل با API
+    // ============================================================
+    function newsCardHTML(n) {
+      const date = n.published_at ? n.published_at.slice(0, 10) : (n.created_at ? n.created_at.slice(0, 10) : '');
+      const isImportant = n.is_breaking || n.is_important || false;
+      return `
+        <div class="news-card ${isImportant ? 'important' : ''}">
+          <h3 class="news-title">${n.title}</h3>
+          <p class="news-content">${(n.summary || '').substring(0, 150)}</p>
+          <div class="news-date">${date}</div>
+          <a href="news-detail.html?slug=${encodeURIComponent(n.slug)}" class="news-details-btn">جزئیات بیشتر</a>
+        </div>`;
+    }
+
+    async function loadNews() {
+      const grid = document.getElementById('newsGrid');
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">در حال بارگذاری...</p>';
+      try {
+        const res = await fetch(`${CONTENT_API_BASE}/news/?status=PUBLISHED&ordering=-created_at&page_size=6`);
+        const data = await res.json();
+        const html = (data.results || []).map(newsCardHTML).join('');
+        grid.innerHTML = html || '<p style="grid-column:1/-1;text-align:center;">خبری ثبت نشده است</p>';
+      } catch (e) {
+        console.error('خطا در دریافت اخبار:', e);
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#D32F2F;">خطا در دریافت اخبار</p>';
+      }
+    }
+
+    loadNews();
+
+    // ============================================================
+    // مقداردهی اولیه (پروفایل، زمان، تبلیغات و ...)
+    // ============================================================
+    (async () => {
+      userData = await getProfile();
+      updateUserUI();
+    })();
+
     updateTime();
     setInterval(updateTime, 1000);
     setInterval(changePromoText, 5000);
     changePromoText();
     handleSupportWidgetVisibility(); // Initial widget visibility
   </script>
-<script src="blog-data.js"></script>
-<script>
-    const articlesGrid = document.getElementById('articlesGrid'); // تابع ساخت کارت مقاله
-    function generateBlogCard(blog) {
-        return `
-          <div class="article-card fade-in" data-category="${blog.category}">
-            <img src="${blog.image}" alt="${blog.title}" class="article-image">
-            <div class="article-content">
-              <span class="article-category">${blog.categoryName}</span>
-              <h3 class="article-title">${blog.title}</h3>
-              <p class="article-summary">${blog.summary}</p>
-              <div class="article-meta">
-                <span class="article-date">${blog.date}</span>
-                <span class="article-author">نویسنده: ${blog.author}</span>
-              </div>
-              <a href="blog.html?id=${blog.id}" class="read-more-btn">بیشتر بخوانید</a>
-            </div>
-          </div>
-        `;
-    }
-    // رندر کردن اولیه همه مقالات
-    function renderBlogs(blogs) {
-        articlesGrid.innerHTML = blogs.map(blog => generateBlogCard(blog)).join('');
-    }
-    renderBlogs(blogsDatabase);
-    // لاجیک فیلتر کردن (اصلاح شده برای دیتای داینامیک)
-    const blogFilterButtons = document.querySelectorAll('.filter-btn');
-   
-    blogFilterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // کلاس اکتیو دکمه‌ها
-        blogFilterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-       
-        const filterValue = button.dataset.filter;
-       
-        if (filterValue === 'all') {
-            renderBlogs(blogsDatabase);
-        } else {
-            const filtered = blogsDatabase.filter(b => b.category === filterValue);
-            renderBlogs(filtered);
-        }
-      });
-    });
-</script>
 </body>
 </html>

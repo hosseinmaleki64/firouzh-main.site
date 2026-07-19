@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتیجه پرداخت | فینگرفود فیروزه</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Shabnam', sans-serif;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .result-card {
+            max-width: 600px;
+            width: 100%;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .result-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .result-icon.success { color: #27ae60; }
+        .result-icon.failed { color: #e63946; }
+        .result-icon.pending { color: #f39c12; }
+        h2 { margin: 10px 0 8px; }
+        .order-id {
+            color: #666;
+            font-size: 0.9rem;
+            background: #f1f3f5;
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 12px 0;
+        }
+        .message {
+            margin: 20px 0 30px;
+            color: #4B5563;
+            line-height: 1.7;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 30px;
+            background: #26A69A;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #1A7A6F; }
+        .btn-secondary {
+            background: #e9ecef;
+            color: #4B5563;
+            margin-right: 10px;
+        }
+        .btn-secondary:hover { background: #dde1e7; }
+        .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+    <div class="result-card">
+        <!-- آیکون بر اساس وضعیت (با جاوااسکریپت تغییر می‌کند) -->
+        <div class="result-icon" id="statusIcon"><i class="fas fa-spinner fa-pulse"></i></div>
+        <h2 id="statusTitle">در حال بررسی پرداخت…</h2>
+        <div class="order-id" id="orderId">#---</div>
+        <p class="message" id="statusMessage">لطفاً چند لحظه صبر کنید…</p>
+        <div class="btn-group">
+            <a href="index.html" class="btn"><i class="fas fa-home"></i> بازگشت به خانه</a>
+            <a href="order-tracking.html" class="btn btn-secondary"><i class="fas fa-truck"></i> پیگیری سفارش</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // دریافت پارامترهای URL
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');       // success | failed | pending
+            const orderId = params.get('order_id') || '---';
+            const message = params.get('message') || '';
+
+            const icon = document.getElementById('statusIcon');
+            const title = document.getElementById('statusTitle');
+            const msg = document.getElementById('statusMessage');
+            const orderEl = document.getElementById('orderId');
+
+            if (orderId !== '---') orderEl.textContent = `#${orderId}`;
+
+            let iconHtml = '';
+            let statusTitle = '';
+            let statusMsg = '';
+
+            switch (status) {
+                case 'success':
+                    iconHtml = '<i class="fas fa-check-circle"></i>';
+                    icon.className = 'result-icon success';
+                    statusTitle = 'پرداخت با موفقیت انجام شد!';
+                    statusMsg = 'سفارش شما ثبت شده و به‌زودی ارسال می‌شود. کد پیگیری را نزد خود نگه دارید.';
+                    break;
+                case 'failed':
+                    iconHtml = '<i class="fas fa-times-circle"></i>';
+                    icon.className = 'result-icon failed';
+                    statusTitle = 'پرداخت ناموفق';
+                    statusMsg = message || 'متأسفانه پرداخت شما تکمیل نشد. لطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.';
+                    break;
+                case 'pending':
+                    iconHtml = '<i class="fas fa-hourglass-half"></i>';
+                    icon.className = 'result-icon pending';
+                    statusTitle = 'در انتظار تأیید';
+                    statusMsg = 'وضعیت پرداخت شما در حال بررسی است. به‌زودی نتیجه از طریق ایمیل و پیامک اطلاع‌رسانی می‌شود.';
+                    break;
+                default:
+                    iconHtml = '<i class="fas fa-question-circle"></i>';
+                    icon.className = 'result-icon';
+                    statusTitle = 'وضعیت نامشخص';
+                    statusMsg = 'پارامترهای پرداخت قابل شناسایی نیستند. لطفاً با پشتیبانی تماس بگیرید.';
+            }
+
+            icon.innerHTML = iconHtml;
+            title.textContent = statusTitle;
+            msg.textContent = statusMsg;
+        })();
+    </script>
+</body>
+</html>

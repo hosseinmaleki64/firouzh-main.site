@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دسته‌بندی‌ها | پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A28; --ink-soft:#4B6C66; --ink-faint:#87A29C;
+    --bg:#F1FAF8; --surface:#FFFFFF; --surface-alt:#EAF7F4;
+    --turq:#0EA99A; --turq-deep:#077A70; --turq-darker:#065951; --turq-pale:#D3F1EC;
+    --gold:#C9982F; --gold-pale:#F6EAD2; --red:#D14343; --red-pale:#FBE7E5;
+    --border:#DCEEEA; --shadow-sm:0 2px 10px rgba(7,90,80,.06); --shadow-md:0 12px 32px rgba(7,90,80,.10);
+    --facet:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
+      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink); min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+  .facet{clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));}
+
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;padding:18px 32px;
+    border-bottom:1px solid var(--border);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
+  .brand-mark{width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
+  .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .topbar-actions{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:13px;}
+  .topbar-actions b{color:var(--ink);font-weight:700;}
+  .logout-link{background:none;border:none;color:var(--red);font-size:12px;font-weight:700;}
+
+  .subnav{display:flex;gap:6px;padding:0 32px;background:rgba(255,255,255,.55);border-bottom:1px solid var(--border);overflow:auto;}
+  .subnav a{padding:12px 6px;font-size:13px;font-weight:700;color:var(--ink-faint);border-bottom:2px solid transparent;white-space:nowrap;}
+  .subnav a.active{color:var(--turq-deep);border-bottom-color:var(--turq);}
+  .subnav a:hover{color:var(--turq-deep);}
+
+  main{max-width:1000px;margin:0 auto;padding:28px 24px 80px;}
+  section{margin-bottom:22px;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;}
+  .section-head h2{font-size:15px;font-weight:700;margin:0;}
+  .section-head span{font-size:12px;color:var(--ink-faint);}
+
+  .top-row{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap;justify-content:space-between;}
+  .filters{display:flex;gap:10px;flex:1 1 320px;}
+  .input,select{
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;padding:9px 11px;
+    font-size:13px;color:var(--ink);outline:none;width:100%;
+  }
+  .input:focus,select:focus{border-color:var(--turq);background:#fff;}
+
+  .add-btn{
+    display:flex;align-items:center;gap:9px;color:#fff;border:none;padding:0 20px;
+    font-weight:700;font-size:13.5px;box-shadow:var(--shadow-md);min-width:170px;justify-content:center;
+    background:linear-gradient(135deg,var(--turq),var(--turq-deep));
+    transition:filter .15s ease, transform .15s ease;flex:none;
+  }
+  .add-btn:hover{filter:brightness(1.06);transform:translateY(-1px);}
+  .add-btn svg{width:17px;height:17px;}
+
+  .table-wrap{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{background:var(--surface-alt);color:var(--ink-soft);font-weight:700;font-size:11.5px;text-align:right;padding:10px 14px;border-bottom:1px solid var(--border);white-space:nowrap;}
+  tbody td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  tbody tr:hover{background:var(--surface-alt);}
+  tbody tr:last-child td{border-bottom:none;}
+  .cat-name{font-weight:700;}
+  .cat-slug{font-size:11px;color:var(--ink-faint);direction:ltr;text-align:right;display:block;}
+  .count-badge{background:var(--turq-pale);color:var(--turq-darker);font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px;}
+  .count-badge.zero{background:var(--surface-alt);color:var(--ink-faint);}
+  .row-actions{display:flex;gap:6px;}
+  .row-actions button{
+    background:var(--surface-alt);border:1px solid var(--border);width:30px;height:30px;border-radius:7px;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+  }
+  .row-actions button:hover{border-color:var(--turq);color:var(--turq-deep);}
+  .row-actions button.danger:hover{border-color:var(--red);color:var(--red);}
+  .row-actions svg{width:14px;height:14px;}
+
+  .empty-state{padding:60px 20px;text-align:center;color:var(--ink-faint);}
+  .empty-state svg{width:40px;height:40px;margin-bottom:10px;opacity:.5;}
+
+  /* مودال */
+  .overlay{position:fixed;inset:0;background:rgba(6,40,36,.45);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;padding:8vh 16px;z-index:100;overflow:auto;}
+  .overlay.open{display:flex;}
+  .modal{background:var(--surface);width:100%;max-width:440px;box-shadow:var(--shadow-md);}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);}
+  .modal-head h3{margin:0;font-size:15px;font-weight:800;}
+  .modal-head button{background:none;border:none;font-size:20px;color:var(--ink-faint);line-height:1;}
+  .modal-body{padding:20px 22px;display:flex;flex-direction:column;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{font-size:12px;font-weight:700;color:var(--ink-soft);}
+  .slug-preview{font-size:11.5px;color:var(--ink-faint);direction:ltr;text-align:right;}
+  .slug-preview b{color:var(--turq-deep);font-weight:700;}
+  .modal-foot{padding:16px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
+  .btn{border:none;padding:9px 18px;font-size:12.5px;font-weight:700;border-radius:8px;}
+  .btn-primary{background:var(--turq-deep);color:#fff;}
+  .btn-primary:hover{background:var(--turq-darker);}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-deep);}
+  .btn:disabled{opacity:.6;cursor:not-allowed;}
+
+  .backend-note{
+    background:var(--gold-pale);border:1px solid #ecd9ab;color:#8a651f;font-size:12px;line-height:1.9;
+    padding:12px 16px;border-radius:10px;margin-bottom:16px;
+  }
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
+    opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;max-width:90vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--red);}
+
+  @media(max-width:640px){
+    main{padding:20px 14px 60px;}
+    .topbar{padding:14px 18px;}
+    .subnav{padding:0 14px;}
+    thead{display:none;}
+    table,tbody,tr,td{display:block;width:100%;}
+    tbody tr{border-bottom:8px solid var(--bg);padding:8px 0;}
+    tbody td{display:flex;justify-content:space-between;align-items:center;border:none;padding:6px 14px;}
+    tbody td::before{content:attr(data-label);font-size:11px;color:var(--ink-faint);font-weight:700;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div>پنل مدیریت بلاگ<small>مدیریت مقالات و اخبار</small></div>
+  </div>
+  <div class="topbar-actions">
+    خوش آمدید، <b id="whoami">—</b>
+    <button class="logout-link" id="logoutBtn">خروج</button>
+  </div>
+</header>
+
+<nav class="subnav">
+  <a href="articles.html">مقالات</a>
+  <a href="news.html">اخبار</a>
+  <a href="categories.html" class="active">دسته‌بندی‌ها</a>
+  <a href="tags.html">تگ‌ها</a>
+  <a href="media.html">رسانه‌ها</a>
+</nav>
+
+<main>
+
+  <div class="backend-note" id="backendNote">
+    نمایش لیست دسته‌بندی‌ها از بک‌اند واقعی خوانده می‌شود. افزودن/ویرایش/حذف هم از همین‌جا ارسال می‌شود، اما تا وقتی اندپوینت‌های متناظر (POST / PATCH / DELETE) به <code>views.py</code> و <code>urls.py</code> بک‌اند اضافه نشده باشن، سرور با خطا (404 یا 405) جواب می‌ده و همون پیام واقعی سرور به‌صورت toast نشون داده می‌شه.
+  </div>
+
+  <section>
+    <div class="top-row">
+      <div class="filters">
+        <input class="input" id="fSearch" placeholder="جست‌وجو در نام دسته‌بندی‌ها…">
+      </div>
+      <button class="add-btn facet" id="addCatBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        دسته‌بندی جدید
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>لیست دسته‌بندی‌ها</h2><span id="resultCount"></span></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>نام</th>
+            <th>اسلاگ</th>
+            <th>تعداد مقالات</th>
+            <th>تاریخ ایجاد</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="catBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <div id="emptyStateMsg">دسته‌بندی‌ای پیدا نشد</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- مودال افزودن/ویرایش -->
+<div class="overlay" id="catOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">دسته‌بندی جدید</h3>
+      <button id="closeCatModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>نام دسته‌بندی</label>
+        <input class="input" id="fCatName" placeholder="مثلاً میز آرایی">
+      </div>
+      <div class="field">
+        <label>اسلاگ</label>
+        <div class="slug-preview">اسلاگ خودکار و بر اساس نام ساخته می‌شود: <b id="slugPreview">—</b></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="cancelCatModal">انصراف</button>
+      <button class="btn btn-primary" id="saveCatBtn">ذخیره</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_ORIGIN = "http://127.0.0.1:8000";
+const AUTH_BASE  = `${API_ORIGIN}/api/auth`;
+const API_BASE   = `${API_ORIGIN}/api/content`;
+const LOGIN_PAGE = "admin-login.html";
+
+/* ---------------- Auth ---------------- */
+function getAccess(){ return localStorage.getItem('admin_access_token'); }
+function getRefresh(){ return localStorage.getItem('admin_refresh_token'); }
+function getCurrentAdmin(){ try{ return JSON.parse(localStorage.getItem('admin_user') || 'null'); }catch(_){ return null; } }
+function clearSession(){
+  localStorage.removeItem('admin_access_token');
+  localStorage.removeItem('admin_refresh_token');
+  localStorage.removeItem('admin_user');
+}
+function goToLogin(){ clearSession(); window.location.href = LOGIN_PAGE; }
+
+async function refreshAccessToken(){
+  const refresh = getRefresh();
+  if(!refresh) return false;
+  try{
+    const res = await fetch(`${AUTH_BASE}/refresh/`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({refresh})});
+    if(!res.ok) return false;
+    const data = await res.json();
+    if(!data.access) return false;
+    localStorage.setItem('admin_access_token', data.access);
+    return true;
+  }catch(_){ return false; }
+}
+
+async function apiFetch(url, options = {}, _isRetry = false){
+  const access = getAccess();
+  const headers = Object.assign({}, options.headers || {});
+  if(access) headers['Authorization'] = `Bearer ${access}`;
+  const res = await fetch(url, { ...options, headers });
+  if(res.status === 401 && !_isRetry){
+    const refreshed = await refreshAccessToken();
+    if(refreshed) return apiFetch(url, options, true);
+    goToLogin();
+    return null;
+  }
+  return res;
+}
+
+async function apiGet(path){
+  try{
+    const res = await apiFetch(API_BASE + path, { headers:{} });
+    if(!res) return null;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      toast(err.detail || 'خطا در دریافت اطلاعات از سرور', true);
+      return null;
+    }
+    return await res.json();
+  }catch(e){
+    console.error(e);
+    toast('خطا در ارتباط با سرور. اتصال اینترنت/سرور را بررسی کنید.', true);
+    return null;
+  }
+}
+
+/* برای عملیات نوشتاری، خودمون res رو برمی‌گردونیم تا بتونیم پیام دقیق خطای سرور (404/405) رو نشون بدیم */
+async function apiSendRaw(path, method, body, isForm = false){
+  try{
+    const headers = isForm ? {} : {'Content-Type':'application/json'};
+    const res = await apiFetch(API_BASE + path, { method, headers, body: isForm ? body : JSON.stringify(body) });
+    return res;
+  }catch(e){
+    console.error(e);
+    return null;
+  }
+}
+
+/* ---------------- Toast ---------------- */
+let toastTimer;
+function toast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.className='toast', 3400);
+}
+function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+function toJalali(iso){
+  if(!iso) return '—';
+  try{
+    return new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {year:'numeric', month:'2-digit', day:'2-digit'}).format(new Date(iso));
+  }catch(e){ return iso.slice(0,10); }
+}
+function slugify(text){
+  return (text || '')
+    .toString().trim().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\u0600-\u06FF-]+/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/* ---------------- State ---------------- */
+let state = { categories: [], filtered: [], search: '', editingId: null };
+
+/* ---------------- Load + article counts ---------------- */
+async function loadCategories(){
+  const data = await apiGet('/categories/');
+  const list = Array.isArray(data) ? data : (data && data.results) || [];
+
+  // شمارش مقالات هر دسته‌بندی: بک‌اند فیلد articles_count برنمی‌گردونه،
+  // پس با یک ریکوئست سبک (page_size=1) به ازای هر دسته، عدد count پیجینیشن رو می‌خونیم.
+  const counts = await Promise.all(
+    list.map(c => apiGet(`/articles/?category=${c.id}&page_size=1`))
+  );
+  state.categories = list.map((c, i) => ({ ...c, articles_count: counts[i] ? (counts[i].count ?? 0) : null }));
+
+  applyFilter();
+}
+
+function applyFilter(){
+  const q = state.search.trim().toLowerCase();
+  state.filtered = q ? state.categories.filter(c => c.name.toLowerCase().includes(q)) : state.categories;
+  renderTable();
+}
+
+function renderTable(){
+  const body = document.getElementById('catBody');
+  const empty = document.getElementById('emptyState');
+  document.getElementById('resultCount').textContent = state.categories.length ? `${fmt(state.categories.length)} دسته‌بندی` : '';
+
+  if(!state.filtered.length){
+    body.innerHTML = '';
+    document.getElementById('emptyStateMsg').textContent = state.categories.length ? 'دسته‌بندی‌ای با این جست‌وجو پیدا نشد' : 'هنوز دسته‌بندی‌ای ثبت نشده';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  body.innerHTML = state.filtered.map(c => {
+    const countLabel = c.articles_count === null ? '—' : fmt(c.articles_count);
+    const zero = !c.articles_count;
+    return `
+      <tr data-id="${c.id}">
+        <td data-label="نام"><span class="cat-name">${c.name}</span></td>
+        <td data-label="اسلاگ"><span class="cat-slug">${c.slug || '—'}</span></td>
+        <td data-label="تعداد مقالات"><span class="count-badge ${zero?'zero':''}">${countLabel}</span></td>
+        <td data-label="تاریخ ایجاد">${toJalali(c.created_at)}</td>
+        <td data-label="عملیات">
+          <div class="row-actions">
+            <button class="edit-btn" data-id="${c.id}" title="ویرایش">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>
+            </button>
+            <button class="delete-btn danger" data-id="${c.id}" title="حذف">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
+            </button>
+          </div>
+        </td>
+      </tr>`;
+  }).join('');
+
+  body.querySelectorAll('.edit-btn').forEach(b=>{
+    b.addEventListener('click', ()=> openEditModal(b.dataset.id));
+  });
+  body.querySelectorAll('.delete-btn').forEach(b=>{
+    b.addEventListener('click', ()=> deleteCategory(b.dataset.id));
+  });
+}
+
+document.getElementById('fSearch').addEventListener('input', e=>{
+  state.search = e.target.value;
+  applyFilter();
+});
+
+/* ---------------- Modal ---------------- */
+const catOverlay = document.getElementById('catOverlay');
+const fCatName = document.getElementById('fCatName');
+const slugPreview = document.getElementById('slugPreview');
+
+fCatName.addEventListener('input', ()=>{
+  slugPreview.textContent = slugify(fCatName.value) || '—';
+});
+
+function openAddModal(){
+  state.editingId = null;
+  document.getElementById('modalTitle').textContent = 'دسته‌بندی جدید';
+  document.getElementById('saveCatBtn').textContent = 'ذخیره';
+  fCatName.value = '';
+  slugPreview.textContent = '—';
+  catOverlay.classList.add('open');
+  fCatName.focus();
+}
+function openEditModal(id){
+  const cat = state.categories.find(c => String(c.id) === String(id));
+  if(!cat) return;
+  state.editingId = id;
+  document.getElementById('modalTitle').textContent = 'ویرایش دسته‌بندی';
+  document.getElementById('saveCatBtn').textContent = 'ذخیره تغییرات';
+  fCatName.value = cat.name;
+  slugPreview.textContent = cat.slug || slugify(cat.name) || '—';
+  catOverlay.classList.add('open');
+  fCatName.focus();
+}
+function closeModal(){ catOverlay.classList.remove('open'); }
+document.getElementById('addCatBtn').addEventListener('click', openAddModal);
+document.getElementById('closeCatModal').addEventListener('click', closeModal);
+document.getElementById('cancelCatModal').addEventListener('click', closeModal);
+catOverlay.addEventListener('click', e=>{ if(e.target === catOverlay) closeModal(); });
+
+document.getElementById('saveCatBtn').addEventListener('click', async ()=>{
+  const name = fCatName.value.trim();
+  if(!name){ toast('نام دسته‌بندی را وارد کنید', true); return; }
+
+  const btn = document.getElementById('saveCatBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال ذخیره…';
+
+  let res;
+  if(state.editingId){
+    res = await apiSendRaw(`/categories/${state.editingId}/`, 'PATCH', { name });
+  }else{
+    res = await apiSendRaw('/categories/create/', 'POST', { name });
+  }
+
+  btn.disabled = false;
+  btn.textContent = state.editingId ? 'ذخیره تغییرات' : 'ذخیره';
+
+  if(!res){ toast('خطا در ارتباط با سرور.', true); return; }
+
+  if(res.ok){
+    toast(state.editingId ? 'دسته‌بندی ویرایش شد' : 'دسته‌بندی جدید ساخته شد');
+    closeModal();
+    loadCategories();
+    return;
+  }
+
+  // نمایش دقیق پیام واقعی سرور (مثلاً 404 چون مسیر وجود ندارد، یا 405 چون متد پشتیبانی نمی‌شود)
+  const errBody = await res.json().catch(()=>null);
+  const serverMsg = errBody ? (errBody.detail || Object.values(errBody)[0]) : null;
+  toast(
+    `سرور با خطای ${res.status} جواب داد` + (serverMsg ? `: ${Array.isArray(serverMsg)?serverMsg[0]:serverMsg}` : '') +
+    ' — این یعنی اندپوینت مربوطه هنوز در بک‌اند پیاده نشده.',
+    true
+  );
+});
+
+async function deleteCategory(id){
+  const cat = state.categories.find(c => String(c.id) === String(id));
+  if(!cat) return;
+  if(!confirm(`آیا از حذف دسته‌بندی «${cat.name}» مطمئن هستید؟`)) return;
+
+  const res = await apiSendRaw(`/categories/${id}/`, 'DELETE');
+  if(!res){ toast('خطا در ارتباط با سرور.', true); return; }
+
+  if(res.ok || res.status === 204){
+    toast('دسته‌بندی حذف شد');
+    loadCategories();
+    return;
+  }
+  const errBody = await res.json().catch(()=>null);
+  const serverMsg = errBody ? (errBody.detail || Object.values(errBody)[0]) : null;
+  toast(
+    `سرور با خطای ${res.status} جواب داد` + (serverMsg ? `: ${Array.isArray(serverMsg)?serverMsg[0]:serverMsg}` : '') +
+    ' — این یعنی اندپوینت حذف هنوز در بک‌اند پیاده نشده.',
+    true
+  );
+}
+
+/* ---------------- خروج ---------------- */
+document.getElementById('logoutBtn').addEventListener('click', goToLogin);
+
+/* ---------------- Init ---------------- */
+(async function init(){
+  if(!getAccess()){ goToLogin(); return; }
+  const admin = getCurrentAdmin();
+  document.getElementById('whoami').textContent = admin?.full_name || '—';
+  await loadCategories();
+})();
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@
       --gradient-start: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
       --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       --rating-color: #FFD700;
-      --transition: all 0.3s ease; /* اضافه شده برای جلوگیری از خطا در var(--transition) */
+      --transition: all 0.3s ease;
     }
 
     html, body {
@@ -38,7 +38,7 @@
       padding-top: 90px;
     }
 
-    /* گروه‌بندی navbar و عناصر مرتبط */
+    /* navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -257,7 +257,7 @@
       background: var(--neutral-color);
     }
 
-    /* گروه‌بندی side-menu */
+    /* side-menu */
     .side-menu {
       position: fixed;
       inset-block: 0;
@@ -339,7 +339,7 @@
       visibility: visible;
     }
 
-    /* گروه‌بندی search-container */
+    /* search-container */
     .search-container {
       position: fixed;
       inset-block-start: calc(var(--header-h) + 20px);
@@ -404,6 +404,160 @@
       padding: 12px;
     }
 
+    /* =========================================================
+       CART SIDEBAR
+       ========================================================= */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      inset-inline-end: -420px;
+      width: 100%;
+      max-width: 400px;
+      background: var(--background-color);
+      z-index: 1006;
+      box-shadow: -12px 0 30px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      transition: inset-inline-end 0.35s cubic-bezier(0.25,0.8,0.25,1);
+    }
+    .cart-sidebar.active { inset-inline-end: 0; }
+    .cart-sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px;
+      background: #064d3b;
+      color: var(--text-light);
+    }
+    .cart-sidebar-head h3 {
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-sidebar-close {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .cart-sidebar-close:hover { background: rgba(255,255,255,0.15); }
+    .cart-sidebar-body { flex: 1; overflow-y: auto; padding: 12px 16px; }
+    .cart-sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 6px;
+      border-bottom: 1px solid var(--neutral-color);
+    }
+    .cart-sidebar-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: var(--neutral-color);
+      flex-shrink: 0;
+    }
+    .cart-sidebar-item-info { flex: 1; min-width: 0; }
+    .cart-sidebar-item-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cart-sidebar-item-price {
+      font-size: 0.85rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin: 4px 0 8px;
+    }
+    .cart-sidebar-item-qty { display: flex; align-items: center; gap: 10px; }
+    .cart-sidebar-item-qty .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--neutral-color);
+      background: #f1f3f5;
+      color: var(--text-dark);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .cart-sidebar-item-qty .qty-btn:hover {
+      background: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color);
+    }
+    .cart-sidebar-item-qty span { min-width: 20px; text-align: center; font-weight: 700; }
+    .cart-sidebar-item-remove {
+      background: none;
+      border: none;
+      color: #e63946;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+    .cart-sidebar-item-remove:hover { transform: scale(1.15); }
+    .cart-sidebar-empty {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-dark);
+      opacity: 0.7;
+      padding: 30px;
+      text-align: center;
+    }
+    .cart-sidebar-empty i { font-size: 2.5rem; color: var(--neutral-color); }
+    .cart-sidebar-foot {
+      padding: 18px 22px;
+      border-top: 1px solid var(--neutral-color);
+      background: #f1f3f5;
+    }
+    .cart-sidebar-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+    .cart-sidebar-total b { font-size: 1.2rem; color: var(--primary-color); }
+    .cart-sidebar-checkout {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--primary-color);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: var(--transition);
+    }
+    .cart-sidebar-checkout:hover { background: var(--secondary-color); }
+    @media (max-width: 480px) { .cart-sidebar { max-width: 100%; } }
+
     main {
       max-width: 1400px;
       margin: 0 auto;
@@ -427,7 +581,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* گروه‌بندی product-detail */
+    /* product-detail */
     .product-detail {
       background: var(--background-color);
       padding: 1.5rem;
@@ -551,6 +705,35 @@
       border-color: var(--primary-color);
     }
 
+    .weight-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 10px;
+      background: rgba(38, 166, 154, 0.1);
+      color: var(--secondary-color);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background: #e63946;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-inline-start: 8px;
+      vertical-align: middle;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #9CA3AF;
+      font-size: 0.95rem;
+      margin-inline-end: 8px;
+    }
+
     .quantity-section {
       display: flex;
       align-items: center;
@@ -577,7 +760,6 @@
       padding: 0.5rem;
     }
 
-    /* گروه‌بندی quantity-btn برای مشترکات */
     .quantity-btn {
       width: 35px;
       height: 35px;
@@ -613,50 +795,7 @@
       outline: none;
     }
 
-    .build-meal {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 1rem 0;
-    }
-
-    .ingredient {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      border: 2px solid var(--neutral-color);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: var(--transition);
-      background: var(--background-color);
-    }
-
-    .ingredient input[type="checkbox"] {
-      display: none;
-    }
-
-    .ingredient img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 5px;
-      transition: transform 0.3s ease;
-    }
-
-    .ingredient:hover img {
-      transform: scale(1.1);
-    }
-
-    .ingredient span {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .ingredient.active {
-      border-color: var(--primary-color);
-      background: rgba(38, 166, 154, 0.1);
-    }
+    /* حذف کامل استایل‌های build-meal و ingredient */
 
     .add-to-cart {
       background: var(--primary-color);
@@ -680,6 +819,13 @@
       background: var(--secondary-color);
       transform: translateY(-2px);
       animation: bounce 0.6s ease;
+    }
+
+    .add-to-cart:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      animation: none;
     }
 
     @keyframes bounce {
@@ -746,7 +892,6 @@
       align-items: center;
     }
 
-    /* گروه‌بندی quantity-btn برای cart-item */
     .cart-item .quantity-btn {
       width: 30px;
       height: 30px;
@@ -855,7 +1000,6 @@
       gap: 40px;
     }
 
-    /* گروه‌بندی rec-item و other-product-item برای مشترکات */
     .rec-item,
     .other-product-item {
       text-align: center;
@@ -1006,13 +1150,13 @@
       justify-content: center;
     }
 
-    /* گروه‌بندی footer */
+    /* footer */
     footer {
       background: var(--gradient-start);
       color: var(--text-light);
       text-align: center;
       padding: 40px 20px;
-      border-radius: var(--border-radius); /* var(--border-radius) تعریف نشده، اگر لازم نگه دار یا حذف */
+      border-radius: 10px;
       margin-top: 20px;
       position: relative;
       overflow: hidden;
@@ -1197,244 +1341,7 @@
       font-size: 0.9rem;
     }
 
-    /* گروه‌بندی auth-modal */
-    .auth-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1004;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .auth-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .auth-modal-content {
-      background: var(--background-color);
-      border-radius: 16px;
-      padding: 32px;
-      width: 100%;
-      max-width: 420px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      direction: rtl;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .auth-modal.active .auth-modal-content {
-      transform: scale(1);
-    }
-
-    .auth-modal-close {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-
-    .auth-modal-close:hover {
-      color: var(--secondary-color);
-      background: rgba(38, 166, 154, 0.1);
-    }
-
-    .auth-modal-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .auth-modal-header .site-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-
-    .auth-modal-header .site-logo img {
-      height: 28px;
-    }
-
-    .auth-modal-header h2 {
-      color: var(--primary-color);
-      font-size: 1.8rem;
-      margin: 8px 0 4px;
-    }
-
-    .auth-modal-header .greeting {
-      font-size: 1.2rem;
-      margin: 0;
-      color: var(--text-dark);
-    }
-
-    .auth-modal-header p {
-      color: var(--text-dark);
-      font-size: 1rem;
-      margin: 4px 0 16px;
-    }
-
-    .wizard-step {
-      display: none;
-    }
-
-    .wizard-step.active {
-      display: block;
-    }
-
-    .auth-form label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-
-    .auth-form input {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid var(--neutral-color);
-      border-radius: 12px;
-      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      box-sizing: border-box;
-      direction: ltr;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .auth-form input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
-    }
-
-    .auth-form button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: var(--primary-color);
-      color: var(--text-light);
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .auth-form button:hover {
-      background: var(--secondary-color);
-      color: var(--text-light);
-      transform: translateY(-2px);
-    }
-
-    .auth-form button:active {
-      transform: translateY(0);
-    }
-
-    .auth-form .error {
-      color: #D32F2F;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-
-    .auth-form .success {
-      color: #388E3C;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-
-    .auth-form .timer {
-      color: var(--text-dark);
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 8px;
-      display: none;
-    }
-
-    .auth-form .terms {
-      font-size: 0.85rem;
-      color: var(--text-dark);
-      text-align: center;
-      margin-top: 8px;
-    }
-
-    .wizard-buttons {
-      display: flex;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .wizard-buttons button {
-      flex: 1;
-    }
-
-    .wizard-buttons .prev {
-      background: var(--neutral-color);
-      color: var(--text-dark);
-    }
-
-    .wizard-buttons .prev:hover {
-      background: #ccc;
-    }
-
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 24px 0;
-    }
-
-    .character-card {
-      background: var(--neutral-color);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--text-dark);
-    }
-
-    .character-card:hover {
-      background: var(--primary-color);
-      color: var(--text-light);
-      transform: translateY(-3px);
-    }
-
-    .character-card.selected {
-      background: var(--primary-color);
-      color: var(--text-light);
-      box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
-    }
-
-    /* گروه‌بندی logout-modal */
+    /* Logout Modal */
     .logout-modal {
       position: fixed;
       inset: 0;
@@ -1518,58 +1425,40 @@
       background: #ccc;
     }
 
-    .spinner {
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid #fff;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .username-strength {
-      height: 5px;
-      background: #ddd;
-      margin-top: -10px;
-      margin-bottom: 10px;
-      border-radius: 3px;
-    }
-
-    .username-strength.weak { background: red; }
-    .username-strength.medium { background: orange; }
-    .username-strength.strong { background: green; }
-
-    .input-group {
-      position: relative;
-    }
-
-    .toggle-visibility {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #666;
-    }
-
-    #resendCodeBtn {
-      display: none;
-      width: 100%;
-      margin-top: 10px;
-    }
-
     img {
       max-width: 100%;
       height: auto;
     }
 
-    /* ادغام media queryها برای بهینه‌سازی */
+    .skeleton {
+      background: linear-gradient(90deg, var(--neutral-color) 25%, #f3f4f6 37%, var(--neutral-color) 63%);
+      background-size: 400% 100%;
+      animation: skeleton-loading 1.4s ease infinite;
+      border-radius: 8px;
+      color: transparent !important;
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0 50%; }
+    }
+
+    .load-error-box {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .load-error-box a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--primary-color);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    /* Responsive */
     @media (max-width: 992px) {
       .main-container {
         grid-template-columns: 1fr;
@@ -1607,10 +1496,6 @@
       .size-btn {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
-      }
-
-      .ingredient span {
-        font-size: 0.9rem;
       }
 
       .add-to-cart {
@@ -1712,15 +1597,6 @@
       .size-btn {
         font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
-      }
-
-      .ingredient img {
-        width: 32px;
-        height: 32px;
-      }
-
-      .ingredient span {
-        font-size: 0.85rem;
       }
 
       .add-to-cart {
@@ -1841,8 +1717,13 @@
       .main-container {
         gap: 20px;
         margin: 1rem auto;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      /* مخفی کردن سبد خرید در موبایل */
+      .cart-panel {
+        display: none;
       }
 
       .product-detail {
@@ -1915,27 +1796,7 @@
         font-size: 0.9rem;
       }
 
-      .build-meal {
-        gap: 0.5rem;
-        margin: 0.8rem 0;
-        flex-wrap: wrap;
-      }
-
-      .ingredient {
-        padding: 0.4rem;
-        border-radius: 8px;
-        flex: 1 1 calc(50% - 0.5rem);
-        min-width: 120px;
-      }
-
-      .ingredient img {
-        width: 28px;
-        height: 28px;
-      }
-
-      .ingredient span {
-        font-size: 0.75rem;
-      }
+      /* حذف کامل استایل‌های ingredient در موبایل */
 
       .add-to-cart {
         padding: 0.6rem 1rem;
@@ -1949,12 +1810,6 @@
 
       .price-display {
         font-size: 1rem;
-      }
-
-      .cart-panel {
-        padding: 1rem;
-        border-radius: 10px;
-        order: 2;
       }
 
       .cart-header {
@@ -2024,7 +1879,6 @@
 
       .recommendations {
         margin-top: 1.5rem;
-        order: 1;
       }
 
       .recommendations h2 {
@@ -2085,7 +1939,6 @@
       .other-products {
         margin-top: 2rem;
         padding-top: 1.5rem;
-        order: 3;
       }
 
       .other-products h2 {
@@ -2108,6 +1961,7 @@
         width: max-content;
         gap: 15px;
         padding: 10px 0;
+        transition: none;
       }
 
       .other-product-item {
@@ -2237,93 +2091,6 @@
         font-size: 0.7rem;
       }
 
-      .auth-modal-content {
-        padding: 20px;
-        max-width: 95%;
-        max-height: 90vh;
-      }
-
-      .auth-modal-close {
-        top: 12px;
-        left: 12px;
-        font-size: 1.5rem;
-        width: 30px;
-        height: 30px;
-      }
-
-      .auth-modal-header .site-logo {
-        font-size: 1.2rem;
-      }
-
-      .auth-modal-header .site-logo img {
-        height: 24px;
-      }
-
-      .auth-modal-header h2 {
-        font-size: 1.4rem;
-        margin: 6px 0 2px;
-      }
-
-      .auth-modal-header .greeting {
-        font-size: 1rem;
-      }
-
-      .auth-modal-header p {
-        font-size: 0.85rem;
-        margin: 2px 0 12px;
-      }
-
-      .auth-form label {
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-      }
-
-      .auth-form input {
-        padding: 12px;
-        font-size: 0.9rem;
-        border-radius: 8px;
-        margin-bottom: 12px;
-      }
-
-      .auth-form button {
-        padding: 14px;
-        font-size: 1rem;
-        border-radius: 8px;
-        margin-top: 6px;
-      }
-
-      .auth-form .error,
-      .auth-form .success {
-        font-size: 0.8rem;
-        margin-top: 8px;
-      }
-
-      .auth-form .timer {
-        font-size: 0.8rem;
-        margin-top: 6px;
-      }
-
-      .auth-form .terms {
-        font-size: 0.75rem;
-        margin-top: 6px;
-      }
-
-      .wizard-buttons {
-        gap: 12px;
-        margin-top: 12px;
-      }
-
-      .character-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin: 16px 0;
-      }
-
-      .character-card {
-        padding: 15px;
-        font-size: 1.5rem;
-      }
-
       .logout-modal-content {
         padding: 20px;
         max-width: 95%;
@@ -2398,28 +2165,6 @@
   </style>
 </head>
 <body data-theme="light">
-  <!-- Schema.org for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": "مینی برگر",
-    "image": "https://placehold.co/400x300/26A69A/FFFFFF?text=راتی‌نی+دلایت",
-    "description": "یک پاستای خوشمزه و پرادویه با راتی‌نی، گوجه‌فرنگی خشک‌شده و سس غلیظ گوجه. مناسب برای دورهمی‌ها و سفارش آنلاین در فیروزه.",
-    "sku": "ROTINI-DELIGHT-001",
-    "brand": {
-      "@type": "Brand",
-      "name": "فینگرفود فیروزه"
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://firouzeh.com/product/ratiny-delight",
-      "priceCurrency": "IRR",
-      "price": "45000",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
   <header class="navbar">
     <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
       <i class="fas fa-bars"></i>
@@ -2443,30 +2188,53 @@
     </div>
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
-      <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
+      <a href="#" class="cart-link" id="cartLink" role="button" aria-label="سبد خرید">
         <i class="fas fa-shopping-cart"></i>
-        <span class="cart-badge">3</span>
+        <span class="cart-badge" id="cartBadge">0</span>
       </a>
-      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+      <a href="login.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
         <i class="fas fa-user profile-icon" id="profileIcon"></i>
-      </div>
+      </a>
       <div class="user-menu" id="userMenu">
         <div class="user-info">
           <span class="avatar" id="userAvatar"></span>
           <span id="userName"></span>
         </div>
-        <a href="cart.html">سبد خرید</a>
+        <a href="checkout.html">سبد خرید</a>
         <button id="logoutBtn">خروج</button>
       </div>
     </div>
   </header>
+
   <div class="overlay" id="overlay"></div>
+
+  <!-- Cart Sidebar -->
+  <aside class="cart-sidebar" id="cartSidebar" aria-hidden="true">
+    <div class="cart-sidebar-head">
+      <h3><i class="fas fa-shopping-cart"></i> سبد خرید</h3>
+      <button class="cart-sidebar-close" id="cartSidebarClose" aria-label="بستن سبد خرید">×</button>
+    </div>
+    <div class="cart-sidebar-body" id="cartSidebarBody"></div>
+    <div class="cart-sidebar-empty" id="cartSidebarEmpty">
+      <i class="fas fa-shopping-basket"></i>
+      <p>سبد خرید شما خالی است</p>
+    </div>
+    <div class="cart-sidebar-foot" id="cartSidebarFoot" style="display:none;">
+      <div class="cart-sidebar-total">
+        <span>جمع کل</span>
+        <b id="cartSidebarTotal">۰ تومان</b>
+      </div>
+      <a href="checkout.html" class="cart-sidebar-checkout">ثبت سفارش</a>
+    </div>
+  </aside>
+
+  <!-- Side Menu -->
   <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
     <div class="close-btn" aria-label="بستن منو">×</div>
     <ul class="nav-menu">
       <li class="nav-category">
         <h3>دسته‌بندی محصولات</h3>
-        <ul class="sub-menu">
+        <ul class="sub-menu" id="categoriesSubMenu">
           <li><a href="#products">انواع محصولات</a></li>
           <li><a href="#subcategories">طبقه‌بندی جانبی</a></li>
         </ul>
@@ -2485,71 +2253,13 @@
       </li>
     </ul>
   </nav>
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="auth-modal-content">
-      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
-      <div class="auth-modal-header">
-        <div class="site-logo">
-          <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه">
-          FIROUZEH
-        </div>
-        <h2>ورود یا ثبت‌نام</h2>
-        <div class="greeting">سلام</div>
-        <p>لطفا شماره موبایل خود را وارد کنید</p>
-      </div>
-      <div class="wizard-step active" id="step1">
-        <div class="auth-form">
-          <label for="authPhone">شماره موبایل</label>
-          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
-          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
-          <div id="captchaSection">
-            <label id="captchaQuestion"></label>
-            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
-            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
-          </div>
-          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
-        </div>
-        <div class="wizard-buttons">
-          <button id="nextToStep2" disabled>بعدی</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step2">
-        <div class="auth-form">
-          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
-          <label for="authCode">کد یک‌بار مصرف</label>
-          <div class="input-group">
-            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
-            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
-          </div>
-          <p class="error" id="authCodeError">کد نامعتبر است.</p>
-          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
-          <button id="resendCodeBtn">ارسال مجدد کد</button>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep1">قبلی</button>
-          <button id="nextToStep3" disabled>تأیید</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step3">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
-        <div class="username-strength" id="usernameStrength"></div>
-        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
-        <h3>انتخاب کاراکتر</h3>
-        <div class="character-grid">
-          <div class="character-card" data-char="🍎">🍎</div>
-          <div class="character-card" data-char="🍕">🍕</div>
-          <div class="character-card" data-char="🍔">🍔</div>
-          <div class="character-card" data-char="🍦">🍦</div>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep2">قبلی</button>
-          <button id="confirmProfileBtn" disabled>تأیید</button>
-        </div>
-      </div>
-    </div>
+
+  <!-- Search Container -->
+  <div class="search-container" id="searchContainer">
+    <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." aria-label="جست‌وجوی محصولات" />
+    <div class="search-results" id="searchResults"></div>
   </div>
+
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
     <div class="logout-modal-content">
@@ -2561,32 +2271,25 @@
       </div>
     </div>
   </div>
-  <div class="search-container" id="searchContainer">
-    <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." aria-label="جست‌وجوی محصولات" />
-    <div class="search-results" id="searchResults"></div>
-  </div>
+
   <main class="main-container">
     <section class="product-section">
-      <div class="product-detail">
+      <div class="product-detail" id="productDetailBox">
         <div class="product-gallery">
-  <img src="" alt="" class="product-main-image" id="detail-image">
-  <div class="product-thumbnails" id="thumbnails-container">
-    <!-- اینجا با JS پر می‌شه -->
-  </div>
-</div>
+          <img src="" alt="" class="product-main-image skeleton" id="detail-image">
+          <div class="product-thumbnails" id="thumbnails-container">
+            <!-- با JS پر می‌شه -->
+          </div>
+        </div>
         <div class="product-content">
           <h1 class="product-title" id="detail-title">در حال بارگذاری...</h1>
+          <div id="detail-category" class="weight-badge" style="display:none;"></div>
           <p class="product-desc" id="detail-desc"></p>
           <ul class="product-desc">
-              <li id="detail-ingredients"></li>
-              <li id="detail-nutrition_info "></li>
+              <li id="detail-ingredients" style="display:none;"></li>
           </ul>
-          <div class="size-selector" role="radiogroup" aria-label="انتخاب سایز">
-            <button class="size-btn active" data-size="300" data-price="45000" role="radio" aria-checked="true" tabindex="0">۳۰۰g</button>
-            <button class="size-btn" data-size="480" data-price="60000" role="radio" aria-checked="false" tabindex="-1">۴۸۰g</button>
-            <button class="size-btn" data-size="560" data-price="75000" role="radio" aria-checked="false" tabindex="-1">۵۶۰g</button>
-          </div>
-         
+          <div class="size-selector" id="sizeSelector" style="display:none;" role="radiogroup" aria-label="انتخاب سایز"></div>
+
           <div class="quantity-section">
             <label for="quantity">تعداد:</label>
             <div class="quantity-control">
@@ -2595,103 +2298,64 @@
               <button class="quantity-btn" onclick="changeQuantity(1)" aria-label="افزایش تعداد">+</button>
             </div>
           </div>
-         
-          <div class="build-meal" aria-label="انتخاب مواد اضافی">
-            <label class="ingredient" onclick="this.classList.toggle('active'); updatePrice()" role="checkbox" aria-checked="true" tabindex="0">
-              <input type="checkbox" checked>
-              <img src="https://placehold.co/50x50/FFD700/000000?text=پنیر" alt="پنیر" loading="lazy loading">
-              <span></span>
-            </label>
-            <label class="ingredient" onclick="this.classList.toggle('active'); updatePrice()" role="checkbox" aria-checked="true" tabindex="0">
-              <input type="checkbox" checked>
-              <img src="https://placehold.co/50x50/FF6347/FFFFFF?text=گوجه" alt="گوجه" loading="lazy loading">
-              <span></span>
-            </label>
-            <label class="ingredient" onclick="this.classList.toggle('active'); updatePrice()" role="checkbox" aria-checked="false" tabindex="0">
-              <input type="checkbox">
-              <img src="https://placehold.co/50x50/32CD32/FFFFFF?text=سبزی" alt="سبزیجات" loading="lazy loading">
-              <span></span>
-            </label>
-          </div>
-         
-          <button class="add-to-cart" aria-label="اضافه کردن به سبد خرید" onclick="addToCart()">
+
+          <!-- بخش build-meal (مواد اضافی) به طور کامل حذف شد -->
+
+          <button class="add-to-cart" id="addToCartBtn" aria-label="اضافه کردن به سبد خرید" onclick="addMainProductToCart()" disabled>
             <span>+ ۱ -</span>
-            <span class="price-display"><span id="detail-price"></span> تومان</span>
+            <span class="price-display"><span id="detail-price">...</span> تومان</span>
             <span>اضافه به سبد</span>
           </button>
         </div>
       </div>
-     
-     <section class="recommendations">
-  <h2 id="complementaryTitle">پیشنهادهای همراه</h2>
-  <div class="rec-grid" id="complementaryGrid">
-    <!-- محصولات پیشنهادی با JS اینجا inject می‌شوند -->
-  </div>
-</section>
+
+      <section class="recommendations">
+        <h2 id="complementaryTitle">پیشنهادهای همراه</h2>
+        <div class="rec-grid" id="complementaryGrid">
+          <!-- محصولات پیشنهادی با JS اینجا inject می‌شوند -->
+        </div>
+      </section>
 
       <section class="other-products">
-  <h2>خریداران دیگر نیز این‌ها را مشاهده کردند</h2>
-  <div class="slider-container">
-    <div class="slider-track" id="sliderTrack"></div>
-  </div>
-</section>
-
+        <h2>خریداران دیگر نیز این‌ها را مشاهده کردند</h2>
+        <div class="slider-container">
+          <button class="slider-nav prev" onclick="slidePrev()" aria-label="قبلی">‹</button>
+          <div class="slider-track" id="sliderTrack"></div>
+          <button class="slider-nav next" onclick="slideNext()" aria-label="بعدی">›</button>
+        </div>
+      </section>
     </section>
+
     <aside class="cart-panel">
       <div class="cart-header">
         <span>سبد خرید من</span>
-        <select aria-label="تعداد اقلام در سبد">
-          <option>۳ مورد</option>
+        <select aria-label="تعداد اقلام در سبد" id="cartCountSelect">
+          <option>۰ مورد</option>
         </select>
       </div>
-      <div class="cart-item" role="listitem">
-        <img src="https://placehold.co/50x50/E5E7EB/4B5563?text=بریانی" alt="مرغ بریانی" loading="lazy loading">
-        <span>مرغ بریانی (۳۸۰g)</span>
-        <div class="quantity">
-          <button class="quantity-btn" aria-label="کاهش تعداد مرغ بریانی" onclick="updateQty('biryani', -1)">-</button>
-          <span id="biryani-qty" aria-label="تعداد: ۱">۱</span>
-          <button class="quantity-btn" aria-label="افزایش تعداد مرغ بریانی" onclick="updateQty('biryani', 1)">+</button>
-        </div>
-        <span>۳۸,۰۰۰ تومان</span>
+      <div id="cartItemsContainer">
+        <p style="text-align:center;color:var(--text-dark);padding:1rem 0;">سبد خرید شما خالی است</p>
       </div>
-      <div class="cart-item" role="listitem">
-        <img src="https://placehold.co/50x50/E5E7EB/4B5563?text=پیتزا" alt="پیتزا کروست" loading="lazy loading">
-        <span>پیتزا کروست سوپریم (۴۶۰g)</span>
-        <div class="quantity">
-          <button class="quantity-btn" aria-label="کاهش تعداد پیتزا" onclick="updateQty('pizza', -1)">-</button>
-          <span id="pizza-qty" aria-label="تعداد: ۱">۱</span>
-          <button class="quantity-btn" aria-label="افزایش تعداد پیتزا" onclick="updateQty('pizza', 1)">+</button>
-        </div>
-        <span>۴۶,۰۰۰ تومان</span>
-      </div>
-      <div class="cart-item" role="listitem">
-        <img src="https://placehold.co/50x50/E5E7EB/4B5563?text=نوشیدنی" alt="گریپ بریز" loading="lazy loading">
-        <span>گریپ بریز (۳۵۰ml)</span>
-        <div class="quantity">
-          <button class="quantity-btn" aria-label="کاهش تعداد نوشیدنی" onclick="updateQty('drink', -1)">-</button>
-          <span id="drink-qty" aria-label="تعداد: ۱">۱</span>
-          <button class="quantity-btn" aria-label="افزایش تعداد نوشیدنی" onclick="updateQty('drink', 1)">+</button>
-        </div>
-        <span>۲۱,۵۰۰ تومان</span>
-      </div>
-     
+
       <div class="promo-section">
         <input type="text" class="promo-input" id="promoCode" placeholder="کد تخفیف" aria-label="وارد کردن کد تخفیف">
         <button class="apply-promo-btn" onclick="applyPromo()" aria-label="اعمال کد تخفیف">اعمال کد تخفیف</button>
         <div class="discount" id="discount" aria-live="polite"></div>
       </div>
-     
+
       <div class="delivery-free" aria-label="تحویل رایگان">تحویل: رایگان</div>
-      <div class="total" id="total-price" aria-live="polite">۱۰۵,۵۰۰ تومان</div>
+      <div class="total" id="total-price" aria-live="polite">۰ تومان</div>
       <button class="confirm-btn" onclick="confirmOrder()" aria-label="تأیید و پرداخت سفارش">تأیید سفارش</button>
     </aside>
   </main>
+
   <div class="support-widget" id="supportWidget">
     <p class="text">برای دریافت مشاوره و مشاهده جدیدترین آیتم‌ها به ما در ارتباط باشید</p>
     <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
     <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
     <a href="tel:09142830328">تماس</a>
   </div>
+
   <footer>
     <h2><i class="fas fa-building"></i> فیروزه</h2>
     <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
@@ -2732,13 +2396,23 @@
       </a>
     </div>
   </footer>
-  <!-- reCAPTCHA for security -->
-  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+
   <script>
-    // Service Worker for PWA
+    /* =========================================================
+       تنظیمات اتصال به بک‌اند
+       ========================================================= */
+    const API_BASE = "http://127.0.0.1:8000";
+    const API_PRODUCTS_PUBLIC = `${API_BASE}/api/products/public/`;
+    const API_CATEGORIES_PUBLIC = `${API_BASE}/api/products/public/categories/`;
+    const CART_API = `${API_BASE}/api/cart`;
+  </script>
+
+  <script>
+    // Service Worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {}); // Silent fail
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
+
     // DOM Elements Cache
     const elements = {
       body: document.body,
@@ -2768,74 +2442,39 @@
       logoutModal: document.getElementById('logoutModal'),
       confirmLogout: document.getElementById('confirmLogout'),
       cancelLogout: document.getElementById('cancelLogout'),
-      authModal: document.getElementById('authModal'),
-      closeAuthModal: document.getElementById('closeAuthModal'),
-      step1: document.getElementById('step1'),
-      step2: document.getElementById('step2'),
-      step3: document.getElementById('step3'),
-      nextToStep2: document.getElementById('nextToStep2'),
-      prevToStep1: document.getElementById('prevToStep1'),
-      nextToStep3: document.getElementById('nextToStep3'),
-      prevToStep2: document.getElementById('prevToStep2'),
-      authPhone: document.getElementById('authPhone'),
-      authPhoneError: document.getElementById('authPhoneError'),
-      authSuccess: document.getElementById('authSuccess'),
-      authCode: document.getElementById('authCode'),
-      authCodeError: document.getElementById('authCodeError'),
-      authTimer: document.getElementById('authTimer'),
-      authCountdown: document.getElementById('authCountdown'),
-      username: document.getElementById('username'),
-      usernameError: document.getElementById('usernameError'),
-      usernameStrength: document.getElementById('usernameStrength'),
-      characterCards: document.querySelectorAll('.character-card'),
-      confirmProfileBtn: document.getElementById('confirmProfileBtn'),
-      toggleAuthCode: document.getElementById('toggleAuthCode'),
-      resendCodeBtn: document.getElementById('resendCodeBtn'),
-      captchaQuestion: document.getElementById('captchaQuestion'),
-      captchaAnswer: document.getElementById('captchaAnswer'),
-      captchaError: document.getElementById('captchaError'),
-      supportWidget: document.getElementById('supportWidget')
+      supportWidget: document.getElementById('supportWidget'),
+      cartSidebar: document.getElementById('cartSidebar'),
+      cartSidebarClose: document.getElementById('cartSidebarClose'),
+      cartSidebarBody: document.getElementById('cartSidebarBody'),
+      cartSidebarEmpty: document.getElementById('cartSidebarEmpty'),
+      cartSidebarFoot: document.getElementById('cartSidebarFoot'),
+      cartSidebarTotal: document.getElementById('cartSidebarTotal'),
+      cartBadge: document.getElementById('cartBadge'),
+      cartLink: document.getElementById('cartLink'),
+      cartItemsContainer: document.getElementById('cartItemsContainer'),
+      cartCountSelect: document.getElementById('cartCountSelect'),
+      addToCartBtn: document.getElementById('addToCartBtn')
     };
-    // Product State
-    let basePrice = 45000;
+
+    // ============ Product / Cart State ============
+    let currentProduct = null;
+    let basePrice = 0;
     let quantity = 1;
-    let cart = {
-      biryani: { qty: 1, price: 38000 },
-      pizza: { qty: 1, price: 46000 },
-      drink: { qty: 1, price: 21500 }
-    };
-    let total = 105500;
-    let currentPromoIndex = 0;
+    let cartState = { items: [], total_items: 0, subtotal: 0, total: 0 };
     let discountAmount = 0;
-    // Auth State
-    let authCountdownInterval;
-    let authModalShown = false;
-    let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
-    let currentPhone = '';
-    let isNewUser = false;
-    let captchaNum1, captchaNum2, captchaResult;
-    let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
-    let lockTimer = 0;
-    const promoMessages = [
-      "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
-      "🍕 غذاهای تازه و خوشمزه هر روز!",
-      "⭐ تخفیف ویژه برای مشتریان وفادار!",
-      "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
-    ];
-    // Search suggestions
-    const searchSuggestions = [
-      "مینی برگر",
-      "سالاد کپرسه",
-      "پیتزا کروست",
-      "مرغ بریانی",
-      "لیموناد",
-      "دسر شکلاتی",
-      "مزه‌های گرم",
-      "سالاد فصل",
-      "سس گوجه",
-      "باکس الگانت"
-    ];
-    // Utility Functions
+    window.userData = null;
+
+    // Utility
+    function toFa(num) {
+      return Number(num || 0).toLocaleString('fa-IR');
+    }
+
+    function resolveImageUrl(url) {
+      if (!url) return 'https://placehold.co/600x400?text=بدون+تصویر';
+      if (/^https?:\/\//i.test(url)) return url;
+      return API_BASE.replace(/\/$/, '') + (url.startsWith('/') ? url : '/' + url);
+    }
+
     function debounce(fn, delay) {
       let timeoutId;
       return (...args) => {
@@ -2843,24 +2482,29 @@
         timeoutId = setTimeout(() => fn.apply(null, args), delay);
       };
     }
-    function updatePrice() {
-      let extra = 0;
-      document.querySelectorAll('.ingredient.active').forEach(ing => {
-        const match = ing.querySelector('span').textContent.match(/(\d+,?\d*)/);
-        extra += match ? parseInt(match[1].replace(/,/g, '')) : 0;
-      });
-      document.getElementById('item-price').textContent = ((basePrice + extra) * quantity).toLocaleString();
+
+    function escapeHTML(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
+
+    // تابع getExtrasTotal و متغیر EXTRA_PRICE حذف شدند
+
+    function updatePrice() {
+      const priceEl = document.getElementById('detail-price');
+      if (!currentProduct) return;
+      // فقط قیمت پایه * تعداد (بدون مواد اضافی)
+      const unit = basePrice;
+      priceEl.textContent = toFa(unit * quantity);
+    }
+
     function changeImage(thumbnail, imageUrl) {
-  // حذف کلاس active از همه thumbnailها
-  document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
-  // اضافه کردن active به thumbnail کلیک‌شده
-  thumbnail.classList.add('active');
-  // تغییر عکس اصلی
-  document.getElementById('detail-image').src = imageUrl;
-  document.getElementById('detail-image').alt = thumbnail.alt; // برای دسترسی‌پذیری بهتر
-}
-    // Quantity Controls
+      document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+      thumbnail.classList.add('active');
+      const mainImage = document.getElementById('detail-image');
+      mainImage.src = imageUrl;
+      mainImage.alt = thumbnail.alt;
+    }
+
     function changeQuantity(change) {
       quantity = Math.max(1, quantity + change);
       elements.quantityInput.value = quantity;
@@ -2871,7 +2515,8 @@
       elements.quantityInput.value = quantity;
       updatePrice();
     }
-    // Menu Controls (Fixed Scroll Issue)
+
+    // Menu Controls
     function openMenu() {
       elements.sideMenu.classList.add('active');
       elements.overlay.classList.add('active');
@@ -2879,8 +2524,8 @@
       elements.menuToggle.setAttribute('aria-expanded', 'true');
       elements.menuToggle.setAttribute('aria-label', 'بستن منو');
       elements.sideMenu.setAttribute('aria-hidden', 'false');
-      elements.body.style.overflow = 'hidden'; // Lock body scroll
-      elements.sideMenu.scrollTop = 0; // Reset scroll position
+      elements.body.style.overflow = 'hidden';
+      elements.sideMenu.scrollTop = 0;
       elements.sideMenu.focus();
     }
     function closeMenu() {
@@ -2890,9 +2535,10 @@
       elements.menuToggle.setAttribute('aria-expanded', 'false');
       elements.menuToggle.setAttribute('aria-label', 'باز کردن منو');
       elements.sideMenu.setAttribute('aria-hidden', 'true');
-      elements.body.style.overflow = ''; // Restore body scroll
+      elements.body.style.overflow = '';
       elements.menuToggle.focus();
     }
+
     function openSearch() {
       elements.searchContainer.classList.add('active');
       elements.overlay.classList.add('active');
@@ -2906,65 +2552,52 @@
       elements.searchInputLegacy.value = '';
       elements.searchResults.innerHTML = '';
     }
-    function performSearch(query) {
+
+    // Search
+    const performBackendSearch = debounce(async (query) => {
       elements.searchResults.innerHTML = '';
       if (!query.trim()) {
         elements.searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>';
         return;
       }
-      const content = [
-        ...document.querySelectorAll('.category-card strong, .category-card p, h1, p.lead, footer p, footer a, .story-content')
-      ].map(el => ({
-        text: el.textContent.trim(),
-        element: el
-      }));
-      const results = content.filter(item => item.text.toLowerCase().includes(query.toLowerCase()));
-      if (results.length === 0) {
-        elements.searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
-        return;
-      }
-      results.forEach(result => {
-        const div = document.createElement('div');
-        div.className = 'result-item';
-        div.textContent = result.text.slice(0, 50) + (result.text.length > 50 ? '...' : '');
-        div.addEventListener('click', () => {
-          result.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          closeSearch();
+      try {
+        const res = await fetch(`${API_PRODUCTS_PUBLIC}?search=${encodeURIComponent(query)}&page_size=8`);
+        if (!res.ok) throw new Error('search failed');
+        const data = await res.json();
+        const results = data.results || data;
+        if (!results.length) {
+          elements.searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
+          return;
+        }
+        results.forEach(p => {
+          const div = document.createElement('div');
+          div.className = 'result-item';
+          div.textContent = p.name;
+          div.addEventListener('click', () => {
+            window.location.href = `product.html?id=${p.id}`;
+          });
+          elements.searchResults.appendChild(div);
         });
-        elements.searchResults.appendChild(div);
-      });
-    }
-    function showSearchSuggestions(query) {
-      elements.searchResults.innerHTML = '';
-      if (!query.trim()) {
-        elements.searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>';
-        return;
+      } catch (err) {
+        elements.searchResults.innerHTML = '<div class="no-results">خطا در دریافت نتایج</div>';
       }
-      const suggestions = searchSuggestions.filter(item =>
-        item.toLowerCase().includes(query.toLowerCase())
-      );
-      if (suggestions.length === 0) {
-        elements.searchResults.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
-        return;
-      }
-      suggestions.forEach(suggestion => {
-        const div = document.createElement('div');
-        div.className = 'result-item';
-        div.textContent = suggestion;
-        div.addEventListener('click', () => {
-          elements.searchInput.value = suggestion;
-          elements.searchResults.innerHTML = '';
-          elements.clearSearch.classList.add('active');
-        });
-        elements.searchResults.appendChild(div);
-      });
-    }
+    }, 350);
+
+    // Promo text
+    const promoMessages = [
+      "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
+      "🍕 غذاهای تازه و خوشمزه هر روز!",
+      "⭐ تخفیف ویژه برای مشتریان وفادار!",
+      "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
+    ];
+    let currentPromoIndex = 0;
     function changePromoText() {
       const message = promoMessages[currentPromoIndex];
       elements.promoText.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       elements.promoTextMobile.innerHTML = `<i class="fas fa-bolt"></i> ${message}`;
       currentPromoIndex = (currentPromoIndex + 1) % promoMessages.length;
     }
+
     function updateTime() {
       const clock = document.getElementById('clock');
       if (typeof persianDate === 'undefined') {
@@ -2983,347 +2616,573 @@
       const persianDateObj = new persianDate(now);
       const persianDateStr = persianDateObj.format('D MMMM YYYY');
       clock.innerHTML = ` ${persianDateStr} - ${timeStr}`;
-    } 
+    }
+
     let currentSlide = 0;
-const slideWidth = 220;
+    const slideWidth = 220;
+    function slideNext() {
+      const track = document.getElementById('sliderTrack');
+      if (!track) return;
+      const items = track.children.length;
+      if (items === 0) return;
+      currentSlide = (currentSlide + 1) % items;
+      updateSlider();
+    }
+    function slidePrev() {
+      const track = document.getElementById('sliderTrack');
+      if (!track) return;
+      const items = track.children.length;
+      if (items === 0) return;
+      currentSlide = (currentSlide - 1 + items) % items;
+      updateSlider();
+    }
+    function updateSlider() {
+      const track = document.getElementById('sliderTrack');
+      if (!track) return;
+      const items = track.children.length;
+      if (items === 0) return;
+      currentSlide = Math.min(currentSlide, items - 1);
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
 
-function slideNext() {
-  const track = document.getElementById('sliderTrack');
-  if (!track) return;
+    // ============ CART API ============
+    function getCustomerToken(){ return localStorage.getItem('access'); }
 
-  const items = track.children.length;
-  if (items === 0) return;
+    async function cartFetch(path, options = {}){
+      const headers = Object.assign({}, options.headers || {});
+      if(options.body) headers['Content-Type'] = 'application/json';
+      const token = getCustomerToken();
+      if(token) headers['Authorization'] = `Bearer ${token}`;
 
-  currentSlide = (currentSlide + 1) % items;
-  updateSlider();
-}
+      const res = await fetch(CART_API + path, { ...options, headers, credentials: 'include' });
+      if(!res.ok){
+        const err = await res.json().catch(() => ({}));
+        throw err;
+      }
+      return res.json();
+    }
 
-function slidePrev() {
-  const track = document.getElementById('sliderTrack');
-  if (!track) return;
+    async function loadCart(){
+      try{
+        cartState = await cartFetch('/');
+      }catch(e){
+        console.error('خطا در دریافت سبد خرید:', e);
+        cartState = { items: [], total_items: 0, subtotal: 0, total: 0 };
+      }
+      renderCart();
+      renderCartPanel();
+    }
 
-  const items = track.children.length;
-  if (items === 0) return;
+    // Render cart sidebar
+    function renderCart(){
+      const badge = elements.cartBadge;
+      const body = elements.cartSidebarBody;
+      const empty = elements.cartSidebarEmpty;
+      const foot = elements.cartSidebarFoot;
+      const totalEl = elements.cartSidebarTotal;
 
-  currentSlide = (currentSlide - 1 + items) % items;
-  updateSlider();
-}
+      badge.textContent = cartState.total_items || 0;
 
-function updateSlider() {
-  const track = document.getElementById('sliderTrack');
-  if (!track) return;
+      if(!cartState.items || !cartState.items.length){
+        body.innerHTML = '';
+        empty.style.display = 'flex';
+        foot.style.display = 'none';
+        return;
+      }
+      empty.style.display = 'none';
+      foot.style.display = 'block';
 
-  const items = track.children.length;
-  if (items === 0) return;
-
-  currentSlide = Math.min(currentSlide, items - 1);
-  track.style.transform =
-    `translateX(-${currentSlide * slideWidth}px)`;
-}
-
-    // Cart Functions 
-    function createProductCard(product, isSlider = false) {
-  return `
-    <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
-      <div class="${isSlider ? 'other-product-item' : 'rec-item'}">
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
-        <div class="rec-content">
-          <p>${product.name}</p>
-          <div class="rating">⭐ ${product.rating || '۵.۰'}</div>
-          <span>${product.priceText}</span>
-          <button onclick="event.stopPropagation(); addToCart(${product.id}, ${product.price})">
-            <i class="fas fa-shopping-cart"></i>
-            افزودن به سبد
+      body.innerHTML = cartState.items.map(item => `
+        <div class="cart-sidebar-item" data-id="${item.id}">
+          <img src="${resolveImageUrl(item.product.image)}" alt="${item.product.name}">
+          <div class="cart-sidebar-item-info">
+            <div class="cart-sidebar-item-name">${item.product.name}</div>
+            <div class="cart-sidebar-item-price">${toFa(item.unit_price)} تومان</div>
+            <div class="cart-sidebar-item-qty">
+              <button class="qty-btn" type="button" data-action="dec" aria-label="کم کردن">−</button>
+              <span>${item.quantity}</span>
+              <button class="qty-btn" type="button" data-action="inc" aria-label="زیاد کردن">+</button>
+            </div>
+          </div>
+          <button class="cart-sidebar-item-remove" type="button" data-action="remove" title="حذف">
+            <i class="fas fa-trash"></i>
           </button>
         </div>
-      </div>
-    </a>
-  `;
-}
+      `).join('');
 
+      totalEl.textContent = toFa(cartState.total) + ' تومان';
 
-function loadComplementaryProducts(currentProduct, allProducts) {
-  const container = document.getElementById('complementaryGrid');
-  if (!container) return;
-
-  container.innerHTML = '';
-
-  const complementary = allProducts.filter(p =>
-    currentProduct.complementaryIds?.includes(p.id)
-  );
-
-  complementary.forEach(product => {
-    container.innerHTML += createProductCard(product);
-  });
-}
-//کد خریداران دیگر
-function loadAlsoViewedProducts(currentProduct, allProducts) {
-  const track = document.getElementById('sliderTrack');
-  if (!track) return;
-
-  track.innerHTML = '';
-
-  const products = allProducts
-    .filter(p => p.id !== currentProduct.id)
-    .map(p => {
-      let score = 0;
-
-      if (p.categoryId === currentProduct.categoryId) score += 2;
-
-      const commonTags = p.relatedTags?.filter(tag =>
-        currentProduct.relatedTags.includes(tag)
-      );
-      score += (commonTags?.length || 0) * 3;
-
-      if (p.sales > 200) score += 1;
-      if (p.rating >= 4.5) score += 1;
-
-      return { ...p, score };
-    })
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 6);
-
-  products.forEach(product => {
-    track.innerHTML += createProductCard(product, true);
-  });
-
-  updateSlider();
-}
-
-    function addToCart(item = 'main', price = basePrice) {
-      if (item === 'main') {
-        let extra = 0;
-        document.querySelectorAll('.ingredient.active').forEach(ing => {
-          const match = ing.querySelector('span').textContent.match(/(\d+,?\d*)/);
-          extra += match ? parseInt(match[1].replace(/,/g, '')) : 0;
-        });
-        cart[item] = { qty: quantity, price: basePrice + extra };
-        // Save to history
-        const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
-        history.push({ type: 'پاستا', date: new Date().toISOString() });
-        localStorage.setItem('orderHistory', JSON.stringify(history));
-      } else {
-        if (!cart[item]) cart[item] = { qty: 0, price };
-        cart[item].qty += 1;
-      }
-      updateCart();
-      alert('به سبد اضافه شد!');
-    }
-    function updateCart() {
-      total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
-      // Apply discount if exists
-      if (discountAmount > 0) {
-        const discountedTotal = total - discountAmount;
-        elements.totalPrice.textContent = discountedTotal.toLocaleString() + ' تومان';
-      } else {
-        elements.totalPrice.textContent = total.toLocaleString() + ' تومان';
-      }
-      const itemCount = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
-      document.querySelector('.cart-header select').innerHTML = `
-${itemCount} مورد</option>
-`;
-      // Update quantities in UI
-      Object.keys(cart).forEach(key => {
-        const qtyEl = document.getElementById(`${key}-qty`);
-        if (qtyEl) qtyEl.textContent = cart[key].qty;
+      body.querySelectorAll('.cart-sidebar-item').forEach(el => {
+        const id = el.dataset.id;
+        const item = cartState.items.find(i => String(i.id) === String(id));
+        if(!item) return;
+        el.querySelector('[data-action="inc"]').addEventListener('click', () => updateCartQty(id, item.quantity + 1));
+        el.querySelector('[data-action="dec"]').addEventListener('click', () => updateCartQty(id, item.quantity - 1));
+        el.querySelector('[data-action="remove"]').addEventListener('click', () => removeCartItem(id));
       });
     }
-    function updateQty(item, change) {
-      if (cart[item]) {
-        cart[item].qty = Math.max(1, cart[item].qty + change);
-        document.getElementById(`${item}-qty`).textContent = cart[item].qty;
-        updateCart();
+
+    // Render cart panel inside main page
+    function renderCartPanel(){
+      const container = elements.cartItemsContainer;
+      const countSelect = elements.cartCountSelect;
+
+      if(!cartState.items || !cartState.items.length){
+        container.innerHTML = '<p style="text-align:center;color:var(--text-dark);padding:1rem 0;">سبد خرید شما خالی است</p>';
+        countSelect.innerHTML = '<option>۰ مورد</option>';
+        updateCartTotalDisplay();
+        return;
+      }
+
+      container.innerHTML = cartState.items.map(item => `
+        <div class="cart-item" role="listitem" data-id="${item.id}">
+          <img src="${resolveImageUrl(item.product.image)}" alt="${item.product.name}" loading="lazy">
+          <span>${item.product.name}</span>
+          <div class="quantity">
+            <button class="quantity-btn" aria-label="کاهش تعداد" data-action="dec">-</button>
+            <span>${toFa(item.quantity)}</span>
+            <button class="quantity-btn" aria-label="افزایش تعداد" data-action="inc">+</button>
+          </div>
+          <span>${toFa(item.unit_price * item.quantity)} تومان</span>
+        </div>
+      `).join('');
+
+      countSelect.innerHTML = `<option>${toFa(cartState.total_items)} مورد</option>`;
+
+      container.querySelectorAll('.cart-item').forEach(el => {
+        const id = el.dataset.id;
+        const item = cartState.items.find(i => String(i.id) === String(id));
+        if(!item) return;
+        el.querySelector('[data-action="inc"]').addEventListener('click', () => updateCartQty(id, item.quantity + 1));
+        el.querySelector('[data-action="dec"]').addEventListener('click', () => {
+          if(item.quantity <= 1) removeCartItem(id);
+          else updateCartQty(id, item.quantity - 1);
+        });
+      });
+
+      updateCartTotalDisplay();
+    }
+
+    function updateCartTotalDisplay(){
+      const total = (cartState.total || 0) - discountAmount;
+      elements.totalPrice.textContent = toFa(Math.max(0, total)) + ' تومان';
+    }
+
+    async function addToCart(productId, qty = 1){
+      try{
+        await cartFetch('/items/', { method: 'POST', body: JSON.stringify({ product_id: productId, quantity: qty }) });
+        await loadCart();
+        openCartSidebar();
+      }catch(e){
+        alert(e.detail || 'خطا در افزودن محصول به سبد خرید');
       }
     }
+
+    async function updateCartQty(itemId, newQty){
+      try{
+        await cartFetch(`/items/${itemId}/`, { method: 'PATCH', body: JSON.stringify({ quantity: newQty }) });
+        await loadCart();
+      }catch(e){
+        alert('خطا در تغییر تعداد محصول');
+      }
+    }
+
+    async function removeCartItem(itemId){
+      try{
+        await cartFetch(`/items/${itemId}/`, { method: 'DELETE' });
+        await loadCart();
+      }catch(e){
+        alert('خطا در حذف محصول از سبد خرید');
+      }
+    }
+
+    function openCartSidebar(){
+      elements.cartSidebar.classList.add('active');
+      elements.cartSidebar.setAttribute('aria-hidden', 'false');
+      elements.overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCartSidebar(){
+      elements.cartSidebar.classList.remove('active');
+      elements.cartSidebar.setAttribute('aria-hidden', 'true');
+      elements.overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Add main product (with current quantity)
+    function addMainProductToCart() {
+      if (!currentProduct) return;
+      addToCart(currentProduct.id, quantity);
+    }
+
+    // ============ Product Cards ============
+    function createProductCard(product, isSlider = false) {
+      const cover = resolveImageUrl(product.images && product.images.length ? product.images[0].image : null);
+      const priceText = `${toFa(product.final_price)} تومان`;
+      return `
+        <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
+          <div class="${isSlider ? 'other-product-item' : 'rec-item'}">
+            <img src="${cover}" alt="${product.name}" loading="lazy">
+            <div class="rec-content">
+              <p>${product.name}</p>
+              <span>${priceText}</span>
+              <button onclick="event.preventDefault(); event.stopPropagation(); addToCart('${product.id}', 1)">
+                <i class="fas fa-shopping-cart"></i>
+                افزودن به سبد
+              </button>
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    // Load complementary products (same category)
+    async function loadComplementaryProducts(product) {
+      const container = document.getElementById('complementaryGrid');
+      if (!container) return;
+      container.innerHTML = '';
+      if (!product.category) return;
+      try {
+        const url = `${API_PRODUCTS_PUBLIC}?category=${product.category.id}&page_size=8`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        const items = (data.results || data).filter(p => p.id !== product.id).slice(0, 4);
+        if (!items.length) {
+          document.getElementById('complementaryTitle').style.display = 'none';
+          return;
+        }
+        items.forEach(p => container.innerHTML += createProductCard(p, false));
+      } catch (err) {
+        console.error('خطا در دریافت پیشنهادهای همراه', err);
+        document.getElementById('complementaryTitle').style.display = 'none';
+      }
+    }
+
+    // Load also viewed products
+    async function loadAlsoViewedProducts(product) {
+      const track = document.getElementById('sliderTrack');
+      if (!track) return;
+      track.innerHTML = '';
+      try {
+        const url = `${API_PRODUCTS_PUBLIC}?page_size=10&ordering=-created_at`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        const items = (data.results || data).filter(p => p.id !== product.id).slice(0, 6);
+        items.forEach(p => track.innerHTML += createProductCard(p, true));
+        updateSlider();
+      } catch (err) {
+        console.error('خطا در دریافت لیست محصولات مرتبط', err);
+      }
+    }
+
+    // ============ Promo & Confirm ============
     function applyPromo() {
       const code = elements.promoCode.value.trim();
+      const total = cartState.total || 0;
       if (code === 'FIROUZEH10') {
-        discountAmount = total * 0.1;
-        elements.discount.textContent = `تخفیف: -${Math.round(discountAmount).toLocaleString()} تومان`;
-        const discountedTotal = total - discountAmount;
-        elements.totalPrice.textContent = discountedTotal.toLocaleString() + ' تومان';
+        discountAmount = Math.round(total * 0.1);
+        elements.discount.textContent = `تخفیف: -${toFa(discountAmount)} تومان`;
       } else if (code === 'NEWCUSTOMER') {
         discountAmount = 20000;
-        elements.discount.textContent = `تخفیف: -${discountAmount.toLocaleString()} تومان`;
-        const discountedTotal = total - discountAmount;
-        elements.totalPrice.textContent = discountedTotal.toLocaleString() + ' تومان';
+        elements.discount.textContent = `تخفیف: -${toFa(discountAmount)} تومان`;
       } else {
         discountAmount = 0;
         elements.discount.textContent = 'کد تخفیف نامعتبر است';
-        elements.totalPrice.textContent = total.toLocaleString() + ' تومان';
       }
+      updateCartTotalDisplay();
     }
+
     function confirmOrder() {
-      // Mock reCAPTCHA
-      console.log('reCAPTCHA token generated');
-      alert('سفارش شما ثبت شد! به صفحه پرداخت منتقل می‌شوید.');
+      if (!cartState.items || !cartState.items.length) {
+        alert('سبد خرید شما خالی است.');
+        return;
+      }
+      window.location.href = 'checkout.html';
     }
-    // Scroll Animations
-    function initScrollAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-          }
+
+    // ============ Auth / Profile ============
+    async function getProfile() {
+      const token = localStorage.getItem('access');
+      if (!token) return null;
+      try {
+        const response = await fetch(`${API_BASE}/api/auth/profile/`, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.rec-item, .product-detail, .other-product-item').forEach(el => observer.observe(el));
-    }
-    // Auth Functions
-    function openAuthModalFunc() {
-      elements.authModal.classList.add('active');
-      elements.overlay.classList.add('active');
-      elements.body.style.overflow = 'hidden';
-      authModalShown = true;
-      resetAuthForm();
-      generateCaptcha();
-    }
-    function closeAuthModalFunc() {
-      elements.authModal.classList.remove('active');
-      elements.overlay.classList.remove('active');
-      elements.body.style.overflow = '';
-      resetAuthForm();
-    }
-    function resetAuthForm() {
-      elements.authPhone.value = '';
-      elements.authCode.value = '';
-      elements.username.value = '';
-      elements.captchaAnswer.value = '';
-      elements.authPhoneError.style.display = 'none';
-      elements.authCodeError.style.display = 'none';
-      elements.usernameError.style.display = 'none';
-      elements.captchaError.style.display = 'none';
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      elements.step1.classList.add('active');
-      elements.step2.classList.remove('active');
-      elements.step3.classList.remove('active');
-      elements.characterCards.forEach(card => card.classList.remove('selected'));
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-      failedAttempts = 0;
-      sessionStorage.setItem('failedAttempts', failedAttempts);
-      updateButtonStates();
-      updateUsernameStrength();
-    }
-    function validatePhone(phone) {
-      const regex = /^09[0-9]{9}$/;
-      return regex.test(phone);
-    }
-    function validateCode(code) {
-      return /^[0-9]{6}$/.test(code);
-    }
-    function validateUsername(name) {
-      return /^[a-zA-Z0-9]{3,}$/.test(name);
-    }
-    function validateCaptcha(answer) {
-      return parseInt(answer) === captchaResult;
-    }
-    function maskInput(input, regex) {
-      input.value = input.value.replace(regex, '');
-    }
-    function updateButtonStates() {
-      elements.nextToStep2.disabled = !validatePhone(elements.authPhone.value) || !validateCaptcha(elements.captchaAnswer.value);
-      elements.nextToStep3.disabled = !validateCode(elements.authCode.value);
-      elements.confirmProfileBtn.disabled = !validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
-    }
-    function updateUsernameStrength() {
-      const name = elements.username.value;
-      if (name.length < 3) {
-        elements.usernameStrength.className = 'username-strength weak';
-      } else if (name.length < 6) {
-        elements.usernameStrength.className = 'username-strength medium';
-      } else {
-        elements.usernameStrength.className = 'username-strength strong';
+        if (response.ok) return await response.json();
+        localStorage.removeItem('access');
+        return null;
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        return null;
       }
     }
-    function generateCaptcha() {
-      captchaNum1 = Math.floor(Math.random() * 10) + 1;
-      captchaNum2 = Math.floor(Math.random() * 10) + 1;
-      captchaResult = captchaNum1 + captchaNum2;
-      elements.captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
-    }
-    function showSpinner(button) {
-      button.innerHTML = '<div class="spinner"></div>';
-      button.disabled = true;
-    }
-    function hideSpinner(button, text) {
-      button.innerHTML = text;
-      button.disabled = false;
-    }
-    function simulateSendCode(phone) {
-      // Simulate API call
-      console.log('Code sent to:', phone);
-      // For demo, assume code is '123456'
-      return '123456';
-    }
-    function simulateVerifyCode(code, phone) {
-      // For demo, check if code is '123456'
-      if (code === '123456') {
-        // Check if user exists
-        if (sessionStorage.getItem(`user_${phone}`)) {
-          userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
-          isNewUser = false;
-        } else {
-          isNewUser = true;
-        }
-        return true;
-      }
-      return false;
-    }
-    function startCountdown(timerSeconds = 60) {
-      let seconds = timerSeconds;
-      elements.authCountdown.innerHTML = seconds;
-      elements.authTimer.style.display = 'block';
-      elements.resendCodeBtn.style.display = 'none';
-      authCountdownInterval = setInterval(() => {
-        seconds--;
-        elements.authCountdown.innerHTML = seconds;
-        if (seconds <= 0) {
-          clearInterval(authCountdownInterval);
-          elements.authTimer.style.display = 'none';
-          elements.resendCodeBtn.style.display = 'block';
-        }
-      }, 1000);
-    }
+
     function updateUserUI() {
-      if (userData) {
+      const token = localStorage.getItem('access');
+      if (token && window.userData) {
         elements.profileIcon.style.display = 'none';
-        const avatar = document.createElement('div');
-        avatar.className = 'user-avatar';
-        avatar.textContent = userData.character;
-        elements.userProfile.appendChild(avatar);
-        elements.userAvatar.textContent = userData.character;
-        elements.userName.textContent = escapeHTML(userData.username);
-      } else {
-        if (elements.userProfile.querySelector('.user-avatar')) {
-          elements.userProfile.querySelector('.user-avatar').remove();
+        let avatar = elements.userProfile.querySelector('.user-avatar');
+        if (!avatar) {
+          avatar = document.createElement('div');
+          avatar.className = 'user-avatar';
+          elements.userProfile.appendChild(avatar);
         }
+        avatar.textContent = window.userData.character || '👤';
+        elements.userAvatar.textContent = window.userData.character || '👤';
+        elements.userName.textContent = escapeHTML(window.userData.username || 'کاربر');
+      } else {
+        const avatar = elements.userProfile.querySelector('.user-avatar');
+        if (avatar) avatar.remove();
         elements.profileIcon.style.display = 'block';
       }
     }
-    function escapeHTML(str) {
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+    function setupLoginRedirect() {
+      const currentPath = window.location.pathname;
+      const queryString = window.location.search;
+      elements.userProfile.href = `login.html?redirect=${encodeURIComponent(currentPath + queryString)}`;
     }
-    // Support Widget Visibility
+
+    // ============ Load Product Detail ============
+    async function loadProductDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+      const box = document.getElementById('productDetailBox');
+
+      if (!productId) {
+        box.innerHTML = `
+          <div class="load-error-box">
+            <h1>محصولی مشخص نشده است</h1>
+            <p>لینک این صفحه باید شامل شناسه محصول باشد (مثلاً product.html?id=...)</p>
+            <a href="finger-food.html">بازگشت به فروشگاه</a>
+          </div>`;
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_PRODUCTS_PUBLIC}${productId}/`);
+        if (res.status === 404) {
+          box.innerHTML = `
+            <div class="load-error-box">
+              <h1>محصول مورد نظر یافت نشد :(</h1>
+              <a href="finger-food.html">بازگشت به فروشگاه</a>
+            </div>`;
+          return;
+        }
+        if (!res.ok) throw new Error('خطای سرور');
+
+        const product = await res.json();
+        currentProduct = product;
+        basePrice = Number(product.final_price);
+
+        document.getElementById('detail-title').textContent = product.name;
+        document.getElementById('detail-title').classList.remove('skeleton');
+        document.getElementById('detail-desc').textContent = product.description || '';
+        document.title = product.name + ' - فینگرفود فیروزه';
+
+        if (product.category) {
+          const catEl = document.getElementById('detail-category');
+          catEl.textContent = product.category.name;
+          catEl.style.display = 'inline-block';
+        }
+
+        if (product.weight_value && product.weight_unit) {
+          const sizeSelector = document.getElementById('sizeSelector');
+          sizeSelector.style.display = 'flex';
+          const unitFa = product.weight_unit === 'kg' ? 'کیلوگرم' : 'گرم';
+          sizeSelector.innerHTML = `<button class="size-btn active" type="button" disabled>${toFa(product.weight_value)} ${unitFa}</button>`;
+        }
+
+        if (product.raw_materials && product.raw_materials.length) {
+          const li = document.getElementById('detail-ingredients');
+          li.textContent = 'مواد اولیه: ' + product.raw_materials.join('، ');
+          li.style.display = 'list-item';
+        }
+
+        const priceEl = document.getElementById('detail-price');
+        priceEl.classList.remove('skeleton');
+        if (product.discount_percent && Number(product.discount_percent) > 0) {
+          priceEl.parentElement.insertAdjacentHTML('afterbegin',
+            `<span class="old-price">${toFa(product.price)} تومان</span><span class="discount-badge">${toFa(product.discount_percent)}% تخفیف</span>`);
+        }
+        updatePrice();
+
+        const addBtn = elements.addToCartBtn;
+        if (!product.is_active) {
+          addBtn.disabled = true;
+          addBtn.querySelector('span:last-child').textContent = 'ناموجود';
+        } else {
+          addBtn.disabled = false;
+        }
+
+        const mainImage = document.getElementById('detail-image');
+        const thumbnailsContainer = document.getElementById('thumbnails-container');
+        mainImage.classList.remove('skeleton');
+
+        if (product.images && product.images.length > 0) {
+          const urls = product.images.map(img => resolveImageUrl(img.image));
+          mainImage.src = urls[0];
+          mainImage.alt = product.name + ' - تصویر اصلی';
+
+          thumbnailsContainer.innerHTML = '';
+          urls.forEach((url, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = url;
+            thumb.alt = `${product.name} - عکس ${index + 1}`;
+            thumb.className = 'product-thumbnail';
+            thumb.loading = 'lazy';
+            if (index === 0) thumb.classList.add('active');
+            thumb.onclick = function () { changeImage(this, url); };
+            thumbnailsContainer.appendChild(thumb);
+          });
+        } else {
+          mainImage.src = 'https://placehold.co/600x400?text=بدون+تصویر';
+          mainImage.alt = product.name + ' - تصویر اصلی';
+          thumbnailsContainer.innerHTML = '';
+        }
+
+        loadComplementaryProducts(product);
+        loadAlsoViewedProducts(product);
+
+      } catch (err) {
+        console.error('خطا در دریافت اطلاعات محصول', err);
+        box.innerHTML = `
+          <div class="load-error-box">
+            <h1>مشکلی در ارتباط با سرور پیش آمد</h1>
+            <p>لطفاً از روشن بودن سرور بک‌اند و صحیح بودن آدرس API_BASE مطمئن شوید.</p>
+            <a href="finger-food.html">بازگشت به فروشگاه</a>
+          </div>`;
+      }
+    }
+
+    // ============ Categories Menu ============
+    async function loadCategoriesMenu() {
+      const list = document.getElementById('categoriesSubMenu');
+      if (!list) return;
+      try {
+        const res = await fetch(API_CATEGORIES_PUBLIC);
+        if (!res.ok) throw new Error('fetch failed');
+        const cats = await res.json();
+        if (!cats.length) return;
+        list.innerHTML = cats.map(c =>
+          `<li><a href="finger-food.html?category=${c.id}">${c.name}</a></li>`
+        ).join('');
+      } catch (err) {
+        console.error('خطا در دریافت دسته‌بندی‌ها', err);
+      }
+    }
+
+    // ============ تابع visibility ویجت پشتیبانی (رفع باگ اصلی) ============
     function handleSupportWidgetVisibility() {
       const footer = document.querySelector('footer');
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-     
-      // If footer is visible in viewport, hide support widget
       if (footerRect.top < windowHeight && footerRect.bottom >= 0) {
         elements.supportWidget.classList.add('hidden');
       } else {
         elements.supportWidget.classList.remove('hidden');
       }
     }
-    // Main Image Click Handler
+
+    // ============ Event Listeners ============
+    elements.menuToggle.addEventListener('click', () => {
+      if (elements.sideMenu.classList.contains('active')) closeMenu();
+      else openMenu();
+    });
+    elements.closeBtn.addEventListener('click', closeMenu);
+
+    elements.userProfile.addEventListener('click', (e) => {
+      if (window.userData) {
+        e.preventDefault();
+        elements.userMenu.classList.toggle('active');
+      }
+    });
+
+    elements.logoutBtn.addEventListener('click', () => {
+      elements.userMenu.classList.remove('active');
+      elements.logoutModal.classList.add('active');
+      elements.overlay.classList.add('active');
+    });
+
+    elements.confirmLogout.addEventListener('click', () => {
+      localStorage.removeItem('access');
+      window.userData = null;
+      updateUserUI();
+      elements.logoutModal.classList.remove('active');
+      elements.overlay.classList.remove('active');
+      window.location.reload();
+    });
+
+    elements.cancelLogout.addEventListener('click', () => {
+      elements.logoutModal.classList.remove('active');
+      elements.overlay.classList.remove('active');
+    });
+
+    document.querySelector('.search-icon').addEventListener('click', () => {
+      if (elements.searchInput.value.trim()) {
+        window.location.href = `finger-food.html?search=${encodeURIComponent(elements.searchInput.value.trim())}`;
+      } else {
+        openSearch();
+      }
+    });
+
+    elements.overlay.addEventListener('click', () => {
+      closeMenu();
+      closeSearch();
+      elements.userMenu.classList.remove('active');
+      elements.logoutModal.classList.remove('active');
+      closeCartSidebar();
+    });
+
+    elements.searchInputLegacy.addEventListener('input', (e) => {
+      performBackendSearch(e.target.value);
+    });
+
+    elements.searchInput.addEventListener("input", (e) => {
+      elements.clearSearch.classList.toggle('active', e.target.value.length > 0);
+      performBackendSearch(e.target.value);
+    });
+
+    elements.clearSearch.addEventListener("click", () => {
+      elements.searchInput.value = '';
+      elements.clearSearch.classList.remove('active');
+      elements.searchInput.focus();
+      elements.searchResults.innerHTML = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        closeSearch();
+        elements.userMenu.classList.remove('active');
+        elements.logoutModal.classList.remove('active');
+        closeCartSidebar();
+      }
+    });
+
+    window.addEventListener('scroll', handleSupportWidgetVisibility);
+
+    elements.cartLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCartSidebar();
+    });
+    elements.cartSidebarClose.addEventListener('click', closeCartSidebar);
+
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
     function handleMainImageClick() {
-      const mainImage = document.getElementById('mainImage');
+      const mainImage = document.getElementById('detail-image');
       if (mainImage) {
         mainImage.addEventListener('click', function() {
-          // Create modal for image
+          if (!this.src) return;
           const modal = document.createElement('div');
           modal.style.position = 'fixed';
           modal.style.top = '0';
@@ -3336,381 +3195,52 @@ ${itemCount} مورد</option>
           modal.style.alignItems = 'center';
           modal.style.zIndex = '2000';
           modal.style.cursor = 'pointer';
-         
           const img = document.createElement('img');
           img.src = this.src;
           img.style.maxWidth = '90%';
           img.style.maxHeight = '90%';
           img.style.borderRadius = '10px';
-         
           modal.appendChild(img);
           document.body.appendChild(modal);
-         
-          // Close on click
           modal.addEventListener('click', function() {
             document.body.removeChild(modal);
           });
         });
       }
     }
-    // Event Listeners
-    elements.menuToggle.addEventListener('click', () => {
-      if (elements.sideMenu.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-    elements.closeBtn.addEventListener('click', closeMenu);
-    elements.userProfile.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (userData) {
-        elements.userMenu.classList.toggle('active');
-      } else {
-        openAuthModalFunc();
-      }
-    });
-    elements.closeAuthModal.addEventListener('click', closeAuthModalFunc);
-    elements.authPhone.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.captchaAnswer.addEventListener('input', () => {
-      elements.captchaError.style.display = validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.nextToStep2.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!validateCaptcha(elements.captchaAnswer.value)) {
-        elements.captchaError.style.display = 'block';
-        return;
-      }
-      elements.captchaError.style.display = 'none';
-      const phone = elements.authPhone.value;
-      if (!validatePhone(phone)) {
-        elements.authPhoneError.style.display = 'block';
-        return;
-      }
-      elements.authPhoneError.style.display = 'none';
-      currentPhone = phone;
-      showSpinner(elements.nextToStep2);
-      setTimeout(() => {
-        simulateSendCode(phone);
-        elements.authSuccess.style.display = 'block';
-        elements.step1.classList.remove('active');
-        elements.step2.classList.add('active');
-        hideSpinner(elements.nextToStep2, 'بعدی');
-        let timer = failedAttempts > 5 ? 300 : 60;
-        startCountdown(timer);
-      }, 1000); // Simulate delay
-    });
-    elements.prevToStep1.addEventListener('click', () => {
-      elements.step2.classList.remove('active');
-      elements.step1.classList.add('active');
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-    });
-    elements.authCode.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-    elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-    elements.authCode.addEventListener('paste', (e) => e.preventDefault());
-    elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-    elements.nextToStep3.addEventListener('click', (e) => {
-      e.preventDefault();
-      const code = elements.authCode.value;
-      showSpinner(elements.nextToStep3);
-      setTimeout(() => {
-        if (simulateVerifyCode(code, currentPhone)) {
-          failedAttempts = 0;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.style.display = 'none';
-          hideSpinner(elements.nextToStep3, 'تأیید');
-          if (isNewUser) {
-            elements.step2.classList.remove('active');
-            elements.step3.classList.add('active');
-            elements.username.value = `user${currentPhone.slice(-4)}`;
-            updateUsernameStrength();
-            updateButtonStates();
-          } else {
-            sessionStorage.setItem('userData', JSON.stringify(userData));
-            updateUserUI();
-            closeAuthModalFunc();
-            alert('ورود موفق!');
+
+    function handleMobileOptimizations() {
+      // فقط برای اطمینان از عدم تداخل با CSS – هیچ دستکاری مستقیم style انجام نمی‌دهیم
+    }
+
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
           }
-        } else {
-          failedAttempts++;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (failedAttempts % 6)}`;
-          elements.authCodeError.style.display = 'block';
-          if (failedAttempts >= 5) {
-            console.error('Too many failed attempts');
-            elements.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-            elements.nextToStep3.disabled = true;
-            lockTimer = 300; // 5 minutes lock
-            setTimeout(() => {
-              elements.nextToStep3.disabled = false;
-              failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', failedAttempts);
-            }, lockTimer * 1000);
-          }
-          hideSpinner(elements.nextToStep3, 'تأیید');
-        }
-      }, 1000);
-    });
-    elements.resendCodeBtn.addEventListener('click', () => {
-      simulateSendCode(currentPhone);
-      let timer = failedAttempts > 5 ? 300 : 60;
-      startCountdown(timer);
-    });
-    elements.toggleAuthCode.addEventListener('click', () => {
-      const type = elements.authCode.type === 'password' ? 'text' : 'password';
-      elements.authCode.type = type;
-      elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-    });
-    elements.prevToStep2.addEventListener('click', () => {
-      elements.step3.classList.remove('active');
-      elements.step2.classList.add('active');
-    });
-    elements.username.addEventListener('input', (e) => {
-      maskInput(e.target, /[^a-zA-Z0-9]/g);
-      elements.usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
-      updateUsernameStrength();
-      updateButtonStates();
-    });
-    elements.characterCards.forEach(card => {
-      card.addEventListener('click', () => {
-        elements.characterCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        updateButtonStates();
-      });
-    });
-    elements.confirmProfileBtn.addEventListener('click', () => {
-      const name = elements.username.value;
-      const selectedChar = document.querySelector('.character-card.selected');
-      if (!validateUsername(name)) {
-        elements.usernameError.style.display = 'block';
-        return;
-      }
-      if (!selectedChar) {
-        alert('لطفاً یک کاراکتر انتخاب کنید');
-        return;
-      }
-      elements.usernameError.style.display = 'none';
-      userData = {
-        phone: currentPhone,
-        username: name,
-        character: selectedChar.dataset.char
-      };
-      sessionStorage.setItem(`user_${currentPhone}`, JSON.stringify(userData));
-      sessionStorage.setItem('userData', JSON.stringify(userData));
-      updateUserUI();
-      closeAuthModalFunc();
-      alert('ثبت‌نام موفق!');
-    });
-    elements.logoutBtn.addEventListener('click', () => {
-      elements.userMenu.classList.remove('active');
-      elements.logoutModal.classList.add('active');
-      elements.overlay.classList.add('active');
-    });
-    elements.confirmLogout.addEventListener('click', () => {
-      userData = null;
-      sessionStorage.removeItem('userData');
-      updateUserUI();
-      elements.logoutModal.classList.remove('active');
-      elements.overlay.classList.remove('active');
-    });
-    elements.cancelLogout.addEventListener('click', () => {
-      elements.logoutModal.classList.remove('active');
-      elements.overlay.classList.remove('active');
-    });
-    document.querySelector('.search-icon').addEventListener('click', () => {
-      if (elements.searchInput.value.trim()) {
-        console.log('جستجو برای:', elements.searchInput.value);
-      } else {
-        openSearch();
-      }
-    });
-    elements.overlay.addEventListener('click', () => {
-      closeMenu();
-      closeSearch();
-      elements.userMenu.classList.remove('active');
-      elements.logoutModal.classList.remove('active');
-      closeAuthModalFunc();
-    });
-    elements.searchInputLegacy.addEventListener('input', (e) => {
-      performSearch(e.target.value);
-    });
-    elements.searchInput.addEventListener("input", (e) => {
-      elements.clearSearch.classList.toggle('active', e.target.value.length > 0);
-      showSearchSuggestions(e.target.value);
-    });
-    elements.clearSearch.addEventListener("click", () => {
-      elements.searchInput.value = '';
-      elements.clearSearch.classList.remove('active');
-      elements.searchInput.focus();
-      elements.searchResults.innerHTML = '';
-    });
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-        closeSearch();
-        elements.userMenu.classList.remove('active');
-        elements.logoutModal.classList.remove('active');
-        closeAuthModalFunc();
-      }
-    });
-    // Scroll event for support widget
-    window.addEventListener('scroll', handleSupportWidgetVisibility);
-    // Initialize
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.rec-item, .product-detail, .other-product-item').forEach(el => observer.observe(el));
+    }
+
+    // ============ Init ============
     updateTime();
     setInterval(updateTime, 1000);
     setInterval(changePromoText, 5000);
     initScrollAnimations();
-    updateSlider(); // Initial slider position
-    updatePrice(); // Initial price
-    updateCart(); // Initial cart
-    updateUserUI(); // Initial user UI
-    handleSupportWidgetVisibility(); // Initial widget visibility
-    handleMainImageClick(); // Add click handler for main image
-    // Size Buttons
-    document.querySelectorAll('.size-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        basePrice = parseInt(btn.dataset.price);
-        updatePrice();
-      });
-    });
-    // Categories Tabs
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.category-btn').forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-      });
-    });
-    // Auto open auth modal after 1 minute if not logged in
-    setTimeout(() => {
-      if (!authModalShown && !userData) {
-        openAuthModalFunc();
-      }
-    }, 60000); // 1 minute
-    // Mobile-specific optimizations
-    function handleMobileOptimizations() {
-      const isMobile = window.innerWidth <= 576;
-     
-      if (isMobile) {
-        // Optimize product gallery for mobile
-        const thumbnails = document.querySelector('.product-thumbnails');
-        if (thumbnails) {
-          thumbnails.style.flexWrap = 'wrap';
-          thumbnails.style.justifyContent = 'center';
-        }
-       
-        // Optimize cart items for mobile
-        const cartItems = document.querySelectorAll('.cart-item');
-        cartItems.forEach(item => {
-          item.style.flexDirection = 'row-reverse';
-          item.style.justifyContent = 'flex-end';
-          item.style.gap = '8px';
-        });
-       
-        // Optimize recommendations for mobile
-        const recGrid = document.querySelector('.rec-grid');
-        if (recGrid) {
-          recGrid.style.gridTemplateColumns = '1fr';
-        }
-      }
-    }
-    // Call on load and resize
+    setupLoginRedirect();
+    (async () => {
+      window.userData = await getProfile();
+      updateUserUI();
+    })();
+    handleSupportWidgetVisibility();
+    handleMainImageClick();
     handleMobileOptimizations();
     window.addEventListener('resize', handleMobileOptimizations);
-  </script>
-  <script src="data.js" defer></script>
-  <script defer>
-    // منتظر می‌مونیم تا data.js کامل لود بشه
-    window.addEventListener('dataLoaded', () => {
-      // حالا مطمئنیم products و productsDatabase موجود هستن
-
-      // 1. گرفتن ID از URL
-      const params = new URLSearchParams(window.location.search);
-      const productId = parseInt(params.get('id'));
-
-      // 2. پیدا کردن محصول اصلی
-      const product = productsDatabase.find(p => p.id === productId);
-
-      if (product) {
-        // پر کردن جزئیات محصول
-        document.getElementById('detail-image').src = product.image || 'placeholder.jpg';
-        document.getElementById('detail-title').textContent = product.name;
-        document.getElementById('detail-desc').textContent = product.description || '';
-        document.getElementById('detail-price').textContent = product.priceText || '۰ تومان';
-// --- گالری تصاویر داینامیک ---
-const mainImage = document.getElementById('detail-image');
-const thumbnailsContainer = document.getElementById('thumbnails-container');
-
-// اولویت: اگر آرایه images در محصول وجود داشت، از اون استفاده کن
-if (product.images && product.images.length > 0) {
-  // عکس اصلی = اولین تصویر آرایه
-  mainImage.src = product.images[0];
-  mainImage.alt = product.name + ' - تصویر اصلی';
-
-  // ساخت thumbnails
-  thumbnailsContainer.innerHTML = ''; // خالی کردن (برای اطمینان)
-  product.images.forEach((url, index) => {
-    const thumb = document.createElement('img');
-    thumb.src = url;
-    thumb.alt = `${product.name} - عکس ${index + 1}`;
-    thumb.className = 'product-thumbnail';
-    thumb.loading = 'lazy';
-    if (index === 0) thumb.classList.add('active'); // اولین thumbnail فعال باشه
-
-    thumb.onclick = function() {
-      changeImage(this, url);
-    };
-
-    thumbnailsContainer.appendChild(thumb);
-  });
-} else {
-  // fallback: اگر images نبود، فقط از image تک استفاده کن (thumbnails نساز)
-  mainImage.src = product.image || 'https://placehold.co/600x400?text=بدون+تصویر';
-  mainImage.alt = product.name + ' - تصویر اصلی';
-  thumbnailsContainer.innerHTML = ''; // thumbnails خالی بمونه
-}
-        if (product.details) {
-          const ingredientsEl = document.getElementById('detail-ingredients');
-          const nutritionEl = document.getElementById('detail-nutrition_info ');
-          if (ingredientsEl) ingredientsEl.textContent = "مواد اولیه: " + product.details.ingredients;
-          if (nutritionEl) nutritionEl.textContent = "ویژگی تغذیه‌ای: " + product.details.nutrition_info;
-        }
-
-        document.title = product.name + " - فینگرفود فیروزه";
-
-        // 3. لود پیشنهادهای همراه و خریداران دیگر
-        loadComplementaryProducts(product, products);
-        loadAlsoViewedProducts(product, products);
-
-      } else {
-        document.querySelector('.product-detail').innerHTML = 
-          '<h1>محصول مورد نظر یافت نشد :(</h1><a href="finger-food.html">بازگشت به فروشگاه</a>';
-      }
-    });
-
-    // اگر data.js قبلاً لود شده باشه (مثلاً کش شده)، فوراً اجرا کن
-    if (window.products && window.productsDatabase) {
-      window.dispatchEvent(new Event('dataLoaded'));
-    }
-    
+    loadCart();
+    loadCategoriesMenu();
+    loadProductDetail();
   </script>
 </body>
 </html>

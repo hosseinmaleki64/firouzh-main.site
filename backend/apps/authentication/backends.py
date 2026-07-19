@@ -9,7 +9,11 @@ class PhoneBackend(ModelBackend):
         if phone is None:
             return None
 
-        phone = normalize_phone(phone)
+        try:
+            phone = normalize_phone(phone)
+        except (ValueError, TypeError):
+            # فرمت شماره نامعتبر است؛ به‌جای کرش ۵۰۰، فقط یعنی این کاربر پیدا نشد.
+            return None
 
         try:
             user = User.objects.get(phone=phone)

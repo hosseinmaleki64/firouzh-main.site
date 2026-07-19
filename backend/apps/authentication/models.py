@@ -65,6 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(
         max_length=13,
         unique=True,
+        validators=[validate_iranian_phone],
     )
 
     full_name = models.CharField(

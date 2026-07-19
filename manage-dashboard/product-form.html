@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>افزودن محصول جدید | پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A28;
+    --ink-soft:#4B6C66;
+    --ink-faint:#87A29C;
+    --bg:#F1FAF8;
+    --surface:#FFFFFF;
+    --surface-alt:#EAF7F4;
+    --turq:#0EA99A;
+    --turq-deep:#077A70;
+    --turq-darker:#065951;
+    --turq-pale:#D3F1EC;
+    --gold:#C9982F;
+    --gold-pale:#F6EAD2;
+    --red:#D14343;
+    --red-pale:#FBE7E5;
+    --border:#DCEEEA;
+    --shadow-sm:0 2px 10px rgba(7,90,80,.06);
+    --shadow-md:0 12px 32px rgba(7,90,80,.10);
+    --facet:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
+      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  .facet{
+    clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));
+  }
+
+  /* ===== Topbar ===== */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
+  .brand-mark{width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
+  .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .back-link{
+    display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);
+    padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);
+  }
+  .back-link:hover{color:var(--turq-deep);border-color:var(--turq);}
+  .back-link svg{width:15px;height:15px;}
+
+  main{max-width:1080px;margin:0 auto;padding:30px 24px 100px;}
+
+  .page-head{margin-bottom:22px;}
+  .page-head h1{font-size:22px;font-weight:800;margin:0 0 4px;}
+  .page-head p{margin:0;color:var(--ink-soft);font-size:13px;}
+
+  .layout{display:flex;gap:22px;align-items:flex-start;}
+  .form-col{flex:1 1 620px;min-width:0;display:flex;flex-direction:column;gap:18px;}
+  .preview-col{flex:0 0 300px;position:sticky;top:96px;}
+
+  .card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:20px 22px;}
+  .card h2{margin:0 0 3px;font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:8px;}
+  .card h2 .num{
+    width:22px;height:22px;border-radius:50%;background:var(--turq-pale);color:var(--turq-darker);
+    font-size:11.5px;display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .card .sub{margin:0 0 16px;font-size:11.5px;color:var(--ink-faint);}
+  .optional-tag{font-size:10px;font-weight:700;color:var(--gold);background:var(--gold-pale);padding:2px 7px;border-radius:20px;margin-inline-start:6px;}
+
+  .field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{font-size:12.5px;font-weight:700;color:var(--ink-soft);}
+  .input,select,textarea{
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;
+    padding:10px 12px;font-size:13px;color:var(--ink);outline:none;width:100%;
+  }
+  .input:focus,select:focus,textarea:focus{border-color:var(--turq);background:#fff;}
+  textarea{resize:vertical;min-height:70px;line-height:1.7;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .hint{font-size:11px;color:var(--ink-faint);margin-top:2px;}
+  .error-msg{font-size:11px;color:var(--red);margin-top:2px;display:none;}
+  .field.has-error .input,.field.has-error select{border-color:var(--red);background:var(--red-pale);}
+  .field.has-error .error-msg{display:block;}
+
+  /* category */
+  .cat-toggle{display:flex;gap:8px;margin-bottom:10px;}
+  .cat-toggle button{
+    flex:1;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface-alt);
+    font-size:12.5px;font-weight:700;color:var(--ink-soft);
+  }
+  .cat-toggle button.active{background:var(--turq-deep);color:#fff;border-color:var(--turq-deep);}
+  .cat-panel{display:none;}
+  .cat-panel.open{display:block;}
+
+  /* tags */
+  .tag-input-box{
+    border:1px solid var(--border);background:var(--surface-alt);border-radius:8px;padding:7px 8px;
+    display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:42px;
+  }
+  .tag-input-box input{border:none;background:none;outline:none;flex:1 1 120px;font-size:13px;padding:4px 2px;}
+  .tag-chip{background:var(--gold-pale);color:var(--gold);font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:20px;display:flex;align-items:center;gap:5px;}
+  .tag-chip button{background:none;border:none;color:var(--gold);font-size:13px;padding:0;}
+
+  /* dropzone */
+  .dropzone{
+    border:1.5px dashed var(--turq);border-radius:12px;background:var(--turq-pale);
+    padding:26px 16px;text-align:center;position:relative;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .dropzone.drag{background:#c6ece5;}
+  .dropzone svg{width:30px;height:30px;color:var(--turq-deep);}
+  .dropzone b{font-size:13px;color:var(--turq-darker);}
+  .dropzone span{font-size:11.5px;color:var(--turq-deep);}
+  .dropzone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+
+  .img-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .img-item{position:relative;width:78px;height:78px;flex:none;}
+  .img-item img{width:100%;height:100%;object-fit:cover;border-radius:8px;border:1px solid var(--border);}
+  .img-item .cover-badge{
+    position:absolute;bottom:3px;right:3px;left:3px;background:rgba(6,89,81,.85);color:#fff;font-size:9px;
+    text-align:center;border-radius:5px;padding:1px 0;
+  }
+  .img-item button{
+    position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;
+    border:2px solid #fff;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;
+  }
+
+  /* actions */
+  .actions-bar{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:16px 20px;
+  }
+  .btn{border:none;padding:11px 20px;font-size:13px;font-weight:700;border-radius:9px;}
+  .btn-primary{background:linear-gradient(135deg,var(--turq),var(--turq-deep));color:#fff;box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{filter:brightness(1.05);}
+  .btn-ghost{background:var(--surface-alt);color:var(--ink-soft);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-deep);}
+  .btn:disabled{opacity:.55;cursor:not-allowed;}
+  .actions-right{display:flex;gap:10px;}
+
+  /* preview card */
+  .preview-label{font-size:11.5px;font-weight:700;color:var(--ink-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .preview-label svg{width:13px;height:13px;}
+  .preview-card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-md);overflow:hidden;}
+  .preview-img{width:100%;height:180px;object-fit:cover;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:12px;}
+  .preview-img img{width:100%;height:100%;object-fit:cover;}
+  .preview-body{padding:14px 16px 16px;}
+  .preview-cat{display:inline-block;background:var(--turq-pale);color:var(--turq-darker);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:8px;}
+  .preview-name{font-size:14.5px;font-weight:800;margin:0 0 4px;}
+  .preview-desc{font-size:11.5px;color:var(--ink-soft);margin:0 0 10px;line-height:1.6;min-height:16px;}
+  .preview-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+  .meta-pill{font-size:10px;background:var(--surface-alt);border:1px solid var(--border);color:var(--ink-soft);padding:2px 8px;border-radius:20px;}
+  .preview-price{display:flex;align-items:baseline;gap:8px;}
+  .preview-price b{font-size:16px;font-weight:800;color:var(--turq-darker);}
+  .preview-price .old{font-size:11px;color:var(--ink-faint);text-decoration:line-through;}
+  .preview-price .disc{font-size:10.5px;color:var(--gold);font-weight:700;}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
+    opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--red);}
+
+  @media(max-width:880px){
+    .layout{flex-direction:column-reverse;}
+    .preview-col{position:static;width:100%;}
+    .grid-2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div>پنل محصولات<small>افزودن محصول جدید</small></div>
+  </div>
+  <a class="back-link" href="products.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    بازگشت به لیست محصولات
+  </a>
+</header>
+
+<main>
+  <div class="page-head">
+    <h1>افزودن محصول جدید</h1>
+    <p>اطلاعات محصول را وارد کنید. با ثبت، محصول در دسته‌بندی انتخابی‌ات در سایت نمایش داده می‌شود.</p>
+  </div>
+
+  <form id="productForm">
+    <div class="layout">
+
+      <div class="form-col">
+
+        <!-- ۱. اطلاعات پایه -->
+        <div class="card facet">
+          <h2><span class="num">۱</span>اطلاعات محصول</h2>
+          <p class="sub">نام و توضیح کوتاهی که در سایت نمایش داده می‌شود</p>
+          <div class="field" id="fieldName">
+            <label>نام محصول</label>
+            <input class="input" id="pName" placeholder="مثلاً سیب‌زمینی منجمد کلاسیک">
+            <div class="error-msg">نام محصول را وارد کنید</div>
+          </div>
+          <div class="field">
+            <label>توضیح کوتاه<span class="optional-tag">اختیاری</span></label>
+            <textarea id="pDescription" placeholder="یک یا دو خط درباره محصول…"></textarea>
+          </div>
+        </div>
+
+        <!-- ۲. دسته‌بندی -->
+        <div class="card facet">
+          <h2><span class="num">۲</span>دسته‌بندی</h2>
+          <p class="sub">هر محصول باید به یک دسته‌بندی تعلق داشته باشد</p>
+          <div class="cat-toggle">
+            <button type="button" class="active" id="catExistingBtn">انتخاب از دسته‌بندی‌های موجود</button>
+            <button type="button" id="catNewBtn">ساخت دسته‌بندی جدید</button>
+          </div>
+          <div class="cat-panel open" id="catExistingPanel">
+            <div class="field" id="fieldCategory">
+              <select id="pCategory"><option value="">در حال بارگذاری…</option></select>
+              <div class="error-msg">یک دسته‌بندی انتخاب کنید</div>
+            </div>
+            <div class="field" style="margin-top:6px;">
+              <label>عکس این دسته‌بندی<span class="optional-tag">اختیاری</span></label>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div id="existingCatImagePreview" style="width:48px;height:48px;border-radius:8px;overflow:hidden;background:var(--surface-alt);border:1px solid var(--border);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-faint);">—</div>
+                <label class="btn btn-ghost" style="cursor:pointer;position:relative;overflow:hidden;font-weight:700;padding:9px 14px;">
+                  تغییر عکس این دسته‌بندی
+                  <input type="file" id="existingCatImageUpload" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+                </label>
+              </div>
+              <div class="hint">با انتخاب عکس، بلافاصله عکس همین دسته‌بندی روی سرور آپدیت می‌شود.</div>
+            </div>
+          </div>
+          <div class="cat-panel" id="catNewPanel">
+            <div class="field" id="fieldNewCategory">
+              <input class="input" id="pNewCategoryName" placeholder="نام دسته‌بندی جدید، مثلاً «پک‌های ترکیبی»">
+              <div class="error-msg">نام دسته‌بندی جدید را وارد کنید</div>
+              <div class="hint">این محصول اولین عضو دسته‌بندی جدید خواهد بود.</div>
+            </div>
+            <div class="field" style="margin-top:6px;">
+              <label>عکس دسته‌بندی جدید<span class="optional-tag">اختیاری</span></label>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div id="newCatImagePreview" style="width:48px;height:48px;border-radius:8px;overflow:hidden;background:var(--surface-alt);border:1px solid var(--border);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-faint);">—</div>
+                <label class="btn btn-ghost" style="cursor:pointer;position:relative;overflow:hidden;font-weight:700;padding:9px 14px;">
+                  انتخاب عکس
+                  <input type="file" id="pNewCategoryImage" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ۳. عکس‌ها -->
+        <div class="card facet">
+          <h2><span class="num">۳</span>عکس‌های محصول<span class="optional-tag">اختیاری</span></h2>
+          <p class="sub">می‌توانید چند عکس از گالری دستگاه انتخاب کنید</p>
+          <label class="dropzone" id="dropzone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+            <b>عکس‌ها را بکشید و رها کنید</b>
+            <span>یا برای انتخاب از گالری کلیک کنید</span>
+            <input type="file" id="pImages" accept="image/*" multiple>
+          </label>
+          <div class="img-grid" id="imgGrid"></div>
+        </div>
+
+        <!-- ۴. قیمت‌گذاری -->
+        <div class="card facet">
+          <h2><span class="num">۴</span>قیمت‌گذاری</h2>
+          <div class="grid-2">
+            <div class="field" id="fieldPrice">
+              <label>قیمت (تومان)</label>
+              <input class="input" type="number" id="pPrice" placeholder="مثلاً 145000" min="0">
+              <div class="error-msg">قیمت را وارد کنید</div>
+            </div>
+            <div class="field">
+              <label>درصد تخفیف<span class="optional-tag">اختیاری</span></label>
+              <input class="input" type="number" id="pDiscount" placeholder="0" min="0" max="100">
+            </div>
+          </div>
+        </div>
+
+        <!-- ۵. وزن -->
+        <div class="card facet">
+          <h2><span class="num">۵</span>وزن محصول<span class="optional-tag">اختیاری</span></h2>
+          <div class="grid-2">
+            <div class="field">
+              <label>مقدار</label>
+              <input class="input" type="number" id="pWeightValue" placeholder="مثلاً 500" min="0">
+            </div>
+            <div class="field">
+              <label>واحد</label>
+              <select id="pWeightUnit">
+                <option value="">—</option>
+                <option value="g">گرم</option>
+                <option value="kg">کیلوگرم</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ۶. مواد اولیه و اجزا -->
+        <div class="card facet">
+          <h2><span class="num">۶</span>مواد اولیه و اجزای تشکیل‌دهنده<span class="optional-tag">اختیاری</span></h2>
+          <p class="sub">مثلاً برای یک پک، اجزای داخل آن را وارد کنید</p>
+          <div class="field">
+            <label>مواد اولیه</label>
+            <div class="tag-input-box" id="rawBox"><input placeholder="مثلاً سیب‌زمینی — اینتر بزنید" id="rawInput"></div>
+          </div>
+          <div class="field">
+            <label>اجزای تشکیل‌دهنده / محتویات پک</label>
+            <div class="tag-input-box" id="compBox"><input placeholder="مثلاً خمیر پیتزا — اینتر بزنید" id="compInput"></div>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <a href="products.html" class="btn btn-ghost">انصراف</a>
+          <div class="actions-right">
+            <button type="submit" class="btn btn-ghost" id="saveAndNewBtn">ثبت و افزودن محصول دیگر</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn">ثبت محصول</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="preview-col">
+        <div class="preview-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          پیش‌نمایش نمایش در سایت
+        </div>
+        <div class="preview-card facet">
+          <div class="preview-img" id="previewImg">بدون عکس</div>
+          <div class="preview-body">
+            <span class="preview-cat" id="previewCat">بدون دسته‌بندی</span>
+            <p class="preview-name" id="previewName">نام محصول</p>
+            <p class="preview-desc" id="previewDesc"></p>
+            <div class="preview-meta" id="previewMeta"></div>
+            <div class="preview-price">
+              <b id="previewPrice">۰ تومان</b>
+              <span class="old" id="previewOld"></span>
+              <span class="disc" id="previewDisc"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   اتصال به بک‌اند Django/DRF (apps/products)
+   base url باید همونی باشه که urls.py اصلی پروژه با اون
+   include(apps.products.urls) رو مونت کرده — مثلاً:
+   path('api/products/', include('apps.products.urls'))
+   ========================================================= */
+const API_ORIGIN = "http://127.0.0.1:8000"; // اگه پورت جنگو فرق داره، فقط همین رو عوض کن
+const API_BASE = `${API_ORIGIN}/api/products`;
+
+function toAbsoluteMediaUrl(path){
+  if(!path) return '';
+  return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+}
+const AUTH_TOKEN = localStorage.getItem('admin_access_token') || ''; // باید با کلیدی که موقع لاگین ست می‌کنی یکی باشه
+const USE_MOCK_FALLBACK = false; // چون الان بک‌اند واقعی سرپاست، خطای واقعی رو ببینیم
+
+function authHeaders(json=true){
+  const h = {};
+  if(json) h['Content-Type']='application/json';
+  if(AUTH_TOKEN) h['Authorization'] = `Bearer ${AUTH_TOKEN}`;
+  return h;
+}
+const mockCategories = [
+  {id:'c1', name:'سیب‌زمینی منجمد'},
+  {id:'c2', name:'سس‌ها'},
+  {id:'c3', name:'پک‌های ترکیبی'},
+];
+
+function toast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError?' error':'');
+  setTimeout(()=>t.className='toast', 2600);
+}
+function fmt(n){ return Number(n||0).toLocaleString('fa-IR'); }
+
+/* ---------------- دسته‌بندی ---------------- */
+const catExistingBtn = document.getElementById('catExistingBtn');
+const catNewBtn = document.getElementById('catNewBtn');
+const catExistingPanel = document.getElementById('catExistingPanel');
+const catNewPanel = document.getElementById('catNewPanel');
+let usingNewCategory = false;
+
+catExistingBtn.addEventListener('click', ()=>{
+  usingNewCategory = false;
+  catExistingBtn.classList.add('active'); catNewBtn.classList.remove('active');
+  catExistingPanel.classList.add('open'); catNewPanel.classList.remove('open');
+  updatePreview();
+});
+catNewBtn.addEventListener('click', ()=>{
+  usingNewCategory = true;
+  catNewBtn.classList.add('active'); catExistingBtn.classList.remove('active');
+  catNewPanel.classList.add('open'); catExistingPanel.classList.remove('open');
+  updatePreview();
+});
+
+let categoriesCache = []; // آرایه‌ی کامل دسته‌بندی‌ها (شامل id, name, image)
+
+async function loadCategories(){
+  // GET /api/products/categories/  -> CategoryListAPIView (pagination_class=None پس آرایه‌ی ساده برمی‌گرده)
+  const sel = document.getElementById('pCategory');
+  try{
+    const res = await fetch(API_BASE + '/categories/', {headers: authHeaders(false)});
+    if(!res.ok) throw new Error('status ' + res.status);
+    let data = await res.json();
+    // اگر یه‌روزی پجینیشن روی این endpoint هم فعال شد، هم آرایه‌ی خام و هم {results:[...]} رو پشتیبانی می‌کنیم
+    if(!Array.isArray(data) && Array.isArray(data.results)) data = data.results;
+    categoriesCache = Array.isArray(data) ? data : [];
+    if(categoriesCache.length === 0){
+      sel.innerHTML = '<option value="">هنوز دسته‌بندی‌ای ثبت نشده — از تب «ساخت دسته‌بندی جدید» استفاده کنید</option>';
+      updateExistingCatImagePreview();
+      return;
+    }
+    sel.innerHTML = categoriesCache.map(c=>`<option value="${c.id}" data-name="${c.name}">${c.name}</option>`).join('');
+  }catch(e){
+    if(!USE_MOCK_FALLBACK){ sel.innerHTML='<option value="">خطا در بارگذاری دسته‌بندی‌ها</option>'; categoriesCache=[]; updateExistingCatImagePreview(); return; }
+    categoriesCache = mockCategories;
+    sel.innerHTML = mockCategories.map(c=>`<option value="${c.id}" data-name="${c.name}">${c.name}</option>`).join('');
+  }
+  updateExistingCatImagePreview();
+  updatePreview();
+}
+
+/* ---------------- عکس دسته‌بندی (موجود یا جدید) ---------------- */
+function updateExistingCatImagePreview(){
+  const box = document.getElementById('existingCatImagePreview');
+  if(!box) return;
+  const sel = document.getElementById('pCategory');
+  const cat = categoriesCache.find(c => c.id === sel.value);
+  if(cat && cat.image){
+    box.innerHTML = `<img src="${toAbsoluteMediaUrl(cat.image)}" style="width:100%;height:100%;object-fit:cover;">`;
+  }else{
+    box.innerHTML = 'بدون عکس';
+  }
+}
+document.getElementById('pCategory').addEventListener('change', updateExistingCatImagePreview);
+
+// آپلود/تغییر فوری عکس یک دسته‌بندیِ از قبل موجود -> PATCH /api/products/categories/{id}/
+document.getElementById('existingCatImageUpload').addEventListener('change', async (e)=>{
+  const file = e.target.files[0];
+  const sel = document.getElementById('pCategory');
+  const catId = sel.value;
+  if(!file) return;
+  if(!catId){ toast('اول یک دسته‌بندی انتخاب کنید', true); e.target.value=''; return; }
+
+  const fd = new FormData();
+  fd.append('image', file);
+  try{
+    const res = await fetch(`${API_BASE}/categories/${catId}/`, {
+      method: 'PATCH',
+      headers: authHeaders(false),
+      body: fd
+    });
+    if(!res.ok){
+      let err = {};
+      try{ err = await res.json(); }catch(_){}
+      throw new Error(Object.values(err).flat().join(' — ') || 'خطا در آپلود عکس دسته‌بندی');
+    }
+    const updated = await res.json();
+    const idx = categoriesCache.findIndex(c=>c.id===catId);
+    if(idx>-1) categoriesCache[idx] = { ...categoriesCache[idx], image: updated.image };
+    updateExistingCatImagePreview();
+    toast('عکس دسته‌بندی به‌روزرسانی شد');
+  }catch(err){
+    toast(err.message || 'خطا در آپلود عکس دسته‌بندی', true);
+  }finally{
+    e.target.value = '';
+  }
+});
+
+// فقط پیش‌نمایش لوکال برای عکس دسته‌بندی جدید؛ فایل واقعی موقع ثبت فرم ارسال می‌شود
+let stagedNewCategoryImageFile = null;
+document.getElementById('pNewCategoryImage').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  stagedNewCategoryImageFile = file || null;
+  const box = document.getElementById('newCatImagePreview');
+  if(file){
+    box.innerHTML = `<img src="${URL.createObjectURL(file)}" style="width:100%;height:100%;object-fit:cover;">`;
+  }else{
+    box.innerHTML = '—';
+  }
+});
+
+/* ---------------- تگ‌های مواد اولیه / اجزا ---------------- */
+function makeTagInput(boxId, inputId, arr, onChange){
+  const box = document.getElementById(boxId);
+  const input = document.getElementById(inputId);
+  function render(){
+    box.querySelectorAll('.tag-chip').forEach(c=>c.remove());
+    arr.forEach((val, idx)=>{
+      const chip = document.createElement('span');
+      chip.className='tag-chip';
+      chip.innerHTML = `${val}<button type="button">×</button>`;
+      chip.querySelector('button').addEventListener('click', ()=>{ arr.splice(idx,1); render(); onChange && onChange(); });
+      box.insertBefore(chip, input);
+    });
+  }
+  input.addEventListener('keydown', e=>{
+    if(e.key==='Enter' && input.value.trim()){
+      e.preventDefault();
+      arr.push(input.value.trim());
+      input.value='';
+      render();
+      onChange && onChange();
+    }
+  });
+  render();
+}
+const rawMaterials = [];
+const components = [];
+makeTagInput('rawBox','rawInput', rawMaterials, updatePreview);
+makeTagInput('compBox','compInput', components, updatePreview);
+
+/* ---------------- عکس‌ها ---------------- */
+let stagedImages = []; // {file, url}
+const dropzone = document.getElementById('dropzone');
+const imgGrid = document.getElementById('imgGrid');
+const imgInput = document.getElementById('pImages');
+
+function addFiles(fileList){
+  Array.from(fileList).forEach(file=>{
+    if(!file.type.startsWith('image/')) return;
+    stagedImages.push({file, url: URL.createObjectURL(file)});
+  });
+  renderImgGrid();
+  updatePreview();
+}
+imgInput.addEventListener('change', e=> addFiles(e.target.files));
+['dragover','dragenter'].forEach(ev=> dropzone.addEventListener(ev, e=>{ e.preventDefault(); dropzone.classList.add('drag'); }));
+['dragleave','drop'].forEach(ev=> dropzone.addEventListener(ev, e=>{ e.preventDefault(); dropzone.classList.remove('drag'); }));
+dropzone.addEventListener('drop', e=>{ if(e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+
+function renderImgGrid(){
+  imgGrid.innerHTML = stagedImages.map((img, idx)=>`
+    <div class="img-item">
+      <img src="${img.url}">
+      ${idx===0 ? '<div class="cover-badge">عکس اصلی</div>' : ''}
+      <button type="button" data-idx="${idx}">×</button>
+    </div>`).join('');
+  imgGrid.querySelectorAll('button[data-idx]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      stagedImages.splice(Number(b.dataset.idx),1);
+      renderImgGrid();
+      updatePreview();
+    });
+  });
+}
+
+/* ---------------- پیش‌نمایش زنده ---------------- */
+function updatePreview(){
+  const name = document.getElementById('pName').value.trim();
+  const desc = document.getElementById('pDescription').value.trim();
+  const price = Number(document.getElementById('pPrice').value || 0);
+  const discount = Number(document.getElementById('pDiscount').value || 0);
+  const weightValue = document.getElementById('pWeightValue').value;
+  const weightUnit = document.getElementById('pWeightUnit').value;
+
+  document.getElementById('previewName').textContent = name || 'نام محصول';
+  document.getElementById('previewDesc').textContent = desc;
+
+  let catName = 'بدون دسته‌بندی';
+  if(usingNewCategory){
+    const v = document.getElementById('pNewCategoryName').value.trim();
+    if(v) catName = v;
+  }else{
+    const sel = document.getElementById('pCategory');
+    const opt = sel.options[sel.selectedIndex];
+    if(opt && opt.dataset.name) catName = opt.dataset.name;
+  }
+  document.getElementById('previewCat').textContent = catName;
+
+  const imgBox = document.getElementById('previewImg');
+  if(stagedImages.length){
+    imgBox.innerHTML = `<img src="${stagedImages[0].url}">`;
+  }else{
+    imgBox.textContent = 'بدون عکس';
+  }
+
+  const metaBox = document.getElementById('previewMeta');
+  let metas = [];
+  if(weightValue) metas.push(`${fmt(weightValue)} ${weightUnit==='kg'?'کیلوگرم':'گرم'}`);
+  if(rawMaterials.length) metas.push(rawMaterials.join('، '));
+  if(components.length) metas.push(`شامل ${components.length} جزء`);
+  metaBox.innerHTML = metas.map(m=>`<span class="meta-pill">${m}</span>`).join('');
+
+  if(discount > 0 && price > 0){
+    const finalP = Math.round(price * (100-discount)/100);
+    document.getElementById('previewPrice').textContent = fmt(finalP) + ' تومان';
+    document.getElementById('previewOld').textContent = fmt(price);
+    document.getElementById('previewDisc').textContent = `٪${discount} تخفیف`;
+  }else{
+    document.getElementById('previewPrice').textContent = fmt(price) + ' تومان';
+    document.getElementById('previewOld').textContent = '';
+    document.getElementById('previewDisc').textContent = '';
+  }
+}
+['pName','pDescription','pPrice','pDiscount','pWeightValue','pWeightUnit','pNewCategoryName'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updatePreview);
+  document.getElementById(id).addEventListener('change', updatePreview);
+});
+document.getElementById('pCategory').addEventListener('change', updatePreview);
+
+/* ---------------- اعتبارسنجی و ثبت ---------------- */
+function setError(fieldId, hasError){
+  document.getElementById(fieldId).classList.toggle('has-error', hasError);
+}
+function validate(){
+  let ok = true;
+  const name = document.getElementById('pName').value.trim();
+  setError('fieldName', !name); if(!name) ok=false;
+
+  const price = document.getElementById('pPrice').value;
+  setError('fieldPrice', !price || Number(price) <= 0); if(!price || Number(price)<=0) ok=false;
+
+  const discount = document.getElementById('pDiscount').value;
+  if(discount !== '' && (Number(discount) < 0 || Number(discount) > 100)){
+    toast('درصد تخفیف باید بین ۰ تا ۱۰۰ باشد', true);
+    ok = false;
+  }
+
+  if(usingNewCategory){
+    const v = document.getElementById('pNewCategoryName').value.trim();
+    setError('fieldNewCategory', !v); if(!v) ok=false;
+  }else{
+    const v = document.getElementById('pCategory').value;
+    setError('fieldCategory', !v); if(!v) ok=false;
+  }
+  return ok;
+}
+
+function resetForm(){
+  document.getElementById('pName').value='';
+  document.getElementById('pDescription').value='';
+  document.getElementById('pPrice').value='';
+  document.getElementById('pDiscount').value='';
+  document.getElementById('pWeightValue').value='';
+  document.getElementById('pWeightUnit').value='';
+  document.getElementById('pNewCategoryName').value='';
+  document.getElementById('pNewCategoryImage').value='';
+  stagedNewCategoryImageFile = null;
+  document.getElementById('newCatImagePreview').innerHTML = '—';
+  rawMaterials.length = 0; components.length = 0;
+  makeTagInput('rawBox','rawInput', rawMaterials, updatePreview);
+  makeTagInput('compBox','compInput', components, updatePreview);
+  stagedImages = []; renderImgGrid();
+  ['fieldName','fieldPrice','fieldCategory','fieldNewCategory'].forEach(id=>setError(id,false));
+  updatePreview();
+  // بعد از ثبت موفق، دسته‌بندی‌ها رو دوباره می‌گیریم چون ممکنه یه دسته‌بندی جدید ساخته شده باشه
+  loadCategories();
+}
+
+let redirectAfterSave = true;
+
+document.getElementById('saveBtn').addEventListener('click', ()=>{ redirectAfterSave = true; });
+document.getElementById('saveAndNewBtn').addEventListener('click', ()=>{ redirectAfterSave = false; });
+
+document.getElementById('productForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  if(!validate()){ toast('لطفاً فیلدهای ضروری را تکمیل کنید', true); return; }
+
+  const submitBtns = [document.getElementById('saveBtn'), document.getElementById('saveAndNewBtn')];
+  submitBtns.forEach(b=>b.disabled = true);
+
+  // مطابق ProductWriteSerializer در apps/products/serializers.py
+  const fd = new FormData();
+  fd.append('name', document.getElementById('pName').value.trim());
+  fd.append('description', document.getElementById('pDescription').value.trim());
+  fd.append('price', document.getElementById('pPrice').value);
+  fd.append('discount_percent', document.getElementById('pDiscount').value || '0');
+  if(document.getElementById('pWeightValue').value) fd.append('weight_value', document.getElementById('pWeightValue').value);
+  if(document.getElementById('pWeightUnit').value) fd.append('weight_unit', document.getElementById('pWeightUnit').value);
+  // raw_materials/components روی مدل JSONField هستن؛ DRF's JSONField رشته‌ی JSON رو هم پارس می‌کنه
+  fd.append('raw_materials', JSON.stringify(rawMaterials));
+  fd.append('components', JSON.stringify(components));
+  fd.append('is_active', 'true');
+  if(usingNewCategory){
+    fd.append('new_category_name', document.getElementById('pNewCategoryName').value.trim());
+    if(stagedNewCategoryImageFile){
+      fd.append('new_category_image', stagedNewCategoryImageFile);
+    }
+  }else{
+    fd.append('category_id', document.getElementById('pCategory').value);
+  }
+  // چندین فایل با همون کلید 'images' -> request.FILES.getlist('images') در perform_create
+  stagedImages.forEach(img => fd.append('images', img.file));
+
+  try{
+    // POST /api/products/  -> ProductListCreateAPIView.post
+    const res = await fetch(API_BASE + '/', {
+      method:'POST',
+      headers: authHeaders(false), // بدون Content-Type؛ مرورگر خودش boundary رو ست می‌کنه
+      body: fd
+    });
+    if(!res.ok){
+      let err = {};
+      try{ err = await res.json(); }catch(_){}
+      const msg = Object.values(err).flat().join(' — ') || `خطا در ثبت محصول (کد ${res.status})`;
+      throw new Error(msg);
+    }
+    toast('محصول با موفقیت ثبت شد');
+    if(redirectAfterSave){
+      setTimeout(()=> window.location.href = 'products.html', 700);
+    }else{
+      resetForm();
+    }
+  }catch(e){
+    if(USE_MOCK_FALLBACK){
+      // بدون بک‌اند واقعی: فقط شبیه‌سازی موفقیت برای نمایش رفتار فرم
+      toast('(نمایشی) محصول ثبت شد — با اتصال بک‌اند واقعی، این درخواست به سرور ارسال می‌شود');
+      if(redirectAfterSave){
+        setTimeout(()=> window.location.href = 'products.html', 900);
+      }else{
+        resetForm();
+      }
+    }else{
+      toast(e.message || 'خطا در ثبت محصول', true);
+    }
+  }finally{
+    submitBtns.forEach(b=>b.disabled = false);
+  }
+});
+
+/* ---------------- Init ---------------- */
+loadCategories();
+updatePreview();
+</script>
+</body>
+</html>

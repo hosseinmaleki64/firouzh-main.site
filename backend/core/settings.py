@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     "apps.users",
     "django_filters",
     "apps.dashboard",
+    "apps.products", 
+    "apps.cart",
+    "apps.orders",
+    "apps.content",
 ]
 
 MIDDLEWARE = [
@@ -159,3 +163,28 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+# =========================================================
+# این بخش را در فایل settings.py اصلی پروژه (config/settings.py یا مشابه) اضافه کن.
+# مقادیر merchant_id واقعی و URL نهایی دامنه را موقع رفتن به Real باید عوض کنی؛
+# تا آن موقع همین‌ها برای sandbox کافی است.
+# =========================================================
+
+# --- زرین‌پال ---
+
+# merchant ID تستی زرین‌پال (برای sandbox همیشه همین مقدار کار می‌کند، نیازی به ثبت‌نام نیست):
+ZARINPAL_MERCHANT_ID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # <-- در sandbox هر UUID دلخواه هم قبول می‌شود
+
+ZARINPAL_SANDBOX = True  # موقع رفتن روی سرور اصلی: False کن و merchant_id واقعی رو جایگزین کن
+
+# آدرس صفحه‌ی نتیجه در فرانت (بعد از پرداخت، کاربر با query string به این آدرس ریدایرکت می‌شود)
+# در توسعه محلی معمولاً همون آدرسی که فرانت روش سرو می‌شه:
+FRONTEND_ORDER_RESULT_URL = "http://127.0.0.1:5500/order-result.html"  # <-- با آدرس واقعی فرانت خودت جایگزین کن
+
+# --- در INSTALLED_APPS چیز جدیدی لازم نیست؛ همه‌چیز داخل apps.orders اضافه شده ---

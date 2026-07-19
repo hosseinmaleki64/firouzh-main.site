@@ -553,8 +553,20 @@
   // ==========================================================
   const API_BASE_URL = "http://127.0.0.1:8000/api/auth";
 
-  // صفحه‌ای که بعد از لاگین موفق کاربر رو بهش هدایت می‌کنیم
-  const AFTER_LOGIN_REDIRECT = "index.html";
+  // ==========================================================
+  // اصلاح: خواندن redirect از URL و تعیین صفحه‌ی پس از لاگین
+  // ==========================================================
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectParam = urlParams.get('redirect');
+  let AFTER_LOGIN_REDIRECT = "index.html"; // پیش‌فرض
+
+  if (redirectParam) {
+    const decoded = decodeURIComponent(redirectParam);
+    // فقط مسیرهای داخلی را قبول کن (شروع با / یا نام فایل .html، نه http:// یا //)
+    if (decoded.startsWith('/') || /^[a-zA-Z0-9_-]+\.html/.test(decoded)) {
+      AFTER_LOGIN_REDIRECT = decoded;
+    }
+  }
 
   // ---------- سوییچ بین ورود / ثبت‌نام ----------
   const tabsWrap = document.getElementById('tabs');
@@ -656,7 +668,7 @@
   }
 
   // ==========================================================
-  // مرحله ۷: تابع loadProfile
+  // تابع loadProfile (همان)
   // ==========================================================
   async function loadProfile() {
     const token = localStorage.getItem("access");
@@ -684,7 +696,7 @@
   }
 
   // ==========================================================
-  // مرحله ۲ و ۳: فرم ورود
+  // فرم ورود
   // ==========================================================
   const loginForm = document.getElementById('loginForm');
   const loginMessage = document.getElementById('loginMessage');
@@ -706,7 +718,6 @@
 
     if(!ok) return;
 
-    // مرحله ۲: تغییر نام فیلد mobile به phone
     const loginData = {
       phone: mobile.value,
       password: pass.value
@@ -715,7 +726,6 @@
     setLoading(loginSubmitBtn, true, 'ورود');
 
     try {
-      // مرحله ۲: استفاده از API_BASE_URL
       const res = await fetch(`${API_BASE_URL}/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -729,15 +739,14 @@
         return;
       }
 
-      // مرحله ۳: ذخیره Token با نام‌های access و refresh
       if (data.access) {
         localStorage.setItem("access", data.access);
         localStorage.setItem("refresh", data.refresh);
 
-        // مرحله ۷: بارگذاری پروفایل بعد از لاگین موفق
         await loadProfile();
 
         showMessage(loginMessage, 'ورود با موفقیت انجام شد. در حال انتقال...', 'success');
+        // حالا از AFTER_LOGIN_REDIRECT که پویا تعیین شده استفاده می‌کنیم
         setTimeout(() => { window.location.href = AFTER_LOGIN_REDIRECT; }, 700);
       } else {
         alert("شماره یا رمز عبور اشتباه است.");
@@ -752,7 +761,7 @@
   });
 
   // ==========================================================
-  // مرحله ۴ و ۵ و ۶: فرم ثبت‌نام
+  // فرم ثبت‌نام (بدون تغییر)
   // ==========================================================
   const signupForm = document.getElementById('signupForm');
   const signupMessage = document.getElementById('signupMessage');
@@ -782,7 +791,6 @@
 
     if(!ok) return;
 
-    // مرحله ۴: نام فیلدها مطابق با API بک‌اند
     const signupData = {
       full_name: name.value.trim(),
       phone: mobile.value,
@@ -793,7 +801,6 @@
     setLoading(signupSubmitBtn, true, 'ثبت‌نام');
 
     try {
-      // مرحله ۴: استفاده از API_BASE_URL
       const res = await fetch(`${API_BASE_URL}/register/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -803,7 +810,6 @@
       const data = await res.json();
 
       if (!res.ok){
-        // مرحله ۶: نمایش خطاهای خاص
         if (data.phone) {
           alert(data.phone[0]);
         } else if (data.password) {
@@ -817,10 +823,8 @@
         return;
       }
 
-      // مرحله ۵: بعد از ثبت‌نام موفق
       alert("ثبت نام با موفقیت انجام شد.");
       activateTab("login");
-      // شماره موبایل رو در فرم ورود قرار می‌دهیم
       document.getElementById('loginMobile').value = mobile.value;
       signupForm.reset();
 
@@ -837,6 +841,7 @@
   document.getElementById('forgotBtn').addEventListener('click', () => supportModal.classList.add('open'));
   document.getElementById('closeModal').addEventListener('click', () => supportModal.classList.remove('open'));
   supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.remove('open'); });
+
 </script>
 
 </body>

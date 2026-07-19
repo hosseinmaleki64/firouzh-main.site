@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مقاله جدید | پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A28; --ink-soft:#4B6C66; --ink-faint:#87A29C;
+    --bg:#F1FAF8; --surface:#FFFFFF; --surface-alt:#EAF7F4;
+    --turq:#0EA99A; --turq-deep:#077A70; --turq-darker:#065951; --turq-pale:#D3F1EC;
+    --gold:#C9982F; --gold-pale:#F6EAD2; --red:#D14343; --red-pale:#FBE7E5;
+    --border:#DCEEEA; --shadow-sm:0 2px 10px rgba(7,90,80,.06); --shadow-md:0 12px 32px rgba(7,90,80,.10);
+    --facet:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
+      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink); min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+  .facet{clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));}
+
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;padding:18px 32px;
+    border-bottom:1px solid var(--border);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
+  .brand-mark{width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
+  .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .topbar-actions{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:13px;}
+  .topbar-actions b{color:var(--ink);font-weight:700;}
+  .logout-link{background:none;border:none;color:var(--red);font-size:12px;font-weight:700;}
+
+  main{max-width:1180px;margin:0 auto;padding:26px 24px 40px;}
+  .page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+  .breadcrumb{font-size:12px;color:var(--ink-faint);margin-bottom:4px;}
+  .breadcrumb a{color:var(--turq-deep);font-weight:700;}
+  .page-head h1{margin:0;font-size:20px;font-weight:800;}
+  .status-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;}
+  .status-badge::before{content:'';width:6px;height:6px;border-radius:50%;}
+  .status-badge.published{background:var(--turq-pale);color:var(--turq-darker);}
+  .status-badge.published::before{background:var(--turq);}
+  .status-badge.draft{background:var(--surface-alt);color:var(--ink-soft);}
+  .status-badge.draft::before{background:var(--ink-faint);}
+  .status-badge.archived{background:var(--gold-pale);color:var(--gold);}
+  .status-badge.archived::before{background:var(--gold);}
+
+  .form-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;}
+  @media(max-width:900px){.form-grid{grid-template-columns:1fr;}}
+
+  .form-card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:20px 22px;margin-bottom:16px;}
+  .form-card h3{margin:0 0 14px;font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--ink);}
+  .form-card .hint{margin:-8px 0 14px;font-size:11.5px;color:var(--ink-faint);}
+
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{font-size:12px;font-weight:700;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;}
+  .field label .req{color:var(--red);}
+  .input,select,textarea{
+    width:100%;background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;
+    padding:9px 11px;font-size:13px;color:var(--ink);outline:none;
+  }
+  .input:focus,select:focus,textarea:focus{border-color:var(--turq);background:#fff;}
+  textarea{resize:vertical;min-height:80px;line-height:1.8;}
+  .counter{font-size:11px;color:var(--ink-faint);font-weight:500;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.grid-2{grid-template-columns:1fr;}}
+
+  .field-row-btn{display:flex;gap:8px;align-items:center;}
+  .field-row-btn select{flex:1;}
+  .mini-btn{
+    flex:none;background:var(--surface-alt);border:1px solid var(--border);color:var(--ink-soft);
+    font-size:11.5px;font-weight:700;padding:9px 12px;border-radius:8px;white-space:nowrap;
+  }
+  .mini-btn:hover{border-color:var(--turq);color:var(--turq-deep);}
+
+  .manual-picker{position:relative;}
+  .manual-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .chip{background:var(--gold-pale);color:var(--gold);font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:20px;display:flex;align-items:center;gap:5px;}
+  .chip button{background:none;border:none;color:var(--gold);font-size:13px;line-height:1;padding:0;}
+  .manual-dropdown{
+    position:absolute;top:100%;right:0;left:0;margin-top:4px;background:#fff;border:1px solid var(--border);
+    border-radius:8px;box-shadow:var(--shadow-md);max-height:180px;overflow:auto;z-index:20;display:none;
+  }
+  .manual-dropdown.open{display:block;}
+  .manual-dropdown div{padding:8px 10px;font-size:12.5px;cursor:pointer;}
+  .manual-dropdown div:hover{background:var(--surface-alt);}
+  .manual-dropdown .empty{color:var(--ink-faint);cursor:default;}
+  .manual-dropdown .empty:hover{background:none;}
+
+  .cover-drop{
+    border:1.5px dashed var(--turq);border-radius:10px;background:var(--turq-pale);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    padding:30px 16px;cursor:pointer;position:relative;color:var(--turq-deep);font-size:12.5px;font-weight:700;text-align:center;
+  }
+  .cover-drop svg{width:26px;height:26px;}
+  .cover-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+  .cover-preview-wrap{position:relative;border-radius:10px;overflow:hidden;}
+  .cover-preview-img{width:100%;max-height:230px;object-fit:cover;display:block;background:var(--surface-alt);}
+  .cover-change-btn{
+    position:absolute;bottom:10px;left:10px;background:rgba(6,40,36,.72);color:#fff;font-size:11px;
+    padding:7px 13px;border-radius:20px;border:none;font-weight:700;
+  }
+
+  .radio-row{display:flex;gap:18px;flex-wrap:wrap;}
+  .radio-opt{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer;color:var(--ink);}
+  .radio-opt input{accent-color:var(--turq);width:16px;height:16px;}
+  .checkbox-row{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);}
+  .checkbox-row input{accent-color:var(--turq);width:15px;height:15px;}
+
+  /* Quill overrides */
+  .ql-toolbar.ql-snow{border-color:var(--border) !important;background:var(--surface-alt);border-radius:8px 8px 0 0;font-family:'Vazirmatn',sans-serif;}
+  .ql-container.ql-snow{border-color:var(--border) !important;border-radius:0 0 8px 8px;}
+  .ql-editor{direction:rtl;text-align:right;font-family:'Vazirmatn',sans-serif;font-size:13.5px;line-height:2;min-height:320px;}
+  .ql-editor.ql-blank::before{right:16px;left:auto;font-style:normal;color:var(--ink-faint);font-family:'Vazirmatn',sans-serif;}
+  .ql-snow .ql-picker{font-family:'Vazirmatn',sans-serif;}
+
+  /* Preview */
+  .preview-frame{position:sticky;top:90px;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .preview-frame-head{
+    background:var(--surface-alt);padding:9px 14px;font-size:11px;color:var(--ink-faint);font-weight:700;
+    border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;
+  }
+  .preview-dots{display:flex;gap:4px;}
+  .preview-dots span{width:6px;height:6px;border-radius:50%;background:var(--border);}
+  .preview-cover{width:100%;height:170px;object-fit:cover;background:var(--surface-alt);display:block;}
+  .preview-body{padding:18px;}
+  .preview-cat{display:inline-block;background:var(--turq-pale);color:var(--turq-darker);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+  .preview-title{font-size:16px;font-weight:800;margin:0 0 8px;line-height:1.6;}
+  .preview-excerpt{font-size:12px;color:var(--ink-soft);line-height:1.9;margin-bottom:14px;}
+  .preview-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
+  .preview-tags span{font-size:10px;color:var(--gold);background:var(--gold-pale);padding:2px 8px;border-radius:20px;font-weight:700;}
+  .preview-content{font-size:12px;line-height:1.9;color:var(--ink);max-height:340px;overflow:auto;border-top:1px dashed var(--border);padding-top:14px;}
+  .preview-content img{max-width:100%;border-radius:6px;}
+  .preview-empty{color:var(--ink-faint);font-size:12px;text-align:center;padding:20px 0;}
+
+  .form-actions{
+    position:sticky;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
+    border-top:1px solid var(--border);padding:14px 4px;display:flex;justify-content:flex-end;gap:10px;margin-top:6px;
+  }
+  .btn{border:none;padding:11px 22px;font-size:13px;font-weight:700;border-radius:9px;}
+  .btn-primary{background:linear-gradient(135deg,var(--turq),var(--turq-deep));color:#fff;box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{filter:brightness(1.05);}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed;filter:none;}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-deep);}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
+    opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;max-width:90vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--red);}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div>پنل مدیریت بلاگ<small>مدیریت مقالات و اخبار</small></div>
+  </div>
+  <div class="topbar-actions">
+    خوش آمدید، <b id="whoami">—</b>
+    <button class="logout-link" id="logoutBtn">خروج</button>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div>
+      <div class="breadcrumb"><a href="articles.html">مقالات</a> / <span id="crumbCurrent">مقاله جدید</span></div>
+      <h1 id="pageTitle">مقاله جدید</h1>
+    </div>
+    <span class="status-badge draft" id="statusBadge" style="display:none">پیش‌نویس</span>
+  </div>
+
+  <form id="articleForm">
+    <div class="form-grid">
+
+      <!-- ستون اصلی فرم -->
+      <div class="form-main">
+
+        <div class="form-card">
+          <h3>اطلاعات پایه</h3>
+          <div class="field">
+            <label>عنوان مقاله <span class="req">*</span></label>
+            <input class="input" id="fTitle" placeholder="مثلاً بهترین فینگرفود برای مهمانی تولد">
+          </div>
+          <div class="field">
+            <label>اسلاگ (آدرس صفحه)</label>
+            <input class="input" id="fSlug" placeholder="best-finger-food-party" dir="ltr" style="text-align:left">
+          </div>
+          <div class="field">
+            <label>توضیح کوتاه (Excerpt) <span class="req">*</span> <span class="counter" id="excerptCounter">۰ کاراکتر</span></label>
+            <textarea id="fExcerpt" placeholder="یک خلاصه‌ی ۱۵۰ تا ۲۵۰ کاراکتری که داخل کارت مقاله نمایش داده می‌شود…"></textarea>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>دسته‌بندی و تگ‌ها</h3>
+          <div class="field">
+            <label>دسته‌بندی <span class="req">*</span></label>
+            <div class="field-row-btn">
+              <select id="fCategory"><option value="">در حال بارگذاری…</option></select>
+              <button type="button" class="mini-btn" id="newCatBtn">+ دسته‌بندی جدید</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>تگ‌ها</label>
+            <div class="manual-picker">
+              <input class="input" id="tagSearch" placeholder="نام تگ را تایپ کنید…" autocomplete="off">
+              <div class="manual-dropdown" id="tagDropdown"></div>
+              <div class="manual-chips" id="tagChips"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>عکس کاور <span class="req">*</span></h3>
+          <p class="hint">در <code>media/blog/covers/</code> ذخیره می‌شود.</p>
+          <div id="coverArea">
+            <label class="cover-drop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4l-4 4M12 4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+              انتخاب تصویر یا رها کردن فایل اینجا
+              <input type="file" id="fCoverInput" accept="image/*">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-card" id="statusCard">
+          <h3>وضعیت مقاله</h3>
+          <div class="radio-row" id="statusRadioRow">
+            <label class="radio-opt"><input type="radio" name="pubStatus" value="DRAFT" checked> پیش‌نویس</label>
+            <label class="radio-opt"><input type="radio" name="pubStatus" value="PUBLISHED"> منتشر شود</label>
+          </div>
+          <p class="hint" id="statusEditHint" style="display:none;margin:10px 0 0">
+            تغییر وضعیت (انتشار/آرشیو) از منوی سه‌نقطه در <a href="articles.html" style="color:var(--turq-deep);font-weight:700">لیست مقالات</a> انجام می‌شود.
+          </p>
+          <div class="checkbox-row" style="margin-top:12px">
+            <input type="checkbox" id="fFeatured"> این مقاله به‌عنوان مقاله‌ی ویژه نمایش داده شود
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>محتوای مقاله <span class="req">*</span></h3>
+          <div id="editor"></div>
+        </div>
+
+      </div>
+
+      <!-- پیش‌نمایش زنده -->
+      <div class="form-side">
+        <div class="preview-frame">
+          <div class="preview-frame-head">
+            <div class="preview-dots"><span></span><span></span><span></span></div>
+            پیش‌نمایش زنده
+          </div>
+          <img class="preview-cover" id="prevCover" style="display:none">
+          <div class="preview-body">
+            <span class="preview-cat" id="prevCat" style="display:none"></span>
+            <h4 class="preview-title" id="prevTitle">عنوان مقاله اینجا نمایش داده می‌شود</h4>
+            <p class="preview-excerpt" id="prevExcerpt">توضیح کوتاه مقاله همینجا دیده می‌شود…</p>
+            <div class="preview-tags" id="prevTags"></div>
+            <div class="preview-content" id="prevContent"><div class="preview-empty">هنوز محتوایی نوشته نشده</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <a href="articles.html" class="btn btn-ghost">انصراف</a>
+      <button type="submit" class="btn btn-primary" id="submitBtn">ذخیره مقاله</button>
+    </div>
+  </form>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script>
+const API_ORIGIN = "http://127.0.0.1:8000";
+const AUTH_BASE  = `${API_ORIGIN}/api/auth`;
+const API_BASE   = `${API_ORIGIN}/api/content`;
+const LOGIN_PAGE = "admin-login.html";
+
+function toAbsoluteMediaUrl(path){
+  if(!path) return '';
+  return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+}
+
+/* ---------------- Auth (همان الگوی صفحات دیگر پنل) ---------------- */
+function getAccess(){ return localStorage.getItem('admin_access_token'); }
+function getRefresh(){ return localStorage.getItem('admin_refresh_token'); }
+function getCurrentAdmin(){ try{ return JSON.parse(localStorage.getItem('admin_user') || 'null'); }catch(_){ return null; } }
+function clearSession(){
+  localStorage.removeItem('admin_access_token');
+  localStorage.removeItem('admin_refresh_token');
+  localStorage.removeItem('admin_user');
+}
+function goToLogin(){ clearSession(); window.location.href = LOGIN_PAGE; }
+
+async function refreshAccessToken(){
+  const refresh = getRefresh();
+  if(!refresh) return false;
+  try{
+    const res = await fetch(`${AUTH_BASE}/refresh/`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({refresh})});
+    if(!res.ok) return false;
+    const data = await res.json();
+    if(!data.access) return false;
+    localStorage.setItem('admin_access_token', data.access);
+    return true;
+  }catch(_){ return false; }
+}
+
+async function apiFetch(url, options = {}, _isRetry = false){
+  const access = getAccess();
+  const headers = Object.assign({}, options.headers || {});
+  if(access) headers['Authorization'] = `Bearer ${access}`;
+  const res = await fetch(url, { ...options, headers });
+  if(res.status === 401 && !_isRetry){
+    const refreshed = await refreshAccessToken();
+    if(refreshed) return apiFetch(url, options, true);
+    goToLogin();
+    return null;
+  }
+  return res;
+}
+
+async function apiGet(path){
+  try{
+    const res = await apiFetch(API_BASE + path, { headers:{} });
+    if(!res) return null;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      toast(err.detail || 'خطا در دریافت اطلاعات از سرور', true);
+      return null;
+    }
+    return await res.json();
+  }catch(e){
+    console.error(e);
+    toast('خطا در ارتباط با سرور. اتصال اینترنت/سرور را بررسی کنید.', true);
+    return null;
+  }
+}
+
+async function apiSend(path, method, body, isForm = false){
+  try{
+    const headers = isForm ? {} : {'Content-Type':'application/json'};
+    const res = await apiFetch(API_BASE + path, { method, headers, body: isForm ? body : JSON.stringify(body) });
+    if(!res) return null;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      const msg = err.detail || Object.values(err)[0] || 'عملیات با خطا مواجه شد.';
+      toast(Array.isArray(msg) ? msg[0] : msg, true);
+      return null;
+    }
+    return res.status === 204 ? {} : await res.json();
+  }catch(e){
+    console.error(e);
+    toast('خطا در ارتباط با سرور.', true);
+    return null;
+  }
+}
+
+/* ---------------- Toast ---------------- */
+let toastTimer;
+function toast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.className='toast', 3000);
+}
+function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+
+/* ---------------- URL params / mode ---------------- */
+const params = new URLSearchParams(window.location.search);
+const articleId = params.get('id');
+const articleSlug = params.get('slug');
+const isEdit = !!(articleId && articleSlug);
+
+const STATUS_META = {
+  PUBLISHED:{label:'منتشر شده', cls:'published'},
+  DRAFT:{label:'پیش‌نویس', cls:'draft'},
+  ARCHIVED:{label:'آرشیو شده', cls:'archived'},
+};
+
+/* ---------------- State ---------------- */
+let state = {
+  categories: [],
+  allTags: [],
+  selectedTags: [],
+  coverFile: null,
+  existingCoverUrl: '',
+  slugDirty: false,
+};
+
+/* ---------------- Quill editor ---------------- */
+const quill = new Quill('#editor', {
+  theme: 'snow',
+  placeholder: 'متن مقاله را اینجا بنویسید…',
+  modules: {
+    toolbar: {
+      container: [
+        [{ header: [2, 3, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['blockquote', 'link', 'image'],
+        ['clean'],
+      ],
+      handlers: { image: quillImageHandler },
+    },
+  },
+});
+document.querySelector('.ql-editor').setAttribute('dir', 'rtl');
+
+function quillImageHandler(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = () => {
+    const file = input.files[0];
+    if(!file) return;
+    // توجه: بک‌اند فعلی اندپوینت آپلود تصویر داخل محتوا ندارد،
+    // بنابراین تصویر به‌صورت base64 مستقیم داخل محتوا ذخیره می‌شود.
+    const reader = new FileReader();
+    reader.onload = () => {
+      const range = quill.getSelection(true) || { index: quill.getLength() };
+      quill.insertEmbed(range.index, 'image', reader.result, 'user');
+      quill.setSelection(range.index + 1);
+      updatePreview();
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+quill.on('text-change', updatePreview);
+
+/* ---------------- Slug helper ---------------- */
+function slugify(text){
+  return (text || '')
+    .toString().trim().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\u0600-\u06FF-]+/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const fTitle = document.getElementById('fTitle');
+const fSlug = document.getElementById('fSlug');
+fTitle.addEventListener('input', ()=>{
+  if(!state.slugDirty) fSlug.value = slugify(fTitle.value);
+  updatePreview();
+});
+fSlug.addEventListener('input', ()=>{ state.slugDirty = true; });
+
+/* ---------------- Excerpt counter ---------------- */
+const fExcerpt = document.getElementById('fExcerpt');
+function updateExcerptCounter(){
+  const len = fExcerpt.value.length;
+  const el = document.getElementById('excerptCounter');
+  el.textContent = `${fmt(len)} کاراکتر`;
+  el.style.color = (len>=150 && len<=250) ? 'var(--turq-deep)' : (len>250 ? 'var(--red)' : 'var(--ink-faint)');
+}
+fExcerpt.addEventListener('input', ()=>{ updateExcerptCounter(); updatePreview(); });
+updateExcerptCounter();
+
+/* ---------------- Category ---------------- */
+async function loadCategories(){
+  const data = await apiGet('/categories/');
+  state.categories = Array.isArray(data) ? data : (data && data.results) || [];
+  const sel = document.getElementById('fCategory');
+  sel.innerHTML = '<option value="">انتخاب کنید…</option>' + state.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  sel.addEventListener('change', updatePreview);
+}
+document.getElementById('newCatBtn').addEventListener('click', ()=>{
+  toast('افزودن دسته‌بندی جدید از این فرم فعلاً پشتیبانی نمی‌شود؛ فقط اندپوینت لیست دسته‌بندی‌ها در بک‌اند فعال است.', true);
+});
+
+/* ---------------- Tags picker ---------------- */
+async function loadTags(){
+  const data = await apiGet('/tags/');
+  state.allTags = Array.isArray(data) ? data : (data && data.results) || [];
+}
+function renderTagChips(){
+  const box = document.getElementById('tagChips');
+  box.innerHTML = state.selectedTags.map(t=>`<span class="chip">${t.name}<button type="button" data-id="${t.id}">×</button></span>`).join('');
+  box.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      state.selectedTags = state.selectedTags.filter(x=>x.id!==b.dataset.id);
+      renderTagChips();
+      updatePreview();
+    });
+  });
+}
+const tagSearch = document.getElementById('tagSearch');
+const tagDropdown = document.getElementById('tagDropdown');
+tagSearch.addEventListener('input', ()=>{
+  const q = tagSearch.value.trim().toLowerCase();
+  if(!q){ tagDropdown.classList.remove('open'); return; }
+  const list = state.allTags.filter(t => t.name.toLowerCase().includes(q) && !state.selectedTags.find(s=>s.id===t.id));
+  tagDropdown.innerHTML = list.length
+    ? list.map(t=>`<div data-id="${t.id}" data-name="${t.name}">${t.name}</div>`).join('')
+    : `<div class="empty">تگی یافت نشد (افزودن تگ جدید فعلاً پشتیبانی نمی‌شود)</div>`;
+  tagDropdown.classList.add('open');
+  tagDropdown.querySelectorAll('div[data-id]').forEach(d=>{
+    d.addEventListener('click', ()=>{
+      state.selectedTags.push({id:d.dataset.id, name:d.dataset.name});
+      renderTagChips();
+      tagSearch.value=''; tagDropdown.classList.remove('open');
+      updatePreview();
+    });
+  });
+});
+document.addEventListener('click', e=>{
+  if(!document.querySelector('.manual-picker').contains(e.target)) tagDropdown.classList.remove('open');
+});
+
+/* ---------------- Cover upload ---------------- */
+function wireCoverInput(inputEl){
+  inputEl.addEventListener('change', e=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    state.coverFile = file;
+    const url = URL.createObjectURL(file);
+    renderCoverPreview(url);
+    updatePreview();
+  });
+}
+function renderCoverPreview(url){
+  document.getElementById('coverArea').innerHTML = `
+    <div class="cover-preview-wrap">
+      <img class="cover-preview-img" src="${url}">
+      <label class="cover-change-btn">تغییر عکس
+        <input type="file" id="fCoverInput2" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer">
+      </label>
+    </div>`;
+  wireCoverInput(document.getElementById('fCoverInput2'));
+}
+wireCoverInput(document.getElementById('fCoverInput'));
+
+/* ---------------- Live preview ---------------- */
+function updatePreview(){
+  const title = fTitle.value.trim();
+  const excerpt = fExcerpt.value.trim();
+  const catId = document.getElementById('fCategory').value;
+  const cat = state.categories.find(c=>c.id===catId);
+
+  document.getElementById('prevTitle').textContent = title || 'عنوان مقاله اینجا نمایش داده می‌شود';
+  document.getElementById('prevExcerpt').textContent = excerpt || 'توضیح کوتاه مقاله همینجا دیده می‌شود…';
+
+  const catEl = document.getElementById('prevCat');
+  if(cat){ catEl.textContent = cat.name; catEl.style.display='inline-block'; } else { catEl.style.display='none'; }
+
+  document.getElementById('prevTags').innerHTML = state.selectedTags.map(t=>`<span>${t.name}</span>`).join('');
+
+  const coverEl = document.getElementById('prevCover');
+  const coverUrl = state.coverFile ? URL.createObjectURL(state.coverFile) : state.existingCoverUrl;
+  if(coverUrl){ coverEl.src = coverUrl; coverEl.style.display='block'; } else { coverEl.style.display='none'; }
+
+  const html = quill.root.innerHTML;
+  const isEmpty = quill.getText().trim().length === 0;
+  document.getElementById('prevContent').innerHTML = isEmpty ? '<div class="preview-empty">هنوز محتوایی نوشته نشده</div>' : html;
+}
+
+/* ---------------- Prefill (edit mode) ---------------- */
+async function loadForEdit(){
+  const detail = await apiGet(`/articles/${articleSlug}/`);
+  if(!detail){ toast('خطا در بارگذاری مقاله', true); return; }
+
+  document.getElementById('pageTitle').textContent = 'ویرایش مقاله';
+  document.getElementById('crumbCurrent').textContent = 'ویرایش مقاله';
+  document.title = 'ویرایش مقاله | پنل مدیریت';
+
+  const meta = STATUS_META[detail.status] || {label:detail.status, cls:'draft'};
+  const badge = document.getElementById('statusBadge');
+  badge.textContent = meta.label;
+  badge.className = 'status-badge ' + meta.cls;
+  badge.style.display = 'inline-flex';
+
+  document.getElementById('statusRadioRow').style.display = 'none';
+  document.getElementById('statusEditHint').style.display = 'block';
+
+  fTitle.value = detail.title || '';
+  fSlug.value = detail.slug || '';
+  state.slugDirty = true;
+  fExcerpt.value = detail.excerpt || '';
+  updateExcerptCounter();
+  document.getElementById('fFeatured').checked = !!detail.is_featured;
+
+  if(detail.category) document.getElementById('fCategory').value = detail.category.id;
+  state.selectedTags = (detail.tags || []).map(t=>({id:t.id, name:t.name}));
+  renderTagChips();
+
+  if(detail.cover_image){
+    state.existingCoverUrl = toAbsoluteMediaUrl(detail.cover_image);
+    renderCoverPreview(state.existingCoverUrl);
+  }
+
+  quill.root.innerHTML = detail.content || '';
+  document.getElementById('submitBtn').textContent = 'ذخیره تغییرات';
+
+  updatePreview();
+}
+
+/* ---------------- Submit ---------------- */
+document.getElementById('articleForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+
+  const title = fTitle.value.trim();
+  const excerpt = fExcerpt.value.trim();
+  const categoryId = document.getElementById('fCategory').value;
+  const contentEmpty = quill.getText().trim().length === 0;
+
+  if(!title){ toast('عنوان مقاله را وارد کنید', true); fTitle.focus(); return; }
+  if(!excerpt){ toast('توضیح کوتاه را وارد کنید', true); fExcerpt.focus(); return; }
+  if(!categoryId){ toast('یک دسته‌بندی انتخاب کنید', true); return; }
+  if(contentEmpty){ toast('محتوای مقاله نمی‌تواند خالی باشد', true); return; }
+  if(!isEdit && !state.coverFile){ toast('انتخاب عکس کاور الزامی است', true); return; }
+
+  const fd = new FormData();
+  fd.append('title', title);
+  if(fSlug.value.trim()) fd.append('slug', fSlug.value.trim());
+  fd.append('excerpt', excerpt);
+  fd.append('content', quill.root.innerHTML);
+  fd.append('category', categoryId);
+  state.selectedTags.forEach(t => fd.append('tags', t.id));
+  fd.append('is_featured', document.getElementById('fFeatured').checked ? 'true' : 'false');
+  if(state.coverFile) fd.append('cover_image', state.coverFile);
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'در حال ذخیره…';
+
+  let data;
+  if(isEdit){
+    data = await apiSend(`/articles/${articleId}/`, 'PATCH', fd, true);
+  }else{
+    const status = document.querySelector('input[name="pubStatus"]:checked').value;
+    fd.append('status', status);
+    data = await apiSend('/articles/', 'POST', fd, true);
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = isEdit ? 'ذخیره تغییرات' : 'ذخیره مقاله';
+
+  if(!data) return;
+
+  toast(isEdit ? 'تغییرات ذخیره شد' : 'مقاله ذخیره شد');
+  setTimeout(()=>{ window.location.href = 'articles.html'; }, 900);
+});
+
+/* ---------------- خروج ---------------- */
+document.getElementById('logoutBtn').addEventListener('click', goToLogin);
+
+/* ---------------- Init ---------------- */
+(async function init(){
+  if(!getAccess()){ goToLogin(); return; }
+  const admin = getCurrentAdmin();
+  document.getElementById('whoami').textContent = admin?.full_name || '—';
+
+  await loadCategories();
+  await loadTags();
+
+  if(isEdit){
+    await loadForEdit();
+  }else{
+    updatePreview();
+  }
+})();
+</script>
+</body>
+</html>

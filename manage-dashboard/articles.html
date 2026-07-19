@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مقالات | پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A28;
+    --ink-soft:#4B6C66;
+    --ink-faint:#87A29C;
+    --bg:#F1FAF8;
+    --surface:#FFFFFF;
+    --surface-alt:#EAF7F4;
+    --turq:#0EA99A;
+    --turq-deep:#077A70;
+    --turq-darker:#065951;
+    --turq-pale:#D3F1EC;
+    --gold:#C9982F;
+    --gold-pale:#F6EAD2;
+    --red:#D14343;
+    --red-pale:#FBE7E5;
+    --border:#DCEEEA;
+    --shadow-sm:0 2px 10px rgba(7,90,80,.06);
+    --shadow-md:0 12px 32px rgba(7,90,80,.10);
+    --facet:16px;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
+      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--turq-pale);color:var(--turq-darker);}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  .facet{clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));}
+
+  /* ===== Shell / Topbar ===== */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.2px;}
+  .brand-mark{
+    width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));
+    clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  }
+  .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .topbar-actions{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:13px;}
+  .topbar-actions b{color:var(--ink);font-weight:700;}
+  .logout-link{background:none;border:none;color:var(--red);font-size:12px;font-weight:700;}
+
+  .subnav{
+    display:flex;gap:6px;padding:0 32px;background:rgba(255,255,255,.55);
+    border-bottom:1px solid var(--border);overflow:auto;
+  }
+  .subnav a{
+    padding:12px 6px;font-size:13px;font-weight:700;color:var(--ink-faint);
+    border-bottom:2px solid transparent;white-space:nowrap;
+  }
+  .subnav a.active{color:var(--turq-deep);border-bottom-color:var(--turq);}
+  .subnav a:hover{color:var(--turq-deep);}
+
+  main{max-width:1180px;margin:0 auto;padding:28px 24px 80px;}
+  section{margin-bottom:26px;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;}
+  .section-head h2{font-size:15px;font-weight:700;margin:0;color:var(--ink);}
+  .section-head span{font-size:12px;color:var(--ink-faint);}
+
+  /* ===== Stat row + add buttons ===== */
+  .top-row{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap;}
+  .stats{display:flex;gap:16px;flex:1 1 480px;flex-wrap:wrap;}
+  .stat{
+    background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);
+    padding:18px 20px 16px;flex:1 1 130px;position:relative;overflow:hidden;
+  }
+  .stat::after{
+    content:'';position:absolute;inset:auto -20px -20px auto;width:70px;height:70px;
+    background:var(--turq-pale);opacity:.5;
+    clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  }
+  .stat b{display:block;font-size:26px;font-weight:800;color:var(--turq-darker);position:relative;z-index:1;}
+  .stat span{font-size:12px;color:var(--ink-soft);position:relative;z-index:1;}
+
+  .add-btns{flex:0 0 auto;display:flex;gap:10px;}
+  .add-btn{
+    display:flex;align-items:center;gap:9px;color:#fff;border:none;padding:0 20px;
+    font-weight:700;font-size:13.5px;box-shadow:var(--shadow-md);min-width:150px;justify-content:center;
+    transition:filter .15s ease, transform .15s ease;height:100%;
+  }
+  .add-btn.article{background:linear-gradient(135deg,var(--turq),var(--turq-deep));}
+  .add-btn.news{background:linear-gradient(135deg,var(--gold),#a97c1f);}
+  .add-btn:hover{filter:brightness(1.06);transform:translateY(-1px);}
+  .add-btn svg{width:17px;height:17px;flex:none;}
+
+  /* ===== Filters ===== */
+  .filters{
+    background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);
+    padding:14px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  }
+  .filters .input{flex:1 1 220px;}
+  .filters select{flex:1 1 160px;}
+  select,.input{
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;padding:8px 10px;
+    font-size:12.5px;color:var(--ink);outline:none;
+  }
+  select:focus,.input:focus{border-color:var(--turq);background:#fff;}
+  .status-pills{display:flex;gap:6px;flex-wrap:wrap;}
+  .pill{
+    background:var(--surface-alt);border:1px solid var(--border);color:var(--ink-soft);
+    font-size:12px;font-weight:700;padding:7px 14px;border-radius:20px;
+  }
+  .pill.active{background:var(--turq-deep);color:#fff;border-color:var(--turq-deep);}
+  .pill:hover:not(.active){border-color:var(--turq);color:var(--turq-deep);}
+
+  .btn{border:none;padding:8px 16px;font-size:12.5px;font-weight:700;border-radius:8px;}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-deep);}
+
+  /* ===== Table ===== */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{
+    background:var(--surface-alt);color:var(--ink-soft);font-weight:700;font-size:11.5px;
+    text-align:right;padding:10px 14px;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  tbody td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  tbody tr:hover{background:var(--surface-alt);}
+  tbody tr:last-child td{border-bottom:none;}
+  .prod-thumb{width:44px;height:44px;object-fit:cover;background:var(--surface-alt);flex:none;border-radius:6px;}
+  .prod-name-cell{display:flex;align-items:center;gap:10px;}
+  .prod-name-cell .meta{display:flex;flex-direction:column;min-width:0;}
+  .prod-name-cell b{font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;}
+  .prod-name-cell small{font-size:11px;color:var(--ink-faint);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .star-btn{background:none;border:none;font-size:14px;color:var(--gold);padding:0;line-height:1;}
+  .cat-badge{background:var(--turq-pale);color:var(--turq-darker);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;}
+  .status-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;}
+  .status-badge::before{content:'';width:6px;height:6px;border-radius:50%;}
+  .status-badge.published{background:var(--turq-pale);color:var(--turq-darker);}
+  .status-badge.published::before{background:var(--turq);}
+  .status-badge.draft{background:var(--surface-alt);color:var(--ink-soft);}
+  .status-badge.draft::before{background:var(--ink-faint);}
+  .status-badge.archived{background:var(--gold-pale);color:var(--gold);}
+  .status-badge.archived::before{background:var(--gold);}
+
+  .menu-btn{
+    background:var(--surface-alt);border:1px solid var(--border);width:32px;height:32px;border-radius:7px;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+  }
+  .menu-btn:hover{border-color:var(--turq);color:var(--turq-deep);}
+
+  .empty-state{padding:60px 20px;text-align:center;color:var(--ink-faint);}
+  .empty-state svg{width:40px;height:40px;margin-bottom:10px;opacity:.5;}
+
+  .table-footer{
+    display:flex;align-items:center;justify-content:space-between;padding:12px 16px;
+    border-top:1px solid var(--border);font-size:12px;color:var(--ink-soft);
+  }
+  .pager{display:flex;gap:6px;}
+  .pager button{background:var(--surface-alt);border:1px solid var(--border);width:28px;height:28px;border-radius:6px;font-size:12px;}
+  .pager button.active{background:var(--turq-deep);color:#fff;border-color:var(--turq-deep);}
+  .pager button:disabled{opacity:.4;}
+
+  /* ===== Actions dropdown (fixed, appended near button) ===== */
+  .actions-menu{
+    position:fixed;min-width:180px;background:#fff;border:1px solid var(--border);border-radius:10px;
+    box-shadow:var(--shadow-md);z-index:150;padding:6px;display:none;
+  }
+  .actions-menu.open{display:block;}
+  .actions-menu button{
+    display:flex;align-items:center;width:100%;text-align:right;background:none;border:none;
+    padding:9px 10px;border-radius:7px;font-size:12.5px;color:var(--ink);
+  }
+  .actions-menu button:hover{background:var(--surface-alt);}
+  .actions-menu button.danger{color:var(--red);}
+  .actions-menu button.danger:hover{background:var(--red-pale);}
+  .actions-menu hr{border:none;border-top:1px solid var(--border);margin:6px 2px;}
+
+  /* ===== Preview modal ===== */
+  .overlay{
+    position:fixed;inset:0;background:rgba(6,40,36,.45);backdrop-filter:blur(2px);
+    display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;z-index:100;overflow:auto;
+  }
+  .overlay.open{display:flex;}
+  .modal{background:var(--surface);width:100%;max-width:620px;box-shadow:var(--shadow-md);max-height:90vh;display:flex;flex-direction:column;}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);}
+  .modal-head h3{margin:0;font-size:15px;font-weight:800;}
+  .modal-head button{background:none;border:none;font-size:20px;color:var(--ink-faint);line-height:1;}
+  .modal-body{padding:20px 22px;overflow:auto;display:flex;flex-direction:column;gap:14px;}
+  .preview-cover{width:100%;max-height:260px;object-fit:cover;border-radius:8px;background:var(--surface-alt);}
+  .preview-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .preview-title{font-size:19px;font-weight:800;margin:0;}
+  .preview-excerpt{color:var(--ink-soft);font-size:13px;line-height:1.9;}
+  .preview-content{font-size:13.5px;line-height:2;white-space:pre-wrap;color:var(--ink);border-top:1px solid var(--border);padding-top:14px;}
+  .preview-loading{padding:40px;text-align:center;color:var(--ink-faint);font-size:13px;}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
+    opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--red);}
+
+  @media(max-width:720px){
+    main{padding:20px 14px 60px;}
+    .topbar{padding:14px 18px;}
+    .subnav{padding:0 14px;}
+    thead{display:none;}
+    table,tbody,tr,td{display:block;width:100%;}
+    tbody tr{border-bottom:8px solid var(--bg);padding:8px 0;}
+    tbody td{display:flex;justify-content:space-between;align-items:center;border:none;padding:6px 14px;}
+    tbody td::before{content:attr(data-label);font-size:11px;color:var(--ink-faint);font-weight:700;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div>پنل مدیریت بلاگ<small>مدیریت مقالات و اخبار</small></div>
+  </div>
+  <div class="topbar-actions">
+    خوش آمدید، <b id="whoami">—</b>
+    <button class="logout-link" id="logoutBtn">خروج</button>
+  </div>
+</header>
+
+<nav class="subnav">
+  <a href="articles.html" class="active">مقالات</a>
+  <a href="news.html">اخبار</a>
+  <a href="categories.html">دسته‌بندی‌ها</a>
+  <a href="tags.html">تگ‌ها</a>
+  <a href="media.html">رسانه‌ها</a>
+</nav>
+
+<main>
+
+  <!-- آمار + افزودن -->
+  <section>
+    <div class="top-row">
+      <div class="stats">
+        <div class="stat facet">
+          <b id="statTotal">—</b>
+          <span>کل مقالات</span>
+        </div>
+        <div class="stat facet">
+          <b id="statPublished">—</b>
+          <span>منتشر شده</span>
+        </div>
+        <div class="stat facet">
+          <b id="statDraft">—</b>
+          <span>پیش‌نویس</span>
+        </div>
+        <div class="stat facet">
+          <b id="statArchived">—</b>
+          <span>آرشیو شده</span>
+        </div>
+        <div class="stat facet">
+          <b id="statCategories">—</b>
+          <span>دسته‌بندی‌ها</span>
+        </div>
+      </div>
+      <div class="add-btns">
+        <a class="add-btn article facet" href="article-form.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          مقاله جدید
+        </a>
+        <a class="add-btn news facet" href="news-form.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          خبر جدید
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- فیلترها -->
+  <section>
+    <div class="section-head"><h2>فیلتر و جست‌وجو</h2><span id="resultCount"></span></div>
+    <div class="filters">
+      <input class="input" id="fSearch" placeholder="جست‌وجو بر اساس عنوان یا تگ…">
+      <div class="status-pills" id="statusPills">
+        <button class="pill active" data-status="">همه</button>
+        <button class="pill" data-status="PUBLISHED">منتشر شده</button>
+        <button class="pill" data-status="DRAFT">پیش‌نویس</button>
+        <button class="pill" data-status="ARCHIVED">آرشیو شده</button>
+      </div>
+      <select id="fCategory"><option value="">همه دسته‌بندی‌ها</option></select>
+      <select id="fOrdering">
+        <option value="-created_at">جدیدترین</option>
+        <option value="created_at">قدیمی‌ترین</option>
+        <option value="-published_at">آخرین انتشار</option>
+        <option value="title">عنوان (الف تا ی)</option>
+      </select>
+      <button class="btn btn-ghost" id="resetFilters">پاک کردن فیلترها</button>
+    </div>
+  </section>
+
+  <!-- جدول مقالات -->
+  <section>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>عنوان</th>
+            <th>دسته‌بندی</th>
+            <th>نویسنده</th>
+            <th>تاریخ</th>
+            <th>وضعیت</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="articlesBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <div id="emptyStateMsg">مقاله‌ای با این فیلترها پیدا نشد</div>
+      </div>
+      <div class="table-footer">
+        <span id="pageInfo"></span>
+        <div class="pager" id="pager"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- منوی سه‌نقطه‌ی عملیات -->
+<div class="actions-menu" id="actionsMenu"></div>
+
+<!-- مودال پیش‌نمایش -->
+<div class="overlay" id="previewOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>پیش‌نمایش مقاله</h3>
+      <button id="closePreview">✕</button>
+    </div>
+    <div class="modal-body" id="previewBody">
+      <div class="preview-loading">در حال بارگذاری…</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_ORIGIN = "http://127.0.0.1:8000";
+const AUTH_BASE  = `${API_ORIGIN}/api/auth`;
+const API_BASE   = `${API_ORIGIN}/api/content`;
+const LOGIN_PAGE = "admin-login.html";
+
+function toAbsoluteMediaUrl(path){
+  if(!path) return '';
+  return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+}
+
+/* ---------------- Auth / tokens (همان الگوی پنل محصولات) ---------------- */
+function getAccess(){ return localStorage.getItem('admin_access_token'); }
+function getRefresh(){ return localStorage.getItem('admin_refresh_token'); }
+function getCurrentAdmin(){
+  try{ return JSON.parse(localStorage.getItem('admin_user') || 'null'); }
+  catch(_){ return null; }
+}
+function clearSession(){
+  localStorage.removeItem('admin_access_token');
+  localStorage.removeItem('admin_refresh_token');
+  localStorage.removeItem('admin_user');
+}
+function goToLogin(){ clearSession(); window.location.href = LOGIN_PAGE; }
+
+async function refreshAccessToken(){
+  const refresh = getRefresh();
+  if(!refresh) return false;
+  try{
+    const res = await fetch(`${AUTH_BASE}/refresh/`, {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({refresh})
+    });
+    if(!res.ok) return false;
+    const data = await res.json();
+    if(!data.access) return false;
+    localStorage.setItem('admin_access_token', data.access);
+    return true;
+  }catch(_){ return false; }
+}
+
+async function apiFetch(url, options = {}, _isRetry = false){
+  const access = getAccess();
+  const headers = Object.assign({}, options.headers || {});
+  if(access) headers['Authorization'] = `Bearer ${access}`;
+  const res = await fetch(url, { ...options, headers });
+  if(res.status === 401 && !_isRetry){
+    const refreshed = await refreshAccessToken();
+    if(refreshed) return apiFetch(url, options, true);
+    goToLogin();
+    return null;
+  }
+  return res;
+}
+
+async function apiGet(path){
+  try{
+    const res = await apiFetch(API_BASE + path, { headers:{} });
+    if(!res) return null;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      toast(err.detail || 'خطا در دریافت اطلاعات از سرور', true);
+      return null;
+    }
+    return await res.json();
+  }catch(e){
+    console.error(e);
+    toast('خطا در ارتباط با سرور. اتصال اینترنت/سرور را بررسی کنید.', true);
+    return null;
+  }
+}
+
+async function apiSend(path, method, body, isForm = false){
+  try{
+    const headers = isForm ? {} : {'Content-Type':'application/json'};
+    const res = await apiFetch(API_BASE + path, { method, headers, body: isForm ? body : JSON.stringify(body) });
+    if(!res) return null;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      const msg = err.detail || Object.values(err)[0] || 'عملیات با خطا مواجه شد.';
+      toast(Array.isArray(msg) ? msg[0] : msg, true);
+      return null;
+    }
+    return res.status === 204 ? {} : await res.json();
+  }catch(e){
+    console.error(e);
+    toast('خطا در ارتباط با سرور.', true);
+    return null;
+  }
+}
+
+/* ---------------- State ---------------- */
+let state = {
+  categories: [],
+  articles: [],
+  count: 0,
+  page: 1,
+  pageSize: 8,
+  filters:{search:'', status:'', category:'', ordering:'-created_at'},
+};
+
+const STATUS_META = {
+  PUBLISHED:{label:'منتشر شده', cls:'published'},
+  DRAFT:{label:'پیش‌نویس', cls:'draft'},
+  ARCHIVED:{label:'آرشیو شده', cls:'archived'},
+};
+
+/* ---------------- Toast ---------------- */
+let toastTimer;
+function toast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.className='toast', 2800);
+}
+
+function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+
+/* تبدیل تاریخ میلادی بک‌اند به شمسی، با ارقام لاتین */
+function toJalali(iso){
+  if(!iso) return '—';
+  try{
+    return new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', {year:'numeric', month:'2-digit', day:'2-digit'}).format(new Date(iso));
+  }catch(e){
+    return iso.slice(0,10);
+  }
+}
+
+/* ---------------- Load categories ---------------- */
+async function loadCategories(){
+  const data = await apiGet('/categories/');
+  state.categories = Array.isArray(data) ? data : (data && data.results) || [];
+  const opts = state.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+  document.getElementById('fCategory').innerHTML = '<option value="">همه دسته‌بندی‌ها</option>' + opts;
+}
+
+/* ---------------- Load stats ---------------- */
+async function loadStats(){
+  const [totalRes, pubRes, draftRes, archRes] = await Promise.all([
+    apiGet('/articles/?page_size=1'),
+    apiGet('/articles/?status=PUBLISHED&page_size=1'),
+    apiGet('/articles/?status=DRAFT&page_size=1'),
+    apiGet('/articles/?status=ARCHIVED&page_size=1'),
+  ]);
+  document.getElementById('statTotal').textContent = totalRes ? fmt(totalRes.count) : '—';
+  document.getElementById('statPublished').textContent = pubRes ? fmt(pubRes.count) : '—';
+  document.getElementById('statDraft').textContent = draftRes ? fmt(draftRes.count) : '—';
+  document.getElementById('statArchived').textContent = archRes ? fmt(archRes.count) : '—';
+  document.getElementById('statCategories').textContent = state.categories.length ? fmt(state.categories.length) : '—';
+}
+
+/* ---------------- Build query + load articles ---------------- */
+function buildQuery(){
+  const f = state.filters;
+  const params = new URLSearchParams();
+  if(f.search) params.set('search', f.search);
+  if(f.status) params.set('status', f.status);
+  if(f.category) params.set('category', f.category);
+  if(f.ordering) params.set('ordering', f.ordering);
+  params.set('page', state.page);
+  params.set('page_size', state.pageSize);
+  return params.toString();
+}
+
+async function loadArticles(){
+  const q = buildQuery();
+  const data = await apiGet('/articles/?' + q);
+  if(data){
+    state.articles = data.results || [];
+    state.count = data.count ?? state.articles.length;
+  }else{
+    state.articles = [];
+    state.count = 0;
+  }
+  renderArticles();
+  renderPager();
+}
+
+function renderArticles(){
+  const body = document.getElementById('articlesBody');
+  const empty = document.getElementById('emptyState');
+  document.getElementById('resultCount').textContent = state.count ? `${fmt(state.count)} مقاله` : '';
+
+  if(!state.articles.length){
+    body.innerHTML = '';
+    document.getElementById('emptyStateMsg').textContent = 'مقاله‌ای با این فیلترها پیدا نشد';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  body.innerHTML = state.articles.map(a=>{
+    const cover = a.cover_image ? toAbsoluteMediaUrl(a.cover_image) : '';
+    const dateVal = a.published_at || a.created_at;
+    const meta = STATUS_META[a.status] || {label:a.status, cls:'draft'};
+    return `
+      <tr data-id="${a.id}">
+        <td data-label="عنوان">
+          <div class="prod-name-cell">
+            ${cover ? `<img class="prod-thumb" src="${cover}">` : `<div class="prod-thumb"></div>`}
+            <div class="meta">
+              <b>
+                <button class="star-btn" data-id="${a.id}" title="${a.is_featured ? 'حذف از ویژه' : 'افزودن به ویژه'}">${a.is_featured ? '★' : '☆'}</button>
+                ${a.title}
+              </b>
+              <small>${a.excerpt || ''}</small>
+            </div>
+          </div>
+        </td>
+        <td data-label="دسته‌بندی"><span class="cat-badge">${a.category ? a.category.name : '—'}</span></td>
+        <td data-label="نویسنده">${a.author ? a.author.full_name : '—'}</td>
+        <td data-label="تاریخ">${toJalali(dateVal)}</td>
+        <td data-label="وضعیت"><span class="status-badge ${meta.cls}">${meta.label}</span></td>
+        <td data-label="عملیات">
+          <button class="menu-btn" data-id="${a.id}" title="عملیات">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+          </button>
+        </td>
+      </tr>`;
+  }).join('');
+
+  body.querySelectorAll('.menu-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{ e.stopPropagation(); openActionsMenu(btn.dataset.id, btn); });
+  });
+  body.querySelectorAll('.star-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{ e.stopPropagation(); toggleFeatured(btn.dataset.id); });
+  });
+}
+
+function renderPager(){
+  const totalPages = Math.max(1, Math.ceil(state.count / state.pageSize));
+  document.getElementById('pageInfo').textContent = `صفحه ${state.page} از ${totalPages}`;
+  const pager = document.getElementById('pager');
+  let html = `<button ${state.page<=1?'disabled':''} data-p="${state.page-1}">‹</button>`;
+  for(let i=1;i<=totalPages;i++){
+    if(i===1 || i===totalPages || Math.abs(i-state.page)<=1){
+      html += `<button class="${i===state.page?'active':''}" data-p="${i}">${i}</button>`;
+    }else if(i===2 || i===totalPages-1){
+      html += `<span style="padding:0 4px">…</span>`;
+    }
+  }
+  html += `<button ${state.page>=totalPages?'disabled':''} data-p="${state.page+1}">›</button>`;
+  pager.innerHTML = html;
+  pager.querySelectorAll('button[data-p]').forEach(b=>{
+    b.addEventListener('click', ()=>{ state.page = Number(b.dataset.p); loadArticles(); });
+  });
+}
+
+/* ---------------- Featured toggle ---------------- */
+async function toggleFeatured(id){
+  const a = state.articles.find(x=>x.id===id);
+  if(!a) return;
+  const data = await apiSend(`/articles/${id}/`, 'PATCH', {is_featured: !a.is_featured});
+  if(!data) return;
+  toast(!a.is_featured ? 'به مقالات ویژه اضافه شد' : 'از مقالات ویژه حذف شد');
+  loadArticles();
+}
+
+/* ---------------- Status change ---------------- */
+async function changeStatus(id, type){
+  const data = await apiSend(`/articles/${id}/${type}/`, 'POST', {});
+  if(!data) return;
+  const msg = type==='publish' ? 'مقاله منتشر شد' : type==='draft' ? 'مقاله به پیش‌نویس تبدیل شد' : 'مقاله آرشیو شد';
+  toast(msg);
+  loadArticles(); loadStats();
+}
+
+/* ---------------- Delete ---------------- */
+async function deleteArticle(id){
+  if(!confirm('آیا از حذف این مقاله مطمئن هستید؟ این عملیات قابل بازگشت نیست.')) return;
+  const res = await apiFetch(`${API_BASE}/articles/${id}/delete/`, {method:'DELETE'});
+  if(!res) return;
+  if(res.ok || res.status===204){
+    toast('مقاله حذف شد');
+    loadArticles(); loadStats();
+  }else{
+    const err = await res.json().catch(()=>({}));
+    toast(err.detail || 'خطا در حذف مقاله', true);
+  }
+}
+
+/* ---------------- Duplicate ---------------- */
+async function duplicateArticle(id){
+  const a = state.articles.find(x=>x.id===id);
+  if(!a) return;
+  toast('در حال کپی کردن مقاله…');
+  try{
+    const detail = await apiGet(`/articles/${a.slug}/`);
+    if(!detail) return;
+
+    const imgRes = await fetch(toAbsoluteMediaUrl(detail.cover_image));
+    if(!imgRes.ok) throw new Error('cover fetch failed');
+    const blob = await imgRes.blob();
+    const filename = (detail.cover_image || 'cover.jpg').split('/').pop();
+    const file = new File([blob], filename, {type: blob.type || 'image/jpeg'});
+
+    const fd = new FormData();
+    fd.append('title', detail.title + ' (کپی)');
+    fd.append('excerpt', detail.excerpt || '');
+    fd.append('content', detail.content || '');
+    if(detail.category) fd.append('category', detail.category.id);
+    (detail.tags || []).forEach(t => fd.append('tags', t.id));
+    fd.append('cover_image', file);
+    fd.append('status', 'DRAFT');
+
+    const created = await apiSend('/articles/', 'POST', fd, true);
+    if(created){
+      toast('مقاله کپی شد (به‌صورت پیش‌نویس)');
+      loadArticles(); loadStats();
+    }
+  }catch(e){
+    console.error(e);
+    toast('خطا در کپی کردن مقاله', true);
+  }
+}
+
+/* ---------------- Preview ---------------- */
+const previewOverlay = document.getElementById('previewOverlay');
+async function openPreview(id){
+  const a = state.articles.find(x=>x.id===id);
+  if(!a) return;
+  previewOverlay.classList.add('open');
+  document.getElementById('previewBody').innerHTML = `<div class="preview-loading">در حال بارگذاری…</div>`;
+
+  const detail = await apiGet(`/articles/${a.slug}/`);
+  if(!detail){
+    document.getElementById('previewBody').innerHTML = `<div class="preview-loading">خطا در بارگذاری مقاله</div>`;
+    return;
+  }
+  const cover = detail.cover_image ? toAbsoluteMediaUrl(detail.cover_image) : '';
+  const meta = STATUS_META[detail.status] || {label:detail.status, cls:'draft'};
+  document.getElementById('previewBody').innerHTML = `
+    ${cover ? `<img class="preview-cover" src="${cover}">` : ''}
+    <div class="preview-meta">
+      <span class="status-badge ${meta.cls}">${meta.label}</span>
+      <span class="cat-badge">${detail.category ? detail.category.name : '—'}</span>
+      <span style="font-size:12px;color:var(--ink-faint)">${detail.author ? detail.author.full_name : ''} · ${toJalali(detail.published_at || detail.created_at)} · ${detail.reading_time_minutes ?? 1} دقیقه مطالعه</span>
+    </div>
+    <h3 class="preview-title">${detail.title}</h3>
+    <p class="preview-excerpt">${detail.excerpt || ''}</p>
+    <div class="preview-content">${(detail.content || '').replace(/</g,'&lt;')}</div>
+  `;
+}
+document.getElementById('closePreview').addEventListener('click', ()=> previewOverlay.classList.remove('open'));
+previewOverlay.addEventListener('click', e=>{ if(e.target===previewOverlay) previewOverlay.classList.remove('open'); });
+
+/* ---------------- Actions dropdown ---------------- */
+const actionsMenuEl = document.getElementById('actionsMenu');
+function closeActionsMenu(){ actionsMenuEl.classList.remove('open'); }
+
+function openActionsMenu(id, btn){
+  const a = state.articles.find(x=>x.id===id);
+  if(!a) return;
+
+  const items = [];
+  items.push({label:'مشاهده', action:()=>openPreview(id)});
+  items.push({label:'ویرایش', action:()=>{ window.location.href = `article-form.html?id=${id}&slug=${encodeURIComponent(a.slug)}`; }});
+  items.push({label:'کپی مقاله', action:()=>duplicateArticle(id)});
+  if(a.status !== 'PUBLISHED') items.push({label:'انتشار', action:()=>changeStatus(id,'publish')});
+  if(a.status !== 'DRAFT') items.push({label:'تبدیل به پیش‌نویس', action:()=>changeStatus(id,'draft')});
+  if(a.status !== 'ARCHIVED') items.push({label:'آرشیو کردن', action:()=>changeStatus(id,'archive')});
+  items.push({divider:true});
+  items.push({label:'حذف مقاله', danger:true, action:()=>deleteArticle(id)});
+
+  actionsMenuEl.innerHTML = items.map((it, idx) =>
+    it.divider ? '<hr>' : `<button data-idx="${idx}" class="${it.danger?'danger':''}">${it.label}</button>`
+  ).join('');
+
+  actionsMenuEl.querySelectorAll('button[data-idx]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      closeActionsMenu();
+      items[Number(b.dataset.idx)].action();
+    });
+  });
+
+  const rect = btn.getBoundingClientRect();
+  actionsMenuEl.style.display = 'block';
+  const menuWidth = 190;
+  let left = rect.left + rect.width - menuWidth;
+  if(left < 8) left = 8;
+  let top = rect.bottom + 6;
+  if(top + 260 > window.innerHeight) top = rect.top - 6 - 260;
+  actionsMenuEl.style.left = left + 'px';
+  actionsMenuEl.style.top = top + 'px';
+  actionsMenuEl.classList.add('open');
+}
+document.addEventListener('click', (e)=>{
+  if(!actionsMenuEl.contains(e.target) && !e.target.closest('.menu-btn')) closeActionsMenu();
+});
+window.addEventListener('scroll', closeActionsMenu, true);
+window.addEventListener('resize', closeActionsMenu);
+
+/* ---------------- Filters wiring ---------------- */
+const debounce = (fn, ms=350) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; };
+document.getElementById('fSearch').addEventListener('input', debounce(e=>{ state.filters.search=e.target.value; state.page=1; loadArticles(); }));
+document.getElementById('fCategory').addEventListener('change', e=>{ state.filters.category=e.target.value; state.page=1; loadArticles(); });
+document.getElementById('fOrdering').addEventListener('change', e=>{ state.filters.ordering=e.target.value; loadArticles(); });
+document.getElementById('statusPills').addEventListener('click', e=>{
+  const btn = e.target.closest('.pill');
+  if(!btn) return;
+  document.querySelectorAll('#statusPills .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  state.filters.status = btn.dataset.status;
+  state.page = 1;
+  loadArticles();
+});
+document.getElementById('resetFilters').addEventListener('click', ()=>{
+  state.filters = {search:'', status:'', category:'', ordering:'-created_at'};
+  document.getElementById('fSearch').value='';
+  document.getElementById('fCategory').value='';
+  document.getElementById('fOrdering').value='-created_at';
+  document.querySelectorAll('#statusPills .pill').forEach(p=>p.classList.remove('active'));
+  document.querySelector('#statusPills .pill[data-status=""]').classList.add('active');
+  state.page=1; loadArticles();
+});
+
+/* ---------------- خروج ---------------- */
+document.getElementById('logoutBtn').addEventListener('click', goToLogin);
+
+/* ---------------- Init ---------------- */
+(async function init(){
+  if(!getAccess()){
+    goToLogin();
+    return;
+  }
+  const admin = getCurrentAdmin();
+  document.getElementById('whoami').textContent = admin?.full_name || '—';
+
+  await loadCategories();
+  await loadStats();
+  await loadArticles();
+})();
+</script>
+</body>
+</html>

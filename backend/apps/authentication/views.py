@@ -5,8 +5,6 @@ from rest_framework.throttling import ScopedRateThrottle
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import RegisterSerializer, LoginSerializer, AdminLoginSerializer, UserProfileSerializer
 
-from .serializers import RegisterSerializer, LoginSerializer, UserProfileSerializer
-
 
 class RegisterAPIView(generics.CreateAPIView):
     serializer_class = RegisterSerializer

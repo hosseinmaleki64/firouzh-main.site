@@ -768,213 +768,7 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* Auth Modal Styles */
-    .auth-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1004;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .auth-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .auth-modal-content {
-      background: var(--background-color);
-      border-radius: 16px;
-      padding: 32px;
-      width: 100%;
-      max-width: 420px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      direction: rtl;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-    .auth-modal.active .auth-modal-content {
-      transform: scale(1);
-    }
-    .auth-modal-close {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-    .auth-modal-close:hover {
-      color: var(--secondary-color);
-      background: rgba(38, 166, 154, 0.1);
-    }
-    .auth-modal-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .auth-modal-header .site-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    .auth-modal-header .site-logo img {
-      height: 28px;
-    }
-    .auth-modal-header h2 {
-      color: var(--primary-color);
-      font-size: 1.8rem;
-      margin: 8px 0 4px;
-    }
-    .auth-modal-header .greeting {
-      font-size: 1.2rem;
-      margin: 0;
-      color: var(--text-dark);
-    }
-    .auth-modal-header p {
-      color: var(--text-dark);
-      font-size: 1rem;
-      margin: 4px 0 16px;
-    }
-    .wizard-step {
-      display: none;
-    }
-    .wizard-step.active {
-      display: block;
-    }
-    .auth-form label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-    .auth-form input {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid var(--neutral-color);
-      border-radius: 12px;
-      font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-      direction: ltr;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .auth-form input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2);
-    }
-    .auth-form button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: var(--primary-color);
-      color: var(--text-light);
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    .auth-form button:hover {
-      background: var(--secondary-color);
-      color: var(--text-light);
-      transform: translateY(-2px);
-    }
-    .auth-form button:active {
-      transform: translateY(0);
-    }
-    .auth-form .error {
-      color: #D32F2F;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-    .auth-form .success {
-      color: #388E3C;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      display: none;
-      text-align: center;
-    }
-    .auth-form .timer {
-      color: var(--text-dark);
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 8px;
-      display: none;
-    }
-    .auth-form .terms {
-      font-size: 0.85rem;
-      color: var(--text-dark);
-      text-align: center;
-      margin-top: 8px;
-    }
-    .wizard-buttons {
-      display: flex;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .wizard-buttons button {
-      flex: 1;
-    }
-    .wizard-buttons .prev {
-      background: var(--neutral-color);
-      color: var(--text-dark);
-    }
-    .wizard-buttons .prev:hover {
-      background: #ccc;
-    }
-    
-    /* Character and Username Selection */
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 24px 0;
-    }
-    .character-card {
-      background: var(--neutral-color);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--text-dark);
-    }
-    .character-card:hover {
-      background: var(--primary-color);
-      color: var(--text-light);
-      transform: translateY(-3px);
-    }
-    .character-card.selected {
-      background: var(--primary-color);
-      color: var(--text-light);
-      box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
-    }
+    /* Auth Modal Styles - حذف شده */
 
     /* Logout Modal */
     .logout-modal {
@@ -1411,11 +1205,6 @@
       footer p {
         font-size: 1rem;
       }
-      .auth-modal-content {
-        max-width: 90%;
-        padding: 24px;
-        margin: 20px;
-      }
       .search-container {
         padding: 16px;
       }
@@ -1641,11 +1430,6 @@
       footer .links a {
         margin: 15px;
       }
-      .auth-modal-content {
-        max-width: 95%;
-        padding: 20px;
-        margin: 10px;
-      }
       .search-container input {
         font-size: 0.95rem;
         padding: 10px;
@@ -1745,19 +1529,19 @@
 
     <div class="cart-profile">
       <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
-      <a href="cart.html" class="cart-link" role="button" aria-label="سبد خرید">
+      <a href="checkout.html" class="cart-link" role="button" aria-label="سبد خرید">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">3</span>
       </a>
-      <div class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+      <a href="login.html?redirect=cooperation.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
         <i class="fas fa-user profile-icon" id="profileIcon"></i>
-      </div>
+      </a>
       <div class="user-menu" id="userMenu">
         <div class="user-info">
           <span class="avatar" id="userAvatar"></span>
           <span id="userName"></span>
         </div>
-        <a href="cart.html">سبد خرید</a>
+        <a href="checkout.html">سبد خرید</a>
         <button id="logoutBtn">خروج</button>
       </div>
     </div>
@@ -1790,71 +1574,7 @@
     </ul>
   </nav>
 
-  <!-- Auth Modal -->
-  <div class="auth-modal" id="authModal">
-    <div class="auth-modal-content">
-      <span class="auth-modal-close" aria-label="بستن فرم" id="closeAuthModal">×</span>
-      <div class="auth-modal-header">
-        <div class="site-logo">
-          <img src="https://placehold.co/30x30/26A69A/FFFFFF?text=F" alt="لوگوی فینگرفود فیروزه">
-          FIROUZEH
-        </div>
-        <h2>ورود یا ثبت‌نام</h2>
-        <div class="greeting">سلام</div>
-        <p>لطفا شماره موبایل خود را وارد کنید</p>
-      </div>
-      <div class="wizard-step active" id="step1">
-        <div class="auth-form">
-          <label for="authPhone">شماره موبایل</label>
-          <input type="tel" id="authPhone" placeholder="09123456789" maxlength="11" required>
-          <p class="error" id="authPhoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم با شروع 09).</p>
-          <div id="captchaSection">
-            <label id="captchaQuestion"></label>
-            <input type="text" id="captchaAnswer" placeholder="پاسخ را وارد کنید" required>
-            <p class="error" id="captchaError">پاسخ اشتباه است.</p>
-          </div>
-          <p class="terms">ورود شما به معنای پذیرش شرایط و قوانین فیروزه هست</p>
-        </div>
-        <div class="wizard-buttons">
-          <button id="nextToStep2" disabled>بعدی</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step2">
-        <div class="auth-form">
-          <p class="success" id="authSuccess">کد ارسال شد. لطفاً کد دریافتی را وارد کنید.</p>
-          <label for="authCode">کد یک‌بار مصرف</label>
-          <div class="input-group">
-            <input type="password" id="authCode" placeholder="کد را وارد کنید" maxlength="6" required>
-            <i class="fas fa-eye toggle-visibility" id="toggleAuthCode"></i>
-          </div>
-          <p class="error" id="authCodeError">کد نامعتبر است.</p>
-          <p class="timer" id="authTimer">ارسال مجدد کد در: <span id="authCountdown">60</span> ثانیه</p>
-          <button id="resendCodeBtn">ارسال مجدد کد</button>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep1">قبلی</button>
-          <button id="nextToStep3" disabled>تأیید</button>
-        </div>
-      </div>
-      <div class="wizard-step" id="step3">
-        <label for="username">نام کاربری</label>
-        <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
-        <div class="username-strength" id="usernameStrength"></div>
-        <p class="error" id="usernameError">نام کاربری معتبر وارد کنید (حداقل 3 کاراکتر، فقط حروف و اعداد).</p>
-        <h3>انتخاب کاراکتر</h3>
-        <div class="character-grid">
-          <div class="character-card" data-char="🍎">🍎</div>
-          <div class="character-card" data-char="🍕">🍕</div>
-          <div class="character-card" data-char="🍔">🍔</div>
-          <div class="character-card" data-char="🍦">🍦</div>
-        </div>
-        <div class="wizard-buttons">
-          <button class="prev" id="prevToStep2">قبلی</button>
-          <button id="confirmProfileBtn" disabled>تأیید</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Auth Modal - حذف شده -->
 
   <!-- Logout Modal -->
   <div class="logout-modal" id="logoutModal">
@@ -2080,44 +1800,16 @@
       logoutModal: document.getElementById('logoutModal'),
       confirmLogout: document.getElementById('confirmLogout'),
       cancelLogout: document.getElementById('cancelLogout'),
-      authModal: document.getElementById('authModal'),
-      closeAuthModal: document.getElementById('closeAuthModal'),
-      step1: document.getElementById('step1'),
-      step2: document.getElementById('step2'),
-      step3: document.getElementById('step3'),
-      nextToStep2: document.getElementById('nextToStep2'),
-      prevToStep1: document.getElementById('prevToStep1'),
-      nextToStep3: document.getElementById('nextToStep3'),
-      prevToStep2: document.getElementById('prevToStep2'),
-      authPhone: document.getElementById('authPhone'),
-      authPhoneError: document.getElementById('authPhoneError'),
-      authSuccess: document.getElementById('authSuccess'),
-      authCode: document.getElementById('authCode'),
-      authCodeError: document.getElementById('authCodeError'),
-      authTimer: document.getElementById('authTimer'),
-      authCountdown: document.getElementById('authCountdown'),
-      username: document.getElementById('username'),
-      usernameError: document.getElementById('usernameError'),
-      usernameStrength: document.getElementById('usernameStrength'),
-      characterCards: document.querySelectorAll('.character-card'),
-      confirmProfileBtn: document.getElementById('confirmProfileBtn'),
-      toggleAuthCode: document.getElementById('toggleAuthCode'),
-      resendCodeBtn: document.getElementById('resendCodeBtn'),
-      captchaQuestion: document.getElementById('captchaQuestion'),
-      captchaAnswer: document.getElementById('captchaAnswer'),
-      captchaError: document.getElementById('captchaError'),
       supportWidget: document.getElementById('supportWidget')
     };
 
-    // Auth State
-    let authCountdownInterval;
-    let authModalShown = false;
-    let userData = JSON.parse(sessionStorage.getItem('userData')) || null;
-    let currentPhone = '';
-    let isNewUser = false;
-    let captchaNum1, captchaNum2, captchaResult;
-    let failedAttempts = parseInt(sessionStorage.getItem('failedAttempts')) || 0;
-    let lockTimer = 0;
+    // حذف متغیرهای مربوط به Auth Modal
+    // let authModalShown = false; // حذف شده
+    // let currentPhone = ''; // حذف شده
+    // let isNewUser = false; // حذف شده
+    // let captchaNum1, captchaNum2, captchaResult; // حذف شده
+    // let failedAttempts = ...; // حذف شده
+    // let lockTimer = 0; // حذف شده
 
     const promoMessages = [
       "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
@@ -2125,6 +1817,7 @@
       "⭐ تخفیف ویژه برای مشتریان وفادار!",
       "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
     ];
+    let currentPromoIndex = 0;
 
     // Utility Functions
     function debounce(fn, delay) {
@@ -2234,159 +1927,54 @@
       clock.innerHTML = ` ${persianDateStr} - ${timeStr}`;
     }
 
-    // Auth Functions
-    function openAuthModalFunc() {
-      elements.authModal.classList.add('active');
-      elements.overlay.classList.add('active');
-      elements.body.style.overflow = 'hidden';
-      authModalShown = true;
-      resetAuthForm();
-      generateCaptcha();
-    }
+    // Auth Functions - حذف توابع مربوط به Auth Modal
+    // اتصال به سیستم لاگین واقعی
+    const baseURL = "http://127.0.0.1:8000/api/auth/";
 
-    function closeAuthModalFunc() {
-      elements.authModal.classList.remove('active');
-      elements.overlay.classList.remove('active');
-      elements.body.style.overflow = '';
-      resetAuthForm();
-    }
-
-    function resetAuthForm() {
-      elements.authPhone.value = '';
-      elements.authCode.value = '';
-      elements.username.value = '';
-      elements.captchaAnswer.value = '';
-      elements.authPhoneError.style.display = 'none';
-      elements.authCodeError.style.display = 'none';
-      elements.usernameError.style.display = 'none';
-      elements.captchaError.style.display = 'none';
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      elements.step1.classList.add('active');
-      elements.step2.classList.remove('active');
-      elements.step3.classList.remove('active');
-      elements.characterCards.forEach(card => card.classList.remove('selected'));
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-      failedAttempts = 0;
-      sessionStorage.setItem('failedAttempts', failedAttempts);
-      updateButtonStates();
-      updateUsernameStrength();
-    }
-
-    function validatePhone(phone) {
-      const regex = /^09[0-9]{9}$/;
-      return regex.test(phone);
-    }
-
-    function validateCode(code) {
-      return /^[0-9]{6}$/.test(code);
-    }
-
-    function validateUsername(name) {
-      return /^[a-zA-Z0-9]{3,}$/.test(name);
-    }
-
-    function validateCaptcha(answer) {
-      return parseInt(answer) === captchaResult;
-    }
-
-    function maskInput(input, regex) {
-      input.value = input.value.replace(regex, '');
-    }
-
-    function updateButtonStates() {
-      elements.nextToStep2.disabled = !validatePhone(elements.authPhone.value) || !validateCaptcha(elements.captchaAnswer.value);
-      elements.nextToStep3.disabled = !validateCode(elements.authCode.value);
-      elements.confirmProfileBtn.disabled = !validateUsername(elements.username.value) || !document.querySelector('.character-card.selected');
-    }
-
-    function updateUsernameStrength() {
-      const name = elements.username.value;
-      if (name.length < 3) {
-        elements.usernameStrength.className = 'username-strength weak';
-      } else if (name.length < 6) {
-        elements.usernameStrength.className = 'username-strength medium';
-      } else {
-        elements.usernameStrength.className = 'username-strength strong';
-      }
-    }
-
-    function generateCaptcha() {
-      captchaNum1 = Math.floor(Math.random() * 10) + 1;
-      captchaNum2 = Math.floor(Math.random() * 10) + 1;
-      captchaResult = captchaNum1 + captchaNum2;
-      elements.captchaQuestion.textContent = `حاصل جمع ${captchaNum1} + ${captchaNum2} چیست؟`;
-    }
-
-    function showSpinner(button) {
-      button.innerHTML = '<div class="spinner"></div>';
-      button.disabled = true;
-    }
-
-    function hideSpinner(button, text) {
-      button.innerHTML = text;
-      button.disabled = false;
-    }
-
-    function simulateSendCode(phone) {
-      // Simulate API call
-      console.log('Code sent to:', phone);
-      // For demo, assume code is '123456'
-      return '123456';
-    }
-
-    function simulateVerifyCode(code, phone) {
-      // For demo, check if code is '123456'
-      if (code === '123456') {
-        // Check if user exists
-        if (sessionStorage.getItem(`user_${phone}`)) {
-          userData = JSON.parse(sessionStorage.getItem(`user_${phone}`));
-          isNewUser = false;
+    async function getProfile() {
+      const token = localStorage.getItem('access');
+      if (!token) return null;
+      try {
+        const response = await fetch(baseURL + 'profile/', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (response.ok) {
+          return await response.json();
         } else {
-          isNewUser = true;
+          return null;
         }
-        return true;
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        return null;
       }
-      return false;
     }
 
-    function startCountdown(timerSeconds = 60) {
-      let seconds = timerSeconds;
-      elements.authCountdown.innerHTML = seconds;
-      elements.authTimer.style.display = 'block';
-      elements.resendCodeBtn.style.display = 'none';
+    let userData = null; // این متغیر از sessionStorage حذف شد و از API پر می‌شود
 
-      authCountdownInterval = setInterval(() => {
-        seconds--;
-        elements.authCountdown.innerHTML = seconds;
-        if (seconds <= 0) {
-          clearInterval(authCountdownInterval);
-          elements.authTimer.style.display = 'none';
-          elements.resendCodeBtn.style.display = 'block';
-        }
-      }, 1000);
+    function escapeHTML(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     function updateUserUI() {
       if (userData) {
         elements.profileIcon.style.display = 'none';
+        const existingAvatar = elements.userProfile.querySelector('.user-avatar');
+        if (existingAvatar) existingAvatar.remove();
         const avatar = document.createElement('div');
         avatar.className = 'user-avatar';
-        avatar.textContent = userData.character;
+        avatar.textContent = userData.character || '👤';
         elements.userProfile.appendChild(avatar);
-        elements.userAvatar.textContent = userData.character;
-        elements.userName.textContent = escapeHTML(userData.username);
+        elements.userAvatar.textContent = userData.character || '👤';
+        elements.userName.textContent = escapeHTML(userData.username || 'کاربر');
       } else {
-        if (elements.userProfile.querySelector('.user-avatar')) {
-          elements.userProfile.querySelector('.user-avatar').remove();
-        }
+        const existingAvatar = elements.userProfile.querySelector('.user-avatar');
+        if (existingAvatar) existingAvatar.remove();
         elements.profileIcon.style.display = 'block';
       }
-    }
-
-    function escapeHTML(str) {
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     // Support Widget Visibility
@@ -2414,172 +2002,18 @@
 
     elements.closeBtn.addEventListener('click', closeMenu);
 
+    // کلیک روی پروفایل - اصلاح شده
     elements.userProfile.addEventListener('click', (e) => {
-      e.preventDefault();
       if (userData) {
+        e.preventDefault(); // جلوگیری از رفتن به لینک login وقتی لاگین است
         elements.userMenu.classList.toggle('active');
-      } else {
-        openAuthModalFunc();
       }
+      // اگر userData وجود نداشت، لینک به login.html می‌رود (بدون preventDefault)
     });
 
-    elements.closeAuthModal.addEventListener('click', closeAuthModalFunc);
+    // حذف Event listenerهای مربوط به Auth Modal
 
-    elements.authPhone.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authPhoneError.style.display = validatePhone(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-
-    elements.captchaAnswer.addEventListener('input', () => {
-      elements.captchaError.style.display = validateCaptcha(elements.captchaAnswer.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-
-    elements.nextToStep2.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!validateCaptcha(elements.captchaAnswer.value)) {
-        elements.captchaError.style.display = 'block';
-        return;
-      }
-      elements.captchaError.style.display = 'none';
-      const phone = elements.authPhone.value;
-      if (!validatePhone(phone)) {
-        elements.authPhoneError.style.display = 'block';
-        return;
-      }
-      elements.authPhoneError.style.display = 'none';
-      currentPhone = phone;
-      showSpinner(elements.nextToStep2);
-      setTimeout(() => {
-        simulateSendCode(phone);
-        elements.authSuccess.style.display = 'block';
-        elements.step1.classList.remove('active');
-        elements.step2.classList.add('active');
-        hideSpinner(elements.nextToStep2, 'بعدی');
-        let timer = failedAttempts > 5 ? 300 : 60;
-        startCountdown(timer);
-      }, 1000); // Simulate delay
-    });
-
-    elements.prevToStep1.addEventListener('click', () => {
-      elements.step2.classList.remove('active');
-      elements.step1.classList.add('active');
-      elements.authSuccess.style.display = 'none';
-      elements.authTimer.style.display = 'none';
-      elements.resendCodeBtn.style.display = 'none';
-      if (authCountdownInterval) clearInterval(authCountdownInterval);
-    });
-
-    elements.authCode.addEventListener('input', (e) => {
-      maskInput(e.target, /[^0-9]/g);
-      elements.authCodeError.style.display = validateCode(e.target.value) ? 'none' : 'block';
-      updateButtonStates();
-    });
-
-    elements.authCode.addEventListener('contextmenu', (e) => e.preventDefault());
-    elements.authCode.addEventListener('paste', (e) => e.preventDefault());
-    elements.authCode.addEventListener('copy', (e) => e.preventDefault());
-
-    elements.nextToStep3.addEventListener('click', (e) => {
-      e.preventDefault();
-      const code = elements.authCode.value;
-      showSpinner(elements.nextToStep3);
-      setTimeout(() => {
-        if (simulateVerifyCode(code, currentPhone)) {
-          failedAttempts = 0;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.style.display = 'none';
-          hideSpinner(elements.nextToStep3, 'تأیید');
-          if (isNewUser) {
-            elements.step2.classList.remove('active');
-            elements.step3.classList.add('active');
-            elements.username.value = `user${currentPhone.slice(-4)}`;
-            updateUsernameStrength();
-            updateButtonStates();
-          } else {
-            sessionStorage.setItem('userData', JSON.stringify(userData));
-            updateUserUI();
-            closeAuthModalFunc();
-            alert('ورود موفق!');
-          }
-        } else {
-          failedAttempts++;
-          sessionStorage.setItem('failedAttempts', failedAttempts);
-          elements.authCodeError.textContent = `کد نامعتبر است. تلاش‌های باقی‌مانده: ${5 - (failedAttempts % 6)}`;
-          elements.authCodeError.style.display = 'block';
-          if (failedAttempts >= 5) {
-            console.error('Too many failed attempts');
-            elements.authCodeError.textContent = 'تعداد تلاش‌ها بیش از حد مجاز. لطفاً بعداً امتحان کنید.';
-            elements.nextToStep3.disabled = true;
-            lockTimer = 300; // 5 minutes lock
-            setTimeout(() => {
-              elements.nextToStep3.disabled = false;
-              failedAttempts = 0;
-              sessionStorage.setItem('failedAttempts', failedAttempts);
-            }, lockTimer * 1000);
-          }
-          hideSpinner(elements.nextToStep3, 'تأیید');
-        }
-      }, 1000);
-    });
-
-    elements.resendCodeBtn.addEventListener('click', () => {
-      simulateSendCode(currentPhone);
-      let timer = failedAttempts > 5 ? 300 : 60;
-      startCountdown(timer);
-    });
-
-    elements.toggleAuthCode.addEventListener('click', () => {
-      const type = elements.authCode.type === 'password' ? 'text' : 'password';
-      elements.authCode.type = type;
-      elements.toggleAuthCode.classList.toggle('fa-eye-slash', type === 'password');
-    });
-
-    elements.prevToStep2.addEventListener('click', () => {
-      elements.step3.classList.remove('active');
-      elements.step2.classList.add('active');
-    });
-
-    elements.username.addEventListener('input', (e) => {
-      maskInput(e.target, /[^a-zA-Z0-9]/g);
-      elements.usernameError.style.display = validateUsername(e.target.value) ? 'none' : 'block';
-      updateUsernameStrength();
-      updateButtonStates();
-    });
-
-    elements.characterCards.forEach(card => {
-      card.addEventListener('click', () => {
-        elements.characterCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        updateButtonStates();
-      });
-    });
-
-    elements.confirmProfileBtn.addEventListener('click', () => {
-      const name = elements.username.value;
-      const selectedChar = document.querySelector('.character-card.selected');
-      if (!validateUsername(name)) {
-        elements.usernameError.style.display = 'block';
-        return;
-      }
-      if (!selectedChar) {
-        alert('لطفاً یک کاراکتر انتخاب کنید');
-        return;
-      }
-      elements.usernameError.style.display = 'none';
-      userData = {
-        phone: currentPhone,
-        username: name,
-        character: selectedChar.dataset.char
-      };
-      sessionStorage.setItem(`user_${currentPhone}`, JSON.stringify(userData));
-      sessionStorage.setItem('userData', JSON.stringify(userData));
-      updateUserUI();
-      closeAuthModalFunc();
-      alert('ثبت‌نام موفق!');
-    });
-
+    // Logout
     elements.logoutBtn.addEventListener('click', () => {
       elements.userMenu.classList.remove('active');
       elements.logoutModal.classList.add('active');
@@ -2588,7 +2022,7 @@
 
     elements.confirmLogout.addEventListener('click', () => {
       userData = null;
-      sessionStorage.removeItem('userData');
+      localStorage.removeItem('access');
       updateUserUI();
       elements.logoutModal.classList.remove('active');
       elements.overlay.classList.remove('active');
@@ -2612,7 +2046,7 @@
       closeSearch();
       elements.userMenu.classList.remove('active');
       elements.logoutModal.classList.remove('active');
-      closeAuthModalFunc();
+      // closeAuthModalFunc(); // حذف شد
     });
 
     elements.searchInputLegacy.addEventListener('input', (e) => {
@@ -2637,7 +2071,7 @@
         closeSearch();
         elements.userMenu.classList.remove('active');
         elements.logoutModal.classList.remove('active');
-        closeAuthModalFunc();
+        // closeAuthModalFunc(); // حذف شد
       }
     });
 
@@ -2655,15 +2089,14 @@
     updateTime();
     setInterval(updateTime, 1000);
     setInterval(changePromoText, 5000);
-    updateUserUI(); // Initial user UI
-    handleSupportWidgetVisibility(); // Initial widget visibility
 
-    // Auto open auth modal after 1 minute if not logged in
-    setTimeout(() => {
-      if (!authModalShown && !userData) {
-        openAuthModalFunc();
-      }
-    }, 60000); // 1 minute
+    // دریافت اطلاعات کاربر از API به‌جای sessionStorage
+    (async () => {
+      userData = await getProfile();
+      updateUserUI();
+    })();
+
+    // حذف تایمر خودکار باز شدن مودال
 
     // Mobile-specific optimizations
     function handleMobileOptimizations() {

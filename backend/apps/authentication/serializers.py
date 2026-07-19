@@ -1,10 +1,12 @@
+from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError as DjangoValidationError
+from django.db import IntegrityError
 from rest_framework import serializers
-from .models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+from .models import User, UserRole
 from .utils import normalize_phone
 from .validators import validate_iranian_phone
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from django.contrib.auth import authenticate
-from .models import User, UserRole  # UserRole رو هم ایمپورت کن
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -24,8 +26,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         try:
             phone = normalize_phone(value)
             validate_iranian_phone(phone)
-        except ValueError as e:
-            raise serializers.ValidationError(str(e))
+        except (ValueError, DjangoValidationError) as e:
+            # normalize_phone -> ValueError | validate_iranian_phone -> ValidationError
+            message = e.messages[0] if isinstance(e, DjangoValidationError) else str(e)
+            raise serializers.ValidationError(message)
 
         if User.objects.filter(phone=phone).exists():
             raise serializers.ValidationError("این شماره قبلاً ثبت شده است.")
@@ -41,7 +45,17 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data.pop("confirm_password")
-        return User.objects.create_user(**validated_data)
+        try:
+            # چک یکتا بودن شماره در validate_phone و ساخت واقعی کاربر اینجا
+            # دو عملیات جدا روی دیتابیس‌اند؛ اگر دو درخواست همزمان با یک شماره
+            # بیایند، هر دو از آن چک رد می‌شوند و یکی‌شان اینجا با
+            # IntegrityError مواجه می‌شود. آن را به یک خطای ۴۰۰ تمیز تبدیل می‌کنیم
+            # به‌جای اینکه به یک ۵۰۰ خام تبدیل شود.
+            return User.objects.create_user(**validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError(
+                {"phone": "این شماره قبلاً ثبت شده است."}
+            )
 
 
 class LoginSerializer(TokenObtainPairSerializer):
@@ -81,7 +95,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "phone_verified",
             "created_at",
         )
-        
+
+
 class AdminLoginSerializer(TokenObtainPairSerializer):
     phone = serializers.CharField()
 
