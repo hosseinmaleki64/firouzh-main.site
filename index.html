@@ -1317,18 +1317,25 @@
    margin: 20px 0;
    position: relative;
    z-index: 1;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 8px;
  }
- footer a {
+ footer .links a {
    color: var(--text-light);
    text-decoration: none;
-   margin: 0 15px;
    font-weight: 500;
    font-size: 0.95rem;
    transition: var(--transition);
    padding: 8px 15px;
    border-radius: 8px;
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   white-space: nowrap;
  }
- footer a:hover {
+ footer .links a:hover {
    color: var(--primary-color);
    background: rgba(255, 255, 255, 0.1);
  }
@@ -1363,48 +1370,45 @@
    gap: 12px;
    padding: 15px 0;
    margin-top: 25px;
-   flex-wrap: nowrap;
+   flex-wrap: wrap;
    position: relative;
    z-index: 1;
  }
- .social-box {
+ .social-box, .logo-box {
    width: 70px;
    height: 70px;
-   background: rgba(255, 255, 255, 0.05);
-   border: 1px solid var(--primary-color);
+   flex: 0 0 auto;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
+   border-radius: 12px;
+   transition: all 0.3s ease;
+ }
+ .social-box {
+   background: rgba(255, 255, 255, 0.05);
+   border: 1px solid var(--primary-color);
    color: var(--text-light);
    text-decoration: none;
    font-size: 0.8rem;
    font-weight: 500;
-   transition: all 0.3s ease;
    cursor: pointer;
-   border-radius: 12px;
- }
- .social-box img {
-   width: 24px;
-   height: 24px;
-   margin-bottom: 5px;
-   object-fit: contain;
  }
  .social-box:hover {
    background: var(--primary-color);
    color: var(--text-light);
    transform: scale(1.05);
  }
+ .social-box img {
+   max-width: 70%;
+   max-height: 70%;
+   object-fit: contain;
+   margin-bottom: 2px;
+ }
  .logo-box {
-   width: 70px;
-   height: 70px;
    background: transparent;
    border: none;
-   display: flex;
-   align-items: center;
-   justify-content: center;
    overflow: hidden;
-   transition: all 0.3s ease;
  }
  .logo-box img {
    width: 100%;
@@ -1413,6 +1417,34 @@
  }
  .logo-box:hover {
    transform: scale(1.05);
+ }
+ @media (max-width: 768px) {
+   .social-box, .logo-box {
+     width: 60px;
+     height: 60px;
+   }
+ }
+ @media (max-width: 576px) {
+   .social-box, .logo-box {
+     width: 50px;
+     height: 50px;
+     font-size: 0.65rem;
+   }
+   .social-box img {
+     width: 18px;
+     height: 18px;
+   }
+ }
+ @media (max-width: 400px) {
+   .social-box, .logo-box {
+     width: 44px;
+     height: 44px;
+     font-size: 0.55rem;
+   }
+   .social-box img {
+     width: 16px;
+     height: 16px;
+   }
  }
  #blogs {
    padding: 100px 32px;
@@ -1632,10 +1664,6 @@
    max-width: 100%;
    height: auto;
  }
-
- /* =========================================================
-    CART SIDEBAR — جدید
-    ========================================================= */
  .cart-sidebar {
    position: fixed;
    top: 0;
@@ -1819,7 +1847,6 @@
      max-width: 100%;
    }
  }
-
  @media (max-width: 1200px) {
    .navbar {
      width: 95%;
@@ -1988,17 +2015,13 @@
      font-size: 1rem;
    }
    .social-bar {
-     flex-wrap: nowrap;
-     gap: 8px;
+     flex-wrap: wrap;
+     gap: 10px;
+     justify-content: center;
    }
    .social-box, .logo-box {
-     width: 80px;
-     height: 80px;
-     font-size: 0.9rem;
-   }
-   .social-box img {
-     width: 28px;
-     height: 28px;
+     width: 60px;
+     height: 60px;
    }
    #blogs {
      padding: 80px 24px;
@@ -2030,10 +2053,10 @@
      justify-content: center;
      padding: 8px 10px;
    }
-.logo-search {
-       flex-direction: column;
-       gap: 10px;
-     }
+   .logo-search {
+     flex-direction: column;
+     gap: 10px;
+   }
    .search-box {
      width: 60%;
    }
@@ -2166,17 +2189,18 @@
      height: 240px;
    }
    .social-bar {
- gap: 8px;
- justify-content: space-around;
- padding: 10px 0;
-}
+     flex-wrap: wrap;
+     gap: 8px;
+     justify-content: center;
+     padding: 10px 0;
+   }
    .social-box, .logo-box {
-     width: 45px;
-     height: 45px;
-     font-size: 0.5rem;
+     width: 50px;
+     height: 50px;
+     font-size: 0.65rem;
    }
    .social-box img {
-     width: 18x;
+     width: 18px;
      height: 18px;
    }
    #blogs {
@@ -2219,6 +2243,7 @@
    }
    .support-widget.hidden {
      opacity: 0;
+     pointer-events: none;
    }
    .support-widget a {
      padding: 6px 12px;
@@ -2344,7 +2369,7 @@
    footer .links {
      margin: 15px 0;
    }
-   footer a {
+   footer .links a {
      font-size: 0.75rem;
      margin: 0 8px;
      padding: 6px 10px;
@@ -2357,15 +2382,6 @@
      margin-top: 15px;
      padding-top: 15px;
      font-size: 0.7rem;
-   }
-   .social-box, .logo-box {
-     width: 60px;
-     height: 60px;
-     font-size: 0.75rem;
-   }
-   .social-box img {
-     width: 20px;
-     height: 20px;
    }
  }
  @media (max-width: 468px) {
@@ -2462,6 +2478,12 @@
    .story-image {
      height: 240px;
    }
+   .social-bar {
+     flex-wrap: wrap;
+     gap: 6px;
+     justify-content: center;
+     padding: 8px 0;
+   }
    .social-box, .logo-box {
      width: 50px;
      height: 50px;
@@ -2472,23 +2494,23 @@
      height: 20px;
    }
    .blog-grid {
- grid-template-columns: repeat(2, 1fr);
- gap: 15px;
-}
-.blog-image {
- height: 120px;
-}
-.blog-card strong {
- font-size: 1rem;
- padding: 12px 16px 6px;
-}
-.blog-card p {
- font-size: 0.8rem;
- padding: 0 16px 16px;
-}
-#blogs {
- padding: 50px 12px;
-}
+     grid-template-columns: repeat(2, 1fr);
+     gap: 15px;
+   }
+   .blog-image {
+     height: 120px;
+   }
+   .blog-card strong {
+     font-size: 1rem;
+     padding: 12px 16px 6px;
+   }
+   .blog-card p {
+     font-size: 0.8rem;
+     padding: 0 16px 16px;
+   }
+   #blogs {
+     padding: 50px 12px;
+   }
    .trust-section {
      padding: 30px 16px;
    }
@@ -2503,8 +2525,8 @@
      padding: 3px 8px;
    }
    .promo-input {
-       font-size: 0.75rem;
-     }
+     font-size: 0.75rem;
+   }
    .best-seller-card {
      min-width: 160px;
      padding: 10px;
@@ -2548,75 +2570,73 @@
    }
    .feature-card p {
      font-size: 0.7rem;
-
    }
    .blog-grid {
- grid-template-columns: repeat(2, 1fr);
- gap: 15px;
-}
-.blog-image {
- height: 120px;
-}
-.blog-card strong {
- font-size: 1rem;
- padding: 12px 16px 6px;
-}
-.blog-card p {
- font-size: 0.8rem;
- padding: 0 16px 16px;
-}
-#blogs {
- padding: 50px 12px;
-}
-.social-bar {
- gap: 6px;
- justify-content: space-between;
- padding: 8px 0;
-}
-.social-box, .logo-box {
- width: 40px;
- height: 40px;
- font-size: 0.5rem;
-}
-.social-box img {
- width: 16px;
- height: 16px;
-}
-.social-box {
- padding: 4px;
-}
+     grid-template-columns: repeat(2, 1fr);
+     gap: 15px;
+   }
+   .blog-image {
+     height: 120px;
+   }
+   .blog-card strong {
+     font-size: 1rem;
+     padding: 12px 16px 6px;
+   }
+   .blog-card p {
+     font-size: 0.8rem;
+     padding: 0 16px 16px;
+   }
+   #blogs {
+     padding: 50px 12px;
+   }
+   .social-bar {
+     gap: 6px;
+     justify-content: center;
+     padding: 8px 0;
+   }
+   .social-box, .logo-box {
+     width: 50px;
+     height: 50px;
+     font-size: 0.6rem;
+   }
+   .social-box img {
+     width: 20px;
+     height: 20px;
+   }
+   .social-box {
+     padding: 4px;
+   }
  }
  @media (max-width: 400px) {
    .category-grid {
-       grid-template-columns: repeat(2, 1fr);
-       gap: 10px;
-       margin: 0 8px;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+     margin: 0 8px;
    }
    #categories {
-       padding: 50px 8px;
+     padding: 50px 8px;
    }
    .category-card {
-       padding: 8px;
-       font-size: 0.9rem;
+     padding: 8px;
+     font-size: 0.9rem;
    }
    .category-card strong {
-       font-size: 1rem;
+     font-size: 1rem;
    }
    .category-card p {
-       font-size: 0.85rem;
+     font-size: 0.85rem;
    }
    .image-placeholder {
-       height: 80px;
+     height: 80px;
    }
    .category-button {
-       font-size: 0.9rem;
-       padding: 6px 12px;
+     font-size: 0.9rem;
+     padding: 6px 12px;
    }
    .best-seller-card {
      min-width: 160px;
      padding: 10px;
    }
-
    .best-seller-image {
      height: 90px;
    }
@@ -2656,80 +2676,78 @@
    }
    .feature-card p {
      font-size: 0.7rem;
-
    }
    .blog-grid {
- grid-template-columns: repeat(2, 1fr);
- gap: 15px;
-}
-.blog-image {
- height: 120px;
-}
-.blog-card strong {
- font-size: 1rem;
- padding: 12px 16px 6px;
-}
-.blog-card p {
- font-size: 0.8rem;
- padding: 0 16px 16px;
-}
-#blogs {
- padding: 50px 12px;
-}
-.social-bar {
- gap: 6px;
- justify-content: space-between;
- padding: 8px 0;
-}
-.social-box, .logo-box {
- width: 40px;
- height: 40px;
- font-size: 0.5rem;
-}
-.social-box img {
- width: 16px;
- height: 16px;
-}
-.social-box {
- padding: 4px;
-}
-}
-/* استایل برای کارتِ دکمه مشاهده بیشتر در اسلایدر */
-.view-more-card {
- min-width: 250px;
- display: flex;
- align-items: center;
- justify-content: center;
- background: var(--gradient-start);
- color: white;
- border-radius: 16px;
- cursor: pointer;
- transition: all 0.3s ease;
- flex-shrink: 0;
-}
-.view-more-card:hover {
- transform: scale(1.05);
- box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-.view-more-card a {
- color: white;
- text-decoration: none;
- font-size: 1.2rem;
- font-weight: bold;
- display: flex;
- flex-direction: column;
- align-items: center;
- gap: 10px;
- width: 100%;
- height: 100%;
- justify-content: center;
-}
-.view-more-card i {
- font-size: 2rem;
- background: rgba(255,255,255,0.2);
- padding: 15px;
- border-radius: 50%;
-}
+     grid-template-columns: repeat(2, 1fr);
+     gap: 15px;
+   }
+   .blog-image {
+     height: 120px;
+   }
+   .blog-card strong {
+     font-size: 1rem;
+     padding: 12px 16px 6px;
+   }
+   .blog-card p {
+     font-size: 0.8rem;
+     padding: 0 16px 16px;
+   }
+   #blogs {
+     padding: 50px 12px;
+   }
+   .social-bar {
+     gap: 6px;
+     justify-content: center;
+     padding: 8px 0;
+   }
+   .social-box, .logo-box {
+     width: 44px;
+     height: 44px;
+     font-size: 0.55rem;
+   }
+   .social-box img {
+     width: 16px;
+     height: 16px;
+   }
+   .social-box {
+     padding: 4px;
+   }
+ }
+ .view-more-card {
+   min-width: 250px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: var(--gradient-start);
+   color: white;
+   border-radius: 16px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   flex-shrink: 0;
+ }
+ .view-more-card:hover {
+   transform: scale(1.05);
+   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+ }
+ .view-more-card a {
+   color: white;
+   text-decoration: none;
+   font-size: 1.2rem;
+   font-weight: bold;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+   width: 100%;
+   height: 100%;
+   justify-content: center;
+ }
+ .view-more-card i {
+   font-size: 2rem;
+   background: rgba(255,255,255,0.2);
+   padding: 15px;
+   border-radius: 50%;
+ }
 </style>
 </head>
 <body>
@@ -2783,7 +2801,7 @@
      </a>
      <a href="login.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
        <i class="fas fa-user profile-icon" id="profileIcon"></i>
-       </a>
+     </a>
      <div class="user-menu" id="userMenu">
        <div class="user-info">
          <span class="avatar" id="userAvatar"></span>
@@ -2796,7 +2814,7 @@
  </header>
  <div class="overlay" id="overlay"></div>
 
- <!-- ============ Cart Sidebar — جدید، وصل به /api/cart/ ============ -->
+ <!-- Cart Sidebar -->
  <aside class="cart-sidebar" id="cartSidebar" aria-hidden="true">
    <div class="cart-sidebar-head">
      <h3><i class="fas fa-shopping-cart"></i> سبد خرید</h3>
@@ -2888,7 +2906,6 @@
      <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
      <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
      <a href="tel:09142830328">تماس</a>
-     <a href="bale://OPEN_CHAT?userName=@hossein0780">بله</a>
    </div>
    <section class="features">
      <div class="features-wrap">
@@ -2923,7 +2940,7 @@
      </div>
    </section>
    <section class="trust-section">
-     <p>از شروع کارمون تا امروز،100 ها مهمونی و دورهمی با فینگر فودهای ما خوش‌رنگ‌تر و خوشمزه‌تر شده. اعتماد شما بزرگ‌ترین سرمایه ماست و افتخار می‌کنیم میزبان لحظه‌های شیرین شما بودیم.</p>
+     <p>از شروع کارمون تا امروز،۱۰۰‌ها مهمونی و دورهمی با فینگر فودهای ما خوش‌رنگ‌تر و خوشمزه‌تر شده. اعتماد شما بزرگ‌ترین سرمایه ماست و افتخار می‌کنیم میزبان لحظه‌های شیرین شما بودیم.</p>
    </section>
    <section id="categories">
      <h2>دسته‌بندی‌ها</h2>
@@ -2949,37 +2966,37 @@
        </div>
        <div class="story-text">
          ما در فیروزه از یه ایده‌ی ساده شروع کردیم — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
-ما ترکیبی از کیفیت، خلاقیت و عشق به شادی هستیم.
-از فینگرفودهای تازه و دسرهای خوش‌طعم گرفته تا نوشیدنی‌های خاص و محصولات ویژه‌ی فیروزه که مخصوص رویدادهای خاص طراحی شدن.
-چه جشن کوچیکی در خونه‌تون باشه، چه همایشی بزرگ یا مراسم دانشگاهی، تیم فیروزه با دقت، نظم و ذوق خاص خودش کنار شماست.
-اگر هم جشن‌تون بیرون شهر برگزار می‌شه، باز هم روی ما حساب کنید — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
+         ما ترکیبی از کیفیت، خلاقیت و عشق به شادی هستیم.
+         از فینگرفودهای تازه و دسرهای خوش‌طعم گرفته تا نوشیدنی‌های خاص و محصولات ویژه‌ی فیروزه که مخصوص رویدادهای خاص طراحی شدن.
+         چه جشن کوچیکی در خونه‌تون باشه، چه همایشی بزرگ یا مراسم دانشگاهی، تیم فیروزه با دقت، نظم و ذوق خاص خودش کنار شماست.
+         اگر هم جشن‌تون بیرون شهر برگزار می‌شه، باز هم روی ما حساب کنید — جایی که همه‌چیز برای خلق لحظه‌های شاد و خاص آماده‌ست.
        </div>
      </div>
      <a href="about.html" class="story-button">بیشتر بدانید</a>
    </section>
    <section class="customer-reviews">
-     <div class="reviews-badge">بیش از 100 نظر 5 ستاره</div>
+     <div class="reviews-badge">بیش از ۱۰۰ نظر ۵ ستاره</div>
      <h2>آنچه مشتریان می‌گویند</h2>
      <div class="user-reviews">
        <div class="user-review-container">
          <div class="user-review">
-           <div class="rating">★★★★★ (5/5)</div>
+           <div class="rating">★★★★★ (۵/۵)</div>
            <p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p>
          </div>
          <div class="user-review">
-           <div class="rating">★★★★★ (5/5)</div>
+           <div class="rating">★★★★★ (۵/۵)</div>
            <p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p>
          </div>
          <div class="user-review">
-           <div class="rating">★★★★★ (5/5)</div>
-           <p>خدمت‌رسانی عالی و پشتیبانی 24 ساعته. فیروزه همیشه بهترین گزینه برای مراسم‌های خاص.</p>
+           <div class="rating">★★★★★ (۵/۵)</div>
+           <p>خدمت‌رسانی عالی و پشتیبانی ۲۴ ساعته. فیروزه همیشه بهترین گزینه برای مراسم‌های خاص.</p>
          </div>
          <div class="user-review">
-           <div class="rating">★★★★★ (5/5)</div>
+           <div class="rating">★★★★★ (۵/۵)</div>
            <p>کیفیت عالی و تحویل به‌موقع! تجربه خرید فوق‌العاده بود. از فیروزه خیلی راضی‌ام!</p>
          </div>
          <div class="user-review">
-           <div class="rating">★★★★★ (5/5)</div>
+           <div class="rating">★★★★★ (۵/۵)</div>
            <p>محصولات بسیار تازه و با کیفیت. بسته‌بندی شیک و حرفه‌ای. قطعاً دوباره سفارش می‌دهم.</p>
          </div>
        </div>
@@ -2987,24 +3004,23 @@
      <button class="more-reviews">بیشتر</button>
      <div class="gallery">
        <div class="gallery-container">
-         <div class="gallery-item">رضایت مشتری 1</div>
-         <div class="gallery-item">رضایت مشتری 2</div>
-         <div class="gallery-item">رضایت مشتری 3</div>
-         <div class="gallery-item">رضایت مشتری 4</div>
-         <div class="gallery-item">رضایت مشتری 5</div>
-         <div class="gallery-item">رضایت مشتری 6</div>
-         <div class="gallery-item">رضایت مشتری 7</div>
-         <div class="gallery-item">رضایت مشتری 8</div>
-         <div class="gallery-item">رضایت مشتری 9</div>
-         <div class="gallery-item">رضایت مشتری 10</div>
-         <div class="gallery-item">رضایت مشتری 11</div>
-         <div class="gallery-item">رضایت مشتری 12</div>
+         <div class="gallery-item">رضایت مشتری ۱</div>
+         <div class="gallery-item">رضایت مشتری ۲</div>
+         <div class="gallery-item">رضایت مشتری ۳</div>
+         <div class="gallery-item">رضایت مشتری ۴</div>
+         <div class="gallery-item">رضایت مشتری ۵</div>
+         <div class="gallery-item">رضایت مشتری ۶</div>
+         <div class="gallery-item">رضایت مشتری ۷</div>
+         <div class="gallery-item">رضایت مشتری ۸</div>
+         <div class="gallery-item">رضایت مشتری ۹</div>
+         <div class="gallery-item">رضایت مشتری ۱۰</div>
+         <div class="gallery-item">رضایت مشتری ۱۱</div>
+         <div class="gallery-item">رضایت مشتری ۱۲</div>
        </div>
      </div>
    </section>
    <section id="blogs">
      <h2><span>Blogs</span>مجله و اخبار فیروزه</h2>
-
      <div class="blog-grid" id="homeBlogGrid">
        </div>
      <a href="blogs.html" class="view-more">مشاهده بیشتر</a>
@@ -3020,7 +3036,7 @@
      <a href="FAQ.html"><i class="fas fa-question-circle"></i> سوالات متداول</a>
    </div>
    <div class="contact-info">
-     <i class="fas fa-phone"></i> تماس: 041-33367052 | <i class="fab fa-whatsapp"></i> واتس‌اپ:09142830328
+     <i class="fas fa-phone"></i> تماس: ۰۴۱-۳۳۳۶۷۰۵۲ | <i class="fab fa-whatsapp"></i> واتس‌اپ:۰۹۱۴۲۸۳۰۳۲۸
    </div>
    <p id="clock"><i class="fas fa-clock"></i> در حال دریافت زمان…</p>
    <div class="copyright">
@@ -3048,12 +3064,19 @@
        <i class="fas fa-award"></i>
        مجوزها
      </a>
+     <!-- اینماد (نماد اعتماد الکترونیکی) - هم‌ساختار با سایر باکس‌ها -->
+     <a href="https://trustseal.enamad.ir/?id=689016&Code=bOcgCiTNRUJWTNNDSfav6XoRLSAeLpGo"
+        target="_blank" rel="noopener" referrerpolicy="origin" class="social-box">
+       <img referrerpolicy="origin"
+            src="https://trustseal.enamad.ir/logo.aspx?id=689016&Code=bOcgCiTNRUJWTNNDSfav6XoRLSAeLpGo"
+            alt="نماد اعتماد الکترونیکی" style="max-width:70%; max-height:70%; object-fit:contain;">
+       اینماد
+     </a>
    </div>
  </footer>
 <script>
    /* =========================================================
       اتصال به بک‌اند واقعی (public — بدون نیاز به لاگین)
-      اگه پورت/دامنه‌ی جنگو فرق داره فقط همین یک خط رو عوض کن.
       ========================================================= */
    const API_ORIGIN = "https://api.firouzehco.com";
    const API_BASE = `${API_ORIGIN}/api/products`;
@@ -3083,7 +3106,6 @@
      };
    }
 
-   // Elements (Grouped for better readability)
    const elements = {
      body: document.body,
      menuToggle: document.querySelector('.menu-icon'),
@@ -3118,9 +3140,7 @@
      cartSidebarTotal: document.getElementById('cartSidebarTotal'),
    };
    const baseURL = "https://api.firouzehco.com/api/auth/";
-   // بعداً وقتی سایت رو آنلاین کردی، این رو به آدرس سرور واقعی‌ت تغییر بده.
 
-   // Data (Modularized)
    const data = {
      popularSearches: ['فینگرفود', 'دسر', 'مزه', 'سینی مزه', 'آجیل مخلوط'],
      recentSearches: ['باکس الگانت', 'نوشیدنی خنک', 'پنیر و زیتون'],
@@ -3133,13 +3153,11 @@
      ],
    };
 
-   // State (Centralized for better management)
    let state = {
      currentPromoIndex: 0,
      userData: null,
    };
 
-   // Utility Functions (Modularized and optimized)
    const utils = {
      escapeHTML: (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'),
      updateTime: () => {
@@ -3166,7 +3184,6 @@
      },
    };
 
-   // Menu Functions
    const menu = {
      open: () => {
        elements.sideMenu.classList.add('active');
@@ -3190,11 +3207,6 @@
      },
    };
 
-   /* =========================================================
-      CART SIDEBAR — جدید — وصل به /api/cart/
-      نکته: چون سبد مهمان با کوکی session کار می‌کند، همه‌ی
-      درخواست‌ها با credentials:'include' زده می‌شوند.
-      ========================================================= */
    function getCustomerToken(){ return localStorage.getItem('access'); }
 
    async function cartFetch(path, options = {}){
@@ -3310,7 +3322,6 @@
      elements.body.style.overflow = '';
    }
 
-   // Get Profile Function
    async function getProfile() {
      const token = localStorage.getItem('access');
      if (!token) return null;
@@ -3333,7 +3344,6 @@
      }
    }
 
-   // Auth UI helper (login/signup itself now happens on login.html)
    const auth = {
      updateUserUI: () => {
        if (state.userData) {
@@ -3352,7 +3362,6 @@
      },
    };
 
-   // Search Functions (Optimized loops with early exits)
    const search = {
      open: () => {
        elements.searchContainer.classList.add('active');
@@ -3409,26 +3418,19 @@
      },
    };
 
-   // Event Handlers (Using delegation where possible)
    const events = {
      setup: () => {
-       // Menu
        elements.menuToggle.addEventListener('click', () => {
          elements.sideMenu.classList.contains('active') ? menu.close() : menu.open();
        });
        elements.closeBtn.addEventListener('click', menu.close);
 
-       // Cart — کلیک روی آیکون سبد، Sidebar را باز می‌کند (طبق مستند ماژول Cart)
        elements.cartLink.addEventListener('click', (e) => {
          e.preventDefault();
          openCartSidebar();
        });
        elements.cartSidebarClose.addEventListener('click', closeCartSidebar);
 
-       // User Profile — if logged in, toggle the user menu.
-       // If NOT logged in, the icon is a plain <a href="login.html">
-       // so the browser navigates there naturally; we only intercept
-       // the click when we need to show the logged-in dropdown instead.
        elements.userProfile.addEventListener('click', (e) => {
          if (state.userData) {
            e.preventDefault();
@@ -3436,7 +3438,6 @@
          }
        });
 
-       // Logout
        elements.logoutBtn.addEventListener('click', () => {
          elements.userMenu.classList.remove('active');
          elements.logoutModal.classList.add('active');
@@ -3454,7 +3455,6 @@
          elements.overlay.classList.remove('active');
        });
 
-       // Search
        document.querySelector('.search-icon').addEventListener('click', () => {
          if (elements.searchInput.value.trim()) {
            console.log('جستجو برای:', elements.searchInput.value);
@@ -3482,7 +3482,6 @@
          }
        });
 
-       // Overlay and Escape Key
        elements.overlay.addEventListener('click', () => {
          menu.close();
          search.close();
@@ -3502,7 +3501,6 @@
          }
        });
 
-       // Document Click for Closing Menus
        document.addEventListener('click', (e) => {
          if (!elements.searchInput.contains(e.target) && !elements.suggestionsBox.contains(e.target)) {
            elements.suggestionsBox.classList.remove('active');
@@ -3512,21 +3510,15 @@
          }
        });
 
-       // Support Widget Visibility
        const footer = document.querySelector('footer');
        const supportWidget = document.querySelector('.support-widget');
        const observer = new IntersectionObserver((entries) => {
-         entries.forEach(entry => {
-           if (entry.isIntersecting) {
-             supportWidget.classList.add('hidden');
-           } else {
-             supportWidget.classList.remove('hidden');
-           }
-         });
-       }, { threshold: 0.1 });
+  entries.forEach(entry => {
+    supportWidget.style.display = entry.isIntersecting ? 'none' : 'flex';
+  });
+}, { threshold: 0.1 });
        observer.observe(footer);
 
-       // Best Sellers Slider Manual Swipe
        const slider = document.querySelector('.best-sellers-slider');
        const sliderContainer = document.querySelector('.slider-container');
        let isDragging = false;
@@ -3551,20 +3543,17 @@
      },
    };
 
-   // Initialize
    utils.updateTime();
    setInterval(utils.updateTime, 1000);
    setInterval(utils.changePromoText, 5000);
    utils.changePromoText();
    events.setup();
 
-   // Load user data if token exists
    (async () => {
      state.userData = await getProfile();
      auth.updateUserUI();
    })();
 
-   /* ---------------- دسته‌بندی‌های صفحه‌ی اصلی (از بک‌اند واقعی) ---------------- */
    async function loadCategoriesGrid(){
      const grid = document.getElementById('categoryGrid');
      try{
@@ -3593,10 +3582,6 @@
      }
    }
 
-   /* ---------------- پرفروش‌ترین‌ها (از بک‌اند واقعی) ----------------
-      نکته: بک‌اند فعلاً فیلد "تعداد فروش" ذخیره نمی‌کند، پس محصولات
-      دارای تخفیف را در اولویت می‌گذاریم و در نبود آن‌ها، جدیدترین‌ها
-      را نشان می‌دهیم. */
    async function loadBestSellers() {
      const container = elements.sliderContainer;
      container.innerHTML = '<p style="color:white; text-align:center; width:100%;">در حال بارگذاری...</p>';
@@ -3668,7 +3653,6 @@
        });
      }
 
-     // کارت "مشاهده همه" در انتها
      const viewMoreCard = document.createElement('div');
      viewMoreCard.className = 'best-seller-card view-more-card';
      viewMoreCard.innerHTML = `
@@ -3680,7 +3664,6 @@
      container.appendChild(viewMoreCard);
    }
 
-   /* ---------------- بلاگ‌های صفحه اصلی (از API محتوا) ---------------- */
    async function loadHomeBlogs(){
      const container = document.getElementById('homeBlogGrid');
      container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">در حال بارگذاری...</p>';
@@ -3710,12 +3693,11 @@
      }
    }
 
-   // اجرا هنگام لود صفحه
    window.addEventListener('DOMContentLoaded', () => {
-     loadCategoriesGrid(); // دسته‌بندی‌ها از بک‌اند واقعی
-     loadBestSellers();    // محصولات پرفروش/تخفیف‌دار از بک‌اند واقعی
-     loadHomeBlogs();      // بلاگ‌ها از API محتوای اختصاصی
-     loadCart();           // سبد خرید — تعداد بج و محتوای Sidebar
+     loadCategoriesGrid();
+     loadBestSellers();
+     loadHomeBlogs();
+     loadCart();
    });
  </script>
 </body>
