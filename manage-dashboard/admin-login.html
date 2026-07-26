@@ -90,6 +90,15 @@
     display:flex; align-items:center; justify-content:center;
     color:var(--gold-300); font-weight:700; font-size:22px;
     box-shadow:0 8px 24px -6px rgba(0,0,0,.4);
+    /* اصلاح: جلوگیری از خروج تصویر از دایره */
+    overflow: hidden;
+  }
+  /* استایل مخصوص تصویر لوگو */
+  .logo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* تصویر بدون برش درون دایره قرار می‌گیرد */
+    display: block;
   }
   .site-name-slot{
     font-size:clamp(19px,4.4vw,24px);
@@ -303,9 +312,11 @@
     </svg>
 
     <div class="brand-content">
-      <div class="logo-slot" aria-label="جای‌گیرنده لوگو">🍢</div>
-      <!-- 👆 لوگوی نهایی را جایگزین ایموجی کنید -->
-      <div class="site-name-slot">نام سایت شما</div>
+      <div class="logo-slot" aria-label="جای‌گیرنده لوگو">
+        <!-- اصلاح مسیر: استفاده از اسلش معمولی و مسیر صحیح نسبی -->
+        <img src="../image1/logo.png" alt="لوگو فروزه">
+      </div>
+      <div class="site-name-slot">Firouzeh</div>
       <span class="panel-badge">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/></svg>
         پنل مدیریت
