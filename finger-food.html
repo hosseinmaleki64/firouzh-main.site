@@ -1908,36 +1908,38 @@
     }
 
     function updateUserUI() {
-      const profileLink = document.getElementById('userProfile');
-      const profileIcon = document.getElementById('profileIcon');
-      const userMenu = document.getElementById('userMenu');
-      const userAvatar = document.getElementById('userAvatar');
-      const userName = document.getElementById('userName');
+  const profileLink = document.getElementById('userProfile');
+  const profileIcon = document.getElementById('profileIcon');
+  const userMenu = document.getElementById('userMenu');
+  const userAvatar = document.getElementById('userAvatar');
+  const userName = document.getElementById('userName');
 
-      const token = localStorage.getItem('access');
-      
-      if (token && window.userData) {
-        // کاربر لاگین است
-        profileIcon.style.display = 'none';
-        
-        let avatar = profileLink.querySelector('.user-avatar');
-        if (!avatar) {
-          avatar = document.createElement('div');
-          avatar.className = 'user-avatar';
-          profileLink.appendChild(avatar);
-        }
-        avatar.textContent = window.userData.character || '👤';
-        userAvatar.textContent = window.userData.character || '👤';
-        userName.textContent = window.userData.username || 'کاربر';
-        userMenu.style.display = 'block';
-      } else {
-        // کاربر لاگین نیست
-        const avatar = profileLink.querySelector('.user-avatar');
-        if (avatar) avatar.remove();
-        profileIcon.style.display = 'block';
-        userMenu.style.display = 'none';
-      }
+  const token = localStorage.getItem('access');
+
+  if (token && window.userData) {
+    // کاربر لاگین است
+    profileIcon.style.display = 'none';
+
+    let avatar = profileLink.querySelector('.user-avatar');
+    if (!avatar) {
+      avatar = document.createElement('div');
+      avatar.className = 'user-avatar';
+      profileLink.appendChild(avatar);
     }
+    avatar.textContent = window.userData.character || '👤';
+    userAvatar.textContent = window.userData.character || '👤';
+    userName.textContent = window.userData.username || 'کاربر';
+    // ⛔ این خط حذف شد: userMenu.style.display = 'block';
+    // نمایش/پنهان بودن رو فقط کلاس active کنترل می‌کنه
+  } else {
+    // کاربر لاگین نیست
+    const avatar = profileLink.querySelector('.user-avatar');
+    if (avatar) avatar.remove();
+    profileIcon.style.display = 'block';
+    userMenu.classList.remove('active'); // مطمئن می‌شیم بسته باشه
+    // ⛔ این خط هم حذف شد: userMenu.style.display = 'none';
+  }
+}
 
     // تنظیم redirect برای لاگین (این کار باعث میشه کاربر بعد از لاگین به همین صفحه برگرده)
     function setupLoginRedirect() {
