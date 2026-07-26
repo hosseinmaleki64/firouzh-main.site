@@ -1,0 +1,18 @@
+{
+  "name": "پنل مدیریت فیروزه",
+  "short_name": "فیروزه ادمین",
+  "description": "پنل مدیریت فروشگاه فیروزه",
+  "start_url": "/manage-dashboard/dashboard.html",
+  "scope": "/manage-dashboard/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F1FAF8",
+  "theme_color": "#077A70",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    { "src": "/manage-dashboard/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/manage-dashboard/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/manage-dashboard/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

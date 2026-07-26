@@ -4,9 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>داشبورد | پنل مدیریت</title>
+
+<!-- ===== PWA / Manifest ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#077A70">
+
+<!-- برای آیفون/سافاری -->
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="فیروزه ادمین">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
   /* =========================================================
      TOKENS — همان هویت بصری «فیروزه‌ای» پنل محصولات
@@ -126,6 +138,23 @@
   .profile-meta b{font-size:12.5px;font-weight:700;}
   .profile-meta span{font-size:11px;color:var(--ink-faint);}
 
+  /* دکمه نصب (PWA) */
+  #installBtn {
+    display: none;  /* فقط زمانی که مرورگر پرامپت را قبول کند نمایش داده می‌شود */
+    align-items: center;
+    gap: 6px;
+    background: var(--turq-deep);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  #installBtn:hover { background: var(--turq-darker); }
+  #installBtn svg { width: 16px; height: 16px; fill: currentColor; }
+
   main{max-width:1180px;margin:0 auto;padding:28px 24px 80px;}
 
   /* ===== Greeting ===== */
@@ -244,6 +273,13 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       </div>
       <div class="topbar-spacer"></div>
+
+      <!-- دکمه نصب PWA -->
+      <button id="installBtn" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4l4 4 4-4M5 21h14"/></svg>
+        نصب اپ
+      </button>
+
       <button class="icon-btn" id="notifBtn" title="اعلان‌ها">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
         <span class="dot" id="notifDot" style="display:none"></span>
@@ -511,6 +547,31 @@ document.getElementById('globalSearch').addEventListener('keydown', (e)=>{
 document.getElementById('sidebarLogout').addEventListener('click', (e)=>{
   e.preventDefault();
   goToLogin();
+});
+
+/* =========================================================
+   PWA – ثبت Service Worker و کنترل دکمه نصب
+   ========================================================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.style.display = 'flex';
+});
+
+document.getElementById('installBtn')?.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBtn').style.display = 'none';
 });
 
 /* ---------------- Init ---------------- */

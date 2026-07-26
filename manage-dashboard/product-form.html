@@ -2,8 +2,19 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>افزودن محصول جدید | پنل مدیریت</title>
+
+<!-- ===== PWA / Manifest ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#077A70">
+
+<!-- برای آیفون/سافاری -->
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="فیروزه ادمین">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,12 +69,30 @@
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
   .brand-mark{width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
   .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .topbar-left{display:flex;align-items:center;gap:12px;}
   .back-link{
     display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);
     padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);
   }
   .back-link:hover{color:var(--turq-deep);border-color:var(--turq);}
   .back-link svg{width:15px;height:15px;}
+
+  /* دکمه نصب PWA */
+  #installBtn {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: var(--turq-deep);
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  #installBtn:hover { background: var(--turq-darker); }
+  #installBtn svg { width: 15px; height: 15px; fill: currentColor; }
 
   main{max-width:1080px;margin:0 auto;padding:30px 24px 100px;}
 
@@ -199,10 +228,17 @@
     <span class="brand-mark"></span>
     <div>پنل محصولات<small>افزودن محصول جدید</small></div>
   </div>
-  <a class="back-link" href="products.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    بازگشت به لیست محصولات
-  </a>
+  <div class="topbar-left">
+    <!-- دکمه نصب PWA -->
+    <button id="installBtn" style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4l4 4 4-4M5 21h14"/></svg>
+      نصب اپ
+    </button>
+    <a class="back-link" href="products.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      بازگشت به لیست محصولات
+    </a>
+  </div>
 </header>
 
 <main>
@@ -777,6 +813,31 @@ document.getElementById('productForm').addEventListener('submit', async (e)=>{
   }finally{
     submitBtns.forEach(b=>b.disabled = false);
   }
+});
+
+/* =========================================================
+   PWA – ثبت Service Worker و کنترل دکمه نصب
+   ========================================================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.style.display = 'flex';
+});
+
+document.getElementById('installBtn')?.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBtn').style.display = 'none';
 });
 
 /* ---------------- Init ---------------- */

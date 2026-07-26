@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ورود مدیران</title>
+
+<!-- ===== PWA / Manifest ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#077A70">
+
+<!-- برای آیفون/سافاری -->
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="فیروزه ادمین">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -215,6 +226,27 @@
   .submit-btn:focus-visible{outline:3px solid var(--gold-500); outline-offset:2px;}
   .submit-btn:disabled{opacity:.7; cursor:not-allowed; filter:none;}
 
+  /* دکمه نصب PWA */
+  #installBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 0;
+    background: var(--gold-500);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  #installBtn:hover { background: #b58a3a; }
+  #installBtn svg { width: 18px; height: 18px; fill: currentColor; }
+
   .form-error{
     display:none;
     background:rgba(192,70,63,.08);
@@ -362,6 +394,12 @@
         <button type="button" class="forgot-link" id="forgotBtn">رمزت یادت رفته؟</button>
 
         <button type="submit" class="submit-btn" id="submitBtn">ورود به پنل مدیریت</button>
+
+        <!-- دکمه نصب PWA -->
+        <button id="installBtn" style="display:none">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4l4 4 4-4M5 21h14"/></svg>
+          نصب اپ
+        </button>
       </form>
 
       <p class="footnote">دسترسی به این بخش فقط برای مدیران مجاز است.</p>
@@ -495,6 +533,31 @@
   document.getElementById('forgotBtn').addEventListener('click', () => supportModal.classList.add('open'));
   document.getElementById('closeModal').addEventListener('click', () => supportModal.classList.remove('open'));
   supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.remove('open'); });
+
+  /* =========================================================
+     PWA – ثبت Service Worker و کنترل دکمه نصب
+     ========================================================= */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(console.error);
+    });
+  }
+
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const installBtn = document.getElementById('installBtn');
+    if (installBtn) installBtn.style.display = 'flex';
+  });
+
+  document.getElementById('installBtn')?.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('installBtn').style.display = 'none';
+  });
 </script>
 
 </body>

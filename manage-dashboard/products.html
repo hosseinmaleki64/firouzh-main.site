@@ -2,8 +2,19 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>محصولات | پنل مدیریت</title>
+
+<!-- ===== PWA / Manifest ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#077A70">
+
+<!-- برای آیفون/سافاری -->
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="فیروزه ادمین">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -76,6 +87,23 @@
   .topbar-actions{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:13px;}
   .topbar-actions b{color:var(--ink);font-weight:700;}
   .logout-link{background:none;border:none;color:var(--red);font-size:12px;font-weight:700;}
+
+  /* دکمه نصب PWA */
+  #installBtn {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: var(--turq-deep);
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  #installBtn:hover { background: var(--turq-darker); }
+  #installBtn svg { width: 15px; height: 15px; fill: currentColor; }
 
   main{max-width:1180px;margin:0 auto;padding:28px 24px 80px;}
 
@@ -344,6 +372,11 @@
   </div>
   <div class="topbar-actions">
     خوش آمدید، <b id="whoami">—</b>
+    <!-- دکمه نصب PWA -->
+    <button id="installBtn" style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4l4 4 4-4M5 21h14"/></svg>
+      نصب اپ
+    </button>
     <button class="logout-link" id="logoutBtn">خروج</button>
   </div>
 </header>
@@ -1207,6 +1240,31 @@ document.getElementById('saveEdit').addEventListener('click', async ()=>{
 
 /* ---------------- خروج ---------------- */
 document.getElementById('logoutBtn').addEventListener('click', goToLogin);
+
+/* =========================================================
+   PWA – ثبت Service Worker و کنترل دکمه نصب
+   ========================================================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.style.display = 'flex';
+});
+
+document.getElementById('installBtn')?.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBtn').style.display = 'none';
+});
 
 /* ---------------- Init ---------------- */
 (async function init(){
