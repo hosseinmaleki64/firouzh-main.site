@@ -514,6 +514,8 @@ document.getElementById('pNewCategoryImage').addEventListener('change', (e)=>{
 });
 
 /* ---------------- تگ‌های مواد اولیه / اجزا ---------------- */
+
+// ---------- تابع جدید makeTagInput (با پشتیبانی از سه‌اسپیس برای موبایل) ----------
 function makeTagInput(boxId, inputId, arr, onChange){
   const box = document.getElementById(boxId);
   const input = document.getElementById(inputId);
@@ -527,17 +529,37 @@ function makeTagInput(boxId, inputId, arr, onChange){
       box.insertBefore(chip, input);
     });
   }
+  // این تابع مشترک، هم از اینتر (دسکتاپ) و هم از سه‌اسپیس (موبایل) صدا زده می‌شه
+  function commitTag(){
+    const val = input.value.trim(); // trim فقط اسپیس‌های ابتدا/انتها رو حذف می‌کنه، فاصله‌ی وسط کلمه دست‌نخورده می‌مونه
+    if(val){
+      arr.push(val);
+    }
+    input.value = '';
+    render();
+    onChange && onChange();
+  }
+
+  // حالت دسکتاپ: زدن کلید Enter
   input.addEventListener('keydown', e=>{
     if(e.key==='Enter' && input.value.trim()){
       e.preventDefault();
-      arr.push(input.value.trim());
-      input.value='';
-      render();
-      onChange && onChange();
+      commitTag();
     }
   });
+
+  // حالت موبایل: چون کیبورد گوشی همیشه Enter واقعی نمی‌فرسته،
+  // اگه کاربر سه‌تا اسپیس پشت‌سرهم بزنه، همون کار اینتر رو انجام می‌دیم
+  input.addEventListener('input', ()=>{
+    if(/ {3,}$/.test(input.value) && input.value.trim()){
+      commitTag();
+    }
+  });
+
   render();
 }
+// ---------------------------------------------------------
+
 const rawMaterials = [];
 const components = [];
 makeTagInput('rawBox','rawInput', rawMaterials, updatePreview);
