@@ -600,14 +600,17 @@
 
     .product-gallery {
       flex: 0 0 350px;
+      max-width: 350px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
     .product-main-image {
-      width: 350px;
-      height: 200px;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.3s ease;
@@ -636,6 +639,7 @@
 
     .product-thumbnail.active {
       border-color: var(--primary-color);
+      box-shadow: 0 2px 8px rgba(38,166,154,0.3);
     }
 
     .product-thumbnail:hover {
@@ -795,8 +799,7 @@
       outline: none;
     }
 
-    /* حذف کامل استایل‌های build-meal و ingredient */
-
+    /* دکمه اضافه به سبد - استایل‌های جدید */
     .add-to-cart {
       background: var(--primary-color);
       color: var(--text-light);
@@ -810,6 +813,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       transition: var(--transition);
       box-shadow: var(--shadow);
       width: 100%;
@@ -832,6 +836,23 @@
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-10px); }
       60% { transform: translateY(-5px); }
+    }
+
+    .add-to-cart-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      font-size: 0.95rem;
+    }
+
+    .add-to-cart-label {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
     }
 
     .price-display {
@@ -1480,11 +1501,6 @@
     }
 
     @media (max-width: 768px) {
-      .product-main-image {
-        width: 300px;
-        height: 180px;
-      }
-
       .product-title {
         font-size: 2rem;
       }
@@ -1570,12 +1586,15 @@
       }
 
       .product-gallery {
-        flex: 0 0 auto;
+        max-width: 100%;
+        flex: 1 1 auto;
         width: 100%;
       }
 
       .product-main-image {
         width: 100%;
+        aspect-ratio: 16 / 10;
+        height: auto;
       }
 
       .slider-nav {
@@ -1583,6 +1602,8 @@
         height: 35px;
         font-size: 1rem;
       }
+
+      /* حذف تنظیمات اضافی width/height که قبلاً بودند */
     }
 
     @media (max-width: 576px) {
@@ -1599,9 +1620,18 @@
         padding: 0.4rem 0.8rem;
       }
 
+      /* دکمه افزودن به سبد در موبایل به صورت ردیفی باقی می‌ماند */
       .add-to-cart {
         font-size: 0.95rem;
         padding: 0.6rem 1rem;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .add-to-cart-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
       }
 
       .cart-item span {
@@ -1642,17 +1672,22 @@
         height: 20px;
       }
 
-      .product-main-image {
-        height: 150px;
-      }
-
+      /* تامب‌نیل‌ها به اسکرول افقی تبدیل می‌شوند */
       .product-thumbnails {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+        gap: 8px;
+      }
+      .product-thumbnails::-webkit-scrollbar {
+        display: none;
       }
 
       .product-thumbnail {
-        width: 60px;
-        height: 60px;
+        flex: 0 0 64px;
+        width: 64px;
+        height: 64px;
       }
 
       .quantity-input {
@@ -1796,16 +1831,19 @@
         font-size: 0.9rem;
       }
 
-      /* حذف کامل استایل‌های ingredient در موبایل */
-
       .add-to-cart {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
         border-radius: 8px;
         margin-top: 0.8rem;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
+        flex-direction: row;
+        gap: 6px;
+      }
+
+      .add-to-cart-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
       }
 
       .price-display {
@@ -2299,12 +2337,11 @@
             </div>
           </div>
 
-          <!-- بخش build-meal (مواد اضافی) به طور کامل حذف شد -->
-
+          <!-- دکمه اضافه به سبد با ساختار جدید -->
           <button class="add-to-cart" id="addToCartBtn" aria-label="اضافه کردن به سبد خرید" onclick="addMainProductToCart()" disabled>
-            <span>+ ۱ -</span>
+            <span class="add-to-cart-icon"><i class="fas fa-shopping-cart"></i></span>
+            <span class="add-to-cart-label">افزودن به سبد</span>
             <span class="price-display"><span id="detail-price">...</span> تومان</span>
-            <span>اضافه به سبد</span>
           </button>
         </div>
       </div>
@@ -2487,12 +2524,9 @@
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
-    // تابع getExtrasTotal و متغیر EXTRA_PRICE حذف شدند
-
     function updatePrice() {
       const priceEl = document.getElementById('detail-price');
       if (!currentProduct) return;
-      // فقط قیمت پایه * تعداد (بدون مواد اضافی)
       const unit = basePrice;
       priceEl.textContent = toFa(unit * quantity);
     }
@@ -3013,7 +3047,7 @@
         const addBtn = elements.addToCartBtn;
         if (!product.is_active) {
           addBtn.disabled = true;
-          addBtn.querySelector('span:last-child').textContent = 'ناموجود';
+          addBtn.querySelector('.add-to-cart-label').textContent = 'ناموجود';
         } else {
           addBtn.disabled = false;
         }
