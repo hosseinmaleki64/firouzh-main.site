@@ -566,7 +566,7 @@
 
     .main-container {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 2fr 1fr;
       gap: 40px;
       padding: 0 1rem;
       margin: 2rem auto;
@@ -599,7 +599,7 @@
     }
 
     .product-gallery {
-      flex: 0 0 350px;
+      flex: 0 1 350px;
       max-width: 350px;
       width: 100%;
       display: flex;
@@ -649,6 +649,7 @@
 
     .product-content {
       flex: 1;
+      min-width: 0;  
     }
 
     .product-title {
@@ -1593,7 +1594,7 @@
 
       .product-main-image {
         width: 100%;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 4 / 3;
         height: auto;
       }
 
