@@ -1598,34 +1598,42 @@
    background: var(--secondary-color);
    transform: translateY(-2px);
  }
+ /* ===== بخش هیرو (تصاویر) با طراحی مقاوم ===== */
  .hero-images {
    display: flex;
    justify-content: space-between;
+   align-items: stretch;
    gap: 40px;
    margin: 48px 0;
+   width: 100%;
  }
  .hero-column {
    display: flex;
    flex-direction: column;
    gap: 40px;
    width: 40%;
+   flex: 0 0 40%;
+   min-width: 0;
  }
  .hero-image {
+   position: relative;
    height: 200px;
+   flex: 0 0 200px;
    border-radius: 12px;
    box-shadow: var(--shadow);
    overflow: hidden;
-   display: flex;
-   align-items: center;
-   justify-content: center;
  }
  .hero-image img {
-   width: 100%;
-   height: 100%;
+   position: absolute;
+   inset: 0;
+   width: 100% !important;
+   height: 100% !important;
    object-fit: cover;
+   display: block;
  }
  .hero-text {
    width: 100%;
+   flex: 0 0 auto;
    background: var(--gradient-start);
    color: var(--text-light);
    padding: 48px;
@@ -1931,6 +1939,7 @@
    }
    .hero-column {
      width: 80%;
+     flex: 0 0 80%;
    }
    .hero-text {
      order: -1;
@@ -2010,9 +2019,11 @@
    }
    .hero-column {
      width: 100%;
+     flex: 0 0 100%;
    }
    .hero-image {
      height: 150px;
+     flex: 0 0 150px;
    }
    .hero-text {
      padding: 32px;
