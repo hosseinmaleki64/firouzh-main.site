@@ -711,8 +711,17 @@
    animation: slideRight 120s linear infinite;
    gap: 40px;
  }
+ /* =========================================================
+    باکس محصول در بخش «پرفروش‌ترین‌ها» — یکسان‌سازی اندازه با
+    استفاده از flex-basis ثابت به‌جای min-width آزاد، تا طول
+    توضیحات یا نام محصول باعث نامساوی شدن عرض کارت‌ها نشود.
+    ========================================================= */
  .best-seller-card {
+   box-sizing: border-box;
+   flex: 0 0 250px;
+   width: 250px;
    min-width: 250px;
+   max-width: 250px;
    border: 1px solid var(--neutral-color);
    background: var(--background-color);
    padding: 20px;
@@ -724,6 +733,8 @@
    cursor: pointer;
    position: relative;
    overflow: hidden;
+   display: flex;
+   flex-direction: column;
  }
  .best-seller-card:hover {
    transform: translateY(-5px);
@@ -753,12 +764,29 @@
    object-fit: cover;
    border-radius: 12px;
  }
+ /* نام محصول - تازه اضافه شده */
+ .best-seller-name {
+   font-size: 1.05rem;
+   font-weight: 700;
+   color: var(--text-dark);
+   margin: 0 0 8px;
+   min-height: 44px;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   line-height: 1.4;
+ }
  .best-seller-description {
    font-size: 0.95rem;
    color: var(--text-dark);
    margin-bottom: 16px;
    line-height: 1.5;
    min-height: 60px;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
  }
  .best-seller-price {
    font-size: 1.3rem;
@@ -820,6 +848,7 @@
    box-shadow: var(--shadow);
    border: none;
    cursor: pointer;
+   margin-top: auto;
  }
  .add-to-cart:hover {
    background: var(--secondary-color);
@@ -2069,11 +2098,18 @@
      right: 10px;
    }
    .best-seller-card {
+     flex: 0 0 220px;
+     width: 220px;
      min-width: 220px;
+     max-width: 220px;
      padding: 16px;
    }
    .best-seller-image {
      height: 130px;
+   }
+   .best-seller-name {
+     font-size: 0.95rem;
+     min-height: 40px;
    }
    .best-seller-description {
      font-size: 0.9rem;
@@ -2103,6 +2139,10 @@
    }
    .add-to-cart i {
      font-size: 1rem;
+   }
+   .view-more-card {
+     flex: 0 0 220px;
+     width: 220px;
    }
  }
  @media (max-width: 576px) {
@@ -2254,11 +2294,18 @@
      font-size: 0.7rem;
    }
    .best-seller-card {
+     flex: 0 0 180px;
+     width: 180px;
      min-width: 180px;
-     padding: 0px;
+     max-width: 180px;
+     padding: 12px;
    }
    .best-seller-image {
      height: 120px;
+   }
+   .best-seller-name {
+     font-size: 0.9rem;
+     min-height: 38px;
    }
    .best-seller-description {
      font-size: 0.85rem;
@@ -2279,11 +2326,15 @@
      font-size: 0.8rem;
    }
    .add-to-cart {
-     padding: 6px;
+     padding: 8px;
      font-size: 0.85rem;
    }
    .add-to-cart i {
      font-size: 0.85rem;
+   }
+   .view-more-card {
+     flex: 0 0 180px;
+     width: 180px;
    }
    .features {
      padding: 60px 20px;
@@ -2528,11 +2579,18 @@
      font-size: 0.75rem;
    }
    .best-seller-card {
+     flex: 0 0 160px;
+     width: 160px;
      min-width: 160px;
+     max-width: 160px;
      padding: 10px;
    }
    .best-seller-image {
      height: 90px;
+   }
+   .best-seller-name {
+     font-size: 0.85rem;
+     min-height: 36px;
    }
    .best-seller-description {
      font-size: 0.8rem;
@@ -2556,6 +2614,10 @@
    }
    .add-to-cart i {
      font-size: 0.85rem;
+   }
+   .view-more-card {
+     flex: 0 0 160px;
+     width: 160px;
    }
    .feature-card {
      padding: 12px 6px;
@@ -2634,11 +2696,18 @@
      padding: 6px 12px;
    }
    .best-seller-card {
+     flex: 0 0 160px;
+     width: 160px;
      min-width: 160px;
+     max-width: 160px;
      padding: 10px;
    }
    .best-seller-image {
      height: 90px;
+   }
+   .best-seller-name {
+     font-size: 0.85rem;
+     min-height: 36px;
    }
    .best-seller-description {
      font-size: 0.8rem;
@@ -2662,6 +2731,10 @@
    }
    .add-to-cart i {
      font-size: 0.85rem;
+   }
+   .view-more-card {
+     flex: 0 0 160px;
+     width: 160px;
    }
    .feature-card {
      padding: 12px 6px;
@@ -3614,6 +3687,7 @@
              <div class="best-seller-image">
                <img src="${product.image}" alt="${product.name}" loading="lazy">
              </div>
+             <h3 class="best-seller-name">${product.name}</h3>
              <p class="best-seller-description">${(product.description || '').substring(0, 50)}${product.description && product.description.length > 50 ? '...' : ''}</p>
              <div class="best-seller-price">${product.priceText}</div>
            </a>
