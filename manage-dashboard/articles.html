@@ -642,7 +642,7 @@ function renderPager(){
 
 /* ---------------- Featured toggle ---------------- */
 async function toggleFeatured(id){
-  const a = state.articles.find(x=>x.id===id);
+  const a = state.articles.find(x=>String(x.id)===String(id));
   if(!a) return;
   const data = await apiSend(`/articles/${id}/`, 'PATCH', {is_featured: !a.is_featured});
   if(!data) return;
@@ -675,7 +675,7 @@ async function deleteArticle(id){
 
 /* ---------------- Duplicate ---------------- */
 async function duplicateArticle(id){
-  const a = state.articles.find(x=>x.id===id);
+  const a = state.articles.find(x=>String(x.id)===String(id));
   if(!a) return;
   toast('در حال کپی کردن مقاله…');
   try{
@@ -711,7 +711,7 @@ async function duplicateArticle(id){
 /* ---------------- Preview ---------------- */
 const previewOverlay = document.getElementById('previewOverlay');
 async function openPreview(id){
-  const a = state.articles.find(x=>x.id===id);
+  const a = state.articles.find(x=>String(x.id)===String(id));
   if(!a) return;
   previewOverlay.classList.add('open');
   document.getElementById('previewBody').innerHTML = `<div class="preview-loading">در حال بارگذاری…</div>`;
@@ -743,7 +743,7 @@ const actionsMenuEl = document.getElementById('actionsMenu');
 function closeActionsMenu(){ actionsMenuEl.classList.remove('open'); }
 
 function openActionsMenu(id, btn){
-  const a = state.articles.find(x=>x.id===id);
+  const a = state.articles.find(x=>String(x.id)===String(id));
   if(!a) return;
 
   const items = [];
