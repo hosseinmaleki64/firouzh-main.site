@@ -86,7 +86,7 @@
             // دریافت پارامترهای URL
             const params = new URLSearchParams(window.location.search);
             const status = params.get('status');       // success | failed | pending
-            const orderId = params.get('order_id') || '---';
+            const orderId = params.get('order_number') || '---';
             const message = params.get('message') || '';
 
             const icon = document.getElementById('statusIcon');
