@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>پیگیری سفارش‌ها | فینگرفود فیروزه تبریز</title>
+<meta name="description" content="مشاهده و پیگیری سفارش‌های ثبت‌شده در فینگرفود فیروزه تبریز - وضعیت سفارش، فاکتور و اطلاعات ارسال">
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+   (function(c,l,a,r,i,t,y){
+       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+   })(window, document, "clarity", "script", "ui7uv46wvy");
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+   { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://firouzehco.com/" },
+   { "@type": "ListItem", "position": 2, "name": "سفارش‌های من", "item": "https://firouzehco.com/orders.html" }
+ ]
+}
+</script>
+<link rel="icon" href="/image1/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/image1/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="/image1/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image1/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image1/favicon-16x16.png">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/shabnam@5.0.1/index.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+<style>
+ :root {
+   --header-h: 80px;
+   --primary-color: #26A69A;
+   --secondary-color: #1A7A6F;
+   --background-color: #FFFFFF;
+   --neutral-color: #dadee6;
+   --text-dark: #4B5563;
+   --text-light: #edebeb;
+   --gradient-start: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
+   --header-bg: #064d3b;
+   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   --transition: all 0.3s ease;
+   --gray-box: #f1f3f5;
+   --border-color: #e9ecef;
+   --error-color: #e63946;
+   --success-color: #2a9d8f;
+   --warning-color: #f39c12;
+   --info-color: #3498db;
+   --purple-color: #8e64c9;
+ }
+ * { margin:0; padding:0; box-sizing:border-box; }
+ html, body { overflow-x:hidden; }
+ body {
+   font-family: 'Shabnam', 'IRANSans', 'Vazir', Arial, sans-serif;
+   background: var(--background-color);
+   color: var(--text-dark);
+   line-height: 1.8;
+   padding-top: calc(var(--header-h) + 30px);
+ }
+ img { max-width:100%; height:auto; }
+
+ /* ===== Navbar (identical to homepage) ===== */
+ .navbar {
+   display: flex; justify-content: space-between; align-items: center;
+   padding: 12px 20px; background: rgba(6, 77, 59, 0.9); backdrop-filter: blur(10px);
+   color: var(--text-light); position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
+   width: 90%; max-width: 1200px; z-index: 1001; border-radius: 20px; box-shadow: var(--shadow);
+   border: 1px solid rgba(255, 255, 255, 0.2); animation: slideIn 0.5s ease-out;
+ }
+ @keyframes slideIn { from{transform:translate(-50%,-100%);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
+ .menu-icon { font-size: 1.4rem; cursor: pointer; order: 1; }
+ .menu-icon:hover i { transform: scale(1.1); transition: transform 0.2s ease; }
+ .logo-search { flex: 1; display: flex; justify-content: center; align-items: center; gap: 15px; order: 2; flex-direction: column; }
+ .logo { font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--text-light); text-decoration: none; text-transform: uppercase; }
+ .logo img { height: 28px; width: auto; }
+ .promo-text-mobile { font-size: 0.85rem; color: #FFD700; display: none; text-align: center; margin-top: 5px; }
+ .search-box { position: relative; width: 280px; max-width: 100%; display: flex; align-items: center; }
+ .search-box input {
+   flex: 1; padding: 8px 40px 8px 40px; border: none; border-radius: 20px 0 0 20px;
+   font-family: 'Shabnam','IRANSans','Vazir',Arial,sans-serif; font-size: 0.95rem; outline: none;
+   direction: rtl; background: var(--text-light);
+ }
+ .search-icon, .clear-icon { background: var(--text-light); padding: 8px 12px; cursor: pointer; color: #666; display: flex; align-items: center; justify-content: center; }
+ .search-icon { border-radius: 0 20px 20px 0; }
+ .clear-icon { position: absolute; left: 0; display: none; }
+ .clear-icon.active { display: flex; }
+ .search-suggestions {
+   display: none; position: absolute; top: 40px; right: 0; background: white; color: black;
+   border: 1px solid var(--neutral-color); width: 100%; max-height: 280px; overflow-y: auto;
+   padding: 10px; z-index: 1002; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+   opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease;
+ }
+ .search-suggestions.active { display: block; opacity: 1; transform: scale(1); }
+ .search-suggestions h4 { font-size: 0.85rem; margin: 5px 0; color: #333; }
+ .search-suggestions ul { list-style: none; padding: 0; margin: 5px 0; }
+ .search-suggestions li { padding: 5px 10px; cursor: pointer; font-size: 0.9rem; }
+ .search-suggestions li:hover { background: var(--neutral-color); }
+ .cart-profile { display: flex; align-items: center; gap: 12px; order: 3; position: relative; }
+ .promo-text { font-size: 0.85rem; color: #FFD700; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+ .cart-link, .profile-link {
+   display: flex; align-items: center; text-decoration: none; color: var(--text-light);
+   position: relative; transition: color 0.3s;
+ }
+ .cart-link:hover, .profile-link:hover { color: var(--primary-color); }
+ .cart-link:hover i, .profile-link:hover i { transform: scale(1.1); transition: transform 0.2s ease; }
+ .cart-badge {
+   position: absolute; top: -8px; right: -8px; background: #e63946; color: white;
+   border-radius: 50%; padding: 2px 6px; font-size: 0.7rem;
+ }
+ .profile-icon { font-size: 1.1rem; cursor: pointer; }
+ .user-avatar {
+   width: 32px; height: 32px; border-radius: 50%; background: var(--neutral-color);
+   display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer;
+ }
+ .user-menu {
+   position: absolute; top: 50px; right: 0; background: white; color: black;
+   border: 1px solid var(--neutral-color); width: 200px; padding: 10px; z-index: 1002;
+   border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: none;
+ }
+ .user-menu.active { display: block; }
+ .user-menu .user-info { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+ .user-menu .user-info .avatar { font-size: 2rem; }
+ .user-menu a, .user-menu button { display: block; padding: 8px; text-decoration: none; color: var(--text-dark); cursor: pointer; }
+ .user-menu a:hover, .user-menu button:hover { background: var(--neutral-color); }
+ .overlay {
+   position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1002;
+   opacity: 0; visibility: hidden; transition: var(--transition);
+ }
+ .overlay.active { opacity: 1; visibility: visible; }
+ .side-menu {
+   position: fixed; inset-block: 0; inset-inline-start: -100%; width: 250px; background: #064d3b;
+   color: var(--text-light); border-right: 3px solid var(--primary-color); padding: 24px; overflow: auto;
+   z-index: 1003; box-shadow: 12px 0 30px rgba(0,0,0,0.2); transition: inset-inline-start 0.4s cubic-bezier(0.25,0.8,0.25,1);
+ }
+ .side-menu.active { inset-inline-start: 0; }
+ .close-btn { font-size: 2rem; color: var(--text-light); cursor: pointer; line-height: 1; margin-bottom: 20px; transition: color 0.2s ease; }
+ .close-btn:hover { color: var(--primary-color); }
+ .nav-menu { list-style: none; margin-top: 50px; }
+ .nav-category { margin-bottom: 20px; }
+ .nav-category h3 { font-size: 1.2rem; margin-bottom: 10px; color: #FACA7F; }
+ .sub-menu { list-style: none; }
+ .sub-menu li { margin-bottom: 10px; }
+ .sub-menu a { text-decoration: none; color: #eaebeb; font-size: 1rem; transition: var(--transition); }
+ .sub-menu a:hover { color: #81D9e7; }
+ .search-container {
+   position: fixed; inset-block-start: calc(var(--header-h) + 20px); inset-inline: 0;
+   background: var(--background-color); padding: 24px; box-shadow: 0 4px 20px rgba(14,13,13,0.358);
+   z-index: 1002; display: none; direction: rtl;
+ }
+ .search-container.active { display: block; }
+ .search-container input {
+   width: calc(100% - 24px); padding: 14px; border: 2px solid var(--primary-color); border-radius: 8px;
+   font-size: 1.1rem; transition: var(--transition); direction: rtl;
+ }
+ .search-container input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 3px rgba(38,166,154,0.2); }
+ .search-results {
+   margin-top: 16px; max-height: 300px; overflow-y: auto; background: var(--neutral-color);
+   border-radius: 8px; padding: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+ }
+ .search-results .result-item {
+   padding: 12px; border-bottom: 1px solid rgba(38,166,154,0.2); color: var(--text-dark);
+   font-size: 1rem; cursor: pointer; transition: var(--transition);
+ }
+ .search-results .result-item:hover { background: rgba(38,166,154,0.1); color: var(--primary-color); }
+ .search-results .no-results { color: #D32F2F; font-size: 1rem; text-align: center; padding: 12px; }
+
+ /* Logout modal (identical) */
+ .logout-modal {
+   position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1005; display: flex;
+   align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition);
+ }
+ .logout-modal.active { opacity: 1; visibility: visible; }
+ .logout-modal-content {
+   background: var(--background-color); border-radius: 16px; padding: 32px; width: 100%; max-width: 420px;
+   box-shadow: 0 12px 30px rgba(0,0,0,0.2); position: relative; direction: rtl; transform: scale(0.9);
+   transition: var(--transition); text-align: center;
+ }
+ .logout-modal.active .logout-modal-content { transform: scale(1); }
+ .logout-modal-content h2 { color: var(--primary-color); font-size: 1.6rem; margin: 0 0 12px; }
+ .logout-modal-content p { color: var(--text-dark); font-size: 0.9rem; margin: 0 0 24px; }
+ .logout-buttons { display: flex; gap: 16px; }
+ .logout-buttons button { flex: 1; padding: 12px; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+ .logout-buttons .confirm { background: var(--primary-color); color: var(--text-light); border: none; }
+ .logout-buttons .confirm:hover { background: var(--secondary-color); }
+ .logout-buttons .cancel { background: var(--neutral-color); color: var(--text-dark); border: none; }
+ .logout-buttons .cancel:hover { background: #ccc; }
+
+ /* ===== Footer (identical to homepage) ===== */
+ footer {
+   background: var(--gradient-start); color: var(--text-light); text-align: center; padding: 40px 20px;
+   border-radius: 12px; margin-top: 20px; position: relative; overflow: hidden;
+ }
+ footer::before {
+   content:""; position:absolute; top:0; left:0; width:100%; height:100%;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/></svg>');
+   background-size: 100px 100px;
+ }
+ footer h2 { font-size: 1.8rem; font-weight: 700; margin: 0 0 15px; color: var(--primary-color); position: relative; z-index: 1; }
+ footer p { max-width: 600px; margin: 0 auto 20px; font-size: 0.95rem; line-height: 1.6; position: relative; z-index: 1; }
+ footer .links { margin: 20px 0; position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+ footer .links a {
+   color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);
+   padding: 8px 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+ }
+ footer .links a:hover { color: var(--primary-color); background: rgba(255,255,255,0.1); }
+ footer .contact-info { font-size: 1rem; margin: 20px 0; font-weight: 500; position: relative; z-index: 1; }
+ #clock { color: var(--text-light); margin-top: 15px; font-weight: 500; font-size: 0.95rem; position: relative; z-index: 1; }
+ footer .copyright { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); font-size: 0.85rem; position: relative; z-index: 1; }
+ .social-bar { background: transparent; display: flex; justify-content: center; gap: 12px; padding: 15px 0; margin-top: 25px; flex-wrap: wrap; position: relative; z-index: 1; }
+ .social-box, .logo-box { width: 70px; height: 70px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; transition: all 0.3s ease; }
+ .social-box { background: rgba(255,255,255,0.05); border: 1px solid var(--primary-color); color: var(--text-light); text-decoration: none; font-size: 0.8rem; font-weight: 500; cursor: pointer; }
+ .social-box:hover { background: var(--primary-color); color: var(--text-light); transform: scale(1.05); }
+ .social-box img { max-width: 70%; max-height: 70%; object-fit: contain; margin-bottom: 2px; }
+ .logo-box { background: transparent; border: none; overflow: hidden; }
+ .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+ .logo-box:hover { transform: scale(1.05); }
+
+ .support-widget {
+   position: fixed; bottom: 20px; right: 20px; background: #1A1A1A; color: #FFFFFF;
+   padding: 10px 20px; border-radius: 8px; box-shadow: var(--shadow); z-index: 1000;
+   display: flex; align-items: center; gap: 10px; font-size: 1rem;
+ }
+ .support-widget a { display: inline-block; padding: 8px 16px; background: #4CAF50; color: #FFFFFF; text-decoration: none; border-radius: 5px; transition: background 0.3s ease; }
+ .support-widget a:hover { background: #45a049; }
+ .support-widget .text { flex-grow: 1; text-align: right; font-size: 0.9rem; }
+
+ /* ============================================================
+    صفحه پیگیری سفارش‌ها — استایل‌های اختصاصی
+    ============================================================ */
+ .page-title-bar {
+   max-width: 1200px; margin: 0 auto 30px; padding: 0 32px;
+   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+ }
+ .page-title-bar h1 { font-size: 2rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
+ .page-title-bar h1 i { color: var(--primary-color); }
+ .page-title-bar p { color: var(--text-dark); opacity: 0.75; font-size: 0.95rem; margin-top: 6px; }
+
+ /* --- فیلتر وضعیت --- */
+ .filter-tabs {
+   max-width: 1200px; margin: 0 auto 30px; padding: 0 32px;
+   display: flex; gap: 10px; flex-wrap: wrap; overflow-x: auto;
+ }
+ .filter-tab {
+   padding: 9px 20px; border-radius: 30px; border: 1.5px solid var(--neutral-color);
+   background: var(--background-color); color: var(--text-dark); font-size: 0.9rem; font-weight: 600;
+   cursor: pointer; white-space: nowrap; transition: var(--transition);
+   font-family: inherit;
+ }
+ .filter-tab:hover { border-color: var(--primary-color); color: var(--primary-color); }
+ .filter-tab.active { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+
+ /* --- لیست سفارش‌ها --- */
+ #ordersListSection { max-width: 1200px; margin: 0 auto; padding: 0 32px 60px; }
+ .orders-list { display: flex; flex-direction: column; gap: 18px; }
+ .order-card {
+   border: 1px solid var(--neutral-color); background: var(--background-color); border-radius: 16px;
+   padding: 20px 24px; box-shadow: var(--shadow); transition: var(--transition);
+   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px;
+ }
+ .order-card:hover { border-color: var(--primary-color); box-shadow: 0 8px 25px rgba(0,0,0,0.1); transform: translateY(-2px); }
+ .order-card-main { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; flex: 1; min-width: 260px; }
+ .order-thumbs { display: flex; align-items: center; }
+ .order-thumbs img {
+   width: 54px; height: 54px; object-fit: cover; border-radius: 12px; border: 2px solid var(--background-color);
+   background: var(--neutral-color); margin-inline-start: -14px;
+ }
+ .order-thumbs img:first-child { margin-inline-start: 0; }
+ .order-thumbs .more-count {
+   width: 54px; height: 54px; border-radius: 12px; background: var(--gray-box); color: var(--text-dark);
+   display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;
+   border: 2px solid var(--background-color); margin-inline-start: -14px;
+ }
+ .order-info-block { display: flex; flex-direction: column; gap: 6px; }
+ .order-number { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); }
+ .order-date { font-size: 0.85rem; color: var(--text-dark); opacity: 0.7; }
+ .order-date i { margin-inline-end: 4px; }
+ .order-card-side { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+ .order-total { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); white-space: nowrap; }
+ .status-badge {
+   display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px;
+   font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+ }
+ .order-detail-btn {
+   padding: 10px 22px; border-radius: 10px; background: var(--primary-color); color: #fff; border: none;
+   font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition);
+   display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-family: inherit;
+ }
+ .order-detail-btn:hover { background: var(--secondary-color); transform: translateY(-2px); }
+
+ .list-state-msg {
+   text-align: center; padding: 70px 20px; color: var(--text-dark); opacity: 0.75;
+ }
+ .list-state-msg i { font-size: 2.6rem; color: var(--neutral-color); display: block; margin-bottom: 16px; }
+ .list-state-msg .cta-btn {
+   display: inline-block; margin-top: 18px; padding: 12px 28px; border-radius: 12px; background: var(--primary-color);
+   color: #fff; text-decoration: none; font-weight: 600; transition: var(--transition);
+ }
+ .list-state-msg .cta-btn:hover { background: var(--secondary-color); }
+
+ /* --- اسکلت لودینگ --- */
+ .skeleton-card {
+   height: 96px; border-radius: 16px; background: linear-gradient(90deg, var(--gray-box) 25%, var(--neutral-color) 37%, var(--gray-box) 63%);
+   background-size: 400% 100%; animation: skeletonShine 1.4s ease infinite;
+ }
+ @keyframes skeletonShine { 0%{background-position:100% 50%;} 100%{background-position:0 50%;} }
+
+ /* --- بخش جزئیات سفارش --- */
+ #orderDetailSection { max-width: 950px; margin: 0 auto; padding: 0 32px 60px; }
+ .back-to-list {
+   display: inline-flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer;
+   color: var(--primary-color); font-weight: 600; font-size: 0.95rem; margin-bottom: 24px; font-family: inherit; padding: 6px 0;
+ }
+ .back-to-list:hover { color: var(--secondary-color); }
+ .detail-card {
+   background: var(--background-color); border: 1px solid var(--neutral-color); border-radius: 16px;
+   box-shadow: var(--shadow); padding: 28px; margin-bottom: 24px;
+ }
+ .detail-card h2 {
+   font-size: 1.15rem; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+   border-bottom: 1px solid var(--neutral-color); padding-bottom: 14px;
+ }
+ .detail-card h2 i { color: var(--primary-color); }
+
+ .order-head-row {
+   display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 6px;
+ }
+ .order-head-row .num { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); }
+ .order-head-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; font-size: 0.9rem; color: var(--text-dark); }
+ .order-head-meta span i { color: var(--primary-color); margin-inline-end: 5px; }
+
+ /* --- استپر وضعیت --- */
+ .stepper { display: flex; align-items: flex-start; justify-content: space-between; margin: 10px 0 6px; overflow-x: auto; padding-bottom: 6px; }
+ .step { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 90px; position: relative; text-align: center; }
+ .step .dot {
+   width: 34px; height: 34px; border-radius: 50%; background: var(--neutral-color); color: #fff;
+   display: flex; align-items: center; justify-content: center; font-size: 0.9rem; margin-bottom: 8px; z-index: 1;
+   transition: var(--transition);
+ }
+ .step .line {
+   position: absolute; top: 17px; right: 50%; width: 100%; height: 3px; background: var(--neutral-color); z-index: 0;
+ }
+ .step:first-child .line { display: none; }
+ .step.done .dot { background: var(--primary-color); }
+ .step.done .line { background: var(--primary-color); }
+ .step.current .dot { background: var(--warning-color); box-shadow: 0 0 0 4px rgba(243,156,18,0.2); }
+ .step .label { font-size: 0.8rem; color: var(--text-dark); font-weight: 600; }
+ .step.done .label, .step.current .label { color: var(--text-dark); }
+ .step:not(.done):not(.current) .label { opacity: 0.55; }
+ .cancelled-banner {
+   background: rgba(230,57,70,0.08); border: 1.5px solid var(--error-color); color: var(--error-color);
+   border-radius: 12px; padding: 16px; text-align: center; font-weight: 700; display: flex; align-items: center;
+   justify-content: center; gap: 8px;
+ }
+
+ /* --- لیست آیتم‌ها --- */
+ .detail-item-row {
+   display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--neutral-color);
+ }
+ .detail-item-row:last-child { border-bottom: none; }
+ .detail-item-row img { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; background: var(--neutral-color); flex-shrink: 0; }
+ .detail-item-info { flex: 1; min-width: 0; }
+ .detail-item-name { font-weight: 700; font-size: 0.98rem; color: var(--text-dark); margin-bottom: 4px; }
+ .detail-item-meta { font-size: 0.85rem; color: var(--text-dark); opacity: 0.75; }
+ .detail-item-total { font-weight: 700; color: var(--primary-color); white-space: nowrap; }
+
+ /* --- خلاصه مالی --- */
+ .invoice-row { display: flex; justify-content: space-between; padding: 9px 0; font-size: 0.95rem; color: var(--text-dark); }
+ .invoice-row.discount { color: var(--success-color); }
+ .invoice-row.grand { border-top: 2px dashed var(--neutral-color); margin-top: 8px; padding-top: 16px; font-size: 1.15rem; font-weight: 700; color: var(--text-dark); }
+ .invoice-row.grand b { color: var(--primary-color); }
+ .payment-meta { margin-top: 16px; background: var(--gray-box); border-radius: 10px; padding: 14px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 6px; }
+ .payment-meta .ref { font-family: monospace; direction: ltr; text-align: right; }
+
+ /* --- ارسال --- */
+ .shipping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; font-size: 0.92rem; }
+ .shipping-grid div span { display: block; opacity: 0.6; font-size: 0.8rem; margin-bottom: 4px; }
+ .shipping-grid div strong { color: var(--text-dark); }
+
+ /* --- اکشن‌ها --- */
+ .action-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+ .action-buttons a, .action-buttons button {
+   flex: 1; min-width: 160px; padding: 13px; border-radius: 12px; font-weight: 700; font-size: 0.95rem;
+   cursor: pointer; text-decoration: none; text-align: center; transition: var(--transition); border: none;
+   display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit;
+ }
+ .btn-primary { background: var(--primary-color); color: #fff; }
+ .btn-primary:hover { background: var(--secondary-color); }
+ .btn-danger { background: rgba(230,57,70,0.1); color: var(--error-color); border: 1.5px solid var(--error-color) !important; }
+ .btn-danger:hover { background: var(--error-color); color: #fff; }
+ .btn-outline { background: transparent; color: var(--text-dark); border: 1.5px solid var(--neutral-color) !important; }
+ .btn-outline:hover { border-color: var(--primary-color) !important; color: var(--primary-color); }
+ .btn-disabled { opacity: 0.5; pointer-events: none; }
+
+ /* --- تاریخچه وضعیت --- */
+ .history-timeline { display: flex; flex-direction: column; gap: 0; }
+ .history-item { display: flex; gap: 14px; padding-bottom: 22px; position: relative; }
+ .history-item:last-child { padding-bottom: 0; }
+ .history-item .marker { position: relative; display: flex; flex-direction: column; align-items: center; }
+ .history-item .marker .dot2 { width: 12px; height: 12px; border-radius: 50%; background: var(--primary-color); flex-shrink: 0; margin-top: 4px; }
+ .history-item .marker .vline { width: 2px; flex: 1; background: var(--neutral-color); margin-top: 4px; }
+ .history-item:last-child .marker .vline { display: none; }
+ .history-content .h-title { font-weight: 700; font-size: 0.92rem; color: var(--text-dark); }
+ .history-content .h-time { font-size: 0.8rem; opacity: 0.65; margin-top: 2px; }
+
+ .detail-skeleton { display: flex; flex-direction: column; gap: 16px; }
+ .detail-skeleton .sk { height: 22px; border-radius: 8px; background: linear-gradient(90deg, var(--gray-box) 25%, var(--neutral-color) 37%, var(--gray-box) 63%); background-size: 400% 100%; animation: skeletonShine 1.4s ease infinite; }
+
+ /* =========================================================
+    ریسپانسیو — همان بریک‌پوینت‌های صفحه اصلی (1200/992/768/576)
+    ========================================================= */
+ @media (max-width: 1200px) {
+   .navbar { width: 95%; }
+   .search-box { width: 240px; }
+ }
+
+ @media (max-width: 992px) {
+   .navbar { width: 95%; padding: 10px 15px; border-radius: 15px; }
+   .logo { font-size: 1.2rem; }
+   .logo img { height: 24px; }
+   .logo-search { flex-direction: column; gap: 10px; }
+   .search-box { width: 100%; }
+   .promo-text { font-size: 0.9rem; display: flex; }
+   .promo-text-mobile { display: block; }
+
+   .page-title-bar { padding: 0 20px; }
+   .page-title-bar h1 { font-size: 1.7rem; }
+   .filter-tabs { padding: 0 20px; }
+   #ordersListSection { padding: 0 20px 50px; }
+   #orderDetailSection { padding: 0 20px 50px; }
+   .order-card { padding: 18px; }
+   .stepper { gap: 4px; }
+ }
+
+ @media (max-width: 768px) {
+   body { padding-top: calc(var(--header-h) + 10px); }
+   .logo { font-size: 1.2rem; }
+   .logo img { height: 22px; }
+   .menu-icon, .profile-icon { font-size: 1.3rem; }
+   footer h2 { font-size: 2rem; }
+   footer p { font-size: 1rem; }
+   .social-bar { flex-wrap: wrap; gap: 10px; justify-content: center; }
+   .social-box, .logo-box { width: 60px; height: 60px; }
+
+   .navbar { flex-wrap: wrap; justify-content: center; padding: 8px 10px; }
+   .logo-search { flex-direction: column; gap: 10px; }
+   .search-box { width: 60%; }
+   .cart-profile { order: 2; margin-top: 10px; }
+   .menu-icon { position: absolute; right: 10px; }
+
+   .page-title-bar { flex-direction: column; align-items: flex-start; }
+   .page-title-bar h1 { font-size: 1.5rem; }
+   .filter-tabs { gap: 8px; }
+   .filter-tab { padding: 8px 16px; font-size: 0.85rem; }
+
+   .order-card { flex-direction: column; align-items: stretch; padding: 16px; }
+   .order-card-main { width: 100%; }
+   .order-card-side { width: 100%; justify-content: space-between; }
+   .order-detail-btn { flex-shrink: 0; }
+
+   .detail-card { padding: 20px; }
+   .order-head-row { flex-direction: column; align-items: flex-start; }
+   .stepper { justify-content: flex-start; gap: 8px; overflow-x: auto; }
+   .step { min-width: 84px; }
+   .action-buttons { flex-direction: column; }
+   .action-buttons a, .action-buttons button { min-width: 100%; }
+   .shipping-grid { grid-template-columns: 1fr 1fr; }
+ }
+
+ @media (max-width: 576px) {
+   .logo { font-size: 1.1rem; }
+   .logo img { height: 20px; }
+   .menu-icon { font-size: 1.2rem; }
+   footer h2 { font-size: 1.8rem; }
+   footer .links a { margin: 10px 0; }
+   .social-bar { flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px 0; }
+   .social-box, .logo-box { width: 50px; height: 50px; font-size: 0.65rem; }
+   .social-box img { width: 18px; height: 18px; }
+   .search-box input { padding: 4px 25px 4px 25px; font-size: 0.85rem; }
+   .search-icon, .clear-icon { padding: 5px 8px; }
+   .promo-text { font-size: 0.8rem; }
+   .support-widget { bottom: 10px; right: 10px; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; gap: 6px; opacity: 1; transition: opacity 0.3s ease; }
+   .support-widget.hidden { opacity: 0; pointer-events: none; }
+   .support-widget a { padding: 6px 12px; font-size: 0.75rem; border-radius: 4px; }
+   .support-widget .text { font-size: 0.7rem; }
+   footer { padding: 20px 15px; }
+   footer p { font-size: 0.8rem; margin: 0 auto 15px; }
+   footer .links { margin: 15px 0; }
+   footer .links a { font-size: 0.75rem; margin: 0 8px; padding: 6px 10px; }
+   footer .contact-info { font-size: 0.8rem; margin: 15px 0; }
+   footer .copyright { margin-top: 15px; padding-top: 15px; font-size: 0.7rem; }
+
+   .page-title-bar h1 { font-size: 1.3rem; }
+   .page-title-bar p { font-size: 0.85rem; }
+   .filter-tab { padding: 7px 14px; font-size: 0.8rem; }
+   .order-thumbs img, .order-thumbs .more-count { width: 44px; height: 44px; }
+   .order-number { font-size: 0.95rem; }
+   .order-total { font-size: 1rem; }
+   .status-badge { font-size: 0.78rem; padding: 5px 10px; }
+   .order-detail-btn { padding: 9px 16px; font-size: 0.85rem; }
+
+   .detail-card { padding: 16px; }
+   .detail-card h2 { font-size: 1.02rem; }
+   .stepper { gap: 6px; }
+   .step { min-width: 76px; }
+   .step .dot { width: 28px; height: 28px; font-size: 0.8rem; }
+   .step .label { font-size: 0.72rem; }
+   .detail-item-row img { width: 52px; height: 52px; }
+   .shipping-grid { grid-template-columns: 1fr; }
+   .invoice-row.grand { font-size: 1.05rem; }
+ }
+</style>
+</head>
+<body>
+ <header class="navbar">
+   <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
+     <i class="fas fa-bars"></i>
+   </div>
+   <div class="logo-search">
+     <a href="index.html" class="logo">
+       <img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه" loading="lazy">
+       FIROUZEH
+     </a>
+     <div class="search-box">
+       <input type="text" placeholder="جستجو برای مواد غذایی، مغازه‌ها، سبزیجات یا گوشت" id="searchInput" aria-label="جستجوی محصولات">
+       <div class="clear-icon" id="clearSearch"><i class="fas fa-times"></i></div>
+       <div class="search-icon"><i class="fas fa-search"></i></div>
+       <div class="search-suggestions" id="suggestionsBox">
+         <h4>🔥 محبوب‌ترین سرچ‌ها</h4>
+         <ul><li>فینگرفود</li><li>دسر</li><li>مزه</li><li>سینی مزه</li><li>آجیل مخلوط</li></ul>
+         <h4>🕓 جستجوهای اخیر</h4>
+         <ul><li>باکس الگانت</li><li>نوشیدنی خنک</li><li>پنیر و زیتون</li></ul>
+         <h4>📜 عبارات پیشنهادی</h4>
+         <ul><li>فینگرفود برای مهمانی</li><li>مزه برای دورهمی</li><li>سفارش سریع غذا</li></ul>
+       </div>
+     </div>
+   </div>
+   <div class="cart-profile">
+     <div class="promo-text" id="promoText">⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!</div>
+     <!-- تفاوت با هدر صفحه اصلی: کلیک روی سبد خرید مستقیم به checkout.html می‌رود، بدون باز شدن ساید‌بار -->
+     <a href="checkout.html" class="cart-link" aria-label="سبد خرید">
+       <i class="fas fa-shopping-cart"></i>
+       <span class="cart-badge" id="cartBadge">0</span>
+     </a>
+     <a href="login.html" class="profile-link" role="button" aria-label="ورود یا ثبت نام" id="userProfile">
+       <i class="fas fa-user profile-icon" id="profileIcon"></i>
+     </a>
+     <div class="user-menu" id="userMenu">
+       <div class="user-info">
+         <span class="avatar" id="userAvatar"></span>
+         <span id="userName"></span>
+       </div>
+       <a href="orders.html">سفارش‌های من</a>
+       <a href="/cart">سبد خرید</a>
+       <button id="logoutBtn">خروج</button>
+     </div>
+   </div>
+ </header>
+ <div class="overlay" id="overlay"></div>
+
+ <div class="search-container" id="searchContainer">
+   <input type="text" id="searchInputLegacy" placeholder="جست‌وجوی محصولات، دسته‌بندی‌ها..." />
+   <div class="search-results" id="searchResults"></div>
+ </div>
+ <nav class="side-menu" id="sideMenu" aria-hidden="true" tabindex="-1">
+   <div class="close-btn" aria-label="بستن منو">×</div>
+   <ul class="nav-menu">
+     <li class="nav-category">
+       <h3>دسته‌بندی محصولات</h3>
+       <ul class="sub-menu">
+         <li><a href="finger-food.html">انواع محصولات</a></li>
+         <li><a href="اضافه.html">طبقه‌بندی جانبی</a></li>
+       </ul>
+     </li>
+     <li class="nav-category">
+       <h3>فیروزه</h3>
+       <ul class="sub-menu">
+         <li><a href="orders.html">سفارش‌های من</a></li>
+         <li><a href="vip-customers.html">مشتریان خاص فیروزه</a></li>
+         <li><a href="about.html">درباره فیروزه</a></li>
+         <li><a href="contact.html">تماس با فیروزه</a></li>
+         <li><a href="FAQ.html">سوالات متداول</a></li>
+         <li><a href="cooperation.html">همکاری با فیروزه</a></li>
+         <li><a href="blogs.html">مجلات و اخبار فیروزه</a></li>
+         <li><a href="terms.html">قوانین و مقررات</a></li>
+       </ul>
+     </li>
+   </ul>
+ </nav>
+
+ <div class="logout-modal" id="logoutModal">
+   <div class="logout-modal-content">
+     <h2>از حساب کاربری خارج می‌شوید؟</h2>
+     <p>با خروج از حساب کاربری به سبد خرید فعلی دسترسی نخواهید داشت. هر وقت بخواهید مجدد می‌توانید وارد شوید.</p>
+     <div class="logout-buttons">
+       <button class="confirm" id="confirmLogout">خروج</button>
+       <button class="cancel" id="cancelLogout">انصراف</button>
+     </div>
+   </div>
+ </div>
+
+ <main>
+   <div class="page-title-bar">
+     <div>
+       <h1><i class="fas fa-receipt"></i> سفارش‌های من</h1>
+       <p>وضعیت سفارش‌های ثبت‌شده خود را از اینجا پیگیری کنید</p>
+     </div>
+   </div>
+
+   <!-- ===================== لیست سفارش‌ها ===================== -->
+   <section id="ordersListSection">
+     <div class="filter-tabs" id="filterTabs">
+       <button class="filter-tab active" data-status="">همه سفارش‌ها</button>
+       <button class="filter-tab" data-status="PENDING_PAYMENT">در انتظار پرداخت</button>
+       <button class="filter-tab" data-status="PAID">پرداخت شده</button>
+       <button class="filter-tab" data-status="CONFIRMED">تأیید شده</button>
+       <button class="filter-tab" data-status="PREPARING">در حال آماده‌سازی</button>
+       <button class="filter-tab" data-status="READY">آماده تحویل</button>
+       <button class="filter-tab" data-status="SHIPPED">ارسال شده</button>
+       <button class="filter-tab" data-status="DELIVERED">تحویل شده</button>
+       <button class="filter-tab" data-status="CANCELLED">لغو شده</button>
+     </div>
+     <div class="orders-list" id="ordersList">
+       <div class="skeleton-card"></div>
+       <div class="skeleton-card"></div>
+       <div class="skeleton-card"></div>
+     </div>
+   </section>
+
+   <!-- ===================== جزئیات یک سفارش ===================== -->
+   <section id="orderDetailSection" style="display:none;">
+     <button class="back-to-list" id="backToListBtn"><i class="fas fa-arrow-right"></i> بازگشت به لیست سفارش‌ها</button>
+     <div id="orderDetailContent">
+       <div class="detail-card detail-skeleton">
+         <div class="sk" style="width:40%"></div>
+         <div class="sk" style="width:70%"></div>
+         <div class="sk" style="width:55%"></div>
+       </div>
+     </div>
+   </section>
+ </main>
+
+ <div class="support-widget">
+   <p class="text">برای دریافت مشاوره و پیگیری سفارش با ما در ارتباط باشید</p>
+   <a href="https://instagram.com/fingerfood_firouzeh" target="_blank">اینستاگرام</a>
+   <a href="https://wa.me/09142830328" target="_blank">واتساپ</a>
+   <a href="tel:09142830328">تماس</a>
+ </div>
+
+ <footer>
+   <h2><i class="fas fa-building"></i> فیروزه</h2>
+   <p>فیروزه فروشگاه آنلاین مزه، فینگر فود و همه نیازهای دورهمی و مهمونیه. هر چیزی برای یک شب به‌یادماندنی لازم دارید، همین جاست!</p>
+   <div class="links">
+     <a href="about.html"><i class="fas fa-info-circle"></i> درباره فیروزه</a>
+     <a href="contact.html"><i class="fas fa-phone"></i> تماس با فیروزه</a>
+     <a href="cooperation.html"><i class="fas fa-handshake"></i> همکاری با فیروزه</a>
+     <a href="FAQ.html"><i class="fas fa-question-circle"></i> سوالات متداول</a>
+   </div>
+   <div class="contact-info">
+     <i class="fas fa-phone"></i> تماس: ۰۴۱-۳۳۳۶۷۰۵۲ | <i class="fab fa-whatsapp"></i> واتس‌اپ:۰۹۱۴۲۸۳۰۳۲۸
+   </div>
+   <p id="clock"><i class="fas fa-clock"></i> در حال دریافت زمان…</p>
+   <div class="copyright">© ۱۴۰۴ FingerFood Firoozeh - کلیه حقوق محفوظ است.</div>
+   <div class="social-bar">
+     <div class="logo-box"><img src="image1/logo.png" alt="لوگوی فینگرفود فیروزه در فوتر"></div>
+     <a href="mailto:firouzeh.foodgroup@gmail.com" class="social-box"><i class="fas fa-envelope"></i>ایمیل</a>
+     <a href="https://instagram.com/fingerfood_firouzeh" class="social-box" target="_blank"><i class="fab fa-instagram"></i>اینستاگرام</a>
+     <a href="https://wa.me/09142830328" class="social-box" target="_blank"><i class="fab fa-whatsapp"></i>واتس اپ</a>
+     <a href="tel:09142830328" class="social-box"><i class="fas fa-phone"></i>تماس</a>
+     <a href="about.html" class="social-box"><i class="fas fa-award"></i>مجوزها</a>
+     <a href="https://trustseal.enamad.ir/?id=689016&Code=bOcgCiTNRUJWTNNDSfav6XoRLSAeLpGo" target="_blank" rel="noopener" referrerpolicy="origin" class="social-box">
+       <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=689016&Code=bOcgCiTNRUJWTNNDSfav6XoRLSAeLpGo" alt="نماد اعتماد الکترونیکی" style="max-width:70%;max-height:70%;object-fit:contain;">
+       اینماد
+     </a>
+   </div>
+ </footer>
+
+<script>
+   /* =========================================================
+      اتصال به بک‌اند (همان الگوی index.html)
+      ========================================================= */
+   const API_ORIGIN = "https://api.firouzehco.com";
+   const ORDERS_API = `${API_ORIGIN}/api/orders/my-orders`;  // تغییر: مسیر مشتری
+   const CART_API = `${API_ORIGIN}/api/cart`;
+
+   function toAbsoluteMediaUrl(path){
+     if(!path) return 'image1/logo.png';
+     return path.startsWith('http') ? path : `${API_ORIGIN}${path}`;
+   }
+   function fmtToman(n){ return Number(n||0).toLocaleString('fa-IR'); }
+   function escapeHTML(str){
+     return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+   }
+   function toPersianDate(iso){
+     if(!iso || typeof persianDate === 'undefined') return '-';
+     try{
+       const d = new persianDate(new Date(iso));
+       return d.format('D MMMM YYYY - HH:mm');
+     }catch(e){ return '-'; }
+   }
+   function getCustomerToken(){ return localStorage.getItem('access'); }
+
+   /* ---------- نگاشت وضعیت سفارش به فارسی، رنگ و مرحله در استپر ---------- */
+   const STATUS_MAP = {
+     PENDING_PAYMENT: { label: 'در انتظار پرداخت', color: 'var(--warning-color)', icon: 'fa-hourglass-half', step: 0 },
+     PAID:            { label: 'پرداخت شد',        color: 'var(--info-color)',    icon: 'fa-credit-card',    step: 1 },
+     CONFIRMED:       { label: 'در حال آماده‌سازی', color: 'var(--info-color)',    icon: 'fa-utensils',       step: 2 },
+     PREPARING:       { label: 'در حال آماده‌سازی', color: 'var(--info-color)',    icon: 'fa-utensils',       step: 2 },
+     READY:           { label: 'آماده تحویل',       color: 'var(--purple-color)',  icon: 'fa-check-circle',   step: 2 },
+     SHIPPED:         { label: 'ارسال شده',        color: 'var(--purple-color)',  icon: 'fa-truck',          step: 3 },
+     DELIVERED:       { label: 'تحویل داده شد',    color: 'var(--success-color)', icon: 'fa-check-circle',   step: 4 },
+     CANCELLED:       { label: 'لغو شده',          color: 'var(--error-color)',   icon: 'fa-times-circle',   step: -1 },
+   };
+   const STEP_LABELS = ['ثبت سفارش', 'پرداخت شد', 'در حال آماده‌سازی', 'ارسال شد', 'تحویل داده شد'];
+
+   function statusInfo(code){
+     return STATUS_MAP[code] || { label: code || 'نامشخص', color: 'var(--text-dark)', icon: 'fa-info-circle', step: 0 };
+   }
+
+   /* ---------- state ---------- */
+   let currentFilter = '';
+   let currentOrders = [];
+
+   /* ---------- رندر بج وضعیت ---------- */
+   function statusBadgeHTML(code){
+     const s = statusInfo(code);
+     return `<span class="status-badge" style="background:color-mix(in srgb, ${s.color} 15%, white); color:${s.color};">
+       <i class="fas ${s.icon}"></i> ${s.label}
+     </span>`;
+   }
+
+   /* ---------- لیست سفارش‌ها (بدون فیلتر در سرور) ---------- */
+   async function loadOrders(){
+     const list = document.getElementById('ordersList');
+     const token = getCustomerToken();
+
+     if(!token){
+       list.innerHTML = `
+         <div class="list-state-msg">
+           <i class="fas fa-user-lock"></i>
+           برای مشاهده سفارش‌های خود ابتدا وارد حساب کاربری‌تان شوید
+           <br>
+           <a href="login.html" class="cta-btn">ورود / ثبت‌نام</a>
+         </div>`;
+       return;
+     }
+
+     list.innerHTML = `<div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>`;
+
+     try{
+       const res = await fetch(`${ORDERS_API}/`, {
+         headers: { 'Authorization': `Bearer ${token}` }
+       });
+       if(!res.ok) throw new Error('status ' + res.status);
+       const data = await res.json();
+       currentOrders = data.results || data || [];
+       applyFilter(); // اعمال فیلتر جاری
+     }catch(e){
+       console.error('خطا در دریافت سفارش‌ها:', e);
+       list.innerHTML = `
+         <div class="list-state-msg">
+           <i class="fas fa-exclamation-triangle"></i>
+           خطا در دریافت سفارش‌ها از سرور. لطفاً دوباره تلاش کنید.
+         </div>`;
+     }
+   }
+
+   /* ---------- فیلتر کردن در سمت کلاینت ---------- */
+   function applyFilter(){
+     const filtered = currentFilter
+       ? currentOrders.filter(o => o.status === currentFilter)
+       : currentOrders;
+     renderOrdersList(filtered);
+   }
+
+   function renderOrdersList(orders){
+     const list = document.getElementById('ordersList');
+     if(!orders.length){
+       list.innerHTML = `
+         <div class="list-state-msg">
+           <i class="fas fa-box-open"></i>
+           هنوز سفارشی در این وضعیت ثبت نشده است
+           <br>
+           <a href="finger-food.html" class="cta-btn">مشاهده محصولات</a>
+         </div>`;
+       return;
+     }
+
+     list.innerHTML = orders.map(order => {
+       const items = order.items || [];
+       const shownItems = items.slice(0, 2);
+       const remaining = items.length - shownItems.length;
+       const thumbs = shownItems.map(it =>
+         `<img src="${toAbsoluteMediaUrl(it.product_image)}" alt="${escapeHTML(it.product_name || '')}">`
+       ).join('') + (remaining > 0 ? `<div class="more-count">+${remaining.toLocaleString('fa-IR')}</div>` : '');
+
+       return `
+       <div class="order-card">
+         <div class="order-card-main">
+           <div class="order-thumbs">${thumbs || '<div class="more-count"><i class="fas fa-box"></i></div>'}</div>
+           <div class="order-info-block">
+             <div class="order-number">#${escapeHTML(order.order_number || ('FR-' + order.id))}</div>
+             <div class="order-date"><i class="far fa-calendar"></i>${toPersianDate(order.created_at)}</div>
+           </div>
+         </div>
+         <div class="order-card-side">
+           ${statusBadgeHTML(order.status)}
+           <div class="order-total">${fmtToman(order.total_amount)} تومان</div>
+           <button class="order-detail-btn" data-id="${order.id}">
+             <i class="fas fa-eye"></i> مشاهده جزئیات
+           </button>
+         </div>
+       </div>`;
+     }).join('');
+
+     list.querySelectorAll('.order-detail-btn').forEach(btn => {
+       btn.addEventListener('click', () => showOrderDetail(btn.dataset.id));
+     });
+   }
+
+   /* ---------- جزئیات یک سفارش ---------- */
+   async function showOrderDetail(orderId){
+     document.getElementById('ordersListSection').style.display = 'none';
+     document.getElementById('orderDetailSection').style.display = 'block';
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+     const url = new URL(window.location.href);
+     url.searchParams.set('id', orderId);
+     history.pushState({ orderId }, '', url);
+
+     const content = document.getElementById('orderDetailContent');
+     content.innerHTML = `
+       <div class="detail-card detail-skeleton">
+         <div class="sk" style="width:40%"></div>
+         <div class="sk" style="width:70%"></div>
+         <div class="sk" style="width:55%"></div>
+       </div>`;
+
+     const token = getCustomerToken();
+     if(!token){
+       content.innerHTML = `
+         <div class="list-state-msg">
+           <i class="fas fa-user-lock"></i>
+           برای مشاهده جزئیات سفارش ابتدا وارد حساب کاربری‌تان شوید
+           <br><a href="login.html" class="cta-btn">ورود / ثبت‌نام</a>
+         </div>`;
+       return;
+     }
+
+     try{
+       const res = await fetch(`${ORDERS_API}/${orderId}/`, {
+         headers: { 'Authorization': `Bearer ${token}` }
+       });
+       if(!res.ok) throw new Error('status ' + res.status);
+       const order = await res.json();
+       renderOrderDetail(order);
+     }catch(e){
+       console.error('خطا در دریافت جزئیات سفارش:', e);
+       content.innerHTML = `
+         <div class="list-state-msg">
+           <i class="fas fa-exclamation-triangle"></i>
+           خطا در دریافت جزئیات این سفارش از سرور.
+         </div>`;
+     }
+   }
+
+   function backToList(){
+     document.getElementById('orderDetailSection').style.display = 'none';
+     document.getElementById('ordersListSection').style.display = 'block';
+     const url = new URL(window.location.href);
+     url.searchParams.delete('id');
+     history.pushState({}, '', url);
+   }
+
+   function renderStepper(status){
+     if(status === 'CANCELLED'){
+       return `<div class="cancelled-banner"><i class="fas fa-times-circle"></i> این سفارش لغو شده است</div>`;
+     }
+     const currentStep = statusInfo(status).step;
+     return `<div class="stepper">${STEP_LABELS.map((label, i) => {
+       let cls = '';
+       if(i < currentStep) cls = 'done';
+       else if(i === currentStep) cls = 'current';
+       const icon = i < currentStep ? 'fa-check' : (i === currentStep ? 'fa-circle-notch' : (i + 1));
+       return `
+       <div class="step ${cls}">
+         <div class="line"></div>
+         <div class="dot">${i < currentStep ? '<i class="fas fa-check"></i>' : (i + 1).toLocaleString('fa-IR')}</div>
+         <div class="label">${label}</div>
+       </div>`;
+     }).join('')}</div>`;
+   }
+
+   function renderOrderDetail(order){
+     const content = document.getElementById('orderDetailContent');
+     const items = order.items || [];
+     const s = statusInfo(order.status);
+     const history_ = order.status_history || [];
+
+     const itemsHTML = items.map(it => `
+       <div class="detail-item-row">
+         <img src="${toAbsoluteMediaUrl(it.product_image)}" alt="${escapeHTML(it.product_name || '')}">
+         <div class="detail-item-info">
+           <div class="detail-item-name">${escapeHTML(it.product_name || 'محصول')}</div>
+           <div class="detail-item-meta">تعداد: ${Number(it.quantity||0).toLocaleString('fa-IR')} × ${fmtToman(it.unit_price)} تومان</div>
+         </div>
+         <div class="detail-item-total">${fmtToman((it.unit_price||0) * (it.quantity||0))} تومان</div>
+       </div>
+     `).join('') || '<p style="opacity:.7;">آیتمی برای این سفارش ثبت نشده است.</p>';
+
+     // اطلاعات ارسال – مستقیم از خود سفارش
+     const shippingHTML = `
+       <div class="shipping-grid">
+         <div><span>نام گیرنده</span><strong>${escapeHTML(order.shipping_recipient_name || order.customer_name || '-')}</strong></div>
+         <div><span>شماره تماس</span><strong>${escapeHTML(order.shipping_recipient_phone || order.customer_phone || '-')}</strong></div>
+         <div><span>روش ارسال</span><strong>${escapeHTML(order.shipping_method_display || 'پیک فیروزه')}</strong></div>
+         <div><span>زمان تحویل درخواستی</span><strong>${toPersianDate(order.event_time)}</strong></div>
+       </div>
+       <div style="margin-top:14px;">
+         <span style="opacity:.6;font-size:.8rem;display:block;margin-bottom:4px;">آدرس تحویل</span>
+         <strong>${escapeHTML(order.shipping_full_address || order.address || '-')}</strong>
+       </div>
+     `;
+
+     const historyHTML = history_.length ? `
+       <div class="history-timeline">
+         ${history_.map(h => `
+           <div class="history-item">
+             <div class="marker"><div class="dot2"></div><div class="vline"></div></div>
+             <div class="history-content">
+               <div class="h-title">${statusInfo(h.status).label}</div>
+               <div class="h-time">${toPersianDate(h.created_at)}</div>
+             </div>
+           </div>
+         `).join('')}
+       </div>` : '<p style="opacity:.7;">تاریخچه‌ای برای این سفارش ثبت نشده است.</p>';
+
+     // اطلاعات پرداخت – از آبجکت payment
+     const payment = order.payment || {};
+     const paymentMethod = payment.method || 'درگاه آنلاین';
+     const paymentStatus = payment.status || (order.status === 'PENDING_PAYMENT' ? 'در انتظار پرداخت' : 'موفق');
+     const transactionId = payment.transaction_id || '-';
+
+     // دکمه‌های اکشن
+     let actions = '';
+     if(order.status === 'PENDING_PAYMENT'){
+       actions += `<button class="btn-primary" onclick="initiatePayment(${order.id})"><i class="fas fa-credit-card"></i> پرداخت مجدد</button>`;
+       actions += `<button class="btn-danger" onclick="cancelOrder(${order.id})"><i class="fas fa-times"></i> لغو سفارش</button>`;
+     } else if(['PAID','CONFIRMED','PREPARING','READY'].includes(order.status)){
+       actions += `<button class="btn-danger" onclick="cancelOrder(${order.id})"><i class="fas fa-times"></i> لغو سفارش</button>`;
+     } else if(order.status === 'DELIVERED'){
+       // دکمه دانلود فاکتور فعلاً غیرفعال (چون در بک‌اند پیاده‌سازی نشده)
+       // actions += `<a href="#" class="btn-outline btn-disabled"><i class="fas fa-file-download"></i> دانلود فاکتور (به‌زودی)</a>`;
+       actions += `<a href="finger-food.html" class="btn-primary"><i class="fas fa-star"></i> ثبت نظر و امتیاز</a>`;
+     }
+     actions += `<a href="https://wa.me/09142830328" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> تماس با پشتیبانی</a>`;
+
+     content.innerHTML = `
+       <div class="detail-card">
+         <div class="order-head-row">
+           <div>
+             <div class="num">سفارش #${escapeHTML(order.order_number || ('FR-' + order.id))}</div>
+             <div class="order-head-meta">
+               <span><i class="far fa-calendar"></i>${toPersianDate(order.created_at)}</span>
+               <span><i class="far fa-clock"></i>زمان تحویل: ${toPersianDate(order.event_time)}</span>
+             </div>
+           </div>
+           ${statusBadgeHTML(order.status)}
+         </div>
+       </div>
+
+       <div class="detail-card">
+         <h2><i class="fas fa-route"></i> وضعیت سفارش</h2>
+         ${renderStepper(order.status)}
+       </div>
+
+       <div class="detail-card">
+         <h2><i class="fas fa-shopping-basket"></i> اقلام سفارش</h2>
+         ${itemsHTML}
+       </div>
+
+       <div class="detail-card">
+         <h2><i class="fas fa-file-invoice"></i> خلاصه فاکتور</h2>
+         <div class="invoice-row"><span>جمع محصولات</span><span>${fmtToman(order.items_total)} تومان</span></div>
+         ${order.discount_amount ? `<div class="invoice-row discount"><span>تخفیف</span><span>-${fmtToman(order.discount_amount)} تومان</span></div>` : ''}
+         <div class="invoice-row"><span>هزینه ارسال</span><span>${fmtToman(order.shipping_cost)} تومان</span></div>
+         ${order.tax_amount ? `<div class="invoice-row"><span>مالیات</span><span>${fmtToman(order.tax_amount)} تومان</span></div>` : ''}
+         <div class="invoice-row grand"><span>مبلغ نهایی</span><b>${fmtToman(order.total_amount)} تومان</b></div>
+         <div class="payment-meta">
+           <div>روش پرداخت: <strong>${escapeHTML(paymentMethod)}</strong></div>
+           <div>وضعیت پرداخت: <strong>${escapeHTML(paymentStatus)}</strong></div>
+           ${transactionId !== '-' ? `<div class="ref">کد پیگیری تراکنش: ${escapeHTML(transactionId)}</div>` : ''}
+         </div>
+       </div>
+
+       <div class="detail-card">
+         <h2><i class="fas fa-truck"></i> اطلاعات ارسال</h2>
+         ${shippingHTML}
+       </div>
+
+       <div class="detail-card">
+         <h2><i class="fas fa-history"></i> تاریخچه وضعیت</h2>
+         ${historyHTML}
+       </div>
+
+       <div class="detail-card">
+         <div class="action-buttons">${actions}</div>
+       </div>
+     `;
+   }
+
+   /* ---------- لغو سفارش (با اندپوینت جدید) ---------- */
+   async function cancelOrder(orderId){
+     if(!confirm('آیا از لغو این سفارش مطمئن هستید؟')) return;
+     const token = getCustomerToken();
+     try{
+       const res = await fetch(`${ORDERS_API}/${orderId}/cancel/`, {
+         method: 'POST',
+         headers: { 'Authorization': `Bearer ${token}` }
+       });
+       if(!res.ok) throw new Error('status ' + res.status);
+       showOrderDetail(orderId);
+     }catch(e){
+       alert('خطا در لغو سفارش. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.');
+     }
+   }
+
+   /* ---------- پرداخت مجدد ---------- */
+   async function initiatePayment(orderId){
+     const token = getCustomerToken();
+     try{
+       const res = await fetch(`${ORDERS_API}/${orderId}/pay/`, {
+         method: 'POST',
+         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+       });
+       if(!res.ok) throw new Error('خطا در شروع پرداخت');
+       const data = await res.json();
+       // فرض بر این است که بک‌اند لینک درگاه را در data.payment_url برمی‌گرداند
+       if(data.payment_url){
+         window.location.href = data.payment_url;
+       } else if(data.redirect_url){
+         window.location.href = data.redirect_url;
+       } else {
+         // اگر لینکی نبود، صفحه پرداخت checkout را باز می‌کنیم
+         window.location.href = `checkout.html?order=${orderId}`;
+       }
+     }catch(e){
+       alert('خطا در شروع پرداخت. لطفاً دوباره تلاش کنید.');
+     }
+   }
+
+   /* ---------- سبد خرید (فقط برای نمایش تعداد روی آیکون) ---------- */
+   async function loadCartBadge(){
+     const token = getCustomerToken();
+     const headers = {};
+     if(token) headers['Authorization'] = `Bearer ${token}`;
+     try{
+       const res = await fetch(`${CART_API}/`, { headers, credentials: 'include' });
+       if(!res.ok) return;
+       const data = await res.json();
+       document.getElementById('cartBadge').textContent = data.total_items || 0;
+     }catch(e){ /* بی‌صدا رد شو */ }
+   }
+
+   /* ---------- پروفایل کاربر در هدر ---------- */
+   async function getProfile(){
+     const token = getCustomerToken();
+     if(!token) return null;
+     try{
+       const res = await fetch(`${API_ORIGIN}/api/auth/profile/`, {
+         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+       });
+       return res.ok ? await res.json() : null;
+     }catch(e){ return null; }
+   }
+   function updateUserUI(userData){
+     const userProfile = document.getElementById('userProfile');
+     const profileIcon = document.getElementById('profileIcon');
+     if(userData){
+       profileIcon.style.display = 'none';
+       if(!userProfile.querySelector('.user-avatar')){
+         const avatar = document.createElement('div');
+         avatar.className = 'user-avatar';
+         avatar.textContent = userData.character || '👤';
+         userProfile.appendChild(avatar);
+       }
+       document.getElementById('userAvatar').textContent = userData.character || '👤';
+       document.getElementById('userName').textContent = escapeHTML(userData.username || '');
+     } else {
+       const existingAvatar = userProfile.querySelector('.user-avatar');
+       if(existingAvatar) existingAvatar.remove();
+       profileIcon.style.display = 'block';
+     }
+   }
+
+   /* ---------- منو، جستجو، ساعت، متن تبلیغاتی ---------- */
+   const promoMessages = [
+     "⚡بهترین آموزش‌های فینگر فود و سلامت غذایی!",
+     "🍕 غذاهای تازه و خوشمزه هر روز!",
+     "⭐ تخفیف ویژه برای مشتریان وفادار!",
+     "🚚فیروزه؛ سریع، تازه، خوش‌سلیقه"
+   ];
+   let promoIndex = 0;
+   function changePromoText(){
+     document.getElementById('promoText').innerHTML = `<i class="fas fa-bolt"></i> ${promoMessages[promoIndex]}`;
+     promoIndex = (promoIndex + 1) % promoMessages.length;
+   }
+   function updateClock(){
+     const clock = document.getElementById('clock');
+     if(typeof persianDate === 'undefined'){
+       clock.innerHTML = '<i class="fas fa-clock"></i> خطا در بارگذاری تاریخ';
+       return;
+     }
+     const now = new Date();
+     const timeStr = now.toLocaleTimeString('fa-IR', { timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+     const dateStr = new persianDate(now).format('D MMMM YYYY');
+     clock.innerHTML = `<i class="fas fa-clock"></i> ${dateStr} - ${timeStr}`;
+   }
+
+   const els = {
+     menuToggle: document.querySelector('.menu-icon'),
+     sideMenu: document.getElementById('sideMenu'),
+     closeBtn: document.querySelector('#sideMenu .close-btn'),
+     overlay: document.getElementById('overlay'),
+     userProfile: document.getElementById('userProfile'),
+     userMenu: document.getElementById('userMenu'),
+     logoutBtn: document.getElementById('logoutBtn'),
+     logoutModal: document.getElementById('logoutModal'),
+     confirmLogout: document.getElementById('confirmLogout'),
+     cancelLogout: document.getElementById('cancelLogout'),
+     searchContainer: document.getElementById('searchContainer'),
+     searchInputLegacy: document.getElementById('searchInputLegacy'),
+     searchResults: document.getElementById('searchResults'),
+     searchInput: document.getElementById('searchInput'),
+     suggestionsBox: document.getElementById('suggestionsBox'),
+     clearSearch: document.getElementById('clearSearch'),
+   };
+
+   function openMenu(){
+     els.sideMenu.classList.add('active'); els.overlay.classList.add('active');
+     document.body.style.overflow = 'hidden';
+     els.menuToggle.setAttribute('aria-expanded','true');
+     els.sideMenu.setAttribute('aria-hidden','false');
+     els.sideMenu.focus();
+   }
+   function closeMenu(){
+     els.sideMenu.classList.remove('active'); els.overlay.classList.remove('active');
+     document.body.style.overflow = '';
+     els.menuToggle.setAttribute('aria-expanded','false');
+     els.sideMenu.setAttribute('aria-hidden','true');
+   }
+   function openSearch(){
+     els.searchContainer.classList.add('active'); els.overlay.classList.add('active');
+     document.body.style.overflow = 'hidden'; els.searchInputLegacy.focus();
+   }
+   function closeSearch(){
+     els.searchContainer.classList.remove('active'); els.overlay.classList.remove('active');
+     document.body.style.overflow = ''; els.searchInputLegacy.value = ''; els.searchResults.innerHTML = '';
+   }
+   function performSearch(query){
+     els.searchResults.innerHTML = '';
+     const q = query.trim().toLowerCase();
+     if(!q){ els.searchResults.innerHTML = '<div class="no-results">لطفاً عبارتی برای جست‌وجو وارد کنید</div>'; return; }
+     els.searchResults.innerHTML = `<div class="result-item">برای جستجوی محصولات به <a href="finger-food.html">صفحه منو</a> مراجعه کنید</div>`;
+   }
+   function updateSuggestions(value){
+     const popular = ['فینگرفود','دسر','مزه','سینی مزه','آجیل مخلوط'];
+     const recent = ['باکس الگانت','نوشیدنی خنک','پنیر و زیتون'];
+     const phrases = ['فینگرفود برای مهمانی','مزه برای دورهمی','سفارش سریع غذا'];
+     const v = escapeHTML(value.toLowerCase().trim());
+     const build = (title, arr) => `<h4>${title}</h4><ul>${arr.filter(i=>!v||i.toLowerCase().includes(v)).map(i=>`<li>${escapeHTML(i)}</li>`).join('')}</ul>`;
+     els.suggestionsBox.innerHTML = build('🔥 محبوب‌ترین سرچ‌ها', popular) + build('🕓 جستجوهای اخیر', recent) + build('📜 عبارات پیشنهادی', phrases);
+     els.suggestionsBox.classList.add('active');
+   }
+
+   els.menuToggle.addEventListener('click', () => els.sideMenu.classList.contains('active') ? closeMenu() : openMenu());
+   els.closeBtn.addEventListener('click', closeMenu);
+   els.userProfile.addEventListener('click', (e) => { if(getCustomerToken()){ e.preventDefault(); els.userMenu.classList.toggle('active'); } });
+   els.logoutBtn.addEventListener('click', () => { els.userMenu.classList.remove('active'); els.logoutModal.classList.add('active'); els.overlay.classList.add('active'); });
+   els.confirmLogout.addEventListener('click', () => {
+     localStorage.removeItem('access');
+     updateUserUI(null);
+     els.logoutModal.classList.remove('active'); els.overlay.classList.remove('active');
+     loadOrders();
+   });
+   els.cancelLogout.addEventListener('click', () => { els.logoutModal.classList.remove('active'); els.overlay.classList.remove('active'); });
+   document.querySelector('.search-icon').addEventListener('click', () => { if(!els.searchInput.value.trim()) openSearch(); });
+   els.searchInputLegacy.addEventListener('input', (e) => performSearch(e.target.value));
+   els.searchInput.addEventListener('focus', () => updateSuggestions(els.searchInput.value));
+   els.searchInput.addEventListener('input', (e) => { els.clearSearch.classList.toggle('active', e.target.value.length > 0); updateSuggestions(e.target.value); });
+   els.clearSearch.addEventListener('click', () => { els.searchInput.value = ''; els.clearSearch.classList.remove('active'); updateSuggestions(''); });
+   els.suggestionsBox.addEventListener('click', (e) => { if(e.target.tagName === 'LI'){ els.searchInput.value = e.target.textContent; els.suggestionsBox.classList.remove('active'); els.clearSearch.classList.add('active'); } });
+   els.overlay.addEventListener('click', () => { closeMenu(); closeSearch(); els.suggestionsBox.classList.remove('active'); els.userMenu.classList.remove('active'); els.logoutModal.classList.remove('active'); });
+   document.addEventListener('keydown', (e) => { if(e.key === 'Escape'){ closeMenu(); closeSearch(); els.suggestionsBox.classList.remove('active'); els.userMenu.classList.remove('active'); els.logoutModal.classList.remove('active'); } });
+   document.addEventListener('click', (e) => {
+     if(!els.searchInput.contains(e.target) && !els.suggestionsBox.contains(e.target)) els.suggestionsBox.classList.remove('active');
+     if(!els.userProfile.contains(e.target) && !els.userMenu.contains(e.target)) els.userMenu.classList.remove('active');
+   });
+
+   const footerObserverTarget = document.querySelector('footer');
+   const supportWidget = document.querySelector('.support-widget');
+   new IntersectionObserver((entries) => {
+     entries.forEach(entry => { supportWidget.style.display = entry.isIntersecting ? 'none' : 'flex'; });
+   }, { threshold: 0.1 }).observe(footerObserverTarget);
+
+   /* ---------- فیلتر تب‌ها (سمت کلاینت) ---------- */
+   document.getElementById('filterTabs').addEventListener('click', (e) => {
+     const btn = e.target.closest('.filter-tab');
+     if(!btn) return;
+     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+     btn.classList.add('active');
+     currentFilter = btn.dataset.status;
+     applyFilter(); // فیلتر روی داده‌های موجود
+   });
+
+   document.getElementById('backToListBtn').addEventListener('click', backToList);
+   window.addEventListener('popstate', () => {
+     const id = new URL(window.location.href).searchParams.get('id');
+     if(id) showOrderDetail(id); else backToList();
+   });
+
+   /* ---------- init ---------- */
+   updateClock(); setInterval(updateClock, 1000);
+   changePromoText(); setInterval(changePromoText, 5000);
+   loadCartBadge();
+
+   (async () => {
+     const userData = await getProfile();
+     updateUserUI(userData);
+   })();
+
+   window.addEventListener('DOMContentLoaded', () => {
+     const idInUrl = new URL(window.location.href).searchParams.get('id');
+     if(idInUrl){
+       document.getElementById('ordersListSection').style.display = 'none';
+       document.getElementById('orderDetailSection').style.display = 'block';
+       showOrderDetail(idInUrl);
+     } else {
+       loadOrders();
+     }
+   });
+</script>
+</body>
+</html>
