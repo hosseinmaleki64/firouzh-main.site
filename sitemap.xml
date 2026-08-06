@@ -79,4 +79,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://firouzehco.com/login.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+<loc>https://firouzehco.com/blog.html?slug=best-finger-food-for-birthday</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
 </urlset>
