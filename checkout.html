@@ -2602,7 +2602,8 @@
                 }
 
                 this.subtotal = Number(this.cart.subtotal) || 0;
-                this.tax = Math.round(this.subtotal * this.taxRate);
+                // مالیات صفر شد
+                this.tax = 0;
                 this.total = this.subtotal + this.shipping + this.tax - this.discount;
                 this.updateOrderSummary();
             }
@@ -3168,6 +3169,8 @@
                 const shippings = document.querySelectorAll('[data-type="shipping"]');
                 shippings.forEach(el => el.textContent = this.formatPrice(this.shipping));
 
+                // مالیات همواره صفر است
+                this.tax = 0;
                 const taxes = document.querySelectorAll('[data-type="tax"]');
                 taxes.forEach(el => el.textContent = this.formatPrice(this.tax));
 

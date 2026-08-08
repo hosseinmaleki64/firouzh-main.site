@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ثبت سفارش دستی | پنل مدیریت</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#077A70">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="فیروزه ادمین">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A28;
+    --ink-soft:#4B6C66;
+    --ink-faint:#87A29C;
+    --bg:#F1FAF8;
+    --surface:#FFFFFF;
+    --surface-alt:#EAF7F4;
+    --turq:#0EA99A;
+    --turq-deep:#077A70;
+    --turq-darker:#065951;
+    --turq-pale:#D3F1EC;
+    --gold:#C9982F;
+    --gold-pale:#F6EAD2;
+    --red:#D14343;
+    --red-pale:#FBE7E5;
+    --blue:#2E6FD1;
+    --blue-pale:#E6EEFB;
+    --border:#DCEEEA;
+    --shadow-sm:0 2px 10px rgba(7,90,80,.06);
+    --shadow-md:0 12px 32px rgba(7,90,80,.10);
+    --shadow-lg:0 24px 60px rgba(7,90,80,.20);
+    --facet:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
+      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  .facet{
+    clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));
+  }
+
+  /* ===== Topbar ===== */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.75);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
+  .brand-mark{width:30px;height:30px;flex:none;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
+  .brand small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft);}
+  .topbar-left{display:flex;align-items:center;gap:12px;}
+  .back-link{
+    display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);
+    padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);
+  }
+  .back-link:hover{color:var(--turq-deep);border-color:var(--turq);}
+  .back-link svg{width:15px;height:15px;}
+
+  main{max-width:1080px;margin:0 auto;padding:30px 24px 100px;}
+
+  .page-head{margin-bottom:22px;}
+  .page-head h1{font-size:22px;font-weight:800;margin:0 0 4px;}
+  .page-head p{margin:0;color:var(--ink-soft);font-size:13px;}
+
+  .layout{display:flex;gap:22px;align-items:flex-start;}
+  .form-col{flex:1 1 620px;min-width:0;display:flex;flex-direction:column;gap:18px;}
+  .summary-col{flex:0 0 300px;position:sticky;top:96px;display:flex;flex-direction:column;gap:16px;}
+
+  .card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:20px 22px;}
+  .card h2{margin:0 0 3px;font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:8px;}
+  .card h2 .num{
+    width:22px;height:22px;border-radius:50%;background:var(--turq-pale);color:var(--turq-darker);
+    font-size:11.5px;display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .card .sub{margin:0 0 16px;font-size:11.5px;color:var(--ink-faint);}
+  .optional-tag{font-size:10px;font-weight:700;color:var(--gold);background:var(--gold-pale);padding:2px 7px;border-radius:20px;margin-inline-start:6px;}
+  .card-head-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+  .card-head-row h2{margin:0;}
+  .card-head-row .sub{margin:0;}
+
+  .field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{font-size:12.5px;font-weight:700;color:var(--ink-soft);}
+  .input,select,textarea{
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;
+    padding:10px 12px;font-size:13px;color:var(--ink);outline:none;width:100%;
+  }
+  .input:focus,select:focus,textarea:focus{border-color:var(--turq);background:#fff;}
+  textarea{resize:vertical;min-height:64px;line-height:1.7;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .hint{font-size:11px;color:var(--ink-faint);margin-top:2px;}
+  .error-msg{font-size:11px;color:var(--red);margin-top:2px;display:none;}
+  .field.has-error .input,.field.has-error select,.field.has-error textarea{border-color:var(--red);background:var(--red-pale);}
+  .field.has-error .error-msg{display:block;}
+  .check-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft);margin:-4px 0 12px;}
+  .check-row input{width:15px;height:15px;accent-color:var(--turq-deep);}
+
+  .btn{border:none;padding:11px 20px;font-size:13px;font-weight:700;border-radius:9px;}
+  .btn-primary{background:linear-gradient(135deg,var(--turq),var(--turq-deep));color:#fff;box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{filter:brightness(1.05);}
+  .btn-ghost{background:var(--surface-alt);color:var(--ink-soft);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-deep);}
+  .btn-outline-dashed{background:transparent;border:1.5px dashed var(--turq);color:var(--turq-deep);width:100%;padding:12px;border-radius:10px;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .btn-outline-dashed:hover{background:var(--turq-pale);}
+  .btn-sm{padding:7px 12px;font-size:11.5px;border-radius:7px;}
+  .btn:disabled{opacity:.55;cursor:not-allowed;}
+  .btn svg{width:15px;height:15px;vertical-align:-3px;}
+
+  /* ---- order items ---- */
+  .order-items{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+  .order-item{
+    display:flex;align-items:center;gap:10px;background:var(--surface-alt);border:1px solid var(--border);
+    border-radius:10px;padding:10px 12px;
+  }
+  .order-item .oi-info{flex:1;min-width:0;}
+  .order-item .oi-name{font-size:13px;font-weight:700;margin:0 0 2px;display:flex;align-items:center;gap:6px;}
+  .oi-type-tag{font-size:9.5px;font-weight:700;padding:1px 7px;border-radius:20px;background:var(--gold-pale);color:var(--gold);flex:none;}
+  .order-item .oi-price{font-size:11px;color:var(--ink-faint);margin:0;}
+  .oi-qty{display:flex;align-items:center;gap:6px;flex:none;}
+  .oi-qty button{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:#fff;font-size:14px;font-weight:700;color:var(--turq-deep);display:flex;align-items:center;justify-content:center;}
+  .oi-qty button:hover{border-color:var(--turq);}
+  .oi-qty span{font-size:13px;font-weight:700;min-width:18px;text-align:center;}
+  .oi-total{font-size:13px;font-weight:800;color:var(--turq-darker);flex:none;min-width:78px;text-align:left;}
+  .oi-remove{width:24px;height:24px;border-radius:50%;background:var(--red-pale);color:var(--red);border:none;font-size:13px;flex:none;display:flex;align-items:center;justify-content:center;}
+  .empty-items{text-align:center;padding:22px 10px;color:var(--ink-faint);font-size:12.5px;border:1.5px dashed var(--border);border-radius:10px;}
+
+  .add-item-row{display:flex;gap:10px;}
+  .add-item-row .btn-outline-dashed{flex:1;}
+
+  /* ---- discount toggle ---- */
+  .seg-toggle{display:flex;gap:8px;margin-bottom:10px;}
+  .seg-toggle button{
+    flex:1;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface-alt);
+    font-size:12.5px;font-weight:700;color:var(--ink-soft);
+  }
+  .seg-toggle button.active{background:var(--turq-deep);color:#fff;border-color:var(--turq-deep);}
+
+  .totals-box{background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+  .totals-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);}
+  .totals-row b{color:var(--ink);font-weight:700;}
+  .totals-row.discount b{color:var(--red);}
+  .totals-row.grand{border-top:1px dashed var(--border);padding-top:10px;margin-top:2px;font-size:15px;}
+  .totals-row.grand b{color:var(--turq-darker);font-size:16px;}
+
+  /* ---- payment status extras ---- */
+  .conditional-field{display:none;}
+  .conditional-field.show{display:flex;}
+
+  /* ---- actions bar ---- */
+  .actions-bar{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:16px 20px;
+  }
+
+  /* ---- summary sidebar ---- */
+  .summary-label{font-size:11.5px;font-weight:700;color:var(--ink-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .summary-label svg{width:13px;height:13px;}
+  .summary-card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-md);overflow:hidden;padding:16px;}
+  .summary-card .s-name{font-size:14px;font-weight:800;margin:0 0 3px;}
+  .summary-card .s-phone{font-size:12px;color:var(--ink-soft);margin:0 0 12px;}
+  .summary-mini-row{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);padding:6px 0;border-top:1px dashed var(--border);}
+  .summary-mini-row:first-of-type{border-top:none;}
+  .summary-mini-row b{color:var(--ink);}
+  .summary-total{margin-top:10px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;}
+  .summary-total b{font-size:18px;color:var(--turq-darker);}
+  .summary-empty{font-size:11.5px;color:var(--ink-faint);text-align:center;padding:10px 0;}
+
+  /* ===== Modal ===== */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(11,42,40,.45);backdrop-filter:blur(2px);
+    display:none;align-items:flex-end;justify-content:center;z-index:100;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    background:var(--surface);width:100%;max-width:480px;max-height:88vh;
+    border-radius:20px 20px 0 0;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+    animation:slideUp .22s ease;
+  }
+  @media(min-width:600px){
+    .modal-overlay{align-items:center;}
+    .modal-box{border-radius:16px;max-height:80vh;}
+  }
+  @keyframes slideUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);flex:none;}
+  .modal-head h3{margin:0;font-size:14.5px;font-weight:800;}
+  .modal-close{width:28px;height:28px;border-radius:50%;background:var(--surface-alt);border:none;color:var(--ink-soft);font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .modal-body{padding:16px 18px;overflow-y:auto;flex:1;}
+  .modal-foot{padding:14px 18px;border-top:1px solid var(--border);flex:none;}
+
+  .search-box{position:relative;margin-bottom:14px;}
+  .search-box svg{position:absolute;top:50%;right:12px;transform:translateY(-50%);width:16px;height:16px;color:var(--ink-faint);}
+  .search-box input{padding-right:36px;}
+
+  .result-list{display:flex;flex-direction:column;gap:6px;}
+  .result-item{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;
+    border:1px solid var(--border);border-radius:10px;background:var(--surface-alt);
+  }
+  .result-item:hover{border-color:var(--turq);}
+  .result-item.selected{border-color:var(--turq-deep);background:var(--turq-pale);}
+  .result-item .ri-name{font-size:13px;font-weight:700;margin:0;}
+  .result-item .ri-price{font-size:11.5px;color:var(--turq-darker);font-weight:700;margin:2px 0 0;}
+  .result-item button{background:var(--turq-deep);color:#fff;border:none;padding:7px 13px;border-radius:20px;font-size:11.5px;font-weight:700;flex:none;}
+  .no-results{text-align:center;padding:26px 10px;color:var(--ink-faint);font-size:12.5px;}
+
+  .qty-picker{
+    display:none;align-items:center;justify-content:space-between;gap:14px;background:var(--turq-pale);
+    border-radius:12px;padding:12px 14px;margin-top:4px;
+  }
+  .qty-picker.show{display:flex;}
+  .qty-picker .qp-name{font-size:13px;font-weight:700;margin:0 0 2px;}
+  .qty-picker .qp-price{font-size:11.5px;color:var(--turq-darker);margin:0;}
+  .qty-stepper{display:flex;align-items:center;gap:10px;flex:none;}
+  .qty-stepper button{width:30px;height:30px;border-radius:8px;border:none;background:#fff;color:var(--turq-deep);font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);}
+  .qty-stepper span{font-size:15px;font-weight:800;min-width:20px;text-align:center;}
+
+  /* order detail view */
+  #orderDetailView{display:none;}
+  .order-detail-head{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:22px;
+  }
+  .order-num{font-size:12px;color:var(--ink-faint);font-weight:700;}
+  .order-num b{font-size:24px;color:var(--ink);display:block;margin-top:2px;}
+  .status-pill{font-size:11.5px;font-weight:700;padding:5px 13px;border-radius:20px;}
+  .status-pill.paid{background:var(--turq-pale);color:var(--turq-darker);}
+  .status-pill.partial{background:var(--gold-pale);color:var(--gold);}
+  .status-pill.unpaid{background:var(--red-pale);color:var(--red);}
+  .detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .action-tile{
+    display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);padding:12px 16px;border-radius:12px;font-size:12.5px;font-weight:700;color:var(--ink-soft);
+  }
+  .action-tile:hover{border-color:var(--turq);color:var(--turq-deep);}
+  .action-tile svg{width:16px;height:16px;flex:none;}
+  .action-tile.primary{background:linear-gradient(135deg,var(--turq),var(--turq-deep));color:#fff;border-color:transparent;}
+  .link-row{
+    display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1px solid var(--border);
+    border-radius:10px;padding:9px 12px;margin-top:8px;
+  }
+  .link-row code{flex:1;font-size:12px;color:var(--turq-darker);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:left;}
+  .link-row button{flex:none;}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
+    opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast.error{background:var(--red);}
+
+  @media(max-width:880px){
+    .layout{flex-direction:column-reverse;}
+    .summary-col{position:static;width:100%;}
+    .grid-2,.grid-3{grid-template-columns:1fr;}
+    .order-item{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div>پنل سفارشات<small>ثبت سفارش دستی</small></div>
+  </div>
+  <div class="topbar-left">
+    <a class="back-link" href="orders.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      بازگشت به لیست سفارشات
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ فرم ثبت سفارش ============ -->
+  <div id="formView">
+    <div class="page-head">
+      <h1>ثبت سفارش دستی</h1>
+      <p>سفارشی که تلفنی یا حضوری گرفتی رو همینجا کامل ثبت کن؛ فاکتور و لینک پرداخت هم خودکار ساخته می‌شه.</p>
+    </div>
+
+    <form id="orderForm">
+      <div class="layout">
+        <div class="form-col">
+
+          <!-- ۱. اطلاعات مشتری -->
+          <div class="card facet">
+            <h2><span class="num">۱</span>اطلاعات مشتری</h2>
+            <p class="sub">مشخصات کسی که سفارش رو ثبت می‌کنه</p>
+            <div class="grid-2">
+              <div class="field" id="fieldCustomerName">
+                <label>نام مشتری</label>
+                <input class="input" id="cName" placeholder="مثلاً آقای رضایی">
+                <div class="error-msg">نام مشتری را وارد کنید</div>
+              </div>
+              <div class="field" id="fieldCustomerPhone">
+                <label>شماره تماس</label>
+                <input class="input" id="cPhone" placeholder="0912xxxxxxx" inputmode="tel">
+                <div class="error-msg">شماره تماس را وارد کنید</div>
+              </div>
+            </div>
+            <div class="field">
+              <label>شرکت<span class="optional-tag">اختیاری</span></label>
+              <input class="input" id="cCompany" placeholder="نام شرکت یا سازمان">
+            </div>
+            <div class="field">
+              <label>آدرس</label>
+              <textarea id="cAddress" placeholder="آدرس کامل مشتری…"></textarea>
+            </div>
+            <div class="field">
+              <label>لوکیشن<span class="optional-tag">اختیاری</span></label>
+              <input class="input" id="cLocation" placeholder="لینک گوگل مپ یا مختصات">
+            </div>
+            <div class="field">
+              <label>توضیحات<span class="optional-tag">اختیاری</span></label>
+              <textarea id="cNote" placeholder="هر نکته‌ای که باید موقع آماده‌سازی یا تحویل رعایت بشه…"></textarea>
+            </div>
+          </div>
+
+          <!-- ۲. محصولات -->
+          <div class="card facet">
+            <div class="card-head-row">
+              <div>
+                <h2><span class="num">۲</span>محصولات</h2>
+                <p class="sub">آیتم‌های سفارش رو از لیست محصولات اضافه کن یا آیتم سفارشی بساز</p>
+              </div>
+            </div>
+
+            <div class="order-items" id="orderItemsBox">
+              <div class="empty-items" id="emptyItemsMsg">هنوز آیتمی به سفارش اضافه نشده</div>
+            </div>
+
+            <div class="add-item-row">
+              <button type="button" class="btn-outline-dashed" id="openProductModalBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                افزودن محصول
+              </button>
+              <button type="button" class="btn-outline-dashed" id="openCustomModalBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                آیتم سفارشی
+              </button>
+            </div>
+          </div>
+
+          <!-- ۳. تخفیف، مالیات و جمع -->
+          <div class="card facet">
+            <h2><span class="num">۳</span>تخفیف و جمع کل</h2>
+            <p class="sub">تخفیف، هزینه ارسال و در صورت نیاز مالیات رو وارد کن؛ جمع کل خودکار محاسبه می‌شه</p>
+
+            <div class="field">
+              <label>نوع تخفیف<span class="optional-tag">اختیاری</span></label>
+              <div class="seg-toggle">
+                <button type="button" class="active" data-discount-type="percent">تخفیف درصدی</button>
+                <button type="button" data-discount-type="amount">تخفیف مبلغی</button>
+              </div>
+              <input class="input" type="number" id="discountValue" min="0" placeholder="۰">
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>هزینه ارسال (تومان)<span class="optional-tag">اختیاری</span></label>
+                <input class="input" type="number" id="shippingCost" min="0" placeholder="۰">
+              </div>
+              <div class="field">
+                <label>مالیات بر ارزش افزوده (٪)<span class="optional-tag">اختیاری</span></label>
+                <input class="input" type="number" id="taxPercent" min="0" max="100" placeholder="۰">
+              </div>
+            </div>
+
+            <div class="totals-box">
+              <div class="totals-row"><span>جمع جزء</span><b id="sumSubtotal">۰ تومان</b></div>
+              <div class="totals-row discount"><span>تخفیف</span><b id="sumDiscount">۰ تومان</b></div>
+              <div class="totals-row"><span>مالیات</span><b id="sumTax">۰ تومان</b></div>
+              <div class="totals-row"><span>هزینه ارسال</span><b id="sumShipping">۰ تومان</b></div>
+              <div class="totals-row grand"><span>جمع کل</span><b id="sumGrand">۰ تومان</b></div>
+            </div>
+          </div>
+
+          <!-- ۴. اطلاعات تحویل -->
+          <div class="card facet">
+            <h2><span class="num">۴</span>اطلاعات تحویل</h2>
+            <p class="sub">مشخصات مربوط به زمان و مکان تحویل سفارش</p>
+            <div class="grid-2">
+              <div class="field">
+                <label>تاریخ تحویل</label>
+                <input class="input" type="date" id="deliveryDate">
+              </div>
+              <div class="field">
+                <label>ساعت تحویل</label>
+                <input class="input" type="time" id="deliveryTime">
+              </div>
+            </div>
+            <label class="check-row">
+              <input type="checkbox" id="sameAsCustomerAddress">
+              آدرس تحویل همون آدرس مشتریه
+            </label>
+            <div class="field">
+              <label>آدرس تحویل</label>
+              <textarea id="deliveryAddress" placeholder="آدرس محل تحویل سفارش…"></textarea>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>نام تحویل‌گیرنده</label>
+                <input class="input" id="receiverName" placeholder="اگه با مشتری فرق داره">
+              </div>
+              <div class="field">
+                <label>شماره تماس تحویل‌گیرنده</label>
+                <input class="input" id="receiverPhone" placeholder="0912xxxxxxx" inputmode="tel">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۵. پرداخت -->
+          <div class="card facet">
+            <h2><span class="num">۵</span>پرداخت</h2>
+            <div class="grid-2">
+              <div class="field">
+                <label>روش پرداخت</label>
+                <select id="paymentMethod">
+                  <option value="cash">نقدی</option>
+                  <option value="card_to_card">کارت به کارت</option>
+                  <option value="pos">پوز</option>
+                  <option value="zarinpal">زرین‌پال</option>
+                  <option value="cod">پرداخت در محل</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>وضعیت پرداخت</label>
+                <select id="paymentStatus">
+                  <option value="unpaid">پرداخت نشده</option>
+                  <option value="partial">بیعانه</option>
+                  <option value="paid">پرداخت کامل</option>
+                </select>
+              </div>
+            </div>
+            <div class="field conditional-field" id="fieldDeposit">
+              <label>مبلغ بیعانه (تومان)</label>
+              <input class="input" type="number" id="depositAmount" min="0" placeholder="مثلاً 1000000">
+            </div>
+            <div class="hint" id="zarinpalHint" style="display:none;">
+              بعد از ثبت سفارش، از صفحه سفارش می‌تونی دکمه «ساخت لینک پرداخت» رو بزنی تا لینک زرین‌پال ساخته بشه.
+            </div>
+          </div>
+
+          <div class="actions-bar">
+            <a href="orders.html" class="btn btn-ghost">انصراف</a>
+            <button type="submit" class="btn btn-primary" id="submitOrderBtn">ثبت سفارش</button>
+          </div>
+
+        </div>
+
+        <div class="summary-col">
+          <div class="summary-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            خلاصه سفارش
+          </div>
+          <div class="summary-card facet">
+            <p class="s-name" id="sumCustomerName">بدون نام مشتری</p>
+            <p class="s-phone" id="sumCustomerPhone">—</p>
+            <div id="sumItemsList"><div class="summary-empty">آیتمی اضافه نشده</div></div>
+            <div class="summary-total">
+              <span style="font-size:12px;color:var(--ink-soft);">جمع کل</span>
+              <b id="sumTotalMini">۰ تومان</b>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- ============ صفحه سفارش (بعد از ثبت) ============ -->
+  <div id="orderDetailView">
+    <div class="order-detail-head">
+      <div>
+        <span class="order-num">شماره سفارش<b id="detailOrderNum">#0000</b></span>
+      </div>
+      <span class="status-pill" id="detailStatusPill">—</span>
+    </div>
+
+    <div class="detail-actions">
+      <button type="button" class="action-tile" id="btnProforma">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        پیش فاکتور
+      </button>
+      <button type="button" class="action-tile" id="btnInvoice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        فاکتور
+      </button>
+      <button type="button" class="action-tile" id="btnReviewLink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        لینک Review
+      </button>
+      <button type="button" class="action-tile" id="btnPayLink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        لینک پرداخت
+      </button>
+      <button type="button" class="action-tile primary" id="btnEditOrder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+        ویرایش
+      </button>
+    </div>
+
+    <div class="card facet" id="reviewLinkCard" style="display:none;">
+      <h2><span class="num">🔗</span>لینک Review این سفارش</h2>
+      <p class="sub">این لینک یکتاست و می‌تونی برای مشتری بفرستی تا سفارشش رو ببینه</p>
+      <div class="link-row">
+        <code id="reviewLinkText">—</code>
+        <button type="button" class="btn btn-ghost btn-sm" id="copyReviewLinkBtn">کپی لینک</button>
+      </div>
+    </div>
+
+    <div class="card facet" id="payLinkCard" style="display:none;">
+      <h2><span class="num">💳</span>لینک پرداخت زرین‌پال</h2>
+      <p class="sub" id="payLinkSub">برای ساخت لینک پرداخت، دکمه زیر رو بزن</p>
+      <button type="button" class="btn btn-primary btn-sm" id="generatePayLinkBtn">ساخت لینک پرداخت</button>
+      <div class="link-row" id="payLinkRow" style="display:none;">
+        <code id="payLinkText">—</code>
+        <button type="button" class="btn btn-ghost btn-sm" id="copyPayLinkBtn">کپی لینک</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="waPayLinkBtn">ارسال در واتساپ</button>
+      </div>
+    </div>
+
+    <div class="card facet">
+      <h2><span class="num">۱</span>اطلاعات مشتری</h2>
+      <div class="totals-box" id="detailCustomerBox"></div>
+    </div>
+
+    <div class="card facet" style="margin-top:18px;">
+      <h2><span class="num">۲</span>آیتم‌های سفارش</h2>
+      <div class="order-items" id="detailItemsBox"></div>
+      <div class="totals-box" id="detailTotalsBox" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card facet" style="margin-top:18px;">
+      <h2><span class="num">۳</span>تحویل و پرداخت</h2>
+      <div class="totals-box" id="detailDeliveryBox"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============ Modal: افزودن محصول ============ -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>افزودن محصول</h3>
+      <button type="button" class="modal-close" data-close-modal="productModal">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input class="input" id="productSearchInput" placeholder="جستجوی محصول…" autocomplete="off">
+      </div>
+      <div class="result-list" id="productResultList"></div>
+      <div class="qty-picker" id="qtyPicker">
+        <div>
+          <p class="qp-name" id="qpName">—</p>
+          <p class="qp-price" id="qpPrice">—</p>
+        </div>
+        <div class="qty-stepper">
+          <button type="button" id="qpMinus">−</button>
+          <span id="qpQty">1</span>
+          <button type="button" id="qpPlus">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary" style="width:100%;" id="qpAddBtn" disabled>افزودن به سفارش</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Modal: آیتم سفارشی ============ -->
+<div class="modal-overlay" id="customModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>افزودن آیتم سفارشی</h3>
+      <button type="button" class="modal-close" data-close-modal="customModal">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="sub" style="margin-top:-4px;">برای مواردی مثل «سینی مزه اختصاصی»، «گل‌آرایی» یا «هزینه ارسال ویژه» که تو لیست محصولات نیستن</p>
+      <div class="field" id="fieldCustomName">
+        <label>نام آیتم</label>
+        <input class="input" id="customItemName" placeholder="مثلاً سینی مزه اختصاصی">
+        <div class="error-msg">نام آیتم را وارد کنید</div>
+      </div>
+      <div class="grid-2">
+        <div class="field" id="fieldCustomPrice">
+          <label>قیمت واحد (تومان)</label>
+          <input class="input" type="number" id="customItemPrice" min="0" placeholder="مثلاً 3500000">
+          <div class="error-msg">قیمت را وارد کنید</div>
+        </div>
+        <div class="field">
+          <label>تعداد</label>
+          <input class="input" type="number" id="customItemQty" min="1" value="1">
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary" style="width:100%;" id="customAddBtn">افزودن به سفارش</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   اتصال به بک‌اند Django/DRF (apps/orders)
+   بک‌اند این بخش هنوز آماده نیست؛ تمام endpoint ها فرضی نوشته
+   شدن و USE_MOCK_FALLBACK فعاله. وقتی بک‌اند آماده شد فقط کافیه:
+   ۱) API_ORIGIN و مسیرهای هر fetch رو با API واقعی چک کنی
+   ۲) USE_MOCK_FALLBACK رو false کنی
+   ========================================================= */
+const API_ORIGIN = "https://api.firouzehco.com";
+const API_BASE = `${API_ORIGIN}/api/orders`;
+const PRODUCTS_API_BASE = `${API_ORIGIN}/api/products`;
+const AUTH_TOKEN = localStorage.getItem('admin_access_token') || '';
+const USE_MOCK_FALLBACK = true; // بک‌اند سفارشات هنوز وصل نیست
+
+function authHeaders(json=true){
+  const h = {};
+  if(json) h['Content-Type']='application/json';
+  if(AUTH_TOKEN) h['Authorization'] = `Bearer ${AUTH_TOKEN}`;
+  return h;
+}
+
+// دادهٔ نمایشی محصولات — فقط برای این‌که فرم بدون بک‌اند هم قابل تست باشه
+const mockProducts = [
+  {id:'p1', name:'مینی برگر', price:45000},
+  {id:'p2', name:'مینی چیزبرگر', price:55000},
+  {id:'p3', name:'پیتزا مینی مارگاریتا', price:65000},
+  {id:'p4', name:'سینی مزه کلاسیک', price:850000},
+  {id:'p5', name:'نوشیدنی گازدار', price:15000},
+  {id:'p6', name:'سالاد سزار', price:95000},
+  {id:'p7', name:'کیک شکلاتی برشی', price:60000},
+  {id:'p8', name:'ساندویچ کلاب', price:120000},
+];
+
+function toast(msg, isError=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError?' error':'');
+  setTimeout(()=>t.className='toast', 2600);
+}
+function fmt(n){ return Number(Math.round(n||0)).toLocaleString('fa-IR'); }
+function toman(n){ return fmt(n) + ' تومان'; }
+
+/* ---------------- آیتم‌های سفارش ---------------- */
+let orderItems = []; // {uid, type:'product'|'custom', refId, name, unitPrice, qty}
+let uidCounter = 1;
+
+function addOrderItem(item){
+  // اگه محصول از قبل تو سفارش هست، فقط تعدادش زیاد بشه
+  if(item.type === 'product'){
+    const existing = orderItems.find(i => i.type==='product' && i.refId === item.refId);
+    if(existing){ existing.qty += item.qty; renderOrderItems(); return; }
+  }
+  orderItems.push({ uid: uidCounter++, ...item });
+  renderOrderItems();
+}
+
+function renderOrderItems(){
+  const box = document.getElementById('orderItemsBox');
+  const emptyMsg = document.getElementById('emptyItemsMsg');
+  if(orderItems.length === 0){
+    box.innerHTML = '';
+    box.appendChild(emptyMsg);
+    updateTotals();
+    return;
+  }
+  box.innerHTML = orderItems.map(it => `
+    <div class="order-item" data-uid="${it.uid}">
+      <div class="oi-info">
+        <p class="oi-name">${it.name}${it.type==='custom' ? '<span class="oi-type-tag">سفارشی</span>' : ''}</p>
+        <p class="oi-price">${toman(it.unitPrice)} × ${it.qty}</p>
+      </div>
+      <div class="oi-qty">
+        <button type="button" class="oi-minus">−</button>
+        <span>${it.qty}</span>
+        <button type="button" class="oi-plus">+</button>
+      </div>
+      <div class="oi-total">${toman(it.unitPrice * it.qty)}</div>
+      <button type="button" class="oi-remove">×</button>
+    </div>
+  `).join('');
+
+  box.querySelectorAll('.order-item').forEach(row=>{
+    const uid = Number(row.dataset.uid);
+    row.querySelector('.oi-plus').addEventListener('click', ()=>{
+      const it = orderItems.find(i=>i.uid===uid); it.qty++; renderOrderItems();
+    });
+    row.querySelector('.oi-minus').addEventListener('click', ()=>{
+      const it = orderItems.find(i=>i.uid===uid);
+      if(it.qty > 1) it.qty--; else orderItems = orderItems.filter(i=>i.uid!==uid);
+      renderOrderItems();
+    });
+    row.querySelector('.oi-remove').addEventListener('click', ()=>{
+      orderItems = orderItems.filter(i=>i.uid!==uid);
+      renderOrderItems();
+    });
+  });
+
+  updateTotals();
+}
+
+/* ---------------- تخفیف و جمع کل ---------------- */
+let discountType = 'percent';
+document.querySelectorAll('[data-discount-type]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    discountType = btn.dataset.discountType;
+    document.querySelectorAll('[data-discount-type]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    updateTotals();
+  });
+});
+['discountValue','shippingCost','taxPercent'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updateTotals);
+});
+
+function computeTotals(){
+  const subtotal = orderItems.reduce((s,i)=> s + i.unitPrice*i.qty, 0);
+  const discountVal = Number(document.getElementById('discountValue').value || 0);
+  const discountAmount = discountType === 'percent'
+    ? Math.round(subtotal * discountVal/100)
+    : discountVal;
+  const afterDiscount = Math.max(subtotal - discountAmount, 0);
+  const taxPercent = Number(document.getElementById('taxPercent').value || 0);
+  const taxAmount = Math.round(afterDiscount * taxPercent/100);
+  const shipping = Number(document.getElementById('shippingCost').value || 0);
+  const grandTotal = afterDiscount + taxAmount + shipping;
+  return { subtotal, discountAmount, taxAmount, shipping, grandTotal };
+}
+
+function updateTotals(){
+  const t = computeTotals();
+  document.getElementById('sumSubtotal').textContent = toman(t.subtotal);
+  document.getElementById('sumDiscount').textContent = t.discountAmount ? '−' + toman(t.discountAmount) : toman(0);
+  document.getElementById('sumTax').textContent = toman(t.taxAmount);
+  document.getElementById('sumShipping').textContent = toman(t.shipping);
+  document.getElementById('sumGrand').textContent = toman(t.grandTotal);
+  updateSidebarSummary(t);
+}
+
+function updateSidebarSummary(t){
+  document.getElementById('sumCustomerName').textContent = document.getElementById('cName').value.trim() || 'بدون نام مشتری';
+  document.getElementById('sumCustomerPhone').textContent = document.getElementById('cPhone').value.trim() || '—';
+  const list = document.getElementById('sumItemsList');
+  if(orderItems.length === 0){
+    list.innerHTML = '<div class="summary-empty">آیتمی اضافه نشده</div>';
+  }else{
+    list.innerHTML = orderItems.map(it=>`
+      <div class="summary-mini-row"><span>${it.name} × ${it.qty}</span><b>${toman(it.unitPrice*it.qty)}</b></div>
+    `).join('');
+  }
+  document.getElementById('sumTotalMini').textContent = toman(t.grandTotal);
+}
+document.getElementById('cName').addEventListener('input', ()=>updateTotals());
+document.getElementById('cPhone').addEventListener('input', ()=>updateTotals());
+
+/* ---------------- مودال افزودن محصول ---------------- */
+const productModal = document.getElementById('productModal');
+const productResultList = document.getElementById('productResultList');
+const productSearchInput = document.getElementById('productSearchInput');
+const qtyPicker = document.getElementById('qtyPicker');
+const qpAddBtn = document.getElementById('qpAddBtn');
+let selectedProduct = null;
+let selectedQty = 1;
+let productsCache = [];
+
+async function loadProductsForSearch(query){
+  // GET /api/products/?search=... — اگه بک‌اند سفارش هنوز وصل نیست، از mockProducts استفاده می‌کنیم
+  try{
+    if(!USE_MOCK_FALLBACK){
+      const res = await fetch(`${PRODUCTS_API_BASE}/?search=${encodeURIComponent(query)}`, {headers: authHeaders(false)});
+      if(!res.ok) throw new Error('status ' + res.status);
+      let data = await res.json();
+      if(!Array.isArray(data) && Array.isArray(data.results)) data = data.results;
+      return Array.isArray(data) ? data : [];
+    }
+  }catch(e){ /* در صورت خطا میره سراغ mock */ }
+  const q = query.trim().toLowerCase();
+  if(!q) return mockProducts;
+  return mockProducts.filter(p => p.name.toLowerCase().includes(q));
+}
+
+async function renderProductResults(query){
+  const results = await loadProductsForSearch(query);
+  productsCache = results;
+  if(results.length === 0){
+    productResultList.innerHTML = '<div class="no-results">محصولی پیدا نشد</div>';
+    return;
+  }
+  productResultList.innerHTML = results.map(p => `
+    <div class="result-item" data-id="${p.id}">
+      <div>
+        <p class="ri-name">${p.name}</p>
+        <p class="ri-price">${toman(p.price)}</p>
+      </div>
+      <button type="button">انتخاب</button>
+    </div>
+  `).join('');
+  productResultList.querySelectorAll('.result-item').forEach(row=>{
+    const select = ()=>{
+      const id = row.dataset.id;
+      selectedProduct = productsCache.find(p => String(p.id) === String(id));
+      selectedQty = 1;
+      productResultList.querySelectorAll('.result-item').forEach(r=>r.classList.remove('selected'));
+      row.classList.add('selected');
+      document.getElementById('qpName').textContent = selectedProduct.name;
+      document.getElementById('qpPrice').textContent = toman(selectedProduct.price);
+      document.getElementById('qpQty').textContent = selectedQty;
+      qtyPicker.classList.add('show');
+      qpAddBtn.disabled = false;
+    };
+    row.addEventListener('click', select);
+    row.querySelector('button').addEventListener('click', (e)=>{ e.stopPropagation(); select(); });
+  });
+}
+document.getElementById('qpMinus').addEventListener('click', ()=>{
+  if(selectedQty > 1) selectedQty--;
+  document.getElementById('qpQty').textContent = selectedQty;
+});
+document.getElementById('qpPlus').addEventListener('click', ()=>{
+  selectedQty++;
+  document.getElementById('qpQty').textContent = selectedQty;
+});
+qpAddBtn.addEventListener('click', ()=>{
+  if(!selectedProduct) return;
+  addOrderItem({ type:'product', refId: selectedProduct.id, name: selectedProduct.name, unitPrice: selectedProduct.price, qty: selectedQty });
+  toast(`«${selectedProduct.name}» به سفارش اضافه شد`);
+  // ریست برای انتخاب بعدی، بدون بستن مودال
+  selectedProduct = null; selectedQty = 1;
+  qtyPicker.classList.remove('show');
+  qpAddBtn.disabled = true;
+  productResultList.querySelectorAll('.result-item').forEach(r=>r.classList.remove('selected'));
+});
+productSearchInput.addEventListener('input', ()=> renderProductResults(productSearchInput.value));
+
+document.getElementById('openProductModalBtn').addEventListener('click', ()=>{
+  productSearchInput.value = '';
+  qtyPicker.classList.remove('show');
+  qpAddBtn.disabled = true;
+  selectedProduct = null;
+  renderProductResults('');
+  openModal('productModal');
+  setTimeout(()=>productSearchInput.focus(), 150);
+});
+
+/* ---------------- مودال آیتم سفارشی ---------------- */
+function setError(fieldId, hasError){
+  const el = document.getElementById(fieldId);
+  if(el) el.classList.toggle('has-error', hasError);
+}
+document.getElementById('openCustomModalBtn').addEventListener('click', ()=>{
+  document.getElementById('customItemName').value = '';
+  document.getElementById('customItemPrice').value = '';
+  document.getElementById('customItemQty').value = 1;
+  setError('fieldCustomName', false); setError('fieldCustomPrice', false);
+  openModal('customModal');
+  setTimeout(()=>document.getElementById('customItemName').focus(), 150);
+});
+document.getElementById('customAddBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('customItemName').value.trim();
+  const price = Number(document.getElementById('customItemPrice').value || 0);
+  const qty = Math.max(1, Number(document.getElementById('customItemQty').value || 1));
+  let ok = true;
+  if(!name){ setError('fieldCustomName', true); ok = false; } else setError('fieldCustomName', false);
+  if(!price || price <= 0){ setError('fieldCustomPrice', true); ok = false; } else setError('fieldCustomPrice', false);
+  if(!ok) return;
+
+  addOrderItem({ type:'custom', refId:null, name, unitPrice: price, qty });
+  toast(`«${name}» به سفارش اضافه شد`);
+  document.getElementById('customItemName').value = '';
+  document.getElementById('customItemPrice').value = '';
+  document.getElementById('customItemQty').value = 1;
+  document.getElementById('customItemName').focus();
+});
+
+/* ---------------- کنترل عمومی مودال‌ها ---------------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('[data-close-modal]').forEach(btn=>{
+  btn.addEventListener('click', ()=> closeModal(btn.dataset.closeModal));
+});
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click', (e)=>{ if(e.target === ov) closeModal(ov.id); });
+});
+
+/* ---------------- آدرس تحویل = آدرس مشتری ---------------- */
+const sameAsCustomerAddress = document.getElementById('sameAsCustomerAddress');
+const deliveryAddress = document.getElementById('deliveryAddress');
+sameAsCustomerAddress.addEventListener('change', ()=>{
+  if(sameAsCustomerAddress.checked){
+    deliveryAddress.value = document.getElementById('cAddress').value;
+    deliveryAddress.setAttribute('readonly','readonly');
+  }else{
+    deliveryAddress.removeAttribute('readonly');
+  }
+});
+document.getElementById('cAddress').addEventListener('input', ()=>{
+  if(sameAsCustomerAddress.checked) deliveryAddress.value = document.getElementById('cAddress').value;
+});
+
+/* ---------------- وضعیت پرداخت / روش پرداخت ---------------- */
+const paymentStatus = document.getElementById('paymentStatus');
+const paymentMethod = document.getElementById('paymentMethod');
+const fieldDeposit = document.getElementById('fieldDeposit');
+const zarinpalHint = document.getElementById('zarinpalHint');
+
+paymentStatus.addEventListener('change', ()=>{
+  fieldDeposit.classList.toggle('show', paymentStatus.value === 'partial');
+});
+paymentMethod.addEventListener('change', ()=>{
+  zarinpalHint.style.display = paymentMethod.value === 'zarinpal' ? 'block' : 'none';
+});
+
+/* ---------------- اعتبارسنجی و ثبت سفارش ---------------- */
+function validateOrderForm(){
+  let ok = true;
+  const name = document.getElementById('cName').value.trim();
+  setError('fieldCustomerName', !name); if(!name) ok = false;
+  const phone = document.getElementById('cPhone').value.trim();
+  setError('fieldCustomerPhone', !phone); if(!phone) ok = false;
+  if(orderItems.length === 0){
+    toast('حداقل یک آیتم به سفارش اضافه کن', true);
+    ok = false;
+  }
+  return ok;
+}
+
+function buildOrderPayload(){
+  const t = computeTotals();
+  return {
+    customer: {
+      name: document.getElementById('cName').value.trim(),
+      phone: document.getElementById('cPhone').value.trim(),
+      company: document.getElementById('cCompany').value.trim(),
+      address: document.getElementById('cAddress').value.trim(),
+      location: document.getElementById('cLocation').value.trim(),
+      note: document.getElementById('cNote').value.trim(),
+    },
+    items: orderItems.map(it=>({ type:it.type, product_id: it.refId, name: it.name, unit_price: it.unitPrice, qty: it.qty })),
+    discount_type: discountType,
+    discount_value: Number(document.getElementById('discountValue').value || 0),
+    shipping_cost: Number(document.getElementById('shippingCost').value || 0),
+    tax_percent: Number(document.getElementById('taxPercent').value || 0),
+    totals: t,
+    delivery: {
+      date: document.getElementById('deliveryDate').value,
+      time: document.getElementById('deliveryTime').value,
+      address: document.getElementById('deliveryAddress').value.trim(),
+      receiver_name: document.getElementById('receiverName').value.trim(),
+      receiver_phone: document.getElementById('receiverPhone').value.trim(),
+    },
+    payment: {
+      method: paymentMethod.value,
+      status: paymentStatus.value,
+      deposit_amount: paymentStatus.value === 'partial' ? Number(document.getElementById('depositAmount').value || 0) : 0,
+    },
+  };
+}
+
+function randomCode(len){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let s = '';
+  for(let i=0;i<len;i++) s += chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+
+document.getElementById('orderForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  if(!validateOrderForm()) return;
+
+  const btn = document.getElementById('submitOrderBtn');
+  btn.disabled = true;
+
+  const payload = buildOrderPayload();
+
+  try{
+    // POST /api/orders/  -> باید ساخته بشه در بک‌اند (OrderCreateAPIView)
+    if(USE_MOCK_FALLBACK) throw new Error('mock');
+    const res = await fetch(API_BASE + '/', {
+      method:'POST',
+      headers: authHeaders(),
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok){
+      let err = {};
+      try{ err = await res.json(); }catch(_){}
+      throw new Error(Object.values(err).flat().join(' — ') || `خطا در ثبت سفارش (کد ${res.status})`);
+    }
+    const created = await res.json();
+    showOrderDetail(created);
+  }catch(err){
+    if(USE_MOCK_FALLBACK){
+      // بدون بک‌اند واقعی: یه سفارش نمایشی می‌سازیم تا رفتار فرم قابل تست باشه
+      const mockOrder = {
+        id: Math.floor(1000 + Math.random()*9000),
+        review_code: 'review/' + randomCode(8),
+        ...payload,
+      };
+      toast('محصول (نمایشی) ثبت شد — بعد از وصل شدن بک‌اند، سفارش واقعی ذخیره می‌شه');
+      showOrderDetail(mockOrder);
+    }else{
+      toast(err.message || 'خطا در ثبت سفارش', true);
+    }
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+/* ---------------- صفحه سفارش بعد از ثبت ---------------- */
+let currentOrder = null;
+
+function statusPillInfo(status){
+  if(status === 'paid') return {cls:'paid', label:'پرداخت کامل'};
+  if(status === 'partial') return {cls:'partial', label:'بیعانه پرداخت شده'};
+  return {cls:'unpaid', label:'پرداخت نشده'};
+}
+function paymentMethodLabel(m){
+  return {cash:'نقدی', card_to_card:'کارت به کارت', pos:'پوز', zarinpal:'زرین‌پال', cod:'پرداخت در محل'}[m] || m;
+}
+
+function showOrderDetail(order){
+  currentOrder = order;
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('orderDetailView').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  document.getElementById('detailOrderNum').textContent = '#' + order.id;
+  const st = statusPillInfo(order.payment.status);
+  const pill = document.getElementById('detailStatusPill');
+  pill.textContent = st.label;
+  pill.className = 'status-pill ' + st.cls;
+
+  // اطلاعات مشتری
+  document.getElementById('detailCustomerBox').innerHTML = `
+    <div class="totals-row"><span>نام</span><b>${order.customer.name || '—'}</b></div>
+    <div class="totals-row"><span>تماس</span><b>${order.customer.phone || '—'}</b></div>
+    ${order.customer.company ? `<div class="totals-row"><span>شرکت</span><b>${order.customer.company}</b></div>` : ''}
+    <div class="totals-row"><span>آدرس</span><b>${order.customer.address || '—'}</b></div>
+    ${order.customer.note ? `<div class="totals-row"><span>توضیحات</span><b>${order.customer.note}</b></div>` : ''}
+  `;
+
+  // آیتم‌ها
+  document.getElementById('detailItemsBox').innerHTML = order.items.map(it => `
+    <div class="order-item">
+      <div class="oi-info">
+        <p class="oi-name">${it.name}${it.type==='custom' ? '<span class="oi-type-tag">سفارشی</span>' : ''}</p>
+        <p class="oi-price">${toman(it.unit_price)} × ${it.qty}</p>
+      </div>
+      <div class="oi-total">${toman(it.unit_price * it.qty)}</div>
+    </div>
+  `).join('');
+  document.getElementById('detailTotalsBox').innerHTML = `
+    <div class="totals-row"><span>جمع جزء</span><b>${toman(order.totals.subtotal)}</b></div>
+    <div class="totals-row discount"><span>تخفیف</span><b>${order.totals.discountAmount ? '−'+toman(order.totals.discountAmount) : toman(0)}</b></div>
+    <div class="totals-row"><span>مالیات</span><b>${toman(order.totals.taxAmount)}</b></div>
+    <div class="totals-row"><span>هزینه ارسال</span><b>${toman(order.totals.shipping)}</b></div>
+    <div class="totals-row grand"><span>جمع کل</span><b>${toman(order.totals.grandTotal)}</b></div>
+  `;
+
+  // تحویل و پرداخت
+  document.getElementById('detailDeliveryBox').innerHTML = `
+    <div class="totals-row"><span>تاریخ تحویل</span><b>${order.delivery.date || '—'}</b></div>
+    <div class="totals-row"><span>ساعت تحویل</span><b>${order.delivery.time || '—'}</b></div>
+    <div class="totals-row"><span>آدرس تحویل</span><b>${order.delivery.address || '—'}</b></div>
+    <div class="totals-row"><span>تحویل‌گیرنده</span><b>${order.delivery.receiver_name || '—'} — ${order.delivery.receiver_phone || '—'}</b></div>
+    <div class="totals-row"><span>روش پرداخت</span><b>${paymentMethodLabel(order.payment.method)}</b></div>
+    ${order.payment.status === 'partial' ? `<div class="totals-row"><span>مبلغ بیعانه</span><b>${toman(order.payment.deposit_amount)}</b></div>` : ''}
+  `;
+
+  // لینک Review
+  document.getElementById('reviewLinkCard').style.display = 'block';
+  document.getElementById('reviewLinkText').textContent = order.review_code;
+
+  // لینک پرداخت فقط برای زرین‌پال
+  const payCard = document.getElementById('payLinkCard');
+  if(order.payment.method === 'zarinpal'){
+    payCard.style.display = 'block';
+    document.getElementById('payLinkRow').style.display = 'none';
+    document.getElementById('generatePayLinkBtn').style.display = 'inline-block';
+    document.getElementById('payLinkSub').textContent = 'برای ساخت لینک پرداخت، دکمه زیر رو بزن';
+  }else{
+    payCard.style.display = 'none';
+  }
+}
+
+/* دکمه‌های صفحه سفارش */
+document.getElementById('btnEditOrder').addEventListener('click', ()=>{
+  document.getElementById('orderDetailView').style.display = 'none';
+  document.getElementById('formView').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('btnReviewLink').addEventListener('click', ()=>{
+  document.getElementById('reviewLinkCard').scrollIntoView({behavior:'smooth', block:'center'});
+});
+document.getElementById('copyReviewLinkBtn').addEventListener('click', ()=>{
+  navigator.clipboard.writeText(location.origin + '/' + document.getElementById('reviewLinkText').textContent);
+  toast('لینک Review کپی شد');
+});
+
+document.getElementById('btnPayLink').addEventListener('click', ()=>{
+  if(!currentOrder || currentOrder.payment.method !== 'zarinpal'){
+    toast('روش پرداخت این سفارش زرین‌پال نیست', true);
+    return;
+  }
+  document.getElementById('payLinkCard').scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.getElementById('generatePayLinkBtn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('generatePayLinkBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال ساخت لینک…';
+  try{
+    // POST /api/orders/{id}/create-payment-link/  -> باید در بک‌اند به زرین‌پال وصل بشه
+    if(USE_MOCK_FALLBACK) throw new Error('mock');
+    const res = await fetch(`${API_BASE}/${currentOrder.id}/create-payment-link/`, {
+      method:'POST', headers: authHeaders(),
+      body: JSON.stringify({ amount: currentOrder.totals.grandTotal - (currentOrder.payment.deposit_amount||0) })
+    });
+    if(!res.ok) throw new Error('خطا در ساخت لینک پرداخت');
+    const data = await res.json();
+    setPayLink(data.payment_url);
+  }catch(e){
+    // نمایشی، تا وصل شدن API واقعی زرین‌پال
+    const fakeUrl = `https://pay.zarinpal.com/pg/StartPay/${randomCode(20)}`;
+    setPayLink(fakeUrl);
+    toast('(نمایشی) لینک پرداخت ساخته شد — بعد از وصل شدن API زرین‌پال، لینک واقعی برمی‌گرده');
+  }finally{
+    btn.disabled = false;
+    btn.textContent = 'ساخت لینک پرداخت';
+  }
+});
+
+function setPayLink(url){
+  document.getElementById('payLinkRow').style.display = 'flex';
+  document.getElementById('payLinkText').textContent = url;
+  document.getElementById('payLinkSub').textContent = 'لینک پرداخت ساخته شد؛ می‌تونی کپی کنی یا برای مشتری بفرستی';
+  document.getElementById('copyPayLinkBtn').onclick = ()=>{ navigator.clipboard.writeText(url); toast('لینک پرداخت کپی شد'); };
+  document.getElementById('waPayLinkBtn').onclick = ()=>{
+    const text = encodeURIComponent(`لینک پرداخت سفارش شما:\n${url}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  };
+}
+
+document.getElementById('btnProforma').addEventListener('click', ()=>{
+  if(!currentOrder) return;
+  // GET /api/orders/{id}/proforma-pdf/  -> باید در بک‌اند PDF پیش‌فاکتور رو برگردونه
+  window.open(`${API_BASE}/${currentOrder.id}/proforma-pdf/`, '_blank');
+});
+document.getElementById('btnInvoice').addEventListener('click', ()=>{
+  if(!currentOrder) return;
+  // GET /api/orders/{id}/invoice-pdf/  -> باید در بک‌اند PDF فاکتور رسمی رو برگردونه
+  window.open(`${API_BASE}/${currentOrder.id}/invoice-pdf/`, '_blank');
+});
+
+/* ---------------- Init ---------------- */
+renderOrderItems();
+updateTotals();
+</script>
+</body>
+</html>
