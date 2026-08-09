@@ -156,6 +156,11 @@
   .st-DELIVERED{background:var(--turq-pale);color:var(--turq-darker);}
   .st-CANCELLED{background:var(--red-pale);color:var(--red);}
 
+  /* منبع سفارش */
+  .source-badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+  .src-ONLINE{background:#E4EEFB;color:#2B5EA8;}
+  .src-MANUAL{background:var(--gold-pale);color:var(--gold);}
+
   .row-actions{position:relative;}
   .menu-btn{background:var(--surface-alt);border:1px solid var(--border);width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-weight:800;}
   .menu-btn:hover{border-color:var(--turq);color:var(--turq-deep);}
@@ -209,6 +214,9 @@
   .note-box textarea{width:100%;}
   .note-readonly{font-size:12.5px;color:var(--ink);line-height:1.8;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;min-height:44px;white-space:pre-wrap;}
 
+  /* لینک‌ها (Review / پرداخت) */
+  .link-row{display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
+
   /* ===== Timeline ===== */
   .timeline{display:flex;flex-direction:column;gap:0;}
   .tl-step{display:flex;align-items:flex-start;gap:12px;position:relative;padding-bottom:22px;}
@@ -253,6 +261,7 @@
   </div>
   <div class="topbar-actions">
     خوش آمدید، <b id="whoami">—</b>
+    <a class="btn btn-primary" href="manual-order.html" style="text-decoration:none;display:inline-flex;align-items:center;">+ ثبت سفارش دستی</a>
     <!-- دکمه نصب PWA -->
     <button id="installBtn" style="display:none">
       <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4l4 4 4-4M5 21h14"/></svg>
@@ -294,6 +303,11 @@
         <option value="DELIVERED">تحویل شده</option>
         <option value="CANCELLED">لغو شده</option>
       </select>
+      <select id="fSource">
+        <option value="">همه منابع</option>
+        <option value="ONLINE">ثبت‌شده در سایت</option>
+        <option value="MANUAL">ثبت دستی</option>
+      </select>
       <select id="fQuickDate">
         <option value="">همه تاریخ‌ها</option>
         <option value="today">امروز</option>
@@ -321,7 +335,7 @@
       <table>
         <thead>
           <tr>
-            <th>شماره</th><th>مشتری</th><th>تلفن</th><th>مبلغ</th><th>تعداد آیتم</th><th>تاریخ</th><th>وضعیت</th><th>عملیات</th>
+            <th>شماره</th><th>مشتری</th><th>تلفن</th><th>مبلغ</th><th>تعداد آیتم</th><th>تاریخ</th><th>منبع</th><th>وضعیت</th><th>عملیات</th>
           </tr>
         </thead>
         <tbody id="ordersBody"></tbody>
@@ -360,6 +374,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
         واتساپ
       </button>
+      <button class="btn btn-ghost" id="editOrderBtn" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+        ویرایش سفارش
+      </button>
       <button class="btn btn-ghost" id="printBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
         چاپ فاکتور
@@ -377,14 +395,19 @@
           <h4>اطلاعات مشتری</h4>
           <div class="kv"><span>نام</span><span id="dCustName">—</span></div>
           <div class="kv"><span>شماره</span><span id="dCustPhone" style="direction:ltr">—</span></div>
+          <div class="kv" id="dCustCompanyRow" style="display:none;"><span>شرکت</span><span id="dCustCompany">—</span></div>
           <div class="kv"><span>آدرس</span><span id="dCustAddress">—</span></div>
           <div class="kv"><span>کدپستی</span><span id="dCustPostal" style="direction:ltr">—</span></div>
+          <div class="kv" id="dCustLocationRow" style="display:none;"><span>لوکیشن</span><span id="dCustLocation">—</span></div>
         </div>
 
         <div class="panel">
           <h4>اطلاعات سفارش</h4>
           <div class="kv"><span>شماره سفارش</span><span id="dInfoNumber">—</span></div>
           <div class="kv"><span>تاریخ ثبت</span><span id="dInfoCreated">—</span></div>
+          <div class="kv"><span>منبع سفارش</span><span id="dInfoSource">—</span></div>
+          <div class="kv" id="dInfoEventTypeRow" style="display:none;"><span>نوع مراسم</span><span id="dInfoEventType">—</span></div>
+          <div class="kv" id="dInfoLeadSourceRow" style="display:none;"><span>از کجا آشنا شده</span><span id="dInfoLeadSource">—</span></div>
           <div class="kv"><span>زمان مراسم</span><span id="dInfoEvent">—</span></div>
           <div class="kv"><span>بازه تحویل</span><span id="dInfoWindow">—</span></div>
           <div class="kv"><span>روش ارسال</span><span id="dInfoShipping">—</span></div>
@@ -405,6 +428,26 @@
           <div class="kv"><span>تخفیف</span><span id="dDiscount">—</span></div>
           <div class="kv"><span>مالیات</span><span id="dTax">—</span></div>
           <div class="kv total-row"><span>مبلغ نهایی</span><span id="dTotal">—</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="paymentPanel">
+        <h4>پرداخت</h4>
+        <div class="kv"><span>روش پرداخت</span><span id="dPayMethod">—</span></div>
+        <div class="kv"><span>وضعیت پرداخت</span><span id="dPayStatus">—</span></div>
+        <div class="kv" id="dDepositRow" style="display:none;"><span>مبلغ بیعانه</span><span id="dDepositAmount">—</span></div>
+
+        <div class="link-row" style="margin-top:10px;">
+          <code id="dReviewLink" style="flex:1;font-size:11.5px;direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">—</code>
+          <button class="btn btn-ghost" id="copyReviewLinkBtn" style="flex:none;">کپی لینک Review</button>
+        </div>
+
+        <div id="payLinkArea" style="display:none;margin-top:10px;">
+          <button class="btn btn-primary" id="generatePayLinkBtn">ساخت لینک پرداخت</button>
+          <div class="link-row" id="payLinkRow" style="display:none;margin-top:8px;">
+            <code id="dPayLink" style="flex:1;font-size:11.5px;direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">—</code>
+            <button class="btn btn-ghost" id="copyPayLinkBtn" style="flex:none;">کپی</button>
+          </div>
         </div>
       </div>
 
@@ -580,7 +623,7 @@ const SHIPPING_LABELS = {COURIER:'پیک', POST:'پست', PICKUP:'تحویل ح�
 
 let state = {
   orders: [], count:0, page:1, pageSize:20,
-  filters:{search:'', status:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'},
+  filters:{search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'},
   currentOrder: null,
   openMenuId: null,
 };
@@ -601,6 +644,7 @@ function buildQuery(){
   const params = new URLSearchParams();
   if(f.search) params.set('search', f.search);
   if(f.status) params.set('status', f.status);
+  if(f.source) params.set('source', f.source);
   if(f.quickDate && f.quickDate !== 'custom') params.set('quick_date', f.quickDate);
   if(f.quickDate === 'custom'){
     if(f.dateFrom) params.set('date_from', f.dateFrom);
@@ -649,12 +693,14 @@ function renderOrders(){
         <td data-label="مبلغ" class="amount-cell"><b>${toman(o.total_amount)}</b></td>
         <td data-label="تعداد آیتم">${fmt(o.items_count)}</td>
         <td data-label="تاریخ">${fmtDate(o.created_at)}</td>
+        <td data-label="منبع"><span class="source-badge src-${o.source}">${o.source_display}</span></td>
         <td data-label="وضعیت"><span class="status-badge st-${o.status}">${o.status_display}</span></td>
         <td data-label="عملیات">
           <div class="row-actions">
             <button class="menu-btn" data-menu="${o.id}">⋮</button>
             <div class="dropdown-menu" id="menu-${o.id}">
               <button data-act="view">مشاهده</button>
+              ${o.source === 'MANUAL' ? '<button data-act="edit">ویرایش</button>' : ''}
               <button data-act="print">چاپ فاکتور</button>
               <button data-act="download">دانلود فاکتور</button>
               <hr>
@@ -691,6 +737,7 @@ function renderOrders(){
         closeAllMenus();
         const act = b.dataset.act;
         if(act==='view') openDetail(id);
+        if(act==='edit') window.location.href = `manual-order.html?edit=${id}`;
         if(act==='print'){ await openDetail(id); setTimeout(()=>window.print(), 400); }
         if(act==='download'){ await openDetail(id); setTimeout(()=>window.print(), 400); }
         if(act==='cancel') quickCancel(id);
@@ -734,6 +781,7 @@ function renderPager(){
 const debounce = (fn, ms=350) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; };
 document.getElementById('fSearch').addEventListener('input', debounce(e=>{ state.filters.search=e.target.value; state.page=1; loadOrders(); }));
 document.getElementById('fStatus').addEventListener('change', e=>{ state.filters.status=e.target.value; state.page=1; loadOrders(); });
+document.getElementById('fSource').addEventListener('change', e=>{ state.filters.source=e.target.value; state.page=1; loadOrders(); });
 document.getElementById('fQuickDate').addEventListener('change', e=>{
   state.filters.quickDate = e.target.value;
   const isCustom = e.target.value === 'custom';
@@ -746,9 +794,10 @@ document.getElementById('fDateTo').addEventListener('change', e=>{ state.filters
 document.getElementById('fUrgent').addEventListener('change', e=>{ state.filters.urgent=e.target.checked; state.page=1; loadOrders(); });
 document.getElementById('fOrdering').addEventListener('change', e=>{ state.filters.ordering=e.target.value; loadOrders(); });
 document.getElementById('resetFilters').addEventListener('click', ()=>{
-  state.filters = {search:'', status:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'};
+  state.filters = {search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'};
   document.getElementById('fSearch').value='';
   document.getElementById('fStatus').value='';
+  document.getElementById('fSource').value='';
   document.getElementById('fQuickDate').value='';
   document.getElementById('fDateFrom').value=''; document.getElementById('fDateFrom').style.display='none';
   document.getElementById('fDateTo').value=''; document.getElementById('fDateTo').style.display='none';
@@ -778,21 +827,49 @@ function renderDetail(o){
   badge.className = `status-badge st-${o.status}`;
   document.getElementById('dTodayBadge').style.display = o.is_event_today ? 'inline-block' : 'none';
 
+  // مشتری
   document.getElementById('dCustName').textContent = o.customer.full_name;
   document.getElementById('dCustPhone').textContent = o.shipping_recipient_phone || o.customer.phone;
+  if(o.customer.company){
+    document.getElementById('dCustCompanyRow').style.display = 'flex';
+    document.getElementById('dCustCompany').textContent = o.customer.company;
+  }else{
+    document.getElementById('dCustCompanyRow').style.display = 'none';
+  }
   document.getElementById('dCustAddress').textContent = o.shipping_full_address || '—';
   document.getElementById('dCustPostal').textContent = o.shipping_postal_code || '—';
+  if(o.shipping_location_url){
+    document.getElementById('dCustLocationRow').style.display = 'flex';
+    document.getElementById('dCustLocation').innerHTML = `<a href="${o.shipping_location_url}" target="_blank">مشاهده روی نقشه</a>`;
+  }else{
+    document.getElementById('dCustLocationRow').style.display = 'none';
+  }
 
+  // اطلاعات سفارش
   document.getElementById('dInfoNumber').textContent = `#${o.order_number}`;
   document.getElementById('dInfoCreated').textContent = fmtDateTime(o.created_at);
+  document.getElementById('dInfoSource').textContent = o.source_display;
+  if(o.event_type_display){
+    document.getElementById('dInfoEventTypeRow').style.display = 'flex';
+    document.getElementById('dInfoEventType').textContent = o.event_type_display;
+  }else{
+    document.getElementById('dInfoEventTypeRow').style.display = 'none';
+  }
+  if(o.lead_source_display){
+    document.getElementById('dInfoLeadSourceRow').style.display = 'flex';
+    document.getElementById('dInfoLeadSource').textContent = o.lead_source_display;
+  }else{
+    document.getElementById('dInfoLeadSourceRow').style.display = 'none';
+  }
   document.getElementById('dInfoEvent').textContent = o.event_time ? fmtDateTime(o.event_time) : '—';
   document.getElementById('dInfoWindow').textContent = o.delivery_window || '—';
   document.getElementById('dInfoShipping').textContent = SHIPPING_LABELS[o.shipping_method] || o.shipping_method_display || '—';
   document.getElementById('dInfoTable').textContent = o.table_arrangement || '—';
 
+  // آیتم‌ها
   document.getElementById('dItemsBody').innerHTML = o.items.map(it=>`
     <tr>
-      <td>${it.product_name}</td>
+      <td>${it.product_name}${it.is_custom ? ' <span class="source-badge src-MANUAL" style="font-size:9.5px;">سفارشی</span>' : ''}</td>
       <td>${fmt(it.quantity)}</td>
       <td>${toman(it.unit_price)}</td>
       <td><b>${toman(it.total_price)}</b></td>
@@ -800,9 +877,48 @@ function renderDetail(o){
 
   document.getElementById('dSubtotal').textContent = toman(o.items_total);
   document.getElementById('dShipping').textContent = toman(o.shipping_cost);
-  document.getElementById('dDiscount').textContent = '−' + toman(o.discount_amount);
+  document.getElementById('dDiscount').textContent = Number(o.discount_amount) > 0
+    ? '−' + toman(o.discount_amount) + (o.discount_type_display ? ` (${o.discount_type_display})` : '')
+    : toman(0);
   document.getElementById('dTax').textContent = toman(o.tax_amount);
   document.getElementById('dTotal').textContent = toman(o.total_amount);
+
+  // پرداخت
+  if(o.payment){
+    document.getElementById('dPayMethod').textContent = o.payment.method_display;
+    document.getElementById('dPayStatus').textContent = o.payment.status_display;
+    if(o.payment.status === 'PARTIAL'){
+      document.getElementById('dDepositRow').style.display = 'flex';
+      document.getElementById('dDepositAmount').textContent = toman(o.payment.deposit_amount);
+    }else{
+      document.getElementById('dDepositRow').style.display = 'none';
+    }
+  }
+
+  // لینک Review
+  const reviewUrl = `${API_ORIGIN}/api/orders/review/${o.review_token}/`;
+  document.getElementById('dReviewLink').textContent = reviewUrl;
+  document.getElementById('copyReviewLinkBtn').onclick = ()=>{
+    navigator.clipboard.writeText(reviewUrl); toast('لینک Review کپی شد');
+  };
+
+  // لینک پرداخت (فقط زرین‌پال و هنوز پرداخت‌نشده)
+  const payArea = document.getElementById('payLinkArea');
+  if(o.payment && o.payment.method === 'ONLINE' && o.status === 'PENDING_PAYMENT'){
+    payArea.style.display = 'block';
+    document.getElementById('payLinkRow').style.display = 'none';
+  }else{
+    payArea.style.display = 'none';
+  }
+
+  // دکمه ویرایش فقط برای سفارش دستی
+  const editBtn = document.getElementById('editOrderBtn');
+  if(o.source === 'MANUAL'){
+    editBtn.style.display = 'inline-flex';
+    editBtn.onclick = ()=> window.location.href = `manual-order.html?edit=${o.id}`;
+  }else{
+    editBtn.style.display = 'none';
+  }
 
   document.getElementById('dCustomerNote').textContent = o.customer_note || 'یادداشتی ثبت نشده.';
   document.getElementById('dAdminNote').value = o.admin_note || '';
@@ -881,6 +997,21 @@ document.getElementById('saveAdminNote').addEventListener('click', async ()=>{
   if(!data) return;
   toast('یادداشت مدیر ذخیره شد');
   state.currentOrder = data;
+});
+
+document.getElementById('generatePayLinkBtn').addEventListener('click', async ()=>{
+  if(!state.currentOrder) return;
+  const btn = document.getElementById('generatePayLinkBtn');
+  btn.disabled = true; btn.textContent = 'در حال ساخت…';
+  const data = await apiSend(`/${state.currentOrder.id}/pay/`, 'POST', {});
+  btn.disabled = false; btn.textContent = 'ساخت لینک پرداخت';
+  if(!data) return;
+  document.getElementById('payLinkRow').style.display = 'flex';
+  document.getElementById('dPayLink').textContent = data.payment_url;
+  document.getElementById('copyPayLinkBtn').onclick = ()=>{
+    navigator.clipboard.writeText(data.payment_url); toast('لینک پرداخت کپی شد');
+  };
+  toast('لینک پرداخت ساخته شد');
 });
 
 /* ---------------- دکمه‌های سریع ---------------- */
