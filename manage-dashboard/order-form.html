@@ -255,6 +255,7 @@
   .action-tile:hover{border-color:var(--turq);color:var(--turq-deep);}
   .action-tile svg{width:16px;height:16px;flex:none;}
   .action-tile.primary{background:linear-gradient(135deg,var(--turq),var(--turq-deep));color:#fff;border-color:transparent;}
+  .action-tile:disabled{opacity:.5;cursor:not-allowed;}
   .link-row{
     display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1px solid var(--border);
     border-radius:10px;padding:9px 12px;margin-top:8px;
@@ -266,9 +267,17 @@
     position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
     background:var(--ink);color:#fff;padding:11px 20px;border-radius:10px;font-size:12.5px;
     opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:var(--shadow-md);z-index:200;
+    max-width:90vw;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .toast.error{background:var(--red);}
+
+  .loading-overlay{
+    position:fixed;inset:0;background:rgba(241,250,248,.7);display:none;align-items:center;justify-content:center;z-index:300;
+  }
+  .loading-overlay.show{display:flex;}
+  .loading-spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--turq-pale);border-top-color:var(--turq-deep);animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
 
   @media(max-width:880px){
     .layout{flex-direction:column-reverse;}
@@ -283,7 +292,7 @@
 <header class="topbar">
   <div class="brand">
     <span class="brand-mark"></span>
-    <div>پنل سفارشات<small>ثبت سفارش دستی</small></div>
+    <div>پنل سفارشات<small id="pageModeLabel">ثبت سفارش دستی</small></div>
   </div>
   <div class="topbar-left">
     <a class="back-link" href="orders.html">
@@ -298,7 +307,7 @@
   <!-- ============ فرم ثبت سفارش ============ -->
   <div id="formView">
     <div class="page-head">
-      <h1>ثبت سفارش دستی</h1>
+      <h1 id="formTitle">ثبت سفارش دستی</h1>
       <p>سفارشی که تلفنی یا حضوری گرفتی رو همینجا کامل ثبت کن؛ فاکتور و لینک پرداخت هم خودکار ساخته می‌شه.</p>
     </div>
 
@@ -308,8 +317,8 @@
 
           <!-- ۱. اطلاعات مشتری -->
           <div class="card facet">
-            <h2><span class="num">۱</span>اطلاعات مشتری</h2>
-            <p class="sub">مشخصات کسی که سفارش رو ثبت می‌کنه</p>
+            <h2><span class="num">۱</span>اطلاعات مشتری و سفارش</h2>
+            <p class="sub">مشخصات مشتری و اطلاعات تکمیلی سفارش</p>
             <div class="grid-2">
               <div class="field" id="fieldCustomerName">
                 <label>نام مشتری</label>
@@ -326,14 +335,42 @@
               <label>شرکت<span class="optional-tag">اختیاری</span></label>
               <input class="input" id="cCompany" placeholder="نام شرکت یا سازمان">
             </div>
-            <div class="field">
+            <div class="field" id="fieldCustomerAddress">
               <label>آدرس</label>
               <textarea id="cAddress" placeholder="آدرس کامل مشتری…"></textarea>
+              <div class="error-msg">آدرس را وارد کنید</div>
             </div>
             <div class="field">
               <label>لوکیشن<span class="optional-tag">اختیاری</span></label>
-              <input class="input" id="cLocation" placeholder="لینک گوگل مپ یا مختصات">
+              <input class="input" id="cLocation" placeholder="لینک گوگل مپ">
             </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label>نوع مراسم</label>
+                <select id="eventType">
+                  <option value="BIRTHDAY">تولد</option>
+                  <option value="WEDDING">عروسی</option>
+                  <option value="ENGAGEMENT">نامزدی</option>
+                  <option value="ANNIVERSARY">سالگرد</option>
+                  <option value="PARTY">مهمانی</option>
+                  <option value="CELEBRATION">جشن</option>
+                  <option value="OTHER">سایر</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>منبع سفارش</label>
+                <select id="orderLeadSource">
+                  <option value="DIVAR">دیوار</option>
+                  <option value="INSTAGRAM">اینستاگرام</option>
+                  <option value="WHATSAPP">واتساپ</option>
+                  <option value="IN_PERSON">حضوری</option>
+                  <option value="PHONE_CALL">تماس تلفنی</option>
+                  <option value="OTHER">سایر</option>
+                </select>
+              </div>
+            </div>
+
             <div class="field">
               <label>توضیحات<span class="optional-tag">اختیاری</span></label>
               <textarea id="cNote" placeholder="هر نکته‌ای که باید موقع آماده‌سازی یا تحویل رعایت بشه…"></textarea>
@@ -373,8 +410,8 @@
             <div class="field">
               <label>نوع تخفیف<span class="optional-tag">اختیاری</span></label>
               <div class="seg-toggle">
-                <button type="button" class="active" data-discount-type="percent">تخفیف درصدی</button>
-                <button type="button" data-discount-type="amount">تخفیف مبلغی</button>
+                <button type="button" class="active" data-discount-type="PERCENT">تخفیف درصدی</button>
+                <button type="button" data-discount-type="FIXED">تخفیف مبلغی</button>
               </div>
               <input class="input" type="number" id="discountValue" min="0" placeholder="۰">
             </div>
@@ -404,30 +441,33 @@
             <h2><span class="num">۴</span>اطلاعات تحویل</h2>
             <p class="sub">مشخصات مربوط به زمان و مکان تحویل سفارش</p>
             <div class="grid-2">
-              <div class="field">
+              <div class="field" id="fieldDeliveryDate">
                 <label>تاریخ تحویل</label>
                 <input class="input" type="date" id="deliveryDate">
+                <div class="error-msg">تاریخ تحویل را وارد کنید</div>
               </div>
-              <div class="field">
+              <div class="field" id="fieldDeliveryTime">
                 <label>ساعت تحویل</label>
                 <input class="input" type="time" id="deliveryTime">
+                <div class="error-msg">ساعت تحویل را وارد کنید</div>
               </div>
             </div>
             <label class="check-row">
               <input type="checkbox" id="sameAsCustomerAddress">
               آدرس تحویل همون آدرس مشتریه
             </label>
-            <div class="field">
+            <div class="field" id="fieldDeliveryAddress">
               <label>آدرس تحویل</label>
               <textarea id="deliveryAddress" placeholder="آدرس محل تحویل سفارش…"></textarea>
+              <div class="error-msg">آدرس تحویل را وارد کنید</div>
             </div>
             <div class="grid-2">
               <div class="field">
-                <label>نام تحویل‌گیرنده</label>
+                <label>نام تحویل‌گیرنده<span class="optional-tag">اختیاری</span></label>
                 <input class="input" id="receiverName" placeholder="اگه با مشتری فرق داره">
               </div>
               <div class="field">
-                <label>شماره تماس تحویل‌گیرنده</label>
+                <label>شماره تماس تحویل‌گیرنده<span class="optional-tag">اختیاری</span></label>
                 <input class="input" id="receiverPhone" placeholder="0912xxxxxxx" inputmode="tel">
               </div>
             </div>
@@ -440,25 +480,26 @@
               <div class="field">
                 <label>روش پرداخت</label>
                 <select id="paymentMethod">
-                  <option value="cash">نقدی</option>
-                  <option value="card_to_card">کارت به کارت</option>
-                  <option value="pos">پوز</option>
-                  <option value="zarinpal">زرین‌پال</option>
-                  <option value="cod">پرداخت در محل</option>
+                  <option value="CASH">نقدی</option>
+                  <option value="CARD">کارت به کارت</option>
+                  <option value="POS">پوز</option>
+                  <option value="ONLINE">زرین‌پال</option>
+                  <option value="COD">پرداخت در محل</option>
                 </select>
               </div>
               <div class="field">
                 <label>وضعیت پرداخت</label>
                 <select id="paymentStatus">
-                  <option value="unpaid">پرداخت نشده</option>
-                  <option value="partial">بیعانه</option>
-                  <option value="paid">پرداخت کامل</option>
+                  <option value="PENDING">پرداخت نشده</option>
+                  <option value="PARTIAL">بیعانه</option>
+                  <option value="SUCCESS">پرداخت کامل</option>
                 </select>
               </div>
             </div>
             <div class="field conditional-field" id="fieldDeposit">
               <label>مبلغ بیعانه (تومان)</label>
               <input class="input" type="number" id="depositAmount" min="0" placeholder="مثلاً 1000000">
+              <div class="error-msg">مبلغ بیعانه را وارد کنید</div>
             </div>
             <div class="hint" id="zarinpalHint" style="display:none;">
               بعد از ثبت سفارش، از صفحه سفارش می‌تونی دکمه «ساخت لینک پرداخت» رو بزنی تا لینک زرین‌پال ساخته بشه.
@@ -545,7 +586,7 @@
     </div>
 
     <div class="card facet">
-      <h2><span class="num">۱</span>اطلاعات مشتری</h2>
+      <h2><span class="num">۱</span>اطلاعات مشتری و سفارش</h2>
       <div class="totals-box" id="detailCustomerBox"></div>
     </div>
 
@@ -626,56 +667,83 @@
   </div>
 </div>
 
+<div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* =========================================================
-   اتصال به بک‌اند Django/DRF (apps/orders)
-   بک‌اند این بخش هنوز آماده نیست؛ تمام endpoint ها فرضی نوشته
-   شدن و USE_MOCK_FALLBACK فعاله. وقتی بک‌اند آماده شد فقط کافیه:
-   ۱) API_ORIGIN و مسیرهای هر fetch رو با API واقعی چک کنی
-   ۲) USE_MOCK_FALLBACK رو false کنی
+   اتصال به بک‌اند واقعی Django/DRF (apps/orders + apps/products)
+   Endpointهای استفاده‌شده:
+     POST  /api/orders/manual/                  -> ثبت سفارش دستی
+     PATCH /api/orders/{id}/manual-edit/         -> ویرایش سفارش دستی
+     GET   /api/orders/{id}/                     -> گرفتن جزئیات یک سفارش (برای ?id= یا ?edit=)
+     POST  /api/orders/{id}/pay/                 -> ساخت لینک پرداخت زرین‌پال
+     GET   /api/orders/{id}/invoice/             -> داده‌ی فاکتور (شماره فاکتور رسمی)
+     GET   /api/products/?search=...             -> جستجوی محصول (ادمین)
    ========================================================= */
 const API_ORIGIN = "https://api.firouzehco.com";
+const SITE_ORIGIN = "https://firouzehco.com"; // TODO: اگه دامنه سایت اصلی فرق داره اینجا عوض کن
 const API_BASE = `${API_ORIGIN}/api/orders`;
 const PRODUCTS_API_BASE = `${API_ORIGIN}/api/products`;
-const AUTH_TOKEN = localStorage.getItem('admin_access_token') || '';
-const USE_MOCK_FALLBACK = true; // بک‌اند سفارشات هنوز وصل نیست
 
+function getAuthToken(){
+  return localStorage.getItem('admin_access_token') || '';
+}
 function authHeaders(json=true){
   const h = {};
   if(json) h['Content-Type']='application/json';
-  if(AUTH_TOKEN) h['Authorization'] = `Bearer ${AUTH_TOKEN}`;
+  const token = getAuthToken();
+  if(token) h['Authorization'] = `Bearer ${token}`;
   return h;
 }
-
-// دادهٔ نمایشی محصولات — فقط برای این‌که فرم بدون بک‌اند هم قابل تست باشه
-const mockProducts = [
-  {id:'p1', name:'مینی برگر', price:45000},
-  {id:'p2', name:'مینی چیزبرگر', price:55000},
-  {id:'p3', name:'پیتزا مینی مارگاریتا', price:65000},
-  {id:'p4', name:'سینی مزه کلاسیک', price:850000},
-  {id:'p5', name:'نوشیدنی گازدار', price:15000},
-  {id:'p6', name:'سالاد سزار', price:95000},
-  {id:'p7', name:'کیک شکلاتی برشی', price:60000},
-  {id:'p8', name:'ساندویچ کلاب', price:120000},
-];
 
 function toast(msg, isError=false){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show' + (isError?' error':'');
-  setTimeout(()=>t.className='toast', 2600);
+  setTimeout(()=>t.className='toast', 3200);
+}
+function showLoading(show){
+  document.getElementById('loadingOverlay').classList.toggle('show', show);
 }
 function fmt(n){ return Number(Math.round(n||0)).toLocaleString('fa-IR'); }
 function toman(n){ return fmt(n) + ' تومان'; }
+
+/* ---------------- fetch helper با پیام خطای فارسی خوانا ---------------- */
+async function apiFetch(url, options={}){
+  let res;
+  try{
+    res = await fetch(url, options);
+  }catch(networkErr){
+    throw new Error('اتصال به سرور برقرار نشد. اینترنت/VPN یا آدرس API را بررسی کن.');
+  }
+  let data = null;
+  try{ data = await res.json(); }catch(_){ /* بدنه خالی یا غیر JSON */ }
+
+  if(!res.ok){
+    let message = `خطا (کد ${res.status})`;
+    if(data){
+      if(data.detail) message = data.detail;
+      else{
+        const parts = [];
+        for(const key in data){
+          const val = Array.isArray(data[key]) ? data[key].join(' ') : data[key];
+          parts.push(typeof val === 'string' ? val : JSON.stringify(val));
+        }
+        if(parts.length) message = parts.join(' — ');
+      }
+    }
+    if(res.status === 401) message = 'نشست ادمین منقضی شده؛ دوباره وارد شو.';
+    throw new Error(message);
+  }
+  return data;
+}
 
 /* ---------------- آیتم‌های سفارش ---------------- */
 let orderItems = []; // {uid, type:'product'|'custom', refId, name, unitPrice, qty}
 let uidCounter = 1;
 
 function addOrderItem(item){
-  // اگه محصول از قبل تو سفارش هست، فقط تعدادش زیاد بشه
   if(item.type === 'product'){
     const existing = orderItems.find(i => i.type==='product' && i.refId === item.refId);
     if(existing){ existing.qty += item.qty; renderOrderItems(); return; }
@@ -729,7 +797,7 @@ function renderOrderItems(){
 }
 
 /* ---------------- تخفیف و جمع کل ---------------- */
-let discountType = 'percent';
+let discountType = 'PERCENT'; // PERCENT | FIXED  (دقیقاً مقادیر DiscountType در بک‌اند)
 document.querySelectorAll('[data-discount-type]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     discountType = btn.dataset.discountType;
@@ -745,9 +813,10 @@ document.querySelectorAll('[data-discount-type]').forEach(btn=>{
 function computeTotals(){
   const subtotal = orderItems.reduce((s,i)=> s + i.unitPrice*i.qty, 0);
   const discountVal = Number(document.getElementById('discountValue').value || 0);
-  const discountAmount = discountType === 'percent'
+  let discountAmount = discountType === 'PERCENT'
     ? Math.round(subtotal * discountVal/100)
     : discountVal;
+  discountAmount = Math.min(Math.max(discountAmount,0), subtotal);
   const afterDiscount = Math.max(subtotal - discountAmount, 0);
   const taxPercent = Number(document.getElementById('taxPercent').value || 0);
   const taxAmount = Math.round(afterDiscount * taxPercent/100);
@@ -782,7 +851,7 @@ function updateSidebarSummary(t){
 document.getElementById('cName').addEventListener('input', ()=>updateTotals());
 document.getElementById('cPhone').addEventListener('input', ()=>updateTotals());
 
-/* ---------------- مودال افزودن محصول ---------------- */
+/* ---------------- مودال افزودن محصول (متصل به GET /api/products/) ---------------- */
 const productModal = document.getElementById('productModal');
 const productResultList = document.getElementById('productResultList');
 const productSearchInput = document.getElementById('productSearchInput');
@@ -791,55 +860,54 @@ const qpAddBtn = document.getElementById('qpAddBtn');
 let selectedProduct = null;
 let selectedQty = 1;
 let productsCache = [];
+let productSearchDebounce = null;
 
 async function loadProductsForSearch(query){
-  // GET /api/products/?search=... — اگه بک‌اند سفارش هنوز وصل نیست، از mockProducts استفاده می‌کنیم
-  try{
-    if(!USE_MOCK_FALLBACK){
-      const res = await fetch(`${PRODUCTS_API_BASE}/?search=${encodeURIComponent(query)}`, {headers: authHeaders(false)});
-      if(!res.ok) throw new Error('status ' + res.status);
-      let data = await res.json();
-      if(!Array.isArray(data) && Array.isArray(data.results)) data = data.results;
-      return Array.isArray(data) ? data : [];
-    }
-  }catch(e){ /* در صورت خطا میره سراغ mock */ }
-  const q = query.trim().toLowerCase();
-  if(!q) return mockProducts;
-  return mockProducts.filter(p => p.name.toLowerCase().includes(q));
+  const url = `${PRODUCTS_API_BASE}/?search=${encodeURIComponent(query)}&is_active=true&page_size=15`;
+  const data = await apiFetch(url, { headers: authHeaders(false) });
+  const list = Array.isArray(data) ? data : (data && Array.isArray(data.results) ? data.results : []);
+  // final_price همون قیمت مؤثر بعد از تخفیف محصول است؛ همینو به سفارش اضافه می‌کنیم
+  return list.map(p => ({ id: p.id, name: p.name, price: Number(p.final_price ?? p.price) }));
 }
 
 async function renderProductResults(query){
-  const results = await loadProductsForSearch(query);
-  productsCache = results;
-  if(results.length === 0){
-    productResultList.innerHTML = '<div class="no-results">محصولی پیدا نشد</div>';
-    return;
-  }
-  productResultList.innerHTML = results.map(p => `
-    <div class="result-item" data-id="${p.id}">
-      <div>
-        <p class="ri-name">${p.name}</p>
-        <p class="ri-price">${toman(p.price)}</p>
+  productResultList.innerHTML = '<div class="no-results">در حال جستجو…</div>';
+  try{
+    const results = await loadProductsForSearch(query);
+    productsCache = results;
+    if(results.length === 0){
+      productResultList.innerHTML = '<div class="no-results">محصولی پیدا نشد</div>';
+      return;
+    }
+    productResultList.innerHTML = results.map(p => `
+      <div class="result-item" data-id="${p.id}">
+        <div>
+          <p class="ri-name">${p.name}</p>
+          <p class="ri-price">${toman(p.price)}</p>
+        </div>
+        <button type="button">انتخاب</button>
       </div>
-      <button type="button">انتخاب</button>
-    </div>
-  `).join('');
-  productResultList.querySelectorAll('.result-item').forEach(row=>{
-    const select = ()=>{
-      const id = row.dataset.id;
-      selectedProduct = productsCache.find(p => String(p.id) === String(id));
-      selectedQty = 1;
-      productResultList.querySelectorAll('.result-item').forEach(r=>r.classList.remove('selected'));
-      row.classList.add('selected');
-      document.getElementById('qpName').textContent = selectedProduct.name;
-      document.getElementById('qpPrice').textContent = toman(selectedProduct.price);
-      document.getElementById('qpQty').textContent = selectedQty;
-      qtyPicker.classList.add('show');
-      qpAddBtn.disabled = false;
-    };
-    row.addEventListener('click', select);
-    row.querySelector('button').addEventListener('click', (e)=>{ e.stopPropagation(); select(); });
-  });
+    `).join('');
+    productResultList.querySelectorAll('.result-item').forEach(row=>{
+      const select = ()=>{
+        const id = row.dataset.id;
+        selectedProduct = productsCache.find(p => String(p.id) === String(id));
+        selectedQty = 1;
+        productResultList.querySelectorAll('.result-item').forEach(r=>r.classList.remove('selected'));
+        row.classList.add('selected');
+        document.getElementById('qpName').textContent = selectedProduct.name;
+        document.getElementById('qpPrice').textContent = toman(selectedProduct.price);
+        document.getElementById('qpQty').textContent = selectedQty;
+        qtyPicker.classList.add('show');
+        qpAddBtn.disabled = false;
+      };
+      row.addEventListener('click', select);
+      row.querySelector('button').addEventListener('click', (e)=>{ e.stopPropagation(); select(); });
+    });
+  }catch(err){
+    productResultList.innerHTML = '<div class="no-results">خطا در جستجوی محصول</div>';
+    toast(err.message, true);
+  }
 }
 document.getElementById('qpMinus').addEventListener('click', ()=>{
   if(selectedQty > 1) selectedQty--;
@@ -853,13 +921,15 @@ qpAddBtn.addEventListener('click', ()=>{
   if(!selectedProduct) return;
   addOrderItem({ type:'product', refId: selectedProduct.id, name: selectedProduct.name, unitPrice: selectedProduct.price, qty: selectedQty });
   toast(`«${selectedProduct.name}» به سفارش اضافه شد`);
-  // ریست برای انتخاب بعدی، بدون بستن مودال
   selectedProduct = null; selectedQty = 1;
   qtyPicker.classList.remove('show');
   qpAddBtn.disabled = true;
   productResultList.querySelectorAll('.result-item').forEach(r=>r.classList.remove('selected'));
 });
-productSearchInput.addEventListener('input', ()=> renderProductResults(productSearchInput.value));
+productSearchInput.addEventListener('input', ()=>{
+  clearTimeout(productSearchDebounce);
+  productSearchDebounce = setTimeout(()=> renderProductResults(productSearchInput.value), 300);
+});
 
 document.getElementById('openProductModalBtn').addEventListener('click', ()=>{
   productSearchInput.value = '';
@@ -933,19 +1003,40 @@ const fieldDeposit = document.getElementById('fieldDeposit');
 const zarinpalHint = document.getElementById('zarinpalHint');
 
 paymentStatus.addEventListener('change', ()=>{
-  fieldDeposit.classList.toggle('show', paymentStatus.value === 'partial');
+  fieldDeposit.classList.toggle('show', paymentStatus.value === 'PARTIAL');
 });
 paymentMethod.addEventListener('change', ()=>{
-  zarinpalHint.style.display = paymentMethod.value === 'zarinpal' ? 'block' : 'none';
+  zarinpalHint.style.display = paymentMethod.value === 'ONLINE' ? 'block' : 'none';
 });
 
-/* ---------------- اعتبارسنجی و ثبت سفارش ---------------- */
+/* ---------------- اعتبارسنجی و ثبت/ویرایش سفارش ---------------- */
 function validateOrderForm(){
   let ok = true;
   const name = document.getElementById('cName').value.trim();
   setError('fieldCustomerName', !name); if(!name) ok = false;
+
   const phone = document.getElementById('cPhone').value.trim();
   setError('fieldCustomerPhone', !phone); if(!phone) ok = false;
+
+  const addr = document.getElementById('cAddress').value.trim();
+  setError('fieldCustomerAddress', !addr); if(!addr) ok = false;
+
+  const delDate = document.getElementById('deliveryDate').value;
+  setError('fieldDeliveryDate', !delDate); if(!delDate) ok = false;
+
+  const delTime = document.getElementById('deliveryTime').value;
+  setError('fieldDeliveryTime', !delTime); if(!delTime) ok = false;
+
+  const delAddr = document.getElementById('deliveryAddress').value.trim();
+  setError('fieldDeliveryAddress', !delAddr); if(!delAddr) ok = false;
+
+  if(paymentStatus.value === 'PARTIAL'){
+    const dep = Number(document.getElementById('depositAmount').value || 0);
+    setError('fieldDeposit', dep <= 0); if(dep <= 0) ok = false;
+  }else{
+    setError('fieldDeposit', false);
+  }
+
   if(orderItems.length === 0){
     toast('حداقل یک آیتم به سفارش اضافه کن', true);
     ok = false;
@@ -955,42 +1046,45 @@ function validateOrderForm(){
 
 function buildOrderPayload(){
   const t = computeTotals();
+  const eventTimeIso = `${document.getElementById('deliveryDate').value}T${document.getElementById('deliveryTime').value}:00+03:30`;
+
   return {
-    customer: {
-      name: document.getElementById('cName').value.trim(),
-      phone: document.getElementById('cPhone').value.trim(),
-      company: document.getElementById('cCompany').value.trim(),
-      address: document.getElementById('cAddress').value.trim(),
-      location: document.getElementById('cLocation').value.trim(),
-      note: document.getElementById('cNote').value.trim(),
-    },
-    items: orderItems.map(it=>({ type:it.type, product_id: it.refId, name: it.name, unit_price: it.unitPrice, qty: it.qty })),
-    discount_type: discountType,
+    customer_full_name: document.getElementById('cName').value.trim(),
+    customer_phone: document.getElementById('cPhone').value.trim(),
+    customer_company: document.getElementById('cCompany').value.trim(),
+    customer_description: document.getElementById('cNote').value.trim(),
+
+    event_type: document.getElementById('eventType').value,
+    lead_source: document.getElementById('orderLeadSource').value,
+
+    items: orderItems.map(it => it.type === 'product'
+      ? { product_id: it.refId, quantity: it.qty, is_custom: false }
+      : { name: it.name, unit_price: it.unitPrice, quantity: it.qty, is_custom: true }
+    ),
+
+    discount_type: t.discountAmount > 0 ? discountType : '',
     discount_value: Number(document.getElementById('discountValue').value || 0),
-    shipping_cost: Number(document.getElementById('shippingCost').value || 0),
-    tax_percent: Number(document.getElementById('taxPercent').value || 0),
-    totals: t,
-    delivery: {
-      date: document.getElementById('deliveryDate').value,
-      time: document.getElementById('deliveryTime').value,
-      address: document.getElementById('deliveryAddress').value.trim(),
-      receiver_name: document.getElementById('receiverName').value.trim(),
-      receiver_phone: document.getElementById('receiverPhone').value.trim(),
-    },
-    payment: {
-      method: paymentMethod.value,
-      status: paymentStatus.value,
-      deposit_amount: paymentStatus.value === 'partial' ? Number(document.getElementById('depositAmount').value || 0) : 0,
-    },
+    tax_amount: t.taxAmount,
+    shipping_cost: t.shipping,
+
+    event_time: eventTimeIso,
+    delivery_window: '',
+    full_address: document.getElementById('deliveryAddress').value.trim(),
+    postal_code: '',
+    location_url: document.getElementById('cLocation').value.trim(),
+    recipient_name: document.getElementById('receiverName').value.trim(),
+    recipient_phone: document.getElementById('receiverPhone').value.trim(),
+    shipping_method: 'COURIER',
+
+    payment_method: paymentMethod.value,
+    payment_status: paymentStatus.value,
+    deposit_amount: paymentStatus.value === 'PARTIAL' ? Number(document.getElementById('depositAmount').value || 0) : 0,
+
+    admin_note: '',
   };
 }
 
-function randomCode(len){
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let s = '';
-  for(let i=0;i<len;i++) s += chars[Math.floor(Math.random()*chars.length)];
-  return s;
-}
+let editingOrderId = null; // اگه پر باشه یعنی داریم یه سفارش موجود رو ویرایش می‌کنیم (PATCH)
 
 document.getElementById('orderForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
@@ -998,52 +1092,39 @@ document.getElementById('orderForm').addEventListener('submit', async (e)=>{
 
   const btn = document.getElementById('submitOrderBtn');
   btn.disabled = true;
+  showLoading(true);
 
   const payload = buildOrderPayload();
 
   try{
-    // POST /api/orders/  -> باید ساخته بشه در بک‌اند (OrderCreateAPIView)
-    if(USE_MOCK_FALLBACK) throw new Error('mock');
-    const res = await fetch(API_BASE + '/', {
-      method:'POST',
-      headers: authHeaders(),
-      body: JSON.stringify(payload)
-    });
-    if(!res.ok){
-      let err = {};
-      try{ err = await res.json(); }catch(_){}
-      throw new Error(Object.values(err).flat().join(' — ') || `خطا در ثبت سفارش (کد ${res.status})`);
-    }
-    const created = await res.json();
-    showOrderDetail(created);
-  }catch(err){
-    if(USE_MOCK_FALLBACK){
-      // بدون بک‌اند واقعی: یه سفارش نمایشی می‌سازیم تا رفتار فرم قابل تست باشه
-      const mockOrder = {
-        id: Math.floor(1000 + Math.random()*9000),
-        review_code: 'review/' + randomCode(8),
-        ...payload,
-      };
-      toast('محصول (نمایشی) ثبت شد — بعد از وصل شدن بک‌اند، سفارش واقعی ذخیره می‌شه');
-      showOrderDetail(mockOrder);
+    let order;
+    if(editingOrderId){
+      order = await apiFetch(`${API_BASE}/${editingOrderId}/manual-edit/`, {
+        method: 'PATCH', headers: authHeaders(), body: JSON.stringify(payload),
+      });
+      toast('سفارش ویرایش شد');
     }else{
-      toast(err.message || 'خطا در ثبت سفارش', true);
+      order = await apiFetch(`${API_BASE}/manual/`, {
+        method: 'POST', headers: authHeaders(), body: JSON.stringify(payload),
+      });
+      toast('سفارش با موفقیت ثبت شد ✅');
     }
+    showOrderDetail(order);
+  }catch(err){
+    toast(err.message || 'خطا در ثبت سفارش', true);
   }finally{
     btn.disabled = false;
+    showLoading(false);
   }
 });
 
 /* ---------------- صفحه سفارش بعد از ثبت ---------------- */
 let currentOrder = null;
 
-function statusPillInfo(status){
-  if(status === 'paid') return {cls:'paid', label:'پرداخت کامل'};
-  if(status === 'partial') return {cls:'partial', label:'بیعانه پرداخت شده'};
+function statusPillInfo(paymentStatusValue){
+  if(paymentStatusValue === 'SUCCESS') return {cls:'paid', label:'پرداخت کامل'};
+  if(paymentStatusValue === 'PARTIAL') return {cls:'partial', label:'بیعانه پرداخت شده'};
   return {cls:'unpaid', label:'پرداخت نشده'};
-}
-function paymentMethodLabel(m){
-  return {cash:'نقدی', card_to_card:'کارت به کارت', pos:'پوز', zarinpal:'زرین‌پال', cod:'پرداخت در محل'}[m] || m;
 }
 
 function showOrderDetail(order){
@@ -1052,56 +1133,69 @@ function showOrderDetail(order){
   document.getElementById('orderDetailView').style.display = 'block';
   window.scrollTo({top:0, behavior:'smooth'});
 
-  document.getElementById('detailOrderNum').textContent = '#' + order.id;
-  const st = statusPillInfo(order.payment.status);
+  document.getElementById('detailOrderNum').textContent = '#' + order.order_number;
+  const st = statusPillInfo(order.payment ? order.payment.status : 'PENDING');
   const pill = document.getElementById('detailStatusPill');
   pill.textContent = st.label;
   pill.className = 'status-pill ' + st.cls;
 
-  // اطلاعات مشتری
-  document.getElementById('detailCustomerBox').innerHTML = `
-    <div class="totals-row"><span>نام</span><b>${order.customer.name || '—'}</b></div>
+  let customerHtml = `
+    <div class="totals-row"><span>نام</span><b>${order.customer.full_name || '—'}</b></div>
     <div class="totals-row"><span>تماس</span><b>${order.customer.phone || '—'}</b></div>
     ${order.customer.company ? `<div class="totals-row"><span>شرکت</span><b>${order.customer.company}</b></div>` : ''}
-    <div class="totals-row"><span>آدرس</span><b>${order.customer.address || '—'}</b></div>
-    ${order.customer.note ? `<div class="totals-row"><span>توضیحات</span><b>${order.customer.note}</b></div>` : ''}
+    <div class="totals-row"><span>آدرس تحویل</span><b>${order.shipping_full_address || '—'}</b></div>
+    ${order.shipping_location_url ? `<div class="totals-row"><span>لوکیشن</span><b><a href="${order.shipping_location_url}" target="_blank">مشاهده روی نقشه</a></b></div>` : ''}
+    ${order.customer_note ? `<div class="totals-row"><span>توضیحات</span><b>${order.customer_note}</b></div>` : ''}
+    ${order.event_type_display ? `<div class="totals-row"><span>نوع مراسم</span><b>${order.event_type_display}</b></div>` : ''}
+    ${order.lead_source_display ? `<div class="totals-row"><span>منبع سفارش</span><b>${order.lead_source_display}</b></div>` : ''}
   `;
+  document.getElementById('detailCustomerBox').innerHTML = customerHtml;
 
-  // آیتم‌ها
   document.getElementById('detailItemsBox').innerHTML = order.items.map(it => `
     <div class="order-item">
       <div class="oi-info">
-        <p class="oi-name">${it.name}${it.type==='custom' ? '<span class="oi-type-tag">سفارشی</span>' : ''}</p>
-        <p class="oi-price">${toman(it.unit_price)} × ${it.qty}</p>
+        <p class="oi-name">${it.product_name}${it.is_custom ? '<span class="oi-type-tag">سفارشی</span>' : ''}</p>
+        <p class="oi-price">${toman(it.unit_price)} × ${it.quantity}</p>
       </div>
-      <div class="oi-total">${toman(it.unit_price * it.qty)}</div>
+      <div class="oi-total">${toman(it.total_price)}</div>
     </div>
   `).join('');
+
   document.getElementById('detailTotalsBox').innerHTML = `
-    <div class="totals-row"><span>جمع جزء</span><b>${toman(order.totals.subtotal)}</b></div>
-    <div class="totals-row discount"><span>تخفیف</span><b>${order.totals.discountAmount ? '−'+toman(order.totals.discountAmount) : toman(0)}</b></div>
-    <div class="totals-row"><span>مالیات</span><b>${toman(order.totals.taxAmount)}</b></div>
-    <div class="totals-row"><span>هزینه ارسال</span><b>${toman(order.totals.shipping)}</b></div>
-    <div class="totals-row grand"><span>جمع کل</span><b>${toman(order.totals.grandTotal)}</b></div>
+    <div class="totals-row"><span>جمع جزء</span><b>${toman(order.items_total)}</b></div>
+    <div class="totals-row discount"><span>تخفیف</span><b>${Number(order.discount_amount) > 0 ? '−'+toman(order.discount_amount) : toman(0)}</b></div>
+    <div class="totals-row"><span>مالیات</span><b>${toman(order.tax_amount)}</b></div>
+    <div class="totals-row"><span>هزینه ارسال</span><b>${toman(order.shipping_cost)}</b></div>
+    <div class="totals-row grand"><span>جمع کل</span><b>${toman(order.total_amount)}</b></div>
   `;
 
-  // تحویل و پرداخت
+  const eventDate = order.event_time ? new Date(order.event_time) : null;
+  const eventDateStr = eventDate ? eventDate.toLocaleDateString('fa-IR') : '—';
+  const eventTimeStr = eventDate ? eventDate.toLocaleTimeString('fa-IR', {hour:'2-digit', minute:'2-digit'}) : '—';
+
   document.getElementById('detailDeliveryBox').innerHTML = `
-    <div class="totals-row"><span>تاریخ تحویل</span><b>${order.delivery.date || '—'}</b></div>
-    <div class="totals-row"><span>ساعت تحویل</span><b>${order.delivery.time || '—'}</b></div>
-    <div class="totals-row"><span>آدرس تحویل</span><b>${order.delivery.address || '—'}</b></div>
-    <div class="totals-row"><span>تحویل‌گیرنده</span><b>${order.delivery.receiver_name || '—'} — ${order.delivery.receiver_phone || '—'}</b></div>
-    <div class="totals-row"><span>روش پرداخت</span><b>${paymentMethodLabel(order.payment.method)}</b></div>
-    ${order.payment.status === 'partial' ? `<div class="totals-row"><span>مبلغ بیعانه</span><b>${toman(order.payment.deposit_amount)}</b></div>` : ''}
+    <div class="totals-row"><span>تاریخ تحویل</span><b>${eventDateStr}</b></div>
+    <div class="totals-row"><span>ساعت تحویل</span><b>${eventTimeStr}</b></div>
+    <div class="totals-row"><span>آدرس تحویل</span><b>${order.shipping_full_address || '—'}</b></div>
+    <div class="totals-row"><span>تحویل‌گیرنده</span><b>${order.shipping_recipient_name || '—'} — ${order.shipping_recipient_phone || '—'}</b></div>
+    <div class="totals-row"><span>روش پرداخت</span><b>${order.payment ? order.payment.method_display : '—'}</b></div>
+    ${order.payment && order.payment.status === 'PARTIAL' ? `<div class="totals-row"><span>مبلغ بیعانه</span><b>${toman(order.payment.deposit_amount)}</b></div>` : ''}
   `;
 
-  // لینک Review
+  // لینک Review — چون هنوز صفحه‌ی HTML اختصاصی برای review نساختیم،
+  // فعلاً مستقیم به خروجی JSON بک‌اند لینک می‌دیم (کاملاً فعاله، فقط ظاهرش صفحه نیست)
   document.getElementById('reviewLinkCard').style.display = 'block';
-  document.getElementById('reviewLinkText').textContent = order.review_code;
+  const reviewUrl = `${API_ORIGIN}/api/orders/review/${order.review_token}/`;
+  document.getElementById('reviewLinkText').textContent = reviewUrl;
+  document.getElementById('copyReviewLinkBtn').onclick = ()=>{
+    navigator.clipboard.writeText(reviewUrl);
+    toast('لینک Review کپی شد');
+  };
 
-  // لینک پرداخت فقط برای زرین‌پال
+  // لینک پرداخت فقط برای زرین‌پال و فقط وقتی سفارش هنوز پرداخت نشده
   const payCard = document.getElementById('payLinkCard');
-  if(order.payment.method === 'zarinpal'){
+  const paymentMethodValue = order.payment ? order.payment.method : null;
+  if(paymentMethodValue === 'ONLINE' && order.status === 'PENDING_PAYMENT'){
     payCard.style.display = 'block';
     document.getElementById('payLinkRow').style.display = 'none';
     document.getElementById('generatePayLinkBtn').style.display = 'inline-block';
@@ -1111,23 +1205,74 @@ function showOrderDetail(order){
   }
 }
 
-/* دکمه‌های صفحه سفارش */
 document.getElementById('btnEditOrder').addEventListener('click', ()=>{
+  if(!currentOrder) return;
+  loadOrderIntoForm(currentOrder);
+  editingOrderId = currentOrder.id;
+  document.getElementById('formTitle').textContent = `ویرایش سفارش #${currentOrder.order_number}`;
+  document.getElementById('submitOrderBtn').textContent = 'ذخیره تغییرات';
   document.getElementById('orderDetailView').style.display = 'none';
   document.getElementById('formView').style.display = 'block';
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
+function loadOrderIntoForm(order){
+  document.getElementById('cName').value = order.customer.full_name || '';
+  document.getElementById('cPhone').value = order.customer.phone || '';
+  document.getElementById('cCompany').value = order.customer.company || '';
+  document.getElementById('cAddress').value = order.shipping_full_address || '';
+  document.getElementById('cLocation').value = order.shipping_location_url || '';
+  document.getElementById('cNote').value = order.customer_note || '';
+  if(order.event_type) document.getElementById('eventType').value = order.event_type;
+  if(order.lead_source) document.getElementById('orderLeadSource').value = order.lead_source;
+
+  orderItems = order.items.map(it => ({
+    uid: uidCounter++,
+    type: it.is_custom ? 'custom' : 'product',
+    refId: it.product || null,
+    name: it.product_name,
+    unitPrice: Number(it.unit_price),
+    qty: it.quantity,
+  }));
+  renderOrderItems();
+
+  discountType = order.discount_type || 'PERCENT';
+  document.querySelectorAll('[data-discount-type]').forEach(b=>{
+    b.classList.toggle('active', b.dataset.discountType === discountType);
+  });
+  document.getElementById('discountValue').value = Number(order.discount_value || 0) || '';
+  document.getElementById('shippingCost').value = Number(order.shipping_cost || 0) || '';
+  // مالیات در بک‌اند به‌صورت مبلغ نهایی ذخیره شده؛ چون فرم روی درصد کار می‌کنه، اینجا فقط صفر می‌ذاریم
+  // و مبلغ فعلی مالیات رو در جمع کل نشون می‌دیم (اگه لازم شد درصدش رو دستی وارد کن)
+  document.getElementById('taxPercent').value = '';
+
+  if(order.event_time){
+    const dt = new Date(order.event_time);
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('deliveryDate').value = `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+    document.getElementById('deliveryTime').value = `${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
+  }
+  document.getElementById('deliveryAddress').value = order.shipping_full_address || '';
+  document.getElementById('receiverName').value = order.shipping_recipient_name || '';
+  document.getElementById('receiverPhone').value = order.shipping_recipient_phone || '';
+
+  if(order.payment){
+    paymentMethod.value = order.payment.method;
+    paymentStatus.value = order.payment.status === 'FAILED' || order.payment.status === 'REFUNDED' ? 'PENDING' : order.payment.status;
+    fieldDeposit.classList.toggle('show', paymentStatus.value === 'PARTIAL');
+    zarinpalHint.style.display = paymentMethod.value === 'ONLINE' ? 'block' : 'none';
+    document.getElementById('depositAmount').value = Number(order.payment.deposit_amount || 0) || '';
+  }
+
+  updateTotals();
+}
+
 document.getElementById('btnReviewLink').addEventListener('click', ()=>{
   document.getElementById('reviewLinkCard').scrollIntoView({behavior:'smooth', block:'center'});
 });
-document.getElementById('copyReviewLinkBtn').addEventListener('click', ()=>{
-  navigator.clipboard.writeText(location.origin + '/' + document.getElementById('reviewLinkText').textContent);
-  toast('لینک Review کپی شد');
-});
 
 document.getElementById('btnPayLink').addEventListener('click', ()=>{
-  if(!currentOrder || currentOrder.payment.method !== 'zarinpal'){
+  if(!currentOrder || !currentOrder.payment || currentOrder.payment.method !== 'ONLINE'){
     toast('روش پرداخت این سفارش زرین‌پال نیست', true);
     return;
   }
@@ -1135,24 +1280,18 @@ document.getElementById('btnPayLink').addEventListener('click', ()=>{
 });
 
 document.getElementById('generatePayLinkBtn').addEventListener('click', async ()=>{
+  if(!currentOrder) return;
   const btn = document.getElementById('generatePayLinkBtn');
   btn.disabled = true;
   btn.textContent = 'در حال ساخت لینک…';
   try{
-    // POST /api/orders/{id}/create-payment-link/  -> باید در بک‌اند به زرین‌پال وصل بشه
-    if(USE_MOCK_FALLBACK) throw new Error('mock');
-    const res = await fetch(`${API_BASE}/${currentOrder.id}/create-payment-link/`, {
-      method:'POST', headers: authHeaders(),
-      body: JSON.stringify({ amount: currentOrder.totals.grandTotal - (currentOrder.payment.deposit_amount||0) })
+    const data = await apiFetch(`${API_BASE}/${currentOrder.id}/pay/`, {
+      method: 'POST', headers: authHeaders(),
     });
-    if(!res.ok) throw new Error('خطا در ساخت لینک پرداخت');
-    const data = await res.json();
     setPayLink(data.payment_url);
-  }catch(e){
-    // نمایشی، تا وصل شدن API واقعی زرین‌پال
-    const fakeUrl = `https://pay.zarinpal.com/pg/StartPay/${randomCode(20)}`;
-    setPayLink(fakeUrl);
-    toast('(نمایشی) لینک پرداخت ساخته شد — بعد از وصل شدن API زرین‌پال، لینک واقعی برمی‌گرده');
+    toast('لینک پرداخت ساخته شد');
+  }catch(err){
+    toast(err.message || 'خطا در ساخت لینک پرداخت', true);
   }finally{
     btn.disabled = false;
     btn.textContent = 'ساخت لینک پرداخت';
@@ -1170,20 +1309,107 @@ function setPayLink(url){
   };
 }
 
+/* ---------------- پیش‌فاکتور / فاکتور (چاپ در تب جدید — تا PDF واقعی بک‌اند وصل بشه) ---------------- */
+function buildPrintableInvoiceHtml(order, {title, invoiceNumber}){
+  const eventDate = order.event_time ? new Date(order.event_time) : null;
+  const rows = order.items.map(it => `
+    <tr>
+      <td>${it.product_name}${it.is_custom ? ' (سفارشی)' : ''}</td>
+      <td>${it.quantity}</td>
+      <td>${toman(it.unit_price)}</td>
+      <td>${toman(it.total_price)}</td>
+    </tr>
+  `).join('');
+
+  return `
+  <!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8">
+  <title>${title} #${order.order_number}</title>
+  <style>
+    body{font-family:Tahoma,Vazirmatn,sans-serif;padding:32px;color:#0B2A28;}
+    h1{font-size:20px;margin-bottom:4px;}
+    .muted{color:#4B6C66;font-size:12px;margin-bottom:20px;}
+    table{width:100%;border-collapse:collapse;margin-top:16px;}
+    th,td{border:1px solid #DCEEEA;padding:8px 10px;font-size:13px;text-align:right;}
+    th{background:#EAF7F4;}
+    .totals{margin-top:16px;width:280px;margin-inline-start:auto;}
+    .totals div{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;}
+    .totals .grand{font-weight:800;border-top:1px solid #DCEEEA;padding-top:8px;margin-top:4px;font-size:15px;}
+    @media print{ .no-print{display:none;} }
+  </style></head><body>
+    <h1>${title} — سفارش #${order.order_number}</h1>
+    <p class="muted">${invoiceNumber ? 'شماره فاکتور: ' + invoiceNumber + ' — ' : ''}${eventDate ? eventDate.toLocaleDateString('fa-IR') : ''}</p>
+    <p><b>مشتری:</b> ${order.customer.full_name} — ${order.customer.phone}${order.customer.company ? ' — ' + order.customer.company : ''}</p>
+    <p><b>آدرس تحویل:</b> ${order.shipping_full_address || '—'}</p>
+    <table>
+      <thead><tr><th>شرح</th><th>تعداد</th><th>قیمت واحد</th><th>جمع</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="totals">
+      <div><span>جمع جزء</span><b>${toman(order.items_total)}</b></div>
+      <div><span>تخفیف</span><b>${toman(order.discount_amount)}</b></div>
+      <div><span>مالیات</span><b>${toman(order.tax_amount)}</b></div>
+      <div><span>هزینه ارسال</span><b>${toman(order.shipping_cost)}</b></div>
+      <div class="grand"><span>جمع کل</span><b>${toman(order.total_amount)}</b></div>
+    </div>
+    <button class="no-print" onclick="window.print()" style="margin-top:24px;padding:10px 18px;">چاپ / ذخیره PDF</button>
+  </body></html>`;
+}
+
 document.getElementById('btnProforma').addEventListener('click', ()=>{
   if(!currentOrder) return;
-  // GET /api/orders/{id}/proforma-pdf/  -> باید در بک‌اند PDF پیش‌فاکتور رو برگردونه
-  window.open(`${API_BASE}/${currentOrder.id}/proforma-pdf/`, '_blank');
+  const html = buildPrintableInvoiceHtml(currentOrder, {title:'پیش‌فاکتور'});
+  const w = window.open('', '_blank');
+  w.document.write(html); w.document.close();
 });
-document.getElementById('btnInvoice').addEventListener('click', ()=>{
+
+document.getElementById('btnInvoice').addEventListener('click', async ()=>{
   if(!currentOrder) return;
-  // GET /api/orders/{id}/invoice-pdf/  -> باید در بک‌اند PDF فاکتور رسمی رو برگردونه
-  window.open(`${API_BASE}/${currentOrder.id}/invoice-pdf/`, '_blank');
+  showLoading(true);
+  try{
+    const data = await apiFetch(`${API_BASE}/${currentOrder.id}/invoice/`, { headers: authHeaders(false) });
+    const html = buildPrintableInvoiceHtml(data.order, {title:'فاکتور', invoiceNumber: data.invoice.invoice_number});
+    const w = window.open('', '_blank');
+    w.document.write(html); w.document.close();
+  }catch(err){
+    toast(err.message || 'خطا در دریافت فاکتور', true);
+  }finally{
+    showLoading(false);
+  }
 });
+
+/* ---------------- بارگذاری سفارش موجود از طریق URL (?id= مشاهده, ?edit= ویرایش) ---------------- */
+async function initFromQueryString(){
+  const params = new URLSearchParams(location.search);
+  const viewId = params.get('id');
+  const editId = params.get('edit');
+  const targetId = editId || viewId;
+  if(!targetId) return;
+
+  showLoading(true);
+  try{
+    const order = await apiFetch(`${API_BASE}/${targetId}/`, { headers: authHeaders(false) });
+    if(editId){
+      currentOrder = order;
+      loadOrderIntoForm(order);
+      editingOrderId = order.id;
+      document.getElementById('formTitle').textContent = `ویرایش سفارش #${order.order_number}`;
+      document.getElementById('submitOrderBtn').textContent = 'ذخیره تغییرات';
+      document.getElementById('pageModeLabel').textContent = 'ویرایش سفارش';
+    }else{
+      document.getElementById('pageModeLabel').textContent = 'مشاهده سفارش';
+      showOrderDetail(order);
+    }
+  }catch(err){
+    toast(err.message || 'سفارش پیدا نشد', true);
+  }finally{
+    showLoading(false);
+  }
+}
 
 /* ---------------- Init ---------------- */
 renderOrderItems();
 updateTotals();
+initFromQueryString();
 </script>
 </body>
 </html>
