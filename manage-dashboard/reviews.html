@@ -342,8 +342,8 @@
     <div class="filters-panel" id="filtersPanel">
       <select id="fSource">
         <option value="">همه منابع</option>
-        <option value="SITE">لینک اختصاصی سایت</option>
-        <option value="INSTAGRAM_LEGACY">قدیمی اینستاگرام</option>
+        <option value="FORM">ثبت‌شده توسط مشتری</option>
+        <option value="IMPORTED">وارد شده توسط ادمین</option>
       </select>
       <select id="fRating">
         <option value="">همه امتیازها</option>
@@ -873,10 +873,6 @@ document.getElementById('resetFilters').addEventListener('click', ()=>{
 document.getElementById('toggleFiltersBtn').addEventListener('click', ()=>{
   document.getElementById('filtersPanel').classList.toggle('open');
 });
-document.getElementById('fSource').innerHTML = `
-  <option value="">همه منابع</option>
-  <option value="FORM">ثبت‌شده توسط مشتری</option>
-  <option value="IMPORTED">وارد شده توسط ادمین</option>`;
 
 /* ---------------- Drawer ---------------- */
 const drawerOverlay = document.getElementById('drawerOverlay');
