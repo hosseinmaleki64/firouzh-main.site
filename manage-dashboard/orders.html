@@ -896,7 +896,11 @@ function renderDetail(o){
   }
 
   // لینک Review
-  const reviewUrl = `${API_ORIGIN}/api/orders/review/${o.review_token}/`;
+  // بالای فایل، کنار API_ORIGIN:
+  const FRONTEND_ORIGIN = "https://firouzehco.com"; // آدرس واقعی سایت‌تون رو جایگزین کنید
+
+// و خط ساخت لینک:
+  const reviewUrl = `${FRONTEND_ORIGIN}/review.html?token=${o.review_token}`;
   document.getElementById('dReviewLink').textContent = reviewUrl;
   document.getElementById('copyReviewLinkBtn').onclick = ()=>{
     navigator.clipboard.writeText(reviewUrl); toast('لینک Review کپی شد');
