@@ -10,80 +10,141 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0B2A28; --ink-soft:#4B6C66; --ink-faint:#87A29C;
-    --bg:#F1FAF8; --surface:#FFFFFF; --surface-alt:#EAF7F4;
-    --turq:#0EA99A; --turq-deep:#077A70; --turq-darker:#065951; --turq-pale:#D3F1EC;
-    --gold:#C9982F; --gold-pale:#F6EAD2;
-    --red:#D14343; --red-pale:#FBE7E5;
-    --border:#DCEEEA;
-    --shadow-sm:0 2px 10px rgba(7,90,80,.06);
-    --shadow-md:0 12px 32px rgba(7,90,80,.10);
-    --facet:16px;
+    --ink:#182F29;
+    --ink-soft:#5C7169;
+    --ink-faint:#96A89D;
+
+    --paper:#FBF3E3;
+    --paper-deep:#F1E3C4;
+    --surface:#FFFFFF;
+
+    --turq:#0EA99A;
+    --turq-deep:#0A7A6D;
+    --turq-ink:#0B3B35;
+    --turq-pale:#DCF0EA;
+
+    --gold:#BE8A2E;
+    --gold-deep:#96691E;
+    --gold-pale:#F3E2B9;
+
+    --pomegranate:#B7432E;
+    --pomegranate-pale:#F8E1D7;
+
+    --line:#E9DAB6;
+    --shadow-sm:0 2px 14px rgba(58,40,10,.07);
+    --shadow-md:0 18px 44px rgba(15,45,38,.14);
+
+    --facet-lg:20px;
+    --facet-sm:9px;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     font-family:'Vazirmatn',sans-serif;
     background:
-      radial-gradient(900px 420px at 85% -10%, rgba(14,169,154,.14), transparent 60%),
-      radial-gradient(700px 380px at -10% 10%, rgba(201,152,47,.08), transparent 55%),
-      var(--bg);
+      radial-gradient(760px 400px at 88% -8%, rgba(14,169,154,.16), transparent 60%),
+      radial-gradient(620px 360px at -8% 14%, rgba(190,138,46,.12), transparent 55%),
+      var(--paper);
     color:var(--ink); min-height:100vh; -webkit-font-smoothing:antialiased;
   }
   button{font-family:inherit;cursor:pointer;}
   input,textarea{font-family:inherit;}
-  .facet{clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));}
 
-  .wrap{max-width:520px;margin:0 auto;padding:36px 18px 60px;}
-  .brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:26px;}
-  .brand-logo{height:38px;width:auto;display:block;}
-  .brand b{font-size:16px;font-weight:800;}
+  .facet-lg{clip-path:polygon(0 0, calc(100% - var(--facet-lg)) 0, 100% var(--facet-lg), 100% 100%, var(--facet-lg) 100%, 0 calc(100% - var(--facet-lg)));}
+  .facet-sm{clip-path:polygon(0 0, calc(100% - var(--facet-sm)) 0, 100% var(--facet-sm), 100% 100%, var(--facet-sm) 100%, 0 calc(100% - var(--facet-sm)));}
 
-  .card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:26px 22px;margin-bottom:18px;}
+  :focus-visible{outline:2px solid var(--turq); outline-offset:2px;}
 
-  .hello h1{font-size:18px;font-weight:800;margin:0 0 8px;}
-  .hello p{font-size:13.5px;color:var(--ink-soft);line-height:2;margin:0;}
-  .hello .order-tag{display:inline-block;margin-top:12px;background:var(--surface-alt);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--turq-deep);font-weight:700;}
+  .wrap{max-width:500px;margin:0 auto;padding:34px 18px 60px;}
+  @media (prefers-reduced-motion:no-preference){
+    .wrap{animation:riseIn .5s ease both;}
+  }
+  @keyframes riseIn{from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);}}
 
-  .field{margin-bottom:22px;}
-  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:10px;}
-  .field .hint{font-size:11.5px;color:var(--ink-faint);font-weight:400;margin-top:6px;}
+  /* ---------- header ---------- */
+  .header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:6px;}
+  .mark{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,var(--turq-pale),var(--surface));}
+  .mark img{width:30px;height:30px;object-fit:contain;display:block;}
+  .wordmark{text-align:center;line-height:1.15;}
+  .wordmark b{display:block;font-size:19px;font-weight:800;color:var(--turq-ink);}
+  .wordmark span{display:block;font-size:11.5px;font-weight:600;color:var(--gold-deep);margin-top:3px;}
 
-  .star-picker{display:flex;gap:8px;justify-content:center;padding:10px 0;}
-  .star-picker button{background:none;border:none;font-size:38px;line-height:1;color:var(--border);transition:transform .1s ease, color .15s ease;padding:0;}
-  .star-picker button.on{color:var(--gold);}
-  .star-picker button:active{transform:scale(1.15);}
-  .rating-caption{text-align:center;font-size:12.5px;color:var(--ink-soft);min-height:18px;margin-top:4px;}
+  /* ---------- tile frieze (signature) ---------- */
+  .frieze{display:flex;justify-content:center;align-items:center;gap:7px;padding:16px 0 22px;overflow:hidden;}
+  .frieze span{width:7px;height:7px;flex:0 0 auto;transform:rotate(45deg);border-radius:1.5px;}
 
-  textarea{width:100%;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13px;min-height:100px;resize:vertical;outline:none;}
+  /* ---------- greeting (no card, sits on page) ---------- */
+  .greet{padding:0 6px 24px;text-align:center;}
+  .eyebrow{font-size:11.5px;font-weight:700;color:var(--gold-deep);background:var(--gold-pale);display:inline-block;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+  .greet h1{font-size:19px;font-weight:800;margin:0 0 10px;}
+  .greet p{font-size:13.5px;color:var(--ink-soft);line-height:1.95;margin:0 auto;max-width:360px;}
+  .order-chip{display:inline-flex;align-items:center;gap:6px;margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:6px 16px 6px 12px;font-size:12px;color:var(--turq-ink);font-weight:700;box-shadow:var(--shadow-sm);}
+  .order-chip::before{content:'';width:6px;height:6px;background:var(--turq);border-radius:50%;flex:0 0 auto;}
+
+  /* ---------- unified card ---------- */
+  .card{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-md);padding:28px 22px;}
+
+  .divider{position:relative;height:1px;background:var(--line);margin:26px 0;}
+  .divider::before{content:'';position:absolute;top:50%;left:50%;width:7px;height:7px;background:var(--gold);transform:translate(-50%,-50%) rotate(45deg);}
+
+  .field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:12px;}
+  .field .hint{font-size:11.5px;color:var(--ink-faint);font-weight:400;margin-top:8px;line-height:1.8;}
+
+  .star-picker{display:flex;gap:6px;justify-content:center;padding:6px 0 4px;}
+  .star-picker button{background:none;border:none;font-size:36px;line-height:1;color:var(--paper-deep);padding:2px;transition:transform .12s ease;}
+  .star-picker button.on{
+    color:var(--gold);
+    background:linear-gradient(180deg,#E3B85B,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 2px 6px rgba(190,138,46,.35));
+  }
+  .star-picker button:active{transform:scale(1.18);}
+  .rating-caption{text-align:center;font-size:12.5px;color:var(--turq-deep);font-weight:600;min-height:18px;margin-top:10px;}
+
+  textarea{width:100%;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:13.5px;min-height:104px;resize:vertical;outline:none;line-height:1.8;transition:border-color .15s ease,background .15s ease;}
+  textarea::placeholder{color:var(--ink-faint);}
   textarea:focus{border-color:var(--turq);background:#fff;}
 
-  .photo-input-box{border:1.5px dashed var(--border);border-radius:10px;padding:18px;text-align:center;background:var(--surface-alt);cursor:pointer;font-size:12.5px;color:var(--ink-soft);}
+  .photo-input-box{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:12px;padding:16px;background:var(--paper);}
   .photo-input-box:hover{border-color:var(--turq);}
+  .photo-input-box .icon{width:38px;height:38px;flex:0 0 auto;background:var(--turq-pale);display:flex;align-items:center;justify-content:center;border-radius:10px;}
+  .photo-input-box .icon svg{width:19px;height:19px;stroke:var(--turq-deep);}
+  .photo-input-box .txt{font-size:12.5px;color:var(--ink-soft);font-weight:600;}
   #photoInput{display:none;}
-  .photo-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
-  .photo-previews .thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+  .photo-previews{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;}
+  .photo-previews .thumb{position:relative;width:62px;height:62px;overflow:hidden;border:1px solid var(--line);}
   .photo-previews .thumb img{width:100%;height:100%;object-fit:cover;}
-  .photo-previews .thumb button{position:absolute;top:2px;left:2px;background:rgba(0,0,0,.55);color:#fff;border:none;width:18px;height:18px;border-radius:50%;font-size:11px;line-height:1;}
+  .photo-previews .thumb button{position:absolute;top:3px;left:3px;background:rgba(11,59,53,.62);color:#fff;border:none;width:18px;height:18px;border-radius:50%;font-size:11px;line-height:1;}
 
-  .btn-submit{width:100%;background:var(--turq-deep);color:#fff;border:none;padding:13px;font-size:14px;font-weight:700;border-radius:10px;}
-  .btn-submit:hover{background:var(--turq-darker);}
+  .btn-submit{width:100%;background:linear-gradient(155deg,var(--turq-deep),var(--turq-ink));color:#fff;border:none;padding:14px;font-size:14.5px;font-weight:700;margin-top:28px;letter-spacing:.2px;transition:filter .15s ease;}
+  .btn-submit:hover{filter:brightness(1.08);}
   .btn-submit:disabled{opacity:.55;cursor:not-allowed;}
 
-  .error-box{background:var(--red-pale);color:var(--red);font-size:12.5px;border-radius:8px;padding:10px 12px;margin-bottom:16px;display:none;}
+  .error-box{background:var(--pomegranate-pale);color:var(--pomegranate);font-size:12.5px;border-radius:10px;padding:11px 14px;margin-bottom:18px;display:none;font-weight:600;line-height:1.8;}
   .error-box.show{display:block;}
 
-  .state-box{text-align:center;padding:40px 10px;}
-  .state-box svg{width:44px;height:44px;color:var(--turq);margin-bottom:14px;}
-  .state-box h2{font-size:16px;font-weight:800;margin:0 0 8px;}
-  .state-box p{font-size:13px;color:var(--ink-soft);line-height:2;margin:0;}
+  /* ---------- state screens ---------- */
+  .state-box{text-align:center;padding:44px 20px;}
+  .icon-facet{width:64px;height:64px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;}
+  .icon-facet svg{width:26px;height:26px;}
+  .icon-facet.ok{background:linear-gradient(155deg,var(--turq),var(--turq-deep));}
+  .icon-facet.warn{background:linear-gradient(155deg,var(--gold),var(--gold-deep));}
+  .icon-facet.bad{background:linear-gradient(155deg,#D5675196,var(--pomegranate));}
+  .state-box h2{font-size:17px;font-weight:800;margin:0 0 10px;}
+  .state-box p{font-size:13.5px;color:var(--ink-soft);line-height:1.95;margin:0 auto;max-width:320px;}
 
-  .reward-box{background:var(--surface-alt);border:1.5px dashed var(--turq);border-radius:12px;padding:20px;text-align:center;margin-top:18px;}
-  .reward-box .code{font-size:20px;font-weight:800;color:var(--turq-darker);letter-spacing:1px;direction:ltr;display:inline-block;margin:10px 0;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 18px;}
-  .reward-box .copy-btn{margin-top:8px;background:var(--turq-deep);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;}
-  .reward-box small{display:block;margin-top:10px;color:var(--ink-faint);font-size:11.5px;}
+  /* ---------- reward ticket ---------- */
+  .reward-ticket{position:relative;background:var(--gold-pale);border:1.5px dashed var(--gold);border-radius:16px;padding:22px 20px;text-align:center;margin-top:22px;overflow:hidden;}
+  .reward-ticket::before,.reward-ticket::after{content:'';position:absolute;top:50%;width:20px;height:20px;background:var(--surface);border-radius:50%;transform:translateY(-50%);}
+  .reward-ticket::before{left:-10px;}
+  .reward-ticket::after{right:-10px;}
+  .reward-ticket .label{font-size:11.5px;font-weight:700;color:var(--gold-deep);}
+  .reward-ticket .code{font-size:21px;font-weight:800;color:var(--turq-ink);letter-spacing:1.5px;direction:ltr;display:inline-block;margin:12px 0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 20px;font-variant-numeric:tabular-nums;}
+  .reward-ticket .copy-btn{background:none;border:1px solid var(--gold);color:var(--gold-deep);padding:7px 18px;border-radius:20px;font-size:12px;font-weight:700;}
+  .reward-ticket .copy-btn:hover{background:var(--gold);color:#fff;}
+  .reward-ticket small{display:block;margin-top:12px;color:var(--ink-faint);font-size:11.5px;line-height:1.8;}
 
-  .loading{text-align:center;padding:60px 10px;color:var(--ink-faint);font-size:13px;}
+  .loading{text-align:center;padding:70px 10px;color:var(--ink-faint);font-size:13px;}
 
   .hidden{display:none !important;}
 </style>
@@ -91,40 +152,47 @@
 <body>
 
 <div class="wrap">
-  <div class="brand">
-    <img src="image1/logo.png" alt="لوگو" class="brand-logo">
-    <b>فینگرفود فیروزه</b>
+
+  <div class="header">
+    <div class="mark facet-sm"><img src="image1/logo.png" alt="نشان فینگرفود فیروزه"></div>
+    <div class="wordmark"><b>فیروزه</b><span>فینگرفود دست‌ساز</span></div>
   </div>
+  <div class="frieze" id="friezeTop" aria-hidden="true"></div>
 
   <div id="loadingState" class="loading">در حال بارگذاری…</div>
 
   <!-- خطای توکن نامعتبر -->
-  <div id="invalidState" class="card state-box hidden">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-    <h2>لینک نامعتبر است</h2>
-    <p>این لینک منقضی شده یا اشتباه است. لطفاً از لینکی که برایتان پیامک شده استفاده کنید.</p>
+  <div id="invalidState" class="card facet-lg state-box hidden">
+    <div class="icon-facet bad facet-sm">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 7v6"/><circle cx="12" cy="16.5" r="1" fill="#fff" stroke="none"/></svg>
+    </div>
+    <h2>این لینک کار نمی‌کنه</h2>
+    <p>لینک منقضی شده یا نادرست است. از همان پیامکی که برایتان فرستادیم دوباره وارد شوید.</p>
   </div>
 
   <!-- قبلاً ثبت شده -->
-  <div id="alreadyState" class="card state-box hidden">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-    <h2>قبلاً ثبت شده</h2>
-    <p>شما قبلاً برای این سفارش نظرتان را ثبت کرده‌اید. از اینکه تجربه‌تان را با ما در میان گذاشتید ممنونیم ❤️</p>
+  <div id="alreadyState" class="card facet-lg state-box hidden">
+    <div class="icon-facet warn facet-sm">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>
+    </div>
+    <h2>قبلاً نظرتان را ثبت کردیم</h2>
+    <p>همان یک‌بار برایمان کافی است. ممنون که وقت گذاشتید و تجربه‌تان را با ما در میان گذاشتید.</p>
   </div>
 
   <!-- فرم اصلی -->
   <div id="formState" class="hidden">
-    <div class="card hello">
-      <h1 id="helloTitle">سلام 👋</h1>
-      <p id="helloText">از اینکه فینگرفود فیروزه را انتخاب کردید ممنونیم. امیدواریم از سفارش خود راضی بوده باشید.</p>
-      <span class="order-tag" id="orderTag">—</span>
+    <div class="greet">
+      <span class="eyebrow">بازخورد سفارش</span>
+      <h1 id="helloTitle">سلام</h1>
+      <p id="helloText">سینی سفارش‌تان همین چند وقت پیش به دست‌تان رسید. دوست داریم بدانیم چطور بود.</p>
+      <span class="order-chip" id="orderTag">—</span>
     </div>
 
-    <div class="card">
+    <div class="card facet-lg">
       <div class="error-box" id="formError"></div>
 
       <div class="field">
-        <label>تجربه شما از سفارش چطور بود؟ <span style="color:var(--red)">*</span></label>
+        <label>طعمش را چند از ۵ می‌دهید؟ <span style="color:var(--pomegranate)">*</span></label>
         <div class="star-picker" id="starPicker">
           <button type="button" data-v="1">★</button>
           <button type="button" data-v="2">★</button>
@@ -135,35 +203,46 @@
         <div class="rating-caption" id="ratingCaption"></div>
       </div>
 
-      <div class="field">
-        <label>اگر دوست دارید، تجربه‌تان را برای ما بنویسید</label>
-        <textarea id="commentInput" placeholder="مثلاً کیفیت غذا، بسته‌بندی، زمان تحویل…"></textarea>
-      </div>
+      <div class="divider"></div>
 
       <div class="field">
-        <label>عکس سفارش خود را اضافه کنید</label>
-        <div class="photo-input-box" id="photoBox">📷 برای انتخاب عکس ضربه بزنید</div>
+        <label>چیزی هست که بخواهید بیشتر بگویید؟</label>
+        <textarea id="commentInput" placeholder="طعم، بسته‌بندی، زمان رسیدن... هرچه به ذهنتان می‌رسد"></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field">
+        <label>عکسی از سینی گرفته‌اید؟</label>
+        <div class="photo-input-box" id="photoBox">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h1.2a1 1 0 0 0 .86-.5l.68-1.14A1 1 0 0 1 9.6 4h4.8a1 1 0 0 1 .86.36l.68 1.14a1 1 0 0 0 .86.5H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><circle cx="12" cy="13" r="3.4"/></svg></span>
+          <span class="txt">برای افزودن عکس ضربه بزنید</span>
+        </div>
         <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" multiple>
         <div class="photo-previews" id="photoPreviews"></div>
-        <div class="hint">اختیاری — حداکثر ۵ عکس، هر عکس حداکثر ۵ مگابایت (JPG/PNG/WebP)</div>
+        <div class="hint">اختیاری — تا ۵ عکس، هرکدام حداکثر ۵ مگابایت (JPG، PNG یا WebP)</div>
       </div>
 
-      <button class="btn-submit" id="submitBtn">ثبت نظر</button>
+      <button class="btn-submit facet-sm" id="submitBtn">ثبت نظر</button>
     </div>
   </div>
 
   <!-- بعد از ثبت موفق -->
-  <div id="successState" class="card state-box hidden">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-    <h2>ممنون که تجربه‌تان را با ما به اشتراک گذاشتید ❤️</h2>
-    <p>نظر شما برای ما ارزشمند است.</p>
-    <div class="reward-box" id="rewardBox">
-      <div>هدیه‌ی کوچک ما به شما:</div>
+  <div id="successState" class="card facet-lg state-box hidden">
+    <div class="icon-facet ok facet-sm">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>
+    </div>
+    <h2>نظرتان ثبت شد</h2>
+    <p>همین چیزهاست که کمک می‌کند سینی بعدی بهتر از قبل باشد.</p>
+    <div class="reward-ticket" id="rewardBox">
+      <div class="label">کد تخفیف سفارش بعدی شما</div>
       <div class="code" id="rewardCode">—</div>
-      <button class="copy-btn" id="copyRewardBtn">کپی کد</button>
+      <div><button class="copy-btn" id="copyRewardBtn">کپی کد</button></div>
       <small id="rewardMeta">—</small>
     </div>
   </div>
+
+  <div class="frieze" id="friezeBottom" aria-hidden="true"></div>
 </div>
 
 <script>
@@ -183,6 +262,14 @@ function show(id){
 
 function fmt(n){ return Number(n||0).toLocaleString('fa-IR'); }
 
+/* ---------------- تزئین کاشی (frieze) ---------------- */
+function buildFrieze(el, count){
+  const colors = ['var(--turq)','var(--paper-deep)','var(--gold)'];
+  el.innerHTML = Array.from({length:count}).map((_,i)=>`<span style="background:${colors[i%3]}"></span>`).join('');
+}
+buildFrieze(document.getElementById('friezeTop'), 22);
+buildFrieze(document.getElementById('friezeBottom'), 22);
+
 /* ---------------- بارگذاری اولیه ---------------- */
 async function init(){
   if(!token){ show('invalidState'); return; }
@@ -198,14 +285,14 @@ async function init(){
 
   if(data.already_reviewed){ show('alreadyState'); return; }
 
-  document.getElementById('helloTitle').textContent = `سلام ${data.customer_full_name || ''} 👋`;
+  document.getElementById('helloTitle').textContent = data.customer_full_name ? `سلام ${data.customer_full_name} جان` : 'سلام';
   document.getElementById('orderTag').textContent = `سفارش #${data.order_number}`;
   show('formState');
 }
 
 /* ---------------- ستاره‌ها ---------------- */
 let selectedRating = 0;
-const captions = {1:'خیلی ضعیف', 2:'ضعیف', 3:'معمولی', 4:'خوب', 5:'عالی'};
+const captions = {1:'اصلاً راضی نبودم', 2:'در حد انتظارم نبود', 3:'بد نبود', 4:'خوب بود', 5:'عالی بود'};
 const starButtons = document.querySelectorAll('#starPicker button');
 starButtons.forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -225,11 +312,11 @@ document.getElementById('photoInput').addEventListener('change', (e)=>{
   const files = Array.from(e.target.files);
   for(const f of files){
     if(selectedFiles.length >= MAX_IMAGES){
-      showError(`حداکثر ${MAX_IMAGES} عکس می‌توانید اضافه کنید.`); break;
+      showError(`بیشتر از ${MAX_IMAGES} عکس نمی‌شود اضافه کرد.`); break;
     }
-    if(f.size > MAX_SIZE){ showError(`حجم عکس «${f.name}» بیشتر از ۵ مگابایت است.`); continue; }
+    if(f.size > MAX_SIZE){ showError(`عکس «${f.name}» بزرگ‌تر از ۵ مگابایت است.`); continue; }
     if(!['image/jpeg','image/jpg','image/png','image/webp'].includes(f.type)){
-      showError(`فرمت «${f.name}» مجاز نیست.`); continue;
+      showError(`فرمت «${f.name}» پشتیبانی نمی‌شود.`); continue;
     }
     selectedFiles.push(f);
   }
@@ -240,7 +327,7 @@ document.getElementById('photoInput').addEventListener('change', (e)=>{
 function renderPreviews(){
   const wrap = document.getElementById('photoPreviews');
   wrap.innerHTML = selectedFiles.map((f,i)=>`
-    <div class="thumb">
+    <div class="thumb facet-sm">
       <img src="${URL.createObjectURL(f)}" alt="">
       <button type="button" data-i="${i}">✕</button>
     </div>`).join('');
@@ -267,7 +354,7 @@ function clearError(){
 document.getElementById('submitBtn').addEventListener('click', async ()=>{
   clearError();
 
-  if(selectedRating < 1){ showError('لطفاً امتیاز خود را انتخاب کنید.'); return; }
+  if(selectedRating < 1){ showError('اول امتیازتان را انتخاب کنید.'); return; }
 
   const comment = document.getElementById('commentInput').value.trim();
 
@@ -287,7 +374,7 @@ document.getElementById('submitBtn').addEventListener('click', async ()=>{
     data = await res.json().catch(()=>({}));
   }catch(e){
     btn.disabled = false; btn.textContent = 'ثبت نظر';
-    showError('خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.');
+    showError('الان به سرور وصل نمی‌شویم. چند لحظه دیگر دوباره امتحان کنید.');
     return;
   }
 
@@ -295,7 +382,7 @@ document.getElementById('submitBtn').addEventListener('click', async ()=>{
 
   if(!res.ok){
     const firstMsg = data.detail || Object.values(data)[0];
-    showError(Array.isArray(firstMsg) ? firstMsg[0] : (firstMsg || 'ثبت نظر با خطا مواجه شد.'));
+    showError(Array.isArray(firstMsg) ? firstMsg[0] : (firstMsg || 'نظر ثبت نشد، یک‌بار دیگر امتحان کنید.'));
     return;
   }
 
@@ -310,9 +397,9 @@ function renderSuccess(data){
     let untilTxt = '';
     if(data.reward_valid_until){
       const d = new Date(data.reward_valid_until);
-      untilTxt = ` — تا ${d.toLocaleDateString('fa-IR')} معتبر است`;
+      untilTxt = ` — تا ${d.toLocaleDateString('fa-IR')} اعتبار دارد`;
     }
-    document.getElementById('rewardMeta').textContent = `${valueTxt}${untilTxt} · در خرید بعدی استفاده کنید`;
+    document.getElementById('rewardMeta').textContent = `${valueTxt}${untilTxt} · در سفارش بعدی واردش کنید`;
     document.getElementById('copyRewardBtn').addEventListener('click', ()=>{
       navigator.clipboard.writeText(data.reward_code);
       document.getElementById('copyRewardBtn').textContent = 'کپی شد ✓';
