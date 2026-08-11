@@ -723,11 +723,6 @@
    animation: slideRight 120s linear infinite;
    gap: 40px;
  }
- /* =========================================================
-    باکس محصول در بخش «پرفروش‌ترین‌ها» — یکسان‌سازی اندازه با
-    استفاده از flex-basis ثابت به‌جای min-width آزاد، تا طول
-    توضیحات یا نام محصول باعث نامساوی شدن عرض کارت‌ها نشود.
-    ========================================================= */
  .best-seller-card {
    box-sizing: border-box;
    flex: 0 0 250px;
@@ -776,7 +771,6 @@
    object-fit: cover;
    border-radius: 12px;
  }
- /* نام محصول - تازه اضافه شده */
  .best-seller-name {
    font-size: 1.05rem;
    font-weight: 700;
@@ -1025,33 +1019,138 @@
  .user-review {
    min-width: 320px;
    background: var(--background-color);
-   padding: 24px;
-   border-radius: 12px;
-   box-shadow: var(--shadow);
-   border-right: 4px solid var(--primary-color);
+   padding: 28px 24px 18px;
+   border-radius: 18px;
+   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+   border: 1px solid var(--border-color);
    text-align: right;
+   position: relative;
+   overflow: hidden;
+   transition: var(--transition);
+ }
+ .user-review:hover {
+   transform: translateY(-4px);
+   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+ }
+ .user-review::before {
+   content: '\201C';
+   position: absolute;
+   top: -6px;
+   left: 18px;
+   font-size: 4.5rem;
+   color: rgba(38, 166, 154, 0.1);
+   font-family: Georgia, 'Times New Roman', serif;
+   line-height: 1;
+   pointer-events: none;
+ }
+ .review-header {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin-bottom: 12px;
+   position: relative;
+   z-index: 1;
+ }
+ .review-avatar {
+   width: 42px;
+   height: 42px;
+   min-width: 42px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+   color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 1.05rem;
+ }
+ .review-name-wrap {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+   min-width: 0;
+ }
+ .review-name {
+   font-weight: 700;
+   font-size: 0.98rem;
+   color: var(--text-dark);
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 6px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+ .review-verified {
+   display: inline-flex;
+   align-items: center;
+   gap: 3px;
+   font-size: 0.68rem;
+   color: var(--primary-color);
+   background: rgba(38, 166, 154, 0.1);
+   padding: 2px 8px;
+   border-radius: 20px;
+   font-weight: 600;
+   white-space: nowrap;
  }
  .rating {
-   font-size: 1.2rem;
+   font-size: 1rem;
    color: #FFD700;
-   margin-bottom: 12px;
-   text-align: center;
+   text-align: right;
+   margin: 0;
  }
  .user-review p {
-   margin: 0;
-   font-style: italic;
-   color: var(--text-dark);
-   font-size: 1.1rem;
-   line-height: 1.7;
- }
- .user-review .rname {
-   display: block;
-   margin-top: 12px;
    font-style: normal;
-   font-weight: 700;
-   font-size: 0.9rem;
-   color: var(--primary-color);
-   text-align: center;
+   color: var(--text-dark);
+   font-size: 0.98rem;
+   line-height: 1.75;
+   margin: 14px 0 16px;
+   position: relative;
+   z-index: 1;
+ }
+ .review-footer {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 6px;
+   border-top: 1px solid var(--border-color);
+   padding-top: 12px;
+   font-size: 0.78rem;
+   color: #9CA3AF;
+ }
+ .review-footer i {
+   font-size: 0.75rem;
+ }
+ .more-reviews {
+   margin-top: 24px;
+   padding: 12px 32px;
+   border: none;
+   border-radius: 12px;
+   background: var(--primary-color);
+   color: var(--text-light);
+   cursor: pointer;
+   font-weight: 600;
+   font-size: 1.1rem;
+   transition: var(--transition);
+   box-shadow: var(--shadow);
+ }
+ .more-reviews:hover {
+   background: var(--secondary-color);
+   color: var(--text-light);
+   transform: translateY(-2px);
+ }
+ .user-reviews {
+   display: flex;
+   justify-content: center;
+   overflow: hidden;
+   margin-bottom: 40px;
+ }
+ .user-review-container {
+   width: 200%;
+   display: flex;
+   gap: 40px;
+   animation: slideRight 35s linear infinite;
  }
  .auth-modal {
    position: fixed;
@@ -3771,17 +3870,46 @@
      return out;
    }
 
+   // ---- تابع جدید برای محاسبه زمان نسبی ----
+   function timeAgoFa(dateStr){
+     if(!dateStr) return '';
+     const date = new Date(dateStr);
+     const diffSec = Math.floor((Date.now() - date.getTime()) / 1000);
+     if(diffSec < 60) return 'همین الان';
+     const diffMin = Math.floor(diffSec / 60);
+     if(diffMin < 60) return `${diffMin.toLocaleString('fa-IR')} دقیقه پیش`;
+     const diffHour = Math.floor(diffMin / 60);
+     if(diffHour < 24) return `${diffHour.toLocaleString('fa-IR')} ساعت پیش`;
+     const diffDay = Math.floor(diffHour / 24);
+     if(diffDay < 30) return `${diffDay.toLocaleString('fa-IR')} روز پیش`;
+     const diffMonth = Math.floor(diffDay / 30);
+     if(diffMonth < 12) return `${diffMonth.toLocaleString('fa-IR')} ماه پیش`;
+     const diffYear = Math.floor(diffMonth / 12);
+     return `${diffYear.toLocaleString('fa-IR')} سال پیش`;
+   }
+
+   // ---- کارت نظر جدید با آواتار، اسم در بالا، بج خرید تایید شده و تاریخ نسبی ----
    function reviewCardHtml(r){
      const text = (r.comment || '').trim();
      const safeText = text ? utils.escapeHTML(text) : 'مشتری راضی از خرید';
-     const nameHtml = r.customer_display_name
-       ? `<span class="rname">${utils.escapeHTML(r.customer_display_name)}</span>`
+     const displayName = r.customer_display_name ? utils.escapeHTML(r.customer_display_name) : 'مشتری فیروزه';
+     const initial = displayName.trim().charAt(0) || 'ف';
+     const verifiedBadge = r.is_verified_purchase
+       ? `<span class="review-verified"><i class="fas fa-check-circle"></i> خرید تایید‌شده</span>`
        : '';
+     const dateLabel = timeAgoFa(r.created_at);
+
      return `
        <div class="user-review">
-         <div class="rating">${starsHtmlPublic(r.rating)} (${r.rating}/۵)</div>
+         <div class="review-header">
+           <div class="review-avatar">${initial}</div>
+           <div class="review-name-wrap">
+             <span class="review-name">${displayName}${verifiedBadge}</span>
+             <div class="rating">${starsHtmlPublic(r.rating)} (${r.rating}/۵)</div>
+           </div>
+         </div>
          <p>${safeText}</p>
-         ${nameHtml}
+         ${dateLabel ? `<div class="review-footer"><i class="far fa-clock"></i><span>${dateLabel}</span></div>` : ''}
        </div>
      `;
    }
