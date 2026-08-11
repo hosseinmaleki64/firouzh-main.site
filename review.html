@@ -36,7 +36,7 @@
 
   .wrap{max-width:520px;margin:0 auto;padding:36px 18px 60px;}
   .brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:26px;}
-  .brand-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--turq),var(--turq-deep));clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);}
+  .brand-logo{height:38px;width:auto;display:block;}
   .brand b{font-size:16px;font-weight:800;}
 
   .card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:26px 22px;margin-bottom:18px;}
@@ -92,7 +92,7 @@
 
 <div class="wrap">
   <div class="brand">
-    <span class="brand-mark"></span>
+    <img src="logo.html" alt="لوگو" class="brand-logo">
     <b>فینگرفود فیروزه</b>
   </div>
 
@@ -274,7 +274,6 @@ document.getElementById('submitBtn').addEventListener('click', async ()=>{
   const fd = new FormData();
   fd.append('rating', selectedRating);
   fd.append('comment', comment);
-  // تنظیم مقادیر ثابت برای نام و نمایش عمومی
   fd.append('display_name_preference', 'FULL_NAME');
   fd.append('consent_public', true);
   selectedFiles.forEach(f=> fd.append('images', f));
