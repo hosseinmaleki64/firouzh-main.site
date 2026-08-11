@@ -2187,7 +2187,7 @@
                         </div>
                         <div class="summary-item">
                             <span class="summary-label">هزینه ارسال:</span>
-                            <span class="summary-value" data-type="shipping">۳۰,۰۰۰ تومان</span>
+                            <span class="summary-value" data-type="shipping">هزینه ارسال پس از تایید سفارش تعیین خواهد شد</span>
                         </div>
                         <div class="summary-item">
                             <span class="summary-label">مالیات:</span>
@@ -2250,7 +2250,7 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">هزینه ارسال:</span>
-                                <span class="detail-value" id="finalShipping">۳۰,۰۰۰ تومان</span>
+                                <span class="detail-value" id="finalShipping">هزینه ارسال پس از تایید سفارش تعیین خواهد شد</span>
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">مالیات:</span>
@@ -2460,7 +2460,7 @@
                 this.discount = 0;
                 this.appliedCouponCode = '';
                 this.deliveryFee = 0;
-                this.shipping = this.baseShipping;
+                this.shipping = 0; // هزینه ارسال فعلاً صفر و فقط متن نمایش داده می‌شود
                 this.total = 0;
                 this.codUpfront = 0;
                 this.codRemaining = 0;
@@ -2604,6 +2604,8 @@
                 this.subtotal = Number(this.cart.subtotal) || 0;
                 // مالیات صفر شد
                 this.tax = 0;
+                // هزینه ارسال فعلاً صفر (فقط متن نمایش داده می‌شود)
+                this.shipping = 0;
                 this.total = this.subtotal + this.shipping + this.tax - this.discount;
                 this.updateOrderSummary();
             }
@@ -3166,17 +3168,25 @@
                 const discounts = document.querySelectorAll('[data-type="discount"]');
                 discounts.forEach(el => el.textContent = this.formatPrice(this.discount));
 
+                // نمایش متن به جای عدد برای هزینه ارسال
+                const shippingText = 'هزینه ارسال پس از تایید سفارش تعیین خواهد شد';
                 const shippings = document.querySelectorAll('[data-type="shipping"]');
-                shippings.forEach(el => el.textContent = this.formatPrice(this.shipping));
+                shippings.forEach(el => el.textContent = shippingText);
 
                 // مالیات همواره صفر است
                 this.tax = 0;
                 const taxes = document.querySelectorAll('[data-type="tax"]');
                 taxes.forEach(el => el.textContent = this.formatPrice(this.tax));
 
-                this.total = this.subtotal + this.shipping + this.tax - this.discount;
+                // محاسبه جمع کل بدون هزینه ارسال (چون هنوز مشخص نیست)
+                this.total = this.subtotal + this.tax - this.discount;
                 const totals = document.querySelectorAll('[data-type="total"]');
                 totals.forEach(el => el.textContent = this.formatPrice(this.total));
+
+                // بروزرسانی finalShipping در مرحله ۴
+                if (this.finalShipping) {
+                    this.finalShipping.textContent = shippingText;
+                }
 
                 const codOption = document.querySelector('.payment-option[data-method="cod"]');
                 const wasCodSelected = codOption.classList.contains('selected');
@@ -3212,7 +3222,7 @@
 
                 if (this.finalSubtotal) this.finalSubtotal.textContent = this.formatPrice(this.subtotal);
                 if (this.finalDiscount) this.finalDiscount.textContent = this.formatPrice(this.discount);
-                if (this.finalShipping) this.finalShipping.textContent = this.formatPrice(this.shipping);
+                // finalShipping قبلاً تنظیم شد
                 if (this.finalTax) this.finalTax.textContent = this.formatPrice(this.tax);
                 if (this.finalTotal) this.finalTotal.textContent = this.formatPrice(this.total);
                 if (this.finalCodUpfront && this.finalCodUpfront.querySelector('.detail-value')) {
@@ -3293,6 +3303,11 @@
                     summaryDiv.innerHTML = `<span>${item.product.name} (تعداد: ${item.quantity})</span> <span>${this.formatPrice(Number(item.total_price))}</span>`;
                     this.finalProductsList.appendChild(summaryDiv);
                 });
+
+                // اطمینان از نمایش متن هزینه ارسال در مرحله ۴
+                if (this.finalShipping) {
+                    this.finalShipping.textContent = 'هزینه ارسال پس از تایید سفارش تعیین خواهد شد';
+                }
             }
 
             validateDeliveryTime() {
@@ -3332,7 +3347,7 @@
                         this.timeError.classList.remove('active');
                         this.deliveryTimeInput.classList.remove('error');
                         this.deliveryTimeInput.classList.add('valid');
-                        this.calculateDeliveryFee(selectedTime);
+                        // هزینه ارسال را محاسبه نمی‌کنیم چون فقط متن نمایش داده می‌شود
                         return true;
                     }
                 } catch (e) {
@@ -3343,17 +3358,10 @@
                 }
             }
 
+            // این تابع دیگر استفاده نمی‌شود اما برای جلوگیری از خطا نگه داشتیم
             calculateDeliveryFee(deliveryDate) {
-                this.deliveryFee = 0;
-                const hours = deliveryDate.getHours();
-                if (hours >= 21 || hours < 8) {
-                    this.deliveryFee += 20000;
-                }
-                const day = deliveryDate.getDay();
-                if (day === 4 || day === 5) {
-                    this.deliveryFee += 15000;
-                }
-                this.shipping = this.baseShipping + this.deliveryFee;
+                // هزینه ارسال فعلاً محاسبه نمی‌شود
+                this.shipping = 0;
                 this.updateOrderSummary();
             }
 
