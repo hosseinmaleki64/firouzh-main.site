@@ -32,6 +32,7 @@
   }
   button{font-family:inherit;cursor:pointer;}
   input,textarea{font-family:inherit;}
+  a{text-decoration:none;}
   .facet{clip-path:polygon(0 0, calc(100% - var(--facet)) 0, 100% var(--facet), 100% 100%, var(--facet) 100%, 0 calc(100% - var(--facet)));}
 
   .wrap{max-width:520px;margin:0 auto;padding:36px 18px 60px;}
@@ -78,10 +79,11 @@
   .state-box h2{font-size:16px;font-weight:800;margin:0 0 8px;}
   .state-box p{font-size:13px;color:var(--ink-soft);line-height:2;margin:0;}
 
-  .reward-box{background:var(--surface-alt);border:1.5px dashed var(--turq);border-radius:12px;padding:20px;text-align:center;margin-top:18px;}
-  .reward-box .code{font-size:20px;font-weight:800;color:var(--turq-darker);letter-spacing:1px;direction:ltr;display:inline-block;margin:10px 0;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 18px;}
-  .reward-box .copy-btn{margin-top:8px;background:var(--turq-deep);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;}
-  .reward-box small{display:block;margin-top:10px;color:var(--ink-faint);font-size:11.5px;}
+  .cta-group{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .cta-primary{display:block;width:100%;background:var(--turq-deep);color:#fff;border:none;padding:13px;font-size:14px;font-weight:700;border-radius:10px;text-align:center;}
+  .cta-primary:hover{background:var(--turq-darker);}
+  .cta-secondary{display:block;width:100%;background:var(--surface-alt);color:var(--turq-darker);border:1px solid var(--border);padding:12px;font-size:13.5px;font-weight:700;border-radius:10px;text-align:center;}
+  .cta-secondary:hover{border-color:var(--turq);}
 
   .loading{text-align:center;padding:60px 10px;color:var(--ink-faint);font-size:13px;}
 
@@ -155,13 +157,12 @@
   <!-- بعد از ثبت موفق -->
   <div id="successState" class="card state-box hidden">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-    <h2>ممنون که تجربه‌تان را با ما به اشتراک گذاشتید ❤️</h2>
-    <p>نظر شما برای ما ارزشمند است.</p>
-    <div class="reward-box" id="rewardBox">
-      <div>هدیه‌ی کوچک ما به شما:</div>
-      <div class="code" id="rewardCode">—</div>
-      <button class="copy-btn" id="copyRewardBtn">کپی کد</button>
-      <small id="rewardMeta">—</small>
+    <h2>🎉 ممنون که تجربه‌تان را با ما به اشتراک گذاشتید!</h2>
+    <p>نظر شما برای تیم فیروزه واقعاً ارزشمند است ❤️<br>حالا اگر دوست دارید، می‌توانید جدیدترین فینگرفودها و دسرهای ما را ببینید.</p>
+
+    <div class="cta-group">
+      <a class="cta-primary" href="https://firouzehco.com/finger-food.html?page=1" target="_blank" rel="noopener">مشاهده محصولات ←</a>
+      <a class="cta-secondary" href="https://www.firouzehco.com" target="_blank" rel="noopener">رفتن به سایت فیروزه</a>
     </div>
   </div>
 </div>
@@ -180,8 +181,6 @@ function show(id){
     document.getElementById(s).classList.toggle('hidden', s !== id);
   });
 }
-
-function fmt(n){ return Number(n||0).toLocaleString('fa-IR'); }
 
 /* ---------------- بارگذاری اولیه ---------------- */
 async function init(){
@@ -299,29 +298,8 @@ document.getElementById('submitBtn').addEventListener('click', async ()=>{
     return;
   }
 
-  renderSuccess(data);
-});
-
-function renderSuccess(data){
-  if(data.reward_code){
-    document.getElementById('rewardCode').textContent = data.reward_code;
-    const isPercent = (data.reward_discount_type || '').toUpperCase() === 'PERCENT';
-    const valueTxt = isPercent ? `${fmt(data.reward_discount_value)}٪ تخفیف` : `${fmt(data.reward_discount_value)} تومان تخفیف`;
-    let untilTxt = '';
-    if(data.reward_valid_until){
-      const d = new Date(data.reward_valid_until);
-      untilTxt = ` — تا ${d.toLocaleDateString('fa-IR')} معتبر است`;
-    }
-    document.getElementById('rewardMeta').textContent = `${valueTxt}${untilTxt} · در خرید بعدی استفاده کنید`;
-    document.getElementById('copyRewardBtn').addEventListener('click', ()=>{
-      navigator.clipboard.writeText(data.reward_code);
-      document.getElementById('copyRewardBtn').textContent = 'کپی شد ✓';
-    });
-  }else{
-    document.getElementById('rewardBox').classList.add('hidden');
-  }
   show('successState');
-}
+});
 
 init();
 </script>
