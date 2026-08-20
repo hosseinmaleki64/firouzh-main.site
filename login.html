@@ -728,6 +728,7 @@
       const res = await fetch(`${API_BASE_URL}/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',   // اضافه شد
         body: JSON.stringify(loginData)
       });
 
@@ -745,7 +746,6 @@
         await loadProfile();
 
         showMessage(loginMessage, 'ورود با موفقیت انجام شد. در حال انتقال...', 'success');
-        // حالا از AFTER_LOGIN_REDIRECT که پویا تعیین شده استفاده می‌کنیم
         setTimeout(() => { window.location.href = AFTER_LOGIN_REDIRECT; }, 700);
       } else {
         alert("شماره یا رمز عبور اشتباه است.");
