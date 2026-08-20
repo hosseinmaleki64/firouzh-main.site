@@ -3727,7 +3727,13 @@
    events.setup();
 
    (async () => {
-     state.userData = await getProfile();
+     const profile = await getProfile();
+     if (profile) {
+       state.userData = {
+         username: profile.full_name,
+         character: (profile.full_name || '؟').trim().charAt(0),
+       };
+     }
      auth.updateUserUI();
    })();
 
