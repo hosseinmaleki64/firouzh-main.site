@@ -3024,7 +3024,7 @@
        <span>جمع کل</span>
        <b id="cartSidebarTotal">۰ تومان</b>
      </div>
-     <a href="checkout.html" class="cart-sidebar-checkout">ثبت سفارش</a>
+     <a href="checkout.html" class="cart-sidebar-checkout" id="cartSidebarCheckout">ثبت سفارش</a>
    </div>
  </aside>
 
@@ -3303,6 +3303,7 @@
      cartSidebarEmpty: document.getElementById('cartSidebarEmpty'),
      cartSidebarFoot: document.getElementById('cartSidebarFoot'),
      cartSidebarTotal: document.getElementById('cartSidebarTotal'),
+     cartSidebarCheckout: document.getElementById('cartSidebarCheckout'),
    };
    const baseURL = "https://api.firouzehco.com/api/auth/";
 
@@ -3596,6 +3597,17 @@
        });
        elements.cartSidebarClose.addEventListener('click', closeCartSidebar);
 
+       // دکمه ثبت سفارش در سبد خرید
+       elements.cartSidebarCheckout.addEventListener('click', (e) => {
+         e.preventDefault();
+         const token = getCustomerToken();
+         if (token) {
+           window.location.href = 'checkout.html';
+         } else {
+           window.location.href = 'login.html?redirect=' + encodeURIComponent('checkout.html');
+         }
+       });
+
        elements.userProfile.addEventListener('click', (e) => {
          if (state.userData) {
            e.preventDefault();
@@ -3678,10 +3690,10 @@
        const footer = document.querySelector('footer');
        const supportWidget = document.querySelector('.support-widget');
        const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    supportWidget.style.display = entry.isIntersecting ? 'none' : 'flex';
-  });
-}, { threshold: 0.1 });
+         entries.forEach(entry => {
+           supportWidget.style.display = entry.isIntersecting ? 'none' : 'flex';
+         });
+       }, { threshold: 0.1 });
        observer.observe(footer);
 
        const slider = document.querySelector('.best-sellers-slider');
