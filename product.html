@@ -2653,16 +2653,50 @@
       track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     }
 
-    // ============ CART API ============
+    // ============ CART API (با پشتیبانی از refresh token) ============
     function getCustomerToken(){ return localStorage.getItem('access'); }
+    function getRefreshToken(){ return localStorage.getItem('refresh'); }
 
-    async function cartFetch(path, options = {}){
+    async function refreshAccessToken(){
+      const refresh = getRefreshToken();
+      if(!refresh) return false;
+      try{
+        const res = await fetch(`${API_BASE}/api/auth/refresh/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refresh })
+        });
+        if(!res.ok) return false;
+        const data = await res.json();
+        if(!data.access) return false;
+        localStorage.setItem('access', data.access);
+        return true;
+      }catch(_){
+        return false;
+      }
+    }
+
+    async function cartFetch(path, options = {}, _isRetry = false){
       const headers = Object.assign({}, options.headers || {});
       if(options.body) headers['Content-Type'] = 'application/json';
       const token = getCustomerToken();
       if(token) headers['Authorization'] = `Bearer ${token}`;
 
       const res = await fetch(CART_API + path, { ...options, headers, credentials: 'include' });
+
+      if(res.status === 401 && !_isRetry){
+        const refreshed = await refreshAccessToken();
+        if(refreshed){
+          return cartFetch(path, options, true);
+        }
+        // توکن منقضی/نامعتبره و refresh هم جواب نداد؛ پاکش کن و به‌عنوان مهمان ادامه بده
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        window.userData = null;
+        updateUserUI();
+        return cartFetch(path, options, true);
+      }
+
       if(!res.ok){
         const err = await res.json().catch(() => ({}));
         throw err;
@@ -2918,9 +2952,11 @@
         const response = await fetch(`${API_BASE}/api/auth/profile/`, {
           method: 'GET',
           headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          credentials: 'include',
         });
         if (response.ok) return await response.json();
         localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
         return null;
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -3117,6 +3153,7 @@
 
     elements.confirmLogout.addEventListener('click', () => {
       localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
       window.userData = null;
       updateUserUI();
       elements.logoutModal.classList.remove('active');
