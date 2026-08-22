@@ -2237,7 +2237,7 @@
         <span>جمع کل</span>
         <b id="cartSidebarTotal">۰ تومان</b>
       </div>
-      <a href="checkout.html" class="cart-sidebar-checkout">ثبت سفارش</a>
+      <a href="checkout.html" class="cart-sidebar-checkout" id="cartSidebarCheckout">ثبت سفارش</a>
     </div>
   </aside>
 
@@ -2460,11 +2460,12 @@
       cartSidebarEmpty: document.getElementById('cartSidebarEmpty'),
       cartSidebarFoot: document.getElementById('cartSidebarFoot'),
       cartSidebarTotal: document.getElementById('cartSidebarTotal'),
+      cartSidebarCheckout: document.getElementById('cartSidebarCheckout'),
       cartBadge: document.getElementById('cartBadge'),
       cartLink: document.getElementById('cartLink'),
       cartItemsContainer: document.getElementById('cartItemsContainer'),
       cartCountSelect: document.getElementById('cartCountSelect'),
-      addToCartBtn: document.getElementById('addToCartBtn')
+      addToCartBtn: document.getElementById('addToCartBtn'),
     };
 
     // ============ Product / Cart State ============
@@ -2936,12 +2937,17 @@
       updateCartTotalDisplay();
     }
 
-    function confirmOrder() {
+        function confirmOrder() {
       if (!cartState.items || !cartState.items.length) {
         alert('سبد خرید شما خالی است.');
         return;
       }
-      window.location.href = 'checkout.html';
+      const token = getCustomerToken();
+      if (token) {
+        window.location.href = 'checkout.html';
+      } else {
+        window.location.href = 'login.html?redirect=' + encodeURIComponent('checkout.html');
+      }
     }
 
     // ============ Auth / Profile ============
@@ -3216,6 +3222,16 @@
     });
     elements.cartSidebarClose.addEventListener('click', closeCartSidebar);
 
+    elements.cartSidebarCheckout.addEventListener('click', (e) => {
+      e.preventDefault();
+      const token = getCustomerToken();
+      if (token) {
+        window.location.href = 'checkout.html';
+      } else {
+        window.location.href = 'login.html?redirect=' + encodeURIComponent('checkout.html');
+      }
+    });
+    
     document.querySelectorAll('.size-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
