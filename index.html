@@ -3375,7 +3375,27 @@
 
    function getCustomerToken(){ return localStorage.getItem('access'); }
 
-   async function cartFetch(path, options = {}){
+   // ---------- توابع جدید برای تازه‌سازی توکن و ارسال درخواست با مدیریت ۴۰۱ ----------
+   async function refreshAccessToken(){
+     const refresh = localStorage.getItem('refresh');
+     if(!refresh) return false;
+     try{
+       const res = await fetch(`${API_ORIGIN}/api/auth/refresh/`, {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ refresh })
+       });
+       if(!res.ok) return false;
+       const data = await res.json();
+       if(!data.access) return false;
+       localStorage.setItem('access', data.access);
+       return true;
+     }catch(_){
+       return false;
+     }
+   }
+
+   async function cartFetch(path, options = {}, _isRetry = false){
      const headers = Object.assign({}, options.headers || {});
      if(options.body) headers['Content-Type'] = 'application/json';
      const token = getCustomerToken();
@@ -3386,14 +3406,27 @@
        headers,
        credentials: 'include',
      });
+
+     if(res.status === 401 && !_isRetry){
+       const refreshed = await refreshAccessToken();
+       if(refreshed){
+         return cartFetch(path, options, true);
+       }
+       // اگه refresh هم شکست خورد، توکن‌های خراب رو پاک کن تا کاربر به‌عنوان مهمان ادامه بده
+       localStorage.removeItem('access');
+       localStorage.removeItem('refresh');
+       state.userData = null;
+       auth.updateUserUI();
+       return cartFetch(path, options, true); // یک بار دیگه بدون توکن تلاش کن
+     }
+
      if(!res.ok){
        const err = await res.json().catch(() => ({}));
        throw err;
      }
      return res.json();
    }
-
-   let cartState = { items: [], total_items: 0, subtotal: 0, total: 0 };
+   // -------------------------------------------------------------
 
    async function loadCart(){
      try{
