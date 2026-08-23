@@ -947,10 +947,10 @@
      // دکمه‌های اکشن
      let actions = '';
      if(order.status === 'PENDING_PAYMENT'){
-       actions += `<button class="btn-primary" onclick="initiatePayment(${order.id})"><i class="fas fa-credit-card"></i> پرداخت مجدد</button>`;
-       actions += `<button class="btn-danger" onclick="cancelOrder(${order.id})"><i class="fas fa-times"></i> لغو سفارش</button>`;
+       actions += `<button class="btn-primary" onclick="initiatePayment('${order.id}')"><i class="fas fa-credit-card"></i> پرداخت مجدد</button>`;
+       actions += `<button class="btn-danger" onclick="cancelOrder('${order.id}')"><i class="fas fa-times"></i> لغو سفارش</button>`;
      } else if(['PAID','CONFIRMED','PREPARING','READY'].includes(order.status)){
-       actions += `<button class="btn-danger" onclick="cancelOrder(${order.id})"><i class="fas fa-times"></i> لغو سفارش</button>`;
+       actions += `<button class="btn-danger" onclick="cancelOrder('${order.id}')"><i class="fas fa-times"></i> لغو سفارش</button>`;
      } else if(order.status === 'DELIVERED'){
        // دکمه دانلود فاکتور فعلاً غیرفعال (چون در بک‌اند پیاده‌سازی نشده)
        // actions += `<a href="#" class="btn-outline btn-disabled"><i class="fas fa-file-download"></i> دانلود فاکتور (به‌زودی)</a>`;
