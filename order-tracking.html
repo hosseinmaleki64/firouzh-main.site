@@ -954,7 +954,7 @@
      } else if(order.status === 'DELIVERED'){
        // دکمه دانلود فاکتور فعلاً غیرفعال (چون در بک‌اند پیاده‌سازی نشده)
        // actions += `<a href="#" class="btn-outline btn-disabled"><i class="fas fa-file-download"></i> دانلود فاکتور (به‌زودی)</a>`;
-       actions += `<a href="finger-food.html" class="btn-primary"><i class="fas fa-star"></i> ثبت نظر و امتیاز</a>`;
+       actions += `<a href="review.html?token=${order.review_token}" class="btn-primary"><i class="fas fa-star"></i> ثبت نظر و امتیاز</a>`;
      }
      actions += `<a href="https://wa.me/09142830328" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> تماس با پشتیبانی</a>`;
 
