@@ -956,36 +956,6 @@
    font-weight: 600;
    margin-bottom: 20px;
  }
- .gallery {
-   display: none;
-   gap: 40px;
-   width: 100%;
-   overflow: hidden;
-   margin-bottom: 48px;
- }
- .gallery.active {
-   display: flex;
- }
- .gallery-container {
-   width: 200%;
-   display: flex;
-   animation: slideLeft 40s linear infinite;
-   gap: 40px;
- }
- .gallery-item {
-   width: 200px;
-   height: 200px;
-   background: var(--gradient-start);
-   border-radius: 12px;
-   flex-shrink: 0;
-   box-shadow: var(--shadow);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   color: var(--text-light);
-   font-weight: 600;
-   font-size: 1rem;
- }
  .more-reviews {
    margin-top: 24px;
    padding: 12px 32px;
@@ -1109,6 +1079,26 @@
    position: relative;
    z-index: 1;
  }
+ /* استایل جدید عکس‌های نظرات */
+ .review-images {
+   display: flex;
+   gap: 8px;
+   margin: 8px 0 14px;
+   flex-wrap: wrap;
+ }
+ .review-image-item {
+   width: 70px;
+   height: 70px;
+   border-radius: 10px;
+   overflow: hidden;
+   border: 1px solid var(--border-color);
+   flex-shrink: 0;
+ }
+ .review-image-item img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
  .review-footer {
    display: flex;
    justify-content: flex-start;
@@ -1121,36 +1111,6 @@
  }
  .review-footer i {
    font-size: 0.75rem;
- }
- .more-reviews {
-   margin-top: 24px;
-   padding: 12px 32px;
-   border: none;
-   border-radius: 12px;
-   background: var(--primary-color);
-   color: var(--text-light);
-   cursor: pointer;
-   font-weight: 600;
-   font-size: 1.1rem;
-   transition: var(--transition);
-   box-shadow: var(--shadow);
- }
- .more-reviews:hover {
-   background: var(--secondary-color);
-   color: var(--text-light);
-   transform: translateY(-2px);
- }
- .user-reviews {
-   display: flex;
-   justify-content: center;
-   overflow: hidden;
-   margin-bottom: 40px;
- }
- .user-review-container {
-   width: 200%;
-   display: flex;
-   gap: 40px;
-   animation: slideRight 35s linear infinite;
  }
  .auth-modal {
    position: fixed;
@@ -2123,10 +2083,6 @@
    .feature-card p {
      font-size: 0.85rem;
    }
-   .gallery-item {
-     width: 180px;
-     height: 180px;
-   }
    .user-review {
      min-width: 280px;
    }
@@ -2298,11 +2254,6 @@
    }
    .feature-card p {
      font-size: 0.8rem;
-   }
-   .gallery-item {
-     width: 160px;
-     height: 160px;
-     font-size: 0.9rem;
    }
    .user-review {
      min-width: 240px;
@@ -2599,11 +2550,6 @@
    }
    .feature-card p {
      font-size: 0.8rem;
-   }
-   .gallery-item {
-     width: 160px;
-     height: 160px;
-     font-size: 0.9rem;
    }
    .user-review {
      min-width: 240px;
@@ -3177,11 +3123,7 @@
        </div>
      </div>
      <a href="finger-food.html" class="more-reviews" style="text-decoration:none;display:inline-block;">مشاهده همه محصولات</a>
-     <div class="gallery" id="reviewGallery">
-       <div class="gallery-container" id="reviewGalleryContainer">
-         <!-- عکس‌های ارسالی مشتریان (در صورت وجود) به‌صورت داینامیک پر می‌شوند -->
-       </div>
-     </div>
+     <!-- بخش گالری جداگانه حذف شد تا عکس‌ها فقط داخل کارت‌های نظر نمایش داده شوند -->
    </section>
    <section id="blogs">
      <h2><span>Blogs</span>مجله و اخبار فیروزه</h2>
@@ -3940,7 +3882,7 @@
      return `${diffYear.toLocaleString('fa-IR')} سال پیش`;
    }
 
-   // ---- کارت نظر جدید با آواتار، اسم در بالا، بج خرید تایید شده و تاریخ نسبی ----
+   // ---- کارت نظر جدید با آواتار، اسم در بالا، بج خرید تایید شده، تاریخ نسبی و عکس‌ها ----
    function reviewCardHtml(r){
      const text = (r.comment || '').trim();
      const safeText = text ? utils.escapeHTML(text) : 'مشتری راضی از خرید';
@@ -3950,6 +3892,17 @@
        ? `<span class="review-verified"><i class="fas fa-check-circle"></i> خرید تایید‌شده</span>`
        : '';
      const dateLabel = timeAgoFa(r.created_at);
+
+     // ---- ساخت بلوک عکس‌ها اگر وجود داشته باشند ----
+     const imagesHtml = (r.images && r.images.length)
+       ? `<div class="review-images">
+            ${r.images.map(img => `
+              <div class="review-image-item">
+                <img src="${toAbsoluteMediaUrl(img.image)}" alt="عکس ارسالی ${displayName}" loading="lazy">
+              </div>
+            `).join('')}
+          </div>`
+       : '';
 
      return `
        <div class="user-review">
@@ -3961,6 +3914,7 @@
            </div>
          </div>
          <p>${safeText}</p>
+         ${imagesHtml}
          ${dateLabel ? `<div class="review-footer"><i class="far fa-clock"></i><span>${dateLabel}</span></div>` : ''}
        </div>
      `;
@@ -3969,8 +3923,6 @@
    async function loadCustomerReviews(){
      const badge = document.getElementById('reviewsBadge');
      const container = document.getElementById('userReviewContainer');
-     const galleryWrap = document.getElementById('reviewGallery');
-     const galleryContainer = document.getElementById('reviewGalleryContainer');
 
      // ۱) آمار کلی برای بج بالای بخش
      try{
@@ -4008,31 +3960,6 @@
      }catch(e){
        console.error('خطا در دریافت نظرات مشتریان:', e);
        container.innerHTML = '<div class="user-review"><p>خطا در دریافت نظرات از سرور</p></div>';
-     }
-
-     // ۳) گالری عکس‌های ارسالی مشتریان (در صورت وجود عکس در نظرات تایید شده)
-     try{
-       const photoItems = [];
-       reviews.forEach(r => {
-         if(r.images && r.images.length){
-           r.images.forEach(img => photoItems.push({ url: toAbsoluteMediaUrl(img.image), alt: r.customer_display_name || 'رضایت مشتری' }));
-         }
-       });
-
-       if(photoItems.length){
-         const itemsHtml = photoItems.map(p => `
-           <div class="gallery-item" style="padding:0;overflow:hidden;">
-             <img src="${p.url}" alt="${utils.escapeHTML(p.alt)}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy">
-           </div>
-         `).join('');
-         galleryContainer.innerHTML = itemsHtml + itemsHtml;
-         galleryWrap.classList.add('active');
-       }else{
-         galleryWrap.classList.remove('active');
-         galleryContainer.innerHTML = '';
-       }
-     }catch(e){
-       console.error('خطا در ساخت گالری عکس نظرات:', e);
      }
    }
 
