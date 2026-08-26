@@ -822,10 +822,21 @@
         return;
       }
 
-      alert("ثبت نام با موفقیت انجام شد.");
-      activateTab("login");
-      document.getElementById('loginMobile').value = mobile.value;
-      signupForm.reset();
+     if (data.access) {
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+
+        await loadProfile();
+
+        showMessage(signupMessage, 'ثبت‌نام با موفقیت انجام شد. در حال انتقال...', 'success');
+        setTimeout(() => { window.location.href = AFTER_LOGIN_REDIRECT; }, 700);
+  } else {
+  // fallback احتیاطی، اگه به هر دلیلی توکن نیومد
+        alert("ثبت نام با موفقیت انجام شد.");
+        activateTab("login");
+        document.getElementById('loginMobile').value = mobile.value;
+        signupForm.reset();
+    }
 
     } catch (err) {
       console.error('خطای ارتباط با سرور:', err);
