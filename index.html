@@ -997,6 +997,10 @@
    position: relative;
    overflow: hidden;
    transition: var(--transition);
+   /* اصلاح ارتفاع کارت‌ها */
+   display: flex;
+   flex-direction: column;
+   height: auto;
  }
  .user-review:hover {
    transform: translateY(-4px);
@@ -1098,6 +1102,7 @@
    width: 100%;
    height: 100%;
    object-fit: cover;
+   cursor: pointer;  /* نشانه قابل کلیک بودن */
  }
  .review-footer {
    display: flex;
@@ -1108,6 +1113,7 @@
    padding-top: 12px;
    font-size: 0.78rem;
    color: #9CA3AF;
+   margin-top: auto;  /* چسباندن فوتر به پایین کارت */
  }
  .review-footer i {
    font-size: 0.75rem;
@@ -2887,10 +2893,39 @@
    padding: 15px;
    border-radius: 50%;
  }
+
+ /* ========== استایل‌های لایت‌باکس ========== */
+ .image-lightbox {
+   position: fixed;
+   inset: 0;
+   background: rgba(0,0,0,0.85);
+   z-index: 2000;
+   display: none;
+   align-items: center;
+   justify-content: center;
+ }
+ .image-lightbox.active {
+   display: flex;
+ }
+ .image-lightbox img {
+   max-width: 90%;
+   max-height: 85vh;
+   border-radius: 12px;
+   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+ }
+ .lightbox-close {
+   position: absolute;
+   top: 20px;
+   left: 20px;
+   color: #fff;
+   font-size: 2.5rem;
+   cursor: pointer;
+   line-height: 1;
+ }
 </style>
 </head>
 <body>
- <header class="navbar">
+<header class="navbar">
    <div class="menu-icon" role="button" aria-label="باز کردن منو" aria-controls="sideMenu" aria-expanded="false">
      <i class="fas fa-bars"></i>
    </div>
@@ -3014,6 +3049,13 @@
      </div>
    </div>
  </div>
+
+ <!-- لایت‌باکس برای نمایش بزرگ عکس‌ها -->
+ <div class="image-lightbox" id="imageLightbox">
+   <span class="lightbox-close" id="lightboxClose">&times;</span>
+   <img id="lightboxImg" src="" alt="نمایش بزرگ عکس مشتری">
+ </div>
+
  <main>
    <section class="hero-section">
      <h1>FINGERFOOD FIROUZEH</h1>
@@ -3123,7 +3165,6 @@
        </div>
      </div>
      <a href="finger-food.html" class="more-reviews" style="text-decoration:none;display:inline-block;">مشاهده همه محصولات</a>
-     <!-- بخش گالری جداگانه حذف شد تا عکس‌ها فقط داخل کارت‌های نظر نمایش داده شوند -->
    </section>
    <section id="blogs">
      <h2><span>Blogs</span>مجله و اخبار فیروزه</h2>
@@ -3354,12 +3395,11 @@
        if(refreshed){
          return cartFetch(path, options, true);
        }
-       // اگه refresh هم شکست خورد، توکن‌های خراب رو پاک کن تا کاربر به‌عنوان مهمان ادامه بده
        localStorage.removeItem('access');
        localStorage.removeItem('refresh');
        state.userData = null;
        auth.updateUserUI();
-       return cartFetch(path, options, true); // یک بار دیگه بدون توکن تلاش کن
+       return cartFetch(path, options, true);
      }
 
      if(!res.ok){
@@ -3368,7 +3408,6 @@
      }
      return res.json();
    }
-   // -------------------------------------------------------------
 
    async function loadCart(){
      try{
@@ -3572,7 +3611,6 @@
        });
        elements.cartSidebarClose.addEventListener('click', closeCartSidebar);
 
-       // دکمه ثبت سفارش در سبد خرید
        elements.cartSidebarCheckout.addEventListener('click', (e) => {
          e.preventDefault();
          const token = getCustomerToken();
@@ -3641,6 +3679,7 @@
          elements.suggestionsBox.classList.remove('active');
          elements.userMenu.classList.remove('active');
          elements.logoutModal.classList.remove('active');
+         closeLightbox();  // بستن لایت‌باکس در صورت باز بودن
        });
        document.addEventListener('keydown', (e) => {
          if (e.key === 'Escape') {
@@ -3650,6 +3689,7 @@
            elements.suggestionsBox.classList.remove('active');
            elements.userMenu.classList.remove('active');
            elements.logoutModal.classList.remove('active');
+           closeLightbox();  // بستن لایت‌باکس با کلید Escape
          }
        });
 
@@ -3864,7 +3904,6 @@
      return out;
    }
 
-   // ---- تابع جدید برای محاسبه زمان نسبی ----
    function timeAgoFa(dateStr){
      if(!dateStr) return '';
      const date = new Date(dateStr);
@@ -3893,12 +3932,12 @@
        : '';
      const dateLabel = timeAgoFa(r.created_at);
 
-     // ---- ساخت بلوک عکس‌ها اگر وجود داشته باشند ----
+     // ---- ساخت بلوک عکس‌ها اگر وجود داشته باشند (با onclick برای لایت‌باکس) ----
      const imagesHtml = (r.images && r.images.length)
        ? `<div class="review-images">
             ${r.images.map(img => `
               <div class="review-image-item">
-                <img src="${toAbsoluteMediaUrl(img.image)}" alt="عکس ارسالی ${displayName}" loading="lazy">
+                <img src="${toAbsoluteMediaUrl(img.image)}" alt="عکس ارسالی ${displayName}" loading="lazy" onclick="openLightbox('${toAbsoluteMediaUrl(img.image)}')">
               </div>
             `).join('')}
           </div>`
@@ -3919,6 +3958,25 @@
        </div>
      `;
    }
+
+   // ---------- توابع لایت‌باکس ----------
+   function openLightbox(src){
+     const lb = document.getElementById('imageLightbox');
+     document.getElementById('lightboxImg').src = src;
+     lb.classList.add('active');
+     document.body.style.overflow = 'hidden';
+   }
+
+   function closeLightbox(){
+     document.getElementById('imageLightbox').classList.remove('active');
+     document.body.style.overflow = '';
+   }
+
+   // رویدادهای لایت‌باکس
+   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+   document.getElementById('imageLightbox').addEventListener('click', (e) => {
+     if(e.target.id === 'imageLightbox') closeLightbox();
+   });
 
    async function loadCustomerReviews(){
      const badge = document.getElementById('reviewsBadge');
