@@ -2300,6 +2300,7 @@
           <p class="product-desc" id="detail-desc"></p>
           <ul class="product-desc">
               <li id="detail-ingredients" style="display:none;"></li>
+              <li id="detail-components" style="display:none;"></li>
           </ul>
           <div class="size-selector" id="sizeSelector" style="display:none;" role="radiogroup" aria-label="انتخاب سایز"></div>
 
@@ -3050,6 +3051,13 @@
           const li = document.getElementById('detail-ingredients');
           li.textContent = 'مواد اولیه: ' + product.raw_materials.join('، ');
           li.style.display = 'list-item';
+        }
+
+        
+        if (product.components && product.components.length) {
+          const liComp = document.getElementById('detail-components');
+          liComp.textContent = 'محتویات پک: ' + product.components.join('، ');
+          liComp.style.display = 'list-item';
         }
 
         const priceEl = document.getElementById('detail-price');
