@@ -977,8 +977,19 @@
  .user-reviews {
    display: flex;
    justify-content: center;
-   overflow: hidden;
+   overflow-x: auto;
+   overflow-y: hidden;
    margin-bottom: 40px;
+   cursor: grab;
+   -webkit-overflow-scrolling: touch;
+   scrollbar-width: none;       /* فایرفاکس - مخفی کردن اسکرول‌بار */
+ }
+ .user-reviews::-webkit-scrollbar {
+   display: none;               /* کروم/سافاری - مخفی کردن اسکرول‌بار */
+ }
+ .user-reviews.dragging {
+   cursor: grabbing;
+   scroll-behavior: auto;
  }
  .user-review-container {
    width: 200%;
@@ -2731,13 +2742,13 @@
      padding: 8px 0;
    }
    .social-box, .logo-box {
-     width: 50px;
-     height: 50px;
-     font-size: 0.6rem;
+     width: 44px;
+     height: 44px;
+     font-size: 0.55rem;
    }
    .social-box img {
-     width: 20px;
-     height: 20px;
+     width: 16px;
+     height: 16px;
    }
    .social-box {
      padding: 4px;
@@ -3734,6 +3745,54 @@
          const walk = (x - startX) * 2;
          slider.scrollLeft = scrollLeft - walk;
        });
+
+       // ========================
+       // درگ دستی برای اسلایدر ریویوها (موس + لمسی)
+       // ========================
+       const reviewsSlider = document.querySelector('.user-reviews');
+       const reviewsContainer = document.querySelector('.user-review-container');
+       let isReviewDragging = false;
+       let reviewStartX = 0;
+       let reviewScrollLeft = 0;
+
+       function startReviewDrag(pageX){
+         isReviewDragging = true;
+         reviewsSlider.classList.add('dragging');
+         reviewStartX = pageX - reviewsSlider.offsetLeft;
+         reviewScrollLeft = reviewsSlider.scrollLeft;
+         reviewsContainer.style.animationPlayState = 'paused';
+       }
+       function moveReviewDrag(pageX){
+         if(!isReviewDragging) return;
+         const x = pageX - reviewsSlider.offsetLeft;
+         const walk = (x - reviewStartX) * 1.5;
+         reviewsSlider.scrollLeft = reviewScrollLeft - walk;
+       }
+       function endReviewDrag(){
+         if(!isReviewDragging) return;
+         isReviewDragging = false;
+         reviewsSlider.classList.remove('dragging');
+         // بعد از رها کردن، دوباره انیمیشن خودکار رو فعال کن
+         setTimeout(() => {
+           reviewsContainer.style.animationPlayState = 'running';
+         }, 2000);
+       }
+
+       // موس (دسکتاپ)
+       reviewsSlider.addEventListener('mousedown', (e) => {
+         e.preventDefault();
+         startReviewDrag(e.pageX);
+       });
+       reviewsSlider.addEventListener('mousemove', (e) => moveReviewDrag(e.pageX));
+       reviewsSlider.addEventListener('mouseup', endReviewDrag);
+       reviewsSlider.addEventListener('mouseleave', endReviewDrag);
+
+       // لمسی (موبایل)
+       reviewsSlider.addEventListener('touchstart', (e) => {
+         startReviewDrag(e.touches[0].pageX);
+       });
+       reviewsSlider.addEventListener('touchmove', (e) => moveReviewDrag(e.touches[0].pageX));
+       reviewsSlider.addEventListener('touchend', endReviewDrag);
      },
    };
 
