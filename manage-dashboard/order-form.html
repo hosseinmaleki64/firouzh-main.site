@@ -423,7 +423,7 @@
               </div>
               <div class="field">
                 <label>مالیات بر ارزش افزوده (٪)<span class="optional-tag">اختیاری</span></label>
-                <input class="input" type="number" id="taxPercent" min="0" max="100" placeholder="۰">
+                <input class="input" type="number" id="taxPercent" min="0" max="100" step="any" placeholder="۰">
               </div>
             </div>
 
@@ -503,6 +503,19 @@
             </div>
             <div class="hint" id="zarinpalHint" style="display:none;">
               بعد از ثبت سفارش، از صفحه سفارش می‌تونی دکمه «ساخت لینک پرداخت» رو بزنی تا لینک زرین‌پال ساخته بشه.
+            </div>
+          </div>
+
+          <!-- ۶. سفارش قدیمی -->
+          <div class="card facet" id="markDeliveredBox">
+            <h2><span class="num">۶</span>سفارش قدیمی (ورود از دفتر)<span class="optional-tag">اختیاری</span></h2>
+            <p class="sub">برای سفارش‌هایی که قبلاً تحویل و تسویه شدن و فقط می‌خوای تو سیستم ثبت بشن</p>
+            <label class="check-row" style="margin:0 0 8px;">
+              <input type="checkbox" id="markDelivered">
+              این سفارش قبلاً تحویل شده؛ مستقیم به‌عنوان «تحویل شده» ثبت شود
+            </label>
+            <div class="hint" id="markDeliveredHint" style="display:none;">
+              «تاریخ تحویل» رو تاریخ واقعی تحویل بزن، چون گزارش درآمد بر اساس همین حساب می‌شه. وضعیت پرداخت خودکار «پرداخت کامل» می‌شه. بعد از ثبت، این سفارش دیگه قابل ویرایش نیست.
             </div>
           </div>
 
@@ -1009,6 +1022,18 @@ paymentMethod.addEventListener('change', ()=>{
   zarinpalHint.style.display = paymentMethod.value === 'ONLINE' ? 'block' : 'none';
 });
 
+/* ---------------- سفارش قدیمی (mark_delivered) ---------------- */
+const markDelivered = document.getElementById('markDelivered');
+markDelivered.addEventListener('change', ()=>{
+  const on = markDelivered.checked;
+  document.getElementById('markDeliveredHint').style.display = on ? 'block' : 'none';
+  if(on){
+    paymentStatus.value = 'SUCCESS';       // بک‌اند فقط با پرداخت کامل قبول می‌کنه
+    fieldDeposit.classList.remove('show');
+  }
+  paymentStatus.disabled = on;
+});
+
 /* ---------------- اعتبارسنجی و ثبت/ویرایش سفارش ---------------- */
 function validateOrderForm(){
   let ok = true;
@@ -1080,7 +1105,8 @@ function buildOrderPayload(){
     payment_status: paymentStatus.value,
     deposit_amount: paymentStatus.value === 'PARTIAL' ? Number(document.getElementById('depositAmount').value || 0) : 0,
 
-    admin_note: '',
+    admin_note: editingOrderId ? undefined : (markDelivered.checked ? 'واردشده از دفتر قدیمی' : ''),
+    mark_delivered: !editingOrderId && markDelivered.checked,
   };
 }
 
@@ -1089,6 +1115,16 @@ let editingOrderId = null; // اگه پر باشه یعنی داریم یه سف
 document.getElementById('orderForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
   if(!validateOrderForm()) return;
+
+  if(!editingOrderId){
+    const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD به وقت محلی
+    const isPast = document.getElementById('deliveryDate').value < today;
+    if(markDelivered.checked){
+      if(!confirm('این سفارش مستقیم «تحویل شده» ثبت می‌شود و بعد از ثبت دیگر قابل ویرایش نیست. ادامه می‌دهید؟')) return;
+    }else if(isPast){
+      if(!confirm('تاریخ تحویل در گذشته است ولی سفارش «تحویل شده» ثبت نمی‌شود، پس در گزارش درآمد نمی‌آید.\nاگر سفارش قدیمی است، تیک «سفارش قدیمی» را بزنید.\nبا همین وضعیت ثبت شود؟')) return;
+    }
+  }
 
   const btn = document.getElementById('submitOrderBtn');
   btn.disabled = true;
@@ -1210,6 +1246,7 @@ document.getElementById('btnEditOrder').addEventListener('click', ()=>{
   loadOrderIntoForm(currentOrder);
   editingOrderId = currentOrder.id;
   document.getElementById('formTitle').textContent = `ویرایش سفارش #${currentOrder.order_number}`;
+  document.getElementById('markDeliveredBox').style.display = 'none';
   document.getElementById('submitOrderBtn').textContent = 'ذخیره تغییرات';
   document.getElementById('orderDetailView').style.display = 'none';
   document.getElementById('formView').style.display = 'block';
@@ -1242,9 +1279,10 @@ function loadOrderIntoForm(order){
   });
   document.getElementById('discountValue').value = Number(order.discount_value || 0) || '';
   document.getElementById('shippingCost').value = Number(order.shipping_cost || 0) || '';
-  // مالیات در بک‌اند به‌صورت مبلغ نهایی ذخیره شده؛ چون فرم روی درصد کار می‌کنه، اینجا فقط صفر می‌ذاریم
-  // و مبلغ فعلی مالیات رو در جمع کل نشون می‌دیم (اگه لازم شد درصدش رو دستی وارد کن)
-  document.getElementById('taxPercent').value = '';
+  const baseAfterDiscount = Number(order.items_total) - Number(order.discount_amount);
+  document.getElementById('taxPercent').value = (Number(order.tax_amount) > 0 && baseAfterDiscount > 0)
+    ? Math.round(Number(order.tax_amount) / baseAfterDiscount * 10000) / 100
+    : '';
 
   if(order.event_time){
     const dt = new Date(order.event_time);
@@ -1393,6 +1431,7 @@ async function initFromQueryString(){
       loadOrderIntoForm(order);
       editingOrderId = order.id;
       document.getElementById('formTitle').textContent = `ویرایش سفارش #${order.order_number}`;
+      document.getElementById('markDeliveredBox').style.display = 'none';
       document.getElementById('submitOrderBtn').textContent = 'ذخیره تغییرات';
       document.getElementById('pageModeLabel').textContent = 'ویرایش سفارش';
     }else{
