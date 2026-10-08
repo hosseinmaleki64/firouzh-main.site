@@ -106,6 +106,29 @@
   .stat.danger b{color:var(--red);}
   .stat span{font-size:12.5px;color:var(--ink-soft);position:relative;z-index:1;}
 
+  /* ===== کارت‌های درآمد ===== */
+  .stats.revenue-stats{margin-top:16px;}
+  .stat.money b{font-size:21px;}
+  .stat.money small{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:4px;position:relative;z-index:1;}
+
+  /* ===== گزارش حسابداری ===== */
+  .report-result{margin-top:16px;display:none;}
+  .report-result.show{display:block;}
+  .report-range{font-size:12px;color:var(--ink-soft);margin-bottom:12px;}
+  .report-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .report-mini{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow-sm);}
+  .report-mini span{display:block;font-size:11.5px;color:var(--ink-soft);}
+  .report-mini b{display:block;font-size:16px;font-weight:800;color:var(--turq-darker);margin-top:2px;}
+  .report-mini.warn b{color:var(--gold);}
+  .report-mini.danger b{color:var(--red);}
+  .report-lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+  .report-list{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .report-list h3{margin:0 0 8px;font-size:12.5px;font-weight:800;color:var(--turq-darker);}
+  .rt-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--border);}
+  .rt-row:last-child{border-bottom:none;}
+  .rt-row span:first-child{color:var(--ink-soft);}
+  @media(max-width:820px){ .report-lists{grid-template-columns:1fr;} }
+
   /* ===== Filters ===== */
   .filters{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:14px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
   .filters .search-box{flex:1 1 260px;position:relative;}
@@ -282,6 +305,12 @@
       <div class="stat facet"><b id="statShipped">—</b><span>ارسال شده</span></div>
       <div class="stat facet"><b id="statDelivered">—</b><span>تحویل شده</span></div>
     </div>
+
+    <div class="stats revenue-stats">
+      <div class="stat money facet"><b id="revAll">—</b><span>کل درآمد ثبت‌شده</span><small id="revAllLabel"></small></div>
+      <div class="stat money facet"><b id="revMonth">—</b><span>درآمد این ماه</span><small id="revMonthLabel"></small></div>
+      <div class="stat money facet"><b id="rev3m">—</b><span>درآمد سه ماه اخیر</span><small id="rev3mLabel"></small></div>
+    </div>
   </section>
 
   <!-- جستجو و فیلتر -->
@@ -309,24 +338,92 @@
         <option value="MANUAL">ثبت دستی</option>
       </select>
       <select id="fQuickDate">
-        <option value="">همه تاریخ‌ها</option>
+        <option value="">همه تاریخ‌های ثبت</option>
         <option value="today">امروز</option>
         <option value="yesterday">دیروز</option>
         <option value="this_week">این هفته</option>
         <option value="this_month">این ماه</option>
+        <option value="last_3_months">سه ماه اخیر</option>
         <option value="custom">بازه دلخواه…</option>
       </select>
       <input class="input date" type="date" id="fDateFrom" style="display:none">
       <input class="input date" type="date" id="fDateTo" style="display:none">
+      <select id="fEventQuick">
+        <option value="">همه تاریخ‌های تحویل</option>
+        <option value="today">تحویل امروز</option>
+        <option value="this_week">تحویل این هفته</option>
+        <option value="this_month">تحویل این ماه</option>
+        <option value="last_3_months">تحویل ۳ ماه اخیر</option>
+        <option value="custom">بازه تحویل دلخواه…</option>
+      </select>
+      <input class="input date" type="date" id="fEventFrom" style="display:none">
+      <input class="input date" type="date" id="fEventTo" style="display:none">
+      <select id="fDelivered">
+        <option value="">تحویل‌شده و تحویل‌نشده</option>
+        <option value="true">فقط تحویل‌شده</option>
+        <option value="false">فقط در جریان (تحویل‌نشده)</option>
+      </select>
       <label class="checkbox-row"><input type="checkbox" id="fUrgent"> اول سفارش‌های فوری</label>
       <select id="fOrdering">
         <option value="-created_at">جدیدترین</option>
         <option value="created_at">قدیمی‌ترین</option>
         <option value="-total_amount">بیشترین مبلغ</option>
         <option value="total_amount">کمترین مبلغ</option>
+        <option value="-event_time">تحویل: جدیدترین</option>
+        <option value="event_time">تحویل: قدیمی‌ترین</option>
       </select>
       <button class="btn btn-ghost" id="resetFilters">پاک کردن فیلترها</button>
     </div>
+  </section>
+
+  <!-- گزارش حسابداری -->
+  <section>
+    <div class="section-head"><h2>گزارش حسابداری</h2><span>درآمد = سفارش‌های «تحویل شده»، بر اساس تاریخ تحویل</span></div>
+    <div class="filters">
+      <select id="rPeriod">
+        <option value="this_month">این ماه</option>
+        <option value="last_3_months">سه ماه اخیر</option>
+        <option value="all">کل دوره</option>
+        <option value="custom">بازه دلخواه…</option>
+      </select>
+      <input class="input date" type="date" id="rFrom" style="display:none">
+      <input class="input date" type="date" id="rTo" style="display:none">
+      <select id="rSource">
+        <option value="">همه منابع</option>
+        <option value="ONLINE">ثبت‌شده در سایت</option>
+        <option value="MANUAL">ثبت دستی</option>
+      </select>
+      <select id="rPayMethod">
+        <option value="">همه روش‌های پرداخت</option>
+        <option value="CASH">نقدی</option>
+        <option value="CARD">کارت به کارت</option>
+        <option value="POS">پوز</option>
+        <option value="ONLINE">زرین‌پال</option>
+        <option value="COD">پرداخت در محل</option>
+      </select>
+      <select id="rEventType">
+        <option value="">همه انواع مراسم</option>
+        <option value="BIRTHDAY">تولد</option>
+        <option value="WEDDING">عروسی</option>
+        <option value="ENGAGEMENT">نامزدی</option>
+        <option value="ANNIVERSARY">سالگرد</option>
+        <option value="PARTY">مهمانی</option>
+        <option value="CELEBRATION">جشن</option>
+        <option value="OTHER">سایر</option>
+      </select>
+      <select id="rLeadSource">
+        <option value="">همه منابع آشنایی</option>
+        <option value="DIVAR">دیوار</option>
+        <option value="INSTAGRAM">اینستاگرام</option>
+        <option value="WHATSAPP">واتساپ</option>
+        <option value="IN_PERSON">حضوری</option>
+        <option value="PHONE_CALL">تماس تلفنی</option>
+        <option value="OTHER">سایر</option>
+      </select>
+      <button class="btn btn-primary" id="rShowBtn">نمایش گزارش</button>
+      <button class="btn btn-gold" id="rPdfBtn">دانلود PDF</button>
+    </div>
+    <div class="report-result" id="reportResult"></div>
   </section>
 
   <!-- جدول سفارشات -->
@@ -335,7 +432,7 @@
       <table>
         <thead>
           <tr>
-            <th>شماره</th><th>مشتری</th><th>تلفن</th><th>مبلغ</th><th>تعداد آیتم</th><th>تاریخ</th><th>منبع</th><th>وضعیت</th><th>عملیات</th>
+            <th>شماره</th><th>مشتری</th><th>تلفن</th><th>مبلغ</th><th>تعداد آیتم</th><th>تاریخ ثبت</th><th>تاریخ تحویل</th><th>منبع</th><th>وضعیت</th><th>عملیات</th>
           </tr>
         </thead>
         <tbody id="ordersBody"></tbody>
@@ -623,7 +720,7 @@ const SHIPPING_LABELS = {COURIER:'پیک', POST:'پست', PICKUP:'تحویل ح�
 
 let state = {
   orders: [], count:0, page:1, pageSize:20,
-  filters:{search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'},
+  filters:{search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', eventQuick:'', eventFrom:'', eventTo:'', delivered:'', urgent:false, ordering:'-created_at'},
   currentOrder: null,
   openMenuId: null,
 };
@@ -636,6 +733,16 @@ async function loadStats(){
   document.getElementById('statPreparing').textContent = s ? fmt(s.preparing) : '—';
   document.getElementById('statShipped').textContent = s ? fmt(s.shipped) : '—';
   document.getElementById('statDelivered').textContent = s ? fmt(s.delivered) : '—';
+
+  // کارت‌های درآمد (فقط سفارش‌های تحویل‌شده، بر اساس تاریخ تحویل)
+  const r = s && s.revenue;
+  const setRev = (valId, lblId, block, prefix='')=>{
+    document.getElementById(valId).textContent = block ? toman(block.total) : '—';
+    document.getElementById(lblId).textContent = block ? `${prefix}${fmt(block.count)} سفارش` : '';
+  };
+  setRev('revAll',   'revAllLabel',   r && r.all_time);
+  setRev('revMonth', 'revMonthLabel', r && r.this_month,     r ? r.this_month.label + ' · ' : '');
+  setRev('rev3m',    'rev3mLabel',    r && r.last_3_months,  r ? r.last_3_months.label + ' · ' : '');
 }
 
 /* ---------------- Build query + load list ---------------- */
@@ -650,6 +757,12 @@ function buildQuery(){
     if(f.dateFrom) params.set('date_from', f.dateFrom);
     if(f.dateTo) params.set('date_to', f.dateTo);
   }
+  if(f.eventQuick && f.eventQuick !== 'custom') params.set('event_quick_date', f.eventQuick);
+  if(f.eventQuick === 'custom'){
+    if(f.eventFrom) params.set('event_from', f.eventFrom);
+    if(f.eventTo) params.set('event_to', f.eventTo);
+  }
+  if(f.delivered) params.set('delivered', f.delivered);
   if(f.urgent) params.set('urgent_first', 'true');
   if(f.ordering) params.set('ordering', f.ordering);
   params.set('page', state.page);
@@ -692,7 +805,8 @@ function renderOrders(){
         <td data-label="تلفن" class="cust-cell"><small>${o.customer_phone || '—'}</small></td>
         <td data-label="مبلغ" class="amount-cell"><b>${toman(o.total_amount)}</b></td>
         <td data-label="تعداد آیتم">${fmt(o.items_count)}</td>
-        <td data-label="تاریخ">${fmtDate(o.created_at)}</td>
+        <td data-label="تاریخ ثبت">${fmtDate(o.created_at)}</td>
+        <td data-label="تاریخ تحویل">${fmtDate(o.event_time)}</td>
         <td data-label="منبع"><span class="source-badge src-${o.source}">${o.source_display}</span></td>
         <td data-label="وضعیت"><span class="status-badge st-${o.status}">${o.status_display}</span></td>
         <td data-label="عملیات">
@@ -791,16 +905,30 @@ document.getElementById('fQuickDate').addEventListener('change', e=>{
 });
 document.getElementById('fDateFrom').addEventListener('change', e=>{ state.filters.dateFrom=e.target.value; state.page=1; loadOrders(); });
 document.getElementById('fDateTo').addEventListener('change', e=>{ state.filters.dateTo=e.target.value; state.page=1; loadOrders(); });
+document.getElementById('fEventQuick').addEventListener('change', e=>{
+  state.filters.eventQuick = e.target.value;
+  const isCustom = e.target.value === 'custom';
+  document.getElementById('fEventFrom').style.display = isCustom ? 'inline-block':'none';
+  document.getElementById('fEventTo').style.display = isCustom ? 'inline-block':'none';
+  if(!isCustom){ state.page=1; loadOrders(); }
+});
+document.getElementById('fEventFrom').addEventListener('change', e=>{ state.filters.eventFrom=e.target.value; state.page=1; loadOrders(); });
+document.getElementById('fEventTo').addEventListener('change', e=>{ state.filters.eventTo=e.target.value; state.page=1; loadOrders(); });
+document.getElementById('fDelivered').addEventListener('change', e=>{ state.filters.delivered=e.target.value; state.page=1; loadOrders(); });
 document.getElementById('fUrgent').addEventListener('change', e=>{ state.filters.urgent=e.target.checked; state.page=1; loadOrders(); });
 document.getElementById('fOrdering').addEventListener('change', e=>{ state.filters.ordering=e.target.value; loadOrders(); });
 document.getElementById('resetFilters').addEventListener('click', ()=>{
-  state.filters = {search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', urgent:false, ordering:'-created_at'};
+  state.filters = {search:'', status:'', source:'', quickDate:'', dateFrom:'', dateTo:'', eventQuick:'', eventFrom:'', eventTo:'', delivered:'', urgent:false, ordering:'-created_at'};
   document.getElementById('fSearch').value='';
   document.getElementById('fStatus').value='';
   document.getElementById('fSource').value='';
   document.getElementById('fQuickDate').value='';
   document.getElementById('fDateFrom').value=''; document.getElementById('fDateFrom').style.display='none';
   document.getElementById('fDateTo').value=''; document.getElementById('fDateTo').style.display='none';
+  document.getElementById('fEventQuick').value='';
+  document.getElementById('fEventFrom').value=''; document.getElementById('fEventFrom').style.display='none';
+  document.getElementById('fEventTo').value=''; document.getElementById('fEventTo').style.display='none';
+  document.getElementById('fDelivered').value='';
   document.getElementById('fUrgent').checked=false;
   document.getElementById('fOrdering').value='-created_at';
   state.page=1; loadOrders();
@@ -1038,6 +1166,104 @@ document.getElementById('downloadBtn').addEventListener('click', async ()=>{
     window.print();
   }
 });
+
+/* =========================================================
+   گزارش حسابداری (GET /api/orders/revenue/  و  /revenue/pdf/)
+   ========================================================= */
+const rPeriod = document.getElementById('rPeriod');
+rPeriod.addEventListener('change', ()=>{
+  const isCustom = rPeriod.value === 'custom';
+  document.getElementById('rFrom').style.display = isCustom ? 'inline-block':'none';
+  document.getElementById('rTo').style.display = isCustom ? 'inline-block':'none';
+});
+
+// رشته query را می‌سازد؛ اگر ورودی نامعتبر باشد null برمی‌گرداند
+function buildReportQuery(){
+  const p = new URLSearchParams();
+  if(rPeriod.value === 'custom'){
+    const from = document.getElementById('rFrom').value;
+    const to = document.getElementById('rTo').value;
+    if(!from && !to){ toast('برای بازه دلخواه حداقل یک تاریخ انتخاب کن', true); return null; }
+    if(from) p.set('event_from', from);
+    if(to) p.set('event_to', to);
+  }else{
+    p.set('period', rPeriod.value);
+  }
+  const add = (id, key)=>{ const v = document.getElementById(id).value; if(v) p.set(key, v); };
+  add('rSource','source'); add('rPayMethod','payment_method');
+  add('rEventType','event_type'); add('rLeadSource','lead_source');
+  return p.toString();
+}
+
+function renderReport(d){
+  const del = d.delivered;
+  const rows = (arr, empty)=> arr.length
+    ? arr.map(r=>`<div class="rt-row"><span>${r.label} (${fmt(r.count)})</span><b>${toman(r.total)}</b></div>`).join('')
+    : `<div class="rt-row"><span>${empty}</span></div>`;
+
+  const box = document.getElementById('reportResult');
+  box.innerHTML = `
+    <div class="report-range">بازه گزارش (بر اساس تاریخ تحویل): <b>${d.range.label}</b></div>
+    <div class="report-grid">
+      <div class="report-mini"><span>جمع درآمد (تحویل‌شده)</span><b>${toman(del.total)}</b></div>
+      <div class="report-mini"><span>تعداد سفارش تحویل‌شده</span><b>${fmt(del.count)}</b></div>
+      <div class="report-mini"><span>میانگین هر سفارش</span><b>${toman(del.average_order)}</b></div>
+      <div class="report-mini"><span>جمع کالا</span><b>${toman(del.items_total)}</b></div>
+      <div class="report-mini"><span>هزینه ارسال</span><b>${toman(del.shipping)}</b></div>
+      <div class="report-mini"><span>مالیات</span><b>${toman(del.tax)}</b></div>
+      <div class="report-mini"><span>تخفیف</span><b>${toman(del.discount)}</b></div>
+      <div class="report-mini warn"><span>در انتظار (${fmt(d.pending.count)} سفارش)</span><b>${toman(d.pending.total)}</b></div>
+      <div class="report-mini danger"><span>لغو شده (${fmt(d.cancelled.count)} سفارش)</span><b>${toman(d.cancelled.total)}</b></div>
+    </div>
+    <div class="report-lists">
+      <div class="report-list"><h3>بر اساس روش پرداخت</h3>${rows(d.by_payment_method, 'داده‌ای نیست')}</div>
+      <div class="report-list"><h3>بر اساس ماه (شمسی)</h3>${rows(d.by_month, 'داده‌ای نیست')}</div>
+    </div>`;
+  box.classList.add('show');
+}
+
+async function loadReport(){
+  const q = buildReportQuery();
+  if(q === null) return;
+  const btn = document.getElementById('rShowBtn');
+  btn.disabled = true;
+  const data = await apiGet('/revenue/?' + q);
+  btn.disabled = false;
+  if(data) renderReport(data);
+}
+
+async function downloadReportPdf(){
+  const q = buildReportQuery();
+  if(q === null) return;
+  const btn = document.getElementById('rPdfBtn');
+  btn.disabled = true; btn.textContent = 'در حال ساخت PDF…';
+  try{
+    // نکته: لینک ساده کار نمی‌کند چون endpoint هدر Authorization می‌خواهد؛ پس با fetch و blob
+    const res = await apiFetch(`${API_BASE}/revenue/pdf/?${q}`, { headers:{} });
+    if(!res) return;
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      const msg = Array.isArray(err.detail) ? err.detail[0] : err.detail;
+      toast(msg || 'خطا در ساخت PDF', true);
+      return;
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `revenue-report-${new Date().toISOString().slice(0,10)}.pdf`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 1500);
+  }catch(e){
+    console.error(e);
+    toast('خطا در دریافت PDF', true);
+  }finally{
+    btn.disabled = false; btn.textContent = 'دانلود PDF';
+  }
+}
+
+document.getElementById('rShowBtn').addEventListener('click', loadReport);
+document.getElementById('rPdfBtn').addEventListener('click', downloadReportPdf);
 
 /* ---------------- خروج ---------------- */
 document.getElementById('logoutBtn').addEventListener('click', goToLogin);
