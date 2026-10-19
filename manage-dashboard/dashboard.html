@@ -19,6 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- Chart.js برای نمودار درآمد -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
 <style>
   /* =========================================================
      TOKENS — همان هویت بصری «فیروزه‌ای» پنل محصولات
@@ -223,6 +226,20 @@
     font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;margin-inline-start:8px;
   }
 
+  /* ===== Revenue chart ===== */
+  .chart-card{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:18px 20px 16px;}
+  .chart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+  .range-tabs{display:flex;gap:4px;background:var(--surface-alt);border:1px solid var(--border);border-radius:9px;padding:3px;flex-wrap:wrap;}
+  .range-tabs button{border:none;background:transparent;font-size:12px;font-weight:700;color:var(--ink-soft);padding:6px 12px;border-radius:7px;}
+  .range-tabs button:hover{color:var(--turq-darker);}
+  .range-tabs button.active{background:var(--turq-deep);color:#fff;}
+  .chart-summary{display:flex;gap:22px;flex-wrap:wrap;}
+  .chart-summary div{display:flex;flex-direction:column;line-height:1.5;}
+  .chart-summary span{font-size:11px;color:var(--ink-faint);}
+  .chart-summary b{font-size:15px;font-weight:800;color:var(--turq-darker);}
+  .chart-box{position:relative;height:320px;margin-top:14px;}
+  .chart-empty{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--ink-faint);font-size:12.5px;}
+
   @media(max-width:1080px){
     .stats-grid{grid-template-columns:repeat(2,1fr);}
     .shortcuts-grid{grid-template-columns:repeat(3,1fr);}
@@ -327,6 +344,37 @@
             <div class="stat-top"><span class="stat-icon">💰</span></div>
             <b id="statSales"><span class="skel"></span></b>
             <span class="label">فروش امروز (تومان)<span class="badge-note" id="salesBadge">نیاز به اتصال</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- نمودار درآمد -->
+      <section>
+        <div class="section-head">
+          <h2>نمودار درآمد</h2>
+          <span>سفارش‌های تحویل‌شده، بر اساس تاریخ تحویل</span>
+        </div>
+        <div class="chart-card facet">
+          <div class="chart-head">
+            <div class="chart-summary">
+              <div><span>جمع درآمد بازه</span><b id="chTotal">—</b></div>
+              <div><span>تعداد سفارش</span><b id="chCount">—</b></div>
+              <div><span>میانگین هر سفارش</span><b id="chAvg">—</b></div>
+              <div><span>بهترین بازه</span><b id="chBest">—</b></div>
+            </div>
+            <div class="range-tabs" id="rangeTabs">
+              <button data-range="week">هفته</button>
+              <button data-range="month" class="active">ماه</button>
+              <button data-range="3m">۳ ماه</button>
+              <button data-range="6m">۶ ماه</button>
+              <button data-range="year">سال</button>
+              <button data-range="3y">۳ سال</button>
+              <button data-range="all">همه</button>
+            </div>
+          </div>
+          <div class="chart-box">
+            <canvas id="revenueChart"></canvas>
+            <div class="chart-empty" id="chartEmpty">در این بازه درآمدی ثبت نشده است.</div>
           </div>
         </div>
       </section>
@@ -574,6 +622,100 @@ document.getElementById('installBtn')?.addEventListener('click', async () => {
   document.getElementById('installBtn').style.display = 'none';
 });
 
+/* ---------------- نمودار درآمد ---------------- */
+let revenueChart = null;
+
+function shortMoney(v){
+  if(v >= 1e9) return (v/1e9).toLocaleString('fa-IR',{maximumFractionDigits:1}) + ' میلیارد';
+  if(v >= 1e6) return (v/1e6).toLocaleString('fa-IR',{maximumFractionDigits:1}) + ' م';
+  if(v >= 1e3) return (v/1e3).toLocaleString('fa-IR',{maximumFractionDigits:0}) + ' هزار';
+  return fmt(v);
+}
+
+function drawRevenueChart(points){
+  const canvas = document.getElementById('revenueChart');
+  const ctx = canvas.getContext('2d');
+  const grad = ctx.createLinearGradient(0, 0, 0, 320);
+  grad.addColorStop(0, 'rgba(14,169,154,.35)');
+  grad.addColorStop(1, 'rgba(14,169,154,0)');
+
+  const labels = points.map(p => p.label);
+  const values = points.map(p => p.total);
+  const counts = points.map(p => p.count);
+
+  if(revenueChart) revenueChart.destroy();
+  Chart.defaults.font.family = "'Vazirmatn', sans-serif";
+
+  revenueChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        borderColor: '#0EA99A',
+        backgroundColor: grad,
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2.5,
+        pointRadius: points.length > 20 ? 0 : 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#0EA99A',
+        pointBorderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          rtl: true,
+          textDirection: 'rtl',
+          backgroundColor: '#0B2A28',
+          padding: 10,
+          callbacks: {
+            label: c => `${fmt(c.parsed.y)} تومان`,
+            afterLabel: c => `${fmt(counts[c.dataIndex])} سفارش`,
+          }
+        }
+      },
+      scales: {
+        x: { reverse: true, grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12, color: '#87A29C' } },
+        y: { position: 'right', beginAtZero: true, grid: { color: '#DCEEEA' }, ticks: { color: '#87A29C', callback: v => shortMoney(v) } }
+      }
+    }
+  });
+}
+
+async function loadRevenueChart(range = 'month'){
+  const data = await apiGet(`${ORDERS_BASE}/revenue/chart/?range=${range}`);
+  const empty = document.getElementById('chartEmpty');
+  if(!data){
+    ['chTotal','chCount','chAvg','chBest'].forEach(id => document.getElementById(id).textContent = '—');
+    if(revenueChart){ revenueChart.destroy(); revenueChart = null; }
+    empty.style.display = 'flex';
+    empty.textContent = 'خطا در دریافت اطلاعات نمودار';
+    return;
+  }
+  document.getElementById('chTotal').textContent = fmt(data.total) + ' تومان';
+  document.getElementById('chCount').textContent = fmt(data.count);
+  document.getElementById('chAvg').textContent   = fmt(data.average) + ' تومان';
+  document.getElementById('chBest').textContent  = data.best ? `${data.best.label}` : '—';
+
+  empty.style.display = data.total === 0 ? 'flex' : 'none';
+  empty.textContent = 'در این بازه درآمدی ثبت نشده است.';
+  drawRevenueChart(data.points);
+}
+
+document.getElementById('rangeTabs').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-range]');
+  if(!btn) return;
+  document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b === btn));
+  loadRevenueChart(btn.dataset.range);
+});
+
 /* ---------------- Init ---------------- */
 (async function init(){
   if(!getAccess()){
@@ -587,6 +729,7 @@ document.getElementById('installBtn')?.addEventListener('click', async () => {
     loadOrdersAndSalesStats(),
     loadUsersStats(),
     loadActivity(),
+    loadRevenueChart('month'),
   ]);
 })();
 </script>
