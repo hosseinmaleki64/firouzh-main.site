@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /checkout.html
+Disallow: /login.html
+Disallow: /order-tracking.html
+
+Sitemap: https://firouzehco.com/sitemap.xml
