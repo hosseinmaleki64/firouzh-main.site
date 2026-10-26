@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="محصولات فینگرفود فیروزه، انواع مزه‌ها و فینگرفودهای باکیفیت برای دورهمی‌ها و جشن‌ها با تحویل سریع." />
   <link rel="canonical" href="https://firouzehco.com/finger-food.html">
   <meta name="keywords" content="فینگرفود, مزه, غذا, دورهمی, فیروزه, سفارش آنلاین, تحویل سریع" />
   <meta name="author" content="FingerFood Firoozeh" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="محصولات - FingerFood Firoozeh" />
   <meta property="og:description" content="انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما با تحویل سریع." />
-  <meta property="og:image" content="image1/logo.png" />
-  <meta property="og:url" content="https://www.fingerfoodfiroozeh.com/products.html" />
+  <meta property="og:image" content="https://firouzehco.com/image1/logo.png" />
+  <meta property="og:url" content="https://firouzehco.com/finger-food.html" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="محصولات - FingerFood Firoozeh" />
   <meta name="twitter:description" content="انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما با تحویل سریع." />
-  <meta name="twitter:image" content="image1/logo.png" />
+  <meta name="twitter:image" content="https://firouzehco.com/image1/logo.png" />
   <title>محصولات و منوی فینگرفود فیروزه تبریز | باکس پذیرایی، دسر و مزه</title>
   <meta name="description" content="منو و قیمت به‌روز فینگرفود، دسر، مزه و باکس پذیرایی فیروزه تبریز — سفارش آنلاین با ارسال سریع به تمام نقاط تبریز و شهرستان‌ها | تماس: 041-33367052 | اینستاگرام: @fingerfood_firouzeh">
 
@@ -27,70 +26,6 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "ui7uv46wvy");
-  </script>
-
-  <!-- Breadcrumb Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "خانه",
-        "item": "https://firouzehco.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "منو و قیمت",
-        "item": "https://firouzehco.com/finger-food.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "تماس با ما",
-        "item": "https://firouzehco.com/contact.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "درباره ما",
-        "item": "https://firouzehco.com/about.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "name": "سوالات متداول",
-        "item": "https://firouzehco.com/FAQ.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 6,
-        "name": "همکاری با ما",
-        "item": "https://firouzehco.com/cooperation.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 7,
-        "name": "خدمات سازمانی",
-        "item": "https://firouzehco.com/vip-customers.html"
-      },
-    {
-      "@type": "ListItem",
-      "position": 8,
-      "name": "مقاله ها",
-      "item": "https://firouzehco.com/blogs.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 9,
-      "name": "مقاله ",
-      "item": "https://firouzehco.com/blog.html"
-    }
-    ]
-  }
   </script>
 
   <link rel="icon" type="image/png" href="image1/favicon.png" />
@@ -1667,7 +1602,7 @@
     <div class="main-content">
       <section class="products-section">
         <div class="products-grid" id="productsGrid">
-          <div class="loading-spinner"></div>
+          <!--PRERENDER:GRID--><!--/PRERENDER:GRID-->
         </div>
       </section>
 
@@ -1756,7 +1691,7 @@
     // --- تنظیمات اولیه ---
     const ITEMS_PER_PAGE = 24;
     const urlParams = new URLSearchParams(window.location.search);
-    const currentCategoryId = urlParams.get('cat') || null;
+    const currentCategoryId = window.CATEGORY_ID || urlParams.get('cat') || null;
     let currentPage = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
 
     const productsGrid = document.getElementById('productsGrid');
@@ -2024,7 +1959,7 @@
       const ul = document.getElementById('categoriesList');
       let html = categoriesCache.map(c => `
         <li class="${currentCategoryId === c.id ? 'active' : ''}">
-          <a href="finger-food.html?cat=${c.id}" class="category-link" data-id="${c.id}">
+          <a href="${c.products_count === 0 ? 'finger-food.html?cat=' + c.id : '/category/' + encodeURIComponent(c.slug) + '/'}" class="category-link" data-id="${c.id}">
             <i class="fas fa-utensils"></i> ${c.name}
             <span class="count">${c.products_count ?? 0}</span>
           </a>
@@ -2039,6 +1974,7 @@
     }
 
     function updateHeroForCategory(){
+      if (window.CATEGORY_ID) return;
       if(!currentCategoryId){
         heroTitle.innerHTML = '<i class="fas fa-utensils"></i> محصولات فینگرفود فیروزه';
         heroDesc.textContent = 'انواع فینگرفودها و مزه‌های باکیفیت برای دورهمی‌ها و جشن‌های شما';
@@ -2064,6 +2000,7 @@
 
       return {
         id: p.id,
+        slug: p.slug,
         categoryId: p.category ? p.category.id : null,
         name: p.name,
         description: p.description || '',
@@ -2128,9 +2065,8 @@
       renderPagination(totalPages, currentPage, currentCategoryId);
 
       const newUrl = new URL(window.location);
-      newUrl.searchParams.set('page', currentPage);
-      if(!currentCategoryId) newUrl.searchParams.delete('cat');
-      window.history.pushState({}, '', newUrl);
+      if (currentPage > 1) newUrl.searchParams.set('page', currentPage); else newUrl.searchParams.delete('page');
+      window.history.replaceState({}, '', newUrl);
     }
 
     function generateProductCard(product){
@@ -2147,7 +2083,7 @@
             <h3>${product.name}</h3>
             <p>${(product.description || '').substring(0, 50)}${product.description && product.description.length > 50 ? '...' : ''}</p>
             <div class="product-price">${priceHtml}</div>
-            <a href="product.html?id=${product.id}" class="add-to-cart" style="text-decoration:none; display:flex;">
+            <a href="/product/${encodeURIComponent(product.slug)}/" class="add-to-cart" style="text-decoration:none; display:flex;">
               <i class="fas fa-eye"></i> مشاهده و خرید
             </a>
           </div>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="سفارش آنلاین مینی برگر تازه در فینگرفود فیروزه - تحویل ۶ ساعته در تبریز و آذربایجان شرقی" />
+  <meta name="robots" content="noindex, follow">
   <meta name="keywords" content="فینگرفود, مینی برگر, سفارش آنلاین, تبریز, فیروزه" />
   <title>فینگرفود فیروزه - مینی برگر</title>
   <link rel="stylesheet" href="fonts.css">
@@ -2595,7 +2596,7 @@
           div.className = 'result-item';
           div.textContent = p.name;
           div.addEventListener('click', () => {
-            window.location.href = `product.html?id=${p.id}`;
+            window.location.href = '/product/' + encodeURIComponent(p.slug) + '/';
           });
           elements.searchResults.appendChild(div);
         });
@@ -2875,7 +2876,7 @@
       const cover = resolveImageUrl(product.images && product.images.length ? product.images[0].image : null);
       const priceText = `${toFa(product.final_price)} تومان`;
       return `
-        <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit; display:block;">
+        <a href="/product/${encodeURIComponent(product.slug)}/" style="text-decoration:none; color:inherit; display:block;">
           <div class="${isSlider ? 'other-product-item' : 'rec-item'}">
             <img src="${cover}" alt="${product.name}" loading="lazy">
             <div class="rec-content">
@@ -3011,7 +3012,7 @@
     // ============ Load Product Detail ============
     async function loadProductDetail() {
       const params = new URLSearchParams(window.location.search);
-      const productId = params.get('id');
+      const productId = window.PRODUCT_ID || params.get('id');
       const box = document.getElementById('productDetailBox');
 
       if (!productId) {
@@ -3043,7 +3044,7 @@
         document.getElementById('detail-title').textContent = product.name;
         document.getElementById('detail-title').classList.remove('skeleton');
         document.getElementById('detail-desc').textContent = product.description || '';
-        document.title = product.name + ' - فینگرفود فیروزه';
+        if (!window.PRODUCT_ID) document.title = product.name + ' - فینگرفود فیروزه';
 
         if (product.category) {
           const catEl = document.getElementById('detail-category');
@@ -3137,7 +3138,7 @@
         const cats = await res.json();
         if (!cats.length) return;
         list.innerHTML = cats.map(c =>
-          `<li><a href="finger-food.html?category=${c.id}">${c.name}</a></li>`
+          `<li><a href="${c.products_count === 0 ? 'finger-food.html?cat=' + c.id : '/category/' + encodeURIComponent(c.slug) + '/'}">${c.name}</a></li>`
         ).join('');
       } catch (err) {
         console.error('خطا در دریافت دسته‌بندی‌ها', err);
