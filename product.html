@@ -9,6 +9,17 @@
   <link rel="stylesheet" href="fonts.css">
   <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+  <script>
+(function(){
+  var id=new URLSearchParams(location.search).get('id');
+  if(!id) return;
+  fetch('/products-map.json').then(function(r){return r.json()}).then(function(m){
+    if(m[id]) location.replace(m[id]);
+  }).catch(function(){});
+})();
+</script>
+
   <style>
     :root {
       --header-h: 80px;

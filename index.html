@@ -3204,6 +3204,7 @@
      const finalPrice = hasDiscount ? Math.round(Number(p.price) * (100 - p.discount_percent) / 100) : Number(p.price);
      return {
        id: p.id,
+       slug: p.slug,
        categoryId: p.category ? p.category.id : null,
        name: p.name,
        description: p.description || '',
@@ -3766,7 +3767,7 @@
      try{
        const res = await fetch(`${API_BASE}/public/categories/`);
        if(!res.ok) throw new Error('status ' + res.status);
-       const cats = await res.json();
+       const cats = (await res.json()).filter(c => c.products_count !== 0);
        if(!cats.length){
          grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">هنوز دسته‌بندی‌ای ثبت نشده است</p>';
          return;
@@ -3780,7 +3781,7 @@
              }
            </div>
            <strong>${c.name}</strong>
-           <a href="finger-food.html?cat=${c.id}" class="category-button">مشاهده محصولات</a>
+           <a href="/category/${encodeURIComponent(c.slug)}/" class="category-button">مشاهده محصولات</a>
          </div>
        `).join('');
      }catch(e){
@@ -3817,7 +3818,7 @@
          const card = document.createElement('div');
          card.className = 'best-seller-card';
          card.innerHTML = `
-           <a href="product.html?id=${product.id}" class="bs-link">
+           <a href="/product/${encodeURIComponent(product.slug)}/" class="bs-link">
              <div class="best-seller-image">
                <img src="${product.image}" alt="${product.name}" loading="lazy">
              </div>
