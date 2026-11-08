@@ -21,6 +21,22 @@
 
   var input = stripListeners(document.getElementById('searchInput'));
   var box = stripListeners(document.getElementById('suggestionsBox'));
+
+  // اگر صفحه جعبه نتایج نداشت (مثل vip-customers)، خودمان می‌سازیم
+  if (!box && input) {
+    var holder = input.closest('.search-box') || input.parentNode;
+    box = document.createElement('div');
+    box.id = 'suggestionsBox';
+    box.className = 'sr-created';
+    holder.appendChild(box);
+    var st0 = document.createElement('style');
+    st0.textContent =
+      '#suggestionsBox.sr-created{display:none;position:absolute;top:42px;right:0;width:100%;min-width:260px;' +
+      'max-height:320px;overflow-y:auto;background:#fff;color:#222;border:1px solid #dadee6;padding:8px;' +
+      'z-index:1100;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15);text-align:right;direction:rtl}' +
+      '#suggestionsBox.sr-created.active{display:block}';
+    document.head.appendChild(st0);
+  }
   var clearBtn = stripListeners(document.getElementById('clearSearch'));
   var iconBtn = stripListeners(document.querySelector('.search-box .search-icon'));
   if (!input || !box) return;
