@@ -77,7 +77,7 @@
     });
   }
   function media(p) {
-    if (!p) return 'image1/logo.png';
+    if (!p) return '/image1/logo.png';
     return p.indexOf('http') === 0 ? p : API_ORIGIN + p;
   }
   function fa(n) { return Number(n || 0).toLocaleString('fa-IR'); }
@@ -191,7 +191,7 @@
   }
   function url(it) {
     if (it.type === 'product') return '/product/' + encodeURIComponent(it.slug) + '/';
-    if (it.type === 'article') return 'blog.html?slug=' + encodeURIComponent(it.slug);
+    if (it.type === 'article') return '/blog.html?slug=' + encodeURIComponent(it.slug);
     return '/category/' + encodeURIComponent(it.slug) + '/';
   }
   function render(res) {
