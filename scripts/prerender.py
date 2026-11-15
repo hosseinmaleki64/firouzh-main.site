@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Firouzeh static build (GitHub Actions) - نسخه ۳: با ظاهر خودِ سایت
- 
+
 قالب‌ها:   product.html  و  finger-food.html   (همان فایل‌های خودتان)
 خروجی‌ها:
   /product/<slug>/index.html     از روی product.html
@@ -19,7 +19,7 @@ import time
 import urllib.request
 from datetime import datetime, timezone
 from urllib.parse import quote
- 
+
 SITE = "https://firouzehco.com"
 API_ORIGIN = "https://api.firouzehco.com"
 API = API_ORIGIN + "/api/products/public"
@@ -28,20 +28,22 @@ INDEX = "index.html"
 PRODUCT_TPL = "product.html"
 LIST_TPL = "finger-food.html"
 CONTENT_FILE = "seo-content.json"
+BLOGS_PAGE = "blogs.html"
+BLOGS_LIST = API_ORIGIN + "/api/content/articles/?status=PUBLISHED&ordering=-created_at&page_size=50"
 REVIEWS_API = API_ORIGIN + "/api/reviews/public"
 HOME_ARTICLES = API_ORIGIN + "/api/content/articles/?status=PUBLISHED&ordering=-created_at&page_size=2"
 PHONE = "۰۴۱-۳۳۳۶۷۰۵۲"
 MOBILE = "۰۹۱۴۲۸۳۰۳۲۸"
- 
+
 UNITS = {"g": "گرم", "kg": "کیلوگرم", "ml": "میلی‌لیتر", "l": "لیتر", "gram": "گرم"}
 STATIC_PAGES = [
     "/", "/finger-food.html", "/drinks.html", "/about.html", "/contact.html",
     "/FAQ.html", "/cooperation.html", "/vip-customers.html", "/blogs.html", "/terms.html",
 ]
 WARNINGS = []
- 
+
 # ---------------------------------------------------------------- helpers
- 
+
 def get(url):
     last = None
     for i in range(3):
@@ -54,8 +56,8 @@ def get(url):
             last = e
             time.sleep(2 * (i + 1))
     raise last
- 
- 
+
+
 def fetch_all(url):
     out, pages = [], 0
     while url and pages < 60:
@@ -66,71 +68,71 @@ def fetch_all(url):
         url = d.get("next")
         pages += 1
     return out
- 
- 
+
+
 def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
- 
- 
+
+
 def ld(obj):
     return json.dumps(obj, ensure_ascii=False).replace("</", "<\\/")
- 
- 
+
+
 FA = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
- 
- 
+
+
 def fa(n):
     return str(n).translate(FA)
- 
- 
+
+
 def num_fa(n):
     try:
         v = int(round(float(n)))
     except Exception:  # noqa
         v = 0
     return fa(f"{v:,}".replace(",", "٬"))
- 
- 
+
+
 def toman(n):
     return num_fa(n) + " تومان"
- 
- 
+
+
 def media(path):
     if not path:
         return SITE + "/image1/logo.png"
     return path if str(path).startswith("http") else API_ORIGIN + path
- 
- 
+
+
 def trim(s, n=155):
     s = re.sub(r"\s+", " ", s or "").strip()
     if len(s) <= n:
         return s
     return s[: n - 1].rsplit(" ", 1)[0] + "…"
- 
- 
+
+
 def clean_slug(slug, fallback):
     s = (slug or "").strip()
     s = re.sub(r"[\s_]+", "-", s)
     s = re.sub(r"[/\\?#%&\"'<>]", "", s)
     return s or fallback
- 
- 
+
+
 def url_path(kind, slug):
     return f"/{kind}/{quote(slug, safe='-._~')}/"
- 
- 
+
+
 def prices(p):
     base = float(p.get("price") or 0)
     disc = float(p.get("discount_percent") or 0)
     fp = p.get("final_price")
     final = float(fp) if fp not in (None, "") else base * (100 - disc) / 100
     return base, final, disc
- 
- 
+
+
 def day(s):
     return (s or "")[:10]
- 
- 
+
+
 def names(items):
     out = []
     for it in items or []:
@@ -141,36 +143,36 @@ def names(items):
             if v:
                 out.append(str(v))
     return out
- 
- 
+
+
 def write(path, text):
     d = os.path.dirname(path)
     if d:
         os.makedirs(d, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
- 
- 
+
+
 def read(path):
     with open(path, encoding="utf-8") as f:
         return f.read()
- 
- 
+
+
 def inject(page, name, content):
     pattern = re.compile(rf"(<!--PRERENDER:{name}-->)(.*?)(<!--/PRERENDER:{name}-->)", re.S)
     if not pattern.search(page):
         raise SystemExit(f"marker {name} not found")
     return pattern.sub(lambda m: m.group(1) + "\n" + content + "\n" + m.group(3), page)
- 
- 
+
+
 def rep(s, pattern, func, label):
     """جایگزینی یک‌باره؛ اگر الگو پیدا نشد هشدار می‌دهد (و فایل را خراب نمی‌کند)."""
     new, n = re.subn(pattern, func, s, count=1, flags=re.S)
     if n == 0:
         WARNINGS.append(label)
     return new
- 
- 
+
+
 def breadcrumb_ld(trail):
     return {
         "@context": "https://schema.org",
@@ -180,9 +182,9 @@ def breadcrumb_ld(trail):
             for i, (n, u) in enumerate(trail)
         ],
     }
- 
+
 # ---------------------------------------------------------------- template surgery
- 
+
 def strip_head_seo(s):
     """حذف عنوان/توضیحات/canonical/og/اسکیماهای ثابتِ قالب تا مقدارهای درست جایگزین شوند."""
     s = re.sub(r"<title>.*?</title>\s*", "", s, flags=re.S | re.I)
@@ -193,8 +195,8 @@ def strip_head_seo(s):
     # کد هدایت آدرس‌های قدیمی فقط برای خودِ product.html لازم است
     s = re.sub(r"<script>\s*\(function\(\)\{\s*var id=new URLSearchParams.*?</script>\s*", "", s, flags=re.S)
     return s
- 
- 
+
+
 def head_block(title, desc, canon, image, schemas, js_var=""):
     sch = "".join(f'<script type="application/ld+json">{ld(x)}</script>\n' for x in schemas)
     return f"""<base href="/">
@@ -209,8 +211,8 @@ def head_block(title, desc, canon, image, schemas, js_var=""):
 <meta property="og:url" content="{esc(canon)}">
 <meta property="og:image" content="{esc(image)}">
 {js_var}{sch}"""
- 
- 
+
+
 def insert_head(s, block):
     m = re.search(r"<meta\s+charset=[^>]*>", s, re.I)
     if m:
@@ -219,10 +221,10 @@ def insert_head(s, block):
     if m:
         return s[: m.end()] + "\n" + block + s[m.end():]
     raise SystemExit("no <head> found in template")
- 
- 
+
+
 # ---------------------------------------------------------------- SEO content blocks
- 
+
 SEO_CSS = (".seo-block{max-width:1000px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;"
            "box-shadow:0 4px 20px rgba(0,0,0,.08);line-height:2;text-align:right}"
            ".seo-block h2{color:var(--primary-color);font-size:1.5rem;margin-bottom:14px}"
@@ -233,8 +235,8 @@ SEO_CSS = (".seo-block{max-width:1000px;margin:40px auto;padding:28px;background
            ".seo-spec th,.seo-spec td{padding:10px 12px;border-bottom:1px solid var(--neutral-color);text-align:right}"
            ".seo-spec th{width:32%;background:rgba(38,166,154,.06);color:var(--secondary-color)}"
            "@media(max-width:576px){.seo-block{padding:18px;margin:24px 0}.seo-spec th{width:40%}}")
- 
- 
+
+
 def load_content():
     if not os.path.exists(CONTENT_FILE):
         return {}
@@ -244,8 +246,8 @@ def load_content():
         raise SystemExit(f"{CONTENT_FILE} فرمت JSON درست ندارد ({e}). معمولاً یک ویرگول یا گیومه جا افتاده؛ "
                          "فایل را در jsonlint.com بررسی کنید. چیزی تغییر نکرد.")
     return data if isinstance(data, dict) else {}
- 
- 
+
+
 def render_text(text):
     """پاراگراف‌ها با خط خالی جدا می‌شوند؛ خطی که با ## شروع شود تیتر کوچک است؛ [متن](آدرس) لینک می‌شود."""
     out = []
@@ -260,8 +262,8 @@ def render_text(text):
         h = re.sub(r"\[([^\]]+)\]\((/[^)\s]*|https?://[^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', h)
         out.append(f"<p>{h}</p>")
     return "\n".join(out)
- 
- 
+
+
 def render_faq(items, heading):
     rows = []
     for it in items or []:
@@ -269,14 +271,14 @@ def render_faq(items, heading):
         if q and a:
             rows.append(f"<h3>{esc(q)}</h3><p>{esc(a)}</p>")
     return f"<h2>{esc(heading)}</h2>" + "".join(rows) if rows else ""
- 
- 
+
+
 def order_paragraph(name):
     return (f"<h3>سفارش {esc(name)} در تبریز</h3>"
             f"<p>برای سفارش می‌توانید از همین صفحه به سبد خرید اضافه کنید یا با شماره {PHONE} و واتساپ {MOBILE} "
             f"تماس بگیرید. ارسال در تبریز و شهرستان‌های اطراف انجام می‌شود.</p>")
- 
- 
+
+
 def put_block(s, anchor, name, content):
     """بلوک را بین علامت‌های SEO می‌گذارد؛ اگر از قبل بود جایگزین می‌کند (بدون تکرار)."""
     start, end = f"<!--SEO:{name}-->", f"<!--/SEO:{name}-->"
@@ -289,14 +291,14 @@ def put_block(s, anchor, name, content):
         WARNINGS.append(f"محل قرار گرفتن بلوک SEO:{name} پیدا نشد")
         return s
     return s[: m.start()] + block + "\n" + s[m.start():]
- 
- 
+
+
 def ensure_style(s):
     if 'id="seo-style"' in s:
         return s
     return s.replace("</head>", f'<style id="seo-style">{SEO_CSS}</style>\n</head>', 1)
- 
- 
+
+
 def product_seo_block(p, cat, extra):
     extra = extra or {}
     name = p["name"]
@@ -334,8 +336,8 @@ def product_seo_block(p, cat, extra):
         parts.append(faq)
     parts.append(order_paragraph(name))
     return '<section class="seo-block">\n' + "\n".join(parts) + "\n</section>"
- 
- 
+
+
 def list_seo_block(name, extra):
     extra = extra or {}
     if not (extra.get("text") or extra.get("faq")):
@@ -345,10 +347,10 @@ def list_seo_block(name, extra):
     if faq:
         parts.append(faq)
     return '<section class="seo-block">\n' + "\n".join(parts) + "\n</section>"
- 
- 
+
+
 # ---------------------------------------------------------------- product page
- 
+
 def related_card(p):
     imgs = p.get("images") or []
     src = media(imgs[0]["image"]) if imgs else SITE + "/image1/logo.png"
@@ -356,8 +358,8 @@ def related_card(p):
     return (f'<a href="{esc(p["_path"])}" style="text-decoration:none; color:inherit; display:block;">'
             f'<div class="rec-item"><img src="{esc(src)}" alt="{esc(p["name"])}" loading="lazy">'
             f'<div class="rec-content"><p>{esc(p["name"])}</p><span>{toman(final)}</span></div></div></a>')
- 
- 
+
+
 def build_product(tpl, p, cat, related, extra=None):
     name = p["name"]
     base, final, disc = prices(p)
@@ -368,7 +370,7 @@ def build_product(tpl, p, cat, related, extra=None):
     raw = names(p.get("raw_materials"))
     comps = names(p.get("components"))
     desc_txt = (p.get("description") or "").strip()
- 
+
     meta_desc = (p.get("meta_description") or "").strip()
     if not meta_desc:
         meta_desc = f"سفارش آنلاین {name} در تبریز؛ قیمت {toman(final)}. " + (desc_txt or f"از محصولات {cat_name} فیروزه با ارسال سریع.")
@@ -376,7 +378,7 @@ def build_product(tpl, p, cat, related, extra=None):
     title = f"{name} | سفارش آنلاین در تبریز | فیروزه"
     main_img = imgs[0][0] if imgs else SITE + "/image1/logo.png"
     main_alt = (imgs[0][1] if imgs else "") or name
- 
+
     prod_ld = {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -397,12 +399,12 @@ def build_product(tpl, p, cat, related, extra=None):
     if imgs:
         prod_ld["image"] = [u for u, _ in imgs]
     crumbs = [("خانه", "/"), (cat_name, cat_path), (name, p["_path"])]
- 
+
     s = strip_head_seo(tpl)
     s = insert_head(s, head_block(title, meta_desc, canon, main_img,
                                   [prod_ld, breadcrumb_ld(crumbs)],
                                   js_var=f'<script>window.PRODUCT_ID="{esc(p["id"])}";</script>\n'))
- 
+
     s = rep(s, r'(<h1[^>]*id="detail-title"[^>]*>)(.*?)(</h1>)',
             lambda m: m.group(1) + esc(name) + m.group(3), "h1#detail-title")
     if cat:
@@ -436,9 +438,9 @@ def build_product(tpl, p, cat, related, extra=None):
                 lambda m: m.group(1) + cards + m.group(3), "#complementaryGrid")
     s = put_block(s, r'<section class="recommendations">', "PRODUCT", product_seo_block(p, cat, extra))
     return ensure_style(s)
- 
+
 # ---------------------------------------------------------------- category / list pages
- 
+
 def list_card(p):
     imgs = p.get("images") or []
     src = media(imgs[0]["image"]) if imgs else SITE + "/image1/logo.png"
@@ -454,8 +456,8 @@ def list_card(p):
             f'<div class="product-price"><i class="fas fa-tag"></i> {toman(final)}{old}</div>'
             f'<a href="{esc(p["_path"])}" class="add-to-cart" style="text-decoration:none; display:flex;">'
             f'<i class="fas fa-eye"></i> مشاهده و خرید</a></div></div>')
- 
- 
+
+
 def build_category(tpl, c, items, extra=None):
     name = c["name"]
     canon = SITE + c["_path"]
@@ -483,9 +485,9 @@ def build_category(tpl, c, items, extra=None):
     s = inject(s, "GRID", "\n".join(list_card(p) for p in items))
     s = put_block(s, r'<section class="contact-section">', "LIST", list_seo_block(name, extra))
     return ensure_style(s)
- 
+
 # ---------------------------------------------------------------- home prerender
- 
+
 def home_category(c):
     img = ""
     if c.get("image"):
@@ -495,8 +497,8 @@ def home_category(c):
             f'<strong>{esc(c["name"])}</strong>'
             f'<a href="{esc(c["_path"])}" class="category-button">مشاهده محصولات</a>'
             '</div>')
- 
- 
+
+
 def home_product(p):
     imgs = p.get("images") or []
     src = media(imgs[0]["image"]) if imgs else "image1/logo.png"
@@ -511,10 +513,10 @@ def home_product(p):
             f'<p class="best-seller-description">{esc(short)}</p>'
             f'<div class="best-seller-price">{toman(final)}</div>'
             '</a></div>')
- 
- 
+
+
 # ---------------------------------------------------------------- reviews & articles on home
- 
+
 def time_ago_fa(iso):
     if not iso:
         return ""
@@ -540,8 +542,8 @@ def time_ago_fa(iso):
     if months < 12:
         return f"{fa(months)} ماه پیش"
     return f"{fa(months // 12)} سال پیش"
- 
- 
+
+
 def review_card(r):
     name = (r.get("customer_display_name") or "").strip() or "مشتری فیروزه"
     text = (r.get("comment") or "").strip()
@@ -568,8 +570,8 @@ def review_card(r):
             f'<span class="review-name">{esc(name)}{verified}</span>'
             f'<div class="rating">{stars} ({esc(r.get("rating"))}/۵)</div></div></div>'
             f'<p>{esc(text)}</p>{imgs}{footer}</div>')
- 
- 
+
+
 def home_blog_card(a):
     cover = media(a.get("cover_image")) if a.get("cover_image") else SITE + "/image1/logo.png"
     ex = (a.get("excerpt") or "")
@@ -577,16 +579,16 @@ def home_blog_card(a):
     return (f'<a href="blog.html?slug={quote(a["slug"])}" class="blog-card">'
             f'<div class="blog-image"><img src="{esc(cover)}" alt="{esc(a["title"])}" loading="lazy"></div>'
             f'<strong>{esc(a["title"])}</strong><p>{esc(short)}</p></a>')
- 
- 
+
+
 def inject_optional(page, name, content):
     try:
         return inject(page, name, content)
     except SystemExit:
         WARNINGS.append(f"علامت PRERENDER:{name} در index.html نیست (این بخش رد شد)")
         return page
- 
- 
+
+
 def prerender_reviews_and_blogs(page):
     # نظرات مشتریان
     try:
@@ -613,10 +615,48 @@ def prerender_reviews_and_blogs(page):
     except Exception as e:  # noqa
         WARNINGS.append(f"مقالات صفحه اصلی دریافت نشد ({e}); محتوای قبلی دست‌نخورده ماند")
     return page
- 
- 
+
+
+
+# ---------------------------------------------------------------- blogs.html (لیست مقالات)
+
+def article_card(a):
+    cover = media(a.get("cover_image")) if a.get("cover_image") else SITE + "/image1/logo.png"
+    cat = (a.get("category") or {}).get("name") or ""
+    author = a.get("author") or {}
+    author_name = author.get("full_name") or author.get("username") or ""
+    date = day(a.get("published_at") or a.get("created_at"))
+    return ('<div class="article-card">'
+            f'<img src="{esc(cover)}" alt="{esc(a["title"])}" class="article-image" loading="lazy">'
+            '<div class="article-content">'
+            f'<span class="article-category">{esc(cat)}</span>'
+            f'<h3 class="article-title">{esc(a["title"])}</h3>'
+            f'<p class="article-summary">{esc((a.get("excerpt") or "")[:120])}</p>'
+            f'<div class="article-meta"><span class="article-date">{esc(date)}</span>'
+            f'<span class="article-author">نویسنده: {esc(author_name)}</span></div>'
+            f'<a href="blog.html?slug={quote(a["slug"])}" class="read-more-btn">بیشتر بخوانید</a>'
+            '</div></div>')
+
+
+def prerender_blogs_page():
+    if not os.path.exists(BLOGS_PAGE):
+        return
+    try:
+        page = read(BLOGS_PAGE)
+        if "<!--PRERENDER:ARTICLES-->" not in page:
+            WARNINGS.append("علامت PRERENDER:ARTICLES در blogs.html نیست (لیست مقالات رد شد)")
+            return
+        arts = [a for a in (fetch_all(BLOGS_LIST) or []) if a.get("slug") and a.get("title")]
+        if not arts:
+            WARNINGS.append("مقاله‌ای از API نیامد؛ blogs.html دست‌نخورده ماند")
+            return
+        write(BLOGS_PAGE, inject(page, "ARTICLES", "\n".join(article_card(a) for a in arts)))
+    except Exception as e:  # noqa
+        WARNINGS.append(f"blogs.html پیش‌رندر نشد ({e})")
+
+
 # ---------------------------------------------------------------- sitemap
- 
+
 def sitemap(entries):
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -628,9 +668,9 @@ def sitemap(entries):
         out.append("  </url>")
     out.append("</urlset>")
     return "\n".join(out) + "\n"
- 
+
 # ---------------------------------------------------------------- validation
- 
+
 def load_templates():
     ptpl, ltpl, home = read(PRODUCT_TPL), read(LIST_TPL), read(INDEX)
     problems = []
@@ -655,15 +695,15 @@ def load_templates():
     if problems:
         raise SystemExit("قالب‌ها آماده نیستند؛ چیزی تغییر نکرد:\n - " + "\n - ".join(problems))
     return ptpl, ltpl, home
- 
+
 # ---------------------------------------------------------------- main
- 
+
 def main():
     ptpl, ltpl, home = load_templates()
     content = load_content()
     cont_prod = content.get("products") or {}
     cont_cat = content.get("categories") or {}
- 
+
     cats_raw = get(f"{API}/categories/")
     if isinstance(cats_raw, dict):
         cats_raw = cats_raw.get("results", [])
@@ -671,7 +711,7 @@ def main():
     products = [p for p in products if p.get("is_active", True) is not False]
     if not cats_raw or not products:
         raise SystemExit("API returned no data; nothing changed")
- 
+
     cats, seen = {}, set()
     for c in cats_raw:
         s = clean_slug(c.get("slug"), str(c["id"])[:8])
@@ -680,7 +720,7 @@ def main():
         seen.add(s)
         c["_slug"], c["_path"] = s, url_path("category", s)
         cats[c["id"]] = c
- 
+
     seen = set()
     for p in products:
         s = clean_slug(p.get("slug"), str(p["id"])[:8])
@@ -688,42 +728,43 @@ def main():
             s = f"{s}-{str(p['id'])[:6]}"
         seen.add(s)
         p["_slug"], p["_path"] = s, url_path("product", s)
- 
+
     by_cat = {}
     for p in products:
         by_cat.setdefault((p.get("category") or {}).get("id"), []).append(p)
- 
+
     for d in ("product", "category"):
         shutil.rmtree(d, ignore_errors=True)
- 
+
     # --- product pages (قالب: product.html)
     for p in products:
         cid = (p.get("category") or {}).get("id")
         related = [r for r in by_cat.get(cid, []) if r["id"] != p["id"]][:4]
         write(os.path.join("product", p["_slug"], "index.html"),
               build_product(ptpl, p, cats.get(cid), related, cont_prod.get(p["_slug"])))
- 
+
     # --- category pages (قالب: finger-food.html)
     for cid, c in cats.items():
         items = by_cat.get(cid, [])
         if items:
             extra = cont_cat.get(c["_slug"]) or cont_cat.get(c["name"])
             write(os.path.join("category", c["_slug"], "index.html"), build_category(ltpl, c, items, extra))
- 
+
     # --- finger-food.html: پیش‌رندر همه محصولات
     base_page = inject(ltpl, "GRID", "\n".join(list_card(p) for p in products))
     base_page = put_block(base_page, r'<section class="contact-section">', "LIST", list_seo_block("محصولات", cont_cat.get("__all__")))
     write(LIST_TPL, ensure_style(base_page))
- 
+
     # --- index.html
     chosen = [p for p in products if float(p.get("discount_percent") or 0) > 0] or products
     page = inject(home, "CATEGORIES", "\n".join(home_category(c) for c in cats.values() if by_cat.get(c["id"])))
     page = inject(page, "BESTSELLERS", "\n".join(home_product(p) for p in chosen[:12]))
     page = prerender_reviews_and_blogs(page)
     write(INDEX, page)
- 
+    prerender_blogs_page()
+
     write("products-map.json", json.dumps({p["id"]: p["_path"] for p in products}, ensure_ascii=False))
- 
+
     # --- sitemap
     newest = max((day(p.get("updated_at") or p.get("created_at")) for p in products), default="")
     entries = [(SITE + sp, newest if sp == "/" else "") for sp in STATIC_PAGES]
@@ -741,12 +782,11 @@ def main():
     except Exception as e:  # noqa
         print("articles skipped:", e)
     write("sitemap.xml", sitemap(entries))
- 
+
     for w in sorted(set(WARNINGS)):
         print("WARN: بخشی از قالب پیدا نشد ->", w)
     print(f"OK: {len(products)} products, {len(cats)} categories, {len(entries)} sitemap urls")
- 
- 
+
+
 if __name__ == "__main__":
     main()
- 

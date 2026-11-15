@@ -17,70 +17,6 @@
 
 <script src="/search.js" defer></script>
 
-<!-- Breadcrumb Schema - برای نمایش صفحات پشت سر هم مثل مزبار -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "خانه",
-      "item": "https://firouzehco.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "منو و قیمت",
-      "item": "https://firouzehco.com/finger-food.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "تماس با ما",
-      "item": "https://firouzehco.com/contact.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "درباره ما",
-      "item": "https://firouzehco.com/about.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "name": "سوالات متداول",
-      "item": "https://firouzehco.com/FAQ.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "name": "همکاری با ما",
-      "item": "https://firouzehco.com/cooperation.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 7,
-      "name": "خدمات سازمانی",
-      "item": "https://firouzehco.com/vip-customers.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 8,
-      "name": "مقاله ها",
-      "item": "https://firouzehco.com/blogs.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 9,
-      "name": "مقاله ",
-      "item": "https://firouzehco.com/blog.html"
-    }
-  ]
-}
-</script>
-<!-- پایان Breadcrumb -->
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
@@ -433,8 +369,7 @@
       padding: 24px;
     }
     .hero-section {
-      background: url('https://placehold.co/1200x400/26A69A/FFFFFF?text=مجلات+و+اخبار+فیروزه') no-repeat center center;
-      background-size: cover;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       padding: 100px 32px;
       text-align: center;
       color: white;
@@ -1509,7 +1444,7 @@
         <div class="articles-filters">
           <!-- فیلترها به‌صورت دینامیک از API ساخته می‌شوند -->
         </div>
-        <div class="articles-grid" id="articlesGrid"></div>
+        <div class="articles-grid" id="articlesGrid"><!--PRERENDER:ARTICLES--><!--/PRERENDER:ARTICLES--></div>
         <div class="load-more-container">
           <button class="load-more-btn" id="loadMoreBtn">مشاهده مقالات بیشتر</button>
         </div>
@@ -1908,7 +1843,8 @@
       const filtersBox = document.querySelector('.articles-filters');
       try {
         const res = await fetch(`${CONTENT_API_BASE}/categories/`);
-        const cats = await res.json();
+        const raw = await res.json();
+        const cats = Array.isArray(raw) ? raw : (raw.results || []);
         filtersBox.innerHTML = `<button class="filter-btn active" data-cat="">همه مقالات</button>` +
           cats.map(c => `<button class="filter-btn" data-cat="${c.id}">${c.name}</button>`).join('');
 
@@ -1925,8 +1861,6 @@
         console.error('خطا در دریافت دسته‌بندی مقالات:', e);
         // در صورت خطا، دکمه‌های پیش‌فرض را نگه می‌داریم (البته اکنون خالی است)
         filtersBox.innerHTML = `<button class="filter-btn active" data-cat="">همه مقالات</button>`;
-        // یکبار تلاش برای بارگذاری مقالات بدون فیلتر
-        loadArticles(false);
       }
     }
 
@@ -1984,7 +1918,8 @@
     });
 
     // بارگذاری اولیه
-    loadArticleCategories(); // این تابع خودش loadArticles(false) را در صورت موفقیت صدا می‌زند
+    loadArticles(false);
+    loadArticleCategories();
 
     // ============================================================
     // بخش اخبار - جایگزینی کامل با API
