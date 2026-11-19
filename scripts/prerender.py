@@ -904,13 +904,8 @@ def main():
             entries.append((SITE + c["_path"], max(day(p.get("updated_at") or p.get("created_at")) for p in items)))
     for p in products:
         entries.append((SITE + p["_path"], day(p.get("updated_at") or p.get("created_at"))))
-    try:
-        for a in fetch_all(ARTICLES):
-            if a.get("slug"):
-                entries.append((f"{SITE}/blog.html?slug={quote(a['slug'])}",
-                                day(a.get("updated_at") or a.get("created_at"))))
-    except Exception as e:  # noqa
-        print("articles skipped:", e)
+        for a in arts:
+        entries.append((SITE + article_path(a), day(a.get("updated_at") or a.get("created_at"))))
     write("sitemap.xml", sitemap(entries))
 
     for w in sorted(set(WARNINGS)):
