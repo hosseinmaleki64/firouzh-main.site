@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>مقاله: انواع گوشت برای برگر و نحوه ساخت آن - فینگرفود فیروزه</title>
   <!-- Microsoft Clarity - آمار بازدید + فیلم رفتار کاربر -->
@@ -3100,9 +3101,18 @@
   }
 
   async function loadArticleDetail(){
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
-    const container = document.querySelector('.blog-content');
+  if (window.ARTICLE_PRERENDERED) return;
+
+  const params = new URLSearchParams(window.location.search);
+  let slug = params.get('slug');
+  const m = location.pathname.match(/^\/blog\/([^\/]+)\/?$/);
+  if (!slug && m) slug = decodeURIComponent(m[1]);
+
+  if (slug && /blog\.html$/.test(location.pathname)) {
+    location.replace('/blog/' + encodeURIComponent(slug) + '/');
+    return;
+  }
+  const container = document.querySelector('.blog-content');
 
     if(!slug){
       container.innerHTML = `
