@@ -654,6 +654,116 @@ def prerender_blogs_page():
     except Exception as e:  # noqa
         WARNINGS.append(f"blogs.html پیش‌رندر نشد ({e})")
 
+# ---------------------------------------------------------------- صفحه هر مقاله
+
+ARTICLE_TPL = "blog.html"
+JALALI_MONTHS = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور",
+                 "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"]
+
+
+def article_path(a):
+    return url_path("blog", a["slug"])
+
+
+def g2j(gy, gm, gd):
+    g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
+    gy2 = gy + 1 if gm > 2 else gy
+    days = (355666 + 365 * gy + (gy2 + 3) // 4 - (gy2 + 99) // 100
+            + (gy2 + 399) // 400 + gd + g_d_m[gm - 1])
+    jy = -1595 + 33 * (days // 12053)
+    days %= 12053
+    jy += 4 * (days // 1461)
+    days %= 1461
+    if days > 365:
+        jy += (days - 1) // 365
+        days = (days - 1) % 365
+    if days < 186:
+        jm, jd = 1 + days // 31, 1 + days % 31
+    else:
+        jm, jd = 7 + (days - 186) // 30, 1 + (days - 186) % 30
+    return jy, jm, jd
+
+
+def jalali_fa(iso):
+    try:
+        y, m, d = (int(x) for x in day(iso).split("-"))
+        jy, jm, jd = g2j(y, m, d)
+        return f"{fa(jd)} {JALALI_MONTHS[jm - 1]} {fa(jy)}"
+    except Exception:  # noqa
+        return day(iso)
+
+
+def article_body_html(content):
+    c = (content or "").strip()
+    if re.search(r"<(p|h[1-6]|ul|ol|blockquote|img|br|div)\b", c, re.I):
+        return c
+    return render_text(c)
+
+
+def related_article_card(a):
+    cover = media(a.get("cover_image")) if a.get("cover_image") else SITE + "/image1/logo.png"
+    return (f'<a href="{esc(article_path(a))}" class="related-card" style="display:block;color:inherit;text-decoration:none">'
+            f'<img src="{esc(cover)}" alt="{esc(a["title"])}" loading="lazy" width="400" height="150">'
+            f'<h4>{esc(a["title"])}</h4></a>')
+
+
+def build_article(tpl, a, related):
+    t = a["title"]
+    canon = SITE + a["_path"]
+    cat = (a.get("category") or {}).get("name") or "مقالات"
+    author = (a.get("author") or {}).get("full_name") or "تیم فیروزه"
+    cover = media(a.get("cover_image")) if a.get("cover_image") else SITE + "/image1/logo.png"
+    pub = a.get("published_at") or a.get("created_at") or ""
+    mod = a.get("updated_at") or pub
+    desc = trim(a.get("meta_description") or a.get("excerpt") or t)
+    minutes = a.get("reading_time_minutes") or 1
+
+    art_ld = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": t[:110],
+        "description": desc,
+        "image": [cover],
+        "datePublished": pub,
+        "dateModified": mod,
+        "inLanguage": "fa-IR",
+        "articleSection": cat,
+        "author": {"@type": "Person", "name": author},
+        "publisher": {"@type": "Organization", "name": "فینگرفود فیروزه",
+                      "logo": {"@type": "ImageObject", "url": SITE + "/image1/logo.png"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canon},
+    }
+    crumbs = [("خانه", "/"), ("مجله فیروزه", "/blogs.html"), (t, a["_path"])]
+
+    s = strip_head_seo(tpl)
+    s = insert_head(s, head_block(
+        f"{t} | مجله فیروزه", desc, canon, cover,
+        [art_ld, breadcrumb_ld(crumbs)],
+        js_var='<script>window.ARTICLE_PRERENDERED=true;</script>\n',
+        og_type="article"))
+
+    def fill(s, tag_id, tag, value, label):
+        return rep(s, rf'(<{tag} id="{tag_id}"[^>]*>)(.*?)(</{tag}>)',
+                   lambda m: m.group(1) + value + m.group(3), label)
+
+    s = fill(s, "detail-breadcrumb-title", "span", esc(t), "#detail-breadcrumb-title")
+    s = fill(s, "detail-title", "h1", esc(t), "#detail-title")
+    s = fill(s, "detail-author", "span", esc(author), "#detail-author")
+    s = fill(s, "detail-date", "span", jalali_fa(pub), "#detail-date")
+    s = fill(s, "detail-readTime", "span", f"{fa(minutes)} دقیقه", "#detail-readTime")
+    s = rep(s, r'<img[^>]*id="detail-image"[^>]*>',
+            lambda m: (f'<img src="{esc(cover)}" alt="{esc(a.get("cover_alt") or t)}" '
+                       f'class="hero-image" id="detail-image" fetchpriority="high">'),
+            "#detail-image")
+    body = ((f'<p class="lead-paragraph">{esc(a["excerpt"])}</p>' if a.get("excerpt") else "")
+            + f'<div>{article_body_html(a.get("content"))}</div>')
+    s = rep(s, r'(<div id="detail-content">)(.*?)(</div>\s*<a href="blogs.html" class="cta-button">)',
+            lambda m: m.group(1) + body + m.group(3), "#detail-content")
+    if related:
+        rel = ('<div class="related-posts"><h3>مقالات مرتبط</h3><div class="related-grid">'
+               + "".join(related_article_card(r) for r in related) + "</div></div>")
+        s = put_block(s, r'<a href="blogs.html" class="cta-button">', "RELATED", rel)
+    return s
 
 # ---------------------------------------------------------------- sitemap
 
