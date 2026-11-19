@@ -859,6 +859,26 @@ def main():
         if items:
             extra = cont_cat.get(c["_slug"]) or cont_cat.get(c["name"])
             write(os.path.join("category", c["_slug"], "index.html"), build_category(ltpl, c, items, extra))
+    # --- article pages (قالب: blog.html)
+    try:
+        arts = [a for a in fetch_all(ARTICLES) if a.get("slug") and a.get("title")]
+    except Exception as e:  # noqa
+        arts = []
+        WARNINGS.append(f"مقالات دریافت نشد ({e})")
+    if arts:
+        atpl = read(ARTICLE_TPL)
+        shutil.rmtree("blog", ignore_errors=True)
+        for a in arts:
+            a["_path"] = article_path(a)
+            try:
+                full = get(f"{API_ORIGIN}/api/content/articles/{quote(a['slug'], safe='-._~')}/")
+            except Exception as e:  # noqa
+                WARNINGS.append(f"مقاله {a['slug']} دریافت نشد ({e})")
+                continue
+            full["_path"] = a["_path"]
+            related = [r for r in (full.get("related_articles") or []) if r.get("slug")][:3]
+            write(os.path.join("blog", a["slug"], "index.html"), build_article(atpl, full, related))
+
 
     # --- finger-food.html: پیش‌رندر همه محصولات
     base_page = inject(ltpl, "GRID", "\n".join(list_card(p) for p in products))
