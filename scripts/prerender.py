@@ -2,13 +2,14 @@
 """
 Firouzeh static build (GitHub Actions) - نسخه ۳: با ظاهر خودِ سایت
 
-قالب‌ها:   product.html  و  finger-food.html   (همان فایل‌های خودتان)
+قالب‌ها:   product.html  و  finger-food.html  و  blog.html  (همان فایل‌های خودتان)
 خروجی‌ها:
   /product/<slug>/index.html     از روی product.html
   /category/<slug>/index.html    از روی finger-food.html
+  /blog/<slug>/index.html        از روی blog.html
   index.html و finger-food.html  (پیش‌رندر دسته‌ها/محصولات بین علامت‌های PRERENDER)
   sitemap.xml  و  products-map.json
-پوشه‌های product/ و category/ کاملاً خودکارند؛ دستی چیزی داخلشان نگذارید.
+پوشه‌های product/ و category/ و blog/ کاملاً خودکارند؛ دستی چیزی داخلشان نگذارید.
 """
 import html
 import json
@@ -617,7 +618,6 @@ def prerender_reviews_and_blogs(page):
     return page
 
 
-
 # ---------------------------------------------------------------- blogs.html (لیست مقالات)
 
 def article_card(a):
@@ -653,6 +653,7 @@ def prerender_blogs_page():
         write(BLOGS_PAGE, inject(page, "ARTICLES", "\n".join(article_card(a) for a in arts)))
     except Exception as e:  # noqa
         WARNINGS.append(f"blogs.html پیش‌رندر نشد ({e})")
+
 
 # ---------------------------------------------------------------- صفحه هر مقاله
 
@@ -735,7 +736,8 @@ def build_article(tpl, a, related):
     }
     crumbs = [("خانه", "/"), ("مجله فیروزه", "/blogs.html"), (t, a["_path"])]
 
-    s = strip_head_seo(tpl)
+    # <base> قالب پاک می‌شود چون head_block خودش یکی می‌گذارد
+    s = re.sub(r"<base[^>]*>\s*", "", strip_head_seo(tpl))
     s = insert_head(s, head_block(
         f"{t} | مجله فیروزه", desc, canon, cover,
         [art_ld, breadcrumb_ld(crumbs)],
@@ -764,6 +766,7 @@ def build_article(tpl, a, related):
                + "".join(related_article_card(r) for r in related) + "</div></div>")
         s = put_block(s, r'<a href="blogs.html" class="cta-button">', "RELATED", rel)
     return s
+
 
 # ---------------------------------------------------------------- sitemap
 
@@ -859,6 +862,7 @@ def main():
         if items:
             extra = cont_cat.get(c["_slug"]) or cont_cat.get(c["name"])
             write(os.path.join("category", c["_slug"], "index.html"), build_category(ltpl, c, items, extra))
+
     # --- article pages (قالب: blog.html)
     try:
         arts = [a for a in fetch_all(ARTICLES) if a.get("slug") and a.get("title")]
@@ -878,7 +882,6 @@ def main():
             full["_path"] = a["_path"]
             related = [r for r in (full.get("related_articles") or []) if r.get("slug")][:3]
             write(os.path.join("blog", a["slug"], "index.html"), build_article(atpl, full, related))
-
 
     # --- finger-food.html: پیش‌رندر همه محصولات
     base_page = inject(ltpl, "GRID", "\n".join(list_card(p) for p in products))
@@ -904,7 +907,7 @@ def main():
             entries.append((SITE + c["_path"], max(day(p.get("updated_at") or p.get("created_at")) for p in items)))
     for p in products:
         entries.append((SITE + p["_path"], day(p.get("updated_at") or p.get("created_at"))))
-        for a in arts:
+    for a in arts:
         entries.append((SITE + article_path(a), day(a.get("updated_at") or a.get("created_at"))))
     write("sitemap.xml", sitemap(entries))
 
