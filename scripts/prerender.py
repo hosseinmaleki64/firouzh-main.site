@@ -197,13 +197,13 @@ def strip_head_seo(s):
     return s
 
 
-def head_block(title, desc, canon, image, schemas, js_var=""):
+def head_block(title, desc, canon, image, schemas, js_var="", og_type="website"):
     sch = "".join(f'<script type="application/ld+json">{ld(x)}</script>\n' for x in schemas)
     return f"""<base href="/">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{esc(canon)}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{og_type}">
 <meta property="og:locale" content="fa_IR">
 <meta property="og:site_name" content="فینگرفود فیروزه">
 <meta property="og:title" content="{esc(title)}">
