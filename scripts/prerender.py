@@ -576,7 +576,7 @@ def home_blog_card(a):
     cover = media(a.get("cover_image")) if a.get("cover_image") else SITE + "/image1/logo.png"
     ex = (a.get("excerpt") or "")
     short = ex[:80] + ("..." if len(ex) > 80 else "")
-    return (f'<a href="blog.html?slug={quote(a["slug"])}" class="blog-card">'
+    return (f'<a href="{esc(article_path(a))}" class="blog-card">'
             f'<div class="blog-image"><img src="{esc(cover)}" alt="{esc(a["title"])}" loading="lazy"></div>'
             f'<strong>{esc(a["title"])}</strong><p>{esc(short)}</p></a>')
 
@@ -634,7 +634,7 @@ def article_card(a):
             f'<p class="article-summary">{esc((a.get("excerpt") or "")[:120])}</p>'
             f'<div class="article-meta"><span class="article-date">{esc(date)}</span>'
             f'<span class="article-author">نویسنده: {esc(author_name)}</span></div>'
-            f'<a href="blog.html?slug={quote(a["slug"])}" class="read-more-btn">بیشتر بخوانید</a>'
+            f'<a href="{esc(article_path(a))}" class="read-more-btn">بیشتر بخوانید</a>'
             '</div></div>')
 
 
