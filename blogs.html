@@ -1883,7 +1883,7 @@
               <span class="article-date">${date}</span>
               <span class="article-author">نویسنده: ${authorName}</span>
             </div>
-            <a href="blog.html?slug=${encodeURIComponent(a.slug)}" class="read-more-btn">بیشتر بخوانید</a>
+            <a href="/blog/${encodeURIComponent(a.slug)}/" class="read-more-btn">بیشتر بخوانید</a>
           </div>
         </div>`;
     }
@@ -1921,8 +1921,12 @@
     });
 
     // بارگذاری اولیه
-    loadArticles(false);
-    loadArticleCategories();
+    if (!document.querySelector('#articlesGrid .article-card')) {
+  loadArticles(false);
+} else {
+  document.getElementById('loadMoreBtn').style.display = 'none';
+}
+loadArticleCategories();
 
     // ============================================================
     // بخش اخبار - جایگزینی کامل با API
