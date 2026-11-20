@@ -685,6 +685,8 @@ document.getElementById('articleForm').addEventListener('submit', async e=>{
   fd.append('title', title);
   if(fSlug.value.trim()) fd.append('slug', fSlug.value.trim());
   fd.append('excerpt', excerpt);
+  fd.append('meta_description', document.getElementById('fMetaDesc').value.trim());
+  fd.append('cover_alt', document.getElementById('fCoverAlt').value.trim());
   fd.append('content', quill.root.innerHTML);
   fd.append('category', categoryId);
   state.selectedTags.forEach(t => fd.append('tags', t.id));
