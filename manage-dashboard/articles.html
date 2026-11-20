@@ -509,6 +509,30 @@ function toast(msg, isError=false){
 }
 
 function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+  function escapeHTML(s){
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* پاک‌سازی HTML مقاله برای پیش‌نمایش: فقط تگ‌های ایمن می‌مانند */
+function sanitizeArticleHTML(html){
+  const allowed = new Set(['P','BR','H2','H3','H4','STRONG','B','EM','I','U','UL','OL','LI','BLOCKQUOTE','A','IMG','SPAN','DIV']);
+  const doc = new DOMParser().parseFromString('<div>' + (html || '') + '</div>', 'text/html');
+  const walk = (node) => {
+    [...node.children].forEach(el => {
+      if(!allowed.has(el.tagName)){ el.replaceWith(document.createTextNode(el.textContent)); return; }
+      [...el.attributes].forEach(at => {
+        const n = at.name.toLowerCase();
+        const keep = (el.tagName==='A' && n==='href') || (el.tagName==='IMG' && (n==='src' || n==='alt')) || n==='class' || n==='dir';
+        if(!keep) el.removeAttribute(at.name);
+      });
+      if(el.tagName==='A' && !/^(https?:|\/|#|mailto:)/i.test(el.getAttribute('href')||'')) el.removeAttribute('href');
+      if(el.tagName==='IMG' && !/^https?:/i.test(el.getAttribute('src')||'')) el.remove();
+      else walk(el);
+    });
+  };
+  walk(doc.body.firstChild);
+  return doc.body.firstChild.innerHTML;
+}
 
 /* تبدیل تاریخ میلادی بک‌اند به شمسی، با ارقام لاتین */
 function toJalali(iso){
@@ -595,14 +619,14 @@ function renderArticles(){
             <div class="meta">
               <b>
                 <button class="star-btn" data-id="${a.id}" title="${a.is_featured ? 'حذف از ویژه' : 'افزودن به ویژه'}">${a.is_featured ? '★' : '☆'}</button>
-                ${a.title}
+                               ${escapeHTML(a.title)}
               </b>
-              <small>${a.excerpt || ''}</small>
+              <small>${escapeHTML(a.excerpt || '')}</small>
             </div>
           </div>
         </td>
-        <td data-label="دسته‌بندی"><span class="cat-badge">${a.category ? a.category.name : '—'}</span></td>
-        <td data-label="نویسنده">${a.author ? a.author.full_name : '—'}</td>
+        <td data-label="دسته‌بندی"><span class="cat-badge">${a.category ? escapeHTML(a.category.name) : '—'}</span></td>
+        <td data-label="نویسنده">${a.author ? escapeHTML(a.author.full_name) : '—'}</td>
         <td data-label="تاریخ">${toJalali(dateVal)}</td>
         <td data-label="وضعیت"><span class="status-badge ${meta.cls}">${meta.label}</span></td>
         <td data-label="عملیات">
