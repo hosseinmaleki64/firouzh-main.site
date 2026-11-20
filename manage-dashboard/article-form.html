@@ -243,6 +243,10 @@
             <textarea id="fExcerpt" placeholder="یک خلاصه‌ی ۱۵۰ تا ۲۵۰ کاراکتری که داخل کارت مقاله نمایش داده می‌شود…"></textarea>
           </div>
         </div>
+         <div class="field">
+            <label>توضیح گوگل (Meta Description) <span class="counter">پیشنهاد: ۱۲۰ تا ۱۶۰ کاراکتر</span></label>
+            <textarea id="fMetaDesc" maxlength="300" placeholder="خالی بگذارید تا از توضیح کوتاه استفاده شود"></textarea>
+          </div>
 
         <div class="form-card">
           <h3>دسته‌بندی و تگ‌ها</h3>
@@ -266,6 +270,10 @@
         <div class="form-card">
           <h3>عکس کاور <span class="req">*</span></h3>
           <p class="hint">در <code>media/blog/covers/</code> ذخیره می‌شود.</p>
+        <div class="field">
+            <label>متن جایگزین عکس (Alt)</label>
+            <input class="input" id="fCoverAlt" maxlength="200" placeholder="توضیح کوتاه تصویر، مثلاً: سینی فینگرفود تولد">
+          </div>
           <div id="coverArea">
             <label class="cover-drop">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4l-4 4M12 4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
@@ -634,6 +642,8 @@ async function loadForEdit(){
   fSlug.value = detail.slug || '';
   state.slugDirty = true;
   fExcerpt.value = detail.excerpt || '';
+ document.getElementById('fMetaDesc').value = detail.meta_description || '';
+  document.getElementById('fCoverAlt').value = detail.cover_alt || '';
   updateExcerptCounter();
   document.getElementById('fFeatured').checked = !!detail.is_featured;
 
