@@ -467,17 +467,19 @@ function quillImageHandler(){
   const input = document.createElement('input');
   input.type = 'file';
   input.accept = 'image/*';
-  input.onchange = () => {
+  input.onchange = async () => {
     const file = input.files[0];
     if(!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const range = quill.getSelection(true) || { index: quill.getLength() };
-      quill.insertEmbed(range.index, 'image', reader.result, 'user');
-      quill.setSelection(range.index + 1);
-      updatePreview();
-    };
-    reader.readAsDataURL(file);
+    const range = quill.getSelection(true) || { index: quill.getLength() };
+    toast('در حال آپلود عکس…');
+    const fd = new FormData();
+    fd.append('image', file);
+    const data = await apiSend('/upload-image/', 'POST', fd, true);
+    if(!data || !data.url) return;
+    quill.insertEmbed(range.index, 'image', data.url, 'user');
+    quill.setSelection(range.index + 1);
+    updatePreview();
+    toast('عکس آپلود شد');
   };
   input.click();
 }
@@ -663,6 +665,10 @@ document.getElementById('articleForm').addEventListener('submit', async e=>{
   if(!excerpt){ toast('توضیح کوتاه را وارد کنید', true); fExcerpt.focus(); return; }
   if(!categoryId){ toast('یک دسته‌بندی انتخاب کنید', true); return; }
   if(contentEmpty){ toast('محتوای مقاله نمی‌تواند خالی باشد', true); return; }
+    if(quill.root.innerHTML.includes('src="data:image')){
+    toast('عکس‌های Paste یا Drag شده پذیرفته نمی‌شوند. عکس را با دکمه‌ی عکس نوار ابزار آپلود کنید.', true);
+    return;
+  }
   if(!isEdit && !state.coverFile){ toast('انتخاب عکس کاور الزامی است', true); return; }
 
   const fd = new FormData();
