@@ -429,6 +429,9 @@ function toast(msg, isError=false){
   toastTimer = setTimeout(()=> t.className='toast', 3000);
 }
 function fmt(n){ return Number(n).toLocaleString('fa-IR'); }
+  function escapeHTML(s){
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 
 /* ---------------- URL params / mode ---------------- */
 const params = new URLSearchParams(window.location.search);
@@ -527,11 +530,20 @@ async function loadCategories(){
   const data = await apiGet('/categories/');
   state.categories = Array.isArray(data) ? data : (data && data.results) || [];
   const sel = document.getElementById('fCategory');
-  sel.innerHTML = '<option value="">انتخاب کنید…</option>' + state.categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  sel.innerHTML = '<option value="">انتخاب کنید…</option>' + state.categories.map(c=>`<option value="${c.id}">${escapeHTML(c.name)}</option>`).join('');
   sel.addEventListener('change', updatePreview);
 }
-document.getElementById('newCatBtn').addEventListener('click', ()=>{
-  toast('افزودن دسته‌بندی جدید از این فرم فعلاً پشتیبانی نمی‌شود؛ فقط اندپوینت لیست دسته‌بندی‌ها در بک‌اند فعال است.', true);
+document.getElementById('newCatBtn').addEventListener('click', async ()=>{
+  const name = (prompt('نام دسته‌بندی جدید را وارد کنید:') || '').trim();
+  if(!name) return;
+  const data = await apiSend('/categories/create/', 'POST', {name});
+  if(!data) return;
+  state.categories.push(data);
+  const sel = document.getElementById('fCategory');
+  sel.insertAdjacentHTML('beforeend', `<option value="${data.id}">${escapeHTML(data.name)}</option>`);
+  sel.value = data.id;
+  updatePreview();
+  toast('دسته‌بندی ساخته شد');
 });
 
 /* ---------------- Tags picker ---------------- */
@@ -541,10 +553,10 @@ async function loadTags(){
 }
 function renderTagChips(){
   const box = document.getElementById('tagChips');
-  box.innerHTML = state.selectedTags.map(t=>`<span class="chip">${t.name}<button type="button" data-id="${t.id}">×</button></span>`).join('');
+  box.innerHTML = state.selectedTags.map(t=>`<span class="chip">${escapeHTML(t.name)}<button type="button" data-id="${t.id}">×</button></span>`).join('');
   box.querySelectorAll('button').forEach(b=>{
     b.addEventListener('click', ()=>{
-      state.selectedTags = state.selectedTags.filter(x=>x.id!==b.dataset.id);
+        state.selectedTags = state.selectedTags.filter(x=>String(x.id)!==String(b.dataset.id));
       renderTagChips();
       updatePreview();
     });
@@ -555,9 +567,9 @@ const tagDropdown = document.getElementById('tagDropdown');
 tagSearch.addEventListener('input', ()=>{
   const q = tagSearch.value.trim().toLowerCase();
   if(!q){ tagDropdown.classList.remove('open'); return; }
-  const list = state.allTags.filter(t => t.name.toLowerCase().includes(q) && !state.selectedTags.find(s=>s.id===t.id));
+  const list = state.allTags.filter(t => t.name.toLowerCase().includes(q) && !state.selectedTags.find(s=>String(s.id)===String(t.id)));
   tagDropdown.innerHTML = list.length
-    ? list.map(t=>`<div data-id="${t.id}" data-name="${t.name}">${t.name}</div>`).join('')
+     ? list.map(t=>`<div data-id="${t.id}" data-name="${escapeHTML(t.name)}">${escapeHTML(t.name)}</div>`).join('')
     : `<div class="empty">تگی یافت نشد (افزودن تگ جدید فعلاً پشتیبانی نمی‌شود)</div>`;
   tagDropdown.classList.add('open');
   tagDropdown.querySelectorAll('div[data-id]').forEach(d=>{
@@ -601,7 +613,7 @@ function updatePreview(){
   const title = fTitle.value.trim();
   const excerpt = fExcerpt.value.trim();
   const catId = document.getElementById('fCategory').value;
-  const cat = state.categories.find(c=>c.id===catId);
+  const cat = state.categories.find(c=>String(c.id)===String(catId));
 
   document.getElementById('prevTitle').textContent = title || 'عنوان مقاله اینجا نمایش داده می‌شود';
   document.getElementById('prevExcerpt').textContent = excerpt || 'توضیح کوتاه مقاله همینجا دیده می‌شود…';
@@ -609,7 +621,7 @@ function updatePreview(){
   const catEl = document.getElementById('prevCat');
   if(cat){ catEl.textContent = cat.name; catEl.style.display='inline-block'; } else { catEl.style.display='none'; }
 
-  document.getElementById('prevTags').innerHTML = state.selectedTags.map(t=>`<span>${t.name}</span>`).join('');
+  document.getElementById('prevTags').innerHTML = state.selectedTags.map(t=>`<span>${escapeHTML(t.name)}</span>`).join('');
 
   const coverEl = document.getElementById('prevCover');
   const coverUrl = state.coverFile ? URL.createObjectURL(state.coverFile) : state.existingCoverUrl;
