@@ -234,7 +234,8 @@
   .preview-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
   .preview-title{font-size:19px;font-weight:800;margin:0;}
   .preview-excerpt{color:var(--ink-soft);font-size:13px;line-height:1.9;}
-  .preview-content{font-size:13.5px;line-height:2;white-space:pre-wrap;color:var(--ink);border-top:1px solid var(--border);padding-top:14px;}
+  .preview-content{font-size:13.5px;line-height:2;color:var(--ink);border-top:1px solid var(--border);padding-top:14px;}
+  .preview-content img{max-width:100%;height:auto;border-radius:6px;}
   .preview-loading{padding:40px;text-align:center;color:var(--ink-faint);font-size:13px;}
 
   .toast{
@@ -548,7 +549,7 @@ function toJalali(iso){
 async function loadCategories(){
   const data = await apiGet('/categories/');
   state.categories = Array.isArray(data) ? data : (data && data.results) || [];
-  const opts = state.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+  const opts = state.categories.map(c => `<option value="${c.id}">${escapeHTML(c.name)}</option>`).join('');
   document.getElementById('fCategory').innerHTML = '<option value="">همه دسته‌بندی‌ها</option>' + opts;
 }
 
@@ -615,7 +616,7 @@ function renderArticles(){
       <tr data-id="${a.id}">
         <td data-label="عنوان">
           <div class="prod-name-cell">
-            ${cover ? `<img class="prod-thumb" src="${cover}">` : `<div class="prod-thumb"></div>`}
+            ${cover ? `<img class="prod-thumb" src="${escapeHTML(cover)}" alt="">` : `<div class="prod-thumb"></div>`}
             <div class="meta">
               <b>
                 <button class="star-btn" data-id="${a.id}" title="${a.is_featured ? 'حذف از ویژه' : 'افزودن به ویژه'}">${a.is_featured ? '★' : '☆'}</button>
@@ -745,18 +746,16 @@ async function openPreview(id){
     document.getElementById('previewBody').innerHTML = `<div class="preview-loading">خطا در بارگذاری مقاله</div>`;
     return;
   }
-  const cover = detail.cover_image ? toAbsoluteMediaUrl(detail.cover_image) : '';
-  const meta = STATUS_META[detail.status] || {label:detail.status, cls:'draft'};
-  document.getElementById('previewBody').innerHTML = `
-    ${cover ? `<img class="preview-cover" src="${cover}">` : ''}
+    document.getElementById('previewBody').innerHTML = `
+    ${cover ? `<img class="preview-cover" src="${escapeHTML(cover)}" alt="">` : ''}
     <div class="preview-meta">
       <span class="status-badge ${meta.cls}">${meta.label}</span>
-      <span class="cat-badge">${detail.category ? detail.category.name : '—'}</span>
-      <span style="font-size:12px;color:var(--ink-faint)">${detail.author ? detail.author.full_name : ''} · ${toJalali(detail.published_at || detail.created_at)} · ${detail.reading_time_minutes ?? 1} دقیقه مطالعه</span>
+      <span class="cat-badge">${detail.category ? escapeHTML(detail.category.name) : '—'}</span>
+      <span style="font-size:12px;color:var(--ink-faint)">${detail.author ? escapeHTML(detail.author.full_name) : ''} · ${toJalali(detail.published_at || detail.created_at)} · ${detail.reading_time_minutes ?? 1} دقیقه مطالعه</span>
     </div>
-    <h3 class="preview-title">${detail.title}</h3>
-    <p class="preview-excerpt">${detail.excerpt || ''}</p>
-    <div class="preview-content">${(detail.content || '').replace(/</g,'&lt;')}</div>
+    <h3 class="preview-title">${escapeHTML(detail.title)}</h3>
+    <p class="preview-excerpt">${escapeHTML(detail.excerpt || '')}</p>
+    <div class="preview-content">${sanitizeArticleHTML(detail.content)}</div>
   `;
 }
 document.getElementById('closePreview').addEventListener('click', ()=> previewOverlay.classList.remove('open'));
