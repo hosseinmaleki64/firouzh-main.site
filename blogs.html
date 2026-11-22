@@ -32,6 +32,8 @@
       --gradient-start: linear-gradient(135deg, var(--secondary-color), #2E2A3F);
       --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       --rating-color: #FFD700;
+      --transition: all 0.3s ease;
+      --border-radius: 12px;
     }
     html, body {
       margin: 0;
@@ -1849,7 +1851,7 @@
         const raw = await res.json();
         const cats = Array.isArray(raw) ? raw : (raw.results || []);
         filtersBox.innerHTML = `<button class="filter-btn active" data-cat="">همه مقالات</button>` +
-          cats.map(c => `<button class="filter-btn" data-cat="${c.id}">${c.name}</button>`).join('');
+              cats.map(c => `<button class="filter-btn" data-cat="${c.id}">${escapeHTML(c.name)}</button>`).join('');
 
         filtersBox.querySelectorAll('.filter-btn').forEach(btn => {
           btn.addEventListener('click', () => {
@@ -1867,21 +1869,21 @@
       }
     }
 
-    function articleCardHTML(a) {
+        function articleCardHTML(a) {
       const cover = a.cover_image ? toAbsoluteMediaUrl(a.cover_image) : 'https://placehold.co/350x200?text=فیروزه';
       const date = a.published_at ? a.published_at.slice(0, 10) : (a.created_at ? a.created_at.slice(0, 10) : '');
       const categoryName = a.category ? a.category.name : '';
       const authorName = a.author ? (a.author.full_name || a.author.username || '') : '';
       return `
         <div class="article-card">
-          <img src="${cover}" alt="${a.title}" class="article-image">
+          <img src="${escapeHTML(cover)}" alt="${escapeHTML(a.title)}" class="article-image" loading="lazy">
           <div class="article-content">
-            <span class="article-category">${categoryName}</span>
-            <h3 class="article-title">${a.title}</h3>
-            <p class="article-summary">${(a.excerpt || '').substring(0, 120)}</p>
+            <span class="article-category">${escapeHTML(categoryName)}</span>
+            <h3 class="article-title">${escapeHTML(a.title)}</h3>
+            <p class="article-summary">${escapeHTML((a.excerpt || '').substring(0, 120))}</p>
             <div class="article-meta">
-              <span class="article-date">${date}</span>
-              <span class="article-author">نویسنده: ${authorName}</span>
+              <span class="article-date">${escapeHTML(date)}</span>
+              <span class="article-author">نویسنده: ${escapeHTML(authorName)}</span>
             </div>
             <a href="/blog/${encodeURIComponent(a.slug)}/" class="read-more-btn">بیشتر بخوانید</a>
           </div>
@@ -1936,8 +1938,8 @@ loadArticleCategories();
       const isImportant = n.is_breaking || n.is_important || false;
       return `
         <div class="news-card ${isImportant ? 'important' : ''}">
-          <h3 class="news-title">${n.title}</h3>
-          <p class="news-content">${(n.summary || '').substring(0, 150)}</p>
+          <h3 class="news-title">${escapeHTML(n.title)}</h3>
+          <p class="news-content">${escapeHTML((n.summary || '').substring(0, 150))}</p>
           <div class="news-date">${date}</div>
           <a href="news-detail.html?slug=${encodeURIComponent(n.slug)}" class="news-details-btn">جزئیات بیشتر</a>
         </div>`;
