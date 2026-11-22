@@ -2713,11 +2713,10 @@
     </div>
   </footer>
   <!-- Share Buttons -->
-  <div class="share-buttons">
-    <a href="https://wa.me/?text=URL" title="اشتراک در واتساپ"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://t.me/share/url?url=URL" title="اشتراک در تلگرام"><i class="fab fa-telegram"></i></a>
-    <a href="https://instagram.com" title="اشتراک در اینستاگرام"><i class="fab fa-instagram"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=URL" title="اشتراک در توییتر"><i class="fab fa-twitter"></i></a>
+   <div class="share-buttons">
+    <a id="share-wa" href="#" target="_blank" rel="noopener" title="اشتراک در واتساپ"><i class="fab fa-whatsapp"></i></a>
+    <a id="share-tg" href="#" target="_blank" rel="noopener" title="اشتراک در تلگرام"><i class="fab fa-telegram"></i></a>
+    <a id="share-tw" href="#" target="_blank" rel="noopener" title="اشتراک در توییتر"><i class="fab fa-twitter"></i></a>
     <a href="#" id="copy-link" title="کپی لینک"><i class="fas fa-copy"></i></a>
   </div>
   <!-- Back to Top -->
@@ -3075,11 +3074,19 @@
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+        // Share links
+    (function(){
+      const u = encodeURIComponent(location.origin + location.pathname);
+      const t = encodeURIComponent(document.title);
+      document.getElementById('share-wa').href = 'https://wa.me/?text=' + t + '%20' + u;
+      document.getElementById('share-tg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
+      document.getElementById('share-tw').href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t;
+    })();
     // Copy Link
-    document.getElementById('copy-link').addEventListener('click', (e) => {
+    document.getElementById('copy-link').addEventListener('click', async (e) => {
       e.preventDefault();
-      navigator.clipboard.writeText(window.location.href);
-      alert('لینک کپی شد!');
+      try { await navigator.clipboard.writeText(location.origin + location.pathname); alert('لینک کپی شد!'); }
+      catch(_) { prompt('لینک مقاله:', location.href); }
     });
   </script>
 <script>
