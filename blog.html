@@ -192,6 +192,7 @@
     background: var(--background-color);
     color: var(--text-dark);
     line-height: 1.8;
+    padding-top: calc(var(--header-h) + 10px);
   }
   .navbar {
     display: flex;
@@ -3146,9 +3147,12 @@
       }
 
       // محتوای مقاله (متن ساده — اگر بک‌اند HTML برمی‌گردونه innerHTML مستقیم کار می‌کنه)
+           const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      const raw = article.content || '';
+      const bodyHtml = /<(p|h[1-6]|ul|ol|blockquote|img|br|div)\b/i.test(raw) ? raw : esc(raw).replace(/\n/g, '<br>');
       document.getElementById('detail-content').innerHTML =
-        (article.excerpt ? `<p class="lead-paragraph">${article.excerpt}</p>` : '') +
-        `<div>${(article.content || '').replace(/\n/g, '<br>')}</div>`;
+        (article.excerpt ? `<p class="lead-paragraph">${esc(article.excerpt)}</p>` : '') +
+        `<div>${bodyHtml}</div>`;
 
     }catch(e){
       console.error('خطا در دریافت مقاله:', e);
